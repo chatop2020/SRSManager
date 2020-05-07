@@ -1,0 +1,28 @@
+﻿using System;
+
+namespace SRSConfFile.SRSConfClass
+{
+    [Serializable]
+    public class SrsStatsConfClass : SrsConfBase
+    {
+        private byte? network; //network device index for use
+        private string? disk; //monitor disk list use bankspace split 
+
+        public SrsStatsConfClass()
+        {
+            SectionsName = "stats";
+        }
+
+        public byte? Network
+        {
+            get => network;
+            set => network = value;
+        }
+
+        public string? Disk
+        {
+            get => disk;
+            set => disk = value;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/bin/Debug/netcoreapp3.1/SRSConfFile.deps.json
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/bin/Debug/netcoreapp3.1/SRSConfFile.dll
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/bin/Debug/netcoreapp3.1/SRSConfFile.pdb
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/obj/Debug/netcoreapp3.1/SRSConfFile.csprojAssemblyReference.cache
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/obj/Debug/netcoreapp3.1/SRSConfFile.csproj.CoreCompileInputs.cache
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/obj/Debug/netcoreapp3.1/SRSConfFile.AssemblyInfoInputs.cache
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/obj/Debug/netcoreapp3.1/SRSConfFile.AssemblyInfo.cs
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/obj/Debug/netcoreapp3.1/SRSConfFile.dll
+/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFile/obj/Debug/netcoreapp3.1/SRSConfFile.pdb

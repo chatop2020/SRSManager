@@ -1,0 +1,12 @@
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/bin/Release/netcoreapp3.1/SRSApis.deps.json
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/bin/Release/netcoreapp3.1/SRSApis.dll
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/bin/Release/netcoreapp3.1/SRSApis.pdb
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/bin/Release/netcoreapp3.1/SRSConfFile.dll
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/bin/Release/netcoreapp3.1/SRSConfFile.pdb
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/obj/Release/netcoreapp3.1/SRSApis.csprojAssemblyReference.cache
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/obj/Release/netcoreapp3.1/SRSApis.csproj.CoreCompileInputs.cache
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/obj/Release/netcoreapp3.1/SRSApis.AssemblyInfoInputs.cache
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/obj/Release/netcoreapp3.1/SRSApis.AssemblyInfo.cs
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/obj/Release/netcoreapp3.1/SRSApis.csproj.CopyComplete
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/obj/Release/netcoreapp3.1/SRSApis.dll
+/Users/qiuzhouwei/Projects/StreamCenter/SRSApis/obj/Release/netcoreapp3.1/SRSApis.pdb

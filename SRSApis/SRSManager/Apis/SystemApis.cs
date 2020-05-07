@@ -1,0 +1,163 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Runtime.InteropServices;
+using SRSApis.SRSManager.Apis.ApiModules;
+
+namespace SRSApis.SRSManager.Apis
+{
+    public static class SystemApis
+    {
+        public static bool RefreshSrsObject(SrsManager sm)
+        {
+            ResponseStruct rs;
+            return Common.RefreshSrsObject(sm, out rs);
+        }
+
+        /// <summary>
+        /// 获取系统中的SRS实例设备ID列表
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetAllSrsManagerDeviceId()
+        {
+            List<string> list = null!;
+            if (Common.SrsManagers.Count > 0)
+            {
+                list = new List<string>();
+            }
+            else
+            {
+                return null!;
+            }
+
+            foreach (var srs in Common.SrsManagers)
+            {
+                if (srs != null)
+                {
+                    list.Add(srs.srs_deviceId);
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 获取一个SRSManage实例
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
+        public static SrsManager GetSrsManagerInstanceByDeviceId(string deviceId)
+        {
+            foreach (var srs in Common.SrsManagers)
+            {
+                if (srs != null)
+                {
+                    if (srs.srs_deviceId.Equals(deviceId)) return srs;
+                }
+            }
+
+            return null!;
+        }
+
+        /// <summary>
+        /// 获取系统中的磁盘信息
+        /// </summary>
+        /// <returns></returns>
+        public static List<DriveDiskInfo> GetDriveDisksInfo()
+        {
+            List<DriveDiskInfo> disks = new List<DriveDiskInfo>();
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            foreach (DriveInfo d in drives)
+            {
+                DriveDiskInfo ddi = new DriveDiskInfo()
+                {
+                    Format = d.DriveFormat,
+                    VolumeLabel = d.VolumeLabel,
+                    Free = (ulong) d.AvailableFreeSpace / 1000 / 1000,
+                    Size = (ulong) d.TotalSize / 1000 / 1000,
+                    Path = d.Name,
+                    RootDirectory = d.RootDirectory.FullName,
+                };
+                disks.Add(ddi);
+            }
+
+            return disks;
+        }
+
+        /// <summary>
+        /// 获取系统平台信息
+        /// </summary>
+        /// <returns></returns>
+        public static SystemInfoModule GetSystemInfo()
+        {
+            SystemInfoModule sim = new SystemInfoModule();
+            sim.NetworkInterfaceList = GetNetworkAdapterList();
+            sim.Architecture = RuntimeInformation.OSArchitecture.ToString();
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                sim.Platform = "linux";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                sim.Platform = "windows";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                sim.Platform = "Mac/OSX";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
+                sim.Platform = "freebsd";
+            sim.DisksInfo = GetDriveDisksInfo();
+            sim.Version = RuntimeInformation.OSDescription + " " + Environment.OSVersion;
+            sim.X64 = Environment.Is64BitOperatingSystem;
+            sim.HostName = Environment.MachineName;
+            sim.CpuCoreSize = (ushort) Environment.ProcessorCount;
+            return sim;
+        }
+
+        /// <summary>
+        /// 获取系统网络信息
+        /// </summary>
+        /// <returns></returns>
+        public static List<NetworkInterfaceModule> GetNetworkAdapterList()
+        {
+            List<NetworkInterfaceModule> listofnetwork = new List<NetworkInterfaceModule>();
+            NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
+            string ipaddr = "";
+            ushort index = 0;
+            if (adapters.Length > 0)
+            {
+                foreach (NetworkInterface adapter in adapters)
+                {
+                    if (adapter.NetworkInterfaceType != NetworkInterfaceType.Ethernet) continue;
+                    ipaddr = "";
+                    IPInterfaceProperties adapterProperties = adapter.GetIPProperties();
+                    UnicastIPAddressInformationCollection ipCollection = adapterProperties.UnicastAddresses;
+                    foreach (UnicastIPAddressInformation ipadd in ipCollection)
+                    {
+                        if (ipadd.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            ipaddr = ipadd.Address.ToString(); //获取ip
+                        }
+                        else if (ipadd.Address.AddressFamily == AddressFamily.InterNetworkV6)
+                        {
+                            //本机IPV6 地址,不取IPV6地址
+                        }
+                    }
+
+                    NetworkInterfaceModule tmp_adapter = new NetworkInterfaceModule()
+                    {
+                        Index = index,
+                        Name = adapter.Name,
+                        //  Speed = (adapter.Speed / 1000 / 1000).ToString() + "MB", //linux not Supported
+                        Mac = adapter.GetPhysicalAddress().ToString(),
+                        Type = adapter.NetworkInterfaceType.ToString(),
+                        Ipaddr = ipaddr,
+                    };
+                    index++;
+                    listofnetwork.Add(tmp_adapter);
+                }
+
+                return listofnetwork;
+            }
+
+            return null!;
+        }
+    }
+}
