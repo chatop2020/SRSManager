@@ -1,4 +1,13 @@
 /StreamNode
 /CdtFace.Common.SqlSugar
 StreamCenter.sln.DotSettings.user
+/SRSApis/bin
+/SRSApis/obj
+/Test_SRSApis/bin
+/Test_SRSApis/obj
+/StreamCenter.sln
+/Test_SRSConfFile_Parse_Write/bin
+/Test_SRSConfFile_Parse_Write/obj
+/SRSConfFile/bin
+/SRSConfFile/obj
 
