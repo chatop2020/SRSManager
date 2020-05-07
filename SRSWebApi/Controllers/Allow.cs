@@ -43,7 +43,7 @@ namespace SRSWebApi.Controllers
                     };
                 }
 
-                if (string.IsNullOrEmpty(request.Allowkey.Key.Trim()))
+                if (string.IsNullOrEmpty(request.Allowkey.Key.Trim()) || !Common.IsGuidByError(request.Allowkey.Key))
                 {
                     return new BaseResponseModule()
                     {

@@ -9,6 +9,24 @@ namespace SRSWebApi
             ErrorMessage.Init();
         }
         
+        /// <summary>
+        /// 是否为GUID
+        /// </summary>
+        /// <param name="strSrc"></param>
+        /// <returns></returns>
+        public static bool IsGuidByError(string strSrc)
+        {
+            if (String.IsNullOrEmpty(strSrc)) { return false; }
+            bool _result = false;
+            try
+            {
+                Guid _t = new Guid(strSrc);
+                _result = true;
+            }
+            catch { }
+            return _result;
+        }
+        
         public static Config conf = new Config();
 
         /// <summary>
