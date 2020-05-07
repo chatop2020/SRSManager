@@ -7,6 +7,6 @@
 - in the future, srsmanager can be used for management of SRS streaming media server with webbrowser
 ## component
 - the SRSManager project have two important part (SRSApis & SRSConfFile)
-- SRSApis provides that whitch as Start,Stop,Reload And more SRS Server or  Configuration Management
+- SRSApis provides that, Start,Stop,Reload And more SRS Server or  Configuration Management
 - SRSConfFile provides interface for Read,Parse,Rebuild SRS Configuration file
 
