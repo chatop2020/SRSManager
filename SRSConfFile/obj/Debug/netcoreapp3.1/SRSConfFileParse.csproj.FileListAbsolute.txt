@@ -1,9 +1,0 @@
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/bin/Debug/netcoreapp3.1/SRSConfFileParse.deps.json
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/bin/Debug/netcoreapp3.1/SRSConfFileParse.dll
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/bin/Debug/netcoreapp3.1/SRSConfFileParse.pdb
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/obj/Debug/netcoreapp3.1/SRSConfFileParse.csprojAssemblyReference.cache
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/obj/Debug/netcoreapp3.1/SRSConfFileParse.csproj.CoreCompileInputs.cache
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/obj/Debug/netcoreapp3.1/SRSConfFileParse.AssemblyInfoInputs.cache
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/obj/Debug/netcoreapp3.1/SRSConfFileParse.AssemblyInfo.cs
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/obj/Debug/netcoreapp3.1/SRSConfFileParse.dll
-/Users/qiuzhouwei/Projects/StreamCenter/SRSConfFileParse/obj/Debug/netcoreapp3.1/SRSConfFileParse.pdb

@@ -1,2 +1,0 @@
-[05/07/2020 09:11:57]	初始化SRS成功...ConfigPath:/Users/qiuzhouwei/Projects/StreamCenter/Test_SRSApis/bin/Release/netcoreapp3.1/90ac6c78-9594-4fec-b68b-38a466ff528c.conf	{"Code":0,"Message":"无错误"}
-[05/07/2020 09:11:57]	SRS启动失败...DeviceID:90ac6c78-9594-4fec-b68b-38a466ff528c	{"Code":-5017,"Message":"SRS可执行文件不存在"}
