@@ -3,7 +3,12 @@ using System;
 namespace SRSWebApi
 {
     public static class Common
-    {
+    { 
+        static Common()
+        {
+            ErrorMessage.Init();
+        }
+        
         public static Config conf = new Config();
 
         /// <summary>
@@ -24,6 +29,7 @@ namespace SRSWebApi
         /// <returns></returns>
         public static bool CheckAllow(string ipAddr, string allowKey)
         {
+            if (conf.AllowKeys == null || conf.AllowKeys.Count == 0) return true;
             foreach (var ak in conf.AllowKeys)
             {
                 foreach (var ip in ak.IpArray)
@@ -34,7 +40,7 @@ namespace SRSWebApi
                     string ipAddrReal;
                     ipReal = ip;
                     ipAddrReal = ipAddr;
-                    if (ip.Trim() == "*")
+                    if (ip.Trim() == "*" || string.IsNullOrEmpty(ip))
                     {
                         if (allowKey.Trim().ToLower().Equals(ak.Key.Trim().ToLower()))
                         {
@@ -43,6 +49,7 @@ namespace SRSWebApi
 
                         return false;
                     }
+                    
                     if (ip.Contains('*'))
                     {
                         ip_tmp = ip.Split('.', StringSplitOptions.RemoveEmptyEntries);
