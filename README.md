@@ -9,4 +9,5 @@
 - the SRSManager project have two important part (SRSApis & SRSConfFile)
 - SRSApis provides that, Start,Stop,Reload And more SRS Server or  Configuration Management
 - SRSConfFile provides interface for Read,Parse,Rebuild SRS Configuration file
+- Test_* part is test for SRSApis & SRSConfFile,this only a test demo
 
