@@ -8,22 +8,25 @@ using Microsoft.Extensions.Logging;
 namespace SRSWebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [Route("")]
+    public class Allow: ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly ILogger<Allow> _logger;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public Allow(ILogger<Allow> logger)
         {
             _logger = logger;
         }
 
+
+
         [HttpGet]
+        [Route("allow/test")]
+        public string Test()
+        {
+            return "ok";
+        }
+        /*[HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
@@ -34,6 +37,6 @@ namespace SRSWebApi.Controllers
                     Summary = Summaries[rng.Next(Summaries.Length)]
                 })
                 .ToArray();
-        }
+        }*/
     }
 }

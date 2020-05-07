@@ -8,5 +8,9 @@
       <ProjectReference Include="..\SRSApis\SRSApis.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+    </ItemGroup>
+
 
 </Project>
