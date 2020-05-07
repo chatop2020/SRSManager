@@ -18,7 +18,7 @@ namespace Test_SRSConfFile_Parse_Write
             SrsSystemConfClass srs = new SrsSystemConfClass(); //创建SRS配置实例
             SrsConfigParse.Render(SrsConfigParse.RootSection, srs); //写入SRS配置实例
             Console.WriteLine(SrsConfigBuild.Build(srs, "")); //重建配置文件，可输出文件
-   
+            Console.Read();
             Console.WriteLine("end!");
         }
     }

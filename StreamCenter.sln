@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRSApis", "SRSApis\SRSApis.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_SRSApis", "Test_SRSApis\Test_SRSApis.csproj", "{27A6B477-674D-4801-837F-FD3F6C4CDCCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRSWebApi", "SRSWebApi\SRSWebApi.csproj", "{794A911B-14C8-4F1B-8AD2-0569851DDA3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +39,9 @@ Global
 		{27A6B477-674D-4801-837F-FD3F6C4CDCCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27A6B477-674D-4801-837F-FD3F6C4CDCCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27A6B477-674D-4801-837F-FD3F6C4CDCCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794A911B-14C8-4F1B-8AD2-0569851DDA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794A911B-14C8-4F1B-8AD2-0569851DDA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794A911B-14C8-4F1B-8AD2-0569851DDA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794A911B-14C8-4F1B-8AD2-0569851DDA3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

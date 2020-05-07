@@ -1240,7 +1240,6 @@ namespace SRSConfFile.Renders
                             break;
                         case "chunk_size":
                             svcc.Chunk_size = Common.str2ushort(tmpkv.Value);
-                            
                             break;
                         case "in_ack_size":
                             svcc.In_ack_size = Common.str2int(tmpkv.Value);

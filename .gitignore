@@ -10,4 +10,5 @@ StreamCenter.sln.DotSettings.user
 /Test_SRSConfFile_Parse_Write/obj
 /SRSConfFile/bin
 /SRSConfFile/obj
-
+/SRSWebApi/bin
+/SRSWebApi/obj
