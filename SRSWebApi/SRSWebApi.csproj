@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Test_SRSApis\Test_SRSApis.csproj" />
+      <ProjectReference Include="..\SRSApis\SRSApis.csproj" />
     </ItemGroup>
 
 
