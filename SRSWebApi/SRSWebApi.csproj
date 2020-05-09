@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
+    
+    <PropertyGroup>
+        <DocumentationFile>Edu.Model.xml</DocumentationFile>
+        <DocumentationFile>Edu.Swagger.xml</DocumentationFile>
+    </PropertyGroup>
+    
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>

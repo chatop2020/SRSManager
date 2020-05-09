@@ -55,13 +55,15 @@ namespace SRSWebApi
             return s.Split(splitchar, StringSplitOptions.RemoveEmptyEntries);
         }
 
+
         private bool ParseConfig(List<string> lines)
         {
             foreach (var s in lines)
             {
                 string tmps = s.Trim().ToLower();
                 if (!tmps.EndsWith(";")) continue;
-                string[] kv = getkv(s, '=');
+                tmps = tmps.Replace(";", "");
+                string[] kv = getkv(tmps, '=');
                 if (kv.Length != 2) continue;
                 kv[0] = kv[0].Trim().ToLower();
                 switch (kv[0])
@@ -108,6 +110,30 @@ namespace SRSWebApi
             }
 
             return true;
+        }
+
+        public bool RebuidConfig(string filePath)
+        {
+            List<string> writeFile = new List<string>();
+            writeFile.Add("httpport=" + HttpPort + ";");
+            writeFile.Add("password=" + Password + ";");
+            foreach (var ak in allowKeys)
+            {
+                if (ak != null)
+                {
+                    writeFile.Add("allowkey=" + ak.Key + "\t" + ak.IpArray + ";");
+                }
+            }
+
+            try
+            {
+                File.WriteAllLines(filePath, writeFile);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool LoadConfig(string filePath)

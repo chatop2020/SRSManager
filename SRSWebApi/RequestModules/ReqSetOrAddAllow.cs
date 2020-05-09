@@ -1,6 +1,6 @@
 namespace SRSWebApi.RequestModules
 {
-    public class ReqAddAllow
+    public class ReqSetOrAddAllow
     {
         private string password;
         private AllowKey allowkey;

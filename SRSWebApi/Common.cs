@@ -2,39 +2,75 @@ using System;
 
 namespace SRSWebApi
 {
-    public static class Common
-    { 
-        static Common()
+    public class Common
+    {
+        public string WorkPath;
+        public string ConfPath;
+        public string BaseUrl;
+        public SessionManager SessionManager;
+
+        public Common()
         {
-            ErrorMessage.Init();
         }
-        
+        /// <summary>
+        /// 生成guid
+        /// </summary>
+        /// <returns></returns>
+        public string CreateUUID()
+        {
+            return Guid.NewGuid().ToString("D");
+        }
+
+        public void CommonInit()
+        {
+            WorkPath = Environment.CurrentDirectory + "/";
+            ConfPath = WorkPath + "srswebapi.conf";
+            BaseUrl = "http://*:" + conf.HttpPort;
+            if (conf.LoadConfig(ConfPath))
+            {
+                ErrorMessage.Init();
+                SessionManager= new SessionManager();
+            }
+            else
+            {
+                Console.WriteLine("读取配置文件失败，启动异常...");
+            }
+            
+        }
+
         /// <summary>
         /// 是否为GUID
         /// </summary>
         /// <param name="strSrc"></param>
         /// <returns></returns>
-        public static bool IsGuidByError(string strSrc)
+        public bool IsGuidByError(string strSrc)
         {
-            if (String.IsNullOrEmpty(strSrc)) { return false; }
+            if (String.IsNullOrEmpty(strSrc))
+            {
+                return false;
+            }
+
             bool _result = false;
             try
             {
                 Guid _t = new Guid(strSrc);
                 _result = true;
             }
-            catch { }
+            catch
+            {
+            }
+
             return _result;
         }
-        
-        public static Config conf = new Config();
+
+        public Config conf = new Config();
 
         /// <summary>
         /// 检查密码
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static bool CheckPassword(string password)
+        public bool CheckPassword(string password)
         {
             return conf.Password.Trim().Equals(password.Trim());
         }
@@ -45,7 +81,7 @@ namespace SRSWebApi
         /// <param name="ipAddr"></param>
         /// <param name="allowKey"></param>
         /// <returns></returns>
-        public static bool CheckAllow(string ipAddr, string allowKey)
+        public bool CheckAllow(string ipAddr, string allowKey)
         {
             if (conf.AllowKeys == null || conf.AllowKeys.Count == 0) return true;
             foreach (var ak in conf.AllowKeys)
@@ -67,7 +103,7 @@ namespace SRSWebApi
 
                         return false;
                     }
-                    
+
                     if (ip.Contains('*'))
                     {
                         ip_tmp = ip.Split('.', StringSplitOptions.RemoveEmptyEntries);

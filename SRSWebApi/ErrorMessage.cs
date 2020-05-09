@@ -29,6 +29,7 @@ namespace SRSWebApi
         SRSSubInstanceNotFound = -5021, //SRS配置子实例没有找到
         SRSConfigFunctionUnsupported = -5022, //功能还未支持
         SystemCheckPasswordFail=-5023,//检测密码失败
+        SystemCheckAllowKeyFail=-5024,//访问控制检测失败
         Other = -6000
     }
 
@@ -65,6 +66,7 @@ namespace SRSWebApi
             ErrorDic[ErrorNumber.SRSSubInstanceNotFound] = "该配置子实例不存在";
             ErrorDic[ErrorNumber.SRSConfigFunctionUnsupported] = "所需功能还不支持";
             ErrorDic[ErrorNumber.SystemCheckPasswordFail] = "鉴权失败";
+            ErrorDic[ErrorNumber.SystemCheckAllowKeyFail] = "访问控制检测失败";
         }
     }
 }
