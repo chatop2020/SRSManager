@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SRSWebApi.RequestModules;
 using SRSWebApi.ResponseModules;
 
@@ -21,12 +17,56 @@ namespace SRSWebApi.Controllers
         {
             this.httpContextAccessor = httpContextAccessor;
         }
-
-        private readonly ILogger<Allow> _logger;
-
-        public Allow(ILogger<Allow> logger)
+        
+        /// <summary>
+        /// 刷新Session
+        /// </summary>
+        /// <param name="request">旧的session</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("/Allow/RefreshSession")]
+        public BaseResponseModule RefreshSession([FromBody] Session request)
         {
-            _logger = logger;
+            string remoteIpaddr = this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            if (Program.common.CheckAllow(remoteIpaddr, request.AllowKey))
+            {
+                if (request.Expires >= Environment.TickCount64)
+                {
+                    Session session = Program.common.SessionManager.RefreshSession(request);
+                    if (session != null)
+                    {
+                        return new BaseResponseModule()
+                        {
+                            Code = HttpStatusCode.OK,
+                            Msg = JsonHelper.ToJson(session),
+                        };
+                    }
+                    else
+                    {
+                        return new BaseResponseModule()
+                        {
+                            Code = HttpStatusCode.MethodNotAllowed,
+                            Msg =  ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept],
+                        };
+                    }
+                }
+                else
+                {
+                    return new BaseResponseModule()
+                    {
+                        Code = HttpStatusCode.OK,
+                        Msg = "无需刷新",
+                    };
+                }
+            }
+            else
+            {
+                return new BaseResponseModule()
+                {
+                    Code = HttpStatusCode.MethodNotAllowed,
+                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail],
+                };
+            }  
         }
 
         /// <summary>
@@ -54,7 +94,7 @@ namespace SRSWebApi.Controllers
                 return new BaseResponseModule()
                 {
                     Code = HttpStatusCode.MethodNotAllowed,
-                    Msg = ErrorMessage.ErrorDic[ErrorNumber.SystemCheckAllowKeyFail],
+                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail],
                 };
             }
         }
@@ -87,7 +127,7 @@ namespace SRSWebApi.Controllers
                     return new BaseResponseModule()
                     {
                         Code = HttpStatusCode.OK,
-                        Msg = JsonHelper.ToJson(ErrorMessage.ErrorDic[ErrorNumber.None]),
+                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.None],
                     };
                 }
                 else
@@ -95,7 +135,7 @@ namespace SRSWebApi.Controllers
                     return new BaseResponseModule()
                     {
                         Code = HttpStatusCode.BadRequest,
-                        Msg = JsonHelper.ToJson(ErrorMessage.ErrorDic[ErrorNumber.SRSSubInstanceNotFound]),
+                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound],
                     };
                 }
             }
@@ -104,7 +144,7 @@ namespace SRSWebApi.Controllers
                 return new BaseResponseModule()
                 {
                     Code = HttpStatusCode.Unauthorized,
-                    Msg = ErrorMessage.ErrorDic[ErrorNumber.SystemCheckPasswordFail],
+                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
                 };
             }
         }
@@ -138,7 +178,7 @@ namespace SRSWebApi.Controllers
                     return new BaseResponseModule()
                     {
                         Code = HttpStatusCode.OK,
-                        Msg = JsonHelper.ToJson(ErrorMessage.ErrorDic[ErrorNumber.None]),
+                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.None],
                     };
                 }
                 else
@@ -146,7 +186,7 @@ namespace SRSWebApi.Controllers
                     return new BaseResponseModule()
                     {
                         Code = HttpStatusCode.BadRequest,
-                        Msg = JsonHelper.ToJson(ErrorMessage.ErrorDic[ErrorNumber.SRSSubInstanceNotFound]),
+                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound],
                     };
                 }
             }
@@ -155,7 +195,7 @@ namespace SRSWebApi.Controllers
                 return new BaseResponseModule()
                 {
                     Code = HttpStatusCode.Unauthorized,
-                    Msg = ErrorMessage.ErrorDic[ErrorNumber.SystemCheckPasswordFail],
+                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
                 };
             }
         }
@@ -178,7 +218,7 @@ namespace SRSWebApi.Controllers
                     return new BaseResponseModule()
                     {
                         Code = HttpStatusCode.BadRequest,
-                        Msg = JsonHelper.ToJson(ErrorMessage.ErrorDic[ErrorNumber.SRSSubInstanceAlreadyExists]),
+                        Msg =ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceAlreadyExists],
                     };
                 }
 
@@ -188,7 +228,7 @@ namespace SRSWebApi.Controllers
                     return new BaseResponseModule()
                     {
                         Code = HttpStatusCode.BadRequest,
-                        Msg = JsonHelper.ToJson(ErrorMessage.ErrorDic[ErrorNumber.FunctionInputParamsError]),
+                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.FunctionInputParamsError],
                     };
                 }
 
@@ -196,7 +236,7 @@ namespace SRSWebApi.Controllers
                 return new BaseResponseModule()
                 {
                     Code = HttpStatusCode.OK,
-                    Msg = JsonHelper.ToJson(ErrorMessage.ErrorDic[ErrorNumber.None]),
+                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.None],
                 };
             }
             else
@@ -204,7 +244,7 @@ namespace SRSWebApi.Controllers
                 return new BaseResponseModule()
                 {
                     Code = HttpStatusCode.Unauthorized,
-                    Msg = ErrorMessage.ErrorDic[ErrorNumber.SystemCheckPasswordFail],
+                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
                 };
             }
         }
@@ -236,7 +276,7 @@ namespace SRSWebApi.Controllers
                 return new BaseResponseModule()
                 {
                     Code = HttpStatusCode.Unauthorized,
-                    Msg = ErrorMessage.ErrorDic[ErrorNumber.SystemCheckPasswordFail],
+                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
                 };
             }
         }

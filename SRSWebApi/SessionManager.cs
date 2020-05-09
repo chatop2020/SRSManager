@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SRSWebApi
 {
-
     public class Session
     {
         private string allowKey;
@@ -36,12 +36,13 @@ namespace SRSWebApi
             set => expires = value;
         }
     }
-    
+
     public class SessionManager
     {
-        private List<Session> sessionList= new List<Session>();
+        private List<Session> sessionList = new List<Session>();
 
         private byte addMin = 5;
+
         public List<Session> SessionList
         {
             get => sessionList;
@@ -52,35 +53,71 @@ namespace SRSWebApi
         {
             while (true)
             {
-                
-            
-            lock (this)
-            {
-                foreach (var session in sessionList)
+                lock (this)
                 {
-                    if (session.Expires >= Environment.TickCount64)
+                    foreach (var session in sessionList)
                     {
-                        sessionList.Remove(session);
+                        if (session.Expires >= Environment.TickCount64)
+                        {
+                            sessionList.Remove(session);
+                        }
                     }
                 }
-            }
-            Thread.Sleep(5000);
+
+                Thread.Sleep(5000);
             }
         }
-        public SessionManager(){
+
+        public SessionManager()
+        {
             new Thread(new ThreadStart(delegate
             {
                 try
                 {
-                   clearExpires();
-
+                    clearExpires();
                 }
                 catch (Exception ex)
                 {
                     //
                 }
-
             })).Start();
+        }
+
+        /// <summary>
+        /// 刷新Session
+        /// </summary>
+        /// <param name="session">旧的session</param>
+        /// <returns></returns>
+
+        public Session RefreshSession(Session session)
+        {
+            bool found = false;
+            int i = 0;
+            lock (this)
+            {
+                for (i = 0; i <= sessionList.Count - 1; i++)
+                {
+                    if (sessionList[i].AllowKey.Trim().ToLower().Equals(session.AllowKey.Trim().ToLower()) &&
+                        sessionList[i].RefreshCode.Trim().ToLower().Equals(session.RefreshCode.Trim().ToLower())
+                    )
+                    {
+                        sessionList[i].SessionCode = Program.common.CreateUUID();
+                        sessionList[i].RefreshCode = Program.common.CreateUUID();
+                        sessionList[i].Expires = Environment.TickCount64 + (addMin * 1000 * 60);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found)
+                {
+                    return sessionList[i];
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
         public Session NewSession(string allowKey)
@@ -90,11 +127,11 @@ namespace SRSWebApi
                 AllowKey = allowKey,
                 SessionCode = Program.common.CreateUUID(),
                 RefreshCode = Program.common.CreateUUID(),
-                Expires = Environment.TickCount64 + (addMin * 1000 * 50),
+                Expires = Environment.TickCount64 + (addMin * 1000 * 60),
             };
             lock (this)
             {
-               sessionList.Add(session); 
+                sessionList.Add(session);
             }
 
             return session;
