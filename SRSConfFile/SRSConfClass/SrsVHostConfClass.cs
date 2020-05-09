@@ -3,6 +3,16 @@ using System.Collections.Generic;
 
 namespace SRSConfFile.SRSConfClass
 {
+    public class Nack : SrsConfBase
+    {
+        private bool? enabled;
+
+        public bool? Enabled
+        {
+            get => enabled;
+            set => enabled = value;
+        }
+    }
     [Serializable]
     public class Cluster : SrsConfBase
     {
@@ -1416,9 +1426,15 @@ namespace SRSConfFile.SRSConfClass
         private Hls? vhls;
         private Hds? vhds;
         private Dvr? vdvr;
+        private Nack? vnack;
         private List<Ingest>? _vingests;
         private List<Transcode>? _vtranscodeses;
 
+        public Nack? Vnack
+        {
+            get => vnack;
+            set => vnack = value;
+        }
 
         public SrsvHostConfClass()
         {

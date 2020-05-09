@@ -734,6 +734,35 @@ namespace SRSConfFile.Renders
                 }
         }
 
+        
+        private static void render_nack(SectionBody scbin, SrsvHostConfClass svcc, string instanceName = "")
+        {
+            if (svcc.Vnack == null)
+            {
+                svcc.Vnack = new Nack();
+            }
+            else
+            {
+                return; //只能有一个
+            }
+
+            svcc.Vnack.SectionsName = "nack";
+            if (scbin.BodyList != null)
+                foreach (string s in scbin.BodyList)
+                {
+                    if (!s.Trim().EndsWith(";")) continue;
+                    KeyValuePair<string, string> tmpkv = Common.GetKV(s);
+                    if (string.IsNullOrEmpty(tmpkv.Key)) continue;
+
+                    string cmd = tmpkv.Key.Trim().ToLower();
+                    switch (cmd)
+                    {
+                        case "enabled":
+                            svcc.Vnack.Enabled = Common.str2bool(tmpkv.Value);
+                            break;
+                    }
+                }
+        }
 
         private static void render_ingest_input(SectionBody scbin, Ingest igs, string instanceName = "")
         {
@@ -1311,6 +1340,9 @@ namespace SRSConfFile.Renders
                             break;
                         case "transcode":
                             render_transcode(scb, svcc, tmpkv.Value);
+                            break;
+                        case "nack":
+                            render_nack(scb, svcc, tmpkv.Value);
                             break;
                     }
                 }
