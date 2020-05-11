@@ -13,7 +13,7 @@ namespace SRSWebApi.Attributes
         }
 
         /// <summary>
-        /// 判断用户是否为管理角色，不是则抛出异常
+        /// 判断用户session及allowkey的合法性
         /// </summary>
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
