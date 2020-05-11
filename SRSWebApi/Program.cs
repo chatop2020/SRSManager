@@ -16,6 +16,7 @@ namespace SRSWebApi
         public static void Main(string[] args)
         {
             common.CommonInit();
+            Console.WriteLine(common.GetTimeStampMilliseconds());
             CreateHostBuilder(args).Build().Run();
         }
 

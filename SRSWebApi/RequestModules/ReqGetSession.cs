@@ -2,12 +2,12 @@ namespace SRSWebApi.RequestModules
 {
     public class ReqGetSession
     {
-        private string key;
+        private string allowKey;
 
-        public string Key
+        public string AllowKey
         {
-            get => key;
-            set => key = value;
+            get => allowKey;
+            set => allowKey = value;
         }
     }
 }

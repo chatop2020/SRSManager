@@ -31,6 +31,7 @@ namespace SRSWebApi
         SystemCheckPasswordFail=-5023,//检测密码失败
         SystemCheckAllowKeyFail=-5024,//访问控制检测失败
         SystemSessionExcept=-5025,//session异常
+        SystemCheckAllowKeyOrSessionFail=-5026,//访问控制检测失败
         Other = -6000
     }
 
@@ -69,6 +70,7 @@ namespace SRSWebApi
             ErrorDic[ErrorNumber.SystemCheckPasswordFail] = "鉴权失败";
             ErrorDic[ErrorNumber.SystemCheckAllowKeyFail] = "访问控制检测失败";
             ErrorDic[ErrorNumber.SystemSessionExcept] = "Session异常";
+            ErrorDic[ErrorNumber.SystemCheckAllowKeyOrSessionFail] = "访问控制或Session过期异常";
         }
     }
 }

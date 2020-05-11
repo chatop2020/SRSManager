@@ -3,6 +3,7 @@
     <PropertyGroup>
         <DocumentationFile>Edu.Model.xml</DocumentationFile>
         <DocumentationFile>Edu.Swagger.xml</DocumentationFile>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     
     <PropertyGroup>

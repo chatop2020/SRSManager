@@ -25,47 +25,41 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("/Allow/RefreshSession")]
-        public BaseResponseModule RefreshSession([FromBody] Session request)
+        public JsonResult RefreshSession([FromBody] Session request)
         {
             string remoteIpaddr = this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
             if (Program.common.CheckAllow(remoteIpaddr, request.AllowKey))
             {
-                if (request.Expires >= Environment.TickCount64)
+                if (request.Expires >=Program.common.GetTimeStampMilliseconds())
                 {
                     Session session = Program.common.SessionManager.RefreshSession(request);
                     if (session != null)
                     {
-                        return new BaseResponseModule()
-                        {
-                            Code = HttpStatusCode.OK,
-                            Msg = JsonHelper.ToJson(session),
-                        };
+                       var result= new JsonResult(session);
+                       result.StatusCode = (int)HttpStatusCode.OK;
+                       return result;
                     }
                     else
                     {
-                        return new BaseResponseModule()
-                        {
-                            Code = HttpStatusCode.MethodNotAllowed,
-                            Msg =  ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept],
-                        };
+                        var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept]);
+                        result.StatusCode = (int)HttpStatusCode.OK;
+                        return result;
+                       
                     }
                 }
                 else
                 {
-                    return new BaseResponseModule()
-                    {
-                        Code = HttpStatusCode.OK,
-                        Msg = "无需刷新",
-                    };
+                    var result= new JsonResult("无需刷新");
+                    result.StatusCode = (int)HttpStatusCode.OK;
+                    return result;
+                  
                 }
             }
             else
             {
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.MethodNotAllowed,
-                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail],
-                };
+                var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail]);
+                result.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
+                return result;
             }  
         }
 
@@ -76,26 +70,24 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("/Allow/GetSession")]
-        public BaseResponseModule GetSession([FromBody] ReqGetSession request)
+        public JsonResult GetSession([FromBody] ReqGetSession request)
         {
             string remoteIpaddr = this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
-            string allowKey = request.Key;
+            string allowKey = request.AllowKey;
             if (Program.common.CheckAllow(remoteIpaddr, allowKey))
             {
                 Session session = Program.common.SessionManager.NewSession(allowKey);
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.OK,
-                    Msg = JsonHelper.ToJson(session),
-                };
+                var result= new JsonResult(session);
+                result.StatusCode = (int)HttpStatusCode.OK;
+                return result;
+              
             }
             else
             {
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.MethodNotAllowed,
-                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail],
-                };
+                var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail]);
+                result.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
+                return result;
+              
             }
         }
 
@@ -106,7 +98,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("/Allow/SetAllowByKey")]
-        public BaseResponseModule SetAllowByKey([FromBody] ReqSetOrAddAllow request)
+        public JsonResult SetAllowByKey([FromBody] ReqSetOrAddAllow request)
         {
             if (Program.common.CheckPassword(request.Password))
             {
@@ -124,28 +116,25 @@ namespace SRSWebApi.Controllers
 
                 if (found)
                 {
-                    return new BaseResponseModule()
-                    {
-                        Code = HttpStatusCode.OK,
-                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.None],
-                    };
+                    var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
+                    result.StatusCode = (int)HttpStatusCode.OK;
+                    return result;
+                   
                 }
                 else
                 {
-                    return new BaseResponseModule()
-                    {
-                        Code = HttpStatusCode.BadRequest,
-                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound],
-                    };
+                    var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound]);
+                    result.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return result;
+                   
                 }
             }
             else
             {
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.Unauthorized,
-                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
-                };
+                var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]);
+                result.StatusCode = (int)HttpStatusCode.Unauthorized;
+                return result;
+              
             }
         }
 
@@ -157,7 +146,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("/Allow/DelAllowByKey")]
-        public BaseResponseModule DelAllowByKey([FromBody] ReqDelAllow request)
+        public JsonResult DelAllowByKey([FromBody] ReqDelAllow request)
         {
             if (Program.common.CheckPassword(request.Password))
             {
@@ -175,28 +164,25 @@ namespace SRSWebApi.Controllers
                 if (found)
                 {
                     SRSApis.Common.RemoveNull(Program.common.conf.AllowKeys);
-                    return new BaseResponseModule()
-                    {
-                        Code = HttpStatusCode.OK,
-                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.None],
-                    };
+                    var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
+                    result.StatusCode = (int)HttpStatusCode.OK;
+                    return result;
+                   
                 }
                 else
                 {
-                    return new BaseResponseModule()
-                    {
-                        Code = HttpStatusCode.BadRequest,
-                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound],
-                    };
+                    var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound]);
+                    result.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return result;
+                    
                 }
             }
             else
             {
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.Unauthorized,
-                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
-                };
+                var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]);
+                result.StatusCode = (int)HttpStatusCode.Unauthorized;
+                return result;
+               
             }
         }
 
@@ -207,45 +193,42 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("Allow/AddAllow")]
-        public BaseResponseModule AddAllow([FromBody] ReqSetOrAddAllow request)
+        public JsonResult AddAllow([FromBody] ReqSetOrAddAllow request)
         {
+            JsonResult result;
             if (Program.common.CheckPassword(request.Password))
             {
                 var obj = Program.common.conf.AllowKeys.FindLast(x =>
                     x.Key.Trim().ToLower().Equals(request.Allowkey.Key.Trim().ToLower()));
+               
                 if (obj != null)
                 {
-                    return new BaseResponseModule()
-                    {
-                        Code = HttpStatusCode.BadRequest,
-                        Msg =ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceAlreadyExists],
-                    };
+                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceAlreadyExists]);
+                    result.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return result;
+                   
                 }
 
                 if (string.IsNullOrEmpty(request.Allowkey.Key.Trim()) ||
                     !Program.common.IsGuidByError(request.Allowkey.Key))
-                {
-                    return new BaseResponseModule()
-                    {
-                        Code = HttpStatusCode.BadRequest,
-                        Msg = ErrorMessage.ErrorDic?[ErrorNumber.FunctionInputParamsError],
-                    };
+                {  result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.FunctionInputParamsError]);
+                    result.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return result;
+                   
                 }
 
                 Program.common.conf.AllowKeys.Add(request.Allowkey);
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.OK,
-                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.None],
-                };
+                result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
+                result.StatusCode = (int)HttpStatusCode.OK;
+                return result;
+               
             }
             else
             {
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.Unauthorized,
-                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
-                };
+                result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]);
+                result.StatusCode = (int)HttpStatusCode.Unauthorized;
+                return result;
+               
             }
         }
 
@@ -257,7 +240,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("Allow/GetAllows")]
-        public BaseResponseModule GetAllows([FromBody] ReqGetAllows request)
+        public JsonResult GetAllows([FromBody] ReqGetAllows request)
         {
             if (Program.common.CheckPassword(request.Password))
             {
@@ -265,19 +248,17 @@ namespace SRSWebApi.Controllers
                 {
                     AllowKeys = Program.common.conf.AllowKeys,
                 };
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.OK,
-                    Msg = JsonHelper.ToJson(result),
-                };
+                var result2= new JsonResult(result);
+                result2.StatusCode = (int)HttpStatusCode.OK;
+                return result2;
+             
             }
             else
             {
-                return new BaseResponseModule()
-                {
-                    Code = HttpStatusCode.Unauthorized,
-                    Msg = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
-                };
+                var result2= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]);
+                result2.StatusCode = (int)HttpStatusCode.Unauthorized;
+                return result2;
+              
             }
         }
     }

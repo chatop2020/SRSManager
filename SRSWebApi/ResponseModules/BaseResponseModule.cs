@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SRSWebApi.ResponseModules
 {
@@ -7,7 +8,7 @@ namespace SRSWebApi.ResponseModules
     public class BaseResponseModule
     {
         private HttpStatusCode code;
-        private string msg;
+        private JsonResult msg;
 
         public HttpStatusCode Code
         {
@@ -15,7 +16,7 @@ namespace SRSWebApi.ResponseModules
             set => code = value;
         }
 
-        public string Msg
+        public JsonResult Msg
         {
             get => msg;
             set => msg = value;

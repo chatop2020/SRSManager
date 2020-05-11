@@ -9,9 +9,20 @@ namespace SRSWebApi
         public string BaseUrl;
         public SessionManager SessionManager;
 
+
+        /// <summary>
+        /// 获取时间戳(毫秒级)
+        /// </summary>
+        /// <returns></returns>
+        public long GetTimeStampMilliseconds()
+        {
+            return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+        }
+
         public Common()
         {
         }
+
         /// <summary>
         /// 生成guid
         /// </summary>
@@ -29,13 +40,14 @@ namespace SRSWebApi
             if (conf.LoadConfig(ConfPath))
             {
                 ErrorMessage.Init();
-                SessionManager= new SessionManager();
+                SessionManager = new SessionManager();
+                SRSApis.Common.init_SrsServer();
+                
             }
             else
             {
                 Console.WriteLine("读取配置文件失败，启动异常...");
             }
-            
         }
 
         /// <summary>
@@ -65,6 +77,13 @@ namespace SRSWebApi
 
         public Config conf = new Config();
 
+
+        public bool CheckAuth(string ipAddr, string allowKey, string sessionCode)
+        {
+            if (!CheckSession(sessionCode)) return false;
+            if(!CheckAllow(ipAddr,allowKey)) return false;
+            return true;
+        }
         /// <summary>
         /// 检查密码
         /// </summary>
@@ -73,6 +92,25 @@ namespace SRSWebApi
         public bool CheckPassword(string password)
         {
             return conf.Password.Trim().Equals(password.Trim());
+        }
+
+        /// <summary>
+        /// 检查Session是否正常
+        /// </summary>
+        /// <param name="sessionCode"></param>
+        /// <returns></returns>
+        public bool CheckSession(string sessionCode)
+        {
+            Session s = this.SessionManager.SessionList.FindLast(x =>
+                x.SessionCode.Trim().ToLower().Equals(sessionCode.Trim().ToLower()));
+            long a = this.GetTimeStampMilliseconds();
+            
+            if (s != null && s.Expires > a )
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

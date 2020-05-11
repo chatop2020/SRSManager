@@ -41,7 +41,7 @@ namespace SRSWebApi
     {
         private List<Session> sessionList = new List<Session>();
 
-        private byte addMin = 5;
+        private byte addMin = 50;
 
         public List<Session> SessionList
         {
@@ -57,7 +57,7 @@ namespace SRSWebApi
                 {
                     foreach (var session in sessionList)
                     {
-                        if (session.Expires >= Environment.TickCount64)
+                        if (session.Expires <= Program.common.GetTimeStampMilliseconds())
                         {
                             sessionList.Remove(session);
                         }
@@ -103,7 +103,7 @@ namespace SRSWebApi
                     {
                         sessionList[i].SessionCode = Program.common.CreateUUID();
                         sessionList[i].RefreshCode = Program.common.CreateUUID();
-                        sessionList[i].Expires = Environment.TickCount64 + (addMin * 1000 * 60);
+                        sessionList[i].Expires = Program.common.GetTimeStampMilliseconds() + (addMin * 1000 * 60);
                         found = true;
                         break;
                     }
@@ -127,7 +127,7 @@ namespace SRSWebApi
                 AllowKey = allowKey,
                 SessionCode = Program.common.CreateUUID(),
                 RefreshCode = Program.common.CreateUUID(),
-                Expires = Environment.TickCount64 + (addMin * 1000 * 60),
+                Expires = Program.common.GetTimeStampMilliseconds() + (addMin * 1000 * 60),
             };
             lock (this)
             {
