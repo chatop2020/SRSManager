@@ -80,7 +80,10 @@ namespace SRSApis.SRSManager.Apis
                     Path = d.Name,
                     RootDirectory = d.RootDirectory.FullName,
                 };
-                disks.Add(ddi);
+                if (ddi.Size > 0 && ddi.Free>0)
+                {
+                    disks.Add(ddi);
+                }
             }
 
             return disks;
@@ -151,7 +154,19 @@ namespace SRSApis.SRSManager.Apis
                         Ipaddr = ipaddr,
                     };
                     index++;
-                    listofnetwork.Add(tmp_adapter);
+                    if (!string.IsNullOrEmpty(tmp_adapter.Ipaddr))
+                    {
+                        int loop = 1;
+                        if (!tmp_adapter.Mac.Contains('-'))
+                        {
+                            for (int i = 1; i < 10; i+=2)
+                            {
+                                tmp_adapter.Mac= tmp_adapter.Mac.Insert(i+loop, "-");
+                                loop+=1;
+                            }
+                        }
+                        listofnetwork.Add(tmp_adapter);
+                    }
                 }
 
                 return listofnetwork;

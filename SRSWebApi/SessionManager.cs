@@ -122,6 +122,12 @@ namespace SRSWebApi
 
         public Session NewSession(string allowKey)
         {
+            Session s = sessionList.FindLast(x => x.AllowKey.Trim().ToLower().Equals(allowKey.Trim().ToLower()));
+            if (s != null)
+            {
+                return s;
+                
+            }
             Session session = new Session()
             {
                 AllowKey = allowKey,

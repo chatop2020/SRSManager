@@ -108,8 +108,11 @@ namespace SRSWebApi.Controllers
                     if (Program.common.conf.AllowKeys[i].Key.Trim().ToLower()
                         .Equals(request.Allowkey.Key.Trim().ToLower()))
                     {
-                        found = true;
                         Program.common.conf.AllowKeys[i] = request.Allowkey;
+                        if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                        {
+                            found = true;   
+                        }
                         break;
                     }
                 }
@@ -155,8 +158,12 @@ namespace SRSWebApi.Controllers
                 {
                     if (Program.common.conf.AllowKeys[i].Key.Trim().ToLower().Equals(request.Key.Trim().ToLower()))
                     {
-                        found = true;
+                     
                         Program.common.conf.AllowKeys[i] = null;
+                        if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                        {
+                            found = true;   
+                        }
                         break;
                     }
                 }
@@ -218,10 +225,18 @@ namespace SRSWebApi.Controllers
                 }
 
                 Program.common.conf.AllowKeys.Add(request.Allowkey);
-                result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
-                result.StatusCode = (int)HttpStatusCode.OK;
-                return result;
-               
+                if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                {
+                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
+                    result.StatusCode = (int)HttpStatusCode.OK;
+                    return result;
+                }
+                else
+                {
+                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.Other]);
+                    result.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return result;
+                }
             }
             else
             {

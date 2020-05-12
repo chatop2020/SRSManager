@@ -21,7 +21,7 @@ namespace SRSWebApi.Attributes
             string remoteIpAddr = context.HttpContext.Connection.RemoteIpAddress.ToString();
             string sessionCode =  context.HttpContext.Request.Headers["SessionCode"];
             string allowKey=context.HttpContext.Request.Headers["Allowkey"];
-            if (!Program.common.CheckSession(sessionCode))
+            if (sessionCode==null || !Program.common.CheckSession(sessionCode))
             {
                
                 var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept]);
@@ -29,7 +29,7 @@ namespace SRSWebApi.Attributes
                 context.Result = result;
      
             }
-            if (!Program.common.CheckAllow(remoteIpAddr,allowKey))
+            if (allowKey==null || !Program.common.CheckAllow(remoteIpAddr,allowKey))
             {
                 
                 var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail]);
