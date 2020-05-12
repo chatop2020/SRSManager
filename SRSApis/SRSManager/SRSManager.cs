@@ -16,6 +16,18 @@ namespace SRSApis.SRSManager
         public string srs_deviceId = "";
         public SrsSystemConfClass Srs = null!;
 
+        public string SrsWorkPath
+        {
+            get => srs_WorkPath;
+            set => srs_WorkPath = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public string SrsPidValue
+        {
+            get => srs_pidValue;
+            set => srs_pidValue = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
         private bool checkFile()
         {
             if (File.Exists(srs_ConfigPath) && File.Exists(srs_WorkPath + "srs"))

@@ -35,7 +35,7 @@ namespace SRSWebApi
         public void CommonInit()
         {
             WorkPath = Environment.CurrentDirectory + "/";
-            ConfPath = WorkPath + "srswebapi.conf";
+            ConfPath = WorkPath + "srswebapi.wconf";
             BaseUrl = "http://*:" + conf.HttpPort;
             if (conf.LoadConfig(ConfPath))
             {
