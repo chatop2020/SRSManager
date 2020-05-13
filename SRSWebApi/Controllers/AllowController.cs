@@ -9,11 +9,11 @@ namespace SRSWebApi.Controllers
 {
     [ApiController]
     [Route("")]
-    public class Allow : ControllerBase
+    public class AllowController : ControllerBase
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public Allow(IHttpContextAccessor httpContextAccessor)
+        public AllowController(IHttpContextAccessor httpContextAccessor)
         {
             this.httpContextAccessor = httpContextAccessor;
         }

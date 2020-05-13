@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,7 @@ namespace SRSWebApi
 {
     public class Program
     {
-        public static Common common= new Common();
+        public static Common common = new Common();
         public static void Main(string[] args)
         {
             common.CommonInit();
@@ -22,6 +23,11 @@ namespace SRSWebApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging((context, logger) =>
+                {
+                    logger.ClearProviders();
+                    logger.AddLog4Net(Path.Combine("Config", "log4net.config"), true);
+                })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>().UseUrls(common.BaseUrl); });
     }
 }
