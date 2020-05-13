@@ -12,7 +12,7 @@ namespace Test_Onvif_Discovery
         {
             var host = "192.168.2.164";
             var username = "admin";
-            var password = "3987qzwas";
+            var password = "";
             OnvifMonitor onvif = null;
             try
             {
