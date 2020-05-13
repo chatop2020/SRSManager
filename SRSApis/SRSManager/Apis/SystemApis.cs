@@ -61,6 +61,12 @@ namespace SRSApis.SRSManager.Apis
             return null!;
         }
 
+        /*private string getDevicePath(string mountPath)
+        {
+            string cmd = "";
+           // df / |awk '{if (NR>1){print $1}}'|cut -d ":" -f 1
+        }*/
+
         /// <summary>
         /// 获取系统中的磁盘信息
         /// </summary>

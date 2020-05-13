@@ -13,6 +13,10 @@ namespace SRSWebApi.Controllers
     [Route("")]
     public class System
     {
+        /// <summary>
+        /// 获取系统信息
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Route("/System/GetSystemInfo")]
@@ -22,7 +26,10 @@ namespace SRSWebApi.Controllers
             result.StatusCode = (int)HttpStatusCode.OK;
             return result;
         }
-        
+        /// <summary>
+        /// 获取SRS实例列表
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Route("/System/GetSrsInstanceList")]

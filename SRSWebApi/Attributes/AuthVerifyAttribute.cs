@@ -18,6 +18,7 @@ namespace SRSWebApi.Attributes
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
         {
+            if (Program.common.isDebug) return;
             string remoteIpAddr = context.HttpContext.Connection.RemoteIpAddress.ToString();
             string sessionCode =  context.HttpContext.Request.Headers["SessionCode"];
             string allowKey=context.HttpContext.Request.Headers["Allowkey"];

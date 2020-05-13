@@ -8,6 +8,7 @@ namespace SRSWebApi
         public string ConfPath;
         public string BaseUrl;
         public SessionManager SessionManager;
+        public bool isDebug = true;
 
 
         /// <summary>
