@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRSWebApi", "SRSWebApi\SRSW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Onvif_Discovery", "Test_Onvif_Discovery\Test_Onvif_Discovery.csproj", "{178175DD-67F0-4DF0-9C95-73DB70130B00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnvifClient", "OnvifClass\OnvifClient.csproj", "{955596E7-CC11-404F-B143-3F3997B8210D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnvifClient", "OnvifClient\OnvifClient.csproj", "{0E3FD30C-B40D-42DD-BB28-307E978DB49A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +51,9 @@ Global
 		{178175DD-67F0-4DF0-9C95-73DB70130B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{178175DD-67F0-4DF0-9C95-73DB70130B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{178175DD-67F0-4DF0-9C95-73DB70130B00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{955596E7-CC11-404F-B143-3F3997B8210D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{955596E7-CC11-404F-B143-3F3997B8210D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{955596E7-CC11-404F-B143-3F3997B8210D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{955596E7-CC11-404F-B143-3F3997B8210D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E3FD30C-B40D-42DD-BB28-307E978DB49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E3FD30C-B40D-42DD-BB28-307E978DB49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E3FD30C-B40D-42DD-BB28-307E978DB49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E3FD30C-B40D-42DD-BB28-307E978DB49A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
