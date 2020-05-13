@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SRSWebApi</name>
+    </assembly>
+    <members>
+        <member name="M:SRSWebApi.Attributes.AuthVerifyAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            判断用户session及allowkey的合法性
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:SRSWebApi.Common.GetTimeStampMilliseconds">
+            <summary>
+            获取时间戳(毫秒级)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Common.CreateUUID">
+            <summary>
+            生成guid
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Common.IsGuidByError(System.String)">
+            <summary>
+            是否为GUID
+            </summary>
+            <param name="strSrc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Common.CheckPassword(System.String)">
+            <summary>
+            检查密码
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Common.CheckSession(System.String)">
+            <summary>
+            检查Session是否正常
+            </summary>
+            <param name="sessionCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Common.CheckAllow(System.String,System.String)">
+            <summary>
+            检查appkey
+            </summary>
+            <param name="ipAddr"></param>
+            <param name="allowKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.Allow.RefreshSession(SRSWebApi.Session)">
+            <summary>
+            刷新Session
+            </summary>
+            <param name="request">旧的session</param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.Allow.GetSession(SRSWebApi.RequestModules.ReqGetSession)">
+            <summary>
+            获取一个session用于通讯
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.Allow.SetAllowByKey(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
+            <summary>
+            修改设置一个allow
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.Allow.DelAllowByKey(SRSWebApi.RequestModules.ReqDelAllow)">
+            <summary>
+            删除一条allow
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.Allow.AddAllow(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
+            <summary>
+            添加一个allow
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.Allow.GetAllows(SRSWebApi.RequestModules.ReqGetAllows)">
+            <summary>
+            获取授权列表
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.JsonHelper.ToJson(System.Object,Newtonsoft.Json.MissingMemberHandling)">
+            <summary>
+            将指定的对象序列化成 JSON 数据。
+            </summary>
+            <param name="obj">要序列化的对象。</param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.JsonHelper.FromJson``1(System.String,Newtonsoft.Json.MissingMemberHandling)">
+            <summary>
+            将指定的 JSON 数据反序列化成指定对象。
+            </summary>
+            <typeparam name="T">对象类型。</typeparam>
+            <param name="json">JSON 数据。</param>
+            <returns></returns>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqDelAllow.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqDelAllow.Key">
+            <summary>
+            guid
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.SessionManager.RefreshSession(SRSWebApi.Session)">
+            <summary>
+            刷新Session
+            </summary>
+            <param name="session">旧的session</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
