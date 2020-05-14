@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Logging;
 
 namespace SRSWebApi
 {
@@ -33,7 +34,7 @@ namespace SRSWebApi
             {
                 // 添加文档信息
                 c.SwaggerDoc("v1", new OpenApiInfo  { Title = "SRSWebApi", Version = "v1" });
-                c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Model.xml"));//这里增加model注释，返回值会增加注释：需要Edu.Model项目属性，生成中输出xml文件
+                //c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Model.xml"));//这里增加model注释，返回值会增加注释：需要Edu.Model项目属性，生成中输出xml文件
                 c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Swagger.xml"));
                 
             });

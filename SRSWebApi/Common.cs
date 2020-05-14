@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+using SRSApis;
 using System;
+using System.Net;
 
 namespace SRSWebApi
 {
@@ -167,6 +170,21 @@ namespace SRSWebApi
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// apis返回结果统一处理
+        /// </summary>
+        /// <param name="rt">返回值</param>
+        /// <param name="rs">ResponseStruct</param>
+        /// <returns></returns>
+        public JsonResult DelApisResult(object rt, ResponseStruct rs)
+        {
+            if (rs.Code != (int)ErrorNumber.None)
+            {
+                return new JsonResult(rs) { StatusCode = (int)HttpStatusCode.BadRequest };
+            }
+            return new JsonResult(rt) { StatusCode = (int)HttpStatusCode.OK };
         }
     }
 }

@@ -20,7 +20,7 @@
     "SRSWebApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "allow",
+      "launchUrl": "swagger",
       "applicationUrl": "http://127.0.0.1:5800",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
