@@ -63,7 +63,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="vhostDomain"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static Dvr GetVhostRtc(SrsManager sm, string vhostDomain, out ResponseStruct rs)
+        public static Dvr GetVhostDvr(SrsManager sm, string vhostDomain, out ResponseStruct rs)
         {
             if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
             {
@@ -102,7 +102,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="rs"></param>
         /// <param name="createIfNotFound"></param>
         /// <returns></returns>
-        public static bool SetVhostRtc(SrsManager sm, string vhostDomian, Dvr dvr,
+        public static bool SetVhostDvr(SrsManager sm, string vhostDomian, Dvr dvr,
             out ResponseStruct rs, bool createIfNotFound = false)
         {
             bool ret = false;
