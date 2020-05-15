@@ -24,7 +24,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostRtc/DeleteVhostRtc")]
         public JsonResult DeleteVhostRtc(string deviceId, string vhostDomain)
         {
-            var rt = VhostRtcApis.DeleteVhostRtc(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostRtcApis.DeleteVhostRtc(srsManager, vhostDomain, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -39,7 +42,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostRtc/GetVhostRtc")]
         public JsonResult GetVhostRtc(string deviceId, string vhostDomain)
         {
-            var rt = VhostRtcApis.GetVhostRtc(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostRtcApis.GetVhostRtc(srsManager, vhostDomain, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -54,7 +60,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostRtc/SetVhostRtc")]
         public JsonResult SetVhostRtc(string deviceId, string vhostDomain, Rtc rtc, bool createIfNotFound = false)
         {
-            var rt = VhostRtcApis.SetVhostRtc(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, rtc, out ResponseStruct rs, createIfNotFound);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostRtcApis.SetVhostRtc(srsManager, vhostDomain, rtc, out ResponseStruct rs, createIfNotFound);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -69,7 +78,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostRtc/CreateVhostRtc")]
         public JsonResult CreateVhostRtc(string deviceId, string vhostDomain, Rtc rtc)
         {
-            var rt = VhostRtcApis.CreateVhostRtc(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, rtc, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostRtcApis.CreateVhostRtc(srsManager, vhostDomain, rtc, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
     }

@@ -45,7 +45,7 @@ namespace SRSWebApi
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
                 SRSApis.Common.init_SrsServer();
-                
+
             }
             else
             {
@@ -84,7 +84,7 @@ namespace SRSWebApi
         public bool CheckAuth(string ipAddr, string allowKey, string sessionCode)
         {
             if (!CheckSession(sessionCode)) return false;
-            if(!CheckAllow(ipAddr,allowKey)) return false;
+            if (!CheckAllow(ipAddr, allowKey)) return false;
             return true;
         }
         /// <summary>
@@ -107,8 +107,8 @@ namespace SRSWebApi
             Session s = this.SessionManager.SessionList.FindLast(x =>
                 x.SessionCode.Trim().ToLower().Equals(sessionCode.Trim().ToLower()));
             long a = this.GetTimeStampMilliseconds();
-            
-            if (s != null && s.Expires > a )
+
+            if (s != null && s.Expires > a)
             {
                 return true;
             }

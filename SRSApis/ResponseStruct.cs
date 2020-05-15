@@ -2,8 +2,8 @@ namespace SRSApis
 {
     public class ResponseStruct
     {
-        public ErrorNumber Code;
-        public string Message = null!;
+        public ErrorNumber Code { get; set; }
+        public string Message { get; set; } = null;
 
         public ResponseStruct(ErrorNumber code, string message)
         {

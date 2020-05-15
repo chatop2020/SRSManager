@@ -24,7 +24,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostIngest/DeleteVhostIngestByIngestInstanceName")]
         public JsonResult DeleteVhostIngestByIngestInstanceName(string deviceId, string vhostDomain, string ingestInstanceName)
         {
-            var rt = VhostIngestApis.DeleteVhostIngestByIngestInstanceName(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, ingestInstanceName, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostIngestApis.DeleteVhostIngestByIngestInstanceName(srsManager, vhostDomain, ingestInstanceName, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -39,7 +42,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostIngest/GetVhostIngestNameList")]
         public JsonResult GetVhostIngestNameList(string deviceId, string vhostDomain = "")
         {
-            var rt = VhostIngestApis.GetVhostIngestNameList(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), out ResponseStruct rs, vhostDomain);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostIngestApis.GetVhostIngestNameList(srsManager, out ResponseStruct rs, vhostDomain);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -55,7 +61,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostIngest/GetVhostIngest")]
         public JsonResult GetVhostIngest(string deviceId, string vhostDomain, string ingestInstanceName)
         {
-            var rt = VhostIngestApis.GetVhostIngest(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, ingestInstanceName, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostIngestApis.GetVhostIngest(srsManager, vhostDomain, ingestInstanceName, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -70,7 +79,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostIngest/SetVhostIngest")]
         public JsonResult SetVhostIngest(string deviceId, string vhostDomain, string ingestInstanceName, Ingest ingest, bool createIfNotFound = false)
         {
-            var rt = VhostIngestApis.SetVhostIngest(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, ingestInstanceName, ingest, out ResponseStruct rs, createIfNotFound);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostIngestApis.SetVhostIngest(srsManager, vhostDomain, ingestInstanceName, ingest, out ResponseStruct rs, createIfNotFound);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -85,7 +97,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostIngest/CreateVhostIngest")]
         public JsonResult CreateVhostIngest(string deviceId, string vhostDomain, Ingest ingest)
         {
-            var rt = VhostIngestApis.CreateVhostIngest(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, ingest, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostIngestApis.CreateVhostIngest(srsManager, vhostDomain, ingest, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
     }

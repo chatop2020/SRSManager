@@ -8,7 +8,13 @@ namespace SRSWebApi.RequestModules
 {
     public class VhostCommonRequest
     {
-        public string srsManager { get; set; }
-        public string vhostDomain { get; set; }
+        public string deviceId { get; set; }
+        public string deviceName { get; set; }
+        public A a { get; set; }
+    }
+    public class A
+    {
+        public string id { get; set; }
+        public string name { get; set; }
     }
 }

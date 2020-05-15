@@ -59,42 +59,42 @@
             <param name="rs">ResponseStruct</param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowController.RefreshSession(SRSWebApi.Session)">
+        <member name="M:SRSWebApi.Controllers.AllowControler.RefreshSession(SRSWebApi.Session)">
             <summary>
             刷新Session
             </summary>
             <param name="request">旧的session</param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowController.GetSession(SRSWebApi.RequestModules.ReqGetSession)">
+        <member name="M:SRSWebApi.Controllers.AllowControler.GetSession(SRSWebApi.RequestModules.ReqGetSession)">
             <summary>
             获取一个session用于通讯
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowController.SetAllowByKey(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
+        <member name="M:SRSWebApi.Controllers.AllowControler.SetAllowByKey(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
             <summary>
             修改设置一个allow
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowController.DelAllowByKey(SRSWebApi.RequestModules.ReqDelAllow)">
+        <member name="M:SRSWebApi.Controllers.AllowControler.DelAllowByKey(SRSWebApi.RequestModules.ReqDelAllow)">
             <summary>
             删除一条allow
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowController.AddAllow(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
+        <member name="M:SRSWebApi.Controllers.AllowControler.AddAllow(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
             <summary>
             添加一个allow
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowController.GetAllows(SRSWebApi.RequestModules.ReqGetAllows)">
+        <member name="M:SRSWebApi.Controllers.AllowControler.GetAllows(SRSWebApi.RequestModules.ReqGetAllows)">
             <summary>
             获取授权列表
             </summary>
@@ -165,6 +165,13 @@
             <param name="vhostDomain"></param>
             <returns></returns>
         </member>
+        <member name="M:SRSWebApi.Controllers.VhostController.TestGet(System.String)">
+            <summary>
+            获取Vhost列表的Instance名称列表
+            </summary>
+            <param name="deviceId"></param>
+            <returns></returns>
+        </member>
         <member name="M:SRSWebApi.Controllers.VhostController.GetVhostsInstanceName(System.String)">
             <summary>
             获取Vhost列表的Instance名称列表
@@ -189,12 +196,12 @@
         </member>
         <member name="M:SRSWebApi.Controllers.VhostController.GetVhostTemplate(SRSApis.SRSManager.Apis.ApiModules.VhostIngestInputType)">
             <summary>
-            获取Vhost的各类模板
+            获取Vhost的各类模板 [0:Stream] [1:File] [2:Device]
             </summary>
             <param name="vtype"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.VhostController.CreateVhost(System.String,SRSConfFile.SRSConfClass.SrsvHostConfClass)">
+        <member name="M:SRSWebApi.Controllers.VhostController.CreateVhost(System.String,SRSApis.SRSManager.Apis.ApiModules.VhostIngestInputType)">
             <summary>
             创建一个vhost
             </summary>

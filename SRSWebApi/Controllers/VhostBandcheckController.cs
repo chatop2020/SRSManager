@@ -25,7 +25,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostBandcheck/DeleteVhostBandcheck")]
         public JsonResult DeleteVhostBandcheck(string deviceId, string vhostDomain)
         {
-            var rt = VhostBandcheckApis.DeleteVhostBandcheck(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostBandcheckApis.DeleteVhostBandcheck(srsManager, vhostDomain, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -40,7 +43,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostBandcheck/GetVhostBandcheck")]
         public JsonResult GetVhostBandcheck(string deviceId, string vhostDomain)
         {
-            var rt = VhostBandcheckApis.GetVhostBandcheck(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostBandcheckApis.GetVhostBandcheck(srsManager, vhostDomain, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -55,7 +61,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostBandcheck/SetVhostBandcheck")]
         public JsonResult SetVhostBandcheck(string deviceId, string vhostDomain, Bandcheck bandcheck, bool createIfNotFound = false)
         {
-            var rt = VhostBandcheckApis.SetVhostBandcheck(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, bandcheck, out ResponseStruct rs, createIfNotFound);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostBandcheckApis.SetVhostBandcheck(srsManager, vhostDomain, bandcheck, out ResponseStruct rs, createIfNotFound);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -70,7 +79,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostBandcheck/CreateVhostBandcheck")]
         public JsonResult CreateVhostBandcheck(string deviceId, string vhostDomain, Bandcheck bandcheck)
         {
-            var rt = VhostBandcheckApis.CreateVhostBandcheck(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, bandcheck, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostBandcheckApis.CreateVhostBandcheck(srsManager, vhostDomain, bandcheck, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
     }

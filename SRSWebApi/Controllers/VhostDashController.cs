@@ -24,7 +24,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostDash/DeleteVhostDash")]
         public JsonResult DeleteVhostDash(string deviceId, string vhostDomain)
         {
-            var rt = VhostDashApis.DeleteVhostDash(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostDashApis.DeleteVhostDash(srsManager, vhostDomain, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -39,7 +42,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostDash/GetVhostDash")]
         public JsonResult GetVhostDash(string deviceId, string vhostDomain)
         {
-            var rt = VhostDashApis.GetVhostDash(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostDashApis.GetVhostDash(srsManager, vhostDomain, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -54,7 +60,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostDash/SetVhostDash")]
         public JsonResult SetVhostDash(string deviceId, string vhostDomain, Dash dash, bool createIfNotFound = false)
         {
-            var rt = VhostDashApis.SetVhostDash(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, dash, out ResponseStruct rs, createIfNotFound);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostDashApis.SetVhostDash(srsManager, vhostDomain, dash, out ResponseStruct rs, createIfNotFound);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -69,7 +78,10 @@ namespace SRSWebApi.Controllers
         [Route("/VhostDash/CreateVhostDash")]
         public JsonResult CreateVhostDash(string deviceId, string vhostDomain, Dash dash)
         {
-            var rt = VhostDashApis.CreateVhostDash(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain, dash, out ResponseStruct rs);
+            //获取一个SRSManager实例
+            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
+            var rt = VhostDashApis.CreateVhostDash(srsManager, vhostDomain, dash, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
     }

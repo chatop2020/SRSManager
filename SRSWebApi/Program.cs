@@ -23,11 +23,6 @@ namespace SRSWebApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging((context, logger) =>
-                {
-                    logger.ClearProviders();
-                    logger.AddLog4Net(Path.Combine("Config", "log4net.config"), true);
-                })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>().UseUrls(common.BaseUrl); });
     }
 }
