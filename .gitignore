@@ -12,3 +12,10 @@ StreamCenter.sln.DotSettings.user
 /SRSConfFile/obj
 /SRSWebApi/bin
 /SRSWebApi/obj
+/OnvifClient/bin
+/OnvifClient/obj
+/OnvifManager/bin
+/OnvifManager/obj
+/Test_Onvif_Discovery/bin
+/Test_Onvif_Discovery/obj
+

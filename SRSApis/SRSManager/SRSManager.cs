@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
+using OnvifManager;
 using SRSConfFile;
 using SRSConfFile.SRSConfClass;
 
@@ -15,6 +16,7 @@ namespace SRSApis.SRSManager
         public string srs_ConfigPath = "";
         public string srs_deviceId = "";
         public SrsSystemConfClass Srs = null!;
+       
 
         public string SrsWorkPath
         {

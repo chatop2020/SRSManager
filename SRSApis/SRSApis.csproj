@@ -10,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\OnvifManager\OnvifManager.csproj" />
         <ProjectReference Include="..\SRSConfFile\SRSConfFile.csproj" />
     </ItemGroup>
 

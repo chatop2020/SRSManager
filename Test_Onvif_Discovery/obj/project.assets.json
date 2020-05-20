@@ -539,9 +539,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClass/OnvifClient.csproj": {
-              "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClass/OnvifClient.csproj"
-            },
             "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj": {
               "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj"
             }

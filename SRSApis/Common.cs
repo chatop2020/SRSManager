@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using OnvifManager;
 using SRSApis.SRSManager;
 using SRSConfFile;
 
@@ -13,6 +14,7 @@ namespace SRSApis
         public static readonly string WorkPath = Environment.CurrentDirectory + "/";
         public static readonly string LogPath = WorkPath + "logs/";
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
+        public static List<OnvifMonitor> OnvifManagers = new List<OnvifMonitor>();
 
         /// <summary>
         /// 对象克隆

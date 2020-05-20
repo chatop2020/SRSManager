@@ -7,7 +7,7 @@ using Mictlanix.DotNet.Onvif.Device;
 using Mictlanix.DotNet.Onvif.Media;
 using Mictlanix.DotNet.Onvif.Ptz;
 
-namespace Test_Onvif_Discovery
+namespace OnvifManager
 {
     [Serializable]
     public class ResponsePosition
