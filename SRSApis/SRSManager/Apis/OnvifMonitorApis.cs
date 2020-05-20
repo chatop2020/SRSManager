@@ -397,7 +397,12 @@ namespace SRSApis.SRSManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            return Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()))!.OnvifMonitor!;
+            var tmp = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()))!;
+            if (tmp!=null && tmp.OnvifMonitor != null)
+            {
+                return tmp.OnvifMonitor;
+            }
+            return null!;
         }
 
         /// <summary>
@@ -474,7 +479,7 @@ namespace SRSApis.SRSManager.Apis
                         OnvifInstance oi = new OnvifInstance();
                         oi.Password = onvif.Password!;
                         oi.Username = onvif.Username!;
-                        oi.IpAddr = onvif.IpAddrs;
+                        oi.IpAddr = ip;
                         oi.OnvifMonitor = ovf;
                         oi.ConfigPath = Common.WorkPath + "system.oconf";
                         Common.OnvifManagers.Add(oi);

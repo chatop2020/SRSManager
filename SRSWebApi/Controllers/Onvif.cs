@@ -109,6 +109,10 @@ namespace SRSWebApi.Controllers
         public JsonResult GetMonitor(string ipAddress)
         {
             var rt=OnvifMonitorApis.GetOnvifMonitor(ipAddress, out ResponseStruct rs);
+            if (rt == null)
+            {
+                return Program.common.DelApisResult(null!, rs);
+            }
             OnvifMonitorModule ovm = new OnvifMonitorModule();
             ovm.OnvifProfileLimitList = new List<ProfileLimit>();
             ovm.MediaSourceInfoList= new List<MediaSourceInfo>();
@@ -116,6 +120,7 @@ namespace SRSWebApi.Controllers
             ovm.Password = rt.Password;
             ovm.Username = rt.Username;
             ovm.IsInited = rt.IsInited;
+            if(rt.OnvifProfileList!=null)
             foreach (var p in rt.OnvifProfileList)
             {
                 ProfileLimit pl= new ProfileLimit();
@@ -127,7 +132,7 @@ namespace SRSWebApi.Controllers
                 pl.PtzMoveSupport = p.PtzMoveSupport;
                 ovm.OnvifProfileLimitList.Add(pl);
             }
-         
+            if(rt.MediaSourceInfoList!=null)
             ovm.MediaSourceInfoList = rt.MediaSourceInfoList;
             return Program.common.DelApisResult(ovm, rs);
         }
