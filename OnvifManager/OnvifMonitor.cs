@@ -41,7 +41,7 @@ namespace OnvifManager
     }
 
     [Serializable]
-    public enum Dir
+    public enum PtzMoveDir
     {
         UP,
         DOWN,
@@ -150,6 +150,7 @@ namespace OnvifManager
     [Serializable]
     public class OnvifMonitor
     {
+
         private string host;
         private string username;
         private string password;
@@ -467,10 +468,10 @@ namespace OnvifManager
         /// 控制ptz移动
         /// </summary>
         /// <param name="profileToken"></param>
-        /// <param name="dir"></param>
+        /// <param name="ptzMoveDir"></param>
         /// <param name="pos"></param>
         /// <returns></returns>
-        public bool PtzMove(string profileToken, Dir dir, out ResponsePosition pos)
+        public bool PtzMove(string profileToken, PtzMoveDir ptzMoveDir, out ResponsePosition pos)
         {
             try
             {
@@ -482,44 +483,44 @@ namespace OnvifManager
                     float x = 0;
                     float y = 0;
                     float z = 0;
-                    switch (dir)
+                    switch (ptzMoveDir)
                     {
-                        case Dir.UP:
+                        case PtzMoveDir.UP:
                             x = 0f;
                             y = -0.05f;
                             z = 0f;
                             break;
-                        case Dir.DOWN:
+                        case PtzMoveDir.DOWN:
                             x = 0f;
                             y = 0.05f;
                             z = 0f;
                             break;
-                        case Dir.LEFT:
+                        case PtzMoveDir.LEFT:
                             x = -0.05f;
                             y = 0f;
                             z = 0f;
                             break;
-                        case Dir.RIGHT:
+                        case PtzMoveDir.RIGHT:
                             x = 0.05f;
                             y = 0f;
                             z = 0f;
                             break;
-                        case Dir.DOWNLEFT:
+                        case PtzMoveDir.DOWNLEFT:
                             x = -0.05f;
                             y = 0.05f;
                             z = 0f;
                             break;
-                        case Dir.DOWNRIGHT:
+                        case PtzMoveDir.DOWNRIGHT:
                             x = 0.05f;
                             y = 0.05f;
                             z = 0f;
                             break;
-                        case Dir.UPLEFT:
+                        case PtzMoveDir.UPLEFT:
                             x = -0.05f;
                             y = -0.05f;
                             z = 0f;
                             break;
-                        case Dir.UPRIGHT:
+                        case PtzMoveDir.UPRIGHT:
                             x = 0.05f;
                             y = -0.05f;
                             z = 0f;
@@ -678,6 +679,8 @@ namespace OnvifManager
                 {
                     //none to print
                 }
+
+                isInited = true;
             }
             catch (Exception ex)
             {

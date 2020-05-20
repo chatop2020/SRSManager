@@ -1,5 +1,8 @@
+using System;
+
 namespace SRSApis
 {
+    [Serializable]
     public class ResponseStruct
     {
         public ErrorNumber Code;

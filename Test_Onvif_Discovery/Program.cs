@@ -60,7 +60,7 @@ namespace Test_Onvif_Discovery
                   switch (cmd)
                   {
                    case "UP":
-                       if (onvif.PtzMove(ls[0], Dir.UP, out pos))
+                       if (onvif.PtzMove(ls[0], PtzMoveDir.UP, out pos))
                        {
                           Console.WriteLine(pos.ToString()); 
                        }
@@ -71,7 +71,7 @@ namespace Test_Onvif_Discovery
                        
                     break;
                    case "DOWN":
-                       if (onvif.PtzMove(ls[0], Dir.DOWN, out pos))
+                       if (onvif.PtzMove(ls[0], PtzMoveDir.DOWN, out pos))
                        {
                            Console.WriteLine(pos.ToString()); 
                        }
@@ -82,7 +82,7 @@ namespace Test_Onvif_Discovery
                        
                        break;
                    case "LEFT":
-                       if (onvif.PtzMove(ls[0], Dir.LEFT, out pos))
+                       if (onvif.PtzMove(ls[0], PtzMoveDir.LEFT, out pos))
                        {
                            Console.WriteLine(pos.ToString()); 
                        }
@@ -93,7 +93,7 @@ namespace Test_Onvif_Discovery
                        
                        break;
                    case "RIGHT":
-                       if (onvif.PtzMove(ls[0], Dir.RIGHT, out pos))
+                       if (onvif.PtzMove(ls[0], PtzMoveDir.RIGHT, out pos))
                        {
                            Console.WriteLine(pos.ToString()); 
                        }
@@ -104,7 +104,7 @@ namespace Test_Onvif_Discovery
                        
                        break;
                    case "UPLEFT":
-                       if (onvif.PtzMove(ls[0], Dir.UPLEFT, out pos))
+                       if (onvif.PtzMove(ls[0], PtzMoveDir.UPLEFT, out pos))
                        {
                            Console.WriteLine(pos.ToString()); 
                        }
@@ -115,7 +115,7 @@ namespace Test_Onvif_Discovery
                        
                        break;
                    case "UPRIGHT":
-                       if (onvif.PtzMove(ls[0], Dir.UPRIGHT, out pos))
+                       if (onvif.PtzMove(ls[0], PtzMoveDir.UPRIGHT, out pos))
                        {
                            Console.WriteLine(pos.ToString()); 
                        }
@@ -126,7 +126,7 @@ namespace Test_Onvif_Discovery
                        
                        break;
                    case "DOWNLEFT":
-                       if (onvif.PtzMove(ls[0], Dir.DOWNLEFT, out pos))
+                       if (onvif.PtzMove(ls[0], PtzMoveDir.DOWNLEFT, out pos))
                        {
                            Console.WriteLine(pos.ToString()); 
                        }
@@ -137,7 +137,7 @@ namespace Test_Onvif_Discovery
                        
                        break;
                    case "DOWNRIGHT":
-                       if (onvif.PtzMove(ls[0], Dir.DOWNRIGHT, out pos))
+                       if (onvif.PtzMove(ls[0], PtzMoveDir.DOWNRIGHT, out pos))
                        {
                            Console.WriteLine(pos.ToString()); 
                        }

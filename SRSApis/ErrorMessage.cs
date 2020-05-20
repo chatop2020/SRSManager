@@ -28,6 +28,10 @@ namespace SRSApis
         SRSSubInstanceAlreadyExists = -5020, //SRS配置子实例已经存在
         SRSSubInstanceNotFound = -5021, //SRS配置子实例没有找到
         SRSConfigFunctionUnsupported = -5022, //功能还未支持
+        OnvifMonitorNotInit=-5023,//非onvif设备
+        OnvifPtzKeepMoveOnlyUPDOWNLEFTRIGHT=-5024,
+        OnvifPtzMoveExcept=-5025,
+       
         Other = -6000
     }
 
@@ -63,6 +67,9 @@ namespace SRSApis
             ErrorDic[ErrorNumber.SRSSubInstanceAlreadyExists] = "该配置子实例已存在";
             ErrorDic[ErrorNumber.SRSSubInstanceNotFound] = "该配置子实例不存在";
             ErrorDic[ErrorNumber.SRSConfigFunctionUnsupported] = "所需功能还不支持";
+            ErrorDic[ErrorNumber.OnvifMonitorNotInit] = "非onvif设备，初始化失败";
+            ErrorDic[ErrorNumber.OnvifPtzKeepMoveOnlyUPDOWNLEFTRIGHT] = "持续PTZ移动模式下只支持上、下、左、右";
+            ErrorDic[ErrorNumber.OnvifPtzMoveExcept] = "PTZ移动控制异常";
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SRSWebApi.Controllers
 {
     [ApiController]
     [Route("")]
-    public class System
+    public class System: ControllerBase
     {
         /// <summary>
         /// 获取系统信息
