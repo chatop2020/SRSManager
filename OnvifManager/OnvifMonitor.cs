@@ -18,9 +18,9 @@ namespace OnvifManager
 
         public override string ToString()
         {
-            return string.Format("[x={0:F5},y={1:F5},z={2:F5}]",X, Y, Z);
+            return string.Format("[x={0:F5},y={1:F5},z={2:F5}]", X, Y, Z);
         }
-        
+
         public float X
         {
             get => x;
@@ -224,7 +224,7 @@ namespace OnvifManager
             DeviceClient tmp = null;
             try
             {
-                tmp =  OnvifClientFactory.CreateDeviceClientAsync(this.Host, this.Username, this.Password).Result;
+                tmp = OnvifClientFactory.CreateDeviceClientAsync(this.Host, this.Username, this.Password).Result;
             }
             catch
             {
@@ -324,6 +324,7 @@ namespace OnvifManager
 
             return result;
         }
+
         /// <summary>
         /// 修改摄像头缩放
         /// </summary>
@@ -331,7 +332,6 @@ namespace OnvifManager
         /// <param name="zoomDir">大于等于0为正向调整，小于0为反向调整</param>
         /// <param name="zoom"> 返回当前zoom大小</param>
         /// <returns></returns>
-
         public bool PtzZoom(string profileToken, int zoomDir, out float zoom)
         {
             try
@@ -387,6 +387,82 @@ namespace OnvifManager
                 return false;
             }
         }
+
+        /// <summary>
+        /// 停止持续移动
+        /// </summary>
+        /// <param name="profileToken"></param>
+        /// <param name="pos"></param>
+        /// <returns></returns>
+        public bool PtzMoveKeepStop(string profileToken, out ResponsePosition pos)
+        {
+            try
+            {
+                ptz.StopAsync(profileToken, true, true);
+                var ptz_status = ptz.GetStatusAsync(profileToken).Result;
+                pos = new ResponsePosition()
+                {
+                    X = ptz_status.Position.PanTilt.x,
+                    Y = ptz_status.Position.PanTilt.y,
+                    Z = ptz_status.Position.Zoom.x,
+                };
+                return true;
+            }
+            catch (Exception ex)
+            {
+                pos = null;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 开始持续移动
+        /// </summary>
+        /// <param name="profileToken"></param>
+        /// <param name="ppos"></param>
+        /// <param name="pos"></param>
+        /// <returns></returns>
+        public bool PtzMoveKeep(string profileToken, ResponsePosition ppos, out ResponsePosition pos)
+        {
+            try
+            {
+                pos = null;
+                OnvifProfile p = OnvifProfileList.FindLast(x =>
+                    x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()));
+                if (p != null && p.PtzMoveSupport && p.ContinuousMove)
+                {
+                    ptz.ContinuousMoveAsync(profileToken, new PTZSpeed
+                    {
+                        PanTilt = new Vector2D
+                        {
+                            x = ppos.X,
+                            y = ppos.Y
+                        },
+                        Zoom = new Vector1D
+                        {
+                            x = ppos.Z
+                        }
+                    }, null).Wait();
+
+                    var ptz_status = ptz.GetStatusAsync(profileToken).Result;
+                    pos = new ResponsePosition()
+                    {
+                        X = ptz_status.Position.PanTilt.x,
+                        Y = ptz_status.Position.PanTilt.y,
+                        Z = ptz_status.Position.Zoom.x,
+                    };
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                pos = null;
+                return false;
+            }
+        }
+
         /// <summary>
         /// 控制ptz移动
         /// </summary>
@@ -492,11 +568,12 @@ namespace OnvifManager
                 return false;
             }
         }
-/// <summary>
-/// 获取摄像头当前位置信息
-/// </summary>
-/// <param name="profileToken"></param>
-/// <returns></returns>
+
+        /// <summary>
+        /// 获取摄像头当前位置信息
+        /// </summary>
+        /// <param name="profileToken"></param>
+        /// <returns></returns>
         public ResponsePosition GetPtzPositionStatus(string profileToken)
         {
             try

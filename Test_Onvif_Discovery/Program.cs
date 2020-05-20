@@ -167,6 +167,32 @@ namespace Test_Onvif_Discovery
                            Console.WriteLine("not support");
                        }
                        break;
+                   case "MOVE":
+                       ResponsePosition ppos= new ResponsePosition();
+                       ppos.X = 0.05f;
+                       ppos.Y = 0f;
+                       ppos.Z = 0f;
+                       ResponsePosition ppp = null; 
+                       if (onvif.PtzMoveKeep(ls[0],ppos, out ppp))
+                       {
+                           Console.WriteLine(ppp.ToString()); 
+                       }
+                       else
+                       {
+                           Console.WriteLine("not support");
+                       }
+                       break;
+                   case "STOP":
+                       ResponsePosition pppp = null; 
+                       if (onvif.PtzMoveKeepStop(ls[0],out pppp))
+                       {
+                           Console.WriteLine(pppp.ToString()); 
+                       }
+                       else
+                       {
+                           Console.WriteLine("not support");
+                       }
+                       break;
                   
                   }
               }
