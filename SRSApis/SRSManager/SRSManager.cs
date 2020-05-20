@@ -51,8 +51,8 @@ namespace SRSApis.SRSManager
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSCreateError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSCreateError] + "\r\n实例已经被初始化",
+                    Code = ErrorNumber.SrsCreateError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsCreateError] + "\r\n实例已经被初始化",
                 };
                 return false;
             }
@@ -134,8 +134,8 @@ namespace SRSApis.SRSManager
             catch (Exception ex)
             {
                 rs = new ResponseStruct();
-                rs.Code = ErrorNumber.SRSCreateError;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SRSCreateError] + "\r\n" + ex.Message + "\r\n" +
+                rs.Code = ErrorNumber.SrsCreateError;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsCreateError] + "\r\n" + ex.Message + "\r\n" +
                              ex.StackTrace;
                 return false;
             }
@@ -331,8 +331,8 @@ namespace SRSApis.SRSManager
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSTerminated,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSTerminated],
+                    Code = ErrorNumber.SrsTerminated,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsTerminated],
                 };
                 return false;
             }
@@ -345,8 +345,8 @@ namespace SRSApis.SRSManager
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSReloadError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSReloadError],
+                    Code = ErrorNumber.SrsReloadError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsReloadError],
                 };
                 return false;
             }
@@ -356,8 +356,8 @@ namespace SRSApis.SRSManager
                 {
                     rs = new ResponseStruct()
                     {
-                        Code = ErrorNumber.SRSReloadError,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.SRSReloadError],
+                        Code = ErrorNumber.SrsReloadError,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsReloadError],
                     };
                     return false;
                 }
@@ -384,9 +384,9 @@ namespace SRSApis.SRSManager
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.StartRuningSRSError,
+                    Code = ErrorNumber.StartRuningSrsError,
                     Message =
-                        ErrorMessage.ErrorDic![ErrorNumber.StartRuningSRSError] + "\r\npid:(" + srs_pidValue + ")",
+                        ErrorMessage.ErrorDic![ErrorNumber.StartRuningSrsError] + "\r\npid:(" + srs_pidValue + ")",
                 };
                 return false;
             }
@@ -395,8 +395,8 @@ namespace SRSApis.SRSManager
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSNotFound],
+                    Code = ErrorNumber.SrsNotFound,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsNotFound],
                 };
                 return false;
             }
@@ -424,8 +424,8 @@ namespace SRSApis.SRSManager
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.StartSRSError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.StartSRSError] + "\r\npid:(" + srs_pidValue + ")",
+                    Code = ErrorNumber.StartSrsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.StartSrsError] + "\r\npid:(" + srs_pidValue + ")",
                 };
                 return false;
             }
@@ -485,8 +485,8 @@ namespace SRSApis.SRSManager
 
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.StopSRSError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.StopSRSError],
+                    Code = ErrorNumber.StopSrsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.StopSrsError],
                 };
                 return false;
             }

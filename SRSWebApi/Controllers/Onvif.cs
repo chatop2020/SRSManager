@@ -15,6 +15,9 @@ namespace SRSWebApi.Controllers
     [Route("")]
     public class Onvif: ControllerBase
     {
+        
+       
+        
         /// <summary>
         /// 设置Ptz焦距
         /// </summary>
@@ -30,6 +33,7 @@ namespace SRSWebApi.Controllers
             var rt=OnvifMonitorApis.SetPtzZoom( setZoom.IpAddr,setZoom.ProfileToken,v, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
+        
         /// <summary>
         /// 获取ptz坐标
         /// </summary>
@@ -93,18 +97,7 @@ namespace SRSWebApi.Controllers
             var rt=OnvifMonitorApis.InitMonitors(req, out ResponseStruct rs, true);
             return Program.common.DelApisResult(rt, rs);
         }
-        /// <summary>
-        /// 获取onvif摄像头实例名称列表(ip地址)
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost] 
-        [AuthVerify]
-        [Route("/Onvif/GetMonitorList")]
-        public JsonResult GetMonitorList()
-        {
-            var rt=OnvifMonitorApis.GetOnvifMonitorsIpAddress( out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
-        }
+       
         /// <summary>
         /// 跟据实例名称/ip地址获取onvif摄像头实例
         /// </summary>

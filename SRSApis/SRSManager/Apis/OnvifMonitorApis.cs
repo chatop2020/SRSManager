@@ -6,6 +6,8 @@ using PtzMoveDir = OnvifManager.PtzMoveDir;
 
 namespace SRSApis.SRSManager.Apis
 {
+    
+    
     public static class OnvifMonitorApis
     {
         /// <summary>
@@ -28,7 +30,7 @@ namespace SRSApis.SRSManager.Apis
                 return -999999;
             }
 
-            var onvif = Common.OnvifManagers.FindLast(x => x.Host.Trim().Equals(instanceIpaddr.Trim()));
+            var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
             if (onvif == null)
             {
                 rs = new ResponseStruct()
@@ -39,7 +41,7 @@ namespace SRSApis.SRSManager.Apis
                 return -999999;
             }
 
-            if (onvif.OnvifProfileList == null)
+            if (onvif.OnvifMonitor.OnvifProfileList == null)
             {
                 rs = new ResponseStruct()
                 {
@@ -49,8 +51,8 @@ namespace SRSApis.SRSManager.Apis
                 return -999999;
             }
 
-            OnvifProfile pf = onvif.OnvifProfileList.FindLast(x =>
-                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()));
+            OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
+                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
 
             if (pf == null)
             {
@@ -60,17 +62,17 @@ namespace SRSApis.SRSManager.Apis
                     Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
                 };
                 return -999999;
-            } 
-            
+            }
+
             float result;
-            if (onvif.PtzZoom(profileToken,zoomDir,out result))
+            if (onvif.OnvifMonitor.PtzZoom(profileToken, zoomDir, out result))
             {
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None] ,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                 };
-                return result!; 
+                return result!;
             }
             else
             {
@@ -79,9 +81,10 @@ namespace SRSApis.SRSManager.Apis
                     Code = ErrorNumber.Other,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
                 };
-                return -999999; 
+                return -999999;
             }
         }
+
         /// <summary>
         /// 获取ptz坐标
         /// </summary>
@@ -101,7 +104,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            var onvif = Common.OnvifManagers.FindLast(x => x.Host.Trim().Equals(instanceIpaddr.Trim()));
+            var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
             if (onvif == null)
             {
                 rs = new ResponseStruct()
@@ -112,7 +115,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            if (onvif.OnvifProfileList == null)
+            if (onvif.OnvifMonitor.OnvifProfileList == null)
             {
                 rs = new ResponseStruct()
                 {
@@ -122,8 +125,8 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            OnvifProfile pf = onvif.OnvifProfileList.FindLast(x =>
-                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()));
+            OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
+                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
 
             if (pf == null)
             {
@@ -135,8 +138,8 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            ResponsePosition pos = onvif.GetPtzPositionStatus(pf.ProfileToken);
-            if(pos!=null)
+            ResponsePosition pos = onvif.OnvifMonitor.GetPtzPositionStatus(pf.ProfileToken);
+            if (pos != null)
             {
                 rs = new ResponseStruct()
                 {
@@ -155,6 +158,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
         }
+
         /// <summary>
         /// 停止持续移动
         /// </summary>
@@ -174,7 +178,7 @@ namespace SRSApis.SRSManager.Apis
                 return false!;
             }
 
-            var onvif = Common.OnvifManagers.FindLast(x => x.Host.Trim().Equals(instanceIpaddr.Trim()));
+            var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
             if (onvif == null)
             {
                 rs = new ResponseStruct()
@@ -185,7 +189,7 @@ namespace SRSApis.SRSManager.Apis
                 return false!;
             }
 
-            if (onvif.OnvifProfileList == null)
+            if (onvif.OnvifMonitor.OnvifProfileList == null)
             {
                 rs = new ResponseStruct()
                 {
@@ -195,8 +199,8 @@ namespace SRSApis.SRSManager.Apis
                 return false!;
             }
 
-            OnvifProfile pf = onvif.OnvifProfileList.FindLast(x =>
-                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()));
+            OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
+                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
 
             if (pf == null)
             {
@@ -209,7 +213,7 @@ namespace SRSApis.SRSManager.Apis
             }
 
             ResponsePosition pos;
-            if (onvif.PtzMoveKeepStop(pf.ProfileToken, out pos))
+            if (onvif.OnvifMonitor.PtzMoveKeepStop(pf.ProfileToken, out pos))
             {
                 rs = new ResponseStruct()
                 {
@@ -251,7 +255,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            var onvif = Common.OnvifManagers.FindLast(x => x.Host.Trim().Equals(instanceIpaddr.Trim()));
+            var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
             if (onvif == null)
             {
                 rs = new ResponseStruct()
@@ -262,7 +266,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            if (onvif.OnvifProfileList == null)
+            if (onvif.OnvifMonitor.OnvifProfileList == null)
             {
                 rs = new ResponseStruct()
                 {
@@ -272,8 +276,8 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            OnvifProfile pf = onvif.OnvifProfileList.FindLast(x =>
-                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()));
+            OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
+                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
 
             if (pf == null)
             {
@@ -313,14 +317,14 @@ namespace SRSApis.SRSManager.Apis
                         default:
                             rs = new ResponseStruct()
                             {
-                                Code = ErrorNumber.OnvifPtzKeepMoveOnlyUPDOWNLEFTRIGHT,
-                                Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifPtzKeepMoveOnlyUPDOWNLEFTRIGHT],
+                                Code = ErrorNumber.OnvifPtzKeepMoveOnlyUpdownleftright,
+                                Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifPtzKeepMoveOnlyUpdownleftright],
                             };
                             return null!;
                     }
 
                     ResponsePosition pos;
-                    if (onvif.PtzMoveKeep(pf.ProfileToken, ppos, out pos))
+                    if (onvif.OnvifMonitor.PtzMoveKeep(pf.ProfileToken, ppos, out pos))
                     {
                         rs = new ResponseStruct()
                         {
@@ -341,7 +345,7 @@ namespace SRSApis.SRSManager.Apis
 
                 case PtzMoveType.RELATIVE:
 
-                    if (onvif.PtzMove(pf.ProfileToken,  moveDir, out pos))
+                    if (onvif.OnvifMonitor.PtzMove(pf.ProfileToken, moveDir, out pos))
                     {
                         rs = new ResponseStruct()
                         {
@@ -392,7 +396,7 @@ namespace SRSApis.SRSManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            return Common.OnvifManagers.FindLast(x => x.Host.Trim().Equals(instanceIpaddr.Trim()))!;
+            return Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()))!.OnvifMonitor!;
         }
 
         /// <summary>
@@ -417,7 +421,7 @@ namespace SRSApis.SRSManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            return Common.OnvifManagers.Select(x => x.Host).ToList();
+            return Common.OnvifManagers.Select(x => x.IpAddr).ToList();
         }
 
         /// <summary>
@@ -432,7 +436,7 @@ namespace SRSApis.SRSManager.Apis
         {
             if (autoAdd && Common.OnvifManagers == null)
             {
-                Common.OnvifManagers = new List<OnvifMonitor>();
+                Common.OnvifManagers = new List<OnvifInstance>();
             }
 
             if (onvif != null)
@@ -448,9 +452,11 @@ namespace SRSApis.SRSManager.Apis
                     return null!;
                 }
 
+                List<OnvifInstance> tmpList = new List<OnvifInstance>();
+
                 foreach (var ip in onvif.IpAddrArray)
                 {
-                    if (Common.OnvifManagers.FindLast(x => x.Host.Trim().Equals(ip.Trim())) != null) continue;
+                    if (Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ip.Trim())) != null) continue;
 
                     OnvifMonitor ovf = discoveryMonitor(ip, onvif.Username!, onvif.Password!, out rs);
                     try
@@ -464,27 +470,58 @@ namespace SRSApis.SRSManager.Apis
 
                     if (ovf != null && autoAdd)
                     {
-                        Common.OnvifManagers.Add(ovf);
+                        OnvifInstance oi = new OnvifInstance();
+                        oi.Password = onvif.Password!;
+                        oi.Username = onvif.Username!;
+                        oi.IpAddr = onvif.IpAddrs;
+                        oi.OnvifMonitor = ovf;
+                        oi.ConfigPath = Common.WorkPath + "system.oconf";
+                        Common.OnvifManagers.Add(oi);
+                        tmpList.Add(oi);
                     }
                 }
 
-                if (Common.OnvifManagers != null && Common.OnvifManagers.Count > 0)
+                if (autoAdd)
                 {
-                    rs = new ResponseStruct()
+                    if (Common.OnvifManagers != null && Common.OnvifManagers.Count > 0)
                     {
-                        Code = ErrorNumber.None,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                    };
-                    return Common.OnvifManagers.Select(x => x.Host).ToList();
+                        rs = new ResponseStruct()
+                        {
+                            Code = ErrorNumber.None,
+                            Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                        };
+                        return Common.OnvifManagers.Select(x => x.IpAddr).ToList();
+                    }
+                    else
+                    {
+                        rs = new ResponseStruct()
+                        {
+                            Code = ErrorNumber.OnvifMonitorNotInit,
+                            Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
+                        };
+                        return null!;
+                    }
                 }
                 else
                 {
-                    rs = new ResponseStruct()
+                    if (tmpList != null && tmpList.Count > 0)
                     {
-                        Code = ErrorNumber.OnvifMonitorNotInit,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
-                    };
-                    return null!;
+                        rs = new ResponseStruct()
+                        {
+                            Code = ErrorNumber.None,
+                            Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                        };
+                        return tmpList.Select(x => x.IpAddr).ToList();
+                    }
+                    else
+                    {
+                        rs = new ResponseStruct()
+                        {
+                            Code = ErrorNumber.OnvifMonitorNotInit,
+                            Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
+                        };
+                        return null!;
+                    }
                 }
             }
             else
