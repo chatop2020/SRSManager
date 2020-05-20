@@ -684,13 +684,14 @@ namespace SRSConfFile
                     write_SubOnly(o.Vdvr, out output_dvr, 2, types2);
                     output += output_dvr;
                 }
+
                 if (p.PropertyType == typeof(Nack))
                 {
                     string output_nack = "";
                     write_SubOnly(o.Vnack, out output_nack, 2);
                     output += output_nack;
                 }
-                
+
 
                 if (p.PropertyType == typeof(List<Ingest>))
                 {

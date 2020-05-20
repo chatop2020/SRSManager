@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Mictlanix.DotNet.Onvif;
-using Mictlanix.DotNet.Onvif.Common;
-using Mictlanix.DotNet.Onvif.Ptz;
 using OnvifManager;
 
 namespace Test_Onvif_Discovery

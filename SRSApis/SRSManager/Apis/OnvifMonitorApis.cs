@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Mictlanix.DotNet.Onvif.Common;
 using OnvifManager;
 using SRSApis.SRSManager.Apis.ApiModules;
-using PtzMoveDir = SRSApis.SRSManager.Apis.ApiModules.PtzMoveDir;
+using PtzMoveDir = OnvifManager.PtzMoveDir;
 
 namespace SRSApis.SRSManager.Apis
 {
@@ -166,7 +165,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="rs"></param>
         /// <returns></returns>
         public static ResponsePosition PtzMove(string instanceIpaddr, string profileToken, PtzMoveType moveType,
-            OnvifManager.PtzMoveDir moveDir, out ResponseStruct rs)
+            PtzMoveDir moveDir, out ResponseStruct rs)
         {
             if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
             {
@@ -221,19 +220,19 @@ namespace SRSApis.SRSManager.Apis
                 case PtzMoveType.KEEP:
                     switch (moveDir)
                     {
-                        case OnvifManager.PtzMoveDir.UP:
+                        case PtzMoveDir.UP:
                             ppos.X = 0f;
                             ppos.Y = -0.05f;
                             break;
-                        case OnvifManager.PtzMoveDir.DOWN:
+                        case PtzMoveDir.DOWN:
                             ppos.X = 0f;
                             ppos.Y = 0.05f;
                             break;
-                        case OnvifManager.PtzMoveDir.LEFT:
+                        case PtzMoveDir.LEFT:
                             ppos.X = -0.05f;
                             ppos.Y = 0f;
                             break;
-                        case OnvifManager.PtzMoveDir.RIGHT:
+                        case PtzMoveDir.RIGHT:
                             ppos.X = 0.05f;
                             ppos.Y = 0f;
                             break;
@@ -268,7 +267,7 @@ namespace SRSApis.SRSManager.Apis
 
                 case PtzMoveType.RELATIVE:
 
-                    if (onvif.PtzMove(pf.ProfileToken, (OnvifManager.PtzMoveDir) moveDir, out pos))
+                    if (onvif.PtzMove(pf.ProfileToken,  moveDir, out pos))
                     {
                         rs = new ResponseStruct()
                         {

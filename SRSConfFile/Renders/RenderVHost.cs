@@ -734,7 +734,7 @@ namespace SRSConfFile.Renders
                 }
         }
 
-        
+
         private static void render_nack(SectionBody scbin, SrsvHostConfClass svcc, string instanceName = "")
         {
             if (svcc.Vnack == null)

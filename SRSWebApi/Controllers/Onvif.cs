@@ -4,9 +4,9 @@ using OnvifManager;
 using SRSApis;
 using SRSApis.SRSManager.Apis;
 using SRSApis.SRSManager.Apis.ApiModules;
-using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using SRSWebApi.ResponseModules;
+using PtzMoveDir = OnvifManager.PtzMoveDir;
 
 namespace SRSWebApi.Controllers
 {
@@ -55,7 +55,7 @@ namespace SRSWebApi.Controllers
         [Route("/Onvif/PtzMove")]
         public JsonResult PtzMove(ReqPtzMove ptzMove)
         {
-            var rt=OnvifMonitorApis.PtzMove( ptzMove.IpAddr,ptzMove.ProfileToken,(PtzMoveType)ptzMove.MoveType,(OnvifManager.PtzMoveDir)ptzMove.MoveDir, out ResponseStruct rs);
+            var rt=OnvifMonitorApis.PtzMove( ptzMove.IpAddr,ptzMove.ProfileToken,(PtzMoveType)ptzMove.MoveType,(PtzMoveDir)ptzMove.MoveDir, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
         

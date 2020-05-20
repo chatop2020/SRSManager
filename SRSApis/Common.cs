@@ -98,7 +98,7 @@ namespace SRSApis
         /// </summary>
         public static void init_SrsServer()
         {
-            DirectoryInfo dir = new DirectoryInfo(Common.WorkPath);
+            DirectoryInfo dir = new DirectoryInfo(WorkPath);
             ResponseStruct rs;
             bool ret = false;
             foreach (FileInfo file in dir.GetFiles())
@@ -115,12 +115,12 @@ namespace SRSApis
                     else
                     {
                         LogWriter.WriteLog("初始化SRS成功...ConfigPath:" + file.FullName, rs_str);
-                        Common.SrsManagers.Add(sm);
+                        SrsManagers.Add(sm);
                     }
                 }
             }
 
-            if (Common.SrsManagers.Count == 0)
+            if (SrsManagers.Count == 0)
             {
                 SrsManager sm = new SrsManager();
                 ret = sm.CreateSrsManager(out rs);
@@ -132,7 +132,7 @@ namespace SRSApis
                 else
                 {
                     LogWriter.WriteLog("初始化SRS成功...ConfigPath:" + sm.srs_ConfigPath, rs_str);
-                    Common.SrsManagers.Add(sm);
+                    SrsManagers.Add(sm);
                 }
             }
         }
