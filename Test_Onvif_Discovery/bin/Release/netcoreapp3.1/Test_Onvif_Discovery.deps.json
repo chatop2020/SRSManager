@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v3.1": {
       "Test_Onvif_Discovery/1.0.0": {
         "dependencies": {
-          "Mictlanix.DotNet.OnvifClient": "1.0.0"
+          "Mictlanix.DotNet.OnvifClient": "1.0.0",
+          "OnvifManager": "1.0.0"
         },
         "runtime": {
           "Test_Onvif_Discovery.dll": {}
@@ -115,6 +116,14 @@
         "runtime": {
           "Mictlanix.DotNet.OnvifClient.dll": {}
         }
+      },
+      "OnvifManager/1.0.0": {
+        "dependencies": {
+          "Mictlanix.DotNet.OnvifClient": "1.0.0"
+        },
+        "runtime": {
+          "OnvifManager.dll": {}
+        }
       }
     }
   },
@@ -188,6 +197,11 @@
       "hashPath": "system.servicemodel.security.4.4.4.nupkg.sha512"
     },
     "Mictlanix.DotNet.OnvifClient/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OnvifManager/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

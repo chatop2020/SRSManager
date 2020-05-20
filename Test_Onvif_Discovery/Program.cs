@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Mictlanix.DotNet.Onvif;
 using Mictlanix.DotNet.Onvif.Common;
 using Mictlanix.DotNet.Onvif.Ptz;
+using OnvifManager;
+
 namespace Test_Onvif_Discovery
 {
     class Program
@@ -13,7 +15,7 @@ namespace Test_Onvif_Discovery
         {
             var host = "192.168.2.164";
             var username = "admin";
-            var password = "3987qzwas";
+            var password = "";
             OnvifMonitor onvif = null;
             try
             {

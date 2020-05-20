@@ -17,6 +17,9 @@
         "projectReferences": {
           "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj": {
             "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj"
+          },
+          "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj": {
+            "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj"
           }
         }
       }

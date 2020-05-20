@@ -73,6 +73,60 @@
         }
       }
     },
+    "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj",
+        "projectName": "OnvifManager",
+        "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj",
+        "packagesPath": "/Users/qiuzhouwei/.nuget/packages/",
+        "outputPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/qiuzhouwei/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj": {
+                "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/Test_Onvif_Discovery.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -96,6 +150,9 @@
             "projectReferences": {
               "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj": {
                 "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj"
+              },
+              "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj": {
+                "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj"
               }
             }
           }

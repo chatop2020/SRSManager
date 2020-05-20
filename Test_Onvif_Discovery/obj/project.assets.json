@@ -144,6 +144,19 @@
         "runtime": {
           "bin/placeholder/Mictlanix.DotNet.OnvifClient.dll": {}
         }
+      },
+      "OnvifManager/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Mictlanix.DotNet.OnvifClient": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/OnvifManager.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OnvifManager.dll": {}
+        }
       }
     }
   },
@@ -508,11 +521,17 @@
       "type": "project",
       "path": "../OnvifClient/OnvifClient.csproj",
       "msbuildProject": "../OnvifClient/OnvifClient.csproj"
+    },
+    "OnvifManager/1.0.0": {
+      "type": "project",
+      "path": "../OnvifManager/OnvifManager.csproj",
+      "msbuildProject": "../OnvifManager/OnvifManager.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Mictlanix.DotNet.OnvifClient >= 1.0.0"
+      "Mictlanix.DotNet.OnvifClient >= 1.0.0",
+      "OnvifManager >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -541,6 +560,9 @@
           "projectReferences": {
             "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj": {
               "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj"
+            },
+            "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj": {
+              "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj"
             }
           }
         }

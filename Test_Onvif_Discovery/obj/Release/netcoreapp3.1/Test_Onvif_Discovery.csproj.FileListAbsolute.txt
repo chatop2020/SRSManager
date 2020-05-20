@@ -21,3 +21,5 @@
 /Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/bin/Release/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Private.ServiceModel.dll
 /Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/bin/Release/netcoreapp3.1/Mictlanix.DotNet.OnvifClient.dll
 /Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/bin/Release/netcoreapp3.1/Mictlanix.DotNet.OnvifClient.pdb
+/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/bin/Release/netcoreapp3.1/OnvifManager.dll
+/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/bin/Release/netcoreapp3.1/OnvifManager.pdb
