@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
+using Common;
 using Microsoft.AspNetCore.Mvc;
 using SRSApis;
 using SRSApis.SRSManager;
@@ -28,7 +29,7 @@ namespace SRSWebApi.Controllers
             {
                 rs = new ResponseStruct()
                 {
-                    Code = SRSApis.ErrorNumber.None,
+                    Code = ErrorNumber.None,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                 };
             }
@@ -36,7 +37,7 @@ namespace SRSWebApi.Controllers
             {
                 rs = new ResponseStruct()
                 {
-                    Code = SRSApis.ErrorNumber.Other,
+                    Code = ErrorNumber.Other,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
                 };
             }
@@ -58,7 +59,7 @@ namespace SRSWebApi.Controllers
             {
                 rs = new ResponseStruct()
                 {
-                    Code = SRSApis.ErrorNumber.None,
+                    Code = ErrorNumber.None,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                 };
             }
@@ -66,7 +67,7 @@ namespace SRSWebApi.Controllers
             {
                 rs = new ResponseStruct()
                 {
-                    Code = SRSApis.ErrorNumber.Other,
+                    Code = ErrorNumber.Other,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
                 };
             }

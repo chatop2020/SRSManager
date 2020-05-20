@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SRSWebApi.RequestModules;
@@ -125,7 +126,7 @@ namespace SRSWebApi.Controllers
                 }
                 else
                 {
-                    var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound]);
+                    var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound]);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
                    
@@ -177,7 +178,7 @@ namespace SRSWebApi.Controllers
                 }
                 else
                 {
-                    var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound]);
+                    var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound]);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
                     
@@ -209,7 +210,7 @@ namespace SRSWebApi.Controllers
                
                 if (obj != null)
                 {
-                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceAlreadyExists]);
+                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceAlreadyExists]);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
                    

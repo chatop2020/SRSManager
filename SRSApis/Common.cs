@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
+using Common;
 using OnvifManager;
 using SRSApis.SRSManager;
 using SRSConfFile;

@@ -1,6 +1,6 @@
 using System;
 
-namespace SRSApis
+namespace Common
 {
     [Serializable]
     public class ResponseStruct

@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 
-namespace SRSApis
+namespace Common
 {
+    [Serializable]
     public enum ErrorNumber : int
     {
         None = 0, //成功
@@ -28,13 +30,17 @@ namespace SRSApis
         SrsSubInstanceAlreadyExists = -5020, //SRS配置子实例已经存在
         SrsSubInstanceNotFound = -5021, //SRS配置子实例没有找到
         SrsConfigFunctionUnsupported = -5022, //功能还未支持
-        OnvifMonitorNotInit=-5023,//非onvif设备
-        OnvifPtzKeepMoveOnlyUpdownleftright=-5024,
-        OnvifPtzMoveExcept=-5025,
+        SystemCheckPasswordFail=-5023,//检测密码失败
+        SystemCheckAllowKeyFail=-5024,//访问控制检测失败
+        SystemSessionExcept=-5025,//session异常
+        SystemCheckAllowKeyOrSessionFail=-5026,//访问控制检测失败
+        OnvifMonitorNotInit=-5027,//非onvif设备
+        OnvifPtzKeepMoveOnlyUpdownleftright=-5028,
+        OnvifPtzMoveExcept=-5029,
        
         Other = -6000
     }
-
+    [Serializable]
     public static class ErrorMessage
     {
         public static Dictionary<ErrorNumber, string>? ErrorDic;
@@ -70,6 +76,10 @@ namespace SRSApis
             ErrorDic[ErrorNumber.OnvifMonitorNotInit] = "非onvif设备，初始化失败";
             ErrorDic[ErrorNumber.OnvifPtzKeepMoveOnlyUpdownleftright] = "持续PTZ移动模式下只支持上、下、左、右";
             ErrorDic[ErrorNumber.OnvifPtzMoveExcept] = "PTZ移动控制异常";
+            ErrorDic[ErrorNumber.SystemCheckPasswordFail] = "鉴权失败";
+            ErrorDic[ErrorNumber.SystemCheckAllowKeyFail] = "访问控制检测失败";
+            ErrorDic[ErrorNumber.SystemSessionExcept] = "Session异常";
+            ErrorDic[ErrorNumber.SystemCheckAllowKeyOrSessionFail] = "访问控制或Session过期异常";
         }
     }
 }
