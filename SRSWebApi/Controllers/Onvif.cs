@@ -4,6 +4,7 @@ using OnvifManager;
 using SRSApis;
 using SRSApis.SRSManager.Apis;
 using SRSApis.SRSManager.Apis.ApiModules;
+using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using SRSWebApi.ResponseModules;
 using PtzMoveDir = OnvifManager.PtzMoveDir;
@@ -14,14 +15,28 @@ namespace SRSWebApi.Controllers
     [Route("")]
     public class Onvif: ControllerBase
     {
-        
+        /// <summary>
+        /// 设置Ptz焦距
+        /// </summary>
+        /// <param name="setZoom"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [Route("/Onvif/SetPtzZoom")]
+        public JsonResult SetPtzZoom(ReqSetZoom setZoom)
+        {
+            int v = 0;
+            v = (setZoom.ZoomDir == ZoomDir.MORE) ? 1 : -1;//放大时值大于0,缩小时值小于0
+            var rt=OnvifMonitorApis.SetPtzZoom( setZoom.IpAddr,setZoom.ProfileToken,v, out ResponseStruct rs);
+            return Program.common.DelApisResult(rt, rs);
+        }
         /// <summary>
         /// 获取ptz坐标
         /// </summary>
         /// <param name="ptzMove"></param>
         /// <returns></returns>
         [HttpPost]
-        // [AuthVerify]
+        [AuthVerify]
         [Route("/Onvif/GetPtzPosition")]
         public JsonResult GetPtzPosition(ReqPtzMove ptzMove)
         {
@@ -36,7 +51,7 @@ namespace SRSWebApi.Controllers
         /// <param name="ptzMove"></param>
         /// <returns></returns>
         [HttpPost]
-        // [AuthVerify]
+        [AuthVerify]
         [Route("/Onvif/PtzKeepMoveStop")]
         public JsonResult PtzKeepMoveStop(ReqPtzMove ptzMove)
         {
@@ -50,8 +65,8 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="ptzMove"></param>
         /// <returns></returns>
-        [HttpPost]
-        // [AuthVerify]
+        [HttpPost] 
+        [AuthVerify]
         [Route("/Onvif/PtzMove")]
         public JsonResult PtzMove(ReqPtzMove ptzMove)
         {
@@ -65,7 +80,7 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-       // [AuthVerify]
+        [AuthVerify]
         [Route("/Onvif/InitMonitor")]
         public JsonResult InitMonitor(ReqInitOnvif request)
         {
@@ -82,8 +97,8 @@ namespace SRSWebApi.Controllers
         /// 获取onvif摄像头实例名称列表(ip地址)
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
-        // [AuthVerify]
+        [HttpPost] 
+        [AuthVerify]
         [Route("/Onvif/GetMonitorList")]
         public JsonResult GetMonitorList()
         {
@@ -95,7 +110,7 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        // [AuthVerify]
+        [AuthVerify]
         [Route("/Onvif/GetMonitor")]
         public JsonResult GetMonitor(string ipAddress)
         {
@@ -122,8 +137,5 @@ namespace SRSWebApi.Controllers
             ovm.MediaSourceInfoList = rt.MediaSourceInfoList;
             return Program.common.DelApisResult(ovm, rs);
         }
-        
-       
-        
     }
 }

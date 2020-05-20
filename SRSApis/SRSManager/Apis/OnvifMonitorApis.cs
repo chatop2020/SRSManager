@@ -9,6 +9,80 @@ namespace SRSApis.SRSManager.Apis
     public static class OnvifMonitorApis
     {
         /// <summary>
+        /// 设置焦距
+        /// </summary>
+        /// <param name="instanceIpaddr"></param>
+        /// <param name="profileToken"></param>
+        /// <param name="zoomDir">大于0为放大，小于0为缩小</param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static float SetPtzZoom(string instanceIpaddr, string profileToken, int zoomDir, out ResponseStruct rs)
+        {
+            if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.OnvifMonitorNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
+                };
+                return -999999;
+            }
+
+            var onvif = Common.OnvifManagers.FindLast(x => x.Host.Trim().Equals(instanceIpaddr.Trim()));
+            if (onvif == null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.FunctionInputParamsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                };
+                return -999999;
+            }
+
+            if (onvif.OnvifProfileList == null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.FunctionInputParamsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                };
+                return -999999;
+            }
+
+            OnvifProfile pf = onvif.OnvifProfileList.FindLast(x =>
+                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()));
+
+            if (pf == null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.FunctionInputParamsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                };
+                return -999999;
+            } 
+            
+            float result;
+            if (onvif.PtzZoom(profileToken,zoomDir,out result))
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.None,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.None] ,
+                };
+                return result!; 
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.Other,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
+                };
+                return -999999; 
+            }
+        }
+        /// <summary>
         /// 获取ptz坐标
         /// </summary>
         /// <param name="instanceIpaddr"></param>

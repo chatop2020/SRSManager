@@ -150,7 +150,6 @@ namespace OnvifManager
     [Serializable]
     public class OnvifMonitor
     {
-
         private string host;
         private string username;
         private string password;
