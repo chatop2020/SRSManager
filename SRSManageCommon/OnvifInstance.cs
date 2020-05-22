@@ -1,8 +1,10 @@
 using System;
-using OnvifManager;
 
-namespace SRSApis.SRSManager
+namespace SRSManageCommon
 {
+    /// <summary>
+    /// onvif实例结构
+    /// </summary>
     [Serializable]
     public class OnvifInstance
     {

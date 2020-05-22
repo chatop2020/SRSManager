@@ -1,17 +1,21 @@
 using System;
 
-namespace SRSWebApi.RequestModules
+namespace SRSManageCommon
 {
+    /// <summary>
+    /// ptz移动类型
+    /// </summary>
     [Serializable]
-    public enum ReqPtzMoveType
+    public enum PtzMoveType
     {
-        RELATIVE, 
+        RELATIVE,
         KEEP,
     }
+    
+
     [Serializable]
-    public enum ReqPtzMoveDir
+    public enum PtzMoveDir
     {
-       
         UP,
         DOWN,
         LEFT,
@@ -21,14 +25,14 @@ namespace SRSWebApi.RequestModules
         DOWNLEFT,
         DOWNRIGHT
     }
-    
+
     [Serializable]
-    public class ReqPtzMove
+    public class PtzMoveStruct
     {
         private string ipAddr;
         private string profileToken;
-        private ReqPtzMoveDir moveDir;
-        private ReqPtzMoveType moveType;
+        private PtzMoveDir moveDir;
+        private PtzMoveType moveType;
 
         public string IpAddr
         {
@@ -42,13 +46,13 @@ namespace SRSWebApi.RequestModules
             set => profileToken = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public ReqPtzMoveDir MoveDir
+        public PtzMoveDir MoveDir
         {
             get => moveDir;
             set => moveDir = value;
         }
 
-        public ReqPtzMoveType MoveType
+        public PtzMoveType MoveType
         {
             get => moveType;
             set => moveType = value;

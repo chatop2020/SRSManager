@@ -1,6 +1,6 @@
 using System;
 
-namespace Common
+namespace SRSManageCommon
 {
     [Serializable]
     public class ResponseStruct

@@ -51,7 +51,7 @@
             <param name="allowKey"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Common.DelApisResult(System.Object,Common.ResponseStruct)">
+        <member name="M:SRSWebApi.Common.DelApisResult(System.Object,SRSManageCommon.ResponseStruct)">
             <summary>
             apis返回结果统一处理
             </summary>
@@ -101,28 +101,28 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.OnvifController.SetPtzZoom(SRSWebApi.RequestModules.ReqSetZoom)">
+        <member name="M:SRSWebApi.Controllers.OnvifController.SetPtzZoom(SRSManageCommon.SetZoomStruct)">
             <summary>
             设置Ptz焦距
             </summary>
-            <param name="setZoom"></param>
+            <param name="setZoomStruct"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.OnvifController.GetPtzPosition(SRSWebApi.RequestModules.ReqPtzMove)">
+        <member name="M:SRSWebApi.Controllers.OnvifController.GetPtzPosition(SRSManageCommon.PtzMoveStruct)">
             <summary>
             获取ptz坐标
             </summary>
             <param name="ptzMove"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.OnvifController.PtzKeepMoveStop(SRSWebApi.RequestModules.ReqPtzMove)">
+        <member name="M:SRSWebApi.Controllers.OnvifController.PtzKeepMoveStop(SRSManageCommon.PtzMoveStruct)">
             <summary>
             停止持续移动
             </summary>
             <param name="ptzMove"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.OnvifController.PtzMove(SRSWebApi.RequestModules.ReqPtzMove)">
+        <member name="M:SRSWebApi.Controllers.OnvifController.PtzMove(SRSManageCommon.PtzMoveStruct)">
             <summary>
             控制ptz移动
             </summary>
@@ -138,24 +138,6 @@
         <member name="M:SRSWebApi.Controllers.OnvifController.GetMonitor(System.String)">
             <summary>
             跟据实例名称/ip地址获取onvif摄像头实例
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SRSWebApi.Controllers.SystemController.ReWriteOnvifConfig">
-            <summary>
-            重写onvifConfig
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SRSWebApi.Controllers.SystemController.ReloadOnvifConfig">
-            <summary>
-            重新加载onvifConfig
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SRSWebApi.Controllers.SystemController.GetOnvifMonitorList">
-            <summary>
-            获取onvifMontiorList
             </summary>
             <returns></returns>
         </member>

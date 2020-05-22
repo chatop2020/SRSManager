@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Common
+namespace SRSManageCommon
 {
+    /// <summary>
+    /// 错误代码
+    /// </summary>
     [Serializable]
     public enum ErrorNumber : int
     {
@@ -41,6 +44,9 @@ namespace Common
        
         Other = -6000
     }
+    /// <summary>
+    /// 错误代码描述
+    /// </summary>
     [Serializable]
     public static class ErrorMessage
     {

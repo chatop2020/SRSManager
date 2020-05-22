@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using OnvifManager;
+using SRSManageCommon;
+
 
 namespace Test_Onvif_Discovery
 {

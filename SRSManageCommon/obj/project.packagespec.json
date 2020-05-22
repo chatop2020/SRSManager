@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/Common/Common.csproj",
-    "projectName": "Common",
-    "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/Common/Common.csproj",
-    "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/Common/obj/",
+    "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj",
+    "projectName": "SRSManageCommon",
+    "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj",
+    "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/obj/",
     "projectStyle": "PackageReference",
     "originalTargetFrameworks": [
       "netcoreapp3.1"
@@ -14,7 +14,11 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "projectReferences": {}
+        "projectReferences": {
+          "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj": {
+            "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj"
+          }
+        }
       }
     },
     "warningProperties": {

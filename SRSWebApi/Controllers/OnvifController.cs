@@ -1,14 +1,11 @@
 using System.Collections.Generic;
-using Common;
+using SRSManageCommon;
 using Microsoft.AspNetCore.Mvc;
-using OnvifManager;
-using SRSApis;
 using SRSApis.SRSManager.Apis;
 using SRSApis.SRSManager.Apis.ApiModules;
 using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
-using SRSWebApi.ResponseModules;
-using PtzMoveDir = OnvifManager.PtzMoveDir;
+
 
 namespace SRSWebApi.Controllers
 {
@@ -22,17 +19,17 @@ namespace SRSWebApi.Controllers
         /// <summary>
         /// 设置Ptz焦距
         /// </summary>
-        /// <param name="setZoom"></param>
+        /// <param name="ptzZoomStruct"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/Onvif/SetPtzZoom")]
-        public JsonResult SetPtzZoom(ReqSetZoom setZoom)
+        public JsonResult SetPtzZoom(PtzZoomStruct ptzZoomStruct)
         {
             int v = 0;
-            v = (setZoom.ZoomDir == ZoomDir.MORE) ? 1 : -1;//放大时值大于0,缩小时值小于0
-            var rt=OnvifMonitorApis.SetPtzZoom( setZoom.IpAddr,setZoom.ProfileToken,v, out ResponseStruct rs);
+            v = (ptzZoomStruct.ZoomDir == ZoomDir.MORE) ? 1 : -1;//放大时值大于0,缩小时值小于0
+            var rt=OnvifMonitorApis.SetPtzZoom( ptzZoomStruct.IpAddr,ptzZoomStruct.ProfileToken,v, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
         
@@ -45,7 +42,7 @@ namespace SRSWebApi.Controllers
         [AuthVerify]
         [Log]
         [Route("/Onvif/GetPtzPosition")]
-        public JsonResult GetPtzPosition(ReqPtzMove ptzMove)
+        public JsonResult GetPtzPosition(PtzMoveStruct ptzMove)
         {
             var rt=OnvifMonitorApis.GetPtzPosition( ptzMove.IpAddr,ptzMove.ProfileToken, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
@@ -61,7 +58,7 @@ namespace SRSWebApi.Controllers
         [AuthVerify]
         [Log]
         [Route("/Onvif/PtzKeepMoveStop")]
-        public JsonResult PtzKeepMoveStop(ReqPtzMove ptzMove)
+        public JsonResult PtzKeepMoveStop(PtzMoveStruct ptzMove)
         {
             var rt=OnvifMonitorApis.PtzKeepMoveStop( ptzMove.IpAddr,ptzMove.ProfileToken, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
@@ -77,9 +74,9 @@ namespace SRSWebApi.Controllers
         [AuthVerify]
         [Log]
         [Route("/Onvif/PtzMove")]
-        public JsonResult PtzMove(ReqPtzMove ptzMove)
+        public JsonResult PtzMove(PtzMoveStruct ptzMove)
         {
-            var rt=OnvifMonitorApis.PtzMove( ptzMove.IpAddr,ptzMove.ProfileToken,(PtzMoveType)ptzMove.MoveType,(PtzMoveDir)ptzMove.MoveDir, out ResponseStruct rs);
+            var rt=OnvifMonitorApis.PtzMove( ptzMove.IpAddr,ptzMove.ProfileToken,(PtzMoveType)ptzMove.MoveType,ptzMove.MoveDir, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
         
@@ -119,7 +116,7 @@ namespace SRSWebApi.Controllers
             {
                 return Program.common.DelApisResult(null!, rs);
             }
-            OnvifMonitorModule ovm = new OnvifMonitorModule();
+            OnvifMonitorStruct ovm = new OnvifMonitorStruct();
             ovm.OnvifProfileLimitList = new List<ProfileLimit>();
             ovm.MediaSourceInfoList= new List<MediaSourceInfo>();
             ovm.Host = rt.Host;

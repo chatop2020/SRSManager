@@ -1,6 +1,6 @@
 using System;
 
-namespace SRSWebApi.RequestModules
+namespace SRSManageCommon
 {
     [Serializable]
     public enum ZoomDir
@@ -9,7 +9,7 @@ namespace SRSWebApi.RequestModules
         LESS,
     }
     [Serializable]
-    public class ReqSetZoom
+    public class PtzZoomStruct
     {
         private string ipAddr;
         private string profileToken;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Common;
+using SRSManageCommon;
 using SRSConfFile;
 using SRSConfFile.SRSConfClass;
 

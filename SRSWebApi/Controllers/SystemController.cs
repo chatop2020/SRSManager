@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
-using Common;
+using SRSManageCommon;
 using Microsoft.AspNetCore.Mvc;
 using SRSApis.SRSManager;
 using SRSApis.SRSManager.Apis;
@@ -13,6 +13,7 @@ namespace SRSWebApi.Controllers
     [Route("")]
     public class SystemController : ControllerBase
     {
+        /*
         /// <summary>
         /// 重写onvifConfig
         /// </summary>
@@ -43,8 +44,9 @@ namespace SRSWebApi.Controllers
             }
             return Program.common.DelApisResult(rt, rs);
         }
+        */
 
-        /// <summary>
+        /*/// <summary>
         /// 重新加载onvifConfig
         /// </summary>
         /// <returns></returns>
@@ -87,7 +89,7 @@ namespace SRSWebApi.Controllers
         {
             var rt = OnvifMonitorApis.GetOnvifMonitorsIpAddress(out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
-        }
+        }*/
 
         /// <summary>
         /// 获取系统信息

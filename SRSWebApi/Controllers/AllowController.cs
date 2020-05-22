@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using Common;
+using SRSManageCommon;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SRSWebApi.Attributes;
@@ -59,8 +59,8 @@ namespace SRSWebApi.Controllers
                 {
                     ResponseStruct rs= new ResponseStruct()
                     {
-                        Code = ErrorNumber.None,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None],
+                        Code = ErrorNumber.SystemSessionItWorks,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionItWorks],
                     }; 
                     var result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.OK;

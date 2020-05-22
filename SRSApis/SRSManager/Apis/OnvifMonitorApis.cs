@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Common;
-using OnvifManager;
+using SRSManageCommon;
 using SRSApis.SRSManager.Apis.ApiModules;
-using PtzMoveDir = OnvifManager.PtzMoveDir;
+using PtzMoveDir = SRSManageCommon.PtzMoveDir;
+
 
 namespace SRSApis.SRSManager.Apis
 {

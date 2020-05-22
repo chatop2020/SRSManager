@@ -4,12 +4,13 @@ using System.IO;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-using Common;
+using SRSManageCommon;
 using SRSApis.SRSManager.Apis.ApiModules;
+
 
 namespace SRSApis.SRSManager.Apis
 {
-    public class OnvifConfigTemp
+    /*public class OnvifConfigTemp
     {
         private string filePath;
         private List<string> context = new List<string>();
@@ -25,14 +26,17 @@ namespace SRSApis.SRSManager.Apis
             get => context;
             set => context = value ?? throw new ArgumentNullException(nameof(value));
         }
-    }
+    }*/
 
     public static class SystemApis
     {
-        /*public static bool DeleteOnvifConfig(string ipAddr)
+        
+        
+       // public List<OnvifMonitorModule> GetOnvifMonitorList 
+        /*/*public static bool DeleteOnvifConfig(string ipAddr)
         {
             
-        }*/
+        }#1#
         /// <summary>
         /// 重新加载onvif配置文件
         /// </summary>
@@ -41,7 +45,7 @@ namespace SRSApis.SRSManager.Apis
         {
             try
             {
-                Common.LoadOnvifMonitors();
+                SRSManageCommon.LoadOnvifMonitors();
             }
             catch
             {
@@ -58,9 +62,9 @@ namespace SRSApis.SRSManager.Apis
         public static bool ReWriteOnvifConfig()
         {
             List<OnvifConfigTemp> tmpConfig = new List<OnvifConfigTemp>();
-            if (Common.OnvifManagers != null)
+            if (SRSManageCommon.OnvifManagers != null)
             {
-                foreach (var om in Common.OnvifManagers)
+                foreach (var om in SRSManageCommon.OnvifManagers)
                 {
                     String filename = om.ConfigPath;
                     String? username = om.Username;
@@ -113,7 +117,7 @@ namespace SRSApis.SRSManager.Apis
             }
 
             return false;
-        }
+        }*/
 
         /// <summary>
         /// 刷新srs配置

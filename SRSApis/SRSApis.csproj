@@ -10,9 +10,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Common\Common.csproj" />
         <ProjectReference Include="..\OnvifManager\OnvifManager.csproj" />
         <ProjectReference Include="..\SRSConfFile\SRSConfFile.csproj" />
+        <ProjectReference Include="..\SRSManageCommon\SRSManageCommon.csproj" />
     </ItemGroup>
 
 </Project>

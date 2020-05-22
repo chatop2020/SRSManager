@@ -7,7 +7,7 @@ using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using System.Net;
-using Common;
+using SRSManageCommon;
 
 namespace SRSWebApi.Controllers
 {
