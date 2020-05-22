@@ -18,4 +18,6 @@ StreamCenter.sln.DotSettings.user
 /OnvifManager/obj
 /Test_Onvif_Discovery/bin
 /Test_Onvif_Discovery/obj
+/.vs
+/SRSWebApi/logs
 

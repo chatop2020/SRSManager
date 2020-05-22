@@ -535,34 +535,36 @@
     ]
   },
   "packageFolders": {
-    "/Users/qiuzhouwei/.nuget/packages/": {}
+    "C:\\Users\\73934\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/Test_Onvif_Discovery.csproj",
+      "projectUniqueName": "D:\\netcoreitems\\SRSManager\\Test_Onvif_Discovery\\Test_Onvif_Discovery.csproj",
       "projectName": "Test_Onvif_Discovery",
-      "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/Test_Onvif_Discovery.csproj",
-      "packagesPath": "/Users/qiuzhouwei/.nuget/packages/",
-      "outputPath": "/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/obj/",
+      "projectPath": "D:\\netcoreitems\\SRSManager\\Test_Onvif_Discovery\\Test_Onvif_Discovery.csproj",
+      "packagesPath": "C:\\Users\\73934\\.nuget\\packages\\",
+      "outputPath": "D:\\netcoreitems\\SRSManager\\Test_Onvif_Discovery\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/qiuzhouwei/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\73934\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj": {
-              "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj"
+            "D:\\netcoreitems\\SRSManager\\OnvifClient\\OnvifClient.csproj": {
+              "projectPath": "D:\\netcoreitems\\SRSManager\\OnvifClient\\OnvifClient.csproj"
             },
-            "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj": {
-              "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj"
+            "D:\\netcoreitems\\SRSManager\\OnvifManager\\OnvifManager.csproj": {
+              "projectPath": "D:\\netcoreitems\\SRSManager\\OnvifManager\\OnvifManager.csproj"
             }
           }
         }
@@ -590,7 +592,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Net;
 using Common;
 using Microsoft.AspNetCore.Mvc;
-using SRSApis;
 using SRSApis.SRSManager;
 using SRSApis.SRSManager.Apis;
 using SRSWebApi.Attributes;
@@ -12,10 +11,10 @@ namespace SRSWebApi.Controllers
 {
     [ApiController]
     [Route("")]
-    public class System: ControllerBase
+    public class System : ControllerBase
     {
         /// <summary>
-        /// é‡å†™onvifé…ç½®æ–‡ä»¶
+        /// ÖØĞ´onvifÅäÖÃÎÄ¼ş
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -24,7 +23,7 @@ namespace SRSWebApi.Controllers
         public JsonResult ReWriteOnvifConfig()
         {
             ResponseStruct rs;
-            var rt=SystemApis.ReWriteOnvifConfig();
+            var rt = SystemApis.ReWriteOnvifConfig();
             if (rt)
             {
                 rs = new ResponseStruct()
@@ -43,9 +42,9 @@ namespace SRSWebApi.Controllers
             }
             return Program.common.DelApisResult(rt, rs);
         }
-        
+
         /// <summary>
-        /// é‡æ–°åŠ è½½onvifé…ç½®æ–‡ä»¶
+        /// ÖØĞÂ¼ÓÔØonvifÅäÖÃÎÄ¼ş
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -54,7 +53,7 @@ namespace SRSWebApi.Controllers
         public JsonResult ReloadOnvifConfig()
         {
             ResponseStruct rs;
-            var rt=SystemApis.ReloadOnvifConfig();
+            var rt = SystemApis.ReloadOnvifConfig();
             if (rt)
             {
                 rs = new ResponseStruct()
@@ -73,22 +72,22 @@ namespace SRSWebApi.Controllers
             }
             return Program.common.DelApisResult(rt, rs);
         }
-        
+
         /// <summary>
-        /// è·å–onvifæ‘„åƒå¤´å®ä¾‹åç§°åˆ—è¡¨(ipåœ°å€)
+        /// »ñÈ¡onvifÉãÏñÍ·ÊµÀıÃû³ÆÁĞ±í(ipµØÖ·)
         /// </summary>
         /// <returns></returns>
-        [HttpPost] 
+        [HttpPost]
         [AuthVerify]
         [Route("/System/GetOnvifMonitorList")]
         public JsonResult GetOnvifMonitorList()
         {
-            var rt=OnvifMonitorApis.GetOnvifMonitorsIpAddress( out ResponseStruct rs);
+            var rt = OnvifMonitorApis.GetOnvifMonitorsIpAddress(out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
-        
+
         /// <summary>
-        /// è·å–ç³»ç»Ÿä¿¡æ¯
+        /// »ñÈ¡ÏµÍ³ĞÅÏ¢
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -96,12 +95,12 @@ namespace SRSWebApi.Controllers
         [Route("/System/GetSystemInfo")]
         public JsonResult GetSystemInfo()
         {
-            var result= new JsonResult(SystemApis.GetSystemInfo());
+            var result = new JsonResult(SystemApis.GetSystemInfo());
             result.StatusCode = (int)HttpStatusCode.OK;
             return result;
         }
         /// <summary>
-        /// è·å–SRSå®ä¾‹åˆ—è¡¨
+        /// »ñÈ¡SRSÊµÀıÁĞ±í
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -110,7 +109,7 @@ namespace SRSWebApi.Controllers
         public JsonResult GetSrsInstanceList()
         {
             List<string> devs = SystemApis.GetAllSrsManagerDeviceId();
-            List<SrsInstanceModule> simlist= new List<SrsInstanceModule>();
+            List<SrsInstanceModule> simlist = new List<SrsInstanceModule>();
             foreach (var dev in devs)
             {
                 SrsManager srs = SystemApis.GetSrsManagerInstanceByDeviceId(dev);
@@ -129,10 +128,10 @@ namespace SRSWebApi.Controllers
                     simlist.Add(sim);
                 }
             }
-            var result= new JsonResult(simlist);
+            var result = new JsonResult(simlist);
             result.StatusCode = (int)HttpStatusCode.OK;
             return result;
         }
     }
-    
+
 }

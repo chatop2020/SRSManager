@@ -26,7 +26,7 @@ namespace SRSWebApi
             {
                 // 添加文档信息
                 c.SwaggerDoc("v1", new OpenApiInfo  { Title = "SRSWebApi", Version = "v1" });
-                c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Model.xml"));//这里增加model注释，返回值会增加注释：需要Edu.Model项目属性，生成中输出xml文件
+                //c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Model.xml"));//这里增加model注释，返回值会增加注释：需要Edu.Model项目属性，生成中输出xml文件
                 c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Swagger.xml"));
                 
             });
@@ -61,6 +61,12 @@ namespace SRSWebApi
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            app.Use(next => context =>
+            {
+                context.Request.EnableBuffering();
+                return next(context);
+            });
         }
     }
 }

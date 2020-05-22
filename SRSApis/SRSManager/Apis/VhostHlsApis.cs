@@ -64,7 +64,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="vhostDomain"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static Hls GetVhostDash(SrsManager sm, string vhostDomain, out ResponseStruct rs)
+        public static Hls GetVhostHls(SrsManager sm, string vhostDomain, out ResponseStruct rs)
         {
             if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
             {

@@ -196,7 +196,7 @@ namespace SRSApis.SRSManager.Apis
         }
 
         /// <summary>
-        /// 创建Rtc
+        /// 创建publish
         /// </summary>
         /// <param name="sm"></param>
         /// <param name="vhostDomain"></param>

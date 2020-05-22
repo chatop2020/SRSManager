@@ -12,7 +12,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="vhostDomain"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool DeleteVhosRefer(SrsManager sm, string vhostDomain, out ResponseStruct rs)
+        public static bool DeleteVhostRefer(SrsManager sm, string vhostDomain, out ResponseStruct rs)
         {
             if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
             {
