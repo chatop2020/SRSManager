@@ -37,6 +37,7 @@ namespace Common
         OnvifMonitorNotInit=-5027,//非onvif设备
         OnvifPtzKeepMoveOnlyUpdownleftright=-5028,
         OnvifPtzMoveExcept=-5029,
+        SystemSessionItWorks=-5029,//session没有过期
        
         Other = -6000
     }
@@ -80,6 +81,7 @@ namespace Common
             ErrorDic[ErrorNumber.SystemCheckAllowKeyFail] = "访问控制检测失败";
             ErrorDic[ErrorNumber.SystemSessionExcept] = "Session异常";
             ErrorDic[ErrorNumber.SystemCheckAllowKeyOrSessionFail] = "访问控制或Session过期异常";
+            ErrorDic[ErrorNumber.SystemSessionItWorks] = "当前Session没有过期无需刷新";
         }
     }
 }

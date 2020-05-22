@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,7 @@ namespace SRSWebApi.Controllers
             string remoteIpaddr = this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
             if (Program.common.CheckAllow(remoteIpaddr, request.AllowKey))
             {
-                if (request.Expires >= Program.common.GetTimeStampMilliseconds())
+                if (request.Expires >= Program.common.GetTimeStampMilliseconds() || Math.Abs(request.Expires-Program.common.GetTimeStampMilliseconds()) <(1000*60)) //1分钟内要过期的就刷新
                 {
                     Session session = Program.common.SessionManager.RefreshSession(request);
                     if (session != null)
