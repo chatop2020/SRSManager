@@ -7,10 +7,158 @@ using PtzMoveDir = SRSManageCommon.PtzMoveDir;
 
 namespace SRSApis.SRSManager.Apis
 {
-    
-    
     public static class OnvifMonitorApis
     {
+
+        public static OnvifMonitor InitOnvifMonitorByIpAddrWhenNotInit(string ipAddr, out ResponseStruct rs)
+        {
+            if (Common.OnvifManagers != null)
+            {
+                OnvifInstance ovi = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ipAddr.Trim()));
+                if (ovi != null)
+                {
+                    if (ovi.OnvifMonitor == null)
+                    {
+                        ovi.OnvifMonitor = new OnvifMonitor(ovi.IpAddr, ovi.Username, ovi.Password);
+                        ovi.OnvifMonitor.InitMonitor().Wait();
+                        return GetOnvifMonitor(ipAddr, out rs);
+                    }
+                    else
+                    {
+                        return GetOnvifMonitor(ipAddr, out rs);
+                    }
+                }
+                else
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.OnvifMonitorNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
+                    };
+                    return null!; 
+                }
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.OnvifMonitorListIsNull,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorListIsNull],
+                };
+                return null!;
+            }
+        }
+        /// <summary>
+        /// 初始化所有未初始化的onvif摄像头
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<OnvifMonitorStruct> InitOnvifMonitorListWhenNotInit(out ResponseStruct rs)
+        {
+            if (Common.OnvifManagers != null)
+            {
+                foreach (var onvf in Common.OnvifManagers)
+                {
+                    if (onvf.OnvifMonitor == null)
+                    {
+                        try
+                        {
+                            onvf.OnvifMonitor = new OnvifMonitor(onvf.IpAddr, onvf.Username, onvf.Password);
+                            onvf.OnvifMonitor.InitMonitor().Wait();
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+                }
+
+                return GetOnvifMonitorList(out rs);
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.OnvifMonitorListIsNull,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorListIsNull],
+                };
+                return null!;
+            }
+        }
+
+        /// <summary>
+        /// 获取onvif摄像头列表
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<OnvifMonitorStruct> GetOnvifMonitorList(out ResponseStruct rs)
+        {
+            if (Common.OnvifManagers == null || Common.OnvifManagers.Count == 0)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.OnvifMonitorListIsNull,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorListIsNull],
+                };
+                return null!;
+            }
+
+            List<OnvifMonitorStruct> result = new List<OnvifMonitorStruct>();
+            foreach (var cov in Common.OnvifManagers)
+            {
+                OnvifMonitorStruct oms = new OnvifMonitorStruct();
+                oms.Host = cov.IpAddr;
+                oms.Password = cov.Password;
+                oms.Username = cov.Username;
+                if (cov.OnvifMonitor != null)
+                {
+                    oms.IsInited = cov.OnvifMonitor.IsInited;
+                    if (cov.OnvifMonitor.OnvifProfileList != null)
+                    {
+                        oms.OnvifProfileLimitList = new List<ProfileLimit>();
+                        foreach (var ovf in cov.OnvifMonitor.OnvifProfileList)
+                        {
+                            ProfileLimit pfl = new ProfileLimit();
+                            pfl.AbsoluteMove = ovf.AbsoluteMove;
+                            pfl.ContinuousMove = ovf.ContinuousMove;
+                            pfl.RelativeMove = ovf.RelativeMove;
+                            pfl.MediaUrl = ovf.MediaUrl;
+                            pfl.ProfileToken = ovf.ProfileToken;
+                            pfl.PtzMoveSupport = ovf.PtzMoveSupport;
+                            oms.OnvifProfileLimitList.Add(pfl);
+                        }
+                    }
+
+                    if (cov.OnvifMonitor.MediaSourceInfoList != null)
+                    {
+                        oms.MediaSourceInfoList = new List<MediaSourceInfo>();
+                        foreach (var cmsi in cov.OnvifMonitor.MediaSourceInfoList)
+                        {
+                            MediaSourceInfo msi = new MediaSourceInfo();
+                            msi.Framerate = cmsi.Framerate;
+                            msi.Height = cmsi.Height;
+                            msi.Width = cmsi.Width;
+                            msi.SourceToken = cmsi.SourceToken;
+                            oms.MediaSourceInfoList.Add(msi);
+                        }
+                    }
+                }
+                else
+                {
+                    oms.IsInited = false;
+                }
+
+                result.Add(oms);
+            }
+
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            return result;
+        }
+
         /// <summary>
         /// 设置焦距
         /// </summary>
@@ -398,10 +546,11 @@ namespace SRSApis.SRSManager.Apis
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
             var tmp = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()))!;
-            if (tmp!=null && tmp.OnvifMonitor != null)
+            if (tmp != null && tmp.OnvifMonitor != null)
             {
                 return tmp.OnvifMonitor;
             }
+
             return null!;
         }
 
@@ -437,7 +586,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="rs"></param>
         /// <param name="autoAdd"></param>
         /// <returns></returns>
-        public static List<string> InitMonitors(DiscoveryOnvifMonitors onvif, out ResponseStruct rs,
+        public static List<OnvifMonitorStruct> InitMonitors(DiscoveryOnvifMonitors onvif, out ResponseStruct rs,
             bool autoAdd = true)
         {
             if (autoAdd && Common.OnvifManagers == null)
@@ -496,7 +645,7 @@ namespace SRSApis.SRSManager.Apis
                             Code = ErrorNumber.None,
                             Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                         };
-                        return Common.OnvifManagers.Select(x => x.IpAddr).ToList();
+                        return GetOnvifMonitorList(out rs);
                     }
                     else
                     {
@@ -517,7 +666,7 @@ namespace SRSApis.SRSManager.Apis
                             Code = ErrorNumber.None,
                             Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                         };
-                        return tmpList.Select(x => x.IpAddr).ToList();
+                        return GetOnvifMonitorList(out rs);
                     }
                     else
                     {

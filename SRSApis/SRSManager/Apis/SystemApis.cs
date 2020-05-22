@@ -30,9 +30,63 @@ namespace SRSApis.SRSManager.Apis
 
     public static class SystemApis
     {
-        
-        
-       // public List<OnvifMonitorModule> GetOnvifMonitorList 
+        /// <summary>
+        /// 写入onvif配置文件
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<OnvifMonitorStruct> WriteOnvifConfig(out ResponseStruct rs)
+        {
+            if (Common.OnvifManagers != null && Common.OnvifManagers.Count > 0)
+            {
+                if (Common.WriteOnvifMonitors())
+                {
+                    return OnvifMonitorApis.GetOnvifMonitorList(out rs);
+                }
+                else
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.OnvifConfigWriteExcept,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifConfigWriteExcept],
+                    };
+                    return null!;
+                }
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.OnvifMonitorNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
+                };
+                return null!;
+            }
+        }
+
+        /// <summary>
+        /// 读取onvif配置文件
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<OnvifMonitorStruct> LoadOnvifConfig(out ResponseStruct rs)
+        {
+            if (Common.LoadOnvifMonitors())
+            {
+                return OnvifMonitorApis.GetOnvifMonitorList(out rs);
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.OnvifConfigLoadExcept,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifConfigLoadExcept],
+                };
+                return null!;
+            }
+        }
+
+
         /*/*public static bool DeleteOnvifConfig(string ipAddr)
         {
             

@@ -13,6 +13,28 @@ namespace SRSWebApi.Controllers
     [Route("")]
     public class SystemController : ControllerBase
     {
+
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/System/LoadOnvifConfig")]
+        public JsonResult LoadOnvifConfig()
+        {
+            var rt = SystemApis.LoadOnvifConfig(out ResponseStruct rs);
+            return Program.common.DelApisResult(rt, rs);   
+        }
+        
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/System/WriteOnvifConfig")]
+        public JsonResult WriteOnvifConfig()
+        {
+            var rt = SystemApis.WriteOnvifConfig(out ResponseStruct rs);
+            return Program.common.DelApisResult(rt, rs);   
+        }
+        
+        
         /*
         /// <summary>
         /// 重写onvifConfig

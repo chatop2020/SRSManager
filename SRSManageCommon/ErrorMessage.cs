@@ -41,6 +41,9 @@ namespace SRSManageCommon
         OnvifPtzKeepMoveOnlyUpdownleftright=-5028,
         OnvifPtzMoveExcept=-5029,
         SystemSessionItWorks=-5029,//session没有过期
+        OnvifMonitorListIsNull=-5030, //onvif设备列表为空
+        OnvifConfigLoadExcept=-5031,//onvif配置文件读取失败
+        OnvifConfigWriteExcept =-5032,// Onvif配置文件写入失败
        
         Other = -6000
     }
@@ -88,6 +91,10 @@ namespace SRSManageCommon
             ErrorDic[ErrorNumber.SystemSessionExcept] = "Session异常";
             ErrorDic[ErrorNumber.SystemCheckAllowKeyOrSessionFail] = "访问控制或Session过期异常";
             ErrorDic[ErrorNumber.SystemSessionItWorks] = "当前Session没有过期无需刷新";
+            ErrorDic[ErrorNumber.OnvifMonitorListIsNull] = "Onvif设备列表为空";
+            ErrorDic[ErrorNumber.OnvifConfigLoadExcept] = "Onvif配置文件读取失败";
+            ErrorDic[ErrorNumber.OnvifConfigWriteExcept] = "Onvif配置文件写入失败";
+
         }
     }
 }

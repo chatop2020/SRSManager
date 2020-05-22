@@ -101,11 +101,23 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.OnvifController.SetPtzZoom(SRSManageCommon.SetZoomStruct)">
+        <member name="M:SRSWebApi.Controllers.OnvifController.InitAll">
+            <summary>
+            初始化还未初始化的onvif摄像头
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.InitByIpAddress(System.String)">
+            <summary>
+            初始化还未初始化的onvif摄像头用ip 地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.SetPtzZoom(SRSManageCommon.PtzZoomStruct)">
             <summary>
             设置Ptz焦距
             </summary>
-            <param name="setZoomStruct"></param>
+            <param name="ptzZoomStruct"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.OnvifController.GetPtzPosition(SRSManageCommon.PtzMoveStruct)">
@@ -132,6 +144,12 @@
         <member name="M:SRSWebApi.Controllers.OnvifController.InitMonitor(SRSWebApi.RequestModules.ReqInitOnvif)">
             <summary>
             初始化onvif设备并加到管理列表中
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.GetMonitorList">
+            <summary>
+            获取onvif摄像头参数列表
             </summary>
             <returns></returns>
         </member>

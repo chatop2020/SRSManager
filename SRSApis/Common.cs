@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using SRSManageCommon;
 using SRSApis.SRSManager;
+using SRSApis.SRSManager.Apis;
 using SRSConfFile;
 
 namespace SRSApis
@@ -130,57 +131,7 @@ namespace SRSApis
             return Regex.IsMatch(ip, @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$");
         }
 
-        /// <summary>
-        /// 重新加载onvif的配置文件 
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns></returns>
-        private static List<OnvifConfig> loadOnvifConfig(string filePath)
-        {
-            List<OnvifConfig> ocList = null!;
-            string[] strArray = File.ReadAllLines(filePath);
-            if (strArray != null)
-            {
-                foreach (var str in strArray)
-                {
-                    string s = str.Trim();
-                    if (s.Contains('#')) continue;
-                    if (!s.Contains(';')) continue;
-                    s = s.Replace(";", "");
-                    string[] part = s.Split("\t", StringSplitOptions.RemoveEmptyEntries);
-                    OnvifConfig oc = null!;
-                    if (part != null && part.Length > 0)
-                    {
-                        if (part.Length == 1 && IsIpAddr(part[0].Trim()))
-                        {
-                            oc = new OnvifConfig();
-                            oc.IpAddr = part[0].Trim();
-                        }
-                        else if (part.Length == 2 && IsIpAddr(part[0].Trim()))
-                        {
-                            oc = new OnvifConfig();
-                            oc.IpAddr = part[0].Trim();
-                            oc.Username = part[1].Trim();
-                        }
-                        else if (part.Length == 3 && IsIpAddr(part[0].Trim()))
-                        {
-                            oc = new OnvifConfig();
-                            oc.IpAddr = part[0].Trim();
-                            oc.Username = part[1].Trim();
-                            oc.Password = part[2].Trim();
-                        }
-                    }
-
-                    if (oc != null)
-                    {
-                        if (ocList == null) ocList = new List<OnvifConfig>();
-                        ocList.Add(oc);
-                    }
-                }
-            }
-
-            return ocList!;
-        }
+        
 
         /// <summary>
         /// 初始化onvif设备
@@ -193,6 +144,7 @@ namespace SRSApis
                 {
                     try
                     {
+                        if(om.OnvifMonitor==null)
                         om.OnvifMonitor = new OnvifMonitor(om.IpAddr, om.Username, om.Password);
                     }
                     catch
@@ -203,32 +155,82 @@ namespace SRSApis
             }
         }
 
+
+        public static bool WriteOnvifMonitors()
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(WorkPath);
+                if (OnvifManagers != null && OnvifManagers.Count > 0)
+                {
+                    
+                    List<OnvifMonitorStruct> onvifList = OnvifMonitorApis.GetOnvifMonitorList(out ResponseStruct rs);
+                    if (onvifList != null && onvifList.Count > 0)
+                    {
+                        string configStr = JsonHelper.ToJson(onvifList);
+                        if (string.IsNullOrEmpty(configStr))
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            File.WriteAllText(WorkPath+"system.oconf",configStr);
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        
         /// <summary>
         /// 载入onvif设备配置
         /// </summary>
-        public static void LoadOnvifMonitors()
+        public static bool LoadOnvifMonitors()
         {
-            DirectoryInfo dir = new DirectoryInfo(WorkPath);
-            OnvifManagers.Clear();
-            foreach (FileInfo file in dir.GetFiles())
+            try
             {
-                if (file.Extension.Trim().ToLower().Equals(".oconf")) //找到配置文件
+                DirectoryInfo dir = new DirectoryInfo(WorkPath);
+                OnvifManagers.Clear();
+                foreach (FileInfo file in dir.GetFiles())
                 {
-                    List<OnvifConfig> ocList = loadOnvifConfig(file.FullName);
-                    if (ocList != null && ocList.Count > 0)
+                    if (file.Extension.Trim().ToLower().Equals(".oconf")) //找到配置文件
                     {
-                        if (OnvifManagers == null) OnvifManagers = new List<OnvifInstance>();
-                        foreach (var oc in ocList)
+                        List<OnvifMonitorStruct> onvifList =
+                            JsonHelper.FromJson<List<OnvifMonitorStruct>>(File.ReadAllText(file.FullName));
+                        if (onvifList != null && onvifList.Count > 0)
                         {
-                            OnvifInstance oi = new OnvifInstance();
-                            oi.Password = oc.Password!;
-                            oi.Username = oc.Username!;
-                            oi.IpAddr = oc.IpAddr!;
-                            oi.ConfigPath = file.FullName;
-                            OnvifManagers.Add(oi);
+                            if (OnvifManagers == null) OnvifManagers = new List<OnvifInstance>();
+                            foreach (var ov in onvifList)
+                            {
+                                OnvifInstance oi = new OnvifInstance();
+                                oi.Password = ov.Password;
+                                oi.Username = ov.Username;
+                                oi.ConfigPath = file.FullName;
+                                oi.IpAddr = ov.Host;
+                                OnvifManagers.Add(oi);
+                            }
                         }
                     }
                 }
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
