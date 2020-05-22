@@ -6,6 +6,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using System.Net;
+using Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostCluster/DeleteVhostCluster")]
         public JsonResult DeleteVhostCluster(string deviceId, string vhostDomain)
         {
@@ -39,6 +41,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostCluster/GetVhostCluster")]
         public JsonResult GetVhostCluster(string deviceId, string vhostDomain)
         {
@@ -56,6 +59,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostCluster/SetVhostCluster")]
         public JsonResult SetVhostCluster(string deviceId, string vhostDomain, Cluster cluster, bool createIfNotFound = false)
         {
@@ -73,6 +77,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostCluster/CreateVhostCluster")]
         public JsonResult CreateVhostCluster(string deviceId, string vhostDomain, Cluster cluster)
         {

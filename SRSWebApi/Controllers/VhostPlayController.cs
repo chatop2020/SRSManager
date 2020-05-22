@@ -6,6 +6,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using System.Net;
+using Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostPlay/DeleteVhostPlay")]
         public JsonResult DeleteVhostPlay(string deviceId, string vhostDomain)
         {
@@ -39,6 +41,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostPlay/GetVhostPlay")]
         public JsonResult GetVhostPlay(string deviceId, string vhostDomain)
         {
@@ -57,6 +60,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostPlay/SetVhostPlay")]
         public JsonResult SetVhostPlay(string deviceId, string vhostDomain, Play play, bool createIfNotFound = false)
         {
@@ -75,6 +79,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostPlay/CreateVhostPlay")]
         public JsonResult CreateVhostPlay(string deviceId, string vhostDomain, Play play)
         {

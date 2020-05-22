@@ -11,14 +11,15 @@ namespace SRSWebApi.Controllers
 {
     [ApiController]
     [Route("")]
-    public class System : ControllerBase
+    public class SystemController : ControllerBase
     {
         /// <summary>
-        /// 重写onvif配置文件
+        /// 閲嶅啓onvifConfig
         /// </summary>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/System/ReWriteOnvifConfig")]
         public JsonResult ReWriteOnvifConfig()
         {
@@ -44,11 +45,12 @@ namespace SRSWebApi.Controllers
         }
 
         /// <summary>
-        /// 重新加载onvif配置文件
+        /// 閲嶆柊鍔犺浇onvifConfig
         /// </summary>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/System/ReloadOnvifConfig")]
         public JsonResult ReloadOnvifConfig()
         {
@@ -74,11 +76,12 @@ namespace SRSWebApi.Controllers
         }
 
         /// <summary>
-        /// 获取onvif摄像头实例名称列表(ip地址)
+        /// 鑾峰彇onvifMontiorList
         /// </summary>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/System/GetOnvifMonitorList")]
         public JsonResult GetOnvifMonitorList()
         {
@@ -87,11 +90,12 @@ namespace SRSWebApi.Controllers
         }
 
         /// <summary>
-        /// 获取系统信息
+        /// 鑾峰彇绯荤粺淇℃伅
         /// </summary>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/System/GetSystemInfo")]
         public JsonResult GetSystemInfo()
         {
@@ -100,11 +104,12 @@ namespace SRSWebApi.Controllers
             return result;
         }
         /// <summary>
-        /// 获取SRS实例列表
+        /// 鑾峰彇SRS瀹炰緥鍒楄〃
         /// </summary>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/System/GetSrsInstanceList")]
         public JsonResult GetSrsInstanceList()
         {

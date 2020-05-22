@@ -6,6 +6,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using System.Net;
+using Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostIngest/DeleteVhostIngestByIngestInstanceName")]
         public JsonResult DeleteVhostIngestByIngestInstanceName(string deviceId, string vhostDomain, string ingestInstanceName)
         {
@@ -39,6 +41,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostIngest/GetVhostIngestNameList")]
         public JsonResult GetVhostIngestNameList(string deviceId, string vhostDomain = "")
         {
@@ -58,6 +61,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostIngest/GetVhostIngest")]
         public JsonResult GetVhostIngest(string deviceId, string vhostDomain, string ingestInstanceName)
         {
@@ -76,6 +80,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostIngest/SetVhostIngest")]
         public JsonResult SetVhostIngest(string deviceId, string vhostDomain, string ingestInstanceName, Ingest ingest, bool createIfNotFound = false)
         {
@@ -94,6 +99,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostIngest/CreateVhostIngest")]
         public JsonResult CreateVhostIngest(string deviceId, string vhostDomain, Ingest ingest)
         {

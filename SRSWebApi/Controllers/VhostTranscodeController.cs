@@ -6,6 +6,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using System.Net;
+using Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostTranscode/DeleteVhostTranscodeByTranscodeInstanceName")]
         public JsonResult DeleteVhostTranscodeByTranscodeInstanceName(string deviceId, string vhostDomain, string transcodeInstanceName)
         {
@@ -39,6 +41,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostTranscode/GetVhostTranscodeNameList")]
         public JsonResult GetVhostTranscodeNameList(string deviceId, string vhostDomain = "")
         {
@@ -58,6 +61,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostTranscode/GetVhostTranscode")]
         public JsonResult GetVhostTranscode(string deviceId, string vhostDomain, string transcodeInstanceName)
         {
@@ -76,6 +80,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostTranscode/SetVhostTranscode")]
         public JsonResult SetVhostTranscode(string deviceId, string vhostDomain, string transcodeInstanceName, Transcode transcode, bool createIfNotFound = false)
         {
@@ -94,6 +99,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostTranscode/CreateVhostTranscode")]
         public JsonResult CreateVhostTranscode(string deviceId, string vhostDomain, Transcode transcode)
         {

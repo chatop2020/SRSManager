@@ -2,6 +2,7 @@
 using Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using SRSWebApi.ResponseModules;
 
@@ -9,11 +10,11 @@ namespace SRSWebApi.Controllers
 {
     [ApiController]
     [Route("")]
-    public class Allow : ControllerBase
+    public class AllowController : ControllerBase
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public Allow(IHttpContextAccessor httpContextAccessor)
+        public AllowController(IHttpContextAccessor httpContextAccessor)
         {
             this.httpContextAccessor = httpContextAccessor;
         }
@@ -24,6 +25,7 @@ namespace SRSWebApi.Controllers
         /// <param name="request">旧的session</param>
         /// <returns></returns>
         [HttpPost]
+        [Log]
         [Route("/Allow/RefreshSession")]
         public JsonResult RefreshSession([FromBody] Session request)
         {
@@ -41,7 +43,12 @@ namespace SRSWebApi.Controllers
                     }
                     else
                     {
-                        var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept]);
+                        ResponseStruct rs= new ResponseStruct()
+                        {
+                            Code = ErrorNumber.SystemSessionExcept,
+                            Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept],
+                        }; 
+                        var result = new JsonResult(rs);
                         result.StatusCode = (int)HttpStatusCode.OK;
                         return result;
 
@@ -49,7 +56,12 @@ namespace SRSWebApi.Controllers
                 }
                 else
                 {
-                    var result = new JsonResult("无需刷新");
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.None,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None],
+                    }; 
+                    var result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.OK;
                     return result;
 
@@ -57,7 +69,12 @@ namespace SRSWebApi.Controllers
             }
             else
             {
-                var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail]);
+                ResponseStruct rs= new ResponseStruct()
+                {
+                    Code = ErrorNumber.SystemCheckAllowKeyFail,
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail],
+                }; 
+                var result = new JsonResult(rs);
                 result.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
                 return result;
             }
@@ -69,6 +86,7 @@ namespace SRSWebApi.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
+        [Log]
         [Route("/Allow/GetSession")]
         public JsonResult GetSession([FromBody] ReqGetSession request)
         {
@@ -84,7 +102,12 @@ namespace SRSWebApi.Controllers
             }
             else
             {
-                var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail]);
+                ResponseStruct rs= new ResponseStruct()
+                {
+                    Code = ErrorNumber.SystemCheckAllowKeyFail,
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail],
+                }; 
+                var result = new JsonResult(rs);
                 result.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
                 return result;
 
@@ -97,6 +120,7 @@ namespace SRSWebApi.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
+        [Log]
         [Route("/Allow/SetAllowByKey")]
         public JsonResult SetAllowByKey([FromBody] ReqSetOrAddAllow request)
         {
@@ -119,14 +143,24 @@ namespace SRSWebApi.Controllers
 
                 if (found)
                 {
-                    var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.None,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None],
+                    }; 
+                    var result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.OK;
                     return result;
 
                 }
                 else
                 {
-                    var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound]);
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound],
+                    }; 
+                    var result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
 
@@ -134,7 +168,13 @@ namespace SRSWebApi.Controllers
             }
             else
             {
-                var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]);
+                ResponseStruct rs= new ResponseStruct()
+                {
+                    Code = ErrorNumber.SystemCheckPasswordFail,
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
+                }; 
+                
+                var result = new JsonResult(rs);
                 result.StatusCode = (int)HttpStatusCode.Unauthorized;
                 return result;
 
@@ -148,6 +188,7 @@ namespace SRSWebApi.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
+        [Log]
         [Route("/Allow/DelAllowByKey")]
         public JsonResult DelAllowByKey([FromBody] ReqDelAllow request)
         {
@@ -171,14 +212,26 @@ namespace SRSWebApi.Controllers
                 if (found)
                 {
                     SRSApis.Common.RemoveNull(Program.common.conf.AllowKeys);
-                    var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.None,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None],
+                    }; 
+                    
+                    var result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.OK;
                     return result;
 
                 }
                 else
                 {
-                    var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound]);
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound],
+                    }; 
+                    
+                    var result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
 
@@ -186,7 +239,14 @@ namespace SRSWebApi.Controllers
             }
             else
             {
-                var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]);
+                 
+                ResponseStruct rs= new ResponseStruct()
+                {
+                    Code = ErrorNumber.SystemCheckPasswordFail,
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
+                }; 
+                
+                var result = new JsonResult(rs);
                 result.StatusCode = (int)HttpStatusCode.Unauthorized;
                 return result;
 
@@ -199,6 +259,7 @@ namespace SRSWebApi.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
+        [Log]
         [Route("Allow/AddAllow")]
         public JsonResult AddAllow([FromBody] ReqSetOrAddAllow request)
         {
@@ -210,7 +271,13 @@ namespace SRSWebApi.Controllers
 
                 if (obj != null)
                 {
-                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceAlreadyExists]);
+                    
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceAlreadyExists,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceAlreadyExists],
+                    }; 
+                    result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
 
@@ -219,7 +286,12 @@ namespace SRSWebApi.Controllers
                 if (string.IsNullOrEmpty(request.Allowkey.Key.Trim()) ||
                     !Program.common.IsGuidByError(request.Allowkey.Key))
                 {
-                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.FunctionInputParamsError]);
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.FunctionInputParamsError,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.FunctionInputParamsError],
+                    };
+                    result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
 
@@ -228,20 +300,35 @@ namespace SRSWebApi.Controllers
                 Program.common.conf.AllowKeys.Add(request.Allowkey);
                 if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
                 {
-                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.None,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None],
+                    };
+                    result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.OK;
                     return result;
                 }
                 else
                 {
-                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.Other]);
+                    ResponseStruct rs= new ResponseStruct()
+                    {
+                        Code = ErrorNumber.Other,
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.Other],
+                    };
+                    result = new JsonResult(rs);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
                 }
             }
             else
             {
-                result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]);
+                ResponseStruct rs= new ResponseStruct()
+                {
+                    Code = ErrorNumber.SystemCheckPasswordFail,
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
+                };
+                result = new JsonResult(rs);
                 result.StatusCode = (int)HttpStatusCode.Unauthorized;
                 return result;
 
@@ -255,6 +342,7 @@ namespace SRSWebApi.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
+        [Log]
         [Route("Allow/GetAllows")]
         public JsonResult GetAllows([FromBody] ReqGetAllows request)
         {
@@ -271,7 +359,12 @@ namespace SRSWebApi.Controllers
             }
             else
             {
-                var result2 = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]);
+                ResponseStruct rs= new ResponseStruct()
+                {
+                    Code = ErrorNumber.SystemCheckPasswordFail,
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
+                };
+                var result2 = new JsonResult(rs);
                 result2.StatusCode = (int)HttpStatusCode.Unauthorized;
                 return result2;
 

@@ -7,6 +7,7 @@ using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using System.Net;
+using Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -22,6 +23,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostBandcheck/DeleteVhostBandcheck")]
         public JsonResult DeleteVhostBandcheck(string deviceId, string vhostDomain)
         {
@@ -40,6 +42,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostBandcheck/GetVhostBandcheck")]
         public JsonResult GetVhostBandcheck(string deviceId, string vhostDomain)
         {
@@ -58,6 +61,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostBandcheck/SetVhostBandcheck")]
         public JsonResult SetVhostBandcheck(string deviceId, string vhostDomain, Bandcheck bandcheck, bool createIfNotFound = false)
         {
@@ -76,6 +80,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostBandcheck/CreateVhostBandcheck")]
         public JsonResult CreateVhostBandcheck(string deviceId, string vhostDomain, Bandcheck bandcheck)
         {

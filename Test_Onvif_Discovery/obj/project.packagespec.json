@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/Test_Onvif_Discovery.csproj",
+    "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/Test_Onvif_Discovery/Test_Onvif_Discovery.csproj",
     "projectName": "Test_Onvif_Discovery",
-    "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/Test_Onvif_Discovery.csproj",
-    "outputPath": "/Users/qiuzhouwei/Projects/StreamCenter/Test_Onvif_Discovery/obj/",
+    "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/Test_Onvif_Discovery/Test_Onvif_Discovery.csproj",
+    "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/Test_Onvif_Discovery/obj/",
     "projectStyle": "PackageReference",
     "originalTargetFrameworks": [
       "netcoreapp3.1"
@@ -15,11 +15,11 @@
     "frameworks": {
       "netcoreapp3.1": {
         "projectReferences": {
-          "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj": {
-            "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj"
+          "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj": {
+            "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj"
           },
-          "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj": {
-            "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifManager/OnvifManager.csproj"
+          "/Users/qiuzhouwei/Projects/SRSManager/OnvifManager/OnvifManager.csproj": {
+            "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifManager/OnvifManager.csproj"
           }
         }
       }

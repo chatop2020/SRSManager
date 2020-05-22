@@ -6,6 +6,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using System.Net;
+using Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostHttpStatic/DeleteVhostHttpStatic")]
         public JsonResult DeleteVhostHttpStatic(string deviceId, string vhostDomain)
         {
@@ -39,6 +41,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostHttpStatic/GetVhostHttpStatic")]
         public JsonResult GetVhostHttpStatic(string deviceId, string vhostDomain)
         {
@@ -57,6 +60,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostHttpStatic/SetVhostHttpStatic")]
         public JsonResult SetVhostHttpStatic(string deviceId, string vhostDomain, HttpStatic httpStatic, bool createIfNotFound = false)
         {
@@ -75,6 +79,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostHttpStatic/CreateVhostHttpStatic")]
         public JsonResult CreateVhostHttpStatic(string deviceId, string vhostDomain, HttpStatic httpStatic)
         {

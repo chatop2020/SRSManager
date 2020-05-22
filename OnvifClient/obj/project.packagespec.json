@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj",
+    "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj",
     "projectName": "Mictlanix.DotNet.OnvifClient",
-    "projectPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj",
-    "outputPath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/obj/",
+    "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj",
+    "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/",
     "projectStyle": "PackageReference",
     "originalTargetFrameworks": [
       "netstandard2.0"

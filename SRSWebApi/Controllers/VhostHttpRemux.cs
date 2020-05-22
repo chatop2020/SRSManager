@@ -6,6 +6,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using System.Net;
+using Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostHttpRemux/DeleteVhostHttpRemux")]
         public JsonResult DeleteVhostHttpRemux(string deviceId, string vhostDomain)
         {
@@ -39,6 +41,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/VhostHttpRemux/GetVhostHttpRemux")]
         public JsonResult GetVhostHttpRemux(string deviceId, string vhostDomain)
         {
@@ -57,6 +60,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostHttpRemux/SetVhostHttpRemux")]
         public JsonResult SetVhostHttpRemux(string deviceId, string vhostDomain, HttpRemux httpRemux, bool createIfNotFound = false)
         {
@@ -75,6 +79,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostHttpRemux/CreateVhostHttpRemux")]
         public JsonResult CreateVhostHttpRemux(string deviceId, string vhostDomain, HttpRemux httpRemux)
         {

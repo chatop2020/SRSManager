@@ -6,6 +6,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using System.Net;
+using Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -39,13 +40,14 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
-        [Route("/VhostDvr/GetVhostRtc")]
-        public JsonResult GetVhostRtc(string deviceId, string vhostDomain)
+        [Log]
+        [Route("/VhostDvr/GetVhostDvr")]
+        public JsonResult GetVhostDvr(string deviceId, string vhostDomain)
         {
             //获取一个SRSManager实例
             SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
             if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
-            var rt = VhostDvrApis.GetVhostRtc(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostDvrApis.GetVhostDvr(srsManager, vhostDomain, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -57,13 +59,14 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
-        [Route("/VhostDvr/SetVhostRtc")]
-        public JsonResult SetVhostRtc(string deviceId, string vhostDomain, Dvr dvr, bool createIfNotFound = false)
+        [Log]
+        [Route("/VhostDvr/SetVhostDvr")]
+        public JsonResult SetVhostDvr(string deviceId, string vhostDomain, Dvr dvr, bool createIfNotFound = false)
         {
             //获取一个SRSManager实例
             SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
             if (srsManager == null) return new JsonResult("无法找到deviceId对应的SrsManager实例") { StatusCode = (int)HttpStatusCode.NotFound };
-            var rt = VhostDvrApis.SetVhostRtc(srsManager, vhostDomain, dvr, out ResponseStruct rs, createIfNotFound);
+            var rt = VhostDvrApis.SetVhostDvr(srsManager, vhostDomain, dvr, out ResponseStruct rs, createIfNotFound);
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -75,6 +78,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/VhostDvr/CreateVhostDvr")]
         public JsonResult CreateVhostDvr(string deviceId, string vhostDomain, Dvr dvr)
         {

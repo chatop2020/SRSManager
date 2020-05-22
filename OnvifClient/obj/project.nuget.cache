@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bj4XgGWg6dtTZl5mu0d3PCxivp+CwDnge5ZyMS55nI4kugXWeIWvMo4Cz6FZPa4AgT3jJWs2n84iEeYXq1o8rw==",
+  "dgSpecHash": "PSyXJJM3w+pIwPXOpypVYnTvwWw/w1mrAiYUMRUpPphGn3r7ey4QhbhhTwnfOTXuwvpSl+Apf1PUH+9o3OGujA==",
   "success": true,
-  "projectFilePath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj",
+  "projectFilePath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj",
   "expectedPackageFiles": [
     "/Users/qiuzhouwei/.nuget/packages/microsoft.netcore.platforms/2.1.0/microsoft.netcore.platforms.2.1.0.nupkg.sha512",
     "/Users/qiuzhouwei/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",

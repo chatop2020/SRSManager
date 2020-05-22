@@ -51,7 +51,7 @@
             <param name="allowKey"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Common.DelApisResult(System.Object,SRSApis.ResponseStruct)">
+        <member name="M:SRSWebApi.Common.DelApisResult(System.Object,Common.ResponseStruct)">
             <summary>
             apis返回结果统一处理
             </summary>
@@ -59,46 +59,116 @@
             <param name="rs">ResponseStruct</param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowControler.RefreshSession(SRSWebApi.Session)">
+        <member name="M:SRSWebApi.Controllers.AllowController.RefreshSession(SRSWebApi.Session)">
             <summary>
             刷新Session
             </summary>
             <param name="request">旧的session</param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowControler.GetSession(SRSWebApi.RequestModules.ReqGetSession)">
+        <member name="M:SRSWebApi.Controllers.AllowController.GetSession(SRSWebApi.RequestModules.ReqGetSession)">
             <summary>
             获取一个session用于通讯
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowControler.SetAllowByKey(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
+        <member name="M:SRSWebApi.Controllers.AllowController.SetAllowByKey(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
             <summary>
             修改设置一个allow
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowControler.DelAllowByKey(SRSWebApi.RequestModules.ReqDelAllow)">
+        <member name="M:SRSWebApi.Controllers.AllowController.DelAllowByKey(SRSWebApi.RequestModules.ReqDelAllow)">
             <summary>
             删除一条allow
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowControler.AddAllow(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
+        <member name="M:SRSWebApi.Controllers.AllowController.AddAllow(SRSWebApi.RequestModules.ReqSetOrAddAllow)">
             <summary>
             添加一个allow
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.AllowControler.GetAllows(SRSWebApi.RequestModules.ReqGetAllows)">
+        <member name="M:SRSWebApi.Controllers.AllowController.GetAllows(SRSWebApi.RequestModules.ReqGetAllows)">
             <summary>
             获取授权列表
             </summary>
             <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.SetPtzZoom(SRSWebApi.RequestModules.ReqSetZoom)">
+            <summary>
+            设置Ptz焦距
+            </summary>
+            <param name="setZoom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.GetPtzPosition(SRSWebApi.RequestModules.ReqPtzMove)">
+            <summary>
+            获取ptz坐标
+            </summary>
+            <param name="ptzMove"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.PtzKeepMoveStop(SRSWebApi.RequestModules.ReqPtzMove)">
+            <summary>
+            停止持续移动
+            </summary>
+            <param name="ptzMove"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.PtzMove(SRSWebApi.RequestModules.ReqPtzMove)">
+            <summary>
+            控制ptz移动
+            </summary>
+            <param name="ptzMove"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.InitMonitor(SRSWebApi.RequestModules.ReqInitOnvif)">
+            <summary>
+            初始化onvif设备并加到管理列表中
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.OnvifController.GetMonitor(System.String)">
+            <summary>
+            跟据实例名称/ip地址获取onvif摄像头实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.SystemController.ReWriteOnvifConfig">
+            <summary>
+            重写onvifConfig
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.SystemController.ReloadOnvifConfig">
+            <summary>
+            重新加载onvifConfig
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.SystemController.GetOnvifMonitorList">
+            <summary>
+            获取onvifMontiorList
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.SystemController.GetSystemInfo">
+            <summary>
+            获取系统信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.SystemController.GetSrsInstanceList">
+            <summary>
+            获取SRS实例列表
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostBandcheckController.DeleteVhostBandcheck(System.String,System.String)">
@@ -275,7 +345,7 @@
             <param name="vhostDomain"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.VhostDvrController.GetVhostRtc(System.String,System.String)">
+        <member name="M:SRSWebApi.Controllers.VhostDvrController.GetVhostDvr(System.String,System.String)">
             <summary>
             获取Vhost中的Dvr
             </summary>
@@ -283,7 +353,7 @@
             <param name="vhostDomain"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Controllers.VhostDvrController.SetVhostRtc(System.String,System.String,SRSConfFile.SRSConfClass.Dvr,System.Boolean)">
+        <member name="M:SRSWebApi.Controllers.VhostDvrController.SetVhostDvr(System.String,System.String,SRSConfFile.SRSConfClass.Dvr,System.Boolean)">
             <summary>
             设置Dvr
             </summary>

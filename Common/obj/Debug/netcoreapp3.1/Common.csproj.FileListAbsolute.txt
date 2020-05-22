@@ -7,3 +7,12 @@
 /Users/qiuzhouwei/Projects/StreamCenter/Common/obj/Debug/netcoreapp3.1/Common.AssemblyInfo.cs
 /Users/qiuzhouwei/Projects/StreamCenter/Common/obj/Debug/netcoreapp3.1/Common.dll
 /Users/qiuzhouwei/Projects/StreamCenter/Common/obj/Debug/netcoreapp3.1/Common.pdb
+/Users/qiuzhouwei/Projects/SRSManager/Common/obj/Debug/netcoreapp3.1/Common.dll
+/Users/qiuzhouwei/Projects/SRSManager/Common/obj/Debug/netcoreapp3.1/Common.pdb
+/Users/qiuzhouwei/Projects/SRSManager/Common/bin/Debug/netcoreapp3.1/Common.deps.json
+/Users/qiuzhouwei/Projects/SRSManager/Common/bin/Debug/netcoreapp3.1/Common.dll
+/Users/qiuzhouwei/Projects/SRSManager/Common/bin/Debug/netcoreapp3.1/Common.pdb
+/Users/qiuzhouwei/Projects/SRSManager/Common/obj/Debug/netcoreapp3.1/Common.csprojAssemblyReference.cache
+/Users/qiuzhouwei/Projects/SRSManager/Common/obj/Debug/netcoreapp3.1/Common.csproj.CoreCompileInputs.cache
+/Users/qiuzhouwei/Projects/SRSManager/Common/obj/Debug/netcoreapp3.1/Common.AssemblyInfoInputs.cache
+/Users/qiuzhouwei/Projects/SRSManager/Common/obj/Debug/netcoreapp3.1/Common.AssemblyInfo.cs

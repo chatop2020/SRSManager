@@ -7,6 +7,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSWebApi.Attributes;
 using System.Net;
+using Common;
 using Newtonsoft.Json;
 using SRSWebApi.RequestModules;
 
@@ -27,7 +28,7 @@ namespace SRSWebApi.Controllers
         public JsonResult TestGet(string deviceId)
         {
             Bandcheck rt = deviceId == "1" ? new Bandcheck() { Enabled = true, Key = "123" } : new Bandcheck();
-            ResponseStruct rs = deviceId == "1" ? new ResponseStruct() { Code = SRSApis.ErrorNumber.None, Message = "test succeed" } : new ResponseStruct() { Code = SRSApis.ErrorNumber.Other, Message = "test error" };
+            ResponseStruct rs = deviceId == "1" ? new ResponseStruct() { Code = ErrorNumber.None, Message = "test succeed" } : new ResponseStruct() { Code = ErrorNumber.Other, Message = "test error" };
             var a = Program.common.DelApisResult(rt, rs);
             return a;
         }
@@ -38,7 +39,7 @@ namespace SRSWebApi.Controllers
         public JsonResult TestPost(string deviceId)
         {
             bool rt = deviceId == "1";
-            ResponseStruct rs = rt ? new ResponseStruct() { Code = SRSApis.ErrorNumber.None, Message = "test succeed" } : new ResponseStruct() { Code = SRSApis.ErrorNumber.Other, Message = "test error" };
+            ResponseStruct rs = rt ? new ResponseStruct() { Code = ErrorNumber.None, Message = "test succeed" } : new ResponseStruct() { Code = ErrorNumber.Other, Message = "test error" };
             return Program.common.DelApisResult(rt, rs);
         }
 
@@ -64,6 +65,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/Vhost/GetVhostByDomain")]
         public JsonResult GetVhostByDomain(string deviceId, string vhostDomain)
         {
@@ -78,6 +80,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/Vhost/GetVhostList")]
         public JsonResult GetVhostList(string deviceId)
         {
@@ -92,6 +95,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
+        [Log]
         [Route("/Vhost/GetVhostTemplate")]
         public JsonResult GetVhostTemplate(VhostIngestInputType vtype)
         {
@@ -107,6 +111,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/Vhost/CreateVhost")]
         public JsonResult CreateVhost(string deviceId, VhostIngestInputType vtype)
         {
@@ -131,6 +136,7 @@ namespace SRSWebApi.Controllers
         /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
+        [AuthVerify]
         [Log]
         [Route("/Vhost/SetVhost")]
         public JsonResult SetVhost(string deviceId, SrsvHostConfClass vhost, bool createIfNotFound = false)
@@ -150,6 +156,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/Vhost/DeleteVhostByDomain")]
         public JsonResult DeleteVhostByDomain(string deviceId, string domain)
         {
@@ -169,6 +176,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/Vhost/ChangeVhostDomain")]
         public JsonResult ChangeVhostDomain(string deviceId, string domain, string newdomain)
         {

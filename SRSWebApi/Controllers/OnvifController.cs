@@ -14,7 +14,7 @@ namespace SRSWebApi.Controllers
 {
     [ApiController]
     [Route("")]
-    public class Onvif: ControllerBase
+    public class OnvifController: ControllerBase
     {
         
        
@@ -26,6 +26,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/Onvif/SetPtzZoom")]
         public JsonResult SetPtzZoom(ReqSetZoom setZoom)
         {
@@ -42,6 +43,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/Onvif/GetPtzPosition")]
         public JsonResult GetPtzPosition(ReqPtzMove ptzMove)
         {
@@ -57,6 +59,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/Onvif/PtzKeepMoveStop")]
         public JsonResult PtzKeepMoveStop(ReqPtzMove ptzMove)
         {
@@ -72,6 +75,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost] 
         [AuthVerify]
+        [Log]
         [Route("/Onvif/PtzMove")]
         public JsonResult PtzMove(ReqPtzMove ptzMove)
         {
@@ -86,6 +90,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/Onvif/InitMonitor")]
         public JsonResult InitMonitor(ReqInitOnvif request)
         {
@@ -105,6 +110,7 @@ namespace SRSWebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
+        [Log]
         [Route("/Onvif/GetMonitor")]
         public JsonResult GetMonitor(string ipAddress)
         {
