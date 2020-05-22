@@ -301,7 +301,7 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.Other,
+                    Code = ErrorNumber.Other	,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
                 };
                 return null!;
@@ -315,7 +315,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="profileToken"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool PtzKeepMoveStop(string instanceIpaddr, string profileToken, out ResponseStruct rs)
+        public static ResponsePosition PtzKeepMoveStop(string instanceIpaddr, string profileToken, out ResponseStruct rs)
         {
             if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
             {
@@ -324,7 +324,7 @@ namespace SRSApis.SRSManager.Apis
                     Code = ErrorNumber.OnvifMonitorNotInit,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
                 };
-                return false!;
+                return null!;
             }
 
             var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
@@ -335,7 +335,7 @@ namespace SRSApis.SRSManager.Apis
                     Code = ErrorNumber.FunctionInputParamsError,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
                 };
-                return false!;
+                return null!;
             }
 
             if (onvif.OnvifMonitor.OnvifProfileList == null)
@@ -345,7 +345,7 @@ namespace SRSApis.SRSManager.Apis
                     Code = ErrorNumber.FunctionInputParamsError,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
                 };
-                return false!;
+                return null!;
             }
 
             OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
@@ -358,7 +358,7 @@ namespace SRSApis.SRSManager.Apis
                     Code = ErrorNumber.FunctionInputParamsError,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
                 };
-                return false!;
+                return null!;
             }
 
             ResponsePosition pos;
@@ -367,9 +367,9 @@ namespace SRSApis.SRSManager.Apis
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\n" + JsonHelper.ToJson(pos),
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.None] ,
                 };
-                return true!;
+                return pos!;
             }
             else
             {
@@ -378,7 +378,7 @@ namespace SRSApis.SRSManager.Apis
                     Code = ErrorNumber.OnvifPtzMoveExcept,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifPtzMoveExcept],
                 };
-                return false!;
+                return null!;
             }
         }
 

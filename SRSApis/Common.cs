@@ -166,6 +166,8 @@ namespace SRSApis
                     if (onvifList != null && onvifList.Count > 0)
                     {
                         string configStr = JsonHelper.ToJson(onvifList);
+                        configStr = JsonHelper.ConvertJsonString(configStr);
+                        
                         if (string.IsNullOrEmpty(configStr))
                         {
                             return false;
