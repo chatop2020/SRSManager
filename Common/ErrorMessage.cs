@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 
-namespace SRSWebApi
+namespace Common
 {
+    [Serializable]
     public enum ErrorNumber : int
     {
         None = 0, //成功
@@ -16,25 +18,29 @@ namespace SRSWebApi
         StorageDiskSettingFail = -5008, //存储盘设置错误
         StorageSpaceNotEnough = -5009, //存储空间不足
         GetVersionError = -5010, //获取版本信息错误
-        StopSRSError = -5011, //结束SRS错误
-        StartRuningSRSError = -5012, //启动一个已经启动的SRS异常
-        StartSRSError = -5013, //SRS启动异常
-        SRSTerminated = -5014, //SRS没有运行
-        SRSReloadError = -5015, //SRS realod 失败
-        SRSCreateError = -5016, //创建SRS 实例失败
-        SRSNotFound = -5017, //SRS可执行文件没找到
-        SRSObjectNotInit = -5018, //SRS对象没有创建
+        StopSrsError = -5011, //结束SRS错误
+        StartRuningSrsError = -5012, //启动一个已经启动的SRS异常
+        StartSrsError = -5013, //SRS启动异常
+        SrsTerminated = -5014, //SRS没有运行
+        SrsReloadError = -5015, //SRS realod 失败
+        SrsCreateError = -5016, //创建SRS 实例失败
+        SrsNotFound = -5017, //SRS可执行文件没找到
+        SrsObjectNotInit = -5018, //SRS对象没有创建
         FunctionInputParamsError = -5019, //函数传参有误
-        SRSSubInstanceAlreadyExists = -5020, //SRS配置子实例已经存在
-        SRSSubInstanceNotFound = -5021, //SRS配置子实例没有找到
-        SRSConfigFunctionUnsupported = -5022, //功能还未支持
+        SrsSubInstanceAlreadyExists = -5020, //SRS配置子实例已经存在
+        SrsSubInstanceNotFound = -5021, //SRS配置子实例没有找到
+        SrsConfigFunctionUnsupported = -5022, //功能还未支持
         SystemCheckPasswordFail=-5023,//检测密码失败
         SystemCheckAllowKeyFail=-5024,//访问控制检测失败
         SystemSessionExcept=-5025,//session异常
         SystemCheckAllowKeyOrSessionFail=-5026,//访问控制检测失败
+        OnvifMonitorNotInit=-5027,//非onvif设备
+        OnvifPtzKeepMoveOnlyUpdownleftright=-5028,
+        OnvifPtzMoveExcept=-5029,
+       
         Other = -6000
     }
-
+    [Serializable]
     public static class ErrorMessage
     {
         public static Dictionary<ErrorNumber, string>? ErrorDic;
@@ -55,18 +61,21 @@ namespace SRSWebApi
             ErrorDic[ErrorNumber.StorageDiskSettingFail] = "存储盘设置错误";
             ErrorDic[ErrorNumber.StorageSpaceNotEnough] = "存储空间不足";
             ErrorDic[ErrorNumber.GetVersionError] = "获取版本信息错误";
-            ErrorDic[ErrorNumber.StopSRSError] = "结束SRS进程时异常";
-            ErrorDic[ErrorNumber.StartRuningSRSError] = "此SRS进程已经运行";
-            ErrorDic[ErrorNumber.StartSRSError] = "启动SRS进程异常";
-            ErrorDic[ErrorNumber.SRSTerminated] = "SRS没有运行";
-            ErrorDic[ErrorNumber.SRSReloadError] = "SRS配置刷新失败";
-            ErrorDic[ErrorNumber.SRSCreateError] = "创建SRS实例失败";
-            ErrorDic[ErrorNumber.SRSNotFound] = "SRS可执行文件不存在";
-            ErrorDic[ErrorNumber.SRSObjectNotInit] = "SRS控制对象未创建";
+            ErrorDic[ErrorNumber.StopSrsError] = "结束SRS进程时异常";
+            ErrorDic[ErrorNumber.StartRuningSrsError] = "此SRS进程已经运行";
+            ErrorDic[ErrorNumber.StartSrsError] = "启动SRS进程异常";
+            ErrorDic[ErrorNumber.SrsTerminated] = "SRS没有运行";
+            ErrorDic[ErrorNumber.SrsReloadError] = "SRS配置刷新失败";
+            ErrorDic[ErrorNumber.SrsCreateError] = "创建SRS实例失败";
+            ErrorDic[ErrorNumber.SrsNotFound] = "SRS可执行文件不存在";
+            ErrorDic[ErrorNumber.SrsObjectNotInit] = "SRS控制对象未创建";
             ErrorDic[ErrorNumber.FunctionInputParamsError] = "函数参数有误";
-            ErrorDic[ErrorNumber.SRSSubInstanceAlreadyExists] = "该配置子实例已存在";
-            ErrorDic[ErrorNumber.SRSSubInstanceNotFound] = "该配置子实例不存在";
-            ErrorDic[ErrorNumber.SRSConfigFunctionUnsupported] = "所需功能还不支持";
+            ErrorDic[ErrorNumber.SrsSubInstanceAlreadyExists] = "该配置子实例已存在";
+            ErrorDic[ErrorNumber.SrsSubInstanceNotFound] = "该配置子实例不存在";
+            ErrorDic[ErrorNumber.SrsConfigFunctionUnsupported] = "所需功能还不支持";
+            ErrorDic[ErrorNumber.OnvifMonitorNotInit] = "非onvif设备，初始化失败";
+            ErrorDic[ErrorNumber.OnvifPtzKeepMoveOnlyUpdownleftright] = "持续PTZ移动模式下只支持上、下、左、右";
+            ErrorDic[ErrorNumber.OnvifPtzMoveExcept] = "PTZ移动控制异常";
             ErrorDic[ErrorNumber.SystemCheckPasswordFail] = "鉴权失败";
             ErrorDic[ErrorNumber.SystemCheckAllowKeyFail] = "访问控制检测失败";
             ErrorDic[ErrorNumber.SystemSessionExcept] = "Session异常";

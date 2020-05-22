@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.AspNetCore.Mvc;
 
 namespace SRSWebApi
 {
@@ -122,6 +121,12 @@ namespace SRSWebApi
 
         public Session NewSession(string allowKey)
         {
+            Session s = sessionList.FindLast(x => x.AllowKey.Trim().ToLower().Equals(allowKey.Trim().ToLower()));
+            if (s != null)
+            {
+                return s;
+                
+            }
             Session session = new Session()
             {
                 AllowKey = allowKey,

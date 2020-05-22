@@ -1,8 +1,8 @@
 using System;
 using System.Net;
+using Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using SRSWebApi.ResponseModules;
 
 namespace SRSWebApi.Attributes
 {
@@ -18,10 +18,11 @@ namespace SRSWebApi.Attributes
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
         {
+            if (Program.common.isDebug) return;
             string remoteIpAddr = context.HttpContext.Connection.RemoteIpAddress.ToString();
             string sessionCode =  context.HttpContext.Request.Headers["SessionCode"];
             string allowKey=context.HttpContext.Request.Headers["Allowkey"];
-            if (!Program.common.CheckSession(sessionCode))
+            if (sessionCode==null || !Program.common.CheckSession(sessionCode))
             {
                
                 var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept]);
@@ -29,7 +30,7 @@ namespace SRSWebApi.Attributes
                 context.Result = result;
      
             }
-            if (!Program.common.CheckAllow(remoteIpAddr,allowKey))
+            if (allowKey==null || !Program.common.CheckAllow(remoteIpAddr,allowKey))
             {
                 
                 var result= new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail]);

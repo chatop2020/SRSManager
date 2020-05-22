@@ -1,3 +1,4 @@
+using Common;
 using SRSApis.SRSManager.Apis.ApiModules;
 
 namespace SRSApis.SRSManager.Apis
@@ -103,8 +104,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }
@@ -131,8 +132,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }
@@ -159,8 +160,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }
@@ -187,8 +188,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }
@@ -215,8 +216,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }
@@ -243,8 +244,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }
@@ -271,8 +272,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }
@@ -299,8 +300,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }
@@ -339,8 +340,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return result;
         }
@@ -377,8 +378,8 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SRSObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }

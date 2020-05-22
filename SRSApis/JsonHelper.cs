@@ -12,9 +12,9 @@ namespace SRSApis
             IsoDateTimeConverter datetimeConverter = new IsoDateTimeConverter();
             datetimeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             _jsonSettings = new JsonSerializerSettings();
-            _jsonSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Error;
-            _jsonSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
-            _jsonSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            _jsonSettings.MissingMemberHandling = MissingMemberHandling.Error;
+            _jsonSettings.NullValueHandling = NullValueHandling.Ignore;
+            _jsonSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             _jsonSettings.Converters.Add(datetimeConverter);
         }
 

@@ -33,6 +33,7 @@ namespace SRSWebApi
             services.AddSingleton <IHttpContextAccessor,HttpContextAccessor>();
 
             services.AddControllers();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,8 +54,7 @@ namespace SRSWebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SRSWebApi");
            
             });
-          //  app.UseMvc();
-            
+
 
             app.UseRouting();
 

@@ -1,3 +1,4 @@
+using Common;
 using SRSConfFile.SRSConfClass;
 
 namespace SRSApis.SRSManager.Apis
@@ -17,8 +18,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
                 return false;
             }
@@ -49,8 +50,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceNotFound],
+                    Code = ErrorNumber.SrsSubInstanceNotFound,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                 };
                 return false;
             }
@@ -63,14 +64,14 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="vhostDomain"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static Dvr GetVhostRtc(SrsManager sm, string vhostDomain, out ResponseStruct rs)
+        public static Dvr GetVhostDvr(SrsManager sm, string vhostDomain, out ResponseStruct rs)
         {
             if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
                 return null!;
             }
@@ -102,7 +103,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="rs"></param>
         /// <param name="createIfNotFound"></param>
         /// <returns></returns>
-        public static bool SetVhostRtc(SrsManager sm, string vhostDomian, Dvr dvr,
+        public static bool SetVhostDvr(SrsManager sm, string vhostDomian, Dvr dvr,
             out ResponseStruct rs, bool createIfNotFound = false)
         {
             bool ret = false;
@@ -110,8 +111,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
                 return false;
             }
@@ -185,8 +186,8 @@ namespace SRSApis.SRSManager.Apis
                 {
                     rs = new ResponseStruct()
                     {
-                        Code = ErrorNumber.SRSSubInstanceNotFound,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceNotFound] + "\r\n" +
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound] + "\r\n" +
                                   JsonHelper.ToJson(dvr),
                     };
                     return false;
@@ -209,8 +210,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
                 return false;
             }
@@ -222,8 +223,8 @@ namespace SRSApis.SRSManager.Apis
                 {
                     rs = new ResponseStruct()
                     {
-                        Code = ErrorNumber.SRSSubInstanceAlreadyExists,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceAlreadyExists],
+                        Code = ErrorNumber.SrsSubInstanceAlreadyExists,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceAlreadyExists],
                     };
                     return false;
                 }
@@ -242,8 +243,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceNotFound] + "\r\n" +
+                    Code = ErrorNumber.SrsSubInstanceNotFound,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound] + "\r\n" +
                               JsonHelper.ToJson(dvr),
                 };
                 return false;

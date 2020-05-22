@@ -1,3 +1,4 @@
+using Common;
 using SRSConfFile.SRSConfClass;
 
 namespace SRSApis.SRSManager.Apis
@@ -17,8 +18,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
                 return false;
             }
@@ -49,8 +50,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceNotFound],
+                    Code = ErrorNumber.SrsSubInstanceNotFound,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                 };
                 return false;
             }
@@ -69,8 +70,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
                 return null!;
             }
@@ -110,8 +111,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
                 return false;
             }
@@ -185,8 +186,8 @@ namespace SRSApis.SRSManager.Apis
                 {
                     rs = new ResponseStruct()
                     {
-                        Code = ErrorNumber.SRSSubInstanceNotFound,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceNotFound] + "\r\n" +
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound] + "\r\n" +
                                   JsonHelper.ToJson(httpHooks),
                     };
                     return false;
@@ -209,8 +210,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSObjectNotInit],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
                 return false;
             }
@@ -222,8 +223,8 @@ namespace SRSApis.SRSManager.Apis
                 {
                     rs = new ResponseStruct()
                     {
-                        Code = ErrorNumber.SRSSubInstanceAlreadyExists,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceAlreadyExists],
+                        Code = ErrorNumber.SrsSubInstanceAlreadyExists,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceAlreadyExists],
                     };
                     return false;
                 }
@@ -242,8 +243,8 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SRSSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceNotFound] + "\r\n" +
+                    Code = ErrorNumber.SrsSubInstanceNotFound,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound] + "\r\n" +
                               JsonHelper.ToJson(httpHooks),
                 };
                 return false;

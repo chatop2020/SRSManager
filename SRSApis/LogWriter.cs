@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace SRSApis
 {
@@ -25,7 +26,7 @@ namespace SRSApis
 
             lock (lockLogFile)
             {
-                System.IO.File.AppendAllText(logpath, saveLogTxt);
+                File.AppendAllText(logpath, saveLogTxt);
             }
         }
     }

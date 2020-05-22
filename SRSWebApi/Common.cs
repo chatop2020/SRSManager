@@ -1,7 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
-using SRSApis;
 using System;
 using System.Net;
+using Common;
+using Microsoft.AspNetCore.Mvc;
+using SRSApis;
 
 namespace SRSWebApi
 {
@@ -11,6 +12,7 @@ namespace SRSWebApi
         public string ConfPath;
         public string BaseUrl;
         public SessionManager SessionManager;
+        public bool isDebug = true;
 
 
         /// <summary>
@@ -38,14 +40,14 @@ namespace SRSWebApi
         public void CommonInit()
         {
             WorkPath = Environment.CurrentDirectory + "/";
-            ConfPath = WorkPath + "srswebapi.conf";
+            ConfPath = WorkPath + "srswebapi.wconf";
             BaseUrl = "http://*:" + conf.HttpPort;
             if (conf.LoadConfig(ConfPath))
             {
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
                 SRSApis.Common.init_SrsServer();
-
+                
             }
             else
             {
@@ -84,7 +86,7 @@ namespace SRSWebApi
         public bool CheckAuth(string ipAddr, string allowKey, string sessionCode)
         {
             if (!CheckSession(sessionCode)) return false;
-            if (!CheckAllow(ipAddr, allowKey)) return false;
+            if(!CheckAllow(ipAddr,allowKey)) return false;
             return true;
         }
         /// <summary>
@@ -107,8 +109,8 @@ namespace SRSWebApi
             Session s = this.SessionManager.SessionList.FindLast(x =>
                 x.SessionCode.Trim().ToLower().Equals(sessionCode.Trim().ToLower()));
             long a = this.GetTimeStampMilliseconds();
-
-            if (s != null && s.Expires > a)
+            
+            if (s != null && s.Expires > a )
             {
                 return true;
             }
@@ -171,7 +173,7 @@ namespace SRSWebApi
 
             return false;
         }
-
+        
         /// <summary>
         /// apis返回结果统一处理
         /// </summary>
@@ -186,5 +188,6 @@ namespace SRSWebApi
             }
             return new JsonResult(rt) { StatusCode = (int)HttpStatusCode.OK };
         }
+        
     }
 }

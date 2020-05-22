@@ -8,6 +8,13 @@ namespace SRSApis.SRSManager.Apis.ApiModules
         private string? format;
         private string? volumeLabel;
         private string? rootDirectory;
+        private string? devicePath;
+
+        public string? DevicePath
+        {
+            get => devicePath;
+            set => devicePath = value;
+        }
 
         public string? Path
         {

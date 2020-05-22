@@ -4,12 +4,122 @@ using System.IO;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using Common;
 using SRSApis.SRSManager.Apis.ApiModules;
 
 namespace SRSApis.SRSManager.Apis
 {
+    public class OnvifConfigTemp
+    {
+        private string filePath;
+        private List<string> context = new List<string>();
+
+        public string FilePath
+        {
+            get => filePath;
+            set => filePath = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public List<string> Context
+        {
+            get => context;
+            set => context = value ?? throw new ArgumentNullException(nameof(value));
+        }
+    }
+
     public static class SystemApis
     {
+        /*public static bool DeleteOnvifConfig(string ipAddr)
+        {
+            
+        }*/
+        /// <summary>
+        /// 重新加载onvif配置文件
+        /// </summary>
+        /// <returns></returns>
+        public static bool ReloadOnvifConfig()
+        {
+            try
+            {
+                Common.LoadOnvifMonitors();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 重写配置文件
+        /// </summary>
+        /// <returns></returns>
+        public static bool ReWriteOnvifConfig()
+        {
+            List<OnvifConfigTemp> tmpConfig = new List<OnvifConfigTemp>();
+            if (Common.OnvifManagers != null)
+            {
+                foreach (var om in Common.OnvifManagers)
+                {
+                    String filename = om.ConfigPath;
+                    String? username = om.Username;
+                    String? password = om.Password;
+                    String? ipaddr = om.IpAddr;
+                    OnvifConfigTemp oct = tmpConfig.FindLast(x => x.FilePath.Trim().Equals(filename.Trim()))!;
+                    if (oct != null)
+                    {
+                        string s = ipaddr + "\t";
+                        if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                        {
+                            s += username + "\t";
+                            s += password + ";";
+                        }
+
+                        if (!string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))
+                        {
+                            s += username + ";";
+                        }
+
+                        oct.Context.Add(s);
+                    }
+                    else
+                    {
+                        oct = new OnvifConfigTemp();
+                        oct.FilePath = filename;
+                        string s = ipaddr + "\t";
+                        if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                        {
+                            s += username + "\t";
+                            s += password + ";";
+                        }
+
+                        if (!string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))
+                        {
+                            s += username + ";";
+                        }
+
+                        oct.Context.Add(s);
+                        tmpConfig.Add(oct);
+                    }
+                }
+
+                foreach (var tmp in tmpConfig)
+                {
+                    File.WriteAllLines(tmp.FilePath, tmp.Context);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 刷新srs配置
+        /// </summary>
+        /// <param name="sm"></param>
+        /// <returns></returns>
         public static bool RefreshSrsObject(SrsManager sm)
         {
             ResponseStruct rs;
@@ -61,6 +171,7 @@ namespace SRSApis.SRSManager.Apis
             return null!;
         }
 
+
         /// <summary>
         /// 获取系统中的磁盘信息
         /// </summary>
@@ -80,7 +191,10 @@ namespace SRSApis.SRSManager.Apis
                     Path = d.Name,
                     RootDirectory = d.RootDirectory.FullName,
                 };
-                disks.Add(ddi);
+                if (ddi.Size > 0 && ddi.Free > 0)
+                {
+                    disks.Add(ddi);
+                }
             }
 
             return disks;
@@ -151,7 +265,20 @@ namespace SRSApis.SRSManager.Apis
                         Ipaddr = ipaddr,
                     };
                     index++;
-                    listofnetwork.Add(tmp_adapter);
+                    if (!string.IsNullOrEmpty(tmp_adapter.Ipaddr))
+                    {
+                        int loop = 1;
+                        if (!tmp_adapter.Mac.Contains('-'))
+                        {
+                            for (int i = 1; i < 10; i += 2)
+                            {
+                                tmp_adapter.Mac = tmp_adapter.Mac.Insert(i + loop, "-");
+                                loop += 1;
+                            }
+                        }
+
+                        listofnetwork.Add(tmp_adapter);
+                    }
                 }
 
                 return listofnetwork;

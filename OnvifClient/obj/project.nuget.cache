@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "Bj4XgGWg6dtTZl5mu0d3PCxivp+CwDnge5ZyMS55nI4kugXWeIWvMo4Cz6FZPa4AgT3jJWs2n84iEeYXq1o8rw==",
+  "success": true,
+  "projectFilePath": "/Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/OnvifClient.csproj",
+  "expectedPackageFiles": [
+    "/Users/qiuzhouwei/.nuget/packages/microsoft.netcore.platforms/2.1.0/microsoft.netcore.platforms.2.1.0.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/system.private.servicemodel/4.5.3/system.private.servicemodel.4.5.3.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/system.reflection.dispatchproxy/4.5.0/system.reflection.dispatchproxy.4.5.0.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/system.security.principal.windows/4.5.0/system.security.principal.windows.4.5.0.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/system.servicemodel.duplex/4.4.4/system.servicemodel.duplex.4.4.4.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/system.servicemodel.http/4.5.3/system.servicemodel.http.4.5.3.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/system.servicemodel.nettcp/4.4.4/system.servicemodel.nettcp.4.4.4.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/system.servicemodel.primitives/4.5.3/system.servicemodel.primitives.4.5.3.nupkg.sha512",
+    "/Users/qiuzhouwei/.nuget/packages/system.servicemodel.security/4.4.4/system.servicemodel.security.4.4.4.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common;
 using SRSApis;
 using SRSApis.SRSManager;
 using SRSApis.SRSManager.Apis;
@@ -17,8 +18,8 @@ namespace Test_SRSApis
             Console.WriteLine("Hello World!");
             Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
             Console.WriteLine(JsonHelper.ToJson(SystemApis.GetSystemInfo()));
-            Common.init_SrsServer();
-            Common.startServers();
+            SRSApis.Common.init_SrsServer();
+            SRSApis.Common.startServers();
             List<string> srsdevidlist = SystemApis.GetAllSrsManagerDeviceId();
             Console.WriteLine(JsonHelper.ToJson(srsdevidlist));
             foreach (var s in srsdevidlist)

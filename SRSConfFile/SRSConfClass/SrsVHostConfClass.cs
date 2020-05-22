@@ -13,6 +13,7 @@ namespace SRSConfFile.SRSConfClass
             set => enabled = value;
         }
     }
+
     [Serializable]
     public class Cluster : SrsConfBase
     {

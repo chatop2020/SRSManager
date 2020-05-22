@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_SRSApis", "Test_SRSApi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRSWebApi", "SRSWebApi\SRSWebApi.csproj", "{794A911B-14C8-4F1B-8AD2-0569851DDA3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Onvif_Discovery", "Test_Onvif_Discovery\Test_Onvif_Discovery.csproj", "{178175DD-67F0-4DF0-9C95-73DB70130B00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnvifClient", "OnvifClient\OnvifClient.csproj", "{0E3FD30C-B40D-42DD-BB28-307E978DB49A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnvifManager", "OnvifManager\OnvifManager.csproj", "{98D1D07B-8A67-44F8-BA39-EE9AC411B616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,5 +51,21 @@ Global
 		{794A911B-14C8-4F1B-8AD2-0569851DDA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{794A911B-14C8-4F1B-8AD2-0569851DDA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{794A911B-14C8-4F1B-8AD2-0569851DDA3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{178175DD-67F0-4DF0-9C95-73DB70130B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{178175DD-67F0-4DF0-9C95-73DB70130B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{178175DD-67F0-4DF0-9C95-73DB70130B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{178175DD-67F0-4DF0-9C95-73DB70130B00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E3FD30C-B40D-42DD-BB28-307E978DB49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E3FD30C-B40D-42DD-BB28-307E978DB49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E3FD30C-B40D-42DD-BB28-307E978DB49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E3FD30C-B40D-42DD-BB28-307E978DB49A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98D1D07B-8A67-44F8-BA39-EE9AC411B616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D1D07B-8A67-44F8-BA39-EE9AC411B616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D1D07B-8A67-44F8-BA39-EE9AC411B616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D1D07B-8A67-44F8-BA39-EE9AC411B616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

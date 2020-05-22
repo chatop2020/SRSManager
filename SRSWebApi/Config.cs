@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 
 namespace SRSWebApi
 {
@@ -121,7 +120,15 @@ namespace SRSWebApi
             {
                 if (ak != null)
                 {
-                    writeFile.Add("allowkey=" + ak.Key + "\t" + ak.IpArray + ";");
+                    string tmps = "";
+                    foreach (string ip in ak.IpArray)
+                    {
+                        if (!string.IsNullOrEmpty(ip))
+                        {
+                            tmps += ip + "\t";
+                        }
+                    }
+                    writeFile.Add("allowkey=" + ak.Key + "\t" + tmps + ";");
                 }
             }
 
