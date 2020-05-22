@@ -1,9 +1,7 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
+using Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using SRSWebApi.ResponseModules;
 
@@ -11,11 +9,11 @@ namespace SRSWebApi.Controllers
 {
     [ApiController]
     [Route("")]
-    public class AllowControler : ControllerBase
+    public class Allow : ControllerBase
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public AllowControler(IHttpContextAccessor httpContextAccessor)
+        public Allow(IHttpContextAccessor httpContextAccessor)
         {
             this.httpContextAccessor = httpContextAccessor;
         }
@@ -110,8 +108,11 @@ namespace SRSWebApi.Controllers
                     if (Program.common.conf.AllowKeys[i].Key.Trim().ToLower()
                         .Equals(request.Allowkey.Key.Trim().ToLower()))
                     {
-                        found = true;
                         Program.common.conf.AllowKeys[i] = request.Allowkey;
+                        if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                        {
+                            found = true;
+                        }
                         break;
                     }
                 }
@@ -125,7 +126,7 @@ namespace SRSWebApi.Controllers
                 }
                 else
                 {
-                    var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound]);
+                    var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound]);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
 
@@ -157,8 +158,12 @@ namespace SRSWebApi.Controllers
                 {
                     if (Program.common.conf.AllowKeys[i].Key.Trim().ToLower().Equals(request.Key.Trim().ToLower()))
                     {
-                        found = true;
+
                         Program.common.conf.AllowKeys[i] = null;
+                        if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                        {
+                            found = true;
+                        }
                         break;
                     }
                 }
@@ -173,7 +178,7 @@ namespace SRSWebApi.Controllers
                 }
                 else
                 {
-                    var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceNotFound]);
+                    var result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound]);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
 
@@ -205,7 +210,7 @@ namespace SRSWebApi.Controllers
 
                 if (obj != null)
                 {
-                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SRSSubInstanceAlreadyExists]);
+                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceAlreadyExists]);
                     result.StatusCode = (int)HttpStatusCode.BadRequest;
                     return result;
 
@@ -221,10 +226,18 @@ namespace SRSWebApi.Controllers
                 }
 
                 Program.common.conf.AllowKeys.Add(request.Allowkey);
-                result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
-                result.StatusCode = (int)HttpStatusCode.OK;
-                return result;
-
+                if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                {
+                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.None]);
+                    result.StatusCode = (int)HttpStatusCode.OK;
+                    return result;
+                }
+                else
+                {
+                    result = new JsonResult(ErrorMessage.ErrorDic?[ErrorNumber.Other]);
+                    result.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return result;
+                }
             }
             else
             {
