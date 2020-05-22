@@ -2,7 +2,7 @@ using System;
 
 namespace SRSWebApi.RequestModules
 {
-   [Serializable]
+    [Serializable]
     public class ReqGetAllows
     {
         private string password;

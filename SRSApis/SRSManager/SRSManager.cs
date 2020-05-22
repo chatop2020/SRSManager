@@ -16,7 +16,7 @@ namespace SRSApis.SRSManager
         public string srs_ConfigPath = "";
         public string srs_deviceId = "";
         public SrsSystemConfClass Srs = null!;
-       
+
 
         public string SrsWorkPath
         {

@@ -87,7 +87,6 @@ namespace SRSWebApi
         /// </summary>
         /// <param name="session">旧的session</param>
         /// <returns></returns>
-
         public Session RefreshSession(Session session)
         {
             bool found = false;
@@ -125,8 +124,8 @@ namespace SRSWebApi
             if (s != null)
             {
                 return s;
-                
             }
+
             Session session = new Session()
             {
                 AllowKey = allowKey,

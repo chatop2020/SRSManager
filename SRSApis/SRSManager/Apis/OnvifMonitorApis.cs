@@ -9,7 +9,6 @@ namespace SRSApis.SRSManager.Apis
 {
     public static class OnvifMonitorApis
     {
-
         public static OnvifMonitor InitOnvifMonitorByIpAddrWhenNotInit(string ipAddr, out ResponseStruct rs)
         {
             if (Common.OnvifManagers != null)
@@ -35,7 +34,7 @@ namespace SRSApis.SRSManager.Apis
                         Code = ErrorNumber.OnvifMonitorNotInit,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
                     };
-                    return null!; 
+                    return null!;
                 }
             }
             else
@@ -48,6 +47,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
         }
+
         /// <summary>
         /// 初始化所有未初始化的onvif摄像头
         /// </summary>

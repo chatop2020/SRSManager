@@ -33,20 +33,21 @@ namespace SRSManageCommon
         SrsSubInstanceAlreadyExists = -5020, //SRS配置子实例已经存在
         SrsSubInstanceNotFound = -5021, //SRS配置子实例没有找到
         SrsConfigFunctionUnsupported = -5022, //功能还未支持
-        SystemCheckPasswordFail=-5023,//检测密码失败
-        SystemCheckAllowKeyFail=-5024,//访问控制检测失败
-        SystemSessionExcept=-5025,//session异常
-        SystemCheckAllowKeyOrSessionFail=-5026,//访问控制检测失败
-        OnvifMonitorNotInit=-5027,//非onvif设备
-        OnvifPtzKeepMoveOnlyUpdownleftright=-5028,
-        OnvifPtzMoveExcept=-5029,
-        SystemSessionItWorks=-5029,//session没有过期
-        OnvifMonitorListIsNull=-5030, //onvif设备列表为空
-        OnvifConfigLoadExcept=-5031,//onvif配置文件读取失败
-        OnvifConfigWriteExcept =-5032,// Onvif配置文件写入失败
-       
+        SystemCheckPasswordFail = -5023, //检测密码失败
+        SystemCheckAllowKeyFail = -5024, //访问控制检测失败
+        SystemSessionExcept = -5025, //session异常
+        SystemCheckAllowKeyOrSessionFail = -5026, //访问控制检测失败
+        OnvifMonitorNotInit = -5027, //非onvif设备
+        OnvifPtzKeepMoveOnlyUpdownleftright = -5028,
+        OnvifPtzMoveExcept = -5029,
+        SystemSessionItWorks = -5029, //session没有过期
+        OnvifMonitorListIsNull = -5030, //onvif设备列表为空
+        OnvifConfigLoadExcept = -5031, //onvif配置文件读取失败
+        OnvifConfigWriteExcept = -5032, // Onvif配置文件写入失败
+
         Other = -6000
     }
+
     /// <summary>
     /// 错误代码描述
     /// </summary>
@@ -94,7 +95,6 @@ namespace SRSManageCommon
             ErrorDic[ErrorNumber.OnvifMonitorListIsNull] = "Onvif设备列表为空";
             ErrorDic[ErrorNumber.OnvifConfigLoadExcept] = "Onvif配置文件读取失败";
             ErrorDic[ErrorNumber.OnvifConfigWriteExcept] = "Onvif配置文件写入失败";
-
         }
     }
 }

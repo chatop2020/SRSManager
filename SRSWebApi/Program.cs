@@ -14,6 +14,7 @@ namespace SRSWebApi
     public class Program
     {
         public static Common common = new Common();
+
         public static void Main(string[] args)
         {
             common.CommonInit();

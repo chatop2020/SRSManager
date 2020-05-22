@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\OnvifClient\OnvifClient.csproj" />
-      <ProjectReference Include="..\OnvifManager\OnvifManager.csproj" />
+        <ProjectReference Include="..\OnvifClient\OnvifClient.csproj" />
+        <ProjectReference Include="..\OnvifManager\OnvifManager.csproj" />
     </ItemGroup>
 
 </Project>

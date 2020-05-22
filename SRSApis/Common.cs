@@ -131,7 +131,6 @@ namespace SRSApis
             return Regex.IsMatch(ip, @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$");
         }
 
-        
 
         /// <summary>
         /// 初始化onvif设备
@@ -144,8 +143,8 @@ namespace SRSApis
                 {
                     try
                     {
-                        if(om.OnvifMonitor==null)
-                        om.OnvifMonitor = new OnvifMonitor(om.IpAddr, om.Username, om.Password);
+                        if (om.OnvifMonitor == null)
+                            om.OnvifMonitor = new OnvifMonitor(om.IpAddr, om.Username, om.Password);
                     }
                     catch
                     {
@@ -163,7 +162,6 @@ namespace SRSApis
                 DirectoryInfo dir = new DirectoryInfo(WorkPath);
                 if (OnvifManagers != null && OnvifManagers.Count > 0)
                 {
-                    
                     List<OnvifMonitorStruct> onvifList = OnvifMonitorApis.GetOnvifMonitorList(out ResponseStruct rs);
                     if (onvifList != null && onvifList.Count > 0)
                     {
@@ -174,7 +172,7 @@ namespace SRSApis
                         }
                         else
                         {
-                            File.WriteAllText(WorkPath+"system.oconf",configStr);
+                            File.WriteAllText(WorkPath + "system.oconf", configStr);
                             return true;
                         }
                     }
@@ -193,8 +191,8 @@ namespace SRSApis
                 return false;
             }
         }
-        
-        
+
+
         /// <summary>
         /// 载入onvif设备配置
         /// </summary>

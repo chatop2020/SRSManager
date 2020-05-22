@@ -13,7 +13,6 @@ namespace SRSWebApi.Controllers
     [Route("")]
     public class SystemController : ControllerBase
     {
-
         [HttpPost]
         [AuthVerify]
         [Log]
@@ -21,9 +20,9 @@ namespace SRSWebApi.Controllers
         public JsonResult LoadOnvifConfig()
         {
             var rt = SystemApis.LoadOnvifConfig(out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);   
+            return Program.common.DelApisResult(rt, rs);
         }
-        
+
         [HttpPost]
         [AuthVerify]
         [Log]
@@ -31,87 +30,23 @@ namespace SRSWebApi.Controllers
         public JsonResult WriteOnvifConfig()
         {
             var rt = SystemApis.WriteOnvifConfig(out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);   
-        }
-        
-        
-        /*
-        /// <summary>
-        /// 重写onvifConfig
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [Log]
-        [Route("/System/ReWriteOnvifConfig")]
-        public JsonResult ReWriteOnvifConfig()
-        {
-            ResponseStruct rs;
-            var rt = SystemApis.ReWriteOnvifConfig();
-            if (rt)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
-            }
-            else
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.Other,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
-                };
-            }
-            return Program.common.DelApisResult(rt, rs);
-        }
-        */
-
-        /*/// <summary>
-        /// 重新加载onvifConfig
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [Log]
-        [Route("/System/ReloadOnvifConfig")]
-        public JsonResult ReloadOnvifConfig()
-        {
-            ResponseStruct rs;
-            var rt = SystemApis.ReloadOnvifConfig();
-            if (rt)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
-            }
-            else
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.Other,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
-                };
-            }
             return Program.common.DelApisResult(rt, rs);
         }
 
+
         /// <summary>
-        /// 获取onvifMontiorList
+        /// 删除一个onvif摄像头配置
         /// </summary>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
-        [Route("/System/GetOnvifMonitorList")]
-        public JsonResult GetOnvifMonitorList()
+        [Route("/System/DelOnvifConfigByIpAddress")]
+        public JsonResult DelOnvifConfigByIpAddress(string ipAddress)
         {
-            var rt = OnvifMonitorApis.GetOnvifMonitorsIpAddress(out ResponseStruct rs);
+            var rt = SystemApis.DelOnvifConfigByIpAddress(ipAddress, out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
-        }*/
+        }
 
         /// <summary>
         /// 获取系统信息
@@ -124,9 +59,10 @@ namespace SRSWebApi.Controllers
         public JsonResult GetSystemInfo()
         {
             var result = new JsonResult(SystemApis.GetSystemInfo());
-            result.StatusCode = (int)HttpStatusCode.OK;
+            result.StatusCode = (int) HttpStatusCode.OK;
             return result;
         }
+
         /// <summary>
         /// 获取SRS实例列表
         /// </summary>
@@ -157,10 +93,10 @@ namespace SRSWebApi.Controllers
                     simlist.Add(sim);
                 }
             }
+
             var result = new JsonResult(simlist);
-            result.StatusCode = (int)HttpStatusCode.OK;
+            result.StatusCode = (int) HttpStatusCode.OK;
             return result;
         }
     }
-
 }

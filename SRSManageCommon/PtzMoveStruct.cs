@@ -11,7 +11,7 @@ namespace SRSManageCommon
         RELATIVE,
         KEEP,
     }
-    
+
 
     [Serializable]
     public enum PtzMoveDir

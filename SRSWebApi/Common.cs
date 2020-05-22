@@ -47,7 +47,6 @@ namespace SRSWebApi
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
                 SRSApis.Common.init_SrsServer();
-                
             }
             else
             {
@@ -86,9 +85,10 @@ namespace SRSWebApi
         public bool CheckAuth(string ipAddr, string allowKey, string sessionCode)
         {
             if (!CheckSession(sessionCode)) return false;
-            if(!CheckAllow(ipAddr,allowKey)) return false;
+            if (!CheckAllow(ipAddr, allowKey)) return false;
             return true;
         }
+
         /// <summary>
         /// 检查密码
         /// </summary>
@@ -109,8 +109,8 @@ namespace SRSWebApi
             Session s = this.SessionManager.SessionList.FindLast(x =>
                 x.SessionCode.Trim().ToLower().Equals(sessionCode.Trim().ToLower()));
             long a = this.GetTimeStampMilliseconds();
-            
-            if (s != null && s.Expires > a )
+
+            if (s != null && s.Expires > a)
             {
                 return true;
             }
@@ -173,7 +173,7 @@ namespace SRSWebApi
 
             return false;
         }
-        
+
         /// <summary>
         /// apis返回结果统一处理
         /// </summary>
@@ -182,12 +182,12 @@ namespace SRSWebApi
         /// <returns></returns>
         public JsonResult DelApisResult(object rt, ResponseStruct rs)
         {
-            if (rs.Code != (int)ErrorNumber.None)
+            if (rs.Code != (int) ErrorNumber.None)
             {
-                return new JsonResult(rs) { StatusCode = (int)HttpStatusCode.BadRequest };
+                return new JsonResult(rs) {StatusCode = (int) HttpStatusCode.BadRequest};
             }
-            return new JsonResult(rt) { StatusCode = (int)HttpStatusCode.OK };
+
+            return new JsonResult(rt) {StatusCode = (int) HttpStatusCode.OK};
         }
-        
     }
 }

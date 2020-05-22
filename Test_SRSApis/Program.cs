@@ -65,7 +65,7 @@ namespace Test_SRSApis
                 SrsConfigBuild.Build(srsm.Srs, srsm.srs_ConfigPath);
                 if (srsm.IsRunning)
                 {
-                   bool ret= srsm.Reload(out rs);
+                    bool ret = srsm.Reload(out rs);
                 }
             }
         }

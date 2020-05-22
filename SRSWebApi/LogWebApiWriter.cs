@@ -15,7 +15,8 @@ namespace SRSWebApi
             }
 
             DateTime now = DateTime.Now;
-            string logPath = Path.Combine(Environment.CurrentDirectory, "logs", $@"webapilog_Y{now.Year}M{now.Month}D{now.Day}.log");
+            string logPath = Path.Combine(Environment.CurrentDirectory, "logs",
+                $@"webapilog_Y{now.Year}M{now.Month}D{now.Day}.log");
             string saveLogTxt = "[" + DateTime.Now.ToString() + "]\t" + message + "\t" + info + "\r\n";
             Console.WriteLine(saveLogTxt.Trim());
             if (color != ConsoleColor.Gray)

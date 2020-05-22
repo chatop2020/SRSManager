@@ -128,6 +128,7 @@ namespace SRSWebApi
                             tmps += ip + "\t";
                         }
                     }
+
                     writeFile.Add("allowkey=" + ak.Key + "\t" + tmps + ";");
                 }
             }

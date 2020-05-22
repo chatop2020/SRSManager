@@ -16,9 +16,10 @@ namespace SRSWebApi.RequestModules
             get => password;
             set => password = value;
         }
-/// <summary>
-/// guid
-/// </summary>
+
+        /// <summary>
+        /// guid
+        /// </summary>
         public string Key
         {
             get => key;

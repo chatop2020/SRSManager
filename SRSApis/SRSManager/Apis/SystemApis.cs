@@ -10,26 +10,37 @@ using SRSApis.SRSManager.Apis.ApiModules;
 
 namespace SRSApis.SRSManager.Apis
 {
-    /*public class OnvifConfigTemp
-    {
-        private string filePath;
-        private List<string> context = new List<string>();
-
-        public string FilePath
-        {
-            get => filePath;
-            set => filePath = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        public List<string> Context
-        {
-            get => context;
-            set => context = value ?? throw new ArgumentNullException(nameof(value));
-        }
-    }*/
-
     public static class SystemApis
     {
+        /// <summary>
+        /// 根据ip删除onvif配置文件
+        /// </summary>
+        /// <param name="ipAddr"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<OnvifMonitorStruct> DelOnvifConfigByIpAddress(string ipAddr, out ResponseStruct rs)
+        {
+            if (Common.OnvifManagers != null && Common.OnvifManagers.Count > 0)
+            {
+                OnvifInstance ovi = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ipAddr.Trim()))!;
+                if (ovi != null)
+                {
+                    Common.OnvifManagers.Remove(ovi);
+                }
+
+                return OnvifMonitorApis.GetOnvifMonitorList(out rs);
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.OnvifMonitorNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
+                };
+                return null!;
+            }
+        }
+
         /// <summary>
         /// 写入onvif配置文件
         /// </summary>

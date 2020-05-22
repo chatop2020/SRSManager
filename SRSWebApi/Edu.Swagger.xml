@@ -159,6 +159,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SRSWebApi.Controllers.SystemController.DelOnvifConfigByIpAddress(System.String)">
+            <summary>
+            删除一个onvif摄像头配置
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SRSWebApi.Controllers.SystemController.GetSystemInfo">
             <summary>
             获取系统信息

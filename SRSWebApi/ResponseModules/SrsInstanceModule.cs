@@ -55,9 +55,5 @@ namespace SRSWebApi.ResponseModules
             get => srsInstanceWorkPath;
             set => srsInstanceWorkPath = value ?? throw new ArgumentNullException(nameof(value));
         }
-
-      
-
-      
     }
 }

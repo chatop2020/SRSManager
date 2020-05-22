@@ -26,7 +26,8 @@ namespace SRSWebApi.Controllers
             var rt = OnvifMonitorApis.InitOnvifMonitorListWhenNotInit(out ResponseStruct rs);
             return Program.common.DelApisResult(rt, rs);
         }
-        
+
+
         /// <summary>
         /// 初始化还未初始化的onvif摄像头用ip 地址
         /// </summary>
@@ -37,7 +38,7 @@ namespace SRSWebApi.Controllers
         [Route("/Onvif/InitByIpAddress")]
         public JsonResult InitByIpAddress(string ipAddress)
         {
-            var rt = OnvifMonitorApis.InitOnvifMonitorByIpAddrWhenNotInit(ipAddress,out ResponseStruct rs);
+            var rt = OnvifMonitorApis.InitOnvifMonitorByIpAddrWhenNotInit(ipAddress, out ResponseStruct rs);
             if (rt == null)
             {
                 return Program.common.DelApisResult(null!, rs);

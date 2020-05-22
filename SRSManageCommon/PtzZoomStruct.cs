@@ -8,6 +8,7 @@ namespace SRSManageCommon
         MORE,
         LESS,
     }
+
     [Serializable]
     public class PtzZoomStruct
     {

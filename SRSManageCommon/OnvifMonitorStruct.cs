@@ -8,7 +8,7 @@ namespace SRSManageCommon
     /// <summary>
     /// ptz位置信息
     /// </summary>
-     [Serializable]
+    [Serializable]
     public class ResponsePosition
     {
         private float x; //水平方向位置
@@ -38,7 +38,7 @@ namespace SRSManageCommon
             set => z = value;
         }
     }
-   
+
 
     /// <summary>
     /// ptz profile结构
@@ -97,10 +97,10 @@ namespace SRSManageCommon
             set => continuousMove = value;
         }
     }
+
     /// <summary>
     /// media源结构
     /// </summary>
-
     [Serializable]
     public class MediaSourceInfo
     {
@@ -139,11 +139,11 @@ namespace SRSManageCommon
                    "\tVideoSourceResolution.Width:" + this.Width + "\tVideoSourceResolution.Height:" + this.Height;
         }
     }
-    
+
     /// <summary>
     /// 简化的profile结构
     /// </summary>
-[Serializable]
+    [Serializable]
     public class ProfileLimit
     {
         private string profileToken;
@@ -189,10 +189,10 @@ namespace SRSManageCommon
             set => continuousMove = value;
         }
     }
+
     /// <summary>
     /// onvif摄像头简单结构
     /// </summary>
-    
     [Serializable]
     public class OnvifMonitorStruct
     {

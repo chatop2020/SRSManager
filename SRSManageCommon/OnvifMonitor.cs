@@ -9,7 +9,6 @@ using Mictlanix.DotNet.Onvif.Ptz;
 
 namespace SRSManageCommon
 {
-
     [Serializable]
     public class OnvifMonitor
     {

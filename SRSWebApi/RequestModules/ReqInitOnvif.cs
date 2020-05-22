@@ -10,7 +10,7 @@ namespace SRSWebApi.RequestModules
         private string ipAddrs;
         private string? username;
         private string? password;
-        private List<string> ipAddrArray= new List<string>();
+        private List<string> ipAddrArray = new List<string>();
 
         public string IpAddrs
         {
@@ -35,14 +35,14 @@ namespace SRSWebApi.RequestModules
             get => ipAddrArray;
             set => ipAddrArray = value ?? throw new ArgumentNullException(nameof(value));
         }
-        
-        
+
+
         public void GetIpArray()
         {
             if (!string.IsNullOrEmpty(IpAddrs))
             {
                 ipAddrArray = ipAddrs.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
             }
-        } 
+        }
     }
 }
