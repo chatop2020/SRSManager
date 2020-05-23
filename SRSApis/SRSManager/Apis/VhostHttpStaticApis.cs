@@ -158,7 +158,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(httpStatic),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vhttp_static = Common.ObjectClone(httpStatic);
+                sm.Srs.Vhosts[i].Vhttp_static = httpStatic;
                 return true;
             }
             else

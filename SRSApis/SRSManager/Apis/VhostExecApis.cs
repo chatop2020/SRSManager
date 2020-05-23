@@ -158,7 +158,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(exec),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vexec = Common.ObjectClone(exec);
+                sm.Srs.Vhosts[i].Vexec = exec;
                 return true;
             }
             else

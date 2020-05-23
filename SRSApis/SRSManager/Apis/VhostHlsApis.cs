@@ -158,7 +158,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(hls),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vhls = Common.ObjectClone(hls);
+                sm.Srs.Vhosts[i].Vhls = hls;
                 return true;
             }
             else

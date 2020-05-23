@@ -106,7 +106,7 @@ namespace SRSApis.SRSManager.Apis
             };
             if (sm.Srs.Vhosts != null && sm.Srs.Vhosts.Count > 0)
             {
-                List<SrsvHostConfClass> result = Common.ObjectClone(sm.Srs.Vhosts);
+                List<SrsvHostConfClass> result = sm.Srs.Vhosts;
                 return result;
             }
             else
@@ -162,7 +162,7 @@ namespace SRSApis.SRSManager.Apis
                 vhost.SectionsName = "vhost";
             }
 
-            sm.Srs.Vhosts.Add(Common.ObjectClone(vhost));
+            sm.Srs.Vhosts.Add(vhost);
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -492,7 +492,7 @@ namespace SRSApis.SRSManager.Apis
                         if (sm.Srs.Vhosts[i].VhostDomain!.Trim().ToLower()
                             .Equals(vhost.VhostDomain!.Trim().ToLower()))
                         {
-                            sm.Srs.Vhosts[i] = Common.ObjectClone(vhost);
+                            sm.Srs.Vhosts[i] = vhost;
                         }
 
                         rs = new ResponseStruct()

@@ -135,7 +135,7 @@ namespace SRSApis.SRSManager.Apis
             if (sm.Srs.Stats == null)
             {
                 sm.Srs.Stats = new SrsStatsConfClass();
-                sm.Srs.Stats = Common.ObjectClone(stats);
+                sm.Srs.Stats = stats;
                 sm.Srs.Stats.SectionsName = "stats";
                 rs = new ResponseStruct()
                 {
@@ -181,7 +181,7 @@ namespace SRSApis.SRSManager.Apis
             };
             if (sm.Srs.Rtc_server != null)
             {
-                SrsStatsConfClass? result = Common.ObjectClone(sm.Srs.Stats);
+                SrsStatsConfClass? result = sm.Srs.Stats;
                 return result!;
             }
             else

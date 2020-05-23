@@ -158,7 +158,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(httpHooks),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vhttp_hooks = Common.ObjectClone(httpHooks);
+                sm.Srs.Vhosts[i].Vhttp_hooks = httpHooks;
                 return true;
             }
             else

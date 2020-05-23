@@ -186,7 +186,7 @@ namespace SRSApis.SRSManager.Apis
             if (sm.Srs.Rtc_server == null)
             {
                 sm.Srs.Rtc_server = new SrsRtcServerConfClass();
-                sm.Srs.Rtc_server = Common.ObjectClone(rtc);
+                sm.Srs.Rtc_server = rtc;
                 sm.Srs.Rtc_server.SectionsName = "rtc_server";
                 rs = new ResponseStruct()
                 {
@@ -232,7 +232,7 @@ namespace SRSApis.SRSManager.Apis
             };
             if (sm.Srs.Rtc_server != null)
             {
-                SrsRtcServerConfClass result = Common.ObjectClone(sm.Srs.Rtc_server);
+                SrsRtcServerConfClass result = sm.Srs.Rtc_server;
                 return result;
             }
             else

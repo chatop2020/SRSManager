@@ -158,7 +158,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(httpRemux),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vhttp_remux = Common.ObjectClone(httpRemux);
+                sm.Srs.Vhosts[i].Vhttp_remux = httpRemux;
                 return true;
             }
             else

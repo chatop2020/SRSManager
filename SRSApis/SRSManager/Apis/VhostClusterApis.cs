@@ -158,7 +158,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(cluster),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vcluster = Common.ObjectClone(cluster);
+                sm.Srs.Vhosts[i].Vcluster = cluster;
                 return true;
             }
             else

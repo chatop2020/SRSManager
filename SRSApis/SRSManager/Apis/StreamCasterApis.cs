@@ -132,7 +132,7 @@ namespace SRSApis.SRSManager.Apis
                 streamCaster.SectionsName = "stream_caster";
             }
 
-            sm.Srs.Stream_casters.Add(Common.ObjectClone(streamCaster));
+            sm.Srs.Stream_casters.Add(streamCaster);
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -437,7 +437,7 @@ namespace SRSApis.SRSManager.Apis
                         if (sm.Srs.Stream_casters[i].InstanceName!.Trim().ToLower()
                             .Equals(streamCaster.InstanceName!.Trim().ToLower()))
                         {
-                            sm.Srs.Stream_casters[i] = Common.ObjectClone(streamCaster);
+                            sm.Srs.Stream_casters[i] =streamCaster;
                         }
 
                         rs = new ResponseStruct()

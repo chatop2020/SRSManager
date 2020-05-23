@@ -192,7 +192,7 @@ namespace SRSApis.SRSManager.Apis
             {
                 sm.Srs.Srt_server = new SrsSrtServerConfClass();
                 srt.SectionsName = "srt_server";
-                sm.Srs.Srt_server = Common.ObjectClone(srt);
+                sm.Srs.Srt_server = srt;
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.None,
@@ -237,7 +237,7 @@ namespace SRSApis.SRSManager.Apis
             };
             if (sm.Srs.Rtc_server != null)
             {
-                SrsSrtServerConfClass result = Common.ObjectClone(sm.Srs.Srt_server)!;
+                SrsSrtServerConfClass result =sm.Srs.Srt_server!;
                 return result!;
             }
             else

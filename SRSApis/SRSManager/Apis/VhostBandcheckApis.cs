@@ -158,7 +158,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(bandcheck),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vbandcheck = Common.ObjectClone(bandcheck);
+                sm.Srs.Vhosts[i].Vbandcheck = bandcheck;
                 return true;
             }
             else

@@ -156,7 +156,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(transcode),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vtranscodes![j] = Common.ObjectClone(transcode);
+                sm.Srs.Vhosts[i].Vtranscodes![j] = transcode;
                 return true;
             }
             else

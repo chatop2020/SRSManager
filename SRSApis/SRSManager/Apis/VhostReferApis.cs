@@ -158,7 +158,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(refer),
                 };
                 //找到了
-                sm.Srs.Vhosts[i].Vrefer = Common.ObjectClone(refer);
+                sm.Srs.Vhosts[i].Vrefer = refer;
                 return true;
             }
             else

@@ -154,7 +154,7 @@ namespace SRSApis.SRSManager.Apis
                                             JsonHelper.ToJson(ingest),
                 };
                 //找到了该ingest
-                sm.Srs.Vhosts[i].Vingests![j] = Common.ObjectClone(ingest);
+                sm.Srs.Vhosts[i].Vingests![j] = ingest;
                 return true;
             }
             else

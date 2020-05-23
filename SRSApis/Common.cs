@@ -50,7 +50,7 @@ namespace SRSApis
             Directory.CreateDirectory(LogPath);
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 对象克隆
         /// </summary>
         /// <param name="RealObject"></param>
@@ -65,7 +65,7 @@ namespace SRSApis
                 objectStream.Seek(0, SeekOrigin.Begin);
                 return (T) formatter.Deserialize(objectStream);
             }
-        }
+        }*/
 
         /// <summary>
         /// 删除List<T>中null的记录
