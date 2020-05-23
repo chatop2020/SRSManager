@@ -29,32 +29,33 @@ namespace SRSConfFile
 
         public static KeyValuePair<string, string> GetKV(string s)
         {
-            string[] tmp_sarr = s.Split('\t', StringSplitOptions.RemoveEmptyEntries);
+            string[] tmpSarr = System.Text.RegularExpressions.Regex.Split(s,@"[\s]+");
+            //string[] tmp_sarr = s.Split('\t', StringSplitOptions.RemoveEmptyEntries);
 
-            if (tmp_sarr.Length == 2)
+            if (tmpSarr.Length == 2)
             {
-                return new KeyValuePair<string, string>(tmp_sarr[0].Trim(),
-                    tmp_sarr[1].Remove(tmp_sarr[1].Length - 1).Trim());
+                return new KeyValuePair<string, string>(tmpSarr[0].Trim(),
+                    tmpSarr[1].Remove(tmpSarr[1].Length - 1).Trim());
             }
             else
             {
-                if (tmp_sarr.Length > 2)
+                if (tmpSarr.Length > 2)
                 {
                     string ss = "";
-                    for (int i = 1; i <= tmp_sarr.Length - 1; i++)
+                    for (int i = 1; i <= tmpSarr.Length - 1; i++)
                     {
-                        if (tmp_sarr[i].Contains(';'))
+                        if (tmpSarr[i].Contains(';'))
                         {
-                            tmp_sarr[i] = tmp_sarr[i].Replace(';', ' ');
-                            ss += tmp_sarr[i];
+                            tmpSarr[i] = tmpSarr[i].Replace(';', ' ');
+                            ss += tmpSarr[i];
                         }
                         else
                         {
-                            ss += tmp_sarr[i] + " ";
+                            ss += tmpSarr[i] + " ";
                         }
                     }
 
-                    return new KeyValuePair<string, string>(tmp_sarr[0].Trim(), ss.Trim());
+                    return new KeyValuePair<string, string>(tmpSarr[0].Trim(), ss.Trim());
                 }
                 else
                 {
@@ -148,19 +149,20 @@ namespace SRSConfFile
         public static KeyValuePair<string, string> getSectionNameAndInstanceNameValue(SectionBody scb)
         {
             string? s = scb.BodyList?[0];
-            string[] s_arr;
+            string[] sArr;
             if (s != null && s.Contains(' '))
             {
-                s_arr = s.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-                if (s_arr.Length > 1)
+                sArr = System.Text.RegularExpressions.Regex.Split(s,@"[\s]+");
+               // s_arr = s.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+               if (sArr.Length > 1)
                 {
-                    if (s_arr[1].Trim() != "{")
+                    if (sArr[1].Trim() != "{")
                     {
-                        return new KeyValuePair<string, string>(s_arr[0].Trim().ToLower(), s_arr[1].Trim().ToLower());
+                        return new KeyValuePair<string, string>(sArr[0].Trim().ToLower(), sArr[1].Trim().ToLower());
                     }
                     else
                     {
-                        return new KeyValuePair<string, string>(s_arr[0].Trim().ToLower(), "");
+                        return new KeyValuePair<string, string>(sArr[0].Trim().ToLower(), "");
                     }
                 }
             }

@@ -335,11 +335,12 @@ namespace SRSConfFile.Renders
 
                             SecurityObj seo = new SecurityObj();
                             seo.Sem = (SecurityMethod) Enum.Parse(typeof(SecurityMethod), tmpkv.Key);
-                            string[] s_arr = tmpkv.Value.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-                            if (s_arr.Length > 1)
+                            string[] sArr= System.Text.RegularExpressions.Regex.Split(tmpkv.Value, @"[\s]+");
+                           // string[] s_arr = tmpkv.Value.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+                            if (sArr.Length > 1)
                             {
-                                seo.Set = (SecurityTarget) Enum.Parse(typeof(SecurityTarget), s_arr[0]);
-                                seo.Rule = s_arr[1].Trim();
+                                seo.Set = (SecurityTarget) Enum.Parse(typeof(SecurityTarget), sArr[0]);
+                                seo.Rule = sArr[1].Trim();
                             }
 
                             svcc.Vsecurity.Seo.Add(seo);

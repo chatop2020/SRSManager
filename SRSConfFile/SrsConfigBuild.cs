@@ -448,7 +448,8 @@ namespace SRSConfFile
                 {
                     string s = "";
                     write_SubOnly(o.Perfile, out s, 4);
-                    string[] s_arr = s.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+                    string[] s_arr = System.Text.RegularExpressions.Regex.Split(s, @"[\s]+");
+                  //  string[] s_arr = s.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
                     string sss = "";
                     foreach (string ss in s_arr)
                     {
