@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>Common</RootNamespace>
+        <RootNamespace>SRSManageCommon</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
