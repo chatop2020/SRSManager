@@ -10,6 +10,9 @@ using SRSManageCommon;
 
 namespace SRSWebApi.Controllers
 {
+    /// <summary>
+    /// vhostpublish接口类
+    /// </summary>
     [ApiController]
     [Route("")]
     public class VhostPublishController
@@ -31,7 +34,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostPublishApis.DeleteVhostPublish(srsManager, vhostDomain, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -51,7 +54,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostPublishApis.GetVhostPublish(srsManager, vhostDomain, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -59,6 +62,8 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="publish"></param>
+        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -73,7 +78,7 @@ namespace SRSWebApi.Controllers
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostPublishApis.SetVhostPublish(srsManager, vhostDomain, publish, out ResponseStruct rs,
                 createIfNotFound);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -81,6 +86,7 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="publish"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -93,7 +99,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostPublishApis.CreateVhostPublish(srsManager, vhostDomain, publish, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }
 }

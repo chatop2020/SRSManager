@@ -1,64 +1,89 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading;
 
 namespace SRSWebApi
 {
+    /// <summary>
+    /// session类结构
+    /// </summary>
     public class Session
     {
-        private string allowKey;
-        private string sessionCode;
-        private string refreshCode;
-        private long expires; //过期时间
+        private string _allowKey = null!;
+        private string _sessionCode = null!;
+        private string _refreshCode = null!;
+        private long _expires; //过期时间
 
+        /// <summary>
+        /// 授权key
+        /// </summary>
         public string AllowKey
         {
-            get => allowKey;
-            set => allowKey = value;
+            get => _allowKey;
+            set => _allowKey = value;
         }
 
+        /// <summary>
+        /// session刷新code
+        /// </summary>
         public string RefreshCode
         {
-            get => refreshCode;
-            set => refreshCode = value;
+            get => _refreshCode;
+            set => _refreshCode = value;
         }
 
+        /// <summary>
+        /// session code
+        /// </summary>
         public string SessionCode
         {
-            get => sessionCode;
-            set => sessionCode = value;
+            get => _sessionCode;
+            set => _sessionCode = value;
         }
 
+        /// <summary>
+        /// 过期时间
+        /// </summary>
         public long Expires
         {
-            get => expires;
-            set => expires = value;
+            get => _expires;
+            set => _expires = value;
         }
     }
 
+    /// <summary>
+    /// session管理
+    /// </summary>
     public class SessionManager
     {
-        private List<Session> sessionList = new List<Session>();
+        private List<Session> _sessionList = new List<Session>();
 
         private byte addMin = 50;
 
+        /// <summary>
+        /// session列表
+        /// </summary>
         public List<Session> SessionList
         {
-            get => sessionList;
-            set => sessionList = value;
+            get => _sessionList;
+            set => _sessionList = value;
         }
 
+        /// <summary>
+        /// 清空已经过期的session
+        /// </summary>
         private void clearExpires()
         {
             while (true)
             {
                 lock (this)
                 {
-                    foreach (var session in sessionList)
+                    foreach (var session in _sessionList)
                     {
-                        if (session.Expires <= Program.common.GetTimeStampMilliseconds())
+                        if (session.Expires <= Program.CommonFunctions.GetTimeStampMilliseconds())
                         {
-                            sessionList.Remove(session);
+                            _sessionList.Remove(session);
                         }
                     }
                 }
@@ -67,6 +92,10 @@ namespace SRSWebApi
             }
         }
 
+        /// <summary>
+        /// Session管理构造函数
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         public SessionManager()
         {
             new Thread(new ThreadStart(delegate
@@ -77,7 +106,8 @@ namespace SRSWebApi
                 }
                 catch (Exception ex)
                 {
-                    //
+                    LogWebApiWriter.WriteWebApiLog(ex.Message, ex.StackTrace!, ConsoleColor.Red);
+                    throw ex;
                 }
             })).Start();
         }
@@ -93,15 +123,16 @@ namespace SRSWebApi
             int i = 0;
             lock (this)
             {
-                for (i = 0; i <= sessionList.Count - 1; i++)
+                for (i = 0; i <= _sessionList.Count - 1; i++)
                 {
-                    if (sessionList[i].AllowKey.Trim().ToLower().Equals(session.AllowKey.Trim().ToLower()) &&
-                        sessionList[i].RefreshCode.Trim().ToLower().Equals(session.RefreshCode.Trim().ToLower())
+                    if (_sessionList[i].AllowKey.Trim().ToLower().Equals(session.AllowKey.Trim().ToLower()) &&
+                        _sessionList[i].RefreshCode.Trim().ToLower().Equals(session.RefreshCode.Trim().ToLower())
                     )
                     {
-                        sessionList[i].SessionCode = Program.common.CreateUUID();
-                        sessionList[i].RefreshCode = Program.common.CreateUUID();
-                        sessionList[i].Expires = Program.common.GetTimeStampMilliseconds() + (addMin * 1000 * 60);
+                        _sessionList[i].SessionCode = SRSManageCommon.Common.CreateUuid()!;
+                        _sessionList[i].RefreshCode = SRSManageCommon.Common.CreateUuid()!;
+                        _sessionList[i].Expires =
+                            Program.CommonFunctions.GetTimeStampMilliseconds() + (addMin * 1000 * 60);
                         found = true;
                         break;
                     }
@@ -109,33 +140,41 @@ namespace SRSWebApi
 
                 if (found)
                 {
-                    return sessionList[i];
+                    return _sessionList[i];
                 }
                 else
                 {
-                    return null;
+                    return null!;
                 }
             }
         }
 
+        /// <summary>
+        /// 创建一个新的Session
+        /// </summary>
+        /// <param name="allowKey"></param>
+        /// <returns></returns>
         public Session NewSession(string allowKey)
         {
-            Session s = sessionList.FindLast(x => x.AllowKey.Trim().ToLower().Equals(allowKey.Trim().ToLower()));
-            if (s != null)
+            if (_sessionList != null)
             {
-                return s;
+                Session s = _sessionList.FindLast(x => x.AllowKey.Trim().ToLower().Equals(allowKey.Trim().ToLower()))!;
+                if (s != null)
+                {
+                    return s;
+                }
             }
 
             Session session = new Session()
             {
                 AllowKey = allowKey,
-                SessionCode = Program.common.CreateUUID(),
-                RefreshCode = Program.common.CreateUUID(),
-                Expires = Program.common.GetTimeStampMilliseconds() + (addMin * 1000 * 60),
+                SessionCode = SRSManageCommon.Common.CreateUuid()!,
+                RefreshCode = SRSManageCommon.Common.CreateUuid()!,
+                Expires = Program.CommonFunctions.GetTimeStampMilliseconds() + (addMin * 1000 * 60),
             };
             lock (this)
             {
-                sessionList.Add(session);
+                _sessionList!.Add(session);
             }
 
             return session;

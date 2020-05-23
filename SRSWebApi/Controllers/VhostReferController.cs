@@ -10,6 +10,9 @@ using SRSManageCommon;
 
 namespace SRSWebApi.Controllers
 {
+    /// <summary>
+    /// vhostrefer接口类
+    /// </summary>
     [ApiController]
     [Route("")]
     public class VhostReferController
@@ -31,7 +34,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostReferApis.DeleteVhostRefer(srsManager, vhostDomain, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -51,7 +54,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostReferApis.GetVhostRefer(srsManager, vhostDomain, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -59,6 +62,8 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="refer"></param>
+        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -72,7 +77,7 @@ namespace SRSWebApi.Controllers
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostReferApis.SetVhostRefer(srsManager, vhostDomain, refer, out ResponseStruct rs,
                 createIfNotFound);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -80,6 +85,7 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="refer"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -92,7 +98,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostReferApis.CreateVhostRefer(srsManager, vhostDomain, refer, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }
 }

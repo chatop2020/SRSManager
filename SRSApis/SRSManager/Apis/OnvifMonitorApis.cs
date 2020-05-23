@@ -13,7 +13,7 @@ namespace SRSApis.SRSManager.Apis
         {
             if (Common.OnvifManagers != null)
             {
-                OnvifInstance ovi = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ipAddr.Trim()));
+                OnvifInstance ovi = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ipAddr.Trim()))!;
                 if (ovi != null)
                 {
                     if (ovi.OnvifMonitor == null)
@@ -190,7 +190,7 @@ namespace SRSApis.SRSManager.Apis
                 return -999999;
             }
 
-            if (onvif.OnvifMonitor.OnvifProfileList == null)
+            if (onvif.OnvifMonitor!.OnvifProfileList == null)
             {
                 rs = new ResponseStruct()
                 {
@@ -264,7 +264,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            if (onvif.OnvifMonitor.OnvifProfileList == null)
+            if (onvif.OnvifMonitor!.OnvifProfileList == null)
             {
                 rs = new ResponseStruct()
                 {
@@ -301,7 +301,7 @@ namespace SRSApis.SRSManager.Apis
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.Other	,
+                    Code = ErrorNumber.Other,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
                 };
                 return null!;
@@ -315,7 +315,8 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="profileToken"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static ResponsePosition PtzKeepMoveStop(string instanceIpaddr, string profileToken, out ResponseStruct rs)
+        public static ResponsePosition PtzKeepMoveStop(string instanceIpaddr, string profileToken,
+            out ResponseStruct rs)
         {
             if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
             {
@@ -338,7 +339,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            if (onvif.OnvifMonitor.OnvifProfileList == null)
+            if (onvif.OnvifMonitor!.OnvifProfileList == null)
             {
                 rs = new ResponseStruct()
                 {
@@ -367,7 +368,7 @@ namespace SRSApis.SRSManager.Apis
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None] ,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                 };
                 return pos!;
             }
@@ -415,7 +416,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            if (onvif.OnvifMonitor.OnvifProfileList == null)
+            if (onvif.OnvifMonitor!.OnvifProfileList == null)
             {
                 rs = new ResponseStruct()
                 {

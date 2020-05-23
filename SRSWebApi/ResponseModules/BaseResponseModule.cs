@@ -4,22 +4,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SRSWebApi.ResponseModules
 {
+    /// <summary>
+    ///webapi返回结构
+    /// </summary>
     [Serializable]
     public class BaseResponseModule
     {
-        private HttpStatusCode code;
-        private JsonResult msg;
+        private HttpStatusCode _code;
+        private JsonResult _msg = null!;
 
+        /// <summary>
+        /// 返回http status code
+        /// </summary>
         public HttpStatusCode Code
         {
-            get => code;
-            set => code = value;
+            get => _code;
+            set => _code = value;
         }
 
+        /// <summary>
+        /// 返回的message
+        /// </summary>
         public JsonResult Msg
         {
-            get => msg;
-            set => msg = value;
+            get => _msg;
+            set => _msg = value;
         }
     }
 }

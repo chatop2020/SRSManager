@@ -7,7 +7,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\OnvifClient\OnvifClient.csproj" />
-        <ProjectReference Include="..\OnvifManager\OnvifManager.csproj" />
+        <ProjectReference Include="..\SRSManageCommon\SRSManageCommon.csproj" />
     </ItemGroup>
 
 </Project>

@@ -13,6 +13,9 @@ using SRSWebApi.RequestModules;
 
 namespace SRSWebApi.Controllers
 {
+    /// <summary>
+    /// vhost控制类
+    /// </summary>
     [ApiController]
     [Route("")]
     public class VhostController
@@ -31,10 +34,15 @@ namespace SRSWebApi.Controllers
             ResponseStruct rs = deviceId == "1"
                 ? new ResponseStruct() {Code = ErrorNumber.None, Message = "test succeed"}
                 : new ResponseStruct() {Code = ErrorNumber.Other, Message = "test error"};
-            var a = Program.common.DelApisResult(rt, rs);
+            var a = Program.CommonFunctions.DelApisResult(rt, rs);
             return a;
         }
 
+        /// <summary>
+        /// 测试post方法
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Log]
         [Route("/Vhost/TestPost")]
@@ -44,7 +52,7 @@ namespace SRSWebApi.Controllers
             ResponseStruct rs = rt
                 ? new ResponseStruct() {Code = ErrorNumber.None, Message = "test succeed"}
                 : new ResponseStruct() {Code = ErrorNumber.Other, Message = "test error"};
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -59,7 +67,7 @@ namespace SRSWebApi.Controllers
         {
             var rt = VhostApis.GetVhostsInstanceName(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId),
                 out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -76,7 +84,7 @@ namespace SRSWebApi.Controllers
         {
             var rt = VhostApis.GetVhostByDomain(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId), vhostDomain,
                 out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -92,7 +100,7 @@ namespace SRSWebApi.Controllers
         {
             var rt = VhostApis.GetVhostList(SystemApis.GetSrsManagerInstanceByDeviceId(deviceId),
                 out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -107,14 +115,14 @@ namespace SRSWebApi.Controllers
         public JsonResult GetVhostTemplate(VhostIngestInputType vtype)
         {
             var rt = VhostApis.GetVhostTemplate(vtype, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
         /// 创建一个vhost
         /// </summary>
         /// <param name="deviceId"></param>
-        /// <param name="vhost"></param>
+        /// <param name="vtype"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -130,11 +138,11 @@ namespace SRSWebApi.Controllers
             SrsvHostConfClass vhost = VhostApis.GetVhostTemplate(vtype, out ResponseStruct tmpRs);
             if (tmpRs.Code != (int) ErrorNumber.None)
             {
-                return Program.common.DelApisResult(vhost, tmpRs);
+                return Program.CommonFunctions.DelApisResult(vhost, tmpRs);
             }
 
             var rt = VhostApis.CreateVhost(srsManager, vhost, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -155,7 +163,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostApis.SetVhost(srsManager, vhost, out ResponseStruct rs, createIfNotFound);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -175,7 +183,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostApis.DeleteVhostByDomain(srsManager, domain, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -196,7 +204,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostApis.ChangeVhostDomain(srsManager, domain, newdomain, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }
 }

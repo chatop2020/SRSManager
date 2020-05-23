@@ -10,6 +10,9 @@ using SRSManageCommon;
 
 namespace SRSWebApi.Controllers
 {
+    /// <summary>
+    /// vhosttranscode接口类
+    /// </summary>
     [ApiController]
     [Route("")]
     public class VhostTranscodeController
@@ -19,6 +22,7 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="transcodeInstanceName"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -33,7 +37,7 @@ namespace SRSWebApi.Controllers
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostTranscodeApis.DeleteVhostTranscodeByTranscodeInstanceName(srsManager, vhostDomain,
                 transcodeInstanceName, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -53,7 +57,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostTranscodeApis.GetVhostTranscodeNameList(srsManager, out ResponseStruct rs, vhostDomain);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -75,7 +79,7 @@ namespace SRSWebApi.Controllers
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostTranscodeApis.GetVhostTranscode(srsManager, vhostDomain, transcodeInstanceName,
                 out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -83,6 +87,9 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="transcodeInstanceName"></param>
+        /// <param name="transcode"></param>
+        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -97,7 +104,7 @@ namespace SRSWebApi.Controllers
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostTranscodeApis.SetVhostTranscode(srsManager, vhostDomain, transcodeInstanceName, transcode,
                 out ResponseStruct rs, createIfNotFound);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -105,6 +112,7 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="transcode"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -117,7 +125,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostTranscodeApis.CreateVhostTranscode(srsManager, vhostDomain, transcode, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }
 }

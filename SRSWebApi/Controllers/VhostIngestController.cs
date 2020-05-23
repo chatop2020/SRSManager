@@ -10,6 +10,9 @@ using SRSManageCommon;
 
 namespace SRSWebApi.Controllers
 {
+    /// <summary>
+    /// vhostingest接口类
+    /// </summary>
     [ApiController]
     [Route("")]
     public class VhostIngestController
@@ -19,6 +22,7 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="ingestInstanceName"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -33,7 +37,7 @@ namespace SRSWebApi.Controllers
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostIngestApis.DeleteVhostIngestByIngestInstanceName(srsManager, vhostDomain, ingestInstanceName,
                 out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -53,7 +57,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostIngestApis.GetVhostIngestNameList(srsManager, out ResponseStruct rs, vhostDomain);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -74,7 +78,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostIngestApis.GetVhostIngest(srsManager, vhostDomain, ingestInstanceName, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -82,6 +86,9 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="ingest"></param>
+        /// <param name="createIfNotFound"></param>
+        /// <param name="ingestInstanceName"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -96,7 +103,7 @@ namespace SRSWebApi.Controllers
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostIngestApis.SetVhostIngest(srsManager, vhostDomain, ingestInstanceName, ingest,
                 out ResponseStruct rs, createIfNotFound);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -104,6 +111,7 @@ namespace SRSWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
+        /// <param name="ingest"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
@@ -116,7 +124,7 @@ namespace SRSWebApi.Controllers
             if (srsManager == null)
                 return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
             var rt = VhostIngestApis.CreateVhostIngest(srsManager, vhostDomain, ingest, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }
 }

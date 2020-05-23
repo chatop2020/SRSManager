@@ -9,6 +9,9 @@ using SRSWebApi.RequestModules;
 
 namespace SRSWebApi.Controllers
 {
+    /// <summary>
+    /// onvif设备接口类
+    /// </summary>
     [ApiController]
     [Route("")]
     public class OnvifController : ControllerBase
@@ -24,7 +27,7 @@ namespace SRSWebApi.Controllers
         public JsonResult InitAll()
         {
             var rt = OnvifMonitorApis.InitOnvifMonitorListWhenNotInit(out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
 
@@ -41,7 +44,7 @@ namespace SRSWebApi.Controllers
             var rt = OnvifMonitorApis.InitOnvifMonitorByIpAddrWhenNotInit(ipAddress, out ResponseStruct rs);
             if (rt == null)
             {
-                return Program.common.DelApisResult(null!, rs);
+                return Program.CommonFunctions.DelApisResult(null!, rs);
             }
 
             OnvifMonitorStruct ovm = new OnvifMonitorStruct();
@@ -66,7 +69,7 @@ namespace SRSWebApi.Controllers
 
             if (rt.MediaSourceInfoList != null)
                 ovm.MediaSourceInfoList = rt.MediaSourceInfoList;
-            return Program.common.DelApisResult(ovm, rs);
+            return Program.CommonFunctions.DelApisResult(ovm, rs);
         }
 
         /// <summary>
@@ -84,7 +87,7 @@ namespace SRSWebApi.Controllers
             v = (ptzZoomStruct.ZoomDir == ZoomDir.MORE) ? 1 : -1; //放大时值大于0,缩小时值小于0
             var rt = OnvifMonitorApis.SetPtzZoom(ptzZoomStruct.IpAddr, ptzZoomStruct.ProfileToken, v,
                 out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -99,7 +102,7 @@ namespace SRSWebApi.Controllers
         public JsonResult GetPtzPosition(PtzMoveStruct ptzMove)
         {
             var rt = OnvifMonitorApis.GetPtzPosition(ptzMove.IpAddr, ptzMove.ProfileToken, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
 
@@ -115,7 +118,7 @@ namespace SRSWebApi.Controllers
         public JsonResult PtzKeepMoveStop(PtzMoveStruct ptzMove)
         {
             var rt = OnvifMonitorApis.PtzKeepMoveStop(ptzMove.IpAddr, ptzMove.ProfileToken, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
 
@@ -132,7 +135,7 @@ namespace SRSWebApi.Controllers
         {
             var rt = OnvifMonitorApis.PtzMove(ptzMove.IpAddr, ptzMove.ProfileToken, (PtzMoveType) ptzMove.MoveType,
                 ptzMove.MoveDir, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
 
@@ -153,7 +156,7 @@ namespace SRSWebApi.Controllers
                 IpAddrs = request.IpAddrs,
             };
             var rt = OnvifMonitorApis.InitMonitors(req, out ResponseStruct rs, true);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
 
@@ -168,7 +171,7 @@ namespace SRSWebApi.Controllers
         public JsonResult GetMonitorList()
         {
             var rt = OnvifMonitorApis.GetOnvifMonitorList(out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
 
@@ -185,7 +188,7 @@ namespace SRSWebApi.Controllers
             var rt = OnvifMonitorApis.GetOnvifMonitor(ipAddress, out ResponseStruct rs);
             if (rt == null)
             {
-                return Program.common.DelApisResult(null!, rs);
+                return Program.CommonFunctions.DelApisResult(null!, rs);
             }
 
             OnvifMonitorStruct ovm = new OnvifMonitorStruct();
@@ -210,7 +213,7 @@ namespace SRSWebApi.Controllers
 
             if (rt.MediaSourceInfoList != null)
                 ovm.MediaSourceInfoList = rt.MediaSourceInfoList;
-            return Program.common.DelApisResult(ovm, rs);
+            return Program.CommonFunctions.DelApisResult(ovm, rs);
         }
     }
 }

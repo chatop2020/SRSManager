@@ -75,7 +75,7 @@ namespace SRSApis.SRSManager
                     Srs.Max_connections = 512;
                 }
 
-                srs_deviceId = SRSConfFile.Common.CreateUUID()?.Trim()!;
+                srs_deviceId = SRSManageCommon.Common.CreateUuid()?.Trim()!;
                 Srs.Srs_log_file = srs_WorkPath + srs_deviceId + "/srs.log";
                 Srs.Srs_log_level = "verbose"; //初始为观察者
                 Srs.Pid = srs_WorkPath + srs_deviceId + "/srs.pid";
@@ -104,7 +104,7 @@ namespace SRSApis.SRSManager
                 Srs.Http_api.Raw_Api.SectionsName = "raw_api";
                 Srs.Http_api.Raw_Api.Enabled = true;
                 Srs.Heartbeat = new SrsHeartbeatConfClass();
-                Srs.Heartbeat.Device_id = SRSConfFile.Common.AddDoubleQuotation(srs_deviceId !);
+                Srs.Heartbeat.Device_id = SRSManageCommon.Common.AddDoubleQuotation(srs_deviceId !);
                 Srs.Heartbeat.Enabled = true;
                 Srs.Heartbeat.SectionsName = "heartbeat";
                 Srs.Heartbeat.Interval = 5; //按秒计
@@ -220,9 +220,9 @@ namespace SRSApis.SRSManager
                     if (Srs.Heartbeat != null)
                     {
                         srs_ConfigPath = srs_WorkPath +
-                                         SRSConfFile.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!) +
+                                         SRSManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!) +
                                          ".conf";
-                        srs_deviceId = SRSConfFile.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!)!;
+                        srs_deviceId = SRSManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!)!;
                     }
 
                     return true;

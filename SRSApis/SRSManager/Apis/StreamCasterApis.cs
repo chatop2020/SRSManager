@@ -124,7 +124,7 @@ namespace SRSApis.SRSManager.Apis
 
             if (string.IsNullOrEmpty(streamCaster.InstanceName))
             {
-                streamCaster.InstanceName = SRSConfFile.Common.CreateUUID();
+                streamCaster.InstanceName = SRSManageCommon.Common.CreateUuid();
             }
 
             if (string.IsNullOrEmpty(streamCaster.SectionsName))

@@ -145,20 +145,6 @@
           "bin/placeholder/Mictlanix.DotNet.OnvifClient.dll": {}
         }
       },
-      "OnvifManager/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "Mictlanix.DotNet.OnvifClient": "1.0.0",
-          "SRSManageCommon": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/OnvifManager.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/OnvifManager.dll": {}
-        }
-      },
       "SRSManageCommon/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -536,11 +522,6 @@
       "path": "../OnvifClient/OnvifClient.csproj",
       "msbuildProject": "../OnvifClient/OnvifClient.csproj"
     },
-    "OnvifManager/1.0.0": {
-      "type": "project",
-      "path": "../OnvifManager/OnvifManager.csproj",
-      "msbuildProject": "../OnvifManager/OnvifManager.csproj"
-    },
     "SRSManageCommon/1.0.0": {
       "type": "project",
       "path": "../SRSManageCommon/SRSManageCommon.csproj",
@@ -550,7 +531,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Mictlanix.DotNet.OnvifClient >= 1.0.0",
-      "OnvifManager >= 1.0.0"
+      "SRSManageCommon >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -580,8 +561,8 @@
             "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj": {
               "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj"
             },
-            "/Users/qiuzhouwei/Projects/SRSManager/OnvifManager/OnvifManager.csproj": {
-              "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifManager/OnvifManager.csproj"
+            "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj": {
+              "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj"
             }
           }
         }

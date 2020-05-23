@@ -4,46 +4,110 @@
         <name>SRSWebApi</name>
     </assembly>
     <members>
-        <member name="M:SRSWebApi.Attributes.AuthVerifyAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+        <member name="T:SRSWebApi.Attributes.AuthVerifyAttribute">
             <summary>
-            判断用户session及allowkey的合法性
+            验证session和allowkey的类
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.Attributes.AuthVerifyAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            请求结束后
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:SRSWebApi.Common.GetTimeStampMilliseconds">
+        <member name="M:SRSWebApi.Attributes.AuthVerifyAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            请求进行中，判断用户session及allowkey的合法性
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:SRSWebApi.Attributes.LogAttribute">
+            <summary>
+            日志记录
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.Attributes.LogAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            请求后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:SRSWebApi.Attributes.LogAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            请求中
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:SRSWebApi.CommonFunctions">
+            <summary>
+            通用类
+            </summary>
+        </member>
+        <member name="F:SRSWebApi.CommonFunctions.WorkPath">
+            <summary>
+            工作目录
+            </summary>
+        </member>
+        <member name="F:SRSWebApi.CommonFunctions.ConfPath">
+            <summary>
+            配置文件地址
+            </summary>
+        </member>
+        <member name="F:SRSWebApi.CommonFunctions.BaseUrl">
+            <summary>
+            基础路由地址
+            </summary>
+        </member>
+        <member name="F:SRSWebApi.CommonFunctions.SessionManager">
+            <summary>
+            Session管理器
+            </summary>
+        </member>
+        <member name="F:SRSWebApi.CommonFunctions.IsDebug">
+            <summary>
+            调试模式下不启用授权和session验证
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.CommonFunctions.GetTimeStampMilliseconds">
             <summary>
             获取时间戳(毫秒级)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Common.CreateUUID">
+        <member name="M:SRSWebApi.CommonFunctions.CommonInit">
             <summary>
-            生成guid
+            通用类初始化
             </summary>
+        </member>
+        <member name="F:SRSWebApi.CommonFunctions.Conf">
+            <summary>
+            srswebapi配置文件类
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.CommonFunctions.CheckAuth(System.String,System.String,System.String)">
+            <summary>
+            检测session和allow
+            </summary>
+            <param name="ipAddr"></param>
+            <param name="allowKey"></param>
+            <param name="sessionCode"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Common.IsGuidByError(System.String)">
-            <summary>
-            是否为GUID
-            </summary>
-            <param name="strSrc"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SRSWebApi.Common.CheckPassword(System.String)">
+        <member name="M:SRSWebApi.CommonFunctions.CheckPassword(System.String)">
             <summary>
             检查密码
             </summary>
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Common.CheckSession(System.String)">
+        <member name="M:SRSWebApi.CommonFunctions.CheckSession(System.String)">
             <summary>
             检查Session是否正常
             </summary>
             <param name="sessionCode"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Common.CheckAllow(System.String,System.String)">
+        <member name="M:SRSWebApi.CommonFunctions.CheckAllow(System.String,System.String)">
             <summary>
             检查appkey
             </summary>
@@ -51,13 +115,73 @@
             <param name="allowKey"></param>
             <returns></returns>
         </member>
-        <member name="M:SRSWebApi.Common.DelApisResult(System.Object,SRSManageCommon.ResponseStruct)">
+        <member name="M:SRSWebApi.CommonFunctions.DelApisResult(System.Object,SRSManageCommon.ResponseStruct)">
             <summary>
             apis返回结果统一处理
             </summary>
             <param name="rt">返回值</param>
             <param name="rs">ResponseStruct</param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.AllowKey">
+            <summary>
+            allowkey管理类
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.AllowKey.Key">
+            <summary>
+            key值
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.AllowKey.IpArray">
+            <summary>
+            ip地址列表
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.Config">
+            <summary>
+            配置文件类
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.Config.HttpPort">
+            <summary>
+            http端口
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.Config.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.Config.AllowKeys">
+            <summary>
+            控制访问授权
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.Config.RebuidConfig(System.String)">
+            <summary>
+            写入配置文件
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Config.LoadConfig(System.String)">
+            <summary>
+            加载配置文件
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.AllowController">
+            <summary>
+            授权访问接口类
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.Controllers.AllowController.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            注入httpcontext
+            </summary>
+            <param name="httpContextAccessor"></param>
         </member>
         <member name="M:SRSWebApi.Controllers.AllowController.RefreshSession(SRSWebApi.Session)">
             <summary>
@@ -100,6 +224,11 @@
             </summary>
             <param name="request"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.OnvifController">
+            <summary>
+            onvif设备接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.OnvifController.InitAll">
             <summary>
@@ -159,6 +288,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SRSWebApi.Controllers.SystemController">
+            <summary>
+            系统信息接口类
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.Controllers.SystemController.LoadOnvifConfig">
+            <summary>
+            加载onvif配置文件接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.SystemController.WriteOnvifConfig">
+            <summary>
+            写入onvif配置文件接口
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SRSWebApi.Controllers.SystemController.DelOnvifConfigByIpAddress(System.String)">
             <summary>
             删除一个onvif摄像头配置
@@ -176,6 +322,11 @@
             获取SRS实例列表
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostBandcheckController">
+            <summary>
+            vhostbandcheck接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostBandcheckController.DeleteVhostBandcheck(System.String,System.String)">
             <summary>
@@ -199,6 +350,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="bandcheck"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostBandcheckController.CreateVhostBandcheck(System.String,System.String,SRSConfFile.SRSConfClass.Bandcheck)">
@@ -207,7 +360,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="bandcheck"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostClusterController">
+            <summary>
+            vhostcluster接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostClusterController.DeleteVhostCluster(System.String,System.String)">
             <summary>
@@ -231,6 +390,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="cluster"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostClusterController.CreateVhostCluster(System.String,System.String,SRSConfFile.SRSConfClass.Cluster)">
@@ -239,11 +400,24 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="cluster"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostController">
+            <summary>
+            vhost控制类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostController.TestGet(System.String)">
             <summary>
             获取Vhost列表的Instance名称列表
+            </summary>
+            <param name="deviceId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.Controllers.VhostController.TestPost(System.String)">
+            <summary>
+            测试post方法
             </summary>
             <param name="deviceId"></param>
             <returns></returns>
@@ -282,7 +456,7 @@
             创建一个vhost
             </summary>
             <param name="deviceId"></param>
-            <param name="vhost"></param>
+            <param name="vtype"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostController.SetVhost(System.String,SRSConfFile.SRSConfClass.SrsvHostConfClass,System.Boolean)">
@@ -311,6 +485,11 @@
             <param name="newdomain"></param>
             <returns></returns>
         </member>
+        <member name="T:SRSWebApi.Controllers.VhostDashController">
+            <summary>
+            vhostdash接口类
+            </summary>
+        </member>
         <member name="M:SRSWebApi.Controllers.VhostDashController.DeleteVhostDash(System.String,System.String)">
             <summary>
             删除Dash配置
@@ -333,6 +512,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="dash"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostDashController.CreateVhostDash(System.String,System.String,SRSConfFile.SRSConfClass.Dash)">
@@ -341,7 +522,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="dash"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostDvrController">
+            <summary>
+            vhost dvr接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostDvrController.DeleteVhostDvr(System.String,System.String)">
             <summary>
@@ -365,6 +552,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="dvr"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostDvrController.CreateVhostDvr(System.String,System.String,SRSConfFile.SRSConfClass.Dvr)">
@@ -373,7 +562,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="dvr"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostExecController">
+            <summary>
+            vhostexec接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostExecController.DeleteVhostExec(System.String,System.String)">
             <summary>
@@ -397,6 +592,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="exec"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostExecController.CreateVhostExec(System.String,System.String,SRSConfFile.SRSConfClass.Exec)">
@@ -405,7 +602,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="exec"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostForwardController">
+            <summary>
+            vhostforward接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostForwardController.DeleteVhostForward(System.String,System.String)">
             <summary>
@@ -429,6 +632,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="forward"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostForwardController.CreateVhostForward(System.String,System.String,SRSConfFile.SRSConfClass.Forward)">
@@ -437,7 +642,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="forward"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostHdsController">
+            <summary>
+            vhosthds接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHdsController.DeleteVhostHds(System.String,System.String)">
             <summary>
@@ -461,6 +672,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="dhs"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHdsController.CreateVhostHds(System.String,System.String,SRSConfFile.SRSConfClass.Hds)">
@@ -469,7 +682,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="dhs"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostHlsController">
+            <summary>
+            vhosthls接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHlsController.DeleteVhostHls(System.String,System.String)">
             <summary>
@@ -493,6 +712,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="hls"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHlsController.CreateVhostHls(System.String,System.String,SRSConfFile.SRSConfClass.Hls)">
@@ -501,7 +722,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="hls"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostHttpHooksController">
+            <summary>
+            vhosthttphooks接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHttpHooksController.DeleteVhostHttpHooks(System.String,System.String)">
             <summary>
@@ -525,6 +752,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="httpHooks"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHttpHooksController.CreateVhostHttpHooks(System.String,System.String,SRSConfFile.SRSConfClass.HttpHooks)">
@@ -533,7 +762,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="httpHooks"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostHttpRemux">
+            <summary>
+            vhosthttpremux接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHttpRemux.DeleteVhostHttpRemux(System.String,System.String)">
             <summary>
@@ -557,6 +792,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="httpRemux"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHttpRemux.CreateVhostHttpRemux(System.String,System.String,SRSConfFile.SRSConfClass.HttpRemux)">
@@ -565,7 +802,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="httpRemux"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostHttpStaticController">
+            <summary>
+            vhosthttpstatic接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHttpStaticController.DeleteVhostHttpStatic(System.String,System.String)">
             <summary>
@@ -589,6 +832,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="httpStatic"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostHttpStaticController.CreateVhostHttpStatic(System.String,System.String,SRSConfFile.SRSConfClass.HttpStatic)">
@@ -597,7 +842,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="httpStatic"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostIngestController">
+            <summary>
+            vhostingest接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostIngestController.DeleteVhostIngestByIngestInstanceName(System.String,System.String,System.String)">
             <summary>
@@ -605,6 +856,7 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="ingestInstanceName"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostIngestController.GetVhostIngestNameList(System.String,System.String)">
@@ -630,6 +882,9 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="ingest"></param>
+            <param name="createIfNotFound"></param>
+            <param name="ingestInstanceName"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostIngestController.CreateVhostIngest(System.String,System.String,SRSConfFile.SRSConfClass.Ingest)">
@@ -638,7 +893,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="ingest"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostPlayController">
+            <summary>
+            vhostplay接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostPlayController.DeleteVhostPlay(System.String,System.String)">
             <summary>
@@ -662,6 +923,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="play"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostPlayController.CreateVhostPlay(System.String,System.String,SRSConfFile.SRSConfClass.Play)">
@@ -670,7 +933,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="play"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostPublishController">
+            <summary>
+            vhostpublish接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostPublishController.DeleteVhostPublish(System.String,System.String)">
             <summary>
@@ -694,6 +963,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="publish"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostPublishController.CreateVhostPublish(System.String,System.String,SRSConfFile.SRSConfClass.Publish)">
@@ -702,7 +973,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="publish"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostReferController">
+            <summary>
+            vhostrefer接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostReferController.DeleteVhostRefer(System.String,System.String)">
             <summary>
@@ -726,6 +1003,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="refer"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostReferController.CreateVhostRefer(System.String,System.String,SRSConfFile.SRSConfClass.Refer)">
@@ -734,7 +1013,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="refer"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostRtcController">
+            <summary>
+            vhostrtc接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostRtcController.DeleteVhostRtc(System.String,System.String)">
             <summary>
@@ -758,6 +1043,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="rtc"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostRtcController.CreateVhostRtc(System.String,System.String,SRSConfFile.SRSConfClass.Rtc)">
@@ -766,7 +1053,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="rtc"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostSecurityController">
+            <summary>
+            vhostsecurity接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostSecurityController.DeleteVhostSecurity(System.String,System.String)">
             <summary>
@@ -790,6 +1083,8 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="security"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostSecurityController.CreateVhostSecurity(System.String,System.String,SRSConfFile.SRSConfClass.Security)">
@@ -798,7 +1093,13 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="security"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Controllers.VhostTranscodeController">
+            <summary>
+            vhosttranscode接口类
+            </summary>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostTranscodeController.DeleteVhostTranscodeByTranscodeInstanceName(System.String,System.String,System.String)">
             <summary>
@@ -806,6 +1107,7 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="transcodeInstanceName"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostTranscodeController.GetVhostTranscodeNameList(System.String,System.String)">
@@ -831,6 +1133,9 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="transcodeInstanceName"></param>
+            <param name="transcode"></param>
+            <param name="createIfNotFound"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.Controllers.VhostTranscodeController.CreateVhostTranscode(System.String,System.String,SRSConfFile.SRSConfClass.Transcode)">
@@ -839,13 +1144,20 @@
             </summary>
             <param name="deviceId"></param>
             <param name="vhostDomain"></param>
+            <param name="transcode"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.JsonHelper">
+            <summary>
+            json工具类
+            </summary>
         </member>
         <member name="M:SRSWebApi.JsonHelper.ToJson(System.Object,Newtonsoft.Json.MissingMemberHandling)">
             <summary>
             将指定的对象序列化成 JSON 数据。
             </summary>
             <param name="obj">要序列化的对象。</param>
+            <param name="p"></param>
             <returns></returns>
         </member>
         <member name="M:SRSWebApi.JsonHelper.FromJson``1(System.String,Newtonsoft.Json.MissingMemberHandling)">
@@ -854,7 +1166,54 @@
             </summary>
             <typeparam name="T">对象类型。</typeparam>
             <param name="json">JSON 数据。</param>
+            <param name="p"></param>
             <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.LogWebApiWriter">
+            <summary>
+            webapi日志记录类
+            </summary>
+        </member>
+        <member name="F:SRSWebApi.LogWebApiWriter._lockLogFile">
+            <summary>
+            锁对象
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.LogWebApiWriter.WriteWebApiLog(System.String,System.String,System.ConsoleColor)">
+            <summary>
+            日志写入方法
+            </summary>
+            <param name="message"></param>
+            <param name="info"></param>
+            <param name="color"></param>
+        </member>
+        <member name="T:SRSWebApi.Program">
+            <summary>
+            入口类
+            </summary>
+        </member>
+        <member name="F:SRSWebApi.Program.CommonFunctions">
+            <summary>
+            webapi的通用类
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.Program.Main(System.String[])">
+            <summary>
+            程序入口
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:SRSWebApi.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            创建httpwebserver
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.RequestModules.ReqDelAllow">
+            <summary>
+            删除一个授权访问的请求结构 
+            </summary>
         </member>
         <member name="P:SRSWebApi.RequestModules.ReqDelAllow.Password">
             <summary>
@@ -863,8 +1222,184 @@
         </member>
         <member name="P:SRSWebApi.RequestModules.ReqDelAllow.Key">
             <summary>
-            guid
+            uuid
             </summary>
+        </member>
+        <member name="T:SRSWebApi.RequestModules.ReqGetAllows">
+            <summary>
+            获取授权访问列表的请求结构
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqGetAllows.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.RequestModules.ReqGetSession">
+            <summary>
+            获取Session的请求结构 
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqGetSession.AllowKey">
+            <summary>
+            allowkey
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.RequestModules.ReqInitOnvif">
+            <summary>
+            初始化onvif设备的请求结构
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqInitOnvif.IpAddrs">
+            <summary>
+            ip 地址串，多个ip 地址用空格隔开
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqInitOnvif.Username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqInitOnvif.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqInitOnvif.IpAddrArray">
+            <summary>
+            初始化时不用传，此字段为内部使用
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.RequestModules.ReqInitOnvif.GetIpArray">
+            <summary>
+            从ip地址串中获取ip 地址列表
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.RequestModules.ReqSetOrAddAllow">
+            <summary>
+            设置或添加Allow的请求结构
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqSetOrAddAllow.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.RequestModules.ReqSetOrAddAllow.Allowkey">
+            <summary>
+            授权反问key
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.ResponseModules.AllowListModule">
+            <summary>
+            allowkeylist返回结构
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.AllowListModule.AllowKeys">
+            <summary>
+            AllowKey列表
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.ResponseModules.BaseResponseModule">
+             <summary>
+            webapi返回结构
+             </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.BaseResponseModule.Code">
+            <summary>
+            返回http status code
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.BaseResponseModule.Msg">
+            <summary>
+            返回的message
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.ResponseModules.SrsInstanceModule">
+            <summary>
+            SRS实例模型
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.SrsInstanceModule.DeviceId">
+            <summary>
+            设备ID
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.SrsInstanceModule.IsInit">
+            <summary>
+            是否初始化
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.SrsInstanceModule.IsRunning">
+            <summary>
+            是否正在运行中
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.SrsInstanceModule.ConfigPath">
+            <summary>
+            配置文件路径
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.SrsInstanceModule.PidValue">
+            <summary>
+            pid值
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.SrsInstanceModule.SrsProcessWorkPath">
+            <summary>
+            srs进程运行目录
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.ResponseModules.SrsInstanceModule.SrsInstanceWorkPath">
+            <summary>
+            srs实例运行目录
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.Session">
+            <summary>
+            session类结构
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.Session.AllowKey">
+            <summary>
+            授权key
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.Session.RefreshCode">
+            <summary>
+            session刷新code
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.Session.SessionCode">
+            <summary>
+            session code
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.Session.Expires">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="T:SRSWebApi.SessionManager">
+            <summary>
+            session管理
+            </summary>
+        </member>
+        <member name="P:SRSWebApi.SessionManager.SessionList">
+            <summary>
+            session列表
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.SessionManager.clearExpires">
+            <summary>
+            清空已经过期的session
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.SessionManager.#ctor">
+            <summary>
+            Session管理构造函数
+            </summary>
+            <exception cref="T:System.Exception"></exception>
         </member>
         <member name="M:SRSWebApi.SessionManager.RefreshSession(SRSWebApi.Session)">
             <summary>
@@ -872,6 +1407,42 @@
             </summary>
             <param name="session">旧的session</param>
             <returns></returns>
+        </member>
+        <member name="M:SRSWebApi.SessionManager.NewSession(System.String)">
+            <summary>
+            创建一个新的Session
+            </summary>
+            <param name="allowKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SRSWebApi.Startup">
+            <summary>
+            webapi配置启动类
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            webapi配置启动类构造
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:SRSWebApi.Startup.Configuration">
+            <summary>
+            配置类
+            </summary>
+        </member>
+        <member name="M:SRSWebApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:SRSWebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+             This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
         </member>
     </members>
 </doc>

@@ -7,33 +7,33 @@ namespace SRSApis.SRSManager.Apis.ApiModules
     [Serializable]
     public class DiscoveryOnvifMonitors
     {
-        private string ipAddrs;
-        private string? username;
-        private string? password;
-        private List<string> ipAddrArray = new List<string>();
+        private string _ipAddrs = null!;
+        private string? _username;
+        private string? _password;
+        private List<string> _ipAddrArray = new List<string>();
 
         public string IpAddrs
         {
-            get => ipAddrs;
-            set => ipAddrs = value ?? throw new ArgumentNullException(nameof(value));
+            get => _ipAddrs;
+            set => _ipAddrs = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         public string? Username
         {
-            get => username;
-            set => username = value;
+            get => _username;
+            set => _username = value;
         }
 
         public string? Password
         {
-            get => password;
-            set => password = value;
+            get => _password;
+            set => _password = value;
         }
 
         public List<string> IpAddrArray
         {
-            get => ipAddrArray;
-            set => ipAddrArray = value ?? throw new ArgumentNullException(nameof(value));
+            get => _ipAddrArray;
+            set => _ipAddrArray = value ?? throw new ArgumentNullException(nameof(value));
         }
 
 
@@ -41,7 +41,7 @@ namespace SRSApis.SRSManager.Apis.ApiModules
         {
             if (!string.IsNullOrEmpty(IpAddrs))
             {
-                ipAddrArray = ipAddrs.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
+                _ipAddrArray = _ipAddrs.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
             }
         }
     }

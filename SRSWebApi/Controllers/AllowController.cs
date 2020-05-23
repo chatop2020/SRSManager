@@ -9,15 +9,22 @@ using SRSWebApi.ResponseModules;
 
 namespace SRSWebApi.Controllers
 {
+    /// <summary>
+    /// 授权访问接口类
+    /// </summary>
     [ApiController]
     [Route("")]
     public class AllowController : ControllerBase
     {
-        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
+        /// <summary>
+        /// 注入httpcontext
+        /// </summary>
+        /// <param name="httpContextAccessor"></param>
         public AllowController(IHttpContextAccessor httpContextAccessor)
         {
-            this.httpContextAccessor = httpContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -30,13 +37,14 @@ namespace SRSWebApi.Controllers
         [Route("/Allow/RefreshSession")]
         public JsonResult RefreshSession([FromBody] Session request)
         {
-            string remoteIpaddr = this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
-            if (Program.common.CheckAllow(remoteIpaddr, request.AllowKey))
+            string remoteIpaddr = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            if (Program.CommonFunctions.CheckAllow(remoteIpaddr, request.AllowKey))
             {
-                if (request.Expires >= Program.common.GetTimeStampMilliseconds() ||
-                    Math.Abs(request.Expires - Program.common.GetTimeStampMilliseconds()) < (1000 * 60)) //1分钟内要过期的就刷新
+                if (request.Expires >= Program.CommonFunctions.GetTimeStampMilliseconds() ||
+                    Math.Abs(request.Expires - Program.CommonFunctions.GetTimeStampMilliseconds()) <
+                    (1000 * 60)) //1分钟内要过期的就刷新
                 {
-                    Session session = Program.common.SessionManager.RefreshSession(request);
+                    Session session = Program.CommonFunctions.SessionManager.RefreshSession(request);
                     if (session != null)
                     {
                         var result = new JsonResult(session);
@@ -90,11 +98,11 @@ namespace SRSWebApi.Controllers
         [Route("/Allow/GetSession")]
         public JsonResult GetSession([FromBody] ReqGetSession request)
         {
-            string remoteIpaddr = this.httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            string remoteIpaddr = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
             string allowKey = request.AllowKey;
-            if (Program.common.CheckAllow(remoteIpaddr, allowKey))
+            if (Program.CommonFunctions.CheckAllow(remoteIpaddr, allowKey))
             {
-                Session session = Program.common.SessionManager.NewSession(allowKey);
+                Session session = Program.CommonFunctions.SessionManager.NewSession(allowKey);
                 var result = new JsonResult(session);
                 result.StatusCode = (int) HttpStatusCode.OK;
                 return result;
@@ -122,16 +130,16 @@ namespace SRSWebApi.Controllers
         [Route("/Allow/SetAllowByKey")]
         public JsonResult SetAllowByKey([FromBody] ReqSetOrAddAllow request)
         {
-            if (Program.common.CheckPassword(request.Password))
+            if (Program.CommonFunctions.CheckPassword(request.Password))
             {
                 bool found = false;
-                for (int i = 0; i <= Program.common.conf.AllowKeys.Count - 1; i++)
+                for (int i = 0; i <= Program.CommonFunctions.Conf.AllowKeys.Count - 1; i++)
                 {
-                    if (Program.common.conf.AllowKeys[i].Key.Trim().ToLower()
+                    if (Program.CommonFunctions.Conf.AllowKeys[i].Key.Trim().ToLower()
                         .Equals(request.Allowkey.Key.Trim().ToLower()))
                     {
-                        Program.common.conf.AllowKeys[i] = request.Allowkey;
-                        if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                        Program.CommonFunctions.Conf.AllowKeys[i] = request.Allowkey;
+                        if (Program.CommonFunctions.Conf.RebuidConfig(Program.CommonFunctions.ConfPath))
                         {
                             found = true;
                         }
@@ -188,15 +196,16 @@ namespace SRSWebApi.Controllers
         [Route("/Allow/DelAllowByKey")]
         public JsonResult DelAllowByKey([FromBody] ReqDelAllow request)
         {
-            if (Program.common.CheckPassword(request.Password))
+            if (Program.CommonFunctions.CheckPassword(request.Password))
             {
                 bool found = false;
-                for (int i = 0; i <= Program.common.conf.AllowKeys.Count - 1; i++)
+                for (int i = 0; i <= Program.CommonFunctions.Conf.AllowKeys.Count - 1; i++)
                 {
-                    if (Program.common.conf.AllowKeys[i].Key.Trim().ToLower().Equals(request.Key.Trim().ToLower()))
+                    if (Program.CommonFunctions.Conf.AllowKeys[i].Key.Trim().ToLower()
+                        .Equals(request.Key.Trim().ToLower()))
                     {
-                        Program.common.conf.AllowKeys[i] = null;
-                        if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                        Program.CommonFunctions.Conf.AllowKeys[i] = null!;
+                        if (Program.CommonFunctions.Conf.RebuidConfig(Program.CommonFunctions.ConfPath))
                         {
                             found = true;
                         }
@@ -207,7 +216,7 @@ namespace SRSWebApi.Controllers
 
                 if (found)
                 {
-                    SRSApis.Common.RemoveNull(Program.common.conf.AllowKeys);
+                    SRSApis.Common.RemoveNull(Program.CommonFunctions.Conf.AllowKeys);
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.None,
@@ -256,9 +265,9 @@ namespace SRSWebApi.Controllers
         public JsonResult AddAllow([FromBody] ReqSetOrAddAllow request)
         {
             JsonResult result;
-            if (Program.common.CheckPassword(request.Password))
+            if (Program.CommonFunctions.CheckPassword(request.Password))
             {
-                var obj = Program.common.conf.AllowKeys.FindLast(x =>
+                var obj = Program.CommonFunctions.Conf.AllowKeys.FindLast(x =>
                     x.Key.Trim().ToLower().Equals(request.Allowkey.Key.Trim().ToLower()));
 
                 if (obj != null)
@@ -274,7 +283,7 @@ namespace SRSWebApi.Controllers
                 }
 
                 if (string.IsNullOrEmpty(request.Allowkey.Key.Trim()) ||
-                    !Program.common.IsGuidByError(request.Allowkey.Key))
+                    !SRSManageCommon.Common.IsUuidByError(request.Allowkey.Key))
                 {
                     ResponseStruct rs = new ResponseStruct()
                     {
@@ -286,8 +295,8 @@ namespace SRSWebApi.Controllers
                     return result;
                 }
 
-                Program.common.conf.AllowKeys.Add(request.Allowkey);
-                if (Program.common.conf.RebuidConfig(Program.common.ConfPath))
+                Program.CommonFunctions.Conf.AllowKeys.Add(request.Allowkey);
+                if (Program.CommonFunctions.Conf.RebuidConfig(Program.CommonFunctions.ConfPath))
                 {
                     ResponseStruct rs = new ResponseStruct()
                     {
@@ -334,11 +343,11 @@ namespace SRSWebApi.Controllers
         [Route("Allow/GetAllows")]
         public JsonResult GetAllows([FromBody] ReqGetAllows request)
         {
-            if (Program.common.CheckPassword(request.Password))
+            if (Program.CommonFunctions.CheckPassword(request.Password))
             {
                 AllowListModule result = new AllowListModule()
                 {
-                    AllowKeys = Program.common.conf.AllowKeys,
+                    AllowKeys = Program.CommonFunctions.Conf.AllowKeys,
                 };
                 var result2 = new JsonResult(result);
                 result2.StatusCode = (int) HttpStatusCode.OK;

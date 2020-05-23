@@ -3,6 +3,9 @@ using Newtonsoft.Json.Converters;
 
 namespace SRSWebApi
 {
+    /// <summary>
+    /// json工具类
+    /// </summary>
     public static class JsonHelper
     {
         private static JsonSerializerSettings _jsonSettings;
@@ -22,6 +25,7 @@ namespace SRSWebApi
         /// 将指定的对象序列化成 JSON 数据。
         /// </summary>
         /// <param name="obj">要序列化的对象。</param>
+        /// <param name="p"></param>
         /// <returns></returns>
         public static string ToJson(this object obj, MissingMemberHandling p = MissingMemberHandling.Error)
         {
@@ -44,6 +48,7 @@ namespace SRSWebApi
         /// </summary>
         /// <typeparam name="T">对象类型。</typeparam>
         /// <param name="json">JSON 数据。</param>
+        /// <param name="p"></param>
         /// <returns></returns>
         public static T FromJson<T>(this string json, MissingMemberHandling p = MissingMemberHandling.Error)
         {

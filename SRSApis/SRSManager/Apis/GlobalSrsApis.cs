@@ -11,7 +11,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="sm"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool ISRunning(SrsManager sm, out ResponseStruct rs)
+        public static bool IsRunning(SrsManager sm, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -27,7 +27,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="sm"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool ISInit(SrsManager sm, out ResponseStruct rs)
+        public static bool IsInit(SrsManager sm, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -43,7 +43,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="sm"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool StartSRS(SrsManager sm, out ResponseStruct rs)
+        public static bool StartSrs(SrsManager sm, out ResponseStruct rs)
         {
             return sm.Start(out rs);
         }
@@ -54,7 +54,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="sm"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool StopSRS(SrsManager sm, out ResponseStruct rs)
+        public static bool StopSrs(SrsManager sm, out ResponseStruct rs)
         {
             return sm.Stop(out rs);
         }
@@ -65,7 +65,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="sm"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool RestartSRS(SrsManager sm, out ResponseStruct rs)
+        public static bool RestartSrs(SrsManager sm, out ResponseStruct rs)
         {
             return sm.Restart(out rs);
         }
@@ -76,7 +76,7 @@ namespace SRSApis.SRSManager.Apis
         /// <param name="sm"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool ReloadSRS(SrsManager sm, out ResponseStruct rs)
+        public static bool ReloadSrs(SrsManager sm, out ResponseStruct rs)
         {
             return sm.Reload(out rs);
         }

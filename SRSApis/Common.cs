@@ -14,26 +14,26 @@ namespace SRSApis
     [Serializable]
     public class OnvifConfig
     {
-        private string ipAddr;
-        private string? username;
-        private string? password;
+        private string _ipAddr = null!;
+        private string? _username;
+        private string? _password;
 
         public string IpAddr
         {
-            get => ipAddr;
-            set => ipAddr = value ?? throw new ArgumentNullException(nameof(value));
+            get => _ipAddr;
+            set => _ipAddr = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         public string? Username
         {
-            get => username;
-            set => username = value;
+            get => _username;
+            set => _username = value;
         }
 
         public string? Password
         {
-            get => password;
-            set => password = value;
+            get => _password;
+            set => _password = value;
         }
     }
 
@@ -167,7 +167,7 @@ namespace SRSApis
                     {
                         string configStr = JsonHelper.ToJson(onvifList);
                         configStr = JsonHelper.ConvertJsonString(configStr);
-                        
+
                         if (string.IsNullOrEmpty(configStr))
                         {
                             return false;

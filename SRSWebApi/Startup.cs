@@ -9,16 +9,30 @@ using Microsoft.OpenApi.Models;
 
 namespace SRSWebApi
 {
+    /// <summary>
+    /// webapi配置启动类
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// webapi配置启动类构造
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// 配置类
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             // 注册Swagger服务
@@ -27,14 +41,18 @@ namespace SRSWebApi
                 // 添加文档信息
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SRSWebApi", Version = "v1"});
                 //c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Model.xml"));//这里增加model注释，返回值会增加注释：需要Edu.Model项目属性，生成中输出xml文件
-                c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Swagger.xml"));
+                c.IncludeXmlComments(Path.Combine(Program.CommonFunctions.WorkPath, "Edu.Swagger.xml"));
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        ///  This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

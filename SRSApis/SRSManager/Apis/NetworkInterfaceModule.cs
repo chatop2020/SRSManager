@@ -2,37 +2,37 @@ namespace SRSApis.SRSManager.Apis.ApiModules
 {
     public class NetworkInterfaceModule
     {
-        private ushort? index;
-        private string? name;
-        private string? mac;
+        private ushort? _index;
+        private string? _name;
+        private string? _mac;
 
-        private string? type;
+        private string? _type;
 
         //  private string? speed; //linux not Supported
-        private string? ipaddr;
+        private string? _ipaddr;
 
         public ushort? Index
         {
-            get => index;
-            set => index = value;
+            get => _index;
+            set => _index = value;
         }
 
         public string? Name
         {
-            get => name;
-            set => name = value;
+            get => _name;
+            set => _name = value;
         }
 
         public string? Mac
         {
-            get => mac;
-            set => mac = value;
+            get => _mac;
+            set => _mac = value;
         }
 
         public string? Type
         {
-            get => type;
-            set => type = value;
+            get => _type;
+            set => _type = value;
         }
 
         /*public string? Speed //linux not Supported
@@ -43,8 +43,8 @@ namespace SRSApis.SRSManager.Apis.ApiModules
 
         public string? Ipaddr
         {
-            get => ipaddr;
-            set => ipaddr = value;
+            get => _ipaddr;
+            set => _ipaddr = value;
         }
     }
 }

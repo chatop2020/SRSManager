@@ -6,13 +6,36 @@ using SRSApis;
 
 namespace SRSWebApi
 {
-    public class Common
+    /// <summary>
+    /// 通用类
+    /// </summary>
+    public class CommonFunctions
+
     {
-        public string WorkPath;
-        public string ConfPath;
-        public string BaseUrl;
-        public SessionManager SessionManager;
-        public bool isDebug = true;
+        /// <summary>
+        /// 工作目录
+        /// </summary>
+        public string WorkPath = null!;
+
+        /// <summary>
+        /// 配置文件地址
+        /// </summary>
+        public string ConfPath = null!;
+
+        /// <summary>
+        /// 基础路由地址
+        /// </summary>
+        public string BaseUrl = null!;
+
+        /// <summary>
+        /// Session管理器
+        /// </summary>
+        public SessionManager SessionManager = null!;
+
+        /// <summary>
+        /// 调试模式下不启用授权和session验证
+        /// </summary>
+        public readonly bool IsDebug = true;
 
 
         /// <summary>
@@ -24,25 +47,16 @@ namespace SRSWebApi
             return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         }
 
-        public Common()
-        {
-        }
 
         /// <summary>
-        /// 生成guid
+        /// 通用类初始化
         /// </summary>
-        /// <returns></returns>
-        public string CreateUUID()
-        {
-            return Guid.NewGuid().ToString("D");
-        }
-
         public void CommonInit()
         {
             WorkPath = Environment.CurrentDirectory + "/";
             ConfPath = WorkPath + "srswebapi.wconf";
-            BaseUrl = "http://*:" + conf.HttpPort;
-            if (conf.LoadConfig(ConfPath))
+            BaseUrl = "http://*:" + Conf.HttpPort;
+            if (Conf.LoadConfig(ConfPath))
             {
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
@@ -54,34 +68,19 @@ namespace SRSWebApi
             }
         }
 
+
         /// <summary>
-        /// 是否为GUID
+        /// srswebapi配置文件类
         /// </summary>
-        /// <param name="strSrc"></param>
+        public Config Conf = new Config();
+
+        /// <summary>
+        /// 检测session和allow
+        /// </summary>
+        /// <param name="ipAddr"></param>
+        /// <param name="allowKey"></param>
+        /// <param name="sessionCode"></param>
         /// <returns></returns>
-        public bool IsGuidByError(string strSrc)
-        {
-            if (String.IsNullOrEmpty(strSrc))
-            {
-                return false;
-            }
-
-            bool _result = false;
-            try
-            {
-                Guid _t = new Guid(strSrc);
-                _result = true;
-            }
-            catch
-            {
-            }
-
-            return _result;
-        }
-
-        public Config conf = new Config();
-
-
         public bool CheckAuth(string ipAddr, string allowKey, string sessionCode)
         {
             if (!CheckSession(sessionCode)) return false;
@@ -96,7 +95,7 @@ namespace SRSWebApi
         /// <returns></returns>
         public bool CheckPassword(string password)
         {
-            return conf.Password.Trim().Equals(password.Trim());
+            return Conf.Password.Trim().Equals(password.Trim());
         }
 
         /// <summary>
@@ -107,7 +106,7 @@ namespace SRSWebApi
         public bool CheckSession(string sessionCode)
         {
             Session s = this.SessionManager.SessionList.FindLast(x =>
-                x.SessionCode.Trim().ToLower().Equals(sessionCode.Trim().ToLower()));
+                x.SessionCode.Trim().ToLower().Equals(sessionCode.Trim().ToLower()))!;
             long a = this.GetTimeStampMilliseconds();
 
             if (s != null && s.Expires > a)
@@ -126,8 +125,8 @@ namespace SRSWebApi
         /// <returns></returns>
         public bool CheckAllow(string ipAddr, string allowKey)
         {
-            if (conf.AllowKeys == null || conf.AllowKeys.Count == 0) return true;
-            foreach (var ak in conf.AllowKeys)
+            if (Conf.AllowKeys == null || Conf.AllowKeys.Count == 0) return true;
+            foreach (var ak in Conf.AllowKeys)
             {
                 foreach (var ip in ak.IpArray)
                 {

@@ -18,16 +18,14 @@ namespace SRSApis
             _jsonSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             _jsonSettings.Converters.Add(datetimeConverter);
         }
-       
+
         //格式化json字符串
         public static string ConvertJsonString(string str)
-
         {
-           
             JsonSerializer serializer = new JsonSerializer();
             TextReader tr = new StringReader(str);
             JsonTextReader jtr = new JsonTextReader(tr);
-            object obj = serializer.Deserialize(jtr);
+            object? obj = serializer.Deserialize(jtr);
             if (obj != null)
             {
                 StringWriter textWriter = new StringWriter();
@@ -43,9 +41,9 @@ namespace SRSApis
             else
             {
                 return str;
-            }         
+            }
         }
-        
+
 
         /// <summary>
         /// 将指定的对象序列化成 JSON 数据。
@@ -59,8 +57,8 @@ namespace SRSApis
             {
                 if (null == obj)
                     return null!;
-               
-                
+
+
                 return JsonConvert.SerializeObject(obj, Formatting.None, _jsonSettings);
             }
             catch

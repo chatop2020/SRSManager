@@ -10,22 +10,6 @@ namespace SRSConfFile
         public static string? WorkDir = Environment.CurrentDirectory + "/";
         public static List<SrsSystemConfClass> StreamNodes = new List<SrsSystemConfClass>();
 
-
-        public static string? CreateUUID()
-        {
-            return Guid.NewGuid().ToString("D");
-        }
-
-        public static string? AddDoubleQuotation(string s)
-        {
-            return "\"" + s + "\"";
-        }
-
-        public static string? RemoveDoubleQuotation(string s)
-        {
-            return s.Replace("\"", "").Replace("{", "").Replace("}", "");
-        }
-
         public static string GetBoolStr(PropertyInfo p, object? obj)
         {
             if (p.PropertyType == typeof(bool?))

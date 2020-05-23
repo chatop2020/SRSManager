@@ -9,10 +9,17 @@ using SRSWebApi.ResponseModules;
 
 namespace SRSWebApi.Controllers
 {
+    /// <summary>
+    /// 系统信息接口类
+    /// </summary>
     [ApiController]
     [Route("")]
     public class SystemController : ControllerBase
     {
+        /// <summary>
+        /// 加载onvif配置文件接口
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
@@ -20,9 +27,13 @@ namespace SRSWebApi.Controllers
         public JsonResult LoadOnvifConfig()
         {
             var rt = SystemApis.LoadOnvifConfig(out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
+        /// <summary>
+        /// 写入onvif配置文件接口
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
@@ -30,7 +41,7 @@ namespace SRSWebApi.Controllers
         public JsonResult WriteOnvifConfig()
         {
             var rt = SystemApis.WriteOnvifConfig(out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
 
@@ -45,7 +56,7 @@ namespace SRSWebApi.Controllers
         public JsonResult DelOnvifConfigByIpAddress(string ipAddress)
         {
             var rt = SystemApis.DelOnvifConfigByIpAddress(ipAddress, out ResponseStruct rs);
-            return Program.common.DelApisResult(rt, rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>

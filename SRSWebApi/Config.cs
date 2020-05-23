@@ -5,48 +5,69 @@ using System.Linq;
 
 namespace SRSWebApi
 {
+    /// <summary>
+    /// allowkey管理类
+    /// </summary>
     [Serializable]
     public class AllowKey
     {
-        private string key;
-        private List<string> ipArray = new List<string>();
+        private string _key = null!;
+        private List<string> _ipArray = new List<string>();
 
+        /// <summary>
+        /// key值
+        /// </summary>
         public string Key
         {
-            get => key;
-            set => key = value;
+            get => _key;
+            set => _key = value;
         }
 
+        /// <summary>
+        /// ip地址列表
+        /// </summary>
         public List<string> IpArray
         {
-            get => ipArray;
-            set => ipArray = value;
+            get => _ipArray;
+            set => _ipArray = value;
         }
     }
 
+    /// <summary>
+    /// 配置文件类
+    /// </summary>
     [Serializable]
     public class Config
     {
-        private ushort http_port = 5800;
-        private string password = "password123!@#";
-        private List<AllowKey> allowKeys = new List<AllowKey>();
+        private ushort _httpPort = 5800;
+        private string _password = "password123!@#";
+        private List<AllowKey> _allowKeys = new List<AllowKey>();
 
+        /// <summary>
+        /// http端口
+        /// </summary>
         public ushort HttpPort
         {
-            get => http_port;
-            set => http_port = value;
+            get => _httpPort;
+            set => _httpPort = value;
         }
 
+        /// <summary>
+        /// 密码
+        /// </summary>
         public string Password
         {
-            get => password;
-            set => password = value;
+            get => _password;
+            set => _password = value;
         }
 
+        /// <summary>
+        /// 控制访问授权
+        /// </summary>
         public List<AllowKey> AllowKeys
         {
-            get => allowKeys;
-            set => allowKeys = value;
+            get => _allowKeys;
+            set => _allowKeys = value;
         }
 
         private string[] getkv(string s, char splitchar)
@@ -111,12 +132,17 @@ namespace SRSWebApi
             return true;
         }
 
+        /// <summary>
+        /// 写入配置文件
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public bool RebuidConfig(string filePath)
         {
             List<string> writeFile = new List<string>();
             writeFile.Add("httpport=" + HttpPort + ";");
             writeFile.Add("password=" + Password + ";");
-            foreach (var ak in allowKeys)
+            foreach (var ak in _allowKeys)
             {
                 if (ak != null)
                 {
@@ -144,6 +170,11 @@ namespace SRSWebApi
             }
         }
 
+        /// <summary>
+        /// 加载配置文件
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public bool LoadConfig(string filePath)
         {
             if (File.Exists(filePath))

@@ -12,76 +12,78 @@ namespace SRSManageCommon
     [Serializable]
     public class OnvifMonitor
     {
-        private string host;
-        private string username;
-        private string password;
-        private List<MediaSourceInfo> mediaSourceInfoList;
-        private DeviceClient device;
-        private MediaClient media;
-        private PTZClient ptz;
-        private List<OnvifProfile> onvifProfileList;
-        private bool isInited = false;
+        private string _host;
+        private string _username;
+        private string _password;
+        private List<MediaSourceInfo> _mediaSourceInfoList;
+        private DeviceClient _device;
+        private MediaClient _media;
+        private PTZClient _ptz;
+        private List<OnvifProfile> _onvifProfileList;
+        private bool _isInited = false;
 
         public List<MediaSourceInfo> MediaSourceInfoList
         {
-            get => mediaSourceInfoList;
-            set => mediaSourceInfoList = value;
+            get => _mediaSourceInfoList;
+            set => _mediaSourceInfoList = value;
         }
 
         public List<OnvifProfile> OnvifProfileList
         {
-            get => onvifProfileList;
-            set => onvifProfileList = value;
+            get => _onvifProfileList;
+            set => _onvifProfileList = value;
         }
 
         public string Host
         {
-            get => host;
-            set => host = value;
+            get => _host;
+            set => _host = value;
         }
 
         public string Username
         {
-            get => username;
-            set => username = value;
+            get => _username;
+            set => _username = value;
         }
 
         public string Password
         {
-            get => password;
-            set => password = value;
+            get => _password;
+            set => _password = value;
         }
 
         public DeviceClient Device
         {
-            get => device;
-            set => device = value;
+            get => _device;
+            set => _device = value;
         }
 
         public MediaClient Media
         {
-            get => media;
-            set => media = value;
+            get => _media;
+            set => _media = value;
         }
 
         public PTZClient Ptz
         {
-            get => ptz;
-            set => ptz = value;
+            get => _ptz;
+            set => _ptz = value;
         }
 
 
         public bool IsInited
         {
-            get => isInited;
-            set => isInited = value;
+            get => _isInited;
+            set => _isInited = value;
         }
 
         /// <summary>
         /// 检测ip是否为onvif设备
         /// </summary>
         /// <returns></returns>
+#pragma warning disable 1998
         public async Task<bool> CheckOnvifMonitor()
+#pragma warning restore 1998
         {
             DeviceClient tmp = null;
             try
@@ -106,9 +108,9 @@ namespace SRSManageCommon
         /// <exception cref="Exception"></exception>
         public OnvifMonitor(string host, string username, string password)
         {
-            this.host = host;
-            this.username = username;
-            this.password = password;
+            this._host = host;
+            this._username = username;
+            this._password = password;
             if (!CheckOnvifMonitor().Result)
             {
                 throw new Exception("此host非onvif设备");
@@ -157,7 +159,7 @@ namespace SRSManageCommon
             MediaUri mediaUrl = null;
             try
             {
-                mediaUrl = await media.GetStreamUriAsync(streamSetup, p.token);
+                mediaUrl = await _media.GetStreamUriAsync(streamSetup, p.token);
             }
             catch
             {
@@ -235,15 +237,15 @@ namespace SRSManageCommon
                             x = 1
                         }
                     }).Wait();
-                    var ptz_status = ptz.GetStatusAsync(profileToken).Result;
-                    zoom = ptz_status.Position.Zoom.x;
+                    var ptzStatus = _ptz.GetStatusAsync(profileToken).Result;
+                    zoom = ptzStatus.Position.Zoom.x;
                     return true;
                 }
 
                 zoom = -99999;
                 return false;
             }
-            catch (Exception ex)
+            catch
             {
                 zoom = -99999;
                 return false;
@@ -260,8 +262,8 @@ namespace SRSManageCommon
         {
             try
             {
-                ptz.StopAsync(profileToken, true, true);
-                var ptz_status = ptz.GetStatusAsync(profileToken).Result;
+                _ptz.StopAsync(profileToken, true, true);
+                var ptz_status = _ptz.GetStatusAsync(profileToken).Result;
                 pos = new ResponsePosition()
                 {
                     X = ptz_status.Position.PanTilt.x,
@@ -270,7 +272,7 @@ namespace SRSManageCommon
                 };
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 pos = null;
                 return false;
@@ -293,7 +295,7 @@ namespace SRSManageCommon
                     x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()));
                 if (p != null && p.PtzMoveSupport && p.ContinuousMove)
                 {
-                    ptz.ContinuousMoveAsync(profileToken, new PTZSpeed
+                    _ptz.ContinuousMoveAsync(profileToken, new PTZSpeed
                     {
                         PanTilt = new Vector2D
                         {
@@ -306,7 +308,7 @@ namespace SRSManageCommon
                         }
                     }, null).Wait();
 
-                    var ptz_status = ptz.GetStatusAsync(profileToken).Result;
+                    var ptz_status = _ptz.GetStatusAsync(profileToken).Result;
                     pos = new ResponsePosition()
                     {
                         X = ptz_status.Position.PanTilt.x,
@@ -318,7 +320,7 @@ namespace SRSManageCommon
 
                 return false;
             }
-            catch (Exception ex)
+            catch
             {
                 pos = null;
                 return false;
@@ -412,7 +414,7 @@ namespace SRSManageCommon
                         }
                     }).Wait();
 
-                    var ptz_status = ptz.GetStatusAsync(profileToken).Result;
+                    var ptz_status = _ptz.GetStatusAsync(profileToken).Result;
                     pos = new ResponsePosition()
                     {
                         X = ptz_status.Position.PanTilt.x,
@@ -424,7 +426,7 @@ namespace SRSManageCommon
 
                 return false;
             }
-            catch (Exception ex)
+            catch
             {
                 pos = null;
                 return false;
@@ -440,7 +442,7 @@ namespace SRSManageCommon
         {
             try
             {
-                var ptz_status = ptz.GetStatusAsync(profileToken).Result;
+                var ptz_status = _ptz.GetStatusAsync(profileToken).Result;
                 ResponsePosition pos = new ResponsePosition()
                 {
                     X = ptz_status.Position.PanTilt.x,
@@ -449,7 +451,7 @@ namespace SRSManageCommon
                 };
                 return pos;
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
@@ -470,7 +472,7 @@ namespace SRSManageCommon
                 if (absoluteMove || relativeMove || continuousMove) return true;
                 return false;
             }
-            catch (Exception ex)
+            catch
             {
                 absoluteMove = false;
                 relativeMove = false;
@@ -483,7 +485,9 @@ namespace SRSManageCommon
         /// 初始化监视器
         /// </summary>
         /// <returns></returns>
+#pragma warning disable 1998
         public async Task InitMonitor()
+#pragma warning restore 1998
         {
             try
             {
@@ -541,14 +545,14 @@ namespace SRSManageCommon
                     //none to print
                 }
 
-                isInited = true;
+                _isInited = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 Device = null;
                 Media = null;
-                ptz = null;
+                _ptz = null;
                 OnvifProfileList = null;
             }
         }
