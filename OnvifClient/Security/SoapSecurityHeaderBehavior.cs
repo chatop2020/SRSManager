@@ -7,9 +7,9 @@ namespace Mictlanix.DotNet.Onvif.Security
 {
     public class SoapSecurityHeaderBehavior : IEndpointBehavior
     {
-        readonly string username;
         readonly string password;
         readonly TimeSpan time_shift;
+        readonly string username;
 
         public SoapSecurityHeaderBehavior(string username, string password) : this(username, password,
             TimeSpan.FromMilliseconds(0))

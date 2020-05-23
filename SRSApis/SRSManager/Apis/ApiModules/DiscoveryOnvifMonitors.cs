@@ -7,10 +7,10 @@ namespace SRSApis.SRSManager.Apis.ApiModules
     [Serializable]
     public class DiscoveryOnvifMonitors
     {
-        private string _ipAddrs = null!;
-        private string? _username;
-        private string? _password;
         private List<string> _ipAddrArray = new List<string>();
+        private string _ipAddrs = null!;
+        private string? _password;
+        private string? _username;
 
         public string IpAddrs
         {

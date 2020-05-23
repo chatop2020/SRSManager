@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Net.Mime;
 using System.Threading;
+using SRSManageCommon;
 
 namespace SRSWebApi
 {
@@ -11,9 +11,9 @@ namespace SRSWebApi
     public class Session
     {
         private string _allowKey = null!;
-        private string _sessionCode = null!;
-        private string _refreshCode = null!;
         private long _expires; //过期时间
+        private string _refreshCode = null!;
+        private string _sessionCode = null!;
 
         /// <summary>
         /// 授权key
@@ -62,6 +62,26 @@ namespace SRSWebApi
         private byte addMin = 50;
 
         /// <summary>
+        /// Session管理构造函数
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        public SessionManager()
+        {
+            new Thread(new ThreadStart(delegate
+            {
+                try
+                {
+                    clearExpires();
+                }
+                catch (Exception ex)
+                {
+                    LogWebApiWriter.WriteWebApiLog(ex.Message, ex.StackTrace!, ConsoleColor.Red);
+                    throw ex;
+                }
+            })).Start();
+        }
+
+        /// <summary>
         /// session列表
         /// </summary>
         public List<Session> SessionList
@@ -93,26 +113,6 @@ namespace SRSWebApi
         }
 
         /// <summary>
-        /// Session管理构造函数
-        /// </summary>
-        /// <exception cref="Exception"></exception>
-        public SessionManager()
-        {
-            new Thread(new ThreadStart(delegate
-            {
-                try
-                {
-                    clearExpires();
-                }
-                catch (Exception ex)
-                {
-                    LogWebApiWriter.WriteWebApiLog(ex.Message, ex.StackTrace!, ConsoleColor.Red);
-                    throw ex;
-                }
-            })).Start();
-        }
-
-        /// <summary>
         /// 刷新Session
         /// </summary>
         /// <param name="session">旧的session</param>
@@ -129,8 +129,8 @@ namespace SRSWebApi
                         _sessionList[i].RefreshCode.Trim().ToLower().Equals(session.RefreshCode.Trim().ToLower())
                     )
                     {
-                        _sessionList[i].SessionCode = SRSManageCommon.Common.CreateUuid()!;
-                        _sessionList[i].RefreshCode = SRSManageCommon.Common.CreateUuid()!;
+                        _sessionList[i].SessionCode = Common.CreateUuid()!;
+                        _sessionList[i].RefreshCode = Common.CreateUuid()!;
                         _sessionList[i].Expires =
                             Program.CommonFunctions.GetTimeStampMilliseconds() + (addMin * 1000 * 60);
                         found = true;
@@ -168,8 +168,8 @@ namespace SRSWebApi
             Session session = new Session()
             {
                 AllowKey = allowKey,
-                SessionCode = SRSManageCommon.Common.CreateUuid()!,
-                RefreshCode = SRSManageCommon.Common.CreateUuid()!,
+                SessionCode = Common.CreateUuid()!,
+                RefreshCode = Common.CreateUuid()!,
                 Expires = Program.CommonFunctions.GetTimeStampMilliseconds() + (addMin * 1000 * 60),
             };
             lock (this)

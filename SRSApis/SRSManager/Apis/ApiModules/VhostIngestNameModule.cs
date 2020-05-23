@@ -5,8 +5,8 @@ namespace SRSApis.SRSManager.Apis.ApiModules
     [Serializable]
     public class VhostIngestNameModule
     {
-        private string? vhostDomain;
         private string? ingestInstanceName;
+        private string? vhostDomain;
 
         public string? VhostDomain
         {

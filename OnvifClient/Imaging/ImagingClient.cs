@@ -116,8 +116,7 @@ namespace Mictlanix.DotNet.Onvif.Imaging
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
     public interface ImagingChannel : Mictlanix.DotNet.Onvif.Imaging.Imaging, System.ServiceModel.IClientChannel
-    {
-    }
+    {}
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
@@ -179,15 +178,6 @@ namespace Mictlanix.DotNet.Onvif.Imaging
             return base.Channel.GetPresetsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Imaging.GetPresetsResponse> GetPresetsAsync(
-            string VideoSourceToken)
-        {
-            Mictlanix.DotNet.Onvif.Imaging.GetPresetsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Imaging.GetPresetsRequest();
-            inValue.VideoSourceToken = VideoSourceToken;
-            return ((Mictlanix.DotNet.Onvif.Imaging.Imaging) (this)).GetPresetsAsync(inValue);
-        }
-
         public System.Threading.Tasks.Task<ImagingPreset> GetCurrentPresetAsync(string VideoSourceToken)
         {
             return base.Channel.GetCurrentPresetAsync(VideoSourceToken);
@@ -196,6 +186,15 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         public System.Threading.Tasks.Task SetCurrentPresetAsync(string VideoSourceToken, string PresetToken)
         {
             return base.Channel.SetCurrentPresetAsync(VideoSourceToken, PresetToken);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Imaging.GetPresetsResponse> GetPresetsAsync(
+            string VideoSourceToken)
+        {
+            Mictlanix.DotNet.Onvif.Imaging.GetPresetsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Imaging.GetPresetsRequest();
+            inValue.VideoSourceToken = VideoSourceToken;
+            return ((Mictlanix.DotNet.Onvif.Imaging.Imaging) (this)).GetPresetsAsync(inValue);
         }
 
         public virtual System.Threading.Tasks.Task OpenAsync()

@@ -7,9 +7,9 @@ namespace Mictlanix.DotNet.Onvif.Security
 {
     public class SoapSecurityHeaderInspector : IClientMessageInspector
     {
-        readonly string username;
         readonly string password;
         readonly TimeSpan time_shift;
+        readonly string username;
 
         public SoapSecurityHeaderInspector(string username, string password, TimeSpan timeShift)
         {

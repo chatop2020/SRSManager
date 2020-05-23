@@ -8,15 +8,14 @@ namespace Mictlanix.DotNet.Onvif.Device
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class Service
     {
-        private string namespaceField;
-
-        private string xAddrField;
+        private System.Xml.Linq.XElement[] anyField;
 
         private System.Xml.Linq.XElement capabilitiesField;
+        private string namespaceField;
 
         private OnvifVersion versionField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private string xAddrField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
@@ -65,11 +64,10 @@ namespace Mictlanix.DotNet.Onvif.Device
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class UserCredential
     {
-        private string userNameField;
+        private UserCredentialExtension extensionField;
 
         private string passwordField;
-
-        private UserCredentialExtension extensionField;
+        private string userNameField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
@@ -120,15 +118,14 @@ namespace Mictlanix.DotNet.Onvif.Device
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class StorageConfigurationData
     {
+        private StorageConfigurationDataExtension extensionField;
         private string localPathField;
 
         private string storageUriField;
 
-        private UserCredential userField;
-
-        private StorageConfigurationDataExtension extensionField;
-
         private string typeField;
+
+        private UserCredential userField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
@@ -229,33 +226,30 @@ namespace Mictlanix.DotNet.Onvif.Device
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class SystemCapabilities
     {
-        private bool discoveryResolveField;
-
-        private bool discoveryResolveFieldSpecified;
+        private string[] autoGeoField;
 
         private bool discoveryByeField;
 
         private bool discoveryByeFieldSpecified;
+        private bool discoveryResolveField;
 
-        private bool remoteDiscoveryField;
-
-        private bool remoteDiscoveryFieldSpecified;
-
-        private bool systemBackupField;
-
-        private bool systemBackupFieldSpecified;
-
-        private bool systemLoggingField;
-
-        private bool systemLoggingFieldSpecified;
+        private bool discoveryResolveFieldSpecified;
 
         private bool firmwareUpgradeField;
 
         private bool firmwareUpgradeFieldSpecified;
 
+        private int geoLocationEntriesField;
+
+        private bool geoLocationEntriesFieldSpecified;
+
         private bool httpFirmwareUpgradeField;
 
         private bool httpFirmwareUpgradeFieldSpecified;
+
+        private bool httpSupportInformationField;
+
+        private bool httpSupportInformationFieldSpecified;
 
         private bool httpSystemBackupField;
 
@@ -265,25 +259,27 @@ namespace Mictlanix.DotNet.Onvif.Device
 
         private bool httpSystemLoggingFieldSpecified;
 
-        private bool httpSupportInformationField;
+        private int maxStorageConfigurationsField;
 
-        private bool httpSupportInformationFieldSpecified;
+        private bool maxStorageConfigurationsFieldSpecified;
+
+        private bool remoteDiscoveryField;
+
+        private bool remoteDiscoveryFieldSpecified;
 
         private bool storageConfigurationField;
 
         private bool storageConfigurationFieldSpecified;
 
-        private int maxStorageConfigurationsField;
-
-        private bool maxStorageConfigurationsFieldSpecified;
-
-        private int geoLocationEntriesField;
-
-        private bool geoLocationEntriesFieldSpecified;
-
-        private string[] autoGeoField;
-
         private string[] storageTypesSupportedField;
+
+        private bool systemBackupField;
+
+        private bool systemBackupFieldSpecified;
+
+        private bool systemLoggingField;
+
+        private bool systemLoggingFieldSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -516,22 +512,6 @@ namespace Mictlanix.DotNet.Onvif.Device
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class SecurityCapabilities
     {
-        private bool tLS10Field;
-
-        private bool tLS10FieldSpecified;
-
-        private bool tLS11Field;
-
-        private bool tLS11FieldSpecified;
-
-        private bool tLS12Field;
-
-        private bool tLS12FieldSpecified;
-
-        private bool onboardKeyGenerationField;
-
-        private bool onboardKeyGenerationFieldSpecified;
-
         private bool accessPolicyConfigField;
 
         private bool accessPolicyConfigFieldSpecified;
@@ -544,47 +524,62 @@ namespace Mictlanix.DotNet.Onvif.Device
 
         private bool dot1XFieldSpecified;
 
-        private bool remoteUserHandlingField;
+        private bool httpDigestField;
 
-        private bool remoteUserHandlingFieldSpecified;
-
-        private bool x509TokenField;
-
-        private bool x509TokenFieldSpecified;
-
-        private bool sAMLTokenField;
-
-        private bool sAMLTokenFieldSpecified;
+        private bool httpDigestFieldSpecified;
 
         private bool kerberosTokenField;
 
         private bool kerberosTokenFieldSpecified;
 
-        private bool usernameTokenField;
+        private int maxPasswordLengthField;
 
-        private bool usernameTokenFieldSpecified;
-
-        private bool httpDigestField;
-
-        private bool httpDigestFieldSpecified;
-
-        private bool rELTokenField;
-
-        private bool rELTokenFieldSpecified;
-
-        private int[] supportedEAPMethodsField;
-
-        private int maxUsersField;
-
-        private bool maxUsersFieldSpecified;
+        private bool maxPasswordLengthFieldSpecified;
 
         private int maxUserNameLengthField;
 
         private bool maxUserNameLengthFieldSpecified;
 
-        private int maxPasswordLengthField;
+        private int maxUsersField;
 
-        private bool maxPasswordLengthFieldSpecified;
+        private bool maxUsersFieldSpecified;
+
+        private bool onboardKeyGenerationField;
+
+        private bool onboardKeyGenerationFieldSpecified;
+
+        private bool rELTokenField;
+
+        private bool rELTokenFieldSpecified;
+
+        private bool remoteUserHandlingField;
+
+        private bool remoteUserHandlingFieldSpecified;
+
+        private bool sAMLTokenField;
+
+        private bool sAMLTokenFieldSpecified;
+
+        private int[] supportedEAPMethodsField;
+        private bool tLS10Field;
+
+        private bool tLS10FieldSpecified;
+
+        private bool tLS11Field;
+
+        private bool tLS11FieldSpecified;
+
+        private bool tLS12Field;
+
+        private bool tLS12FieldSpecified;
+
+        private bool usernameTokenField;
+
+        private bool usernameTokenFieldSpecified;
+
+        private bool x509TokenField;
+
+        private bool x509TokenFieldSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute("TLS1.0")]
@@ -873,21 +868,9 @@ namespace Mictlanix.DotNet.Onvif.Device
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class NetworkCapabilities
     {
-        private bool iPFilterField;
+        private bool dHCPv6Field;
 
-        private bool iPFilterFieldSpecified;
-
-        private bool zeroConfigurationField;
-
-        private bool zeroConfigurationFieldSpecified;
-
-        private bool iPVersion6Field;
-
-        private bool iPVersion6FieldSpecified;
-
-        private bool dynDNSField;
-
-        private bool dynDNSFieldSpecified;
+        private bool dHCPv6FieldSpecified;
 
         private bool dot11ConfigurationField;
 
@@ -897,17 +880,28 @@ namespace Mictlanix.DotNet.Onvif.Device
 
         private bool dot1XConfigurationsFieldSpecified;
 
+        private bool dynDNSField;
+
+        private bool dynDNSFieldSpecified;
+
         private bool hostnameFromDHCPField;
 
         private bool hostnameFromDHCPFieldSpecified;
+        private bool iPFilterField;
+
+        private bool iPFilterFieldSpecified;
+
+        private bool iPVersion6Field;
+
+        private bool iPVersion6FieldSpecified;
 
         private int nTPField;
 
         private bool nTPFieldSpecified;
 
-        private bool dHCPv6Field;
+        private bool zeroConfigurationField;
 
-        private bool dHCPv6FieldSpecified;
+        private bool zeroConfigurationFieldSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -1060,13 +1054,12 @@ namespace Mictlanix.DotNet.Onvif.Device
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class DeviceServiceCapabilities
     {
+        private MiscCapabilities miscField;
         private NetworkCapabilities networkField;
 
         private SecurityCapabilities securityField;
 
         private SystemCapabilities systemField;
-
-        private MiscCapabilities miscField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order = 0)]

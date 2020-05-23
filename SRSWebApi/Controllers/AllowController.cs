@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Net;
-using SRSManageCommon;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SRSManageCommon;
 using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using SRSWebApi.ResponseModules;
+using Common = SRSApis.Common;
 
 namespace SRSWebApi.Controllers
 {
@@ -216,7 +217,7 @@ namespace SRSWebApi.Controllers
 
                 if (found)
                 {
-                    SRSApis.Common.RemoveNull(Program.CommonFunctions.Conf.AllowKeys);
+                    Common.RemoveNull(Program.CommonFunctions.Conf.AllowKeys);
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.None,

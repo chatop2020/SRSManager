@@ -8,35 +8,34 @@ namespace Mictlanix.DotNet.Onvif.Media
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
     public partial class Capabilities
     {
-        private ProfileCapabilities profileCapabilitiesField;
-
-        private StreamingCapabilities streamingCapabilitiesField;
-
         private System.Xml.Linq.XElement[] anyField;
 
-        private bool snapshotUriField;
+        private bool eXICompressionField;
 
-        private bool snapshotUriFieldSpecified;
+        private bool eXICompressionFieldSpecified;
+
+        private bool oSDField;
+
+        private bool oSDFieldSpecified;
+        private ProfileCapabilities profileCapabilitiesField;
 
         private bool rotationField;
 
         private bool rotationFieldSpecified;
 
-        private bool videoSourceModeField;
+        private bool snapshotUriField;
 
-        private bool videoSourceModeFieldSpecified;
+        private bool snapshotUriFieldSpecified;
 
-        private bool oSDField;
-
-        private bool oSDFieldSpecified;
+        private StreamingCapabilities streamingCapabilitiesField;
 
         private bool temporaryOSDTextField;
 
         private bool temporaryOSDTextFieldSpecified;
 
-        private bool eXICompressionField;
+        private bool videoSourceModeField;
 
-        private bool eXICompressionFieldSpecified;
+        private bool videoSourceModeFieldSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
@@ -220,23 +219,22 @@ namespace Mictlanix.DotNet.Onvif.Media
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
     public partial class VideoSourceMode
     {
-        private float maxFramerateField;
-
-        private VideoResolution maxResolutionField;
-
-        private string encodingsField;
-
-        private bool rebootField;
-
         private string descriptionField;
-
-        private VideoSourceModeExtension extensionField;
-
-        private string tokenField;
 
         private bool enabledField;
 
         private bool enabledFieldSpecified;
+
+        private string encodingsField;
+
+        private VideoSourceModeExtension extensionField;
+        private float maxFramerateField;
+
+        private VideoResolution maxResolutionField;
+
+        private bool rebootField;
+
+        private string tokenField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
@@ -320,18 +318,6 @@ namespace Mictlanix.DotNet.Onvif.Media
     {
         private System.Xml.Linq.XElement[] anyField;
 
-        private bool rTPMulticastField;
-
-        private bool rTPMulticastFieldSpecified;
-
-        private bool rTP_TCPField;
-
-        private bool rTP_TCPFieldSpecified;
-
-        private bool rTP_RTSP_TCPField;
-
-        private bool rTP_RTSP_TCPFieldSpecified;
-
         private bool nonAggregateControlField;
 
         private bool nonAggregateControlFieldSpecified;
@@ -339,6 +325,18 @@ namespace Mictlanix.DotNet.Onvif.Media
         private bool noRTSPStreamingField;
 
         private bool noRTSPStreamingFieldSpecified;
+
+        private bool rTP_RTSP_TCPField;
+
+        private bool rTP_RTSP_TCPFieldSpecified;
+
+        private bool rTP_TCPField;
+
+        private bool rTP_TCPFieldSpecified;
+
+        private bool rTPMulticastField;
+
+        private bool rTPMulticastFieldSpecified;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]

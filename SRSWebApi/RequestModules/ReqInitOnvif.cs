@@ -10,10 +10,10 @@ namespace SRSWebApi.RequestModules
     [Serializable]
     public class ReqInitOnvif
     {
-        private string _ipAddrs = null!;
-        private string? _username;
-        private string? _password;
         private List<string> _ipAddrArray = new List<string>();
+        private string _ipAddrs = null!;
+        private string? _password;
+        private string? _username;
 
         /// <summary>
         /// ip 地址串，多个ip 地址用空格隔开

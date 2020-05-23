@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
-using SRSManageCommon;
 using SRSConfFile;
 using SRSConfFile.SRSConfClass;
+using SRSManageCommon;
 
 namespace SRSApis.SRSManager
 {
     public class SrsManager
     {
-        private string srs_pidValue = "";
-        private string srs_WorkPath = Environment.CurrentDirectory + "/";
+        public SrsSystemConfClass Srs = null!;
         public string srs_ConfigPath = "";
         public string srs_deviceId = "";
-        public SrsSystemConfClass Srs = null!;
+        private string srs_pidValue = "";
+        private string srs_WorkPath = Environment.CurrentDirectory + "/";
 
 
         public string SrsWorkPath
@@ -28,6 +28,69 @@ namespace SRSApis.SRSManager
         {
             get => srs_pidValue;
             set => srs_pidValue = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        /// <summary>
+        /// SRS是否完成初始化
+        /// </summary>
+        public bool Is_Init
+        {
+            get
+            {
+                if (Srs == null || Srs.Heartbeat == null)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// SRS是否正在运行中
+        /// </summary>
+        public bool IsRunning
+        {
+            get
+            {
+                if (Srs != null)
+                {
+                    string pidValue = "";
+                    if (getPidValue(Srs.Pid!, out pidValue))
+                    {
+                        string cmd = "";
+                        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                        {
+                            cmd = "ps -aux |grep " + pidValue + "|grep -v grep|awk \'{print $2}\'";
+                        }
+                        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                        {
+                            cmd = "ps -A |grep " + pidValue + "|grep -v grep|awk \'{print $1}\'";
+                        }
+
+                        string stdout = "";
+                        string errout = "";
+                        bool ret = LinuxShell.Run(cmd, 1000, out stdout, out errout);
+                        if (ret && string.IsNullOrEmpty(errout))
+                        {
+                            if (stdout.Trim().Equals(pidValue.Trim()))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+
+                        return false;
+                    }
+
+                    return false;
+                }
+
+                return false;
+            }
         }
 
         private bool checkFile()
@@ -171,22 +234,6 @@ namespace SRSApis.SRSManager
         }
 
         /// <summary>
-        /// SRS是否完成初始化
-        /// </summary>
-        public bool Is_Init
-        {
-            get
-            {
-                if (Srs == null || Srs.Heartbeat == null)
-                {
-                    return false;
-                }
-
-                return true;
-            }
-        }
-
-        /// <summary>
         /// 初始化SRS配置文件 ，配置文件加载成SRS配置实例
         /// </summary>
         /// <param name="confPath">配置文件路径</param>
@@ -245,53 +292,6 @@ namespace SRSApis.SRSManager
                     Code = ErrorNumber.ConfigFile,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.ConfigFile],
                 };
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// SRS是否正在运行中
-        /// </summary>
-        public bool IsRunning
-        {
-            get
-            {
-                if (Srs != null)
-                {
-                    string pidValue = "";
-                    if (getPidValue(Srs.Pid!, out pidValue))
-                    {
-                        string cmd = "";
-                        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                        {
-                            cmd = "ps -aux |grep " + pidValue + "|grep -v grep|awk \'{print $2}\'";
-                        }
-                        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                        {
-                            cmd = "ps -A |grep " + pidValue + "|grep -v grep|awk \'{print $1}\'";
-                        }
-
-                        string stdout = "";
-                        string errout = "";
-                        bool ret = LinuxShell.Run(cmd, 1000, out stdout, out errout);
-                        if (ret && string.IsNullOrEmpty(errout))
-                        {
-                            if (stdout.Trim().Equals(pidValue.Trim()))
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-
-                        return false;
-                    }
-
-                    return false;
-                }
-
                 return false;
             }
         }

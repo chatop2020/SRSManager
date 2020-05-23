@@ -3,16 +3,16 @@ namespace SRSApis.SRSManager.Apis.ApiModules
 {
     public class GlobalModule
     {
-        private ushort? listen; //rtmp listen
-        private ushort? httpApiListen; //httpapi listen;
-        private ushort? maxConnections; //maxConnections
-        private bool? httpApiEnable; //http api is enabled?
-        private bool? httpServerEnable; //http server is enabled?
-        private string? httpServerPath; //http server webroot path
-        private ushort? httpServerListen; //http server listen port
         private bool? heartbeatEnable; //heartbeat is enable?
-        private string? heartbeatUrl; //heartbeat post url
         private bool? heartbeatSummariesEnable; //heartbeat post with summaries?
+        private string? heartbeatUrl; //heartbeat post url
+        private bool? httpApiEnable; //http api is enabled?
+        private ushort? httpApiListen; //httpapi listen;
+        private bool? httpServerEnable; //http server is enabled?
+        private ushort? httpServerListen; //http server listen port
+        private string? httpServerPath; //http server webroot path
+        private ushort? listen; //rtmp listen
+        private ushort? maxConnections; //maxConnections
 
         public ushort? Listen
         {

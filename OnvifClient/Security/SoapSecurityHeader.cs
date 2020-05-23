@@ -9,14 +9,9 @@ namespace Mictlanix.DotNet.Onvif.Security
     public class SoapSecurityHeader : MessageHeader
     {
         const string ns_wsu = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd";
-        readonly string username;
         readonly string password;
         readonly TimeSpan time_shift;
-
-        public override string Name { get; } = "Security";
-
-        public override string Namespace { get; } =
-            "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd";
+        readonly string username;
 
         public SoapSecurityHeader(string username, string password, TimeSpan timeShift)
         {
@@ -24,6 +19,11 @@ namespace Mictlanix.DotNet.Onvif.Security
             this.password = password;
             time_shift = timeShift;
         }
+
+        public override string Name { get; } = "Security";
+
+        public override string Namespace { get; } =
+            "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd";
 
         protected override void OnWriteHeaderContents(XmlDictionaryWriter writer, MessageVersion messageVersion)
         {

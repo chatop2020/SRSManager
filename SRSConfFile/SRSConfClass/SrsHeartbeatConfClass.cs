@@ -7,21 +7,21 @@ namespace SRSConfFile.SRSConfClass
     {
         private string? _instanceName;
 
-        private bool? enabled; //if true will be push srs status to other server(webapi),
-
-        //to report self is live of died,config stats.network must be setted
-        private float? interval; //how many seconds to report a per
-
-        private string? url; //server webapi url,will write like this 
-
         //    {
         //       "device_id": "my-srs-device",
         //       "ip": "192.168.1.100"
         //   }
         private string? device_id; //the srs name
 
+        private bool? enabled; //if true will be push srs status to other server(webapi),
+
+        //to report self is live of died,config stats.network must be setted
+        private float? interval; //how many seconds to report a per
+
         private bool?
             summaries; //if true will be report srs run information ,such as cpu rate,memory use rate,network ...
+
+        private string? url; //server webapi url,will write like this 
 
 
         public SrsHeartbeatConfClass()

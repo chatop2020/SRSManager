@@ -4,10 +4,10 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
-using SRSManageCommon;
 using SRSApis.SRSManager;
 using SRSApis.SRSManager.Apis;
 using SRSConfFile;
+using SRSManageCommon;
 
 namespace SRSApis
 {
@@ -15,8 +15,8 @@ namespace SRSApis
     public class OnvifConfig
     {
         private string _ipAddr = null!;
-        private string? _username;
         private string? _password;
+        private string? _username;
 
         public string IpAddr
         {
@@ -43,6 +43,12 @@ namespace SRSApis
         public static readonly string LogPath = WorkPath + "logs/";
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
         public static List<OnvifInstance> OnvifManagers = new List<OnvifInstance>();
+
+        static Common()
+        {
+            ErrorMessage.Init();
+            Directory.CreateDirectory(LogPath);
+        }
 
         /// <summary>
         /// 对象克隆
@@ -277,12 +283,6 @@ namespace SRSApis
                     SrsManagers.Add(sm);
                 }
             }
-        }
-
-        static Common()
-        {
-            ErrorMessage.Init();
-            Directory.CreateDirectory(LogPath);
         }
     }
 }

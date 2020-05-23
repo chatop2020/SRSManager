@@ -6,10 +6,10 @@ namespace SRSConfFile.SRSConfClass
     public class SrsHttpServerConfClass : SrsConfBase
     {
         private string? _instanceName;
+        private bool? crossdomain;
+        private string? dir; //webroot path
         private bool? enabled;
         private ushort? listen = 8080;
-        private string? dir; //webroot path
-        private bool? crossdomain;
 
         public SrsHttpServerConfClass()
         {

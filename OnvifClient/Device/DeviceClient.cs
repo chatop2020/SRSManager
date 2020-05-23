@@ -693,6 +693,14 @@ namespace Mictlanix.DotNet.Onvif.Device
     public partial class GetDeviceInformationResponse
     {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+            Order = 2)]
+        public string FirmwareVersion;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+            Order = 4)]
+        public string HardwareId;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public string Manufacturer;
 
@@ -701,16 +709,8 @@ namespace Mictlanix.DotNet.Onvif.Device
         public string Model;
 
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 2)]
-        public string FirmwareVersion;
-
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 3)]
         public string SerialNumber;
-
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 4)]
-        public string HardwareId;
 
         public GetDeviceInformationResponse()
         {
@@ -1024,13 +1024,13 @@ namespace Mictlanix.DotNet.Onvif.Device
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetEndpointReferenceResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 0)]
-        public string GUID;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+            Order = 0)]
+        public string GUID;
 
         public GetEndpointReferenceResponse()
         {
@@ -1298,10 +1298,6 @@ namespace Mictlanix.DotNet.Onvif.Device
     public partial class SetDNSRequest
     {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 0)]
-        public bool FromDHCP;
-
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
         [System.Xml.Serialization.XmlElementAttribute("SearchDomain", DataType = "token")]
         public string[] SearchDomain;
@@ -1310,6 +1306,11 @@ namespace Mictlanix.DotNet.Onvif.Device
             Order = 2)]
         [System.Xml.Serialization.XmlElementAttribute("DNSManual")]
         public IPAddress[] DNSManual;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+            Order = 0)]
+        public bool FromDHCP;
+
 
         public SetDNSRequest()
         {
@@ -1382,10 +1383,6 @@ namespace Mictlanix.DotNet.Onvif.Device
     public partial class SetDynamicDNSRequest
     {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 0)]
-        public DynamicDNSType Type;
-
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
         [System.Xml.Serialization.XmlElementAttribute(DataType = "token")]
         public string Name;
@@ -1394,6 +1391,10 @@ namespace Mictlanix.DotNet.Onvif.Device
             Order = 2)]
         [System.Xml.Serialization.XmlElementAttribute(DataType = "duration")]
         public string TTL;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+            Order = 0)]
+        public DynamicDNSType Type;
 
         public SetDynamicDNSRequest()
         {
@@ -1578,12 +1579,12 @@ namespace Mictlanix.DotNet.Onvif.Device
         public string Subject;
 
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 2)]
-        public System.DateTime ValidNotBefore;
-
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 3)]
         public System.DateTime ValidNotAfter;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+            Order = 2)]
+        public System.DateTime ValidNotBefore;
 
         public CreateCertificateRequest()
         {
@@ -1764,6 +1765,10 @@ namespace Mictlanix.DotNet.Onvif.Device
     public partial class GetPkcs10RequestRequest
     {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+            Order = 2)]
+        public BinaryData Attributes;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         [System.Xml.Serialization.XmlElementAttribute(DataType = "token")]
         public string CertificateID;
@@ -1771,10 +1776,6 @@ namespace Mictlanix.DotNet.Onvif.Device
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
         public string Subject;
-
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 2)]
-        public BinaryData Attributes;
 
         public GetPkcs10RequestRequest()
         {
@@ -2193,10 +2194,8 @@ namespace Mictlanix.DotNet.Onvif.Device
     public partial class GetSystemUrisResponse
     {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("SystemLog", Namespace = "http://www.onvif.org/ver10/schema",
-            IsNullable = false)]
-        public SystemLogUri[] SystemLogUris;
+            Order = 3)]
+        public GetSystemUrisResponseExtension Extension;
 
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
@@ -2209,8 +2208,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         public string SystemBackupUri;
 
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
-            Order = 3)]
-        public GetSystemUrisResponseExtension Extension;
+            Order = 0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("SystemLog", Namespace = "http://www.onvif.org/ver10/schema",
+            IsNullable = false)]
+        public SystemLogUri[] SystemLogUris;
 
         public GetSystemUrisResponse()
         {
@@ -2258,6 +2259,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         [System.Xml.Serialization.XmlElementAttribute(DataType = "duration")]
         public string ExpectedDownTime;
 
+
         public StartFirmwareUpgradeResponse()
         {
         }
@@ -2296,6 +2298,7 @@ namespace Mictlanix.DotNet.Onvif.Device
             Order = 1)]
         [System.Xml.Serialization.XmlElementAttribute(DataType = "duration")]
         public string ExpectedDownTime;
+
 
         public StartSystemRestoreResponse()
         {
@@ -2446,8 +2449,7 @@ namespace Mictlanix.DotNet.Onvif.Device
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
     public interface DeviceChannel : Mictlanix.DotNet.Onvif.Device.Device, System.ServiceModel.IClientChannel
-    {
-    }
+    {}
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
@@ -2466,15 +2468,6 @@ namespace Mictlanix.DotNet.Onvif.Device
                 Mictlanix.DotNet.Onvif.Device.GetServicesRequest request)
         {
             return base.Channel.GetServicesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetServicesResponse> GetServicesAsync(
-            bool IncludeCapability)
-        {
-            Mictlanix.DotNet.Onvif.Device.GetServicesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetServicesRequest();
-            inValue.IncludeCapability = IncludeCapability;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetServicesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<DeviceServiceCapabilities> GetServiceCapabilitiesAsync()
@@ -2522,28 +2515,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.RestoreSystemAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.RestoreSystemResponse> RestoreSystemAsync(
-            BackupFile[] BackupFiles)
-        {
-            Mictlanix.DotNet.Onvif.Device.RestoreSystemRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.RestoreSystemRequest();
-            inValue.BackupFiles = BackupFiles;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).RestoreSystemAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemBackupResponse>
             Mictlanix.DotNet.Onvif.Device.Device.GetSystemBackupAsync(
                 Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest request)
         {
             return base.Channel.GetSystemBackupAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemBackupResponse> GetSystemBackupAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetSystemBackupAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<SystemLog> GetSystemLogAsync(SystemLogType LogType)
@@ -2563,13 +2540,6 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetScopesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetScopesResponse> GetScopesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetScopesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetScopesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetScopesAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetScopesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.SetScopesAsync(Mictlanix.DotNet.Onvif.Device.SetScopesRequest request)
@@ -2577,29 +2547,11 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.SetScopesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetScopesResponse> SetScopesAsync(
-            string[] Scopes)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetScopesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetScopesRequest();
-            inValue.Scopes = Scopes;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetScopesAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.AddScopesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.AddScopesAsync(Mictlanix.DotNet.Onvif.Device.AddScopesRequest request)
         {
             return base.Channel.AddScopesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.AddScopesResponse> AddScopesAsync(
-            string[] ScopeItem)
-        {
-            Mictlanix.DotNet.Onvif.Device.AddScopesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.AddScopesRequest();
-            inValue.ScopeItem = ScopeItem;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).AddScopesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.RemoveScopesResponse> RemoveScopesAsync(
@@ -2636,28 +2588,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetDPAddressesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDPAddressesResponse> GetDPAddressesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetDPAddressesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetDPAddressesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDPAddressesAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDPAddressesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.SetDPAddressesAsync(
                 Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest request)
         {
             return base.Channel.SetDPAddressesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDPAddressesResponse> SetDPAddressesAsync(
-            NetworkHost[] DPAddress)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest();
-            inValue.DPAddress = DPAddress;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDPAddressesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetEndpointReferenceResponse>
@@ -2683,27 +2619,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetUsersAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetUsersResponse> GetUsersAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetUsersRequest inValue = new Mictlanix.DotNet.Onvif.Device.GetUsersRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetUsersAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateUsersResponse>
             Mictlanix.DotNet.Onvif.Device.Device.CreateUsersAsync(
                 Mictlanix.DotNet.Onvif.Device.CreateUsersRequest request)
         {
             return base.Channel.CreateUsersAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateUsersResponse> CreateUsersAsync(
-            User[] User)
-        {
-            Mictlanix.DotNet.Onvif.Device.CreateUsersRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.CreateUsersRequest();
-            inValue.User = User;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).CreateUsersAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2714,27 +2635,11 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.DeleteUsersAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteUsersResponse> DeleteUsersAsync(
-            string[] Username)
-        {
-            Mictlanix.DotNet.Onvif.Device.DeleteUsersRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.DeleteUsersRequest();
-            inValue.Username = Username;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteUsersAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetUserResponse> Mictlanix.DotNet.Onvif.Device.Device.
             SetUserAsync(Mictlanix.DotNet.Onvif.Device.SetUserRequest request)
         {
             return base.Channel.SetUserAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetUserResponse> SetUserAsync(User[] User)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetUserRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetUserRequest();
-            inValue.User = User;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetUserAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2745,28 +2650,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetWsdlUrlAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetWsdlUrlResponse> GetWsdlUrlAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetWsdlUrlRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetWsdlUrlRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetWsdlUrlAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCapabilitiesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.GetCapabilitiesAsync(
                 Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest request)
         {
             return base.Channel.GetCapabilitiesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCapabilitiesResponse> GetCapabilitiesAsync(
-            CapabilityCategory[] Category)
-        {
-            Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest();
-            inValue.Category = Category;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCapabilitiesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<HostnameInformation> GetHostnameAsync()
@@ -2780,15 +2669,6 @@ namespace Mictlanix.DotNet.Onvif.Device
                 Mictlanix.DotNet.Onvif.Device.SetHostnameRequest request)
         {
             return base.Channel.SetHostnameAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetHostnameResponse> SetHostnameAsync(
-            string Name)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetHostnameRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetHostnameRequest();
-            inValue.Name = Name;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetHostnameAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<bool> SetHostnameFromDHCPAsync(bool FromDHCP)
@@ -2808,16 +2688,6 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.SetDNSAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDNSResponse> SetDNSAsync(bool FromDHCP,
-            string[] SearchDomain, IPAddress[] DNSManual)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetDNSRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetDNSRequest();
-            inValue.FromDHCP = FromDHCP;
-            inValue.SearchDomain = SearchDomain;
-            inValue.DNSManual = DNSManual;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDNSAsync(inValue);
-        }
-
         public System.Threading.Tasks.Task<NTPInformation> GetNTPAsync()
         {
             return base.Channel.GetNTPAsync();
@@ -2828,15 +2698,6 @@ namespace Mictlanix.DotNet.Onvif.Device
             SetNTPAsync(Mictlanix.DotNet.Onvif.Device.SetNTPRequest request)
         {
             return base.Channel.SetNTPAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNTPResponse> SetNTPAsync(bool FromDHCP,
-            NetworkHost[] NTPManual)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetNTPRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetNTPRequest();
-            inValue.FromDHCP = FromDHCP;
-            inValue.NTPManual = NTPManual;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNTPAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<DynamicDNSInformation> GetDynamicDNSAsync()
@@ -2852,31 +2713,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.SetDynamicDNSAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDynamicDNSResponse> SetDynamicDNSAsync(
-            DynamicDNSType Type, string Name, string TTL)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetDynamicDNSRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetDynamicDNSRequest();
-            inValue.Type = Type;
-            inValue.Name = Name;
-            inValue.TTL = TTL;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDynamicDNSAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.GetNetworkInterfacesAsync(
                 Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest request)
         {
             return base.Channel.GetNetworkInterfacesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesResponse>
-            GetNetworkInterfacesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetNetworkInterfacesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<bool> SetNetworkInterfacesAsync(string InterfaceToken,
@@ -2893,29 +2735,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetNetworkProtocolsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsResponse>
-            GetNetworkProtocolsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetNetworkProtocolsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsResponse>
             Mictlanix.DotNet.Onvif.Device.Device.SetNetworkProtocolsAsync(
                 Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest request)
         {
             return base.Channel.SetNetworkProtocolsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsResponse>
-            SetNetworkProtocolsAsync(NetworkProtocol[] NetworkProtocols)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest();
-            inValue.NetworkProtocols = NetworkProtocols;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNetworkProtocolsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<NetworkGateway> GetNetworkDefaultGatewayAsync()
@@ -2929,16 +2754,6 @@ namespace Mictlanix.DotNet.Onvif.Device
                 Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest request)
         {
             return base.Channel.SetNetworkDefaultGatewayAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayResponse>
-            SetNetworkDefaultGatewayAsync(string[] IPv4Address, string[] IPv6Address)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest();
-            inValue.IPv4Address = IPv4Address;
-            inValue.IPv6Address = IPv6Address;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNetworkDefaultGatewayAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<NetworkZeroConfiguration> GetZeroConfigurationAsync()
@@ -2989,32 +2804,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.CreateCertificateAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateCertificateResponse>
-            CreateCertificateAsync(string CertificateID, string Subject, System.DateTime ValidNotBefore,
-                System.DateTime ValidNotAfter)
-        {
-            Mictlanix.DotNet.Onvif.Device.CreateCertificateRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.CreateCertificateRequest();
-            inValue.CertificateID = CertificateID;
-            inValue.Subject = Subject;
-            inValue.ValidNotBefore = ValidNotBefore;
-            inValue.ValidNotAfter = ValidNotAfter;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).CreateCertificateAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.GetCertificatesAsync(
                 Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest request)
         {
             return base.Channel.GetCertificatesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesResponse> GetCertificatesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificatesAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3025,29 +2820,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetCertificatesStatusAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusResponse>
-            GetCertificatesStatusAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificatesStatusAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusResponse>
             Mictlanix.DotNet.Onvif.Device.Device.SetCertificatesStatusAsync(
                 Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest request)
         {
             return base.Channel.SetCertificatesStatusAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusResponse>
-            SetCertificatesStatusAsync(CertificateStatus[] CertificateStatus)
-        {
-            Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest();
-            inValue.CertificateStatus = CertificateStatus;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetCertificatesStatusAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3058,15 +2836,6 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.DeleteCertificatesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteCertificatesResponse>
-            DeleteCertificatesAsync(string[] CertificateID)
-        {
-            Mictlanix.DotNet.Onvif.Device.DeleteCertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.DeleteCertificatesRequest();
-            inValue.CertificateID = CertificateID;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteCertificatesAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestResponse>
             Mictlanix.DotNet.Onvif.Device.Device.GetPkcs10RequestAsync(
@@ -3075,32 +2844,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetPkcs10RequestAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestResponse>
-            GetPkcs10RequestAsync(string CertificateID, string Subject, BinaryData Attributes)
-        {
-            Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestRequest();
-            inValue.CertificateID = CertificateID;
-            inValue.Subject = Subject;
-            inValue.Attributes = Attributes;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetPkcs10RequestAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificatesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.LoadCertificatesAsync(
                 Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest request)
         {
             return base.Channel.LoadCertificatesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificatesResponse>
-            LoadCertificatesAsync(Certificate[] NVTCertificate)
-        {
-            Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest();
-            inValue.NVTCertificate = NVTCertificate;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCertificatesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<bool> GetClientCertificateModeAsync()
@@ -3119,13 +2868,6 @@ namespace Mictlanix.DotNet.Onvif.Device
                 Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest request)
         {
             return base.Channel.GetRelayOutputsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetRelayOutputsResponse> GetRelayOutputsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetRelayOutputsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task SetRelayOutputSettingsAsync(string RelayOutputToken,
@@ -3153,29 +2895,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetCACertificatesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCACertificatesResponse>
-            GetCACertificatesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetCACertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCACertificatesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCACertificatesAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyResponse>
             Mictlanix.DotNet.Onvif.Device.Device.LoadCertificateWithPrivateKeyAsync(
                 Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest request)
         {
             return base.Channel.LoadCertificateWithPrivateKeyAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyResponse>
-            LoadCertificateWithPrivateKeyAsync(CertificateWithPrivateKey[] CertificateWithPrivateKey)
-        {
-            Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest();
-            inValue.CertificateWithPrivateKey = CertificateWithPrivateKey;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCertificateWithPrivateKeyAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3186,30 +2911,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetCertificateInformationAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificateInformationResponse>
-            GetCertificateInformationAsync(string CertificateID)
-        {
-            Mictlanix.DotNet.Onvif.Device.GetCertificateInformationRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCertificateInformationRequest();
-            inValue.CertificateID = CertificateID;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificateInformationAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCACertificatesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.LoadCACertificatesAsync(
                 Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest request)
         {
             return base.Channel.LoadCACertificatesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCACertificatesResponse>
-            LoadCACertificatesAsync(Certificate[] CACertificate)
-        {
-            Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest();
-            inValue.CACertificate = CACertificate;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCACertificatesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task CreateDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration)
@@ -3236,14 +2943,6 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetDot1XConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsResponse>
-            GetDot1XConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDot1XConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationResponse>
             Mictlanix.DotNet.Onvif.Device.Device.DeleteDot1XConfigurationAsync(
@@ -3252,30 +2951,12 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.DeleteDot1XConfigurationAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationResponse>
-            DeleteDot1XConfigurationAsync(string[] Dot1XConfigurationToken)
-        {
-            Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationRequest();
-            inValue.Dot1XConfigurationToken = Dot1XConfigurationToken;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteDot1XConfigurationAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesResponse>
             Mictlanix.DotNet.Onvif.Device.Device.GetDot11CapabilitiesAsync(
                 Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest request)
         {
             return base.Channel.GetDot11CapabilitiesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesResponse>
-            GetDot11CapabilitiesAsync(System.Xml.Linq.XElement[] Any)
-        {
-            Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest();
-            inValue.Any = Any;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDot11CapabilitiesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Dot11Status> GetDot11StatusAsync(string InterfaceToken)
@@ -3289,15 +2970,6 @@ namespace Mictlanix.DotNet.Onvif.Device
                 Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest request)
         {
             return base.Channel.ScanAvailableDot11NetworksAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksResponse>
-            ScanAvailableDot11NetworksAsync(string InterfaceToken)
-        {
-            Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest();
-            inValue.InterfaceToken = InterfaceToken;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).ScanAvailableDot11NetworksAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemUrisResponse> GetSystemUrisAsync(
@@ -3324,14 +2996,6 @@ namespace Mictlanix.DotNet.Onvif.Device
                 Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest request)
         {
             return base.Channel.GetStorageConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsResponse>
-            GetStorageConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetStorageConfigurationsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<string> CreateStorageConfigurationAsync(
@@ -3363,19 +3027,365 @@ namespace Mictlanix.DotNet.Onvif.Device
             return base.Channel.GetGeoLocationAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetGeoLocationResponse> GetGeoLocationAsync()
-        {
-            Mictlanix.DotNet.Onvif.Device.GetGeoLocationRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetGeoLocationRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetGeoLocationAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetGeoLocationResponse>
             Mictlanix.DotNet.Onvif.Device.Device.SetGeoLocationAsync(
                 Mictlanix.DotNet.Onvif.Device.SetGeoLocationRequest request)
         {
             return base.Channel.SetGeoLocationAsync(request);
+        }
+
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationResponse>
+            Mictlanix.DotNet.Onvif.Device.Device.DeleteGeoLocationAsync(
+                Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationRequest request)
+        {
+            return base.Channel.DeleteGeoLocationAsync(request);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetServicesResponse> GetServicesAsync(
+            bool IncludeCapability)
+        {
+            Mictlanix.DotNet.Onvif.Device.GetServicesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetServicesRequest();
+            inValue.IncludeCapability = IncludeCapability;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetServicesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.RestoreSystemResponse> RestoreSystemAsync(
+            BackupFile[] BackupFiles)
+        {
+            Mictlanix.DotNet.Onvif.Device.RestoreSystemRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.RestoreSystemRequest();
+            inValue.BackupFiles = BackupFiles;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).RestoreSystemAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemBackupResponse> GetSystemBackupAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetSystemBackupAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetScopesResponse> GetScopesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetScopesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetScopesRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetScopesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetScopesResponse> SetScopesAsync(
+            string[] Scopes)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetScopesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.SetScopesRequest();
+            inValue.Scopes = Scopes;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetScopesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.AddScopesResponse> AddScopesAsync(
+            string[] ScopeItem)
+        {
+            Mictlanix.DotNet.Onvif.Device.AddScopesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.AddScopesRequest();
+            inValue.ScopeItem = ScopeItem;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).AddScopesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDPAddressesResponse> GetDPAddressesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetDPAddressesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetDPAddressesRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDPAddressesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDPAddressesResponse> SetDPAddressesAsync(
+            NetworkHost[] DPAddress)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest();
+            inValue.DPAddress = DPAddress;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDPAddressesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetUsersResponse> GetUsersAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetUsersRequest inValue = new Mictlanix.DotNet.Onvif.Device.GetUsersRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetUsersAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateUsersResponse> CreateUsersAsync(
+            User[] User)
+        {
+            Mictlanix.DotNet.Onvif.Device.CreateUsersRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.CreateUsersRequest();
+            inValue.User = User;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).CreateUsersAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteUsersResponse> DeleteUsersAsync(
+            string[] Username)
+        {
+            Mictlanix.DotNet.Onvif.Device.DeleteUsersRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.DeleteUsersRequest();
+            inValue.Username = Username;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteUsersAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetUserResponse> SetUserAsync(User[] User)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetUserRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetUserRequest();
+            inValue.User = User;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetUserAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetWsdlUrlResponse> GetWsdlUrlAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetWsdlUrlRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetWsdlUrlRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetWsdlUrlAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCapabilitiesResponse> GetCapabilitiesAsync(
+            CapabilityCategory[] Category)
+        {
+            Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest();
+            inValue.Category = Category;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCapabilitiesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetHostnameResponse> SetHostnameAsync(
+            string Name)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetHostnameRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.SetHostnameRequest();
+            inValue.Name = Name;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetHostnameAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDNSResponse> SetDNSAsync(bool FromDHCP,
+            string[] SearchDomain, IPAddress[] DNSManual)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetDNSRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetDNSRequest();
+            inValue.FromDHCP = FromDHCP;
+            inValue.SearchDomain = SearchDomain;
+            inValue.DNSManual = DNSManual;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDNSAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNTPResponse> SetNTPAsync(bool FromDHCP,
+            NetworkHost[] NTPManual)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetNTPRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetNTPRequest();
+            inValue.FromDHCP = FromDHCP;
+            inValue.NTPManual = NTPManual;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNTPAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDynamicDNSResponse> SetDynamicDNSAsync(
+            DynamicDNSType Type, string Name, string TTL)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetDynamicDNSRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.SetDynamicDNSRequest();
+            inValue.Type = Type;
+            inValue.Name = Name;
+            inValue.TTL = TTL;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDynamicDNSAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesResponse>
+            GetNetworkInterfacesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetNetworkInterfacesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsResponse>
+            GetNetworkProtocolsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetNetworkProtocolsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsResponse>
+            SetNetworkProtocolsAsync(NetworkProtocol[] NetworkProtocols)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest();
+            inValue.NetworkProtocols = NetworkProtocols;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNetworkProtocolsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayResponse>
+            SetNetworkDefaultGatewayAsync(string[] IPv4Address, string[] IPv6Address)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest();
+            inValue.IPv4Address = IPv4Address;
+            inValue.IPv6Address = IPv6Address;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNetworkDefaultGatewayAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateCertificateResponse>
+            CreateCertificateAsync(string CertificateID, string Subject, System.DateTime ValidNotBefore,
+                System.DateTime ValidNotAfter)
+        {
+            Mictlanix.DotNet.Onvif.Device.CreateCertificateRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.CreateCertificateRequest();
+            inValue.CertificateID = CertificateID;
+            inValue.Subject = Subject;
+            inValue.ValidNotBefore = ValidNotBefore;
+            inValue.ValidNotAfter = ValidNotAfter;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).CreateCertificateAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesResponse> GetCertificatesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificatesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusResponse>
+            GetCertificatesStatusAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificatesStatusAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusResponse>
+            SetCertificatesStatusAsync(CertificateStatus[] CertificateStatus)
+        {
+            Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest();
+            inValue.CertificateStatus = CertificateStatus;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetCertificatesStatusAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteCertificatesResponse>
+            DeleteCertificatesAsync(string[] CertificateID)
+        {
+            Mictlanix.DotNet.Onvif.Device.DeleteCertificatesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.DeleteCertificatesRequest();
+            inValue.CertificateID = CertificateID;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteCertificatesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestResponse>
+            GetPkcs10RequestAsync(string CertificateID, string Subject, BinaryData Attributes)
+        {
+            Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestRequest();
+            inValue.CertificateID = CertificateID;
+            inValue.Subject = Subject;
+            inValue.Attributes = Attributes;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetPkcs10RequestAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificatesResponse>
+            LoadCertificatesAsync(Certificate[] NVTCertificate)
+        {
+            Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest();
+            inValue.NVTCertificate = NVTCertificate;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCertificatesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetRelayOutputsResponse> GetRelayOutputsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetRelayOutputsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCACertificatesResponse>
+            GetCACertificatesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetCACertificatesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetCACertificatesRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCACertificatesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyResponse>
+            LoadCertificateWithPrivateKeyAsync(CertificateWithPrivateKey[] CertificateWithPrivateKey)
+        {
+            Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest();
+            inValue.CertificateWithPrivateKey = CertificateWithPrivateKey;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCertificateWithPrivateKeyAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificateInformationResponse>
+            GetCertificateInformationAsync(string CertificateID)
+        {
+            Mictlanix.DotNet.Onvif.Device.GetCertificateInformationRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetCertificateInformationRequest();
+            inValue.CertificateID = CertificateID;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificateInformationAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCACertificatesResponse>
+            LoadCACertificatesAsync(Certificate[] CACertificate)
+        {
+            Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest();
+            inValue.CACertificate = CACertificate;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCACertificatesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsResponse>
+            GetDot1XConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDot1XConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationResponse>
+            DeleteDot1XConfigurationAsync(string[] Dot1XConfigurationToken)
+        {
+            Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationRequest();
+            inValue.Dot1XConfigurationToken = Dot1XConfigurationToken;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteDot1XConfigurationAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesResponse>
+            GetDot11CapabilitiesAsync(System.Xml.Linq.XElement[] Any)
+        {
+            Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest();
+            inValue.Any = Any;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDot11CapabilitiesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksResponse>
+            ScanAvailableDot11NetworksAsync(string InterfaceToken)
+        {
+            Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest();
+            inValue.InterfaceToken = InterfaceToken;
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).ScanAvailableDot11NetworksAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsResponse>
+            GetStorageConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetStorageConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetGeoLocationResponse> GetGeoLocationAsync()
+        {
+            Mictlanix.DotNet.Onvif.Device.GetGeoLocationRequest inValue =
+                new Mictlanix.DotNet.Onvif.Device.GetGeoLocationRequest();
+            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetGeoLocationAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetGeoLocationResponse> SetGeoLocationAsync(
@@ -3385,14 +3395,6 @@ namespace Mictlanix.DotNet.Onvif.Device
                 new Mictlanix.DotNet.Onvif.Device.SetGeoLocationRequest();
             inValue.Location = Location;
             return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetGeoLocationAsync(inValue);
-        }
-
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.DeleteGeoLocationAsync(
-                Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationRequest request)
-        {
-            return base.Channel.DeleteGeoLocationAsync(request);
         }
 
         public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationResponse>

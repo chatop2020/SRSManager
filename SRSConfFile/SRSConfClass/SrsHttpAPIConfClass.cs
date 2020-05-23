@@ -5,10 +5,10 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class RawApi : SrsConfBase
     {
-        private bool? enabled;
-        private bool? allow_reload;
         private bool? allow_query;
+        private bool? allow_reload;
         private bool? allow_update;
+        private bool? enabled;
 
         public RawApi()
         {
@@ -43,10 +43,10 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class SrsHttpApiConfClass : SrsConfBase
     {
-        private string? instanceName;
-        private bool? enabled;
-        private ushort? listen; //httpapi port
         private bool? crossdomain; //if true can crossdomain
+        private bool? enabled;
+        private string? instanceName;
+        private ushort? listen; //httpapi port
         private RawApi? raw_Api;
 
         public SrsHttpApiConfClass()

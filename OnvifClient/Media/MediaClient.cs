@@ -1405,17 +1405,17 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class GetGuaranteedNumberOfVideoEncoderInstancesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public int TotalNumber;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 2)]
+        public int H264;
 
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 1)]
         public int JPEG;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 2)]
-        public int H264;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 3)]
         public int MPEG4;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public int TotalNumber;
 
         public GetGuaranteedNumberOfVideoEncoderInstancesResponse()
         {
@@ -1518,12 +1518,12 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class GetOSDRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public string OSDToken;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public string OSDToken;
 
         public GetOSDRequest()
         {
@@ -1542,12 +1542,12 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class GetOSDResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public OSDConfiguration OSD;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public OSDConfiguration OSD;
 
         public GetOSDResponse()
         {
@@ -1566,12 +1566,12 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class GetOSDOptionsRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public string ConfigurationToken;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public string ConfigurationToken;
 
         public GetOSDOptionsRequest()
         {
@@ -1590,12 +1590,12 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class GetOSDOptionsResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public OSDConfigurationOptions OSDOptions;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public OSDConfigurationOptions OSDOptions;
 
         public GetOSDOptionsResponse()
         {
@@ -1614,12 +1614,12 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class SetOSDRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public OSDConfiguration OSD;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public OSDConfiguration OSD;
 
         public SetOSDRequest()
         {
@@ -1658,12 +1658,12 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class CreateOSDRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public OSDConfiguration OSD;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public OSDConfiguration OSD;
 
         public CreateOSDRequest()
         {
@@ -1682,12 +1682,12 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class CreateOSDResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public string OSDToken;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public string OSDToken;
 
         public CreateOSDResponse()
         {
@@ -1706,12 +1706,12 @@ namespace Mictlanix.DotNet.Onvif.Media
         WrapperNamespace = "http://www.onvif.org/ver10/media/wsdl", IsWrapped = true)]
     public partial class DeleteOSDRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
-        public string OSDToken;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
         [System.Xml.Serialization.XmlAnyElementAttribute()]
         public System.Xml.Linq.XElement[] Any;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl", Order = 0)]
+        public string OSDToken;
 
         public DeleteOSDRequest()
         {
@@ -1746,8 +1746,7 @@ namespace Mictlanix.DotNet.Onvif.Media
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
     public interface MediaChannel : Mictlanix.DotNet.Onvif.Media.Media, System.ServiceModel.IClientChannel
-    {
-    }
+    {}
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
@@ -1773,13 +1772,6 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetVideoSourcesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoSourcesResponse> GetVideoSourcesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetVideoSourcesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetVideoSourcesRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoSourcesAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioSourcesResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetAudioSourcesAsync(
@@ -1788,26 +1780,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetAudioSourcesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioSourcesResponse> GetAudioSourcesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetAudioSourcesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetAudioSourcesRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioSourcesAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioOutputsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetAudioOutputsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetAudioOutputsRequest request)
         {
             return base.Channel.GetAudioOutputsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioOutputsResponse> GetAudioOutputsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetAudioOutputsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetAudioOutputsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioOutputsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Profile> CreateProfileAsync(string Name, string Token)
@@ -1825,13 +1803,6 @@ namespace Mictlanix.DotNet.Onvif.Media
             .GetProfilesAsync(Mictlanix.DotNet.Onvif.Media.GetProfilesRequest request)
         {
             return base.Channel.GetProfilesAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetProfilesResponse> GetProfilesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetProfilesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetProfilesRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetProfilesAsync(inValue);
         }
 
         public System.Threading.Tasks.Task AddVideoEncoderConfigurationAsync(string ProfileToken,
@@ -1944,28 +1915,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetVideoSourceConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoSourceConfigurationsResponse>
-            GetVideoSourceConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetVideoSourceConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetVideoSourceConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoSourceConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoEncoderConfigurationsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetVideoEncoderConfigurationsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetVideoEncoderConfigurationsRequest request)
         {
             return base.Channel.GetVideoEncoderConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoEncoderConfigurationsResponse>
-            GetVideoEncoderConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetVideoEncoderConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetVideoEncoderConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoEncoderConfigurationsAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1976,28 +1931,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetAudioSourceConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioSourceConfigurationsResponse>
-            GetAudioSourceConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetAudioSourceConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetAudioSourceConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioSourceConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioEncoderConfigurationsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetAudioEncoderConfigurationsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetAudioEncoderConfigurationsRequest request)
         {
             return base.Channel.GetAudioEncoderConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioEncoderConfigurationsResponse>
-            GetAudioEncoderConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetAudioEncoderConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetAudioEncoderConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioEncoderConfigurationsAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2008,28 +1947,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetVideoAnalyticsConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoAnalyticsConfigurationsResponse>
-            GetVideoAnalyticsConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetVideoAnalyticsConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetVideoAnalyticsConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoAnalyticsConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetMetadataConfigurationsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetMetadataConfigurationsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetMetadataConfigurationsRequest request)
         {
             return base.Channel.GetMetadataConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetMetadataConfigurationsResponse>
-            GetMetadataConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetMetadataConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetMetadataConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetMetadataConfigurationsAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2040,28 +1963,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetAudioOutputConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioOutputConfigurationsResponse>
-            GetAudioOutputConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetAudioOutputConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetAudioOutputConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioOutputConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioDecoderConfigurationsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetAudioDecoderConfigurationsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetAudioDecoderConfigurationsRequest request)
         {
             return base.Channel.GetAudioDecoderConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioDecoderConfigurationsResponse>
-            GetAudioDecoderConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Media.GetAudioDecoderConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetAudioDecoderConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioDecoderConfigurationsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<VideoSourceConfiguration> GetVideoSourceConfigurationAsync(
@@ -2120,30 +2027,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetCompatibleVideoEncoderConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoEncoderConfigurationsResponse>
-            GetCompatibleVideoEncoderConfigurationsAsync(string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoEncoderConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoEncoderConfigurationsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleVideoEncoderConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoSourceConfigurationsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetCompatibleVideoSourceConfigurationsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoSourceConfigurationsRequest request)
         {
             return base.Channel.GetCompatibleVideoSourceConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoSourceConfigurationsResponse>
-            GetCompatibleVideoSourceConfigurationsAsync(string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoSourceConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoSourceConfigurationsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleVideoSourceConfigurationsAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2154,30 +2043,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetCompatibleAudioEncoderConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioEncoderConfigurationsResponse>
-            GetCompatibleAudioEncoderConfigurationsAsync(string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioEncoderConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioEncoderConfigurationsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleAudioEncoderConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioSourceConfigurationsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetCompatibleAudioSourceConfigurationsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioSourceConfigurationsRequest request)
         {
             return base.Channel.GetCompatibleAudioSourceConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioSourceConfigurationsResponse>
-            GetCompatibleAudioSourceConfigurationsAsync(string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioSourceConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioSourceConfigurationsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleAudioSourceConfigurationsAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2188,32 +2059,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetCompatibleVideoAnalyticsConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<
-                Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoAnalyticsConfigurationsResponse>
-            GetCompatibleVideoAnalyticsConfigurationsAsync(string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoAnalyticsConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoAnalyticsConfigurationsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this))
-                .GetCompatibleVideoAnalyticsConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleMetadataConfigurationsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetCompatibleMetadataConfigurationsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetCompatibleMetadataConfigurationsRequest request)
         {
             return base.Channel.GetCompatibleMetadataConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleMetadataConfigurationsResponse>
-            GetCompatibleMetadataConfigurationsAsync(string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetCompatibleMetadataConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetCompatibleMetadataConfigurationsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleMetadataConfigurationsAsync(inValue);
         }
 
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2224,30 +2075,12 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetCompatibleAudioOutputConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioOutputConfigurationsResponse>
-            GetCompatibleAudioOutputConfigurationsAsync(string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioOutputConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioOutputConfigurationsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleAudioOutputConfigurationsAsync(inValue);
-        }
-
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioDecoderConfigurationsResponse>
             Mictlanix.DotNet.Onvif.Media.Media.GetCompatibleAudioDecoderConfigurationsAsync(
                 Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioDecoderConfigurationsRequest request)
         {
             return base.Channel.GetCompatibleAudioDecoderConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioDecoderConfigurationsResponse>
-            GetCompatibleAudioDecoderConfigurationsAsync(string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioDecoderConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioDecoderConfigurationsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleAudioDecoderConfigurationsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task SetVideoSourceConfigurationAsync(VideoSourceConfiguration Configuration,
@@ -2381,15 +2214,6 @@ namespace Mictlanix.DotNet.Onvif.Media
             return base.Channel.GetVideoSourceModesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoSourceModesResponse>
-            GetVideoSourceModesAsync(string VideoSourceToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetVideoSourceModesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Media.GetVideoSourceModesRequest();
-            inValue.VideoSourceToken = VideoSourceToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoSourceModesAsync(inValue);
-        }
-
         public System.Threading.Tasks.Task<bool> SetVideoSourceModeAsync(string VideoSourceToken,
             string VideoSourceModeToken)
         {
@@ -2401,14 +2225,6 @@ namespace Mictlanix.DotNet.Onvif.Media
             GetOSDsAsync(Mictlanix.DotNet.Onvif.Media.GetOSDsRequest request)
         {
             return base.Channel.GetOSDsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetOSDsResponse> GetOSDsAsync(
-            string ConfigurationToken)
-        {
-            Mictlanix.DotNet.Onvif.Media.GetOSDsRequest inValue = new Mictlanix.DotNet.Onvif.Media.GetOSDsRequest();
-            inValue.ConfigurationToken = ConfigurationToken;
-            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetOSDsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetOSDResponse> GetOSDAsync(
@@ -2439,6 +2255,189 @@ namespace Mictlanix.DotNet.Onvif.Media
             Mictlanix.DotNet.Onvif.Media.DeleteOSDRequest request)
         {
             return base.Channel.DeleteOSDAsync(request);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoSourcesResponse> GetVideoSourcesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetVideoSourcesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetVideoSourcesRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoSourcesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioSourcesResponse> GetAudioSourcesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetAudioSourcesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetAudioSourcesRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioSourcesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioOutputsResponse> GetAudioOutputsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetAudioOutputsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetAudioOutputsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioOutputsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetProfilesResponse> GetProfilesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetProfilesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetProfilesRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetProfilesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoSourceConfigurationsResponse>
+            GetVideoSourceConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetVideoSourceConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetVideoSourceConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoSourceConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoEncoderConfigurationsResponse>
+            GetVideoEncoderConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetVideoEncoderConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetVideoEncoderConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoEncoderConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioSourceConfigurationsResponse>
+            GetAudioSourceConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetAudioSourceConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetAudioSourceConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioSourceConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioEncoderConfigurationsResponse>
+            GetAudioEncoderConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetAudioEncoderConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetAudioEncoderConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioEncoderConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoAnalyticsConfigurationsResponse>
+            GetVideoAnalyticsConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetVideoAnalyticsConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetVideoAnalyticsConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoAnalyticsConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetMetadataConfigurationsResponse>
+            GetMetadataConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetMetadataConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetMetadataConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetMetadataConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioOutputConfigurationsResponse>
+            GetAudioOutputConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetAudioOutputConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetAudioOutputConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioOutputConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetAudioDecoderConfigurationsResponse>
+            GetAudioDecoderConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Media.GetAudioDecoderConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetAudioDecoderConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetAudioDecoderConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoEncoderConfigurationsResponse>
+            GetCompatibleVideoEncoderConfigurationsAsync(string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoEncoderConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoEncoderConfigurationsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleVideoEncoderConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoSourceConfigurationsResponse>
+            GetCompatibleVideoSourceConfigurationsAsync(string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoSourceConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoSourceConfigurationsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleVideoSourceConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioEncoderConfigurationsResponse>
+            GetCompatibleAudioEncoderConfigurationsAsync(string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioEncoderConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioEncoderConfigurationsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleAudioEncoderConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioSourceConfigurationsResponse>
+            GetCompatibleAudioSourceConfigurationsAsync(string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioSourceConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioSourceConfigurationsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleAudioSourceConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<
+                Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoAnalyticsConfigurationsResponse>
+            GetCompatibleVideoAnalyticsConfigurationsAsync(string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoAnalyticsConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetCompatibleVideoAnalyticsConfigurationsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this))
+                .GetCompatibleVideoAnalyticsConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleMetadataConfigurationsResponse>
+            GetCompatibleMetadataConfigurationsAsync(string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetCompatibleMetadataConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetCompatibleMetadataConfigurationsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleMetadataConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioOutputConfigurationsResponse>
+            GetCompatibleAudioOutputConfigurationsAsync(string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioOutputConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioOutputConfigurationsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleAudioOutputConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioDecoderConfigurationsResponse>
+            GetCompatibleAudioDecoderConfigurationsAsync(string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioDecoderConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetCompatibleAudioDecoderConfigurationsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetCompatibleAudioDecoderConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetVideoSourceModesResponse>
+            GetVideoSourceModesAsync(string VideoSourceToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetVideoSourceModesRequest inValue =
+                new Mictlanix.DotNet.Onvif.Media.GetVideoSourceModesRequest();
+            inValue.VideoSourceToken = VideoSourceToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetVideoSourceModesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Media.GetOSDsResponse> GetOSDsAsync(
+            string ConfigurationToken)
+        {
+            Mictlanix.DotNet.Onvif.Media.GetOSDsRequest inValue = new Mictlanix.DotNet.Onvif.Media.GetOSDsRequest();
+            inValue.ConfigurationToken = ConfigurationToken;
+            return ((Mictlanix.DotNet.Onvif.Media.Media) (this)).GetOSDsAsync(inValue);
         }
 
         public virtual System.Threading.Tasks.Task OpenAsync()

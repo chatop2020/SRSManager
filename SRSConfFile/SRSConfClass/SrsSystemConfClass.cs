@@ -8,6 +8,91 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class SrsSystemConfClass : SrsConfBase
     {
+        private bool? asprocess; //if parent process quit the srs process will be exit if is true
+
+        private bool? auto_reload_for_docker; //If on, it will set inotify_auto_reload to on in docker, even it's off.
+        private ushort? chunk_size; //default 60000 ,min 128 max 65536
+
+        private string? confFilePath;
+        private List<string>? configLines;
+        private List<string>? configLinesTrim;
+
+        private bool? daemon; //will be run on backgroud default true
+        private string? deviceId;
+
+        private bool?
+            disable_daemon_for_docker; //whether disable daemon type for docker,if on will set daemon to false in docker,even daemon is on.
+
+        private bool?
+            empty_ip_ok; //if client ip is empty the ignore this connect without warnings or errors if it is true
+
+        private string? ff_log_dir; //ffmpeg log path,if "/dev/null" will be disable ffmpeg log output
+        private string? ff_log_level; //ffmpeg log level default is info
+        private bool? force_grace_quit; //force gracefully quit,not fast quit,default is false
+        private int? grace_final_wait; //exit process will be wait a few ms,default is 3200ms this is the max wait time
+
+        private int? grace_start_wait; //exit process will be wait a few ms,default is 2300ms
+        private SrsHeartbeatConfClass? heartbeat;
+        private SrsHttpApiConfClass? http_api;
+        private SrsHttpServerConfClass? http_server;
+
+        private bool?
+            inotify_auto_reload; //Whether auto reload by watching the config file by inotify,i think inotify is system message event,if config be changed then srs will be reload it as soon,default is false
+
+        private SrsKafkaConfClass? kafka;
+        private ushort? listen; //rtmp listen port,default 1935(rtmp default)
+
+        private ushort?
+            max_connections; //defalut is 1000,if exceed the max connections,server will drop the new connection
+
+        private string? pid; // srs process id path
+
+        //if true will be use gmtime() generate the time struct,default false
+        private int? pithy_print_ms; //print out time interval use unit is microsecond
+        private SrsRtcServerConfClass? rtc_server;
+        private string? srs_log_file; //if srs log output type is file ,then log will be push to path of the var
+
+        private string? srs_log_level; //srs log level can be verbose,info,trace,warn,error
+
+        private string?
+            srs_log_tank; //srs log output type if is "file" will be push to file else if is "console" then push log to console
+
+        private SrsSrtServerConfClass? srtServer;
+        private SrsStatsConfClass? stats;
+        private List<SrsStreamCasterConfClass>? stream_casters;
+        private string? streamNodeIpAddr;
+        private ushort? streamNodPort;
+        private float? tcmalloc_release_rate;
+
+        private bool? utc_time; //use utc_time to generate the time struct,if false will be use localtime to generate it
+        private List<SrsvHostConfClass>? vhosts;
+        private string? work_dir; //work on this dir
+
+        public SrsSystemConfClass()
+        {
+        }
+
+        public SrsSystemConfClass(string confPath)
+        {
+            if (File.Exists(confPath))
+            {
+                ConfFilePath = confPath;
+                if (ConfigLines == null) ConfigLines = new List<string>();
+                ConfigLines.Clear();
+                if (ConfigLinesTrim == null) ConfigLinesTrim = new List<string>();
+                ConfigLinesTrim.Clear();
+                foreach (string str in File.ReadAllLines(confPath, Encoding.Default))
+                {
+                    var str_tmp = str.Trim();
+                    if (!string.IsNullOrEmpty(str_tmp) && !str_tmp.StartsWith('#'))
+                    {
+                        ConfigLines.Add(str);
+                        ConfigLinesTrim.Add(str_tmp);
+                    }
+                }
+            }
+        }
+
         public SrsRtcServerConfClass? Rtc_server
         {
             get => rtc_server;
@@ -19,61 +104,6 @@ namespace SRSConfFile.SRSConfClass
             get => tcmalloc_release_rate;
             set => tcmalloc_release_rate = value;
         }
-
-        private string? confFilePath;
-        private string? streamNodeIpAddr;
-        private ushort? streamNodPort;
-        private string? deviceId;
-        private List<string>? configLines;
-        private List<string>? configLinesTrim;
-        private ushort? listen; //rtmp listen port,default 1935(rtmp default)
-        private string? pid; // srs process id path
-        private ushort? chunk_size; //default 60000 ,min 128 max 65536
-        private string? ff_log_dir; //ffmpeg log path,if "/dev/null" will be disable ffmpeg log output
-        private string? ff_log_level; //ffmpeg log level default is info
-
-        private string?
-            srs_log_tank; //srs log output type if is "file" will be push to file else if is "console" then push log to console
-
-        private string? srs_log_level; //srs log level can be verbose,info,trace,warn,error
-        private string? srs_log_file; //if srs log output type is file ,then log will be push to path of the var
-
-        private ushort?
-            max_connections; //defalut is 1000,if exceed the max connections,server will drop the new connection
-
-        private bool? daemon; //will be run on backgroud default true
-
-        private bool? utc_time; //use utc_time to generate the time struct,if false will be use localtime to generate it
-
-        //if true will be use gmtime() generate the time struct,default false
-        private int? pithy_print_ms; //print out time interval use unit is microsecond
-        private string? work_dir; //work on this dir
-        private bool? asprocess; //if parent process quit the srs process will be exit if is true
-
-        private bool?
-            empty_ip_ok; //if client ip is empty the ignore this connect without warnings or errors if it is true
-
-        private int? grace_start_wait; //exit process will be wait a few ms,default is 2300ms
-        private int? grace_final_wait; //exit process will be wait a few ms,default is 3200ms this is the max wait time
-        private bool? force_grace_quit; //force gracefully quit,not fast quit,default is false
-
-        private bool?
-            disable_daemon_for_docker; //whether disable daemon type for docker,if on will set daemon to false in docker,even daemon is on.
-
-        private bool?
-            inotify_auto_reload; //Whether auto reload by watching the config file by inotify,i think inotify is system message event,if config be changed then srs will be reload it as soon,default is false
-
-        private bool? auto_reload_for_docker; //If on, it will set inotify_auto_reload to on in docker, even it's off.
-        private float? tcmalloc_release_rate;
-        private SrsHeartbeatConfClass? heartbeat;
-        private SrsStatsConfClass? stats;
-        private SrsHttpApiConfClass? http_api;
-        private SrsHttpServerConfClass? http_server;
-        private SrsRtcServerConfClass? rtc_server;
-        private List<SrsStreamCasterConfClass>? stream_casters;
-        private SrsSrtServerConfClass? srtServer;
-        private SrsKafkaConfClass? kafka;
-        private List<SrsvHostConfClass>? vhosts;
 
         public ushort? Listen
         {
@@ -284,31 +314,6 @@ namespace SRSConfFile.SRSConfClass
         {
             get => confFilePath;
             set => confFilePath = value;
-        }
-
-        public SrsSystemConfClass()
-        {
-        }
-
-        public SrsSystemConfClass(string confPath)
-        {
-            if (File.Exists(confPath))
-            {
-                ConfFilePath = confPath;
-                if (ConfigLines == null) ConfigLines = new List<string>();
-                ConfigLines.Clear();
-                if (ConfigLinesTrim == null) ConfigLinesTrim = new List<string>();
-                ConfigLinesTrim.Clear();
-                foreach (string str in File.ReadAllLines(confPath, Encoding.Default))
-                {
-                    var str_tmp = str.Trim();
-                    if (!string.IsNullOrEmpty(str_tmp) && !str_tmp.StartsWith('#'))
-                    {
-                        ConfigLines.Add(str);
-                        ConfigLinesTrim.Add(str_tmp);
-                    }
-                }
-            }
         }
     }
 }

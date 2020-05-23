@@ -29,19 +29,24 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class SrsRtcServerConfClass : SrsConfBase
     {
-        private bool? enabled;
-        private ushort? listen;
+        private BlackHole? black_hole;
         private string? candidate;
         private bool? ecdsa;
-        private ushort? sendmmsg;
+        private bool? enabled;
         private bool? encrypt;
-        private ushort? reuseport;
-        private bool? merge_nalus;
         private bool? gso;
+        private ushort? listen;
+        private bool? merge_nalus;
         private ushort? padding;
         private bool? perf_stat;
         private ushort? queue_length;
-        private BlackHole? black_hole;
+        private ushort? reuseport;
+        private ushort? sendmmsg;
+
+        public SrsRtcServerConfClass()
+        {
+            SectionsName = "rtc_server";
+        }
 
         public bool? Enabled
         {
@@ -119,11 +124,6 @@ namespace SRSConfFile.SRSConfClass
         {
             get => black_hole;
             set => black_hole = value;
-        }
-
-        public SrsRtcServerConfClass()
-        {
-            SectionsName = "rtc_server";
         }
     }
 }

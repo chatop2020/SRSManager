@@ -9,10 +9,10 @@ namespace SRSConfFile
 {
     public class SectionBody
     {
-        public int? startline;
-        public int? endline;
         public string? body;
         private List<string>? bodyList = new List<string>();
+        public int? endline;
+        public int? startline;
         private List<SectionBody>? subSections = new List<SectionBody>();
 
         public List<string>? BodyList

@@ -6,8 +6,8 @@ namespace SRSConfFile.SRSConfClass
     public class SrsKafkaConfClass : SrsConfBase
     {
         private string? _instanceName;
-        private bool? enabled;
         private string? brokers;
+        private bool? enabled;
         private string? topic;
 
         public SrsKafkaConfClass()

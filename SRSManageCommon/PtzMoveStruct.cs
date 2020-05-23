@@ -30,9 +30,9 @@ namespace SRSManageCommon
     public class PtzMoveStruct
     {
         private string ipAddr;
-        private string profileToken;
         private PtzMoveDir moveDir;
         private PtzMoveType moveType;
+        private string profileToken;
 
         public string IpAddr
         {

@@ -337,14 +337,14 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         WrapperNamespace = "http://www.onvif.org/ver20/ptz/wsdl", IsWrapped = true)]
     public partial class SetPresetRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl", Order = 0)]
-        public string ProfileToken;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl", Order = 1)]
         public string PresetName;
 
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl", Order = 2)]
         public string PresetToken;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl", Order = 0)]
+        public string ProfileToken;
 
         public SetPresetRequest()
         {
@@ -387,12 +387,12 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl", Order = 0)]
         public string ProfileToken;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl", Order = 1)]
-        public PTZSpeed Velocity;
-
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl", Order = 2)]
         [System.Xml.Serialization.XmlElementAttribute(DataType = "duration")]
         public string Timeout;
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl", Order = 1)]
+        public PTZSpeed Velocity;
 
         public ContinuousMoveRequest()
         {
@@ -502,8 +502,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
     public interface PTZChannel : Mictlanix.DotNet.Onvif.Ptz.PTZ, System.ServiceModel.IClientChannel
-    {
-    }
+    {}
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
@@ -528,12 +527,6 @@ namespace Mictlanix.DotNet.Onvif.Ptz
             return base.Channel.GetNodesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetNodesResponse> GetNodesAsync()
-        {
-            Mictlanix.DotNet.Onvif.Ptz.GetNodesRequest inValue = new Mictlanix.DotNet.Onvif.Ptz.GetNodesRequest();
-            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).GetNodesAsync(inValue);
-        }
-
         public System.Threading.Tasks.Task<PTZNode> GetNodeAsync(string NodeToken)
         {
             return base.Channel.GetNodeAsync(NodeToken);
@@ -549,14 +542,6 @@ namespace Mictlanix.DotNet.Onvif.Ptz
             .GetConfigurationsAsync(Mictlanix.DotNet.Onvif.Ptz.GetConfigurationsRequest request)
         {
             return base.Channel.GetConfigurationsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetConfigurationsResponse>
-            GetConfigurationsAsync()
-        {
-            Mictlanix.DotNet.Onvif.Ptz.GetConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Ptz.GetConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).GetConfigurationsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task SetConfigurationAsync(PTZConfiguration PTZConfiguration,
@@ -581,14 +566,6 @@ namespace Mictlanix.DotNet.Onvif.Ptz
             GetPresetsAsync(Mictlanix.DotNet.Onvif.Ptz.GetPresetsRequest request)
         {
             return base.Channel.GetPresetsAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetPresetsResponse> GetPresetsAsync(
-            string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Ptz.GetPresetsRequest inValue = new Mictlanix.DotNet.Onvif.Ptz.GetPresetsRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).GetPresetsAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.SetPresetResponse> SetPresetAsync(
@@ -624,17 +601,6 @@ namespace Mictlanix.DotNet.Onvif.Ptz
             return base.Channel.ContinuousMoveAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.ContinuousMoveResponse> ContinuousMoveAsync(
-            string ProfileToken, PTZSpeed Velocity, string Timeout)
-        {
-            Mictlanix.DotNet.Onvif.Ptz.ContinuousMoveRequest inValue =
-                new Mictlanix.DotNet.Onvif.Ptz.ContinuousMoveRequest();
-            inValue.ProfileToken = ProfileToken;
-            inValue.Velocity = Velocity;
-            inValue.Timeout = Timeout;
-            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).ContinuousMoveAsync(inValue);
-        }
-
         public System.Threading.Tasks.Task RelativeMoveAsync(string ProfileToken, PTZVector Translation, PTZSpeed Speed)
         {
             return base.Channel.RelativeMoveAsync(ProfileToken, Translation, Speed);
@@ -666,15 +632,6 @@ namespace Mictlanix.DotNet.Onvif.Ptz
             GetPresetToursAsync(Mictlanix.DotNet.Onvif.Ptz.GetPresetToursRequest request)
         {
             return base.Channel.GetPresetToursAsync(request);
-        }
-
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetPresetToursResponse> GetPresetToursAsync(
-            string ProfileToken)
-        {
-            Mictlanix.DotNet.Onvif.Ptz.GetPresetToursRequest inValue =
-                new Mictlanix.DotNet.Onvif.Ptz.GetPresetToursRequest();
-            inValue.ProfileToken = ProfileToken;
-            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).GetPresetToursAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<PresetTour> GetPresetTourAsync(string ProfileToken, string PresetTourToken)
@@ -715,6 +672,48 @@ namespace Mictlanix.DotNet.Onvif.Ptz
                 Mictlanix.DotNet.Onvif.Ptz.GetCompatibleConfigurationsRequest request)
         {
             return base.Channel.GetCompatibleConfigurationsAsync(request);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetNodesResponse> GetNodesAsync()
+        {
+            Mictlanix.DotNet.Onvif.Ptz.GetNodesRequest inValue = new Mictlanix.DotNet.Onvif.Ptz.GetNodesRequest();
+            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).GetNodesAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetConfigurationsResponse>
+            GetConfigurationsAsync()
+        {
+            Mictlanix.DotNet.Onvif.Ptz.GetConfigurationsRequest inValue =
+                new Mictlanix.DotNet.Onvif.Ptz.GetConfigurationsRequest();
+            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).GetConfigurationsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetPresetsResponse> GetPresetsAsync(
+            string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Ptz.GetPresetsRequest inValue = new Mictlanix.DotNet.Onvif.Ptz.GetPresetsRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).GetPresetsAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.ContinuousMoveResponse> ContinuousMoveAsync(
+            string ProfileToken, PTZSpeed Velocity, string Timeout)
+        {
+            Mictlanix.DotNet.Onvif.Ptz.ContinuousMoveRequest inValue =
+                new Mictlanix.DotNet.Onvif.Ptz.ContinuousMoveRequest();
+            inValue.ProfileToken = ProfileToken;
+            inValue.Velocity = Velocity;
+            inValue.Timeout = Timeout;
+            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).ContinuousMoveAsync(inValue);
+        }
+
+        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetPresetToursResponse> GetPresetToursAsync(
+            string ProfileToken)
+        {
+            Mictlanix.DotNet.Onvif.Ptz.GetPresetToursRequest inValue =
+                new Mictlanix.DotNet.Onvif.Ptz.GetPresetToursRequest();
+            inValue.ProfileToken = ProfileToken;
+            return ((Mictlanix.DotNet.Onvif.Ptz.PTZ) (this)).GetPresetToursAsync(inValue);
         }
 
         public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Ptz.GetCompatibleConfigurationsResponse>

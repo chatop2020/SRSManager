@@ -1,8 +1,8 @@
 using System;
 using System.Net;
-using SRSManageCommon;
 using Microsoft.AspNetCore.Mvc;
-using SRSApis;
+using SRSManageCommon;
+using Common = SRSApis.Common;
 
 namespace SRSWebApi
 {
@@ -13,9 +13,20 @@ namespace SRSWebApi
 
     {
         /// <summary>
-        /// 工作目录
+        /// 调试模式下不启用授权和session验证
         /// </summary>
-        public string WorkPath = null!;
+        public readonly bool IsDebug = true;
+
+        /// <summary>
+        /// 基础路由地址
+        /// </summary>
+        public string BaseUrl = null!;
+
+
+        /// <summary>
+        /// srswebapi配置文件类
+        /// </summary>
+        public Config Conf = new Config();
 
         /// <summary>
         /// 配置文件地址
@@ -23,19 +34,14 @@ namespace SRSWebApi
         public string ConfPath = null!;
 
         /// <summary>
-        /// 基础路由地址
-        /// </summary>
-        public string BaseUrl = null!;
-
-        /// <summary>
         /// Session管理器
         /// </summary>
         public SessionManager SessionManager = null!;
 
         /// <summary>
-        /// 调试模式下不启用授权和session验证
+        /// 工作目录
         /// </summary>
-        public readonly bool IsDebug = true;
+        public string WorkPath = null!;
 
 
         /// <summary>
@@ -60,19 +66,13 @@ namespace SRSWebApi
             {
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
-                SRSApis.Common.init_SrsServer();
+                Common.init_SrsServer();
             }
             else
             {
                 Console.WriteLine("读取配置文件失败，启动异常...");
             }
         }
-
-
-        /// <summary>
-        /// srswebapi配置文件类
-        /// </summary>
-        public Config Conf = new Config();
 
         /// <summary>
         /// 检测session和allow

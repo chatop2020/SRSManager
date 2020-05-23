@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Mictlanix.DotNet.Onvif.Common;
 
-
 namespace SRSManageCommon
 {
     /// <summary>
@@ -14,11 +13,6 @@ namespace SRSManageCommon
         private float x; //水平方向位置
         private float y; //垂直方向位置
         private float z; //镜头聚焦
-
-        public override string ToString()
-        {
-            return string.Format("[x={0:F5},y={1:F5},z={2:F5}]", X, Y, Z);
-        }
 
         public float X
         {
@@ -37,6 +31,11 @@ namespace SRSManageCommon
             get => z;
             set => z = value;
         }
+
+        public override string ToString()
+        {
+            return string.Format("[x={0:F5},y={1:F5},z={2:F5}]", X, Y, Z);
+        }
     }
 
 
@@ -46,13 +45,13 @@ namespace SRSManageCommon
     [Serializable]
     public class OnvifProfile
     {
-        private string profileToken;
-        private Profile profile;
-        private string mediaUrl;
-        private bool ptzMoveSupport = false;
         private bool absoluteMove = false;
-        private bool relativeMove = false;
         private bool continuousMove = false;
+        private string mediaUrl;
+        private Profile profile;
+        private string profileToken;
+        private bool ptzMoveSupport = false;
+        private bool relativeMove = false;
 
         public string ProfileToken
         {
@@ -104,10 +103,10 @@ namespace SRSManageCommon
     [Serializable]
     public class MediaSourceInfo
     {
-        private string source_token;
         private float framerate;
-        private int width;
         private int height;
+        private string source_token;
+        private int width;
 
         public string SourceToken
         {
@@ -146,12 +145,12 @@ namespace SRSManageCommon
     [Serializable]
     public class ProfileLimit
     {
-        private string profileToken;
-        private string mediaUrl;
-        private bool ptzMoveSupport = false;
         private bool absoluteMove = false;
-        private bool relativeMove = false;
         private bool continuousMove = false;
+        private string mediaUrl;
+        private string profileToken;
+        private bool ptzMoveSupport = false;
+        private bool relativeMove = false;
 
         public string ProfileToken
         {
@@ -197,11 +196,11 @@ namespace SRSManageCommon
     public class OnvifMonitorStruct
     {
         private string host;
-        private string username;
-        private string password;
+        private bool isInited = false;
         private List<MediaSourceInfo> mediaSourceInfoList;
         private List<ProfileLimit> onvifProfileLimitList;
-        private bool isInited = false;
+        private string password;
+        private string username;
 
         public string Host
         {

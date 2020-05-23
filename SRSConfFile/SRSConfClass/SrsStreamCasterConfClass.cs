@@ -5,6 +5,17 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class Sip : SrsConfBase
     {
+        private ushort? ack_timeout;
+        private bool? auto_play;
+
+        private bool? enabled;
+        private bool? invite_port_fixed;
+        private ushort? keepalive_timeout;
+        private ushort? listen;
+        private ushort? query_catalog_interval;
+        private string? realm;
+        private string? serial;
+
         public Sip()
         {
             SectionsName = "sip";
@@ -63,16 +74,6 @@ namespace SRSConfFile.SRSConfClass
             get => query_catalog_interval;
             set => query_catalog_interval = value;
         }
-
-        private bool? enabled;
-        private ushort? listen;
-        private string? serial;
-        private string? realm;
-        private ushort? ack_timeout;
-        private ushort? keepalive_timeout;
-        private bool? auto_play;
-        private bool? invite_port_fixed;
-        private ushort? query_catalog_interval;
     }
 
     public enum CasterEnum
@@ -88,15 +89,31 @@ namespace SRSConfFile.SRSConfClass
     {
         //要修正最新gb28181格式 
         private string? _instanceName;
-        private bool? enabled;
-        private CasterEnum? caster;
-        private string? output; //rtmp path use for player
-        private ushort? listen; //open a port for pull stream
-        private ushort? rtp_port_min; //use for rtsp&gb28181 caster
-        private ushort? rtp_port_max; //user for rtsp&gb28181 caster
-        private string? host; //use for gb28181 ,can be domain or ip address
 
         private bool? audio_enable;
+        /*use for gb28181
+          # rtp包空闲等待时间，如果指定时间没有收到任何包
+          # rtp监听连接自动停止，发送BYE命令
+        */
+
+        private bool? auto_create_channel;
+        private CasterEnum? caster;
+        private bool? enabled;
+        private string? host; //use for gb28181 ,can be domain or ip address
+        private ushort? listen; //open a port for pull stream
+
+        private string? output; //rtmp path use for player
+        /*use for gb28181
+         # 是否等待关键帧之后，再转发，
+         # off:不需等待，直接转发
+         # on:等第一个关键帧后，再转发
+        */
+
+        private ushort? rtp_idle_timeout;
+        private ushort? rtp_port_max; //user for rtsp&gb28181 caster
+        private ushort? rtp_port_min; //use for rtsp&gb28181 caster
+
+        private Sip? ssip;
         /*use for gb28181
           # 是否转发音频流
           # 目前只支持aac格式，所以需要设备支持aac格式
@@ -112,20 +129,11 @@ namespace SRSConfFile.SRSConfClass
 
 
         private bool? wait_keyframe;
-        /*use for gb28181
-         # 是否等待关键帧之后，再转发，
-         # off:不需等待，直接转发
-         # on:等第一个关键帧后，再转发
-        */
 
-        private ushort? rtp_idle_timeout;
-        /*use for gb28181
-          # rtp包空闲等待时间，如果指定时间没有收到任何包
-          # rtp监听连接自动停止，发送BYE命令
-        */
-
-        private bool? auto_create_channel;
-        private Sip? ssip;
+        public SrsStreamCasterConfClass()
+        {
+            SectionsName = "stream_caster";
+        }
 
         public Sip? sip
         {
@@ -137,11 +145,6 @@ namespace SRSConfFile.SRSConfClass
         {
             get => auto_create_channel;
             set => auto_create_channel = value;
-        }
-
-        public SrsStreamCasterConfClass()
-        {
-            SectionsName = "stream_caster";
         }
 
         public bool? Enabled

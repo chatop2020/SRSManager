@@ -5,8 +5,8 @@ namespace SRSApis.SRSManager.Apis.ApiModules
     [Serializable]
     public class VhostTranscodeNameModule
     {
-        private string? vhostDomain;
         private string? transcodeInstanceName;
+        private string? vhostDomain;
 
         public string? VhostDomain
         {

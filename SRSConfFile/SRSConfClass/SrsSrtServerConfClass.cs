@@ -6,23 +6,23 @@ namespace SRSConfFile.SRSConfClass
     public class SrsSrtServerConfClass : SrsConfBase
     {
         private string? _instanceName;
+        private int? connect_timeout;
+        private string? default_app;
         private bool? enabled;
         private ushort? listen;
         private int? maxbw;
-        private int? connect_timeout;
         private int? peerlatency;
         private int? recvlatency;
-        private string? default_app;
+
+        public SrsSrtServerConfClass()
+        {
+            SectionsName = "srt_server";
+        }
 
         public string? Default_app
         {
             get => default_app;
             set => default_app = value;
-        }
-
-        public SrsSrtServerConfClass()
-        {
-            SectionsName = "srt_server";
         }
 
         public bool? Enabled

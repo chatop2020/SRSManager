@@ -8,13 +8,13 @@ namespace SRSWebApi.ResponseModules
     [Serializable]
     public class SrsInstanceModule
     {
+        private string _configPath = null!;
         private string _deviceId = null!;
         private bool _isInit;
         private bool _isRunning;
-        private string _configPath = null!;
         private string _pidValue = null!;
-        private string _srsProcessWorkPath = null!;
         private string _srsInstanceWorkPath = null!;
+        private string _srsProcessWorkPath = null!;
 
         /// <summary>
         /// 设备ID

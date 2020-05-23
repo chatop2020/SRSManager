@@ -4,18 +4,18 @@ namespace SRSApis.SRSManager.Apis.ApiModules
 {
     public class SystemInfoModule
     {
-        private List<NetworkInterfaceModule>? networkInterfaceList;
+        private string? architecture;
+        private ushort? cpuCoreSize;
 
         private List<DriveDiskInfo>? disksInfo;
+        private string? hostName;
+        private List<NetworkInterfaceModule>? networkInterfaceList;
 
         /*private UInt64 systemTotalMemorySize;
         private UInt64 systemFreeMemorySize;*/
         private string? platform;
-        private string? architecture;
-        private bool? x64;
-        private string? hostName;
-        private ushort? cpuCoreSize;
         private string? version;
+        private bool? x64;
 
         public List<NetworkInterfaceModule> NetworkInterfaceList
         {

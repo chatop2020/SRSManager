@@ -3,13 +3,13 @@ namespace SRSApis.SRSManager.Apis.ApiModules
     public class NetworkInterfaceModule
     {
         private ushort? _index;
-        private string? _name;
-        private string? _mac;
-
-        private string? _type;
 
         //  private string? speed; //linux not Supported
         private string? _ipaddr;
+        private string? _mac;
+        private string? _name;
+
+        private string? _type;
 
         public ushort? Index
         {

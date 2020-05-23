@@ -2,13 +2,13 @@ namespace SRSApis.SRSManager.Apis.ApiModules
 {
     public class DriveDiskInfo
     {
-        private string? path;
-        private ulong? size;
-        private ulong? free;
-        private string? format;
-        private string? volumeLabel;
-        private string? rootDirectory;
         private string? devicePath;
+        private string? format;
+        private ulong? free;
+        private string? path;
+        private string? rootDirectory;
+        private ulong? size;
+        private string? volumeLabel;
 
         public string? DevicePath
         {

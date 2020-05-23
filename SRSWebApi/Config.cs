@@ -11,8 +11,8 @@ namespace SRSWebApi
     [Serializable]
     public class AllowKey
     {
-        private string _key = null!;
         private List<string> _ipArray = new List<string>();
+        private string _key = null!;
 
         /// <summary>
         /// key值
@@ -39,9 +39,9 @@ namespace SRSWebApi
     [Serializable]
     public class Config
     {
+        private List<AllowKey> _allowKeys = new List<AllowKey>();
         private ushort _httpPort = 5800;
         private string _password = "password123!@#";
-        private List<AllowKey> _allowKeys = new List<AllowKey>();
 
         /// <summary>
         /// http端口

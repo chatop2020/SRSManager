@@ -12,10 +12,6 @@ namespace Mictlanix.DotNet.Onvif.Ptz
 
         private bool eFlipFieldSpecified;
 
-        private bool reverseField;
-
-        private bool reverseFieldSpecified;
-
         private bool getCompatibleConfigurationsField;
 
         private bool getCompatibleConfigurationsFieldSpecified;
@@ -23,6 +19,10 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         private bool moveStatusField;
 
         private bool moveStatusFieldSpecified;
+
+        private bool reverseField;
+
+        private bool reverseFieldSpecified;
 
         private bool statusPositionField;
 

@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using SRSManageCommon;
 using SRSApis.SRSManager.Apis.ApiModules;
-using PtzMoveDir = SRSManageCommon.PtzMoveDir;
-
+using SRSManageCommon;
 
 namespace SRSApis.SRSManager.Apis
 {

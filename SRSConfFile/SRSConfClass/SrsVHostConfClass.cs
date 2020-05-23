@@ -18,13 +18,13 @@ namespace SRSConfFile.SRSConfClass
     public class Cluster : SrsConfBase
     {
         private string? _instanceName;
+        private string? coworkers;
+        private bool? debug_srs_upnode; //use for mode remote
         private string? mode; //local or remote
         private string? origin; //use for mode remote
+        private bool? origin_cluster; //
         private bool? token_traverse; //use for mode remote
         private string? vhost; //use for mode remote
-        private bool? debug_srs_upnode; //use for mode remote
-        private bool? origin_cluster; //
-        private string? coworkers;
 
         public Cluster()
         {
@@ -83,8 +83,8 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class Forward : SrsConfBase
     {
-        private bool? enabled;
         private string? destination;
+        private bool? enabled;
 
         public Forward()
         {
@@ -115,12 +115,10 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class Play : SrsConfBase
     {
-        private bool? gop_cache;
-        private byte? queue_length; //the max live queue length in seconds.
-        private PlayTimeJitter? time_jitter;
         private bool? atc;
-        private bool? mix_correct;
         private bool? atc_auto;
+        private bool? gop_cache;
+        private bool? mix_correct;
 
         /*
          *  # set the MW(merged-write) latency in ms.
@@ -128,9 +126,6 @@ namespace SRSConfFile.SRSConfClass
         # default: 0 (For WebRTC)
          */
         private int? mw_latency; //merged-write delay in ms
-        private float? send_min_interval;
-
-        private bool? reduce_sequence_header;
 
         /*
          * # Set the MW(merged-write) min messages.
@@ -138,6 +133,11 @@ namespace SRSConfFile.SRSConfClass
         # default: 1 (For WebRTC, min_latency off)
          */
         private ushort? mw_msgs;
+        private byte? queue_length; //the max live queue length in seconds.
+
+        private bool? reduce_sequence_header;
+        private float? send_min_interval;
+        private PlayTimeJitter? time_jitter;
 
         public Play()
         {
@@ -209,9 +209,9 @@ namespace SRSConfFile.SRSConfClass
     public class Publish : SrsConfBase
     {
         private string? _instanceName;
+        private int? firstpkt_timeout;
         private bool? mr;
         private int? mr_latency;
-        private int? firstpkt_timeout;
         private int? normal_timeout;
         private bool? parse_sps;
 
@@ -261,10 +261,10 @@ namespace SRSConfFile.SRSConfClass
     public class Refer : SrsConfBase
     {
         private string? _instanceName;
-        private bool? enabled;
         private string? all;
-        private string? publish;
+        private bool? enabled;
         private string? play;
+        private string? publish;
 
         public Refer()
         {
@@ -306,8 +306,8 @@ namespace SRSConfFile.SRSConfClass
     public class Bandcheck : SrsConfBase
     {
         private bool? enabled;
-        private string? key;
         private ushort? interval;
+        private string? key;
         private int? limit_kbps;
 
         public Bandcheck()
@@ -357,9 +357,9 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class SecurityObj
     {
+        private string? rule; //all or ipaddr
         private SecurityMethod? sem;
         private SecurityTarget? set;
-        private string? rule; //all or ipaddr
 
         public SecurityMethod? Sem
         {
@@ -407,9 +407,9 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class HttpStatic : SrsConfBase
     {
+        private string? dir;
         private bool? enabled;
         private string? mount;
-        private string? dir;
 
         public HttpStatic()
         {
@@ -440,8 +440,8 @@ namespace SRSConfFile.SRSConfClass
     {
         private bool? enabled;
         private ushort? fast_cache;
-        private string? mount;
         private bool? hstrs;
+        private string? mount;
 
         public HttpRemux()
         {
@@ -477,15 +477,15 @@ namespace SRSConfFile.SRSConfClass
     public class HttpHooks : SrsConfBase
     {
         private bool? enabled;
-        private string? on_connect;
         private string? on_close;
-        private string? on_publish;
-        private string? on_unpublish;
-        private string? on_play;
-        private string? on_stop;
+        private string? on_connect;
         private string? on_dvr;
         private string? on_hls;
         private string? on_hls_notify;
+        private string? on_play;
+        private string? on_publish;
+        private string? on_stop;
+        private string? on_unpublish;
 
         public HttpHooks()
         {
@@ -580,12 +580,12 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class Dash : SrsConfBase
     {
-        private bool? enabled;
         private ushort? dash_fragment;
-        private ushort? dash_update_period;
-        private ushort? dash_timeshift;
-        private string? dash_path;
         private string? dash_mpd_file;
+        private string? dash_path;
+        private ushort? dash_timeshift;
+        private ushort? dash_update_period;
+        private bool? enabled;
 
         public Dash()
         {
@@ -633,28 +633,28 @@ namespace SRSConfFile.SRSConfClass
     public class Hls : SrsConfBase
     {
         private bool? enabled;
-        private ushort? hls_fragment;
-        private float? hls_td_ratio;
-        private float? hls_aof_ratio;
-        private ushort? hls_window;
-        private string? hls_on_error;
-        private string? hls_path;
-        private string? hls_m3u8_file;
-        private string? hls_ts_file;
-        private bool? hls_ts_floor;
-        private string? hls_entry_prefix;
         private string? hls_acodec;
-        private string? hls_vcodec;
+        private float? hls_aof_ratio;
         private bool? hls_cleanup;
         private int? hls_dispose;
-        private int? hls_nb_notify;
-        private bool? hls_wait_keyframe;
-        private bool? hls_keys;
+        private bool? hls_dts_directly;
+        private string? hls_entry_prefix;
+        private ushort? hls_fragment;
         private int? hls_fragments_per_key;
         private string? hls_key_file;
         private string? hls_key_file_path;
         private string? hls_key_url;
-        private bool? hls_dts_directly;
+        private bool? hls_keys;
+        private string? hls_m3u8_file;
+        private int? hls_nb_notify;
+        private string? hls_on_error;
+        private string? hls_path;
+        private float? hls_td_ratio;
+        private string? hls_ts_file;
+        private bool? hls_ts_floor;
+        private string? hls_vcodec;
+        private bool? hls_wait_keyframe;
+        private ushort? hls_window;
 
         public Hls()
         {
@@ -805,8 +805,8 @@ namespace SRSConfFile.SRSConfClass
     {
         private bool? enabled;
         private int? hds_fragment;
-        private int? hds_window;
         private string? hds_path;
+        private int? hds_window;
 
         public Hds()
         {
@@ -841,12 +841,12 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class Dvr : SrsConfBase
     {
-        private bool? enabled;
         private string? dvr_apply;
-        private string? dvr_plan;
-        private string? dvr_path;
         private ushort? dvr_duration;
+        private string? dvr_path;
+        private string? dvr_plan;
         private bool? dvr_wait_keyframe;
+        private bool? enabled;
         private PlayTimeJitter? time_Jitter;
 
         public Dvr()
@@ -900,12 +900,12 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class Ingest : SrsConfBase
     {
-        private string? _instanceName;
         private string? _ingestName;
+        private string? _instanceName;
         private bool? enabled;
-        private IngestInput? input;
-        private string? ffmpeg; //ffmpeg bin path
         private List<IngestTranscodeEngine>? engines;
+        private string? ffmpeg; //ffmpeg bin path
+        private IngestInput? input;
 
         public Ingest()
         {
@@ -1021,28 +1021,28 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class IngestTranscodeEngine : SrsConfBase
     {
-        private string? _instanceName;
-        private bool? enabled;
         private string? _engineName;
-        private IngestEnginePerfile? perfile;
-        private IngestEngineIoformat? iformat;
-        private IngestEngineVfilter? vfilter;
-        private string? vcodec;
-        private int? vbitrate;
-        private int? vfps;
-        private int? vwidth;
-        private int? vheight;
-        private int? vthreads;
-        private IngestEngineVprofile? vprofile;
-        private IngestEngineVpreset? vpreset;
-        private IngestEngineVparams? vparams;
-        private string? acodec;
+        private string? _instanceName;
         private int? abitrate;
-        private int? asample_rate;
         private int? achannels;
+        private string? acodec;
         private IngestEngineAparams? aparams;
+        private int? asample_rate;
+        private bool? enabled;
+        private IngestEngineIoformat? iformat;
         private IngestEngineIoformat? oformat;
         private string? output;
+        private IngestEnginePerfile? perfile;
+        private int? vbitrate;
+        private string? vcodec;
+        private IngestEngineVfilter? vfilter;
+        private int? vfps;
+        private int? vheight;
+        private IngestEngineVparams? vparams;
+        private IngestEngineVpreset? vpreset;
+        private IngestEngineVprofile? vprofile;
+        private int? vthreads;
+        private int? vwidth;
 
         public IngestTranscodeEngine()
         {
@@ -1217,6 +1217,11 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class IngestEngineVfilter : SrsConfBase
     {
+        private string? filter_complex;
+
+        private string? i; //logo path with jpg/png...
+        private string? vf;
+
         public IngestEngineVfilter()
         {
             SectionsName = "vfilter";
@@ -1239,20 +1244,16 @@ namespace SRSConfFile.SRSConfClass
             get => filter_complex;
             set => filter_complex = value;
         }
-
-        private string? i; //logo path with jpg/png...
-        private string? vf;
-        private string? filter_complex;
     }
 
     [Serializable]
     public class IngestEngineVparams : SrsConfBase
     {
-        private int? t;
-        private int? coder;
         private int? b_strategy;
         private int? bf;
+        private int? coder;
         private int? refs;
+        private int? t;
 
         public IngestEngineVparams()
         {
@@ -1293,8 +1294,8 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class IngestEngineAparams : SrsConfBase
     {
-        private string? profile_a;
         private string? bsf_a;
+        private string? profile_a;
 
         public IngestEngineAparams()
         {
@@ -1318,10 +1319,10 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class Transcode : SrsConfBase
     {
+        private List<IngestTranscodeEngine>? _engines;
         private string? _instanceName;
         private bool? enabled;
         private string? ffmpeg; //ffmpeg bin path
-        private List<IngestTranscodeEngine>? _engines;
 
         public Transcode()
         {
@@ -1357,11 +1358,11 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class Rtc : SrsConfBase
     {
-        private bool? enabled;
-        private string? bframe;
         private string? acc;
-        private ushort? stun_timeout;
+        private string? bframe;
+        private bool? enabled;
         private bool? stun_strict_check;
+        private ushort? stun_timeout;
 
         public Rtc()
         {
@@ -1405,41 +1406,41 @@ namespace SRSConfFile.SRSConfClass
     {
         private string? _instanceName;
         private string? _vhostDomain;
-        private bool? enabled;
-        private bool? min_latency; //for min delay mode
-        private bool? tcp_nodelay; //for system socket min delay mode
+        private List<Ingest>? _vingests;
+        private List<Transcode>? _vtranscodeses;
         private ushort? chunk_size; //128-65536 vhost chunk size will override the global value
+        private bool? enabled;
         private int? in_ack_size;
+        private bool? min_latency; //for min delay mode
         private int? out_ack_size;
         private Rtc? rtc;
+        private bool? tcp_nodelay; //for system socket min delay mode
+        private Bandcheck? vbandcheck;
         private Cluster? vcluster;
+        private Dash? vdash;
+        private Dvr? vdvr;
+        private Exec? vexec;
         private Forward? vforward;
+        private Hds? vhds;
+        private Hls? vhls;
+        private HttpHooks? vhttp_hooks;
+        private HttpRemux? vhttp_remux;
+        private HttpStatic? vhttp_static;
+        private Nack? vnack;
         private Play? vplay;
         private Publish? vpublish;
         private Refer? vrefer;
-        private Bandcheck? vbandcheck;
         private Security? vsecurity;
-        private HttpStatic? vhttp_static;
-        private HttpRemux? vhttp_remux;
-        private HttpHooks? vhttp_hooks;
-        private Exec? vexec;
-        private Dash? vdash;
-        private Hls? vhls;
-        private Hds? vhds;
-        private Dvr? vdvr;
-        private Nack? vnack;
-        private List<Ingest>? _vingests;
-        private List<Transcode>? _vtranscodeses;
+
+        public SrsvHostConfClass()
+        {
+            SectionsName = "vhost";
+        }
 
         public Nack? Vnack
         {
             get => vnack;
             set => vnack = value;
-        }
-
-        public SrsvHostConfClass()
-        {
-            SectionsName = "vhost";
         }
 
 

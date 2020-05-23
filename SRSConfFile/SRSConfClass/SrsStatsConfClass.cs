@@ -5,8 +5,8 @@ namespace SRSConfFile.SRSConfClass
     [Serializable]
     public class SrsStatsConfClass : SrsConfBase
     {
-        private byte? network; //network device index for use
         private string? disk; //monitor disk list use bankspace split 
+        private byte? network; //network device index for use
 
         public SrsStatsConfClass()
         {

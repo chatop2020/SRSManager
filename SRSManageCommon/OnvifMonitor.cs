@@ -12,15 +12,33 @@ namespace SRSManageCommon
     [Serializable]
     public class OnvifMonitor
     {
-        private string _host;
-        private string _username;
-        private string _password;
-        private List<MediaSourceInfo> _mediaSourceInfoList;
         private DeviceClient _device;
-        private MediaClient _media;
-        private PTZClient _ptz;
-        private List<OnvifProfile> _onvifProfileList;
+        private string _host;
         private bool _isInited = false;
+        private MediaClient _media;
+        private List<MediaSourceInfo> _mediaSourceInfoList;
+        private List<OnvifProfile> _onvifProfileList;
+        private string _password;
+        private PTZClient _ptz;
+        private string _username;
+
+        /// <summary>
+        /// 构造函数，初始化对象以外同时做监视器检测
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <exception cref="Exception"></exception>
+        public OnvifMonitor(string host, string username, string password)
+        {
+            this._host = host;
+            this._username = username;
+            this._password = password;
+            if (!CheckOnvifMonitor().Result)
+            {
+                throw new Exception("此host非onvif设备");
+            }
+        }
 
         public List<MediaSourceInfo> MediaSourceInfoList
         {
@@ -97,24 +115,6 @@ namespace SRSManageCommon
 
             if (tmp == null) return false;
             return true;
-        }
-
-        /// <summary>
-        /// 构造函数，初始化对象以外同时做监视器检测
-        /// </summary>
-        /// <param name="host"></param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <exception cref="Exception"></exception>
-        public OnvifMonitor(string host, string username, string password)
-        {
-            this._host = host;
-            this._username = username;
-            this._password = password;
-            if (!CheckOnvifMonitor().Result)
-            {
-                throw new Exception("此host非onvif设备");
-            }
         }
 
         /// <summary>
