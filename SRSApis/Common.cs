@@ -99,7 +99,7 @@ namespace SRSApis
         /// <returns></returns>
         public static bool RefreshSrsObject(SrsManager sm, out ResponseStruct rs)
         {
-            SrsConfigBuild.Build(sm.Srs, sm.srs_ConfigPath);
+            SrsConfigBuild.Build(sm.Srs, sm.SrsConfigPath);
             return sm.Reload(out rs);
         }
 
@@ -116,11 +116,11 @@ namespace SRSApis
                 string rs_str = JsonHelper.ToJson(rs);
                 if (ret)
                 {
-                    LogWriter.WriteLog("SRS启动成功...DeviceID:" + sm.srs_deviceId, rs_str);
+                    LogWriter.WriteLog("SRS启动成功...DeviceID:" + sm.SrsDeviceId, rs_str);
                 }
                 else
                 {
-                    LogWriter.WriteLog("SRS启动失败...DeviceID:" + sm.srs_deviceId, rs_str, ConsoleColor.Yellow);
+                    LogWriter.WriteLog("SRS启动失败...DeviceID:" + sm.SrsDeviceId, rs_str, ConsoleColor.Yellow);
                 }
             }
         }
@@ -277,7 +277,7 @@ namespace SRSApis
                 }
                 else
                 {
-                    LogWriter.WriteLog("初始化SRS成功...ConfigPath:" + sm.srs_ConfigPath, rs_str);
+                    LogWriter.WriteLog("初始化SRS成功...ConfigPath:" + sm.SrsConfigPath, rs_str);
                     SrsManagers.Add(sm);
                 }
             }

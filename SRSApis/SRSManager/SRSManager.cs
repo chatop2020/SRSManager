@@ -9,31 +9,49 @@ using SRSManageCommon;
 
 namespace SRSApis.SRSManager
 {
+    [Serializable]
     public class SrsManager
     {
-        public SrsSystemConfClass Srs = null!;
-        public string srs_ConfigPath = "";
-        public string srs_deviceId = "";
-        private string srs_pidValue = "";
-        private string srs_WorkPath = Environment.CurrentDirectory + "/";
+        private SrsSystemConfClass srs = null!;
+        private string _srsConfigPath = "";
+        private string _srsDeviceId = "";
+        private string _srsPidValue = "";
+        private string _srsWorkPath = Environment.CurrentDirectory + "/";
 
+        public SrsSystemConfClass Srs
+        {
+            get => srs;
+            set => srs = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public string SrsConfigPath
+        {
+            get => _srsConfigPath;
+            set => _srsConfigPath = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public string SrsDeviceId
+        {
+            get => _srsDeviceId;
+            set => _srsDeviceId = value ?? throw new ArgumentNullException(nameof(value));
+        }
 
         public string SrsWorkPath
         {
-            get => srs_WorkPath;
-            set => srs_WorkPath = value ?? throw new ArgumentNullException(nameof(value));
+            get => _srsWorkPath;
+            set => _srsWorkPath = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         public string SrsPidValue
         {
-            get => srs_pidValue;
-            set => srs_pidValue = value ?? throw new ArgumentNullException(nameof(value));
+            get => _srsPidValue;
+            set => _srsPidValue = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         /// <summary>
         /// SRS是否完成初始化
         /// </summary>
-        public bool Is_Init
+        public bool IsInit
         {
             get
             {
@@ -95,7 +113,7 @@ namespace SRSApis.SRSManager
 
         private bool checkFile()
         {
-            if (File.Exists(srs_ConfigPath) && File.Exists(srs_WorkPath + "srs"))
+            if (File.Exists(_srsConfigPath) && File.Exists(_srsWorkPath + "srs"))
             {
                 return true;
             }
@@ -103,6 +121,40 @@ namespace SRSApis.SRSManager
             return false;
         }
 
+        public bool CreateSrsManagerSelf(out ResponseStruct rs)
+        {
+            if (IsInit)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsCreateError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsCreateError] + "\r\n实例已经被初始化",
+                };
+                return false;
+            }
+
+            try
+            {
+                Directory.CreateDirectory(_srsWorkPath + _srsDeviceId);
+                Directory.CreateDirectory(Srs.Ff_log_dir);
+                Directory.CreateDirectory(Srs.Http_server!.Dir);
+                SrsConfigBuild.Build(Srs, this.SrsWorkPath + this.SrsDeviceId + ".conf");
+                this.SrsConfigPath = this.SrsWorkPath + this.SrsDeviceId + ".conf";
+                rs = new ResponseStruct();
+                rs.Code = ErrorNumber.None;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.None];
+                Common.SrsManagers.Add(this);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                rs = new ResponseStruct();
+                rs.Code = ErrorNumber.SrsCreateError;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsCreateError] + "\r\n" + ex.Message + "\r\n" +
+                             ex.StackTrace;
+                return false;
+            }
+        }
 
         /// <summary>
         /// 创建一个空的SRS实例
@@ -111,7 +163,7 @@ namespace SRSApis.SRSManager
         /// <returns></returns>
         public bool CreateSrsManager(out ResponseStruct rs)
         {
-            if (Is_Init)
+            if (IsInit)
             {
                 rs = new ResponseStruct()
                 {
@@ -138,16 +190,16 @@ namespace SRSApis.SRSManager
                     Srs.Max_connections = 512;
                 }
 
-                srs_deviceId = SRSManageCommon.Common.CreateUuid()?.Trim()!;
-                Srs.Srs_log_file = srs_WorkPath + srs_deviceId + "/srs.log";
+                _srsDeviceId = SRSManageCommon.Common.CreateUuid()?.Trim()!;
+                Srs.Srs_log_file = SrsWorkPath + SrsDeviceId + "/srs.log";
                 Srs.Srs_log_level = "verbose"; //初始为观察者
-                Srs.Pid = srs_WorkPath + srs_deviceId + "/srs.pid";
+                Srs.Pid = _srsWorkPath + SrsDeviceId + "/srs.pid";
                 Srs.Chunk_size = 6000;
-                Srs.Ff_log_dir = srs_WorkPath + srs_deviceId + "/ffmpegLog/";
+                Srs.Ff_log_dir = SrsWorkPath + SrsDeviceId + "/ffmpegLog/";
                 Srs.Ff_log_level = "warning";
                 Srs.Daemon = true;
                 Srs.Utc_time = false;
-                Srs.Work_dir = srs_WorkPath;
+                Srs.Work_dir = SrsWorkPath;
                 Srs.Asprocess = false; //如果父进程被关闭，false的话srs不会关闭
                 Srs.Inotify_auto_reload = false; //配置文件修改不自动reload
                 Srs.Srs_log_tank = "file";
@@ -167,7 +219,7 @@ namespace SRSApis.SRSManager
                 Srs.Http_api.Raw_Api.SectionsName = "raw_api";
                 Srs.Http_api.Raw_Api.Enabled = true;
                 Srs.Heartbeat = new SrsHeartbeatConfClass();
-                Srs.Heartbeat.Device_id = SRSManageCommon.Common.AddDoubleQuotation(srs_deviceId !);
+                Srs.Heartbeat.Device_id = SRSManageCommon.Common.AddDoubleQuotation(SrsDeviceId !);
                 Srs.Heartbeat.Enabled = true;
                 Srs.Heartbeat.SectionsName = "heartbeat";
                 Srs.Heartbeat.Interval = 5; //按秒计
@@ -175,7 +227,7 @@ namespace SRSApis.SRSManager
                 Srs.Heartbeat.Url = "http://127.0.0.1:5000/api/v1/heartbeat";
                 Srs.Http_server = new SrsHttpServerConfClass();
                 Srs.Http_server.Enabled = true;
-                Srs.Http_server.Dir = srs_WorkPath + srs_deviceId + "/wwwroot";
+                Srs.Http_server.Dir = SrsWorkPath + SrsDeviceId + "/wwwroot";
                 Srs.Http_server.Listen = 8001;
                 Srs.Http_server.SectionsName = "http_server";
                 Srs.Http_server.Crossdomain = true;
@@ -184,11 +236,11 @@ namespace SRSApis.SRSManager
                 vhost.SectionsName = "vhost";
                 vhost.VhostDomain = "__defaultVhost__";
                 Srs.Vhosts.Add(vhost);
-                Directory.CreateDirectory(srs_WorkPath + srs_deviceId);
+                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId);
                 Directory.CreateDirectory(Srs.Ff_log_dir);
                 Directory.CreateDirectory(Srs.Http_server.Dir);
-                SrsConfigBuild.Build(Srs, srs_WorkPath + srs_deviceId + ".conf");
-                srs_ConfigPath = srs_WorkPath + srs_deviceId + ".conf";
+                SrsConfigBuild.Build(Srs, SrsWorkPath + SrsDeviceId + ".conf");
+                SrsConfigPath = SrsWorkPath + SrsDeviceId + ".conf";
                 rs = new ResponseStruct();
                 rs.Code = ErrorNumber.None;
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.None];
@@ -223,7 +275,7 @@ namespace SRSApis.SRSManager
                 pidValue = stdout.Trim();
                 if (!string.IsNullOrEmpty(pidValue))
                 {
-                    srs_pidValue = pidValue;
+                    _srsPidValue = pidValue;
                     return true;
                 }
 
@@ -266,10 +318,10 @@ namespace SRSApis.SRSManager
                     };
                     if (Srs.Heartbeat != null)
                     {
-                        srs_ConfigPath = srs_WorkPath +
+                        _srsConfigPath = _srsWorkPath +
                                          SRSManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!) +
                                          ".conf";
-                        srs_deviceId = SRSManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!)!;
+                        _srsDeviceId = SRSManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!)!;
                     }
 
                     return true;
@@ -338,7 +390,7 @@ namespace SRSApis.SRSManager
                 return false;
             }
 
-            string cmd = "kill -s SIGHUP " + srs_pidValue + " && ret=$? && echo $ret";
+            string cmd = "kill -s SIGHUP " + _srsPidValue + " && ret=$? && echo $ret";
             string std = "";
             string err = "";
             bool ret = LinuxShell.Run(cmd, 1000, out std, out err);
@@ -387,7 +439,7 @@ namespace SRSApis.SRSManager
                 {
                     Code = ErrorNumber.StartRuningSrsError,
                     Message =
-                        ErrorMessage.ErrorDic![ErrorNumber.StartRuningSrsError] + "\r\npid:(" + srs_pidValue + ")",
+                        ErrorMessage.ErrorDic![ErrorNumber.StartRuningSrsError] + "\r\npid:(" + _srsPidValue + ")",
                 };
                 return false;
             }
@@ -404,10 +456,10 @@ namespace SRSApis.SRSManager
 
             string cmd = "ulimit -c unlimited";
             LinuxShell.Run(cmd);
-            cmd = "cd " + srs_WorkPath;
+            cmd = "cd " + _srsWorkPath;
             LinuxShell.Run(cmd);
-            string srsPath = srs_WorkPath + "srs";
-            cmd = srsPath + " -c " + srs_ConfigPath;
+            string srsPath = _srsWorkPath + "srs";
+            cmd = srsPath + " -c " + _srsConfigPath;
             if (File.Exists(Srs.Pid))
             {
                 File.Delete(Srs.Pid);
@@ -426,7 +478,7 @@ namespace SRSApis.SRSManager
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.StartSrsError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.StartSrsError] + "\r\npid:(" + srs_pidValue + ")",
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.StartSrsError] + "\r\npid:(" + _srsPidValue + ")",
                 };
                 return false;
             }
@@ -434,7 +486,7 @@ namespace SRSApis.SRSManager
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\npid:(" + srs_pidValue + ")",
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\npid:(" + _srsPidValue + ")",
             };
             return true;
         }
@@ -448,7 +500,7 @@ namespace SRSApis.SRSManager
         {
             if (IsRunning)
             {
-                string cmd = "kill -s SIGTERM " + srs_pidValue + " 2>/dev/null";
+                string cmd = "kill -s SIGTERM " + _srsPidValue + " 2>/dev/null";
                 for (int i = 0; i < 100; i++)
                 {
                     LinuxShell.Run(cmd, 100);
@@ -468,7 +520,7 @@ namespace SRSApis.SRSManager
 
                 for (int i = 0; i < 5; i++)
                 {
-                    cmd = "kill -s SIGKILL " + srs_pidValue + " 2>/dev/null";
+                    cmd = "kill -s SIGKILL " + _srsPidValue + " 2>/dev/null";
                     LinuxShell.Run(cmd, 100);
                     if (!IsRunning)
                     {

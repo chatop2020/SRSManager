@@ -1,4 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Threading;
 using SRSApis.SRSManager.Apis.ApiModules;
+using SRSConfFile;
+using SRSConfFile.SRSConfClass;
 using SRSManageCommon;
 
 namespace SRSApis.SRSManager.Apis
@@ -8,380 +15,545 @@ namespace SRSApis.SRSManager.Apis
         /// <summary>
         /// 检测SRS实例是否正在运行
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool IsRunning(SrsManager sm, out ResponseStruct rs)
+        public static bool IsRunning(string deviceId, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            return sm.IsRunning;
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                return ret.IsRunning;
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return false;
+            }
         }
 
         /// <summary>
         /// 检查SrsManager是否被初始化
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool IsInit(SrsManager sm, out ResponseStruct rs)
+        public static bool IsInit(string deviceId, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            return sm.Is_Init;
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                return ret.IsInit;
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return false;
+            }
         }
 
         /// <summary>
         /// 启动SRS实例
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool StartSrs(SrsManager sm, out ResponseStruct rs)
+        public static bool StartSrs(string deviceId, out ResponseStruct rs)
         {
-            return sm.Start(out rs);
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                if (ret.IsRunning)
+                {
+                    return true;
+                }
+                else
+                {
+                    return ret.Start(out rs);
+                }
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return false;
+            }
         }
 
         /// <summary>
         /// 停止SRS实例
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool StopSrs(SrsManager sm, out ResponseStruct rs)
+        public static bool StopSrs(string deviceId, out ResponseStruct rs)
         {
-            return sm.Stop(out rs);
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                return ret.Stop(out rs);
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return false;
+            }
         }
 
         /// <summary>
         /// 重启SRS实例
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool RestartSrs(SrsManager sm, out ResponseStruct rs)
+        public static bool RestartSrs(string deviceId, out ResponseStruct rs)
         {
-            return sm.Restart(out rs);
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                return ret.Restart(out rs);
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return false;
+            }
         }
 
         /// <summary>
         /// 重新加载SRS实例中的配置
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool ReloadSrs(SrsManager sm, out ResponseStruct rs)
+        public static bool ReloadSrs(string deviceId, out ResponseStruct rs)
         {
-            return sm.Reload(out rs);
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                return ret.Reload(out rs);
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return false;
+            }
         }
 
 
         /// <summary>
         /// 修改全局Chunksize
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="size"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool GlobalChangeChunksize(SrsManager sm, ushort size, out ResponseStruct rs)
+        public static bool GlobalChangeChunksize(string deviceId, ushort size, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs != null)
+            {
+                ret.Srs.Chunk_size = size;
+                return true;
+            }
+            else
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
-                sm.Srs.Chunk_size = size;
-                return true;
+                return false;
             }
-
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return false;
         }
 
         /// <summary>
         /// 修改HttpApi的Listen端口
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="port"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool GlobalChangeHttpApipListen(SrsManager sm, ushort port, out ResponseStruct rs)
+        public static bool GlobalChangeHttpApipListen(string deviceId, ushort port, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs.Http_api != null)
+            {
+                ret.Srs.Http_api.Listen = port;
+                return true;
+            }
+            else
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
-                if (sm.Srs.Http_api != null) sm.Srs.Http_api.Listen = port;
-                return true;
+                return false;
             }
-
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return false;
         }
 
         /// <summary>
         /// 修改Http_Api是否可用
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="enable"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool GlobalChangeHttpApiEnable(SrsManager sm, bool enable, out ResponseStruct rs)
+        public static bool GlobalChangeHttpApiEnable(string deviceId, bool enable, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs.Http_api != null)
+            {
+                ret.Srs.Http_api.Enabled = enable;
+                return true;
+            }
+            else
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
-                if (sm.Srs.Http_api != null) sm.Srs.Http_api.Enabled = enable;
-                return true;
+                return false;
             }
-
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return false;
         }
 
         /// <summary>
         /// 修改MaxConnections值
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="maxconnections"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool GlobalChangeMaxConnections(SrsManager sm, ushort maxconnections, out ResponseStruct rs)
+        public static bool GlobalChangeMaxConnections(string deviceId, ushort maxconnections, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs != null)
+            {
+                ret.Srs.Max_connections = maxconnections;
+                return true;
+            }
+            else
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
-                sm.Srs.Max_connections = maxconnections;
-                return true;
+                return false;
             }
-
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return false;
         }
 
         /// <summary>
         /// 修改全局rtmp端口
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="port"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool GlobalChangeRtmpListen(SrsManager sm, ushort port, out ResponseStruct rs)
+        public static bool GlobalChangeRtmpListen(string deviceId, ushort port, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs != null)
+            {
+                ret.Srs.Listen = port;
+                return true;
+            }
+            else
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
-                sm.Srs.Listen = port;
-                return true;
+                return false;
             }
-
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return false;
         }
 
         /// <summary>
         /// 修改Httpserver的端口
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="port"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool GlobalChangeHttpServerListen(SrsManager sm, ushort port, out ResponseStruct rs)
+        public static bool GlobalChangeHttpServerListen(string deviceId, ushort port, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs.Http_server != null)
+            {
+                ret.Srs.Http_server.Listen = port;
+                return true;
+            }
+            else
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
-                sm.Srs.Http_server!.Listen = port;
-                return true;
+                return false;
             }
-
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return false;
         }
 
         /// <summary>
         /// 修改httpserver的webroot
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="path"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool GlobalChangeHttpServerPath(SrsManager sm, string path, out ResponseStruct rs)
+        public static bool GlobalChangeHttpServerPath(string deviceId, string path, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs.Http_server != null)
+            {
+                ret.Srs.Http_server.Dir = path;
+                return true;
+            }
+            else
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
-                sm.Srs.Http_server!.Dir = path;
-                return true;
+                return false;
             }
-
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return false;
         }
 
         /// <summary>
         /// 修改httpserver是否可用
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="enable"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool GlobalChangeHttpServerEnable(SrsManager sm, bool enable, out ResponseStruct rs)
+        public static bool GlobalChangeHttpServerEnable(string deviceId, bool enable, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs.Http_server != null)
+            {
+                ret.Srs.Http_server.Enabled = enable;
+                return true;
+            }
+            else
             {
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                 };
-                if (sm.Srs.Http_server != null) sm.Srs.Http_server.Enabled = enable;
-                return true;
+                return false;
             }
-
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return false;
         }
 
         /// <summary>
         /// 获取SRS实例的全局可改参数对象
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static GlobalModule GetGlobalParams(SrsManager sm, out ResponseStruct rs)
+        public static GlobalModule GetGlobalParams(string deviceId, out ResponseStruct rs)
         {
-            GlobalModule result = null!;
-            if (sm.Srs != null)
+            rs = new ResponseStruct()
             {
-                result = new GlobalModule()
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs.Http_server != null)
+            {
+                GlobalModule result = new GlobalModule()
                 {
-                    Listen = sm.Srs.Listen,
-                    HttpApiListen = sm.Srs.Http_api!.Listen,
-                    MaxConnections = sm.Srs.Max_connections,
-                    HttpApiEnable = sm.Srs.Http_api!.Enabled,
-                    HttpServerEnable = sm.Srs.Http_server!.Enabled,
-                    HttpServerPath = sm.Srs.Http_server!.Dir,
-                    HttpServerListen = sm.Srs.Http_server!.Listen,
-                    HeartbeatEnable = sm.Srs.Heartbeat!.Enabled,
-                    HeartbeatUrl = sm.Srs.Heartbeat!.Url,
-                    HeartbeatSummariesEnable = sm.Srs.Heartbeat!.Summaries,
-                };
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    Listen = ret.Srs.Listen,
+                    HttpApiListen = ret.Srs.Http_api!.Listen,
+                    MaxConnections = ret.Srs.Max_connections,
+                    HttpApiEnable = ret.Srs.Http_api!.Enabled,
+                    HttpServerEnable = ret.Srs.Http_server!.Enabled,
+                    HttpServerPath = ret.Srs.Http_server!.Dir,
+                    HttpServerListen = ret.Srs.Http_server!.Listen,
+                    HeartbeatEnable = ret.Srs.Heartbeat!.Enabled,
+                    HeartbeatUrl = ret.Srs.Heartbeat!.Url,
+                    HeartbeatSummariesEnable = ret.Srs.Heartbeat!.Summaries,
                 };
                 return result;
             }
-
-            rs = new ResponseStruct()
+            else
             {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-            };
-            return result;
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return null!;
+            }
         }
 
         /// <summary>
         /// 整体性修改全局可变参数
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="bm"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool ChangeGlobalParams(SrsManager sm, GlobalModule bm, out ResponseStruct rs)
+        public static bool ChangeGlobalParams(string deviceId, GlobalModule bm, out ResponseStruct rs)
         {
-            if (sm.Srs != null)
-            {
-                if (bm.Listen != null) sm.Srs.Listen = bm.Listen;
-                if (bm.MaxConnections != null) sm.Srs.Max_connections = bm.MaxConnections;
-                if (bm.HttpApiEnable != null) sm.Srs.Http_api!.Enabled = bm.HttpApiEnable;
-                if (bm.HttpApiListen != null) sm.Srs.Http_api!.Listen = bm.HttpApiListen;
-                if (bm.HttpServerPath != null) sm.Srs.Http_server!.Dir = bm.HttpServerPath;
-                if (bm.HttpServerEnable != null) sm.Srs.Http_server!.Enabled = bm.HttpServerEnable;
-                if (bm.HttpServerListen != null) sm.Srs.Http_server!.Listen = bm.HttpServerListen;
-                if (bm.HeartbeatEnable != null) sm.Srs.Heartbeat!.Enabled = bm.HeartbeatEnable;
-                if (bm.HeartbeatUrl != null) sm.Srs.Heartbeat!.Url = bm.HeartbeatUrl;
-                if (bm.HeartbeatSummariesEnable != null) sm.Srs.Heartbeat!.Summaries = bm.HeartbeatSummariesEnable;
-
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
-                return true;
-            }
-
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.SrsObjectNotInit,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            return false;
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null && ret.Srs.Http_server != null)
+            {
+                if (bm.Listen != null) ret.Srs.Listen = bm.Listen;
+                if (bm.MaxConnections != null) ret.Srs.Max_connections = bm.MaxConnections;
+                if (bm.HttpApiEnable != null) ret.Srs.Http_api!.Enabled = bm.HttpApiEnable;
+                if (bm.HttpApiListen != null) ret.Srs.Http_api!.Listen = bm.HttpApiListen;
+                if (bm.HttpServerPath != null) ret.Srs.Http_server!.Dir = bm.HttpServerPath;
+                if (bm.HttpServerEnable != null) ret.Srs.Http_server!.Enabled = bm.HttpServerEnable;
+                if (bm.HttpServerListen != null) ret.Srs.Http_server!.Listen = bm.HttpServerListen;
+                if (bm.HeartbeatEnable != null) ret.Srs.Heartbeat!.Enabled = bm.HeartbeatEnable;
+                if (bm.HeartbeatUrl != null) ret.Srs.Heartbeat!.Url = bm.HeartbeatUrl;
+                if (bm.HeartbeatSummariesEnable != null) ret.Srs.Heartbeat!.Summaries = bm.HeartbeatSummariesEnable;
+                return true;
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return false;
+            }
         }
     }
 }

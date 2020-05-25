@@ -45,6 +45,15 @@ namespace SRSManageCommon
         OnvifMonitorListIsNull = -5030, //onvif设备列表为空
         OnvifConfigLoadExcept = -5031, //onvif配置文件读取失败
         OnvifConfigWriteExcept = -5032, // Onvif配置文件写入失败
+        SrsInstanceExists = -5033, //SRS实例已存在
+        SrsInstanceConfigPathExists=-5034, //SRS配置文件路径重复
+        SrsInstanceListenExists=-5035, //SRS的监听端口已经冲突
+        SrsInstanceHttpApiListenExists=-5035, //SRS的HttpApi监听端口已经冲突
+        SrsInstanceHttpServerListenExists=-5036, //SRS的HttpServer监听端口已经冲突
+        SrsInstanceRtcServerListenExists=-5037, //SRS的RtcServer监听端口已经冲突
+        SrsInstanceStreamCasterListenExists=-5038, //SRS的StreamCaster监听端口已经冲突
+        SrsInstanceStreamCasterSipListenExists=-5039, //SRS的StreamCaster[Sip]监听端口已经冲突
+        SrsInstanceSrtServerListenExists=-5040, //SRS的SrtServer监听端口已经冲突
 
         Other = -6000
     }
@@ -96,6 +105,15 @@ namespace SRSManageCommon
             ErrorDic[ErrorNumber.OnvifMonitorListIsNull] = "Onvif设备列表为空";
             ErrorDic[ErrorNumber.OnvifConfigLoadExcept] = "Onvif配置文件读取失败";
             ErrorDic[ErrorNumber.OnvifConfigWriteExcept] = "Onvif配置文件写入失败";
+            ErrorDic[ErrorNumber.SrsInstanceExists] = "SRS实例已经存在";
+            ErrorDic[ErrorNumber.SrsInstanceConfigPathExists] = "SRS配置文件路径重复";
+            ErrorDic[ErrorNumber.SrsInstanceListenExists] = "SRS的监听端口已经冲突";
+            ErrorDic[ErrorNumber.SrsInstanceHttpApiListenExists] = "SRS的HttpApi监听端口已经冲突";
+            ErrorDic[ErrorNumber.SrsInstanceHttpServerListenExists] = "SRS的HttpServer监听端口已经冲突";
+            ErrorDic[ErrorNumber.SrsInstanceRtcServerListenExists] = "SRS的RtcServer监听端口已经冲突";
+            ErrorDic[ErrorNumber.SrsInstanceStreamCasterListenExists] = "SRS的StreamCaster监听端口已经冲突";
+            ErrorDic[ErrorNumber.SrsInstanceStreamCasterSipListenExists] = "SRS的StreamCaster[Sip]监听端口已经冲突";
+            ErrorDic[ErrorNumber.SrsInstanceSrtServerListenExists] = "SRS的SrtServer监听端口已经冲突";
         }
     }
 }

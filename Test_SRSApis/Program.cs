@@ -62,7 +62,7 @@ namespace Test_SRSApis
                 VhostRtcApis.DeleteVhostRtc(srsm, d, out rs);
                 VhostHdsApis.DeleteVhostHds(srsm, d, out rs);
 
-                SrsConfigBuild.Build(srsm.Srs, srsm.srs_ConfigPath);
+                SrsConfigBuild.Build(srsm.Srs, srsm.SrsConfigPath);
                 if (srsm.IsRunning)
                 {
                     bool ret = srsm.Reload(out rs);

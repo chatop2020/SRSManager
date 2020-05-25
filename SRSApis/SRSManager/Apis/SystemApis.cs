@@ -4,13 +4,373 @@ using System.IO;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Threading;
 using SRSApis.SRSManager.Apis.ApiModules;
+using SRSConfFile.SRSConfClass;
 using SRSManageCommon;
 
 namespace SRSApis.SRSManager.Apis
 {
     public static class SystemApis
     {
+        
+        /// <summary>
+        /// 删除一个SrsInstance
+        /// </summary>
+        /// <param name="devid"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool DelSrsInstanceByDeviceId(string devid, out ResponseStruct rs)
+        {
+            if(Common.SrsManagers==null) Common.SrsManagers= new List<SrsManager>();
+            var ret = Common.SrsManagers.FindLast(x => x.SrsDeviceId.Trim().ToUpper().Equals(devid.Trim().ToUpper()));
+            if (ret != null)
+            {
+                Common.SrsManagers.Remove(ret);
+                if (ret.Srs != null && (ret.IsRunning || ret.IsInit))
+                {
+                    //停掉srs进程
+                    while (ret.IsRunning)
+                    {
+                        ret.Stop(out rs);
+                        Thread.Sleep(100);
+                    }
+                } 
+                File.Delete(ret.SrsConfigPath);
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.None,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                };
+                return true;
+            }
+            else
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsObjectNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                };
+                return false;
+            }
+        }
+        /// <summary>
+        /// 检查新建SRS实例的各类端口是否有冲突
+        /// </summary>
+        /// <param name="sm"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        private static bool checkNewSrsInstanceListenRight(SrsManager sm, out ResponseStruct rs)
+        {
+            if (sm == null || sm.Srs == null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.FunctionInputParamsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                };
+                return false;
+            }
+
+            ushort? port = sm.Srs.Listen;
+            if (port == null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.FunctionInputParamsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                };
+                return false;
+            }
+
+            var ret = Common.SrsManagers.FindLast(x => x.Srs.Listen == port);
+            if (ret != null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsInstanceListenExists,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsInstanceListenExists],
+                };
+                return false;
+            }
+
+            if (sm.Srs.Http_api != null && sm.Srs.Http_api.Listen != null)
+            {
+                port = sm.Srs.Http_api.Listen;
+                ret = Common.SrsManagers.FindLast(x => x.Srs.Http_api!.Listen == port);
+                if (ret != null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsInstanceHttpApiListenExists,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsInstanceHttpApiListenExists],
+                    };
+                    return false;
+                }
+            }
+
+            if (sm.Srs.Http_server != null && sm.Srs.Http_server.Listen != null)
+            {
+                port = sm.Srs.Http_server.Listen;
+                ret = Common.SrsManagers.FindLast(x => x.Srs.Http_server!.Listen == port);
+                if (ret != null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsInstanceHttpServerListenExists,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsInstanceHttpServerListenExists],
+                    };
+                    return false;
+                }
+            }
+
+            if (sm.Srs.Rtc_server != null && sm.Srs.Rtc_server.Listen != null)
+            {
+                port = sm.Srs.Rtc_server.Listen;
+                ret = Common.SrsManagers.FindLast(x => x.Srs.Rtc_server!.Listen == port);
+                if (ret != null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsInstanceRtcServerListenExists,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsInstanceRtcServerListenExists],
+                    };
+                    return false;
+                }
+            }
+
+            if (sm.Srs.Srt_server != null && sm.Srs.Srt_server.Listen != null)
+            {
+                port = sm.Srs.Srt_server.Listen;
+                ret = Common.SrsManagers.FindLast(x => x.Srs.Srt_server!.Listen == port);
+                if (ret != null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsInstanceSrtServerListenExists,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsInstanceSrtServerListenExists],
+                    };
+                    return false;
+                }
+            }
+
+            if (sm.Srs.Stream_casters != null && sm.Srs.Stream_casters.Count > 0)
+            {
+                foreach (var caster in sm.Srs.Stream_casters)
+                {
+                    if (caster != null && caster.Listen != null)
+                    {
+                        foreach (var srs in Common.SrsManagers)
+                        {
+                            foreach (var sc in srs.Srs.Stream_casters!)
+                            {
+                                if (sc != null)
+                                {
+                                    if (sc.Listen == caster.Listen)
+                                    {
+                                        rs = new ResponseStruct()
+                                        {
+                                            Code = ErrorNumber.SrsInstanceStreamCasterListenExists,
+                                            Message = ErrorMessage.ErrorDic![
+                                                ErrorNumber.SrsInstanceStreamCasterListenExists],
+                                        };
+                                        return false;
+                                    }
+
+                                    if (caster.sip != null && sc.sip != null && caster.sip.Listen != null &&
+                                        sc.sip.Listen != null)
+                                    {
+                                        if (caster.sip.Listen == sc.sip.Listen)
+                                        {
+                                            rs = new ResponseStruct()
+                                            {
+                                                Code = ErrorNumber.SrsInstanceStreamCasterSipListenExists,
+                                                Message = ErrorMessage.ErrorDic![
+                                                    ErrorNumber.SrsInstanceStreamCasterSipListenExists],
+                                            };
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            return true;
+        }
+
+        /// <summary>
+        /// 检查新建srs进程实例的各种路径是否正常
+        /// </summary>
+        /// <param name="sm"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        private static bool checkNewSrsInstancePathRight(SrsManager sm, out ResponseStruct rs)
+        {
+            if (sm == null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.FunctionInputParamsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                };
+                return false;
+            }
+
+            string devId = sm.SrsDeviceId;
+            string confPath = sm.SrsConfigPath;
+            if (string.IsNullOrEmpty(devId) || string.IsNullOrEmpty(confPath))
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.FunctionInputParamsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                };
+                return false;
+            }
+
+            var ret = Common.SrsManagers.FindLast(x => x.SrsDeviceId.Trim().ToUpper().Equals(devId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsInstanceExists,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsInstanceExists],
+                };
+                return false;
+            }
+
+            ret = Common.SrsManagers.FindLast(x => x.SrsConfigPath.Trim().ToUpper().Equals(confPath.Trim().ToUpper()));
+            if (ret != null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsInstanceConfigPathExists,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsInstanceConfigPathExists],
+                };
+                return false;
+            }
+
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            return true;
+        }
+
+        /// <summary>
+        /// 获取srs实例模板
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static SrsManager GetSrsInstanceTemplate(out ResponseStruct rs)
+        {
+            SrsManager srsManager = new SrsManager();
+            srsManager.Srs = new SrsSystemConfClass();
+
+            srsManager.Srs = new SrsSystemConfClass();
+            srsManager.Srs.Listen = 1935;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                srsManager.Srs.Max_connections = 1000;
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                srsManager.Srs.Max_connections = 128;
+            }
+            else
+            {
+                srsManager.Srs.Max_connections = 512;
+            }
+
+            srsManager.SrsDeviceId = SRSManageCommon.Common.CreateUuid()?.Trim()!;
+            srsManager.SrsWorkPath = Common.WorkPath;
+            srsManager.Srs.Srs_log_file = srsManager.SrsWorkPath + srsManager.SrsDeviceId + "/srs.log";
+            srsManager.Srs.Srs_log_level = "verbose"; //初始为观察者
+            srsManager.Srs.Pid = srsManager.SrsWorkPath + srsManager.SrsDeviceId + "/srs.pid";
+            srsManager.Srs.Chunk_size = 6000;
+            srsManager.Srs.Ff_log_dir = srsManager.SrsWorkPath + srsManager.SrsDeviceId + "/ffmpegLog/";
+            srsManager.Srs.Ff_log_level = "warning";
+            srsManager.Srs.Daemon = true;
+            srsManager.Srs.Utc_time = false;
+            srsManager.Srs.Work_dir = srsManager.SrsWorkPath;
+            srsManager.Srs.Asprocess = false; //如果父进程被关闭，false的话srs不会关闭
+            srsManager.Srs.Inotify_auto_reload = false; //配置文件修改不自动reload
+            srsManager.Srs.Srs_log_tank = "file";
+            srsManager.Srs.Grace_start_wait = 2300;
+            srsManager.Srs.Grace_final_wait = 3200;
+            srsManager.Srs.Force_grace_quit = false;
+            srsManager.Srs.Http_api = new SrsHttpApiConfClass();
+            srsManager.Srs.Http_api.Crossdomain = true;
+            srsManager.Srs.Http_api.Enabled = true;
+            srsManager.Srs.Http_api.Listen = 8000;
+            srsManager.Srs.Http_api.InstanceName = "";
+            srsManager.Srs.Http_api.SectionsName = "http_api";
+            srsManager.Srs.Http_api.Raw_Api = new RawApi();
+            srsManager.Srs.Http_api.Raw_Api.Allow_query = true;
+            srsManager.Srs.Http_api.Raw_Api.Allow_reload = true;
+            srsManager.Srs.Http_api.Raw_Api.Allow_update = true;
+            srsManager.Srs.Http_api.Raw_Api.SectionsName = "raw_api";
+            srsManager.Srs.Http_api.Raw_Api.Enabled = true;
+            srsManager.Srs.Heartbeat = new SrsHeartbeatConfClass();
+            srsManager.Srs.Heartbeat.Device_id = SRSManageCommon.Common.AddDoubleQuotation(srsManager.SrsDeviceId !);
+            srsManager.Srs.Heartbeat.Enabled = true;
+            srsManager.Srs.Heartbeat.SectionsName = "heartbeat";
+            srsManager.Srs.Heartbeat.Interval = 5; //按秒计
+            srsManager.Srs.Heartbeat.Summaries = true;
+            srsManager.Srs.Heartbeat.Url = "http://127.0.0.1:5000/api/v1/heartbeat";
+            srsManager.Srs.Http_server = new SrsHttpServerConfClass();
+            srsManager.Srs.Http_server.Enabled = true;
+            srsManager.Srs.Http_server.Dir = srsManager.SrsWorkPath + srsManager.SrsDeviceId + "/wwwroot";
+            srsManager.Srs.Http_server.Listen = 8001;
+            srsManager.Srs.Http_server.SectionsName = "http_server";
+            srsManager.Srs.Http_server.Crossdomain = true;
+            srsManager.Srs.Vhosts = new List<SrsvHostConfClass>();
+            SrsvHostConfClass vhost = new SrsvHostConfClass();
+            vhost.SectionsName = "vhost";
+            vhost.VhostDomain = "__defaultVhost__";
+            srsManager.Srs.Vhosts.Add(vhost);
+            rs = new ResponseStruct();
+            rs.Code = ErrorNumber.None;
+            rs.Message = ErrorMessage.ErrorDic![ErrorNumber.None];
+            return srsManager;
+        }
+
+        /// <summary>
+        /// 创建一个新的SRS实例
+        /// </summary>
+        /// <param name="sm"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static SrsManager CreateNewSrsInstance(SrsManager sm, out ResponseStruct rs)
+        {
+            if (Common.SrsManagers == null) Common.SrsManagers = new List<SrsManager>();
+            if (!checkNewSrsInstancePathRight(sm, out rs)) //检查路径是否正常
+            {
+                return null!;
+            }
+
+            if (!checkNewSrsInstanceListenRight(sm, out rs)) //检查监听端口是否正常
+            {
+                return null!;
+            }
+
+            if (!sm.CreateSrsManagerSelf(out rs))
+            {
+                return null!;
+            }
+
+            return sm;
+        }
+        
         /// <summary>
         /// 根据ip删除onvif配置文件
         /// </summary>
@@ -97,91 +457,6 @@ namespace SRSApis.SRSManager.Apis
         }
 
 
-        /*/*public static bool DeleteOnvifConfig(string ipAddr)
-        {
-            
-        }#1#
-        /// <summary>
-        /// 重新加载onvif配置文件
-        /// </summary>
-        /// <returns></returns>
-        public static bool ReloadOnvifConfig()
-        {
-            try
-            {
-                SRSManageCommon.LoadOnvifMonitors();
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// 重写配置文件
-        /// </summary>
-        /// <returns></returns>
-        public static bool ReWriteOnvifConfig()
-        {
-            List<OnvifConfigTemp> tmpConfig = new List<OnvifConfigTemp>();
-            if (SRSManageCommon.OnvifManagers != null)
-            {
-                foreach (var om in SRSManageCommon.OnvifManagers)
-                {
-                    String filename = om.ConfigPath;
-                    String? username = om.Username;
-                    String? password = om.Password;
-                    String? ipaddr = om.IpAddr;
-                    OnvifConfigTemp oct = tmpConfig.FindLast(x => x.FilePath.Trim().Equals(filename.Trim()))!;
-                    if (oct != null)
-                    {
-                        string s = ipaddr + "\t";
-                        if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
-                        {
-                            s += username + "\t";
-                            s += password + ";";
-                        }
-
-                        if (!string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))
-                        {
-                            s += username + ";";
-                        }
-
-                        oct.Context.Add(s);
-                    }
-                    else
-                    {
-                        oct = new OnvifConfigTemp();
-                        oct.FilePath = filename;
-                        string s = ipaddr + "\t";
-                        if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
-                        {
-                            s += username + "\t";
-                            s += password + ";";
-                        }
-
-                        if (!string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))
-                        {
-                            s += username + ";";
-                        }
-
-                        oct.Context.Add(s);
-                        tmpConfig.Add(oct);
-                    }
-                }
-
-                foreach (var tmp in tmpConfig)
-                {
-                    File.WriteAllLines(tmp.FilePath, tmp.Context);
-                }
-
-                return true;
-            }
-
-            return false;
-        }*/
 
         /// <summary>
         /// 刷新srs配置
@@ -214,7 +489,7 @@ namespace SRSApis.SRSManager.Apis
             {
                 if (srs != null)
                 {
-                    list.Add(srs.srs_deviceId);
+                    list.Add(srs.SrsDeviceId);
                 }
             }
 
@@ -232,7 +507,7 @@ namespace SRSApis.SRSManager.Apis
             {
                 if (srs != null)
                 {
-                    if (srs.srs_deviceId.Equals(deviceId)) return srs;
+                    if (srs.SrsDeviceId.Equals(deviceId)) return srs;
                 }
             }
 

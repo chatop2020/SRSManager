@@ -1,4 +1,4 @@
-namespace SRSApis.SRSManager.Apis.ApiModules
+namespace SRSManageCommon
 {
     public class NetworkInterfaceModule
     {
