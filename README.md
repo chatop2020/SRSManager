@@ -8,7 +8,7 @@
 - 在SRS之外集成onvif设备的管理，包括onvif设备探测，onvif ptz控制，onvif meidaurl获取等。
 - 开设此项目主要原因是在自己的项目中要使用到SRS，为了更方便的使用SRS以满足项目所需而开设此项目，也同时为开
   源社区做些力所能及的贡献。
-- 项目采用.net core 3.1进程编译，SRSWebApi采用Asp.net Core 3.1 的WebApi工程开发，集成了Swagger接口调度文档，
+- 项目采用.net core 3.1 编译，SRSWebApi采用Asp.net Core 3.1 的WebApi工程开发，集成了Swagger接口调度文档，
   Onvif相关功能采用了Mictlanix.DotNet.Onvif控制类库。
   
 ## 重要
