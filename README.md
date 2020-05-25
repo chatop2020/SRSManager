@@ -38,4 +38,5 @@
   媒体流。
 - 我将OnvifClient,SRSApis,SRSConfFile,SRSManageCommon,SRSWebApi工程的集成称之为一个StreamNode，在StreamNode
   中我尽可能不采用任何关系型数据库组件来实现所有功能，这样可以保证程序最大程度上的自由性，简化其安装部署的难度。
+- 对SRS原有HTTP API进行封装与转发，实现风格统一，鉴权统一的webapi接口。
 
