@@ -54,13 +54,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, o);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }
@@ -114,13 +114,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, o);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }
@@ -172,13 +172,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, o);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }
@@ -216,13 +216,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, o);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }
@@ -276,13 +276,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, o);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }
@@ -354,13 +354,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, o);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }
@@ -423,13 +423,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, o);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }
@@ -526,13 +526,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, o);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }
@@ -755,13 +755,13 @@ namespace SRSConfFile
                         {
                             string s = "";
                             s = Common.GetBoolStr(p, sccout);
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + s + ";";
+                            output += (sTmp + "\r\n");
                         }
                         else
                         {
-                            string s_tmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
-                            output += (s_tmp + "\r\n");
+                            string sTmp = segmentSpace + p.Name.ToLower().Trim() + "\t" + obj + ";";
+                            output += (sTmp + "\r\n");
                         }
                     }
                 }

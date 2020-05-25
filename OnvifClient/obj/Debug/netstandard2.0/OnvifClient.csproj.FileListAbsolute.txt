@@ -16,8 +16,6 @@
 /Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/obj/Debug/netstandard2.0/OnvifClient.AssemblyInfo.cs
 /Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/obj/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.dll
 /Users/qiuzhouwei/Projects/StreamCenter/OnvifClient/obj/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.pdb
-/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.dll
-/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.pdb
 /Users/qiuzhouwei/Projects/SRSManager/OnvifClient/bin/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.deps.json
 /Users/qiuzhouwei/Projects/SRSManager/OnvifClient/bin/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.dll
 /Users/qiuzhouwei/Projects/SRSManager/OnvifClient/bin/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.pdb
@@ -25,3 +23,5 @@
 /Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/Debug/netstandard2.0/OnvifClient.csproj.CoreCompileInputs.cache
 /Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/Debug/netstandard2.0/OnvifClient.AssemblyInfoInputs.cache
 /Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/Debug/netstandard2.0/OnvifClient.AssemblyInfo.cs
+/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.dll
+/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/Debug/netstandard2.0/Mictlanix.DotNet.OnvifClient.pdb
