@@ -10,8 +10,8 @@
   源社区做些力所能及的贡献。
 - 项目采用.net core 3.1 编译，SRSWebApi采用Asp.net Core 3.1 的WebApi工程开发，集成了Swagger接口调度文档，
   Onvif相关功能采用了Mictlanix.DotNet.Onvif控制类库。
-- 项目中不包含SRS进程内容，需要你自己编译SRS工程，SRS开源地址为：https://github.com/ossrs/srs，本项目根据SRS 4.0+ release
-  版本进行编写。
+- 项目中不包含SRS进程内容，需要你自己编译SRS工程，SRS开源地址为：https://github.com/ossrs/srs     
+  本项目基于SRS 4.0+ release版本进行编码。
 - 本项目支持linux和macos,需要.net core 3.1运行库支持。
   
 ## 重要
