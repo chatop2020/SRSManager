@@ -27,11 +27,7 @@ namespace SRSWebApi.Controllers
         [Route("/VhostHttpStatic/DeleteVhostHttpStatic")]
         public JsonResult DeleteVhostHttpStatic(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostHttpStaticApis.DeleteVhostHttpStatic(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostHttpStaticApis.DeleteVhostHttpStatic(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -47,58 +43,27 @@ namespace SRSWebApi.Controllers
         [Route("/VhostHttpStatic/GetVhostHttpStatic")]
         public JsonResult GetVhostHttpStatic(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostHttpStaticApis.GetVhostHttpStatic(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostHttpStaticApis.GetVhostHttpStatic(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
-        /// 设置HttpStatic
+        /// 设置或创建HttpStatic
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <param name="httpStatic"></param>
-        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/VhostHttpStatic/SetVhostHttpStatic")]
-        public JsonResult SetVhostHttpStatic(string deviceId, string vhostDomain, HttpStatic httpStatic,
-            bool createIfNotFound = false)
+        public JsonResult SetVhostHttpStatic(string deviceId, string vhostDomain, HttpStatic httpStatic)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostHttpStaticApis.SetVhostHttpStatic(srsManager, vhostDomain, httpStatic, out ResponseStruct rs,
-                createIfNotFound);
+            var rt = VhostHttpStaticApis.SetVhostHttpStatic(deviceId, vhostDomain, httpStatic, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
-        /// <summary>
-        /// 创建HttpStatic
-        /// </summary>
-        /// <param name="deviceId"></param>
-        /// <param name="vhostDomain"></param>
-        /// <param name="httpStatic"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [Log]
-        [Route("/VhostHttpStatic/CreateVhostHttpStatic")]
-        public JsonResult CreateVhostHttpStatic(string deviceId, string vhostDomain, HttpStatic httpStatic)
-        {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostHttpStaticApis.CreateVhostHttpStatic(srsManager, vhostDomain, httpStatic,
-                out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs);
-        }
+        
     }
 }

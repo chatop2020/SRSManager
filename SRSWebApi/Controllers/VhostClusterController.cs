@@ -27,11 +27,7 @@ namespace SRSWebApi.Controllers
         [Route("/VhostCluster/DeleteVhostCluster")]
         public JsonResult DeleteVhostCluster(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostClusterApis.DeleteVhostCluster(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostClusterApis.DeleteVhostCluster(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -47,57 +43,26 @@ namespace SRSWebApi.Controllers
         [Route("/VhostCluster/GetVhostCluster")]
         public JsonResult GetVhostCluster(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostClusterApis.GetVhostCluster(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostClusterApis.GetVhostCluster(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
-        /// 设置Cluster
+        /// 设置或创建Cluster
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <param name="cluster"></param>
-        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/VhostCluster/SetVhostCluster")]
-        public JsonResult SetVhostCluster(string deviceId, string vhostDomain, Cluster cluster,
-            bool createIfNotFound = false)
+        public JsonResult SetVhostCluster(string deviceId, string vhostDomain, Cluster cluster)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostClusterApis.SetVhostCluster(srsManager, vhostDomain, cluster, out ResponseStruct rs,
-                createIfNotFound);
+            var rt = VhostClusterApis.SetVhostCluster(deviceId, vhostDomain, cluster, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-
-        /// <summary>
-        /// 创建Cluster
-        /// </summary>
-        /// <param name="deviceId"></param>
-        /// <param name="vhostDomain"></param>
-        /// <param name="cluster"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [Log]
-        [Route("/VhostCluster/CreateVhostCluster")]
-        public JsonResult CreateVhostCluster(string deviceId, string vhostDomain, Cluster cluster)
-        {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostClusterApis.CreateVhostCluster(srsManager, vhostDomain, cluster, out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs);
-        }
+        
     }
 }

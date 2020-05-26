@@ -10,96 +10,144 @@ namespace SRSApis.SRSManager.Apis
         /// <summary>
         /// 获取StreamCasterInstenceName 列表
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<string> GetStreamCastersInstanceName(SrsManager sm, out ResponseStruct rs)
+        public static List<string> GetStreamCastersInstanceName(string deviceId, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Stream_casters == null)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return null!;
-            }
-
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            if (sm.Srs.Stream_casters.Count > 0)
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                List<string> slist = sm.Srs.Stream_casters.Select(i => i.InstanceName).ToList()!;
+                if (ret.Srs == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return null!;
+                }
+
+                if (ret.Srs.Stream_casters == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return null!;
+                }
+
+                List<string> slist = ret.Srs.Stream_casters.Select(i => i.InstanceName).ToList()!;
                 return slist!;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                return null!;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return null!;
         }
 
         /// <summary>
         /// 获取SrsManager实例中的StreamCaster列表
         /// </summary>
-        /// <param name="sm">SrsManager实例</param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<SrsStreamCasterConfClass> GetStreamCasterList(SrsManager sm, out ResponseStruct rs)
+        public static List<SrsStreamCasterConfClass> GetStreamCasterList(string deviceId, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return null!;
-            }
-
+            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            if (sm.Srs.Stream_casters != null && sm.Srs.Stream_casters.Count > 0)
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                List<SrsStreamCasterConfClass> result = sm.Srs.Stream_casters;
-                return result;
+                if (ret.Srs == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return null!;
+                }
+
+                if (ret.Srs.Stream_casters == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return null!;
+                }
+
+                return ret.Srs.Stream_casters!;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                return null!;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return null!;
         }
 
         /// <summary>
         /// 在当前SrsManager实例中创建一个StreamCaster
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="streamCaster"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool CreateStreamCaster(SrsManager sm, SrsStreamCasterConfClass streamCaster,
+        public static bool CreateStreamCaster(string deviceId, SrsStreamCasterConfClass streamCaster,
             out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null)
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                if (ret.Srs == null)
                 {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return false!;
+                }
+                if (ret.Srs.Stream_casters == null)
+                {
+                    ret.Srs.Stream_casters= new List<SrsStreamCasterConfClass>();
+                    ret.Srs.Stream_casters.Add(streamCaster);
+                    return true;
+                }
 
-            if (sm.Srs.Stream_casters == null) sm.Srs.Stream_casters = new List<SrsStreamCasterConfClass>();
-            var obj = sm.Srs.Stream_casters.FindLast(x =>
-                x.InstanceName!.Trim().ToLower().Equals(streamCaster.InstanceName!.Trim().ToLower()));
-            if (obj != null)
-            {
+                var retStreamCaster = ret.Srs.Stream_casters.FindLast(x =>
+                    x.InstanceName!.Trim().ToUpper().Equals(streamCaster.InstanceName!.Trim().ToUpper()));
+                if (retStreamCaster == null)
+                {
+                    ret.Srs.Stream_casters.Add(streamCaster);
+                    return true;
+                }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceAlreadyExists,
@@ -108,38 +156,12 @@ namespace SRSApis.SRSManager.Apis
                 return false;
             }
 
-            /*for (int i = 0; i <= sm.Srs.Stream_casters.Count - 1; i++)
-            {
-                if (sm.Srs.Stream_casters[i].InstanceName!.Trim().ToLower()
-                    .Equals(streamCaster.InstanceName!.Trim().ToLower()))
-                {
-                    rs = new ResponseStruct()
-                    {
-                        Code = ErrorNumber.SRSSubInstanceAlreadyExists,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.SRSSubInstanceAlreadyExists],
-                    };
-                    return false;
-                }
-            }*/
-
-            if (string.IsNullOrEmpty(streamCaster.InstanceName))
-            {
-                streamCaster.InstanceName = SRSManageCommon.Common.CreateUuid();
-            }
-
-            if (string.IsNullOrEmpty(streamCaster.SectionsName))
-            {
-                streamCaster.SectionsName = "stream_caster";
-            }
-
-            sm.Srs.Stream_casters.Add(streamCaster);
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\n" + "StreamCaster创建到SRS实例中\r\n" +
-                          JsonHelper.ToJson(streamCaster),
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -227,235 +249,236 @@ namespace SRSApis.SRSManager.Apis
         /// <summary>
         /// 使用InstanceName来删除StreamCaster
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="instanceName"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool DeleteStreamCasterByInstanceName(SrsManager sm, string instanceName, out ResponseStruct rs)
+        public static bool DeleteStreamCasterByInstanceName(string deviceId, string instanceName, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Stream_casters == null)
+            
+              rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            bool ret = false;
-            for (int i = 0; i <= sm.Srs.Stream_casters.Count - 1; i++)
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                if (sm.Srs.Stream_casters[i].InstanceName!.Trim().ToLower().Equals(instanceName.Trim().ToLower()))
+                if (ret.Srs == null)
                 {
-                    sm.Srs.Stream_casters[i] = null!;
-                    ret = true;
-                    break;
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return false;
                 }
+                if (ret.Srs.Stream_casters == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                var retStreamCaster = ret.Srs.Stream_casters.FindLast(x =>
+                    x.InstanceName!.Trim().ToUpper().Equals(instanceName!.Trim().ToUpper()));
+                if (retStreamCaster == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                ret.Srs.Stream_casters.Remove(retStreamCaster);
+                return true;
             }
 
-            if (ret)
+            rs = new ResponseStruct()
             {
-                Common.RemoveNull(sm.Srs.Stream_casters);
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
-                return ret;
-            }
-            else
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
-                };
-                return ret;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
-        public static bool ChangeStreamCasterInstanceName(SrsManager sm, string instanceName, string newInstanceName,
+        /// <summary>
+        /// 修改StreamCaster的实例名称
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="instanceName"></param>
+        /// <param name="newInstanceName"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool ChangeStreamCasterInstanceName(string  deviceId, string instanceName, string newInstanceName,
             out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Stream_casters == null)
+            
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            bool ret = false;
-            foreach (var caster in sm.Srs.Stream_casters)
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                if (caster.InstanceName!.Trim().ToLower().Equals(instanceName.Trim().ToLower()))
+                if (ret.Srs == null)
                 {
-                    caster.InstanceName = newInstanceName;
-                    ret = true;
-                    break;
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return false;
                 }
-            }
-
-
-            if (ret)
-            {
-                rs = new ResponseStruct()
+                if (ret.Srs.Stream_casters == null)
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
-                return ret;
-            }
-            else
-            {
-                rs = new ResponseStruct()
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                var retStreamCaster = ret.Srs.Stream_casters.FindLast(x =>
+                    x.InstanceName!.Trim().ToUpper().Equals(instanceName!.Trim().ToUpper()));
+                if (retStreamCaster == null)
                 {
-                    Code = ErrorNumber.SrsSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
-                };
-                return ret;
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+                var retStreamCasterNew= ret.Srs.Stream_casters.FindLast(x =>
+                    x.InstanceName!.Trim().ToUpper().Equals(newInstanceName!.Trim().ToUpper()));
+                if (retStreamCasterNew != null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceAlreadyExists,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceAlreadyExists],
+                    };
+                    return false; 
+                }
+                retStreamCaster.InstanceName = newInstanceName;
+                return true;
             }
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
         /// 修改streamcaster的启动会停止
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="instanceName"></param>
         /// <param name="enabled"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool OnOrOffStreamCaster(SrsManager sm, string instanceName, bool enabled, out ResponseStruct rs)
+        public static bool OnOrOffStreamCaster(string deviceId, string instanceName, bool enabled, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Stream_casters == null)
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
 
-            bool ret = false;
-            foreach (var caster in sm.Srs.Stream_casters)
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                if (caster.InstanceName!.Trim().ToLower().Equals(instanceName.Trim().ToLower()))
+                if (ret.Srs != null && ret.Srs.Stream_casters != null)
                 {
-                    if (caster.Caster == CasterEnum.gb28181 && caster.sip != null) //同时把sip网关的开关也设置掉
+                    var retStreamCaster = ret.Srs.Stream_casters.FindLast(x =>
+                        x.InstanceName!.Trim().ToUpper().Equals(instanceName.Trim().ToUpper()));
+                    if (retStreamCaster != null)
                     {
-                        caster.sip.Enabled = enabled;
+                        retStreamCaster.Enabled = enabled;
+                        if (retStreamCaster.sip != null)
+                        {
+                            retStreamCaster.sip.Enabled = enabled;
+                        }
+                        return true;
                     }
-
-                    caster.Enabled = enabled;
-                    ret = true;
-                    break;
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
                 }
-            }
-
-            if (ret)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
-                return ret;
-            }
-            else
-            {
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                 };
-                return ret;
+                return false;
             }
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
         /// 配置SrsManager实例中某个StreamCaster的参数
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="streamCaster"></param>
         /// <param name="rs"></param>
-        /// <param name="createIfNotFound">default false</param>
         /// <returns></returns>
-        public static bool SetStreamCaster(SrsManager sm, SrsStreamCasterConfClass streamCaster, out ResponseStruct rs,
-            bool createIfNotFound = false)
+        public static bool SetStreamCaster(string deviceId, SrsStreamCasterConfClass streamCaster, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null)
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
 
-            if (streamCaster == null || string.IsNullOrEmpty(streamCaster.InstanceName))
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                rs = new ResponseStruct()
+                if (ret.Srs != null && ret.Srs.Stream_casters != null)
                 {
-                    Code = ErrorNumber.FunctionInputParamsError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
-                };
-                return false;
-            }
+                    var retStreamCaster = ret.Srs.Stream_casters.FindLast(x =>
+                        x.InstanceName!.Trim().ToUpper().Equals(streamCaster.InstanceName!.Trim().ToUpper()));
+                    if (retStreamCaster != null)//修改
+                    {
+                        retStreamCaster = streamCaster;
+                        return true;
+                    }
 
-            if ((sm.Srs.Stream_casters == null || sm.Srs.Stream_casters.Count == 0) && createIfNotFound)
-            {
-                if (CreateStreamCaster(sm, streamCaster, out rs))
-                {
-                    rs.Message += "\r\n" + "SRS实例中未有StreamCaster内容，系统已经将传入StreamCaster创建到SRS实例中";
+                    ret.Srs.Stream_casters.Add(streamCaster);
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
-            }
-            else if ((sm.Srs.Stream_casters == null || sm.Srs.Stream_casters.Count == 0) && !createIfNotFound)
-            {
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound] + "\r\n" +
-                              JsonHelper.ToJson(streamCaster),
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                 };
                 return false;
             }
-            else
-            {
-                if (sm.Srs.Stream_casters != null)
-                    for (int i = 0; i <= sm.Srs.Stream_casters.Count - 1;)
-                    {
-                        if (sm.Srs.Stream_casters[i].InstanceName!.Trim().ToLower()
-                            .Equals(streamCaster.InstanceName!.Trim().ToLower()))
-                        {
-                            sm.Srs.Stream_casters[i] =streamCaster;
-                        }
-
-                        rs = new ResponseStruct()
-                        {
-                            Code = ErrorNumber.None,
-                            Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\n" + "StreamCaster配置更新成功\r\n" +
-                                      JsonHelper.ToJson(streamCaster),
-                        };
-
-                        return true;
-                    }
-            }
-
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.Other,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.Other] + "\r\n" + "StreamCaster配置更新失败，未知异常\r\n" +
-                          JsonHelper.ToJson(streamCaster),
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
         }

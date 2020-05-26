@@ -1,3 +1,4 @@
+#nullable enable
 namespace SRSManageCommon
 {
     public class NetworkInterfaceModule

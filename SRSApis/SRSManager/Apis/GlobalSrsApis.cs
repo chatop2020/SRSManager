@@ -1,11 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Threading;
 using SRSApis.SRSManager.Apis.ApiModules;
-using SRSConfFile;
-using SRSConfFile.SRSConfClass;
 using SRSManageCommon;
 
 namespace SRSApis.SRSManager.Apis
@@ -32,15 +25,13 @@ namespace SRSApis.SRSManager.Apis
             {
                 return ret.IsRunning;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -63,15 +54,13 @@ namespace SRSApis.SRSManager.Apis
             {
                 return ret.IsInit;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -96,20 +85,16 @@ namespace SRSApis.SRSManager.Apis
                 {
                     return true;
                 }
-                else
-                {
-                    return ret.Start(out rs);
-                }
+
+                return ret.Start(out rs);
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -132,15 +117,13 @@ namespace SRSApis.SRSManager.Apis
             {
                 return ret.Stop(out rs);
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -163,15 +146,13 @@ namespace SRSApis.SRSManager.Apis
             {
                 return ret.Restart(out rs);
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -194,15 +175,13 @@ namespace SRSApis.SRSManager.Apis
             {
                 return ret.Reload(out rs);
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
 
@@ -228,15 +207,13 @@ namespace SRSApis.SRSManager.Apis
                 ret.Srs.Chunk_size = size;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -261,15 +238,13 @@ namespace SRSApis.SRSManager.Apis
                 ret.Srs.Http_api.Listen = port;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -294,15 +269,13 @@ namespace SRSApis.SRSManager.Apis
                 ret.Srs.Http_api.Enabled = enable;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -327,15 +300,13 @@ namespace SRSApis.SRSManager.Apis
                 ret.Srs.Max_connections = maxconnections;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -360,15 +331,13 @@ namespace SRSApis.SRSManager.Apis
                 ret.Srs.Listen = port;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -393,15 +362,13 @@ namespace SRSApis.SRSManager.Apis
                 ret.Srs.Http_server.Listen = port;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -426,15 +393,13 @@ namespace SRSApis.SRSManager.Apis
                 ret.Srs.Http_server.Dir = path;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -459,15 +424,13 @@ namespace SRSApis.SRSManager.Apis
                 ret.Srs.Http_server.Enabled = enable;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
@@ -503,15 +466,13 @@ namespace SRSApis.SRSManager.Apis
                 };
                 return result;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return null!;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return null!;
         }
 
         /// <summary>
@@ -545,15 +506,13 @@ namespace SRSApis.SRSManager.Apis
                 if (bm.HeartbeatSummariesEnable != null) ret.Srs.Heartbeat!.Summaries = bm.HeartbeatSummariesEnable;
                 return true;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
     }
 }

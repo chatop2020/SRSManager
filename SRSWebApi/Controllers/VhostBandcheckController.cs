@@ -27,11 +27,7 @@ namespace SRSWebApi.Controllers
         [Route("/VhostBandcheck/DeleteVhostBandcheck")]
         public JsonResult DeleteVhostBandcheck(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostBandcheckApis.DeleteVhostBandcheck(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostBandcheckApis.DeleteVhostBandcheck(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -47,57 +43,27 @@ namespace SRSWebApi.Controllers
         [Route("/VhostBandcheck/GetVhostBandcheck")]
         public JsonResult GetVhostBandcheck(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostBandcheckApis.GetVhostBandcheck(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostBandcheckApis.GetVhostBandcheck(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
-        /// 设置Bandcheck
+        /// 设置或创建Bandcheck
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <param name="bandcheck"></param>
-        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/VhostBandcheck/SetVhostBandcheck")]
-        public JsonResult SetVhostBandcheck(string deviceId, string vhostDomain, Bandcheck bandcheck,
-            bool createIfNotFound = false)
+        public JsonResult SetVhostBandcheck(string deviceId, string vhostDomain, Bandcheck bandcheck)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostBandcheckApis.SetVhostBandcheck(srsManager, vhostDomain, bandcheck, out ResponseStruct rs,
-                createIfNotFound);
+            var rt = VhostBandcheckApis.SetVhostBandcheck(deviceId, vhostDomain, bandcheck, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
-        /// <summary>
-        /// 创建Bandcheck
-        /// </summary>
-        /// <param name="deviceId"></param>
-        /// <param name="vhostDomain"></param>
-        /// <param name="bandcheck"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [Log]
-        [Route("/VhostBandcheck/CreateVhostBandcheck")]
-        public JsonResult CreateVhostBandcheck(string deviceId, string vhostDomain, Bandcheck bandcheck)
-        {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostBandcheckApis.CreateVhostBandcheck(srsManager, vhostDomain, bandcheck, out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs);
-        }
+       
     }
 }

@@ -27,11 +27,7 @@ namespace SRSWebApi.Controllers
         [Route("/VhostHttpRemux/DeleteVhostHttpRemux")]
         public JsonResult DeleteVhostHttpRemux(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostHttpRemuxApis.DeleteVhostHttpRemux(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostHttpRemuxApis.DeleteVhostHttpRemux(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -47,57 +43,26 @@ namespace SRSWebApi.Controllers
         [Route("/VhostHttpRemux/GetVhostHttpRemux")]
         public JsonResult GetVhostHttpRemux(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostHttpRemuxApis.GetVhostHttpRemux(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostHttpRemuxApis.GetVhostHttpRemux(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
-        /// 设置HttpRemux
+        /// 设置或创建HttpRemux
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <param name="httpRemux"></param>
-        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/VhostHttpRemux/SetVhostHttpRemux")]
-        public JsonResult SetVhostHttpRemux(string deviceId, string vhostDomain, HttpRemux httpRemux,
-            bool createIfNotFound = false)
+        public JsonResult SetVhostHttpRemux(string deviceId, string vhostDomain, HttpRemux httpRemux)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostHttpRemuxApis.SetVhostHttpRemux(srsManager, vhostDomain, httpRemux, out ResponseStruct rs,
-                createIfNotFound);
+            var rt = VhostHttpRemuxApis.SetVhostHttpRemux(deviceId, vhostDomain, httpRemux, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-
-        /// <summary>
-        /// 创建HttpRemux
-        /// </summary>
-        /// <param name="deviceId"></param>
-        /// <param name="vhostDomain"></param>
-        /// <param name="httpRemux"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [Log]
-        [Route("/VhostHttpRemux/CreateVhostHttpRemux")]
-        public JsonResult CreateVhostHttpRemux(string deviceId, string vhostDomain, HttpRemux httpRemux)
-        {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostHttpRemuxApis.CreateVhostHttpRemux(srsManager, vhostDomain, httpRemux, out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs);
-        }
+        
     }
 }

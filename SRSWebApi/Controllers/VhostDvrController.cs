@@ -26,11 +26,7 @@ namespace SRSWebApi.Controllers
         [Route("/VhostDvr/DeleteVhostDvr")]
         public JsonResult DeleteVhostDvr(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostDvrApis.DeleteVhostDvr(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostDvrApis.DeleteVhostDvr(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -46,55 +42,27 @@ namespace SRSWebApi.Controllers
         [Route("/VhostDvr/GetVhostDvr")]
         public JsonResult GetVhostDvr(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostDvrApis.GetVhostDvr(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostDvrApis.GetVhostDvr(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
-        /// 设置Dvr
+        /// 设置或创建Dvr
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <param name="dvr"></param>
-        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/VhostDvr/SetVhostDvr")]
-        public JsonResult SetVhostDvr(string deviceId, string vhostDomain, Dvr dvr, bool createIfNotFound = false)
+        public JsonResult SetVhostDvr(string deviceId, string vhostDomain, Dvr dvr)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostDvrApis.SetVhostDvr(srsManager, vhostDomain, dvr, out ResponseStruct rs, createIfNotFound);
+            var rt = VhostDvrApis.SetVhostDvr(deviceId, vhostDomain, dvr, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
-        /// <summary>
-        /// 创建Dvr
-        /// </summary>
-        /// <param name="deviceId"></param>
-        /// <param name="vhostDomain"></param>
-        /// <param name="dvr"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [Log]
-        [Route("/VhostDvr/CreateVhostDvr")]
-        public JsonResult CreateVhostDvr(string deviceId, string vhostDomain, Dvr dvr)
-        {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostDvrApis.CreateVhostDvr(srsManager, vhostDomain, dvr, out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs);
-        }
+        
     }
 }

@@ -8,122 +8,68 @@ namespace SRSApis.SRSManager.Apis
         /// <summary>
         /// 删除Stats段
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool DeleteStats(SrsManager sm, out ResponseStruct rs)
+        public static bool DeleteStats(string deviceId, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            sm.Srs.Stats = null;
+            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            return true;
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                if (ret.Srs != null)
+                {
+                    ret.Srs.Stats = null;
+                    return true;
+                }
+
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsSubInstanceNotFound,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                };
+                return false;
+            }
+
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
         /// 设置stats参数
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="stats"></param>
         /// <param name="rs"></param>
-        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
-        public static bool SetStatsServer(SrsManager sm, SrsStatsConfClass stats, out ResponseStruct rs,
-            bool createIfNotFound = false)
+        public static bool SetStatsServer(string deviceId, SrsStatsConfClass stats, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null)
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            if (stats == null)
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                rs = new ResponseStruct()
+                if (ret.Srs != null)
                 {
-                    Code = ErrorNumber.FunctionInputParamsError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
-                };
-                return false;
-            }
-
-            if (sm.Srs.Stats == null && createIfNotFound)
-            {
-                if (CreateStatsServer(sm, stats, out rs))
-                {
-                    rs.Message += "\r\n" + "SRS实例中未有Stats内容，系统已经将传入Stats创建到SRS实例中";
+                    ret.Srs.Stats = stats;
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (sm.Srs.Stats == null && !createIfNotFound)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound] + "\r\n" +
-                              JsonHelper.ToJson(stats),
-                };
-                return false;
-            }
-            else if (sm.Srs.Stats != null)
-            {
-                if (stats.Disk != null) sm.Srs.Stats.Disk = stats.Disk;
-                if (stats.Network != null) sm.Srs.Stats.Network = stats.Network;
 
-                stats.SectionsName = "stats";
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\n" + "Stats配置更新成功\r\n" +
-                              JsonHelper.ToJson(stats),
-                };
-
-                return true;
-            }
-            else
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.Other,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.Other] + "\r\n" + "Stats配置更新失败，未知异常\r\n" +
-                              JsonHelper.ToJson(stats),
-                };
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 创建一个Stats
-        /// </summary>
-        /// <param name="sm"></param>
-        /// <param name="stats"></param>
-        /// <param name="rs"></param>
-        /// <returns></returns>
-        public static bool CreateStatsServer(SrsManager sm, SrsStatsConfClass stats,
-            out ResponseStruct rs)
-        {
-            if (sm == null || sm.Srs == null)
-            {
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsObjectNotInit,
@@ -132,40 +78,37 @@ namespace SRSApis.SRSManager.Apis
                 return false;
             }
 
-            if (sm.Srs.Stats == null)
+            rs = new ResponseStruct()
             {
-                sm.Srs.Stats = new SrsStatsConfClass();
-                sm.Srs.Stats = stats;
-                sm.Srs.Stats.SectionsName = "stats";
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\n" + "Stats创建到SRS实例中\r\n" +
-                              JsonHelper.ToJson(stats),
-                };
-                return true;
-            }
-            else
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsSubInstanceAlreadyExists,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceAlreadyExists],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
+
 
         /// <summary>
         /// 获取Stats
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static SrsStatsConfClass GetStats(SrsManager sm, out ResponseStruct rs)
+        public static SrsStatsConfClass GetStats(string deviceId, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null)
+            rs = new ResponseStruct()
             {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                if (ret.Srs != null)
+                {
+                    return ret.Srs.Stats!;
+                }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsObjectNotInit,
@@ -176,18 +119,10 @@ namespace SRSApis.SRSManager.Apis
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
-            if (sm.Srs.Rtc_server != null)
-            {
-                SrsStatsConfClass? result = sm.Srs.Stats;
-                return result!;
-            }
-            else
-            {
-                return null!;
-            }
+            return null!;
         }
     }
 }

@@ -20,30 +20,24 @@ namespace SRSApis.SRSManager.Apis
                         ovi.OnvifMonitor.InitMonitor().Wait();
                         return GetOnvifMonitor(ipAddr, out rs);
                     }
-                    else
-                    {
-                        return GetOnvifMonitor(ipAddr, out rs);
-                    }
+
+                    return GetOnvifMonitor(ipAddr, out rs);
                 }
-                else
-                {
-                    rs = new ResponseStruct()
-                    {
-                        Code = ErrorNumber.OnvifMonitorNotInit,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
-                    };
-                    return null!;
-                }
-            }
-            else
-            {
+
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.OnvifMonitorListIsNull,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorListIsNull],
+                    Code = ErrorNumber.OnvifMonitorNotInit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
                 };
                 return null!;
             }
+
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.OnvifMonitorListIsNull,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorListIsNull],
+            };
+            return null!;
         }
 
         /// <summary>
@@ -73,15 +67,13 @@ namespace SRSApis.SRSManager.Apis
 
                 return GetOnvifMonitorList(out rs);
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.OnvifMonitorListIsNull,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorListIsNull],
-                };
-                return null!;
-            }
+                Code = ErrorNumber.OnvifMonitorListIsNull,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorListIsNull],
+            };
+            return null!;
         }
 
         /// <summary>
@@ -221,15 +213,13 @@ namespace SRSApis.SRSManager.Apis
                 };
                 return result!;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.Other,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
-                };
-                return -999999;
-            }
+                Code = ErrorNumber.Other,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.Other],
+            };
+            return -999999;
         }
 
         /// <summary>
@@ -370,15 +360,13 @@ namespace SRSApis.SRSManager.Apis
                 };
                 return pos!;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.OnvifPtzMoveExcept,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifPtzMoveExcept],
-                };
-                return null!;
-            }
+                Code = ErrorNumber.OnvifPtzMoveExcept,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifPtzMoveExcept],
+            };
+            return null!;
         }
 
         /// <summary>
@@ -646,36 +634,32 @@ namespace SRSApis.SRSManager.Apis
                         };
                         return GetOnvifMonitorList(out rs);
                     }
-                    else
+
+                    rs = new ResponseStruct()
                     {
-                        rs = new ResponseStruct()
-                        {
-                            Code = ErrorNumber.OnvifMonitorNotInit,
-                            Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
-                        };
-                        return null!;
-                    }
+                        Code = ErrorNumber.OnvifMonitorNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
+                    };
+                    return null!;
+                }
+
+                if (tmpList != null && tmpList.Count > 0)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.None,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                    };
+                    return GetOnvifMonitorList(out rs);
                 }
                 else
                 {
-                    if (tmpList != null && tmpList.Count > 0)
+                    rs = new ResponseStruct()
                     {
-                        rs = new ResponseStruct()
-                        {
-                            Code = ErrorNumber.None,
-                            Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                        };
-                        return GetOnvifMonitorList(out rs);
-                    }
-                    else
-                    {
-                        rs = new ResponseStruct()
-                        {
-                            Code = ErrorNumber.OnvifMonitorNotInit,
-                            Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
-                        };
-                        return null!;
-                    }
+                        Code = ErrorNumber.OnvifMonitorNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.OnvifMonitorNotInit],
+                    };
+                    return null!;
                 }
             }
             else

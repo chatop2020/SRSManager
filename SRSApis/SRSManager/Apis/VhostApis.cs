@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile.SRSConfClass;
 using SRSManageCommon;
@@ -10,167 +11,160 @@ namespace SRSApis.SRSManager.Apis
         /// <summary>
         /// 获取Vhost列表的Instance名称列表
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<string> GetVhostsInstanceName(SrsManager sm, out ResponseStruct rs)
+        public static List<string> GetVhostsInstanceName(string deviceId, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return null!;
-            }
-
+            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            if (sm.Srs.Vhosts.Count > 0)
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                List<string> slist = new List<string>();
-                foreach (var stream in sm.Srs.Vhosts)
+                if (ret.Srs == null)
                 {
-                    slist.Add(stream.InstanceName!);
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return null!;
                 }
 
-                return slist!;
+                if (ret.Srs.Vhosts == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return null!;
+                }
+
+                return ret.Srs.Vhosts.Select(x=>x.InstanceName).ToList()!;
             }
-            else
+
+            rs = new ResponseStruct()
             {
-                return null!;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return null!;
         }
 
         /// <summary>
         /// 通过domain获取vhost
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static SrsvHostConfClass GetVhostByDomain(SrsManager sm, string vhostDomain, out ResponseStruct rs)
+        public static SrsvHostConfClass GetVhostByDomain(string deviceId, string vhostDomain, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
+            rs = new ResponseStruct()
             {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                if (ret.Srs == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return null!;
+                }
+
+                if (ret.Srs.Vhosts == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return null!;
+                }
+
+                var retVhost=ret.Srs.Vhosts.FindLast(x =>
+                    x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()))!;
+                if (retVhost != null)
+                {
+                    return retVhost;
+                }
                 rs = new ResponseStruct()
                 {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    Code = ErrorNumber.SrsSubInstanceNotFound,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                 };
                 return null!;
             }
 
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
-            foreach (var vhost in sm.Srs.Vhosts)
-            {
-                if (vhost.VhostDomain!.Trim().ToLower().Equals(vhostDomain.Trim().ToLower()))
-                {
-                    return vhost;
-                }
-            }
-
             return null!;
         }
 
         /// <summary>
         /// 获取Vhost列表
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<SrsvHostConfClass> GetVhostList(SrsManager sm, out ResponseStruct rs)
+        public static List<SrsvHostConfClass> GetVhostList(string deviceId, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return null!;
-            }
-
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            if (sm.Srs.Vhosts != null && sm.Srs.Vhosts.Count > 0)
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                List<SrsvHostConfClass> result = sm.Srs.Vhosts;
-                return result;
-            }
-            else
-            {
-                return null!;
-            }
-        }
-
-        /// <summary>
-        /// 创建一个vhost
-        /// </summary>
-        /// <param name="sm"></param>
-        /// <param name="vhost"></param>
-        /// <param name="rs"></param>
-        /// <returns></returns>
-        public static bool CreateVhost(SrsManager sm, SrsvHostConfClass vhost, out ResponseStruct rs)
-        {
-            if (sm == null || sm.Srs == null)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            if (sm.Srs.Vhosts == null) sm.Srs.Vhosts = new List<SrsvHostConfClass>();
-            for (int i = 0; i <= sm.Srs.Vhosts.Count - 1; i++)
-            {
-                if (sm.Srs.Vhosts[i].VhostDomain!.Trim().ToLower()
-                    .Equals(vhost.VhostDomain!.Trim().ToLower()))
+                if (ret.Srs == null)
                 {
                     rs = new ResponseStruct()
                     {
-                        Code = ErrorNumber.SrsSubInstanceAlreadyExists,
-                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceAlreadyExists],
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
                     };
-                    return false;
+                    return null!;
                 }
+
+                if (ret.Srs.Vhosts == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return null!;
+                }
+                return  ret.Srs.Vhosts;
             }
 
-            if (string.IsNullOrEmpty(vhost.VhostDomain) &&
-                sm.Srs.Vhosts.FindLast(v => v.VhostDomain!.Trim().ToLower() == "__defaultvhost__") == null)
-            {
-                vhost.InstanceName =
-                    "__defaultVhost__"; //如果instanceName为空，以及当前Vhosts中没有__defaultVhost__的Vhost，则本Vhost为__defaultVhost__
-                vhost.VhostDomain = "__defaultVhost__";
-            }
-
-            if (string.IsNullOrEmpty(vhost.SectionsName))
-            {
-                vhost.SectionsName = "vhost";
-            }
-
-            sm.Srs.Vhosts.Add(vhost);
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\n" + "Vhost创建到SRS实例中\r\n" +
-                          JsonHelper.ToJson(vhost),
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
-            return true;
+            return null!;
         }
+
+       
 
         /// <summary>
         /// 获取Vhost的各类模板
@@ -267,45 +261,47 @@ namespace SRSApis.SRSManager.Apis
         /// <summary>
         /// 删除一个vhost,用域名
         /// </summary>
-        /// <param name="sm"></param>
-        /// <param name="domain"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="vhostDomain"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool DeleteVhostByDomain(SrsManager sm, string domain, out ResponseStruct rs)
+        public static bool DeleteVhostByDomain(string deviceId, string vhostDomain, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            bool ret = false;
-            for (int i = 0; i <= sm.Srs.Vhosts.Count - 1; i++)
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                if (sm.Srs.Vhosts[i].VhostDomain!.Trim().ToLower().Equals(domain.Trim().ToLower()))
+                if (ret.Srs == null)
                 {
-                    sm.Srs.Vhosts[i] = null!;
-                    ret = true;
-                    break;
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return false;
                 }
-            }
 
-            if (ret)
-            {
-                Common.RemoveNull(sm.Srs.Vhosts);
-                rs = new ResponseStruct()
+                if (ret.Srs.Vhosts == null)
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
-                return true;
-            }
-            else
-            {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                var retVhost=ret.Srs.Vhosts.FindLast(x =>
+                    x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()))!;
+                if (retVhost != null)
+                {
+                    return ret.Srs.Vhosts.Remove(retVhost);
+                }
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -313,52 +309,73 @@ namespace SRSApis.SRSManager.Apis
                 };
                 return false;
             }
+
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
         /// 修改vhost的域名
         /// </summary>
-        /// <param name="sm"></param>
-        /// <param name="domain"></param>
-        /// <param name="newdomain"></param>
+        /// <param name="vhostDomain"></param>
+        /// <param name="newVhostDomain"></param>
         /// <param name="rs"></param>
+        /// <param name="deviceId"></param>
         /// <returns></returns>
-        public static bool ChangeVhostDomain(SrsManager sm, string domain, string newdomain, out ResponseStruct rs)
+        public static bool ChangeVhostDomain(string deviceId, string vhostDomain, string newVhostDomain, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            bool ret = false;
-            foreach (var vhost in sm.Srs.Vhosts)
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                if (vhost.VhostDomain != null && vhost.VhostDomain.Trim().ToLower().Equals(domain.Trim().ToLower()))
+                if (ret.Srs == null)
                 {
-                    vhost.InstanceName = newdomain;
-                    vhost.VhostDomain = vhost.InstanceName;
-                    ret = true;
-                    break;
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return false;
                 }
-            }
 
-
-            if (ret)
-            {
-                rs = new ResponseStruct()
+                if (ret.Srs.Vhosts == null)
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
-                return true;
-            }
-            else
-            {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                var retVhost=ret.Srs.Vhosts.FindLast(x =>
+                    x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()))!;
+                
+                var retVhostNew=ret.Srs.Vhosts.FindLast(x =>
+                    x.VhostDomain!.Trim().ToUpper().Equals(newVhostDomain.Trim().ToUpper()))!;
+                if (retVhost != null)
+                {
+                    if (retVhostNew != null)
+                    {
+                        rs = new ResponseStruct()
+                        {
+                            Code = ErrorNumber.SrsSubInstanceAlreadyExists,
+                            Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceAlreadyExists],
+                        };
+                        return false;
+                    }
+                    retVhost.VhostDomain = newVhostDomain;
+                    return true;
+                }
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -366,153 +383,154 @@ namespace SRSApis.SRSManager.Apis
                 };
                 return false;
             }
+
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
         /// 关闭或开始Vhost列表中某个Vhost中的某个ingest
         /// </summary>
-        /// <param name="sm"></param>
-        /// <param name="vhostDomin">vhost的域名</param>
+        /// <param name="deviceId"></param>
+        /// <param name="vhostDomain">vhost的域名</param>
         /// <param name="ingestInstanceName">ingest的instancename</param>
         /// <param name="enabled">关闭或开启</param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool OnOrOffVhostIngest(SrsManager sm, string vhostDomin, string ingestInstanceName, bool enabled,
+        public static bool OnOrOffVhostIngest(string deviceId, string vhostDomain, string ingestInstanceName, bool enabled,
             out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null || sm.Srs.Vhosts == null)
+            
+             rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            bool ret = false;
-            foreach (var vhost in sm.Srs.Vhosts)
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
             {
-                if (vhost.VhostDomain!.Trim().ToLower().Equals(vhostDomin.Trim().ToLower()))
+                if (ret.Srs == null)
                 {
-                    if (vhost.Vingests != null)
+                    rs = new ResponseStruct()
                     {
-                        foreach (var ing in vhost.Vingests)
-                        {
-                            if (ing != null && ing.InstanceName!.Trim().ToLower() ==
-                                ingestInstanceName.Trim().ToLower())
-                            {
-                                ing.Enabled = enabled;
-                                ret = true;
-                                break;
-                            }
-                        }
-                    }
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return false;
                 }
-            }
 
-            if (ret)
-            {
-                rs = new ResponseStruct()
+                if (ret.Srs.Vhosts == null)
                 {
-                    Code = ErrorNumber.None,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-                };
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                var retVhost = ret.Srs.Vhosts.FindLast(x =>
+                    x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
+                if (retVhost == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                if (retVhost.Vingests == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                var retVhostVingest = retVhost.Vingests.FindLast(x =>
+                    x.InstanceName!.Trim().ToUpper().Equals(ingestInstanceName.Trim().ToUpper()));
+                if (retVhostVingest == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+                retVhostVingest.Enabled = enabled;
                 return true;
             }
-            else
+            rs = new ResponseStruct()
             {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
-                };
-                return false;
-            }
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
+            
         }
 
         /// <summary>
         /// 设置一个Vhost的参数
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
         /// <param name="vhost"></param>
         /// <param name="rs"></param>
-        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
-        public static bool SetVhost(SrsManager sm, SrsvHostConfClass vhost, out ResponseStruct rs,
-            bool createIfNotFound = false)
+        public static bool SetVhost(string deviceId, SrsvHostConfClass vhost, out ResponseStruct rs)
         {
-            if (sm == null || sm.Srs == null)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsObjectNotInit,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
-                };
-                return false;
-            }
-
-            if (vhost == null || string.IsNullOrEmpty(vhost.VhostDomain))
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.FunctionInputParamsError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
-                };
-                return false;
-            }
-
-            if ((sm.Srs.Vhosts == null || sm.Srs.Vhosts.Count == 0) && createIfNotFound)
-            {
-                if (CreateVhost(sm, vhost, out rs))
-                {
-                    rs.Message += "\r\n" + "SRS实例中未有Vhost内容，系统已经将传入Vhost创建到SRS实例中";
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if ((sm.Srs.Vhosts == null || sm.Srs.Vhosts.Count == 0) && !createIfNotFound)
-            {
-                rs = new ResponseStruct()
-                {
-                    Code = ErrorNumber.SrsSubInstanceNotFound,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound] + "\r\n" +
-                              JsonHelper.ToJson(vhost),
-                };
-                return false;
-            }
-            else
-            {
-                if (sm.Srs.Vhosts != null)
-                    for (int i = 0; i <= sm.Srs.Vhosts.Count - 1;)
-                    {
-                        if (sm.Srs.Vhosts[i].VhostDomain!.Trim().ToLower()
-                            .Equals(vhost.VhostDomain!.Trim().ToLower()))
-                        {
-                            sm.Srs.Vhosts[i] = vhost;
-                        }
-
-                        rs = new ResponseStruct()
-                        {
-                            Code = ErrorNumber.None,
-                            Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\n" + "Vhost配置更新成功\r\n" +
-                                      JsonHelper.ToJson(vhost),
-                        };
-
-                        return true;
-                    }
-            }
-
             rs = new ResponseStruct()
             {
-                Code = ErrorNumber.Other,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.Other] + "\r\n" + "Vhost配置更新失败，未知异常\r\n" +
-                          JsonHelper.ToJson(vhost),
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                if (ret.Srs == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return false;
+                }
+                if (ret.Srs.Vhosts == null)
+                {
+                   ret.Srs.Vhosts = new List<SrsvHostConfClass>();
+                   ret.Srs.Vhosts.Add(vhost);
+                   return true;
+                }
+                var retVhost = ret.Srs.Vhosts.FindLast(x =>
+                    x.VhostDomain!.Trim().ToUpper().Equals(vhost.VhostDomain!.Trim().ToUpper()));
+
+                if (retVhost == null)
+                {
+                    ret.Srs.Vhosts.Add(vhost);
+                    return true;
+                }
+                retVhost = vhost;
+                return true;
+
+            }
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
+            
         }
     }
 }

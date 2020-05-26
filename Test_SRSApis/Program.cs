@@ -37,30 +37,30 @@ namespace Test_SRSApis
                 ResponseStruct rs;
                 SrsvHostConfClass vhost = VhostApis.GetVhostTemplate(VhostIngestInputType.Stream, out rs);
                 vhost.VhostDomain = d;
-                VhostApis.CreateVhost(srsm, vhost, out rs);
+                VhostApis.SetVhost(srsm.SrsDeviceId, vhost, out rs);
                 Rtc rtc = new Rtc();
                 rtc.Bframe = "known";
                 rtc.Enabled = true;
-                VhostRtcApis.CreateVhostRtc(srsm, d, rtc, out rs);
+                VhostRtcApis.SetVhostRtc(srsm.SrsDeviceId, d, rtc, out rs);
                 Dvr dvr = new Dvr();
                 dvr.Enabled = true;
                 dvr.Dvr_path = "/dvr/path/";
-                VhostDvrApis.CreateVhostDvr(srsm, d, dvr, out rs);
+                VhostDvrApis.SetVhostDvr(srsm.SrsDeviceId, d, dvr, out rs);
                 Hds hds = new Hds();
                 hds.Enabled = true;
                 hds.Hds_window = 50;
 
-                VhostHdsApis.CreateVhostHds(srsm, d, hds, out rs);
-                SrtServerApis.DeleteSrtServer(srsm, out rs);
+                VhostHdsApis.SetVhostHds(srsm.SrsDeviceId, d, hds, out rs);
+                SrtServerApis.DeleteSrtServer(srsm.SrsDeviceId, out rs);
                 SrsSrtServerConfClass srt = new SrsSrtServerConfClass();
                 srt = SrtServerApis.GetSrtServerTemplate(out rs);
 
                 srt.Enabled = true;
-                SrtServerApis.CreateSrtServer(srsm, srt, out rs);
+                SrtServerApis.SetSrtServer(srsm.SrsDeviceId, srt, out rs);
 
-                VhostApis.DeleteVhostByDomain(srsm, "__defaultvhost__", out rs);
-                VhostRtcApis.DeleteVhostRtc(srsm, d, out rs);
-                VhostHdsApis.DeleteVhostHds(srsm, d, out rs);
+                VhostApis.DeleteVhostByDomain(srsm.SrsDeviceId, "__defaultvhost__", out rs);
+                VhostRtcApis.DeleteVhostRtc(srsm.SrsDeviceId, d, out rs);
+                VhostHdsApis.DeleteVhostHds(srsm.SrsDeviceId, d, out rs);
 
                 SrsConfigBuild.Build(srsm.Srs, srsm.SrsConfigPath);
                 if (srsm.IsRunning)

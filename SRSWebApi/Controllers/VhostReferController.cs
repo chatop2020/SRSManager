@@ -27,11 +27,7 @@ namespace SRSWebApi.Controllers
         [Route("/VhostRefer/DeleteVhostRefer")]
         public JsonResult DeleteVhostRefer(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostReferApis.DeleteVhostRefer(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostReferApis.DeleteVhostRefer(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -47,56 +43,27 @@ namespace SRSWebApi.Controllers
         [Route("/VhostRefer/GetVhostRefer")]
         public JsonResult GetVhostRefer(string deviceId, string vhostDomain)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostReferApis.GetVhostRefer(srsManager, vhostDomain, out ResponseStruct rs);
+            var rt = VhostReferApis.GetVhostRefer(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
-        /// 设置Refer
+        /// 设置或创建Refer
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <param name="refer"></param>
-        /// <param name="createIfNotFound"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/VhostRefer/SetVhostRefer")]
-        public JsonResult SetVhostRefer(string deviceId, string vhostDomain, Refer refer, bool createIfNotFound = false)
+        public JsonResult SetVhostRefer(string deviceId, string vhostDomain, Refer refer)
         {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostReferApis.SetVhostRefer(srsManager, vhostDomain, refer, out ResponseStruct rs,
-                createIfNotFound);
+            var rt = VhostReferApis.SetVhostRefer(deviceId, vhostDomain, refer, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
-        /// <summary>
-        /// 创建Refer
-        /// </summary>
-        /// <param name="deviceId"></param>
-        /// <param name="vhostDomain"></param>
-        /// <param name="refer"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [Log]
-        [Route("/VhostRefer/CreateVhostRefer")]
-        public JsonResult CreateVhostRefer(string deviceId, string vhostDomain, Refer refer)
-        {
-            //获取一个SRSManager实例
-            SrsManager srsManager = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
-            if (srsManager == null)
-                return new JsonResult("无法找到deviceId对应的SrsManager实例") {StatusCode = (int) HttpStatusCode.NotFound};
-            var rt = VhostReferApis.CreateVhostRefer(srsManager, vhostDomain, refer, out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs);
-        }
+       
     }
 }

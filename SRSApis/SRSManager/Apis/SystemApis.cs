@@ -457,16 +457,27 @@ namespace SRSApis.SRSManager.Apis
         }
 
 
-
         /// <summary>
         /// 刷新srs配置
         /// </summary>
-        /// <param name="sm"></param>
+        /// <param name="deviceId"></param>
+        /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool RefreshSrsObject(SrsManager sm)
+        public static bool RefreshSrsObject(string deviceId,out ResponseStruct rs )
         {
-            ResponseStruct rs;
-            return Common.RefreshSrsObject(sm, out rs);
+ 
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                return Common.RefreshSrsObject(ret, out  rs);
+            }
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false;
         }
 
         /// <summary>
