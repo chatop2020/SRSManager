@@ -16,6 +16,41 @@ namespace SRSWebApi.Controllers
     [Route("")]
     public class SystemController : ControllerBase
     {
+
+        /// <summary>
+        /// 刷新重新SRS配置文件
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/System/RefreshSrsObject")]
+        public JsonResult RefreshSrsObject(string deviceId)
+        {
+            var rt = SystemApis.RefreshSrsObject(deviceId, out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs); 
+        }
+        
+      
+        /// <summary>
+        /// 获取所有Srs管理器中的deviceid
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/System/GetAllSrsManagerDeviceId")]
+        public JsonResult GetAllSrsManagerDeviceId()
+        {
+            ResponseStruct rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var rt = SystemApis.GetAllSrsManagerDeviceId();
+            return Program.CommonFunctions.DelApisResult(rt, rs); 
+        }
+        
         /// <summary>
         /// 创建一个SrsInstance
         /// </summary>
@@ -57,6 +92,25 @@ namespace SRSWebApi.Controllers
         public JsonResult DelSrsInstanceByDeviceId(string deviceId)
         {
             var rt = SystemApis.DelSrsInstanceByDeviceId( deviceId,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs); 
+        }
+        
+        /// <summary>
+        /// 删除一个SRS实例
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/System/GetSrsInstanceByDeviceId")]
+        public JsonResult GetSrsInstanceByDeviceId(string deviceId)
+        {
+            ResponseStruct rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var rt = SystemApis.GetSrsManagerInstanceByDeviceId( deviceId);
             return Program.CommonFunctions.DelApisResult(rt, rs); 
         }
         
