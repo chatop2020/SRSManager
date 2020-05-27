@@ -113,7 +113,7 @@ namespace SRSApis.SRSManager
 
         private bool checkFile()
         {
-            if (File.Exists(_srsConfigPath) && File.Exists(_srsWorkPath + "srs"))
+            if (File.Exists(_srsConfigPath) && File.Exists(SrsWorkPath + "srs"))
             {
                 return true;
             }
@@ -135,7 +135,7 @@ namespace SRSApis.SRSManager
 
             try
             {
-                Directory.CreateDirectory(_srsWorkPath + _srsDeviceId);
+                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId);
                 Directory.CreateDirectory(Srs.Ff_log_dir);
                 Directory.CreateDirectory(Srs.Http_server!.Dir);
                 SrsConfigBuild.Build(Srs, this.SrsWorkPath + this.SrsDeviceId + ".conf");
@@ -390,11 +390,11 @@ namespace SRSApis.SRSManager
                 return false;
             }
 
-            string cmd = "kill -s SIGHUP " + _srsPidValue + " && ret=$? && echo $ret";
+            string cmd = "kill -s SIGHUP " + SrsPidValue + " && ret=$? && echo $ret";
             string std = "";
             string err = "";
             bool ret = LinuxShell.Run(cmd, 1000, out std, out err);
-            if (!ret && string.IsNullOrEmpty(err))
+            if (!ret && (string.IsNullOrEmpty(err) &&  string.IsNullOrEmpty(std)))
             {
                 rs = new ResponseStruct()
                 {
@@ -405,7 +405,7 @@ namespace SRSApis.SRSManager
             }
             else
             {
-                if (!std.Trim().Equals("0") || !err.Trim().Equals("0"))
+                if (!std.Trim().Equals("0") && !err.Trim().Equals("0"))
                 {
                     rs = new ResponseStruct()
                     {
@@ -439,7 +439,7 @@ namespace SRSApis.SRSManager
                 {
                     Code = ErrorNumber.StartRuningSrsError,
                     Message =
-                        ErrorMessage.ErrorDic![ErrorNumber.StartRuningSrsError] + "\r\npid:(" + _srsPidValue + ")",
+                        ErrorMessage.ErrorDic![ErrorNumber.StartRuningSrsError] + "\r\npid:(" + SrsPidValue + ")",
                 };
                 return false;
             }
@@ -456,10 +456,10 @@ namespace SRSApis.SRSManager
 
             string cmd = "ulimit -c unlimited";
             LinuxShell.Run(cmd);
-            cmd = "cd " + _srsWorkPath;
+            cmd = "cd " + SrsWorkPath;
             LinuxShell.Run(cmd);
-            string srsPath = _srsWorkPath + "srs";
-            cmd = srsPath + " -c " + _srsConfigPath;
+            string srsPath = SrsWorkPath + "srs";
+            cmd = srsPath + " -c " + SrsConfigPath;
             if (File.Exists(Srs.Pid))
             {
                 File.Delete(Srs.Pid);
@@ -478,7 +478,7 @@ namespace SRSApis.SRSManager
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.StartSrsError,
-                    Message = ErrorMessage.ErrorDic![ErrorNumber.StartSrsError] + "\r\npid:(" + _srsPidValue + ")",
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.StartSrsError] + "\r\npid:(" + SrsPidValue + ")",
                 };
                 return false;
             }
@@ -486,7 +486,7 @@ namespace SRSApis.SRSManager
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\npid:(" + _srsPidValue + ")",
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\npid:(" + SrsPidValue + ")",
             };
             return true;
         }
@@ -500,7 +500,7 @@ namespace SRSApis.SRSManager
         {
             if (IsRunning)
             {
-                string cmd = "kill -s SIGTERM " + _srsPidValue + " 2>/dev/null";
+                string cmd = "kill -s SIGTERM " + SrsPidValue + " 2>/dev/null";
                 for (int i = 0; i < 100; i++)
                 {
                     LinuxShell.Run(cmd, 100);
@@ -510,7 +510,7 @@ namespace SRSApis.SRSManager
                         rs = new ResponseStruct()
                         {
                             Code = ErrorNumber.None,
-                            Message = ErrorMessage.ErrorDic![ErrorNumber.ConfigFile],
+                            Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                         };
                         return true;
                     }
@@ -520,7 +520,7 @@ namespace SRSApis.SRSManager
 
                 for (int i = 0; i < 5; i++)
                 {
-                    cmd = "kill -s SIGKILL " + _srsPidValue + " 2>/dev/null";
+                    cmd = "kill -s SIGKILL " + SrsPidValue + " 2>/dev/null";
                     LinuxShell.Run(cmd, 100);
                     if (!IsRunning)
                     {
