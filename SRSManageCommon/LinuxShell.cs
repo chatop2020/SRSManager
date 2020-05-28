@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace SRSApis
+namespace SRSManageCommon
 {
     public static class LinuxShell
     {

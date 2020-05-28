@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 
 namespace SRSCallBackManager.Structs
@@ -11,27 +12,26 @@ namespace SRSCallBackManager.Structs
     [Serializable]
     public class RemoteClient
     {
-        private string _clientId;
-        private string _clientIp;
+        private ushort? _clientId;
+        private string? _clientIp;
         private ClientType _clientType;
 
-        public ClientType ClientType
-        {
-            get => _clientType;
-            set => _clientType = value;
-        }
-
-
-        public string ClientId
+        public ushort? ClientId
         {
             get => _clientId;
             set => _clientId = value;
         }
 
-        public string ClientIp
+        public string? ClientIp
         {
             get => _clientIp;
             set => _clientIp = value;
+        }
+
+        public ClientType ClientType
+        {
+            get => _clientType;
+            set => _clientType = value;
         }
     }
 }

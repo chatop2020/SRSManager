@@ -1,7 +1,9 @@
+#nullable enable
+using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace SRSWebApi
+namespace SRSManageCommon
 {
     /// <summary>
     /// json工具类
@@ -20,6 +22,32 @@ namespace SRSWebApi
             _jsonSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             _jsonSettings.Converters.Add(datetimeConverter);
         }
+        
+        //格式化json字符串
+        public static string ConvertJsonString(string str)
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            TextReader tr = new StringReader(str);
+            JsonTextReader jtr = new JsonTextReader(tr);
+            object? obj = serializer.Deserialize(jtr);
+            if (obj != null)
+            {
+                StringWriter textWriter = new StringWriter();
+                JsonTextWriter jsonWriter = new JsonTextWriter(textWriter)
+                {
+                    Formatting = Formatting.Indented,
+                    Indentation = 4,
+                    IndentChar = ' '
+                };
+                serializer.Serialize(jsonWriter, obj);
+                return textWriter.ToString();
+            }
+            else
+            {
+                return str;
+            }
+        }
+        
 
         /// <summary>
         /// 将指定的对象序列化成 JSON 数据。

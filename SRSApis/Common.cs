@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using SRSApis.SRSManager;
 using SRSApis.SRSManager.Apis;
+using SRSCallBackManager;
 using SRSConfFile;
 using SRSManageCommon;
 
@@ -41,6 +42,12 @@ namespace SRSApis
         public static readonly string LogPath = WorkPath + "logs/";
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
         public static List<OnvifInstance> OnvifManagers = new List<OnvifInstance>();
+        /// <summary>
+        /// 远程客户端管理，包含用户及摄像头
+        /// </summary>
+        public static RemoteClientManager RemoteClientManager= new RemoteClientManager();
+        
+        public static DvrListManager DvrListManager = new DvrListManager();
 
         static Common()
         {
@@ -113,14 +120,14 @@ namespace SRSApis
             foreach (SrsManager sm in SrsManagers)
             {
                 ret = sm.Start(out rs);
-                string rs_str = JsonHelper.ToJson(rs);
+                string rsStr = JsonHelper.ToJson(rs);
                 if (ret)
                 {
-                    LogWriter.WriteLog("SRS启动成功...DeviceID:" + sm.SrsDeviceId, rs_str);
+                    LogWriter.WriteLog("SRS启动成功...DeviceID:" + sm.SrsDeviceId, rsStr);
                 }
                 else
                 {
-                    LogWriter.WriteLog("SRS启动失败...DeviceID:" + sm.SrsDeviceId, rs_str, ConsoleColor.Yellow);
+                    LogWriter.WriteLog("SRS启动失败...DeviceID:" + sm.SrsDeviceId, rsStr, ConsoleColor.Yellow);
                 }
             }
         }
@@ -270,14 +277,14 @@ namespace SRSApis
             {
                 SrsManager sm = new SrsManager();
                 ret = sm.CreateSrsManager(out rs);
-                string rs_str = JsonHelper.ToJson(rs);
+                string rsStr = JsonHelper.ToJson(rs);
                 if (!ret)
                 {
-                    LogWriter.WriteLog("创建SRS实例失败...:", rs_str, ConsoleColor.Yellow);
+                    LogWriter.WriteLog("创建SRS实例失败...:", rsStr, ConsoleColor.Yellow);
                 }
                 else
                 {
-                    LogWriter.WriteLog("初始化SRS成功...ConfigPath:" + sm.SrsConfigPath, rs_str);
+                    LogWriter.WriteLog("初始化SRS成功...ConfigPath:" + sm.SrsConfigPath, rsStr);
                     SrsManagers.Add(sm);
                 }
             }

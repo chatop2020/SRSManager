@@ -8,6 +8,7 @@ using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile;
 using SRSConfFile.SRSConfClass;
 using Common = SRSApis.Common;
+using JsonHelper = SRSManageCommon.JsonHelper;
 
 namespace Test_SRSApis
 {

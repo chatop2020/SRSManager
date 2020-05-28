@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using SRSCallBackManager;
 using SRSManageCommon;
 using Common = SRSApis.Common;
 
@@ -37,11 +39,17 @@ namespace SRSWebApi
         /// Session管理器
         /// </summary>
         public SessionManager SessionManager = null!;
+        
 
         /// <summary>
         /// 工作目录
         /// </summary>
         public string WorkPath = null!;
+
+        /// <summary>
+        /// ffmpeg的可执行文件地址
+        /// </summary>
+        public string FFmpegBinPath = "/root/StreamNode/ffmpeg";
 
 
         /// <summary>
@@ -59,6 +67,11 @@ namespace SRSWebApi
         /// </summary>
         public void CommonInit()
         {
+            if (!File.Exists(FFmpegBinPath))
+            {
+                Console.WriteLine("FFMPEG程度不存在，启动异常..."+FFmpegBinPath);
+                return;
+            }
             WorkPath = Environment.CurrentDirectory + "/";
             ConfPath = WorkPath + "srswebapi.wconf";
             BaseUrl = "http://*:" + Conf.HttpPort;
@@ -71,7 +84,9 @@ namespace SRSWebApi
             else
             {
                 Console.WriteLine("读取配置文件失败，启动异常...");
+                return;
             }
+            
         }
 
         /// <summary>

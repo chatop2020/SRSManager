@@ -5,6 +5,7 @@ namespace SRSManageCommon
 {
     public static class Common
     {
+        public static Object LockObj= new object();
         public static string? AddDoubleQuotation(string s)
         {
             return "\"" + s + "\"";

@@ -7,12 +7,17 @@ namespace SRSCallBackManager
     [Serializable]
     public class RemoteClientManager
     {
-        private List<OnlineClient> _onlineClientList;
+        private List<Client> _clientList;
 
-        public List<OnlineClient> OnlineClientList
+        public List<Client> ClientList
         {
-            get => _onlineClientList;
-            set => _onlineClientList = value;
+            get => _clientList;
+            set => _clientList = value;
+        }
+
+        public RemoteClientManager()
+        {
+            ClientList= new List<Client>();
         }
     }
 }
