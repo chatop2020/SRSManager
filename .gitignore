@@ -33,3 +33,6 @@ StreamCenter.sln.DotSettings.user
 /SRSManageCommon/bin
 /Test_Onvif_Discovery/obj
 /Test_Onvif_Discovery/bin
+/Test_FFmpeg_GetDurationConsole/obj
+/Test_FFmpeg_GetDurationConsole/bin
+

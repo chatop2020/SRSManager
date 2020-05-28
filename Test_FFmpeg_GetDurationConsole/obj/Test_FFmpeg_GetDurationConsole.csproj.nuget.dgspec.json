@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDuration/Test_FFmpeg_GetDuration.csproj": {}
+    "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDurationConsole/Test_FFmpeg_GetDurationConsole.csproj": {}
   },
   "projects": {
-    "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDuration/Test_FFmpeg_GetDuration.csproj": {
+    "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDurationConsole/Test_FFmpeg_GetDurationConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDuration/Test_FFmpeg_GetDuration.csproj",
-        "projectName": "Test_FFmpeg_GetDuration",
-        "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDuration/Test_FFmpeg_GetDuration.csproj",
+        "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDurationConsole/Test_FFmpeg_GetDurationConsole.csproj",
+        "projectName": "Test_FFmpeg_GetDurationConsole",
+        "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDurationConsole/Test_FFmpeg_GetDurationConsole.csproj",
         "packagesPath": "/Users/qiuzhouwei/.nuget/packages/",
-        "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDuration/obj/",
+        "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/Test_FFmpeg_GetDurationConsole/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/qiuzhouwei/.nuget/NuGet/NuGet.Config"
