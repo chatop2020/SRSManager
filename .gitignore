@@ -26,13 +26,10 @@ StreamCenter.sln.DotSettings.user
 /OnvifClient/bin/Debug/netstandard2.0
 .DS_Store
 */.DS_Store
-/SRSWebApi/logs
 *.xml
 */*.xml
 /SRSManageCommon/obj
 /SRSManageCommon/bin
-/Test_Onvif_Discovery/obj
-/Test_Onvif_Discovery/bin
 /Test_FFmpeg_GetDurationConsole/obj
 /Test_FFmpeg_GetDurationConsole/bin
 /Test_FreeSql/obj
