@@ -1,0 +1,14 @@
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/bin/Release/netcoreapp3.1/SRSCallBackManager.deps.json
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/bin/Release/netcoreapp3.1/SRSCallBackManager.dll
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/bin/Release/netcoreapp3.1/SRSCallBackManager.pdb
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/bin/Release/netcoreapp3.1/Mictlanix.DotNet.OnvifClient.dll
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/bin/Release/netcoreapp3.1/SRSManageCommon.dll
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/bin/Release/netcoreapp3.1/SRSManageCommon.pdb
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/bin/Release/netcoreapp3.1/Mictlanix.DotNet.OnvifClient.pdb
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/obj/Release/netcoreapp3.1/SRSCallBackManager.csprojAssemblyReference.cache
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/obj/Release/netcoreapp3.1/SRSCallBackManager.csproj.CoreCompileInputs.cache
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/obj/Release/netcoreapp3.1/SRSCallBackManager.AssemblyInfoInputs.cache
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/obj/Release/netcoreapp3.1/SRSCallBackManager.AssemblyInfo.cs
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/obj/Release/netcoreapp3.1/SRSCallBackManager.csproj.CopyComplete
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/obj/Release/netcoreapp3.1/SRSCallBackManager.dll
+/Users/qiuzhouwei/Projects/SRSManager/SRSCallBackManager/obj/Release/netcoreapp3.1/SRSCallBackManager.pdb

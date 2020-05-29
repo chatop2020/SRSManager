@@ -96,7 +96,7 @@ namespace SRSWebApi.Controllers
         }
         
         /// <summary>
-        /// 删除一个SRS实例
+        /// 根据DeviceID获取SRS实例
         /// </summary>
         /// <returns></returns>
         [HttpPost]

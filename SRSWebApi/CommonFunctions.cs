@@ -49,7 +49,7 @@ namespace SRSWebApi
         /// <summary>
         /// ffmpeg的可执行文件地址
         /// </summary>
-        public string FFmpegBinPath = "/root/StreamNode/ffmpeg";
+        public string FFmpegBinPath = "./ffmpeg";
 
 
         /// <summary>
