@@ -18,6 +18,7 @@
 
 - 此项目还在开发中，不能用于生产环境。
 - 出于对项目的需要，对srs的源码进行了简单修改，使http_hook时带上device_id,device_id来源于心跳中的device_id
+- 对于srs源码的修改已在官方git中与官方提出，希望官方可以考虑进。
 
 ## 组成部分
 - OnvifClient onvif的控制模块，用于发现，ptz探测等
