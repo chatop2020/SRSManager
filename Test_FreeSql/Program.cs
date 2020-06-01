@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 
 namespace Test_FreeSql
@@ -35,9 +36,23 @@ namespace Test_FreeSql
             return DBManager.fsql.Select<Module>().ToList();
 
         }
+        
+        public static string? GetIngestRtspMonitorUrlIpAddress(string url)
+        {
+            try
+            {
+                Uri link = new Uri(url);
+                return  link.Host;
+            }
+            catch
+            {
+                return "";
+            }
+        }
         static void Main(string[] args)
         {
 
+           
             Module a = new Module()
             {
 

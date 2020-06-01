@@ -1,5 +1,6 @@
 #nullable enable
 using System;
+using System.Text.RegularExpressions;
 
 namespace SRSManageCommon
 {
@@ -14,7 +15,34 @@ namespace SRSManageCommon
     {
        public static string WorkPath = Environment.CurrentDirectory + "/";
         public static Object LockObj= new object();
-       
+
+        public static string? GetIngestRtspMonitorUrlIpAddress(string url)
+        {
+            try
+            {
+                Uri link = new Uri(url);
+                return  link.Host;
+                /*string p = @"(rtsp)://(?<domain>[^(:|/]*)";
+                Regex reg = new Regex(p, RegexOptions.IgnoreCase);
+                Match m = reg.Match(url);
+                return m.Groups["domain"].Value;*/
+            }
+            catch
+            {
+                return "";
+            }
+        }
+        
+        /// <summary>
+        /// 检测是否为ip 地址
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static bool IsIpAddr(string ip)
+        {
+            return Regex.IsMatch(ip, @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$");
+        }
+
         public static string? AddDoubleQuotation(string s)
         {
             return "\"" + s + "\"";

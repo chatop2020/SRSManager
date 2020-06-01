@@ -12,5 +12,7 @@ namespace SRSManageCommon
             .UseAutoSyncStructure(true) //自动创建、迁移实体表结构
             .UseNoneCommandParameter(true)
             .Build();
+
+       
     }
 }

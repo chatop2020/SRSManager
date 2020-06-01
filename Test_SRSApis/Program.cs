@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using SRSManageCommon;
-using SRSApis;
 using SRSApis.SRSManager;
 using SRSApis.SRSManager.Apis;
 using SRSApis.SRSManager.Apis.ApiModules;
 using SRSConfFile;
 using SRSConfFile.SRSConfClass;
-using Common = SRSApis.Common;
+using Dvr = SRSConfFile.SRSConfClass.Dvr;
 using JsonHelper = SRSManageCommon.JsonHelper;
 
 namespace Test_SRSApis

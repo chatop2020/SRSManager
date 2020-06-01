@@ -3,7 +3,7 @@ using System;
 using FreeSql.DataAnnotations;
 using SRSManageCommon;
 
-namespace SRSManageCommon.Structs
+namespace SRSApis.SRSManager.Apis.ApiModules
 {
     
     [Index("uk_clientId", "ClientId", false)]
@@ -22,6 +22,7 @@ namespace SRSManageCommon.Structs
         private ClientType _clientType;
         private string? _rtmpUrl;
         private string? _httpUrl;
+        private string? _rtspUrl;
         private string? _vhost;
         private string? _app;
         private string? _stream;
@@ -79,6 +80,12 @@ namespace SRSManageCommon.Structs
         {
             get => _httpUrl;
             set => _httpUrl = value;
+        }
+
+        public string? RtspUrl
+        {
+            get => _rtspUrl;
+            set => _rtspUrl = value;
         }
 
         public string? Vhost

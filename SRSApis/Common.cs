@@ -126,15 +126,7 @@ namespace SRSApis
             }
         }
 
-        /// <summary>
-        /// 检测是否为ip 地址
-        /// </summary>
-        /// <param name="ip"></param>
-        /// <returns></returns>
-        public static bool IsIpAddr(string ip)
-        {
-            return Regex.IsMatch(ip, @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$");
-        }
+        
 
 
         /// <summary>

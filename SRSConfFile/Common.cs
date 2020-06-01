@@ -158,16 +158,16 @@ namespace SRSConfFile
                 {
                     if (sArr[1].Trim() != "{")
                     {
-                        return new KeyValuePair<string, string>(sArr[0].Trim().ToLower(), sArr[1].Trim().ToLower());
+                        return new KeyValuePair<string, string>(sArr[0].Trim(), sArr[1].Trim());
                     }
                     else
                     {
-                        return new KeyValuePair<string, string>(sArr[0].Trim().ToLower(), "");
+                        return new KeyValuePair<string, string>(sArr[0].Trim(), "");
                     }
                 }
             }
 
-            return new KeyValuePair<string, string>(s?.Trim().ToLower()!, "");
+            return new KeyValuePair<string, string>(s?.Trim()!, "");
         }
     }
 }

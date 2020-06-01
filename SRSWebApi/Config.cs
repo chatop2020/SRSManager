@@ -80,7 +80,7 @@ namespace SRSWebApi
         {
             foreach (var s in lines)
             {
-                string tmps = s.Trim().ToLower();
+                string tmps = s.Trim();
                 if (!tmps.EndsWith(";")) continue;
                 tmps = tmps.Replace(";", "");
                 string[] kv = getkv(tmps, '=');

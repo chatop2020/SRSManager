@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SRSManageCommon.Structs
+namespace SRSApis.SRSManager.Apis.ApiModules
 {
 
     [Serializable]

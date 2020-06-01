@@ -1,7 +1,6 @@
 using System;
 using SRSApis.SRSManager.Apis.ApiModules;
 using SRSManageCommon;
-using SRSManageCommon.Structs;
 
 namespace SRSApis.SRSManager.Apis
 {
@@ -20,7 +19,15 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static bool OnDvr(Dvr dvr)
         {
-            OrmService.Db.Insert(dvr).ExecuteAffrows();
+            try
+            {
+                OrmService.Db.Insert(dvr).ExecuteAffrows();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("存DVR错误："+ex.Message);
+            }
+
             return true;
         }
 

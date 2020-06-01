@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SRSApis.SRSManager.Apis;
 using SRSApis.SRSManager.Apis.ApiModules;
 using SRSManageCommon;
-using SRSManageCommon.Structs;
 using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using Common = SRSApis.Common;

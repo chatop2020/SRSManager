@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using SRSApis;
+using SRSApis.SRSManager.Apis.ApiModules;
 using SRSManageCommon;
 using Common = SRSApis.Common;
 
@@ -75,6 +77,7 @@ namespace SRSWebApi
                 Console.WriteLine("FFMPEG程度不存在，启动异常..."+FFmpegBinPath);
                 return;
             }
+           
             WorkPath = Environment.CurrentDirectory + "/";
             ConfPath = WorkPath + "srswebapi.wconf";
             BaseUrl = "http://*:" + Conf.HttpPort;
@@ -82,6 +85,7 @@ namespace SRSWebApi
             {
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
+               
                 Common.init_SrsServer();
                 SrsOnlineClient=new SrsClientManager();
             }
