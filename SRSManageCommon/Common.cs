@@ -3,9 +3,18 @@ using System;
 
 namespace SRSManageCommon
 {
+    [Serializable]
+    public enum ClientType
+    {
+        Monitor,
+        User
+    }
+    
     public static class Common
     {
+       public static string WorkPath = Environment.CurrentDirectory + "/";
         public static Object LockObj= new object();
+       
         public static string? AddDoubleQuotation(string s)
         {
             return "\"" + s + "\"";

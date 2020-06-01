@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using SRSCallBackManager;
 using SRSManageCommon;
 using Common = SRSApis.Common;
 
@@ -14,6 +13,10 @@ namespace SRSWebApi
     public class CommonFunctions
 
     {
+        /// <summary>
+        /// SrsOnlineClient管理
+        /// </summary>
+        public static SrsClientManager SrsOnlineClient = null!;
         /// <summary>
         /// 调试模式下不启用授权和session验证
         /// </summary>
@@ -80,6 +83,7 @@ namespace SRSWebApi
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
                 Common.init_SrsServer();
+                SrsOnlineClient=new SrsClientManager();
             }
             else
             {

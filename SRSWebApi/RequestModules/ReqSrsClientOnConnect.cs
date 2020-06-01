@@ -11,6 +11,7 @@ namespace SRSWebApi.RequestModules
     {
 
         private string? _action;
+        private string? _device_id;
         private ushort? _clientId;
         private string? _ip;
         private string? _vhost;
@@ -25,6 +26,12 @@ namespace SRSWebApi.RequestModules
         {
             get => _action;
             set => _action = value;
+        }
+
+        public string? Device_Id
+        {
+            get => _device_id;
+            set => _device_id = value;
         }
 
         /// <summary>

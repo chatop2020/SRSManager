@@ -1,11 +1,22 @@
 using System;
+using FreeSql.DataAnnotations;
+using SRSManageCommon;
 
 #nullable enable
-namespace SRSCallBackManager.Structs
+namespace SRSManageCommon.Structs
 {
-    public class DvrMessage
+    [Index("uk_dvr_clientId", "ClientId", false)]
+    [Index("uk_dvr_stream", "Stream", false)]
+    [Index("uk_dvr_groupTime", "StartTime, EndTime", false)]
+    [Index("uk_dvr_deviceId", "StartTime, EndTime", false)]
+    [Serializable]
+    public class Dvr
     {
-        private RemoteClient? _remoteClient;
+        private long _id;
+        private string? _device_id;
+        private ushort? _clientId;
+        private string? _clientIp;
+        private ClientType _clientType;
         private string? _videoPath;
         private string? _vhost;
         private string? _stream;
@@ -15,11 +26,35 @@ namespace SRSCallBackManager.Structs
         private long? _duration;
         private DateTime? _startTime;
         private DateTime? _endTime;
-
-        public RemoteClient? RemoteClient
+        [Column(IsIdentity = true)]
+        public long Id
         {
-            get => _remoteClient;
-            set => _remoteClient = value;
+            get => _id;
+            set => _id = value;
+        }
+
+        public string? Device_Id
+        {
+            get => _device_id;
+            set => _device_id = value;
+        }
+
+        public ushort? Client_Id
+        {
+            get => _clientId;
+            set => _clientId = value;
+        }
+
+        public string? ClientIp
+        {
+            get => _clientIp;
+            set => _clientIp = value;
+        }
+        [Column(MapType = typeof(string))]
+        public ClientType ClientType
+        {
+            get => _clientType;
+            set => _clientType = value;
         }
 
         public string? VideoPath

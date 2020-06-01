@@ -80,7 +80,6 @@ namespace SRSApis.SRSManager
                         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                         {
                             cmd = "ps -aux |grep " + pidValue + "|grep -v grep|awk \'{print $2}\'";
-                            Console.WriteLine("ps:"+cmd);
                         }
                         else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                         {
@@ -268,7 +267,6 @@ namespace SRSApis.SRSManager
         private bool getPidValue(string pidPath, out string pidValue)
         {
             pidValue = "";
-            Console.WriteLine("getPidValue:"+pidPath);
             if (File.Exists(pidPath))
             {
                 string stdout = "";
@@ -278,7 +276,6 @@ namespace SRSApis.SRSManager
                 if (!string.IsNullOrEmpty(pidValue))
                 {
                     SrsPidValue = pidValue;
-                    Console.WriteLine("getPidValue:"+SrsPidValue);
                     return true;
                 }
 
@@ -436,7 +433,6 @@ namespace SRSApis.SRSManager
         /// <returns>返回成功或失败</returns>
         public bool Start(out ResponseStruct rs)
         {
-            Console.WriteLine("start1");
             if (IsRunning)
             {
                 rs = new ResponseStruct()

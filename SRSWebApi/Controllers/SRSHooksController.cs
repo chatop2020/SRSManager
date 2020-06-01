@@ -3,8 +3,8 @@ using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using SRSApis.SRSManager.Apis;
 using SRSApis.SRSManager.Apis.ApiModules;
-using SRSCallBackManager.Structs;
 using SRSManageCommon;
+using SRSManageCommon.Structs;
 using SRSWebApi.Attributes;
 using SRSWebApi.RequestModules;
 using Common = SRSApis.Common;
@@ -53,10 +53,6 @@ namespace SRSWebApi.Controllers
         }
         
         
-        
-        
-        
-        
         /// <summary>
         /// 有客户端或摄像头关闭时
         /// </summary>
@@ -67,12 +63,11 @@ namespace SRSWebApi.Controllers
         [Route("/SrsHooks/OnClose")]
         public int OnClose(ReqSrsClientOnClose client)
         {
-            RemoteClient rc= new RemoteClient();
-            rc.ClientId =(ushort) client.Client_Id!;
-            rc.ClientIp = client.Ip;
             Client tmpClient = new Client()
             {
-                RemoteClient = rc,
+                Device_Id = client.Device_Id,
+                Client_Id = client.Client_Id,
+                ClientIp = client.Ip,
                 App = client.App,
                 Vhost = client.Vhost,
             };
@@ -91,13 +86,12 @@ namespace SRSWebApi.Controllers
         [Route("/SrsHooks/OnUnPublish")]
         public int OnUnPublish(ReqSrsClientOnOrUnPublish client)
         {
-            RemoteClient rc= new RemoteClient();
-            rc.ClientId =(ushort) client.Client_Id!;
-            rc.ClientIp = client.Ip;
-            rc.ClientType = ClientType.Monitor;
             Client tmpClient = new Client()
             {
-                RemoteClient = rc,
+                Device_Id = client.Device_Id,
+                Client_Id = client.Client_Id,
+                ClientIp = client.Ip,
+                ClientType = ClientType.Monitor,
                 App = client.App,
                 HttpUrl ="",
                 IsOnline = true,
@@ -125,13 +119,13 @@ namespace SRSWebApi.Controllers
         {
 
             DateTime currentTime = DateTime.Now;   
-            RemoteClient rc= new RemoteClient();
-            rc.ClientId =dvr.Client_Id!;
-            rc.ClientIp = dvr.Ip;
-            rc.ClientType = ClientType.Monitor;
-            DvrMessage tmpDvr = new DvrMessage()
+ 
+            Dvr tmpDvr = new Dvr()
             {
-                RemoteClient = rc,
+                Device_Id = dvr.Device_Id,
+                Client_Id = dvr.Client_Id,
+                ClientIp = dvr.Ip,
+                ClientType = ClientType.Monitor,
                 VideoPath = dvr.File,
                 App = dvr.App,
                 Stream = dvr.Stream,
@@ -167,13 +161,12 @@ namespace SRSWebApi.Controllers
         [Route("/SrsHooks/OnPlay")]
         public int OnPlay(ReqSrsClientOnPlayOnStop client)
         {
-            RemoteClient rc= new RemoteClient();
-            rc.ClientId =(ushort) client.Client_Id!;
-            rc.ClientIp = client.Ip;
-            rc.ClientType = ClientType.Monitor;
             Client tmpClient = new Client()
             {
-                RemoteClient = rc,
+                Device_Id = client.Device_Id,
+                Client_Id = client.Client_Id,
+                ClientIp = client.Ip,
+                ClientType = ClientType.Monitor,
                 App = client.App,
                 HttpUrl ="",
                 IsOnline = true,
@@ -198,13 +191,12 @@ namespace SRSWebApi.Controllers
         [Route("/SrsHooks/OnStop")]
         public int OnStop(ReqSrsClientOnPlayOnStop client)
         {
-            RemoteClient rc= new RemoteClient();
-            rc.ClientId =(ushort) client.Client_Id!;
-            rc.ClientIp = client.Ip;
-            rc.ClientType = ClientType.Monitor;
             Client tmpClient = new Client()
             {
-                RemoteClient = rc,
+                Device_Id = client.Device_Id,
+                Client_Id = client.Client_Id,
+                ClientIp = client.Ip,
+                ClientType = ClientType.Monitor,
                 App = client.App,
                 HttpUrl ="",
                 IsOnline = true,
@@ -230,13 +222,12 @@ namespace SRSWebApi.Controllers
         [Route("/SrsHooks/OnPublish")]
         public int OnPublish(ReqSrsClientOnOrUnPublish client)
         {
-            RemoteClient rc= new RemoteClient();
-            rc.ClientId =(ushort) client.Client_Id!;
-            rc.ClientIp = client.Ip;
-            rc.ClientType = ClientType.Monitor;
             Client tmpClient = new Client()
             {
-                RemoteClient = rc,
+                Device_Id = client.Device_Id,
+                Client_Id = client.Client_Id,
+                ClientIp = client.Ip,
+                ClientType = ClientType.Monitor,
                 App = client.App,
                 HttpUrl ="",
                 IsOnline = true,
@@ -261,13 +252,12 @@ namespace SRSWebApi.Controllers
         [Route("/SrsHooks/OnConnect")]
         public int OnConnect(ReqSrsClientOnConnect client)
         {
-            RemoteClient rc= new RemoteClient();
-            rc.ClientId =(ushort) client.Client_Id!;
-            rc.ClientIp = client.Ip;
-            rc.ClientType = ClientType.User;
             Client tmpClient = new Client()
             {
-                RemoteClient = rc,
+                Device_Id = client.Device_Id,
+                Client_Id = client.Client_Id,
+                ClientIp = client.Ip,
+                ClientType = ClientType.User,
                 App = client.App,
                 HttpUrl = client.PageUrl,
                 IsOnline = true,

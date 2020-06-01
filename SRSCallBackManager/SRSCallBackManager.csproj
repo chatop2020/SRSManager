@@ -8,4 +8,8 @@
       <ProjectReference Include="..\SRSManageCommon\SRSManageCommon.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Structs" />
+    </ItemGroup>
+
 </Project>

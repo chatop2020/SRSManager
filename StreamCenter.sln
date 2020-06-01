@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnvifClient", "OnvifClient\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRSManageCommon", "SRSManageCommon\SRSManageCommon.csproj", "{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRSCallBackManager", "SRSCallBackManager\SRSCallBackManager.csproj", "{679723AE-CE6B-4540-A7DB-AB706CD0D2C4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_FFmpeg_GetDurationConsole", "Test_FFmpeg_GetDurationConsole\Test_FFmpeg_GetDurationConsole.csproj", "{DDFDF439-E0D8-4008-A570-9D83E2393B4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_FreeSql", "Test_FreeSql\Test_FreeSql.csproj", "{A402E074-4C92-4E86-8BCE-6438A5E4BF4D}"
@@ -61,10 +59,6 @@ Global
 		{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9EA5C19-117F-4FE1-9B03-6565F721CAFC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{679723AE-CE6B-4540-A7DB-AB706CD0D2C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{679723AE-CE6B-4540-A7DB-AB706CD0D2C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{679723AE-CE6B-4540-A7DB-AB706CD0D2C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{679723AE-CE6B-4540-A7DB-AB706CD0D2C4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DDFDF439-E0D8-4008-A570-9D83E2393B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDFDF439-E0D8-4008-A570-9D83E2393B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDFDF439-E0D8-4008-A570-9D83E2393B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -113,7 +113,6 @@ namespace SRSManageCommon
                     process.StartInfo.RedirectStandardOutput = true;
                     process.StartInfo.RedirectStandardError = true;
                     process.StartInfo.Arguments = $"-c \"{escapedArgs}\"";
-                    Console.WriteLine(escapedArgs);
                     bool result = process.Start();
                     if (result)
                     {

@@ -9,6 +9,7 @@ namespace SRSWebApi.RequestModules
     public class ReqSrsDvr
     {
         private ushort? _clientId;
+        private string? _device_id;
         private string? _ip;
         private string? _vhost;
         private string? _app;
@@ -24,6 +25,12 @@ namespace SRSWebApi.RequestModules
         {
             get => _clientId;
             set => _clientId = value;
+        }
+
+        public string? Device_Id
+        {
+            get => _device_id;
+            set => _device_id = value;
         }
 
         /// <summary>

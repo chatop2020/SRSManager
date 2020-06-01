@@ -4,7 +4,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using SRSApis.SRSManager;
 using SRSApis.SRSManager.Apis;
-using SRSCallBackManager;
 using SRSConfFile;
 using SRSManageCommon;
 
@@ -42,13 +41,8 @@ namespace SRSApis
         public static readonly string LogPath = WorkPath + "logs/";
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
         public static List<OnvifInstance> OnvifManagers = new List<OnvifInstance>();
-        /// <summary>
-        /// 远程客户端管理，包含用户及摄像头
-        /// </summary>
-        public static RemoteClientManager RemoteClientManager= new RemoteClientManager();
+        public static Object LockObj= new object();
         
-        public static DvrListManager DvrListManager = new DvrListManager();
-
         static Common()
         {
             ErrorMessage.Init();
