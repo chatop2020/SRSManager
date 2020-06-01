@@ -24,7 +24,7 @@
 - SRSConfFile 封装对SRS配置文件的结构化处理，可以读取与重写SRS配置文件 
 - SRSManageCommon 项目中用到的相对通用的一些类和方法
 - SRSWebApi 将SRSApis项目中的各种接口用WebApi的方式开放出来
-- SRSCallBackManager 用于处理SRS的各种回调数据
+- SRSCallBackManager 用于处理SRS的各种回调数据(废弃，移到SRSManageCommon项目中)
 - Test_ 开头的项目是针对于以上部分的功能测试项
 
 ## 设计考虑
