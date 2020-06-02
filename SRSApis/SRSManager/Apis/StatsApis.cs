@@ -15,7 +15,6 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool DeleteStats(string deviceId, out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,

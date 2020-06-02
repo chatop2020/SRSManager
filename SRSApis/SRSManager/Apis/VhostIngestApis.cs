@@ -37,6 +37,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false!;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -56,12 +57,14 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceNotFound,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                     };
-                    return false; 
+                    return false;
                 }
+
                 if (retVhost.Vingests == null)
                 {
-                    retVhost.Vingests=new List<Ingest>();
+                    retVhost.Vingests = new List<Ingest>();
                 }
+
                 var retVhostIngest = retVhost.Vingests.FindLast(x =>
                     x.IngestName!.Trim().ToUpper().Equals(ingest.IngestName!.Trim().ToUpper()));
                 if (retVhostIngest == null)
@@ -69,6 +72,7 @@ namespace SrsApis.SrsManager.Apis
                     retVhost.Vingests.Add(ingest);
                     return true;
                 }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceAlreadyExists,
@@ -97,7 +101,7 @@ namespace SrsApis.SrsManager.Apis
         public static bool SetVhostIngest(string deviceId, string vhostDomain, string ingestName, Ingest ingest,
             out ResponseStruct rs)
         {
-         rs = new ResponseStruct()
+            rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
@@ -115,6 +119,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false!;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -134,12 +139,14 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceNotFound,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                     };
-                    return false; 
+                    return false;
                 }
+
                 if (retVhost.Vingests == null)
                 {
-                    retVhost.Vingests=new List<Ingest>();
+                    retVhost.Vingests = new List<Ingest>();
                 }
+
                 var retVhostIngest = retVhost.Vingests.FindLast(x =>
                     x.IngestName!.Trim().ToUpper().Equals(ingest.IngestName!.Trim().ToUpper()));
                 if (retVhostIngest == null)
@@ -147,6 +154,7 @@ namespace SrsApis.SrsManager.Apis
                     retVhost.Vingests.Add(ingest);
                     return true;
                 }
+
                 retVhostIngest = ingest;
                 return true;
             }
@@ -187,6 +195,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -196,6 +205,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
+
                 List<VhostIngestNameModule> result = new List<VhostIngestNameModule>();
                 if (string.IsNullOrEmpty(vhostDomain))
                 {
@@ -205,15 +215,17 @@ namespace SrsApis.SrsManager.Apis
                         {
                             foreach (var ingest in vhost.Vingests)
                             {
-                                VhostIngestNameModule vn= new VhostIngestNameModule();
+                                VhostIngestNameModule vn = new VhostIngestNameModule();
                                 vn.VhostDomain = vhost.VhostDomain;
                                 vn.IngestInstanceName = ingest.IngestName;
                                 result.Add(vn);
                             }
-                        } 
-                    } 
+                        }
+                    }
+
                     return result;
                 }
+
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
                 if (retVhost!.Vingests == null)
@@ -225,14 +237,15 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
-              
+
                 foreach (var ingest in retVhost.Vingests)
                 {
-                    VhostIngestNameModule vn= new VhostIngestNameModule();
+                    VhostIngestNameModule vn = new VhostIngestNameModule();
                     vn.VhostDomain = retVhost.VhostDomain;
                     vn.IngestInstanceName = ingest.IngestName;
                     result.Add(vn);
                 }
+
                 return result;
             }
 
@@ -274,6 +287,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -287,7 +301,7 @@ namespace SrsApis.SrsManager.Apis
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
 
-                if (retVhost == null || retVhost.Vingests==null)
+                if (retVhost == null || retVhost.Vingests == null)
                 {
                     rs = new ResponseStruct()
                     {
@@ -306,8 +320,9 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceNotFound,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                     };
-                    return false; 
+                    return false;
                 }
+
                 return retVhost.Vingests.Remove(retVhostIngest);
             }
 
@@ -330,7 +345,7 @@ namespace SrsApis.SrsManager.Apis
         public static Ingest GetVhostIngest(string deviceId, string vhostDomain, string ingestName,
             out ResponseStruct rs)
         {
-          rs = new ResponseStruct()
+            rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
@@ -348,6 +363,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -361,7 +377,7 @@ namespace SrsApis.SrsManager.Apis
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
 
-                if (retVhost == null || retVhost.Vingests==null)
+                if (retVhost == null || retVhost.Vingests == null)
                 {
                     rs = new ResponseStruct()
                     {
@@ -380,7 +396,7 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceNotFound,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                     };
-                    return null!; 
+                    return null!;
                 }
 
                 return retVhostIngest;
@@ -391,7 +407,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.SrsObjectNotInit,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
-            return null!;  
+            return null!;
         }
     }
 }

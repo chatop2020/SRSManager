@@ -22,7 +22,7 @@ namespace SrsWebApi.Controllers
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/VhostBandcheck/DeleteVhostBandcheck")]
@@ -64,7 +64,5 @@ namespace SrsWebApi.Controllers
             var rt = VhostBandcheckApis.SetVhostBandcheck(deviceId, vhostDomain, bandcheck, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-
-       
     }
 }

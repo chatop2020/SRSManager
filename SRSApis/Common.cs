@@ -42,8 +42,8 @@ namespace SRSApis
         public static readonly string LogPath = WorkPath + "logs/";
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
         public static List<OnvifInstance> OnvifManagers = new List<OnvifInstance>();
-        public static Object LockObj= new object();
-        
+        public static Object LockObj = new object();
+
         static Common()
         {
             ErrorMessage.Init();
@@ -94,7 +94,7 @@ namespace SRSApis
         }
 
         /// <summary>
-        /// 刷新SRS实例的配置文件
+        /// 刷新并向磁盘写入SRS实例的配置文件
         /// </summary>
         /// <param name="sm"></param>
         /// <param name="rs"></param>
@@ -126,8 +126,6 @@ namespace SRSApis
                 }
             }
         }
-
-        
 
 
         /// <summary>

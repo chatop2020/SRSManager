@@ -17,27 +17,26 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class SystemController : ControllerBase
     {
-
         /// <summary>
-        /// 刷新重新SRS配置文件
+        /// 向磁盘写入SRS实例的配置文件
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/RefreshSrsObject")]
         public JsonResult RefreshSrsObject(string deviceId)
         {
             var rt = SystemApis.RefreshSrsObject(deviceId, out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
-      
+
+
         /// <summary>
         /// 获取所有Srs管理器中的deviceid
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/GetAllSrsManagerDeviceId")]
@@ -49,9 +48,9 @@ namespace SrsWebApi.Controllers
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
             var rt = SystemApis.GetAllSrsManagerDeviceId();
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
+
         /// <summary>
         /// 创建一个SrsInstance
         /// </summary>
@@ -62,45 +61,45 @@ namespace SrsWebApi.Controllers
         [Route("/System/CreateNewSrsInstance")]
         public JsonResult CreateNewSrsInstance(SrsManager sm)
         {
-            var rt = SystemApis.CreateNewSrsInstance(sm ,out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            var rt = SystemApis.CreateNewSrsInstance(sm, out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
-        
+
+
         /// <summary>
         /// 获取SRS实例模板
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/GetSrsInstanceTemplate")]
         public JsonResult GetSrsInstanceTemplate()
         {
-            var rt = SystemApis.GetSrsInstanceTemplate( out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            var rt = SystemApis.GetSrsInstanceTemplate(out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
-        
+
         /// <summary>
         /// 删除一个SRS实例
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/DelSrsByDevId")]
         public JsonResult DelSrsInstanceByDeviceId(string deviceId)
         {
-            var rt = SystemApis.DelSrsInstanceByDeviceId( deviceId,out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            var rt = SystemApis.DelSrsInstanceByDeviceId(deviceId, out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
+
         /// <summary>
         /// 根据DeviceID获取SRS实例
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/GetSrsInstanceByDeviceId")]
@@ -111,16 +110,16 @@ namespace SrsWebApi.Controllers
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var rt = SystemApis.GetSrsManagerInstanceByDeviceId( deviceId);
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            var rt = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
-        
+
+
         /// <summary>
         /// 加载onvif配置文件接口
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/LoadOnvifConfig")]
@@ -134,7 +133,7 @@ namespace SrsWebApi.Controllers
         /// 写入onvif配置文件接口
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/WriteOnvifConfig")]
@@ -149,7 +148,7 @@ namespace SrsWebApi.Controllers
         /// 删除一个onvif摄像头配置
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/DelOnvifConfigByIpAddress")]
@@ -163,7 +162,7 @@ namespace SrsWebApi.Controllers
         /// 获取系统信息
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/GetSystemInfo")]
@@ -178,7 +177,7 @@ namespace SrsWebApi.Controllers
         /// 获取SRS实例列表
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/System/GetSrsInstanceList")]

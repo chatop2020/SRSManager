@@ -16,9 +16,8 @@ namespace SrsWebApi.Controllers
     /// </summary>
     [ApiController]
     [Route("")]
-    public class SrsHooksController:ControllerBase
+    public class SrsHooksController : ControllerBase
     {
-
         /// <summary>
         /// 处理心跳信息
         /// </summary>
@@ -29,11 +28,10 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/Test")]
         public int Test(Object obj)
         {
-          //  Console.WriteLine("Test:"+SRSApis.JsonHelper.ToJson(obj));
+            //  Console.WriteLine("Test:"+SRSApis.JsonHelper.ToJson(obj));
             return 0;
-
         }
-        
+
         /// <summary>
         /// 处理心跳信息
         /// </summary>
@@ -49,10 +47,11 @@ namespace SrsWebApi.Controllers
             {
                 return 0;
             }
+
             return -1;
         }
-        
-        
+
+
         /// <summary>
         /// 有客户端或摄像头关闭时
         /// </summary>
@@ -93,20 +92,20 @@ namespace SrsWebApi.Controllers
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
                 App = client.App,
-                HttpUrl ="",
+                HttpUrl = "",
                 IsOnline = true,
                 Param = client.Param,
                 RtmpUrl = client.TcUrl,
                 Stream = client.Stream,
                 UpdateTime = DateTime.Now,
                 Vhost = client.Vhost,
-            }; 
+            };
             var rt = SrsHooksApis.OnPublish(tmpClient);
             if (rt) return 0;
             return -1;
         }
-        
-        
+
+
         /// <summary>
         /// 录制文件完成时
         /// </summary>
@@ -117,9 +116,8 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/OnDvr")]
         public int OnDvr(ReqSrsDvr dvr)
         {
+            DateTime currentTime = DateTime.Now;
 
-            DateTime currentTime = DateTime.Now;   
- 
             Dvr tmpDvr = new Dvr()
             {
                 Device_Id = dvr.Device_Id,
@@ -146,10 +144,11 @@ namespace SrsWebApi.Controllers
                 tmpDvr.StartTime = currentTime;
                 tmpDvr.EndTime = currentTime;
             }
+
             SrsHooksApis.OnDvr(tmpDvr);
             return 0;
         }
-        
+
 
         /// <summary>
         /// 有客户端播放时
@@ -168,19 +167,19 @@ namespace SrsWebApi.Controllers
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
                 App = client.App,
-                HttpUrl ="",
+                HttpUrl = "",
                 IsOnline = true,
                 IsPlay = true,
                 Stream = client.Stream,
                 UpdateTime = DateTime.Now,
                 Vhost = client.Vhost,
                 PageUrl = client.PageUrl,
-            }; 
+            };
             var rt = SrsHooksApis.OnPlay(tmpClient);
             if (rt) return 0;
             return -1;
         }
-        
+
         /// <summary>
         /// 客户端停止播放时
         /// </summary>
@@ -198,20 +197,20 @@ namespace SrsWebApi.Controllers
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
                 App = client.App,
-                HttpUrl ="",
+                HttpUrl = "",
                 IsOnline = true,
                 IsPlay = false,
                 Stream = client.Stream,
                 UpdateTime = DateTime.Now,
                 Vhost = client.Vhost,
                 PageUrl = client.PageUrl,
-            }; 
+            };
             var rt = SrsHooksApis.OnStop(tmpClient);
             if (rt) return 0;
             return -1;
         }
-        
-        
+
+
         /// <summary>
         /// 有摄像头进行推流时
         /// </summary>
@@ -229,19 +228,19 @@ namespace SrsWebApi.Controllers
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
                 App = client.App,
-                HttpUrl ="",
+                HttpUrl = "",
                 IsOnline = true,
                 Param = client.Param,
                 RtmpUrl = client.TcUrl,
                 Stream = client.Stream,
                 UpdateTime = DateTime.Now,
                 Vhost = client.Vhost,
-            }; 
+            };
             var rt = SrsHooksApis.OnPublish(tmpClient);
             if (rt) return 0;
             return -1;
         }
-        
+
         /// <summary>
         /// 有客户端或摄像头连接时
         /// </summary>

@@ -11,8 +11,6 @@ namespace SrsApis.SrsManager.Apis
     /// </summary>
     public static class SrsHooksApis
     {
-      
-
         /// <summary>
         /// 处理Dvr信息
         /// </summary>
@@ -27,7 +25,7 @@ namespace SrsApis.SrsManager.Apis
             }
             catch (Exception ex)
             {
-                Console.WriteLine("存DVR错误："+ex.Message);
+                Console.WriteLine("存DVR错误：" + ex.Message);
             }
 
             return true;
@@ -67,7 +65,7 @@ namespace SrsApis.SrsManager.Apis
                     OrmService.Db.Delete<Client>()
                         .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp).ExecuteAffrows();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                     return false;
@@ -79,6 +77,22 @@ namespace SrsApis.SrsManager.Apis
             return false;
         }
 
+
+        /// <summary>
+        /// 通过stream获取monitorip地址
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        private static string getMonitorIpAddressFromStream(string stream)
+        {
+           var ret= OrmService.Db.Select<Client>().Where(x => x.Stream!.Trim().Equals(stream.Trim()) && x.ClientType==ClientType.Monitor).First();
+           if (ret != null)
+           {
+               return ret.MonitorIp!;
+           }
+
+           return "unknow";
+        }
 
         /// <summary>
         /// 客户端播放时
@@ -100,7 +114,7 @@ namespace SrsApis.SrsManager.Apis
                             var ret = OrmService.Db.Update<Client>().Set(x => x.ClientType, ClientType.User)
                                 .Set(x => x.IsOnline, true).Set(x => x.IsPlay, true).Set(x => x.Param, client.Param)
                                 .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
-                                .Set(x => x.PageUrl, client.PageUrl)
+                                .Set(x => x.PageUrl, client.PageUrl).Set(x=>x.MonitorIp,getMonitorIpAddressFromStream(client.Stream!))
                                 .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
                                 .ExecuteAffrows();
                             if (ret > 0)
@@ -120,7 +134,7 @@ namespace SrsApis.SrsManager.Apis
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                         return false;
@@ -170,7 +184,7 @@ namespace SrsApis.SrsManager.Apis
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                         return false;
@@ -189,24 +203,21 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnPublish(Client client)
         {
-            
             lock (SRSApis.Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {
                     try
                     {
-                        
                         Client tmpClient = OrmService.Db.Select<Client>()
                             .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp).First();
                         if (tmpClient != null)
                         {
-                           
-                           
                             var ret = OrmService.Db.Update<Client>().Set(x => x.ClientType, ClientType.Monitor)
-                                .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, client.HttpUrl).Set(x => x.Param, client.Param)
+                                .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, client.HttpUrl)
+                                .Set(x => x.Param, client.Param)
                                 .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
-                                .Set(x => x.ClientType,ClientType.Monitor)
+                                .Set(x => x.ClientType, ClientType.Monitor)
                                 .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
                                 .ExecuteAffrows();
                             if (ret > 0)
@@ -225,13 +236,13 @@ namespace SrsApis.SrsManager.Apis
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                         return false;
                     }
-                    
                 }
+
                 return false;
             }
         }
@@ -274,12 +285,11 @@ namespace SrsApis.SrsManager.Apis
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                         return false;
                     }
-                    
                 }
 
                 return false;
@@ -295,7 +305,6 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnConnect(Client client)
         {
-            
             lock (Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
@@ -307,9 +316,10 @@ namespace SrsApis.SrsManager.Apis
                         if (tmpClient != null)
                         {
                             var ret = OrmService.Db.Update<Client>().Set(x => x.ClientType, ClientType.Monitor)
-                                .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, client.HttpUrl).Set(x => x.Param, client.Param)
+                                .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, client.HttpUrl)
+                                .Set(x => x.Param, client.Param)
                                 .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
-                                .Set(x => x.ClientType,ClientType.Monitor).Set(x=>x.MonitorIp,client.ClientIp)
+                                .Set(x => x.ClientType, ClientType.Monitor).Set(x => x.MonitorIp, client.ClientIp)
                                 .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
                                 .ExecuteAffrows();
                             if (ret > 0)
@@ -329,17 +339,15 @@ namespace SrsApis.SrsManager.Apis
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                         return false;
                     }
-                    
                 }
 
                 return false;
             }
-           
         }
     }
 }

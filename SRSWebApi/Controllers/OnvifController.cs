@@ -35,7 +35,7 @@ namespace SrsWebApi.Controllers
         /// 初始化还未初始化的onvif摄像头用ip 地址
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/Onvif/InitByIpAddress")]
@@ -164,7 +164,7 @@ namespace SrsWebApi.Controllers
         /// 获取onvif摄像头参数列表
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/Onvif/GetMonitorList")]
@@ -179,7 +179,7 @@ namespace SrsWebApi.Controllers
         /// 跟据实例名称/ip地址获取onvif摄像头实例
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/Onvif/GetMonitor")]

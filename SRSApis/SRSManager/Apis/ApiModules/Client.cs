@@ -5,7 +5,6 @@ using SrsManageCommon;
 
 namespace SrsApis.SrsManager.Apis.ApiModules
 {
-    
     [Index("uk_clientId", "ClientId", false)]
     [Index("uk_stream", "Stream", false)]
     [Index("uk_isonline", "IsOnline", false)]
@@ -28,7 +27,7 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         private string? _stream;
         private string? _param;
         private bool? _isOnline;
-        private bool? _isPlay=false;
+        private bool? _isPlay = false;
         private string? _pageUrl;
         private DateTime? _updateTime;
 
@@ -63,6 +62,7 @@ namespace SrsApis.SrsManager.Apis.ApiModules
             get => _clientIp;
             set => _clientIp = value;
         }
+
         [Column(MapType = typeof(string))]
         public ClientType ClientType
         {

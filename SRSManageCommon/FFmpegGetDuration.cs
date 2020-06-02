@@ -16,9 +16,11 @@ namespace SrsManageCommon
         /// <returns></returns>
         public static string GetValue(string str, string s, string e)
         {
-            Regex rg = new Regex("(?<=(" + s + "))[.\\s\\S]*?(?=(" + e + "))", RegexOptions.Multiline | RegexOptions.Singleline);
+            Regex rg = new Regex("(?<=(" + s + "))[.\\s\\S]*?(?=(" + e + "))",
+                RegexOptions.Multiline | RegexOptions.Singleline);
             return rg.Match(str).Value;
         }
+
         /// <summary>
         /// 输出视频的时长（毫秒）
         /// </summary>
@@ -26,7 +28,7 @@ namespace SrsManageCommon
         /// <param name="videoFilePath"></param>
         /// <param name="duartion"></param>
         /// <returns></returns>
-        public static bool GetDuration(string ffmpegBinPath, string videoFilePath,out long duartion)
+        public static bool GetDuration(string ffmpegBinPath, string videoFilePath, out long duartion)
         {
             duartion = -1;
             if (File.Exists(ffmpegBinPath) && File.Exists(videoFilePath))
@@ -39,13 +41,14 @@ namespace SrsManageCommon
                         string tmp = "";
                         if (!string.IsNullOrEmpty(std))
                         {
-                             tmp = GetValue(std, "Duration:", ",");
+                            tmp = GetValue(std, "Duration:", ",");
                         }
 
                         if (string.IsNullOrEmpty(tmp))
                         {
-                            tmp = GetValue(err, "Duration:", ",");  
+                            tmp = GetValue(err, "Duration:", ",");
                         }
+
                         if (!string.IsNullOrEmpty(tmp))
                         {
                             string[] tmpArr = tmp.Split(':', StringSplitOptions.RemoveEmptyEntries);
@@ -65,16 +68,18 @@ namespace SrsManageCommon
                                 {
                                     sec = int.Parse(tmpArr[2]);
                                 }
-                                hour = hour * 3600;//换成秒数
+
+                                hour = hour * 3600; //换成秒数
                                 min = min * 60;
                                 sec = sec + hour + min; //合计秒数
-                                duartion = sec * 1000 + (msec*10);//算计成毫秒
-                                return true; 
+                                duartion = sec * 1000 + (msec * 10); //算计成毫秒
+                                return true;
                             }
                         }
                     }
                 }
             }
+
             return false;
         }
     }

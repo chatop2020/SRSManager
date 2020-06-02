@@ -16,7 +16,6 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool DeleteVhostExec(string deviceId, string vhostDomain, out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -142,7 +141,6 @@ namespace SrsApis.SrsManager.Apis
         public static bool SetVhostExec(string deviceId, string vhostDomain, Exec exec,
             out ResponseStruct rs)
         {
-
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,

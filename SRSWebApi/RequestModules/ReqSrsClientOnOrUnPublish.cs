@@ -2,7 +2,6 @@ using System;
 
 namespace SrsWebApi.RequestModules
 {
-    
     /// <summary>
     ///SRS onpublish时的结构 
     /// </summary>
@@ -63,6 +62,7 @@ namespace SrsWebApi.RequestModules
             get => _vhost;
             set => _vhost = value;
         }
+
         /// <summary>
         /// app
         /// </summary>

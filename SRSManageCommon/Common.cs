@@ -10,18 +10,18 @@ namespace SrsManageCommon
         Monitor,
         User
     }
-    
+
     public static class Common
     {
-       public static string WorkPath = Environment.CurrentDirectory + "/";
-        public static Object LockObj= new object();
+        public static string WorkPath = Environment.CurrentDirectory + "/";
+        public static Object LockObj = new object();
 
         public static string? GetIngestRtspMonitorUrlIpAddress(string url)
         {
             try
             {
                 Uri link = new Uri(url);
-                return  link.Host;
+                return link.Host;
                 /*string p = @"(rtsp)://(?<domain>[^(:|/]*)";
                 Regex reg = new Regex(p, RegexOptions.IgnoreCase);
                 Match m = reg.Match(url);
@@ -32,7 +32,7 @@ namespace SrsManageCommon
                 return "";
             }
         }
-        
+
         /// <summary>
         /// 检测是否为ip 地址
         /// </summary>

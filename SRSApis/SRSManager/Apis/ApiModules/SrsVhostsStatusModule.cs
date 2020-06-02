@@ -74,6 +74,7 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         /// </summary>
         public Hls? Hls { get; set; }
     }
+
     [Serializable]
     public class SrsVhostsStatusModule
     {

@@ -141,7 +141,6 @@ namespace SrsApis.SrsManager.Apis
         public static bool SetVhostPlay(string deviceId, string vhostDomain, Play play,
             out ResponseStruct rs)
         {
-
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,

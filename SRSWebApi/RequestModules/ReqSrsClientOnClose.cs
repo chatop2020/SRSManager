@@ -2,7 +2,6 @@ using System;
 
 namespace SrsWebApi.RequestModules
 {
-    
     /// <summary>
     ///SRS onClose时的结构 
     /// </summary>
@@ -24,9 +23,10 @@ namespace SrsWebApi.RequestModules
             get => _action;
             set => _action = value;
         }
-/// <summary>
-/// srs实例id
-/// </summary>
+
+        /// <summary>
+        /// srs实例id
+        /// </summary>
         public string? Device_Id
         {
             get => _device_id;

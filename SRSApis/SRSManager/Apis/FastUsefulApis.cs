@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using SrsApis.SrsManager.Apis.ApiModules;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
@@ -12,13 +13,160 @@ namespace SrsApis.SrsManager.Apis
     {
 
         /// <summary>
+        /// 通过stream的值返回monitor的信息
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static Client GetClientInfoByStreamValue(string stream,out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = OrmService.Db.Select<Client>()
+                .Where(x => x.ClientType == ClientType.Monitor && x.Stream!.Equals(stream.Trim())).First();
+            return ret;
+        }
+        /// <summary>
+        /// 获取所有正在运行中的srs信息
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<Self_Srs> GetRunningSrsInfoList(out ResponseStruct rs)
+        {
+            List<Self_Srs> result = null!;
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            if (Common.SrsManagers != null && Common.SrsManagers.Count > 0)
+            {
+                result = new List<Self_Srs>();
+                foreach (var sm in Common.SrsManagers)
+                {
+                    if (sm.IsRunning && sm.Srs.Http_api != null && sm.Srs.Http_api.Enabled == true)
+                    {
+                        string reqUrl = "http://127.0.0.1:" + sm!.Srs.Http_api!.Listen + "/api/v1/summaries";
+                        try
+                        {
+                            string tmpStr = NetHelper.Get(reqUrl);
+                            var retReq = JsonHelper.FromJson<SrsSystemInfo>(tmpStr);
+                            if (retReq != null && retReq.Data != null && retReq.Data.Self != null)
+                            {
+                                result.Add(retReq.Data.Self);
+                            }
+                        }
+                        catch
+                        {
+                        }
+                    }
+
+                    Thread.Sleep(50);
+                }
+            }
+
+            return result!;
+        }
+
+        /// <summary>
+        /// 停止所有运行中的srs实例
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<SrsStartStatus> StopAllSrs(out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            List<SrsStartStatus> result = new List<SrsStartStatus>();
+            foreach (var sm in Common.SrsManagers)
+            {
+                if (sm.IsRunning == true)
+                {
+                    bool ret = sm.Stop(out rs);
+                    SrsStartStatus sts = new SrsStartStatus();
+                    sts.DeviceId = sm.SrsDeviceId;
+                    sts.IsStarted = !ret;
+                    sts.Message = JsonHelper.ToJson(rs);
+                    result.Add(sts);
+                }
+
+                Thread.Sleep(50);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 初始化及启动所有未初始化或未启动的srs实例
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<SrsStartStatus> InitAndStartAllSrs(out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            List<SrsStartStatus> result = new List<SrsStartStatus>();
+            foreach (var sm in Common.SrsManagers)
+            {
+                if (sm.IsInit == false || sm.IsRunning == false)
+                {
+                    bool ret = sm.SRS_Init(sm.SrsConfigPath, out rs);
+                    if (ret)
+                    {
+                        ret = sm.Start(out rs);
+                    }
+
+                    SrsStartStatus sts = new SrsStartStatus();
+                    sts.DeviceId = sm.SrsDeviceId;
+                    sts.IsStarted = ret;
+                    sts.Message = JsonHelper.ToJson(rs);
+                    result.Add(sts);
+                }
+
+                Thread.Sleep(50);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// 通过deviceId及clientId踢掉一个摄像头或踢掉一个播放者
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="clientId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool KickoffClient(string deviceId, string clientId,out ResponseStruct rs)
+        public static bool KickoffClient(string deviceId, string clientId, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -32,7 +180,7 @@ namespace SrsApis.SrsManager.Apis
             {
                 if (ret.Srs.Http_api != null && ret.Srs.Http_api.Enabled == true)
                 {
-                    string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/clients/"+clientId;
+                    string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/clients/" + clientId;
                     try
                     {
                         string tmpStr = NetHelper.Delete(reqUrl);
@@ -58,6 +206,7 @@ namespace SrsApis.SrsManager.Apis
                 };
                 return false;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -65,6 +214,7 @@ namespace SrsApis.SrsManager.Apis
             };
             return false;
         }
+
         /// <summary>
         /// 获取Stream状态信息BySrsDeviceId,及streamId
         /// </summary>
@@ -72,7 +222,8 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="streamId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static SrsStreamSingleStatusModule GetStreamStatusByDeviceIdAndStreamId(string deviceId, string streamId,out ResponseStruct rs)
+        public static SrsStreamSingleStatusModule GetStreamStatusByDeviceIdAndStreamId(string deviceId, string streamId,
+            out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -86,7 +237,7 @@ namespace SrsApis.SrsManager.Apis
             {
                 if (ret.Srs.Http_api != null && ret.Srs.Http_api.Enabled == true)
                 {
-                    string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/streams/"+streamId;
+                    string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/streams/" + streamId;
                     try
                     {
                         string tmpStr = NetHelper.Get(reqUrl);
@@ -112,6 +263,7 @@ namespace SrsApis.SrsManager.Apis
                 };
                 return null!;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -119,8 +271,8 @@ namespace SrsApis.SrsManager.Apis
             };
             return null!;
         }
-         
-         /// <summary>
+
+        /// <summary>
         /// 获取StreamList状态信息BySrsDeviceId
         /// </summary>
         /// <param name="deviceId"></param>
@@ -166,6 +318,7 @@ namespace SrsApis.SrsManager.Apis
                 };
                 return null!;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -173,9 +326,8 @@ namespace SrsApis.SrsManager.Apis
             };
             return null!;
         }
-        
-         
- 
+
+
         /// <summary>
         /// 获取Vhost状态信息BySrsDeviceId,及vhostId
         /// </summary>
@@ -183,7 +335,8 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="vhostId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static SrsVhostSingleStatusModule GetVhostStatusByDeviceIdAndVhostId(string deviceId, string vhostId,out ResponseStruct rs)
+        public static SrsVhostSingleStatusModule GetVhostStatusByDeviceIdAndVhostId(string deviceId, string vhostId,
+            out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -197,7 +350,7 @@ namespace SrsApis.SrsManager.Apis
             {
                 if (ret.Srs.Http_api != null && ret.Srs.Http_api.Enabled == true)
                 {
-                    string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/vhosts/"+vhostId;
+                    string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/vhosts/" + vhostId;
                     try
                     {
                         string tmpStr = NetHelper.Get(reqUrl);
@@ -223,6 +376,7 @@ namespace SrsApis.SrsManager.Apis
                 };
                 return null!;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -230,8 +384,8 @@ namespace SrsApis.SrsManager.Apis
             };
             return null!;
         }
-        
-        
+
+
         /// <summary>
         /// 获取VhostList状态信息BySrsDeviceId
         /// </summary>
@@ -278,6 +432,7 @@ namespace SrsApis.SrsManager.Apis
                 };
                 return null!;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -285,15 +440,15 @@ namespace SrsApis.SrsManager.Apis
             };
             return null!;
         }
-        
-        
+
+
         /// <summary>
         /// 获取所有播放中的用户
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<Client> GetOnlinePlayerByDeviceId(string deviceId,out ResponseStruct rs)
+        public static List<Client> GetOnlinePlayerByDeviceId(string deviceId, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -301,10 +456,11 @@ namespace SrsApis.SrsManager.Apis
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
             List<Client> result = SrsManageCommon.OrmService.Db.Select<Client>()
-                .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay==true && x.Device_Id!.Equals(deviceId)).ToList();
+                .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true &&
+                            x.Device_Id!.Equals(deviceId)).ToList();
             return result;
         }
-        
+
         /// <summary>
         /// 获取所有播放中的用户
         /// </summary>
@@ -318,17 +474,17 @@ namespace SrsApis.SrsManager.Apis
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
             List<Client> result = SrsManageCommon.OrmService.Db.Select<Client>()
-                .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay==true).ToList();
+                .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true).ToList();
             return result;
         }
-       
-        
+
+
         /// <summary>
         /// 获取所有发布中的摄像头
         /// </summary>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<Client> GetOnPublishMonitorListByDeviceId(string deviceId,out ResponseStruct rs)
+        public static List<Client> GetOnPublishMonitorListByDeviceId(string deviceId, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -341,8 +497,10 @@ namespace SrsApis.SrsManager.Apis
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
                 return null!;
             }
+
             List<Client> result = SrsManageCommon.OrmService.Db.Select<Client>()
-                .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor && x.Device_Id!.Equals(deviceId.Trim())).ToList();
+                .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor &&
+                            x.Device_Id!.Equals(deviceId.Trim())).ToList();
             return result;
         }
 
@@ -362,22 +520,23 @@ namespace SrsApis.SrsManager.Apis
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor).ToList();
             return result;
         }
+
         /// <summary>
         /// 通过rtsp地址获取一个ingest的配置
         /// </summary>
         /// <param name="rtspUrl"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static Ingest GetOnvifMonitorIngestTemplate(string rtspUrl,out ResponseStruct rs)
+        public static Ingest GetOnvifMonitorIngestTemplate(string rtspUrl, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            Uri url= new Uri(rtspUrl);
+            Uri url = new Uri(rtspUrl);
             string ip = url.Host;
-            ushort port =(ushort) url.Port;
+            ushort port = (ushort) url.Port;
             string protocol = url.Scheme;
             string pathInfo = url.PathAndQuery;
             if (pathInfo.Contains('='))
@@ -390,17 +549,18 @@ namespace SrsApis.SrsManager.Apis
                 int flagidx = pathInfo.LastIndexOf('/');
                 pathInfo = pathInfo.Substring(flagidx + 1);
             }
-            Ingest result= new Ingest();
+
+            Ingest result = new Ingest();
             result.IngestName = ip.Trim() + "_" + pathInfo.Trim().ToLower();
             result.Enabled = true;
-            result.Input= new IngestInput();
+            result.Input = new IngestInput();
             result.Input.Type = IngestInputType.stream;
             result.Input.Url = rtspUrl;
             result.Ffmpeg = "./ffmpeg";
             result.Engines = new List<IngestTranscodeEngine>();
-            IngestTranscodeEngine eng= new IngestTranscodeEngine();
+            IngestTranscodeEngine eng = new IngestTranscodeEngine();
             eng.Enabled = true;
-            eng.Perfile= new IngestEnginePerfile();
+            eng.Perfile = new IngestEnginePerfile();
             eng.Perfile.Re = "re;";
             eng.Perfile.Rtsp_transport = "tcp";
             eng.Vcodec = "copy";

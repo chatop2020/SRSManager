@@ -23,7 +23,7 @@ namespace SrsWebApi.Controllers
         /// <param name="vhostDomain"></param>
         /// <param name="ingestInstanceName"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/VhostIngest/DeleteVhostIngestByIngestInstanceName")]
@@ -82,10 +82,9 @@ namespace SrsWebApi.Controllers
         [Route("/VhostIngest/SetVhostIngest")]
         public JsonResult SetVhostIngest(string deviceId, string vhostDomain, string ingestInstanceName, Ingest ingest)
         {
-            var rt = VhostIngestApis.SetVhostIngest(deviceId, vhostDomain, ingestInstanceName, ingest, out ResponseStruct rs);
+            var rt = VhostIngestApis.SetVhostIngest(deviceId, vhostDomain, ingestInstanceName, ingest,
+                out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-
-       
     }
 }

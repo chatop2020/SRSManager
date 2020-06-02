@@ -2,14 +2,12 @@ using System;
 
 namespace SrsWebApi.RequestModules
 {
-    
     /// <summary>
     ///SRS onconnect时的结构 
     /// </summary>
     [Serializable]
     public class ReqSrsClientOnConnect
     {
-
         private string? _action;
         private string? _device_id;
         private ushort? _clientId;
@@ -63,6 +61,7 @@ namespace SrsWebApi.RequestModules
             get => _vhost;
             set => _vhost = value;
         }
+
         /// <summary>
         /// app
         /// </summary>

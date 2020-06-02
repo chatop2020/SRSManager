@@ -48,7 +48,7 @@ namespace SRSApis
                                 var ingest = VhostIngestApis.GetVhostIngest(srs.SrsDeviceId, r.VhostDomain!,
                                     r.IngestInstanceName!,
                                     out rs);
-                              
+
                                 if (ingest != null)
                                 {
                                     string inputIp =
@@ -56,9 +56,8 @@ namespace SRSApis
                                             .GetIngestRtspMonitorUrlIpAddress(ingest.Input!.Url!)!;
                                     if (SrsManageCommon.Common.IsIpAddr(inputIp!))
                                     {
-                                       
                                         var reti = OrmService.Db.Update<Client>().Set(x => x.MonitorIp, inputIp)
-                                            .Set(x=>x.RtspUrl,ingest.Input!.Url!)
+                                            .Set(x => x.RtspUrl, ingest.Input!.Url!)
                                             .Where(x => x.Stream!.Equals(ingest.IngestName) &&
                                                         x.Device_Id!.Equals(srs.SrsDeviceId) &&
                                                         (x.MonitorIp == null || x.MonitorIp == "" ||
@@ -131,20 +130,26 @@ namespace SRSApis
             while (true)
             {
                 #region 补全ingest过来的monitorip地址
+
                 completionOnvifIpAddress();
                 Thread.Sleep(500);
+
                 #endregion
 
                 #region 补28181 monitorip 地址
+
                 completionT28181IpAddress();
                 Thread.Sleep(500);
+
                 #endregion
-                
+
                 #region 删除长期没更新的user类型的非播放的客户端
+
                 clearOfflinePlayerUser();
                 Thread.Sleep(500);
+
                 #endregion
-                
+
                 Thread.Sleep(5000);
             }
         }

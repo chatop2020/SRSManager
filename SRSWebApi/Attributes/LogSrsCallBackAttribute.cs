@@ -18,7 +18,6 @@ namespace SrsWebApi.Attributes
         /// <param name="context"></param>
         public void OnActionExecuted(ActionExecutedContext context)
         {
-           
         }
 
         /// <summary>

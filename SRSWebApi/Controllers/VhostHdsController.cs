@@ -22,7 +22,7 @@ namespace SrsWebApi.Controllers
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/VhostHds/DeleteVhostHds")]
@@ -64,7 +64,5 @@ namespace SrsWebApi.Controllers
             var rt = VhostHdsApis.SetVhostHds(deviceId, vhostDomain, dhs, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-
-      
     }
 }

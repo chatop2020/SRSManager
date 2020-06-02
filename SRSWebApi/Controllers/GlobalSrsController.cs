@@ -20,7 +20,7 @@ namespace SrsWebApi.Controllers
         /// srs是否正在运行
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/IsRunning")]
@@ -34,7 +34,7 @@ namespace SrsWebApi.Controllers
         /// srs是否完成初始化
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/IsInit")]
@@ -48,7 +48,7 @@ namespace SrsWebApi.Controllers
         /// 启动srs
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/StartSrs")]
@@ -62,7 +62,7 @@ namespace SrsWebApi.Controllers
         /// 停止srs
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/StopSrs")]
@@ -76,7 +76,7 @@ namespace SrsWebApi.Controllers
         /// 重启srs
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/RestartSrs")]
@@ -90,7 +90,7 @@ namespace SrsWebApi.Controllers
         /// 重新加载srs配置（srs.reload）
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/ReloadSrs")]
@@ -104,7 +104,7 @@ namespace SrsWebApi.Controllers
         /// 修改全局参数Chunksize
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GlobalChangeChunksize")]
@@ -118,7 +118,7 @@ namespace SrsWebApi.Controllers
         /// 修改全局参数HttpApiListen
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GlobalChangeHttpApiListen")]
@@ -132,7 +132,7 @@ namespace SrsWebApi.Controllers
         /// 修改全局参数HttpApiEnable
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GlobalChangeHttpApiEnable")]
@@ -146,7 +146,7 @@ namespace SrsWebApi.Controllers
         /// 修改全局参数Maxconnections
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GlobalChangeMaxConnections")]
@@ -160,7 +160,7 @@ namespace SrsWebApi.Controllers
         /// 修改全局参数rtmp listen
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GlobalChangeRtmpListen")]
@@ -174,7 +174,7 @@ namespace SrsWebApi.Controllers
         /// 修改全局参数Httpserver listen
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GlobalChangeHttpServerListen")]
@@ -188,7 +188,7 @@ namespace SrsWebApi.Controllers
         /// 修改全局参数HttpserverPath
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GlobalChangeHttpServerPath")]
@@ -202,7 +202,7 @@ namespace SrsWebApi.Controllers
         /// 修改全局参数Httpserver enable
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GlobalChangeHttpServerEnable")]
@@ -216,7 +216,7 @@ namespace SrsWebApi.Controllers
         /// 获取srs实例的全局参数
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/GlobalSrs/GetGlobalParams")]

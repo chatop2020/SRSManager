@@ -22,7 +22,7 @@ namespace SrsWebApi.Controllers
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/VhostCluster/DeleteVhostCluster")]
@@ -64,6 +64,5 @@ namespace SrsWebApi.Controllers
             var rt = VhostClusterApis.SetVhostCluster(deviceId, vhostDomain, cluster, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
     }
 }

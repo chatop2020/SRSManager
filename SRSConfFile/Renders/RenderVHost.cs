@@ -335,8 +335,8 @@ namespace SrsConfFile.Renders
 
                             SecurityObj seo = new SecurityObj();
                             seo.Sem = (SecurityMethod) Enum.Parse(typeof(SecurityMethod), tmpkv.Key);
-                            string[] sArr= System.Text.RegularExpressions.Regex.Split(tmpkv.Value, @"[\s]+");
-                           // string[] s_arr = tmpkv.Value.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+                            string[] sArr = System.Text.RegularExpressions.Regex.Split(tmpkv.Value, @"[\s]+");
+                            // string[] s_arr = tmpkv.Value.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                             if (sArr.Length > 1)
                             {
                                 seo.Set = (SecurityTarget) Enum.Parse(typeof(SecurityTarget), sArr[0]);

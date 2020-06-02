@@ -22,7 +22,7 @@ namespace SrsWebApi.Controllers
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/VhostPublish/DeleteVhostPublish")]
@@ -61,10 +61,8 @@ namespace SrsWebApi.Controllers
         [Route("/VhostPublish/SetVhostPublish")]
         public JsonResult SetVhostPublish(string deviceId, string vhostDomain, Publish publish)
         {
-            var rt = VhostPublishApis.SetVhostPublish(deviceId, vhostDomain, publish, out ResponseStruct rs );
+            var rt = VhostPublishApis.SetVhostPublish(deviceId, vhostDomain, publish, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-
-        
     }
 }

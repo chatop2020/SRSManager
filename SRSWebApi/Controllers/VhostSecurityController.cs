@@ -22,7 +22,7 @@ namespace SrsWebApi.Controllers
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/VhostSecurity/DeleteVhostSecurity")]
@@ -64,7 +64,5 @@ namespace SrsWebApi.Controllers
             var rt = VhostSecurityApis.SetVhostSecurity(deviceId, vhostDomain, security, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-
-       
     }
 }

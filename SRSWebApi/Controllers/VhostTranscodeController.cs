@@ -23,7 +23,7 @@ namespace SrsWebApi.Controllers
         /// <param name="vhostDomain"></param>
         /// <param name="transcodeInstanceName"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/VhostTranscode/DeleteVhostTranscodeByTranscodeInstanceName")]

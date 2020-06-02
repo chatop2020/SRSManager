@@ -12,20 +12,20 @@ namespace SrsWebApi.Controllers
     /// </summary>
     [ApiController]
     [Route("")]
-    public class SrtServerController:ControllerBase
+    public class SrtServerController : ControllerBase
     {
         /// <summary>
         /// 获取srtserver配置
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/SrtServer/GetSrtServer")]
         public JsonResult GetSrtServer(string deviceId)
         {
             var rt = SrtServerApis.GetSrtServer(deviceId, out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
         /// <summary>
@@ -36,25 +36,24 @@ namespace SrsWebApi.Controllers
         [AuthVerify]
         [Log]
         [Route("/SrtServer/SetSrtServer")]
-        public JsonResult SetSrsSrtServer(string deviceId,SrsSrtServerConfClass srt)
+        public JsonResult SetSrsSrtServer(string deviceId, SrsSrtServerConfClass srt)
         {
-            var rt = SrtServerApis.SetSrtServer(deviceId,srt,out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            var rt = SrtServerApis.SetSrtServer(deviceId, srt, out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
+
         /// <summary>
         /// 删除srtserver
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/SrtServer/DelSrtServer")]
         public JsonResult DelSrsSrtServer(string deviceId)
         {
-            var rt = SrtServerApis.DeleteSrtServer(deviceId,out ResponseStruct rs);
-            return Program.CommonFunctions.DelApisResult(rt, rs); 
+            var rt = SrtServerApis.DeleteSrtServer(deviceId, out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
     }
 }

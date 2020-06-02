@@ -17,8 +17,6 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class VhostController
     {
-        
-
         /// <summary>
         /// 获取Vhost列表的Instance名称列表
         /// </summary>
@@ -45,7 +43,7 @@ namespace SrsWebApi.Controllers
         [Route("/Vhost/GetVhostByDomain")]
         public JsonResult GetVhostByDomain(string deviceId, string vhostDomain)
         {
-            var rt = VhostApis.GetVhostByDomain(deviceId, vhostDomain,  out ResponseStruct rs);
+            var rt = VhostApis.GetVhostByDomain(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -79,7 +77,6 @@ namespace SrsWebApi.Controllers
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
-     
 
         /// <summary>
         /// 设置或创建Vhost的参数
@@ -103,7 +100,7 @@ namespace SrsWebApi.Controllers
         /// <param name="deviceId"></param>
         /// <param name="domain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/Vhost/DeleteVhostByDomain")]
@@ -120,7 +117,7 @@ namespace SrsWebApi.Controllers
         /// <param name="domain"></param>
         /// <param name="newdomain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/Vhost/ChangeVhostDomain")]

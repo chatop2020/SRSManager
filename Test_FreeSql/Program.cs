@@ -8,13 +8,11 @@ namespace Test_FreeSql
     {
         static long Insert(Module obj)
         {
-            
-            return  DBManager.fsql.Insert(obj).ExecuteIdentity();
+            return DBManager.fsql.Insert(obj).ExecuteIdentity();
         }
 
         static int Update(Module obj)
         {
-            
             return DBManager.fsql.Update<Module>()
                 .Set(b => b.Str, obj.Str)
                 .Where(b => b.Id == obj.Id)
@@ -34,28 +32,25 @@ namespace Test_FreeSql
         static List<Module> SelectAll()
         {
             return DBManager.fsql.Select<Module>().ToList();
-
         }
-        
+
         public static string? GetIngestRtspMonitorUrlIpAddress(string url)
         {
             try
             {
                 Uri link = new Uri(url);
-                return  link.Host;
+                return link.Host;
             }
             catch
             {
                 return "";
             }
         }
+
         static void Main(string[] args)
         {
-
-           
             Module a = new Module()
             {
-
                 End = DateTime.Now,
                 Start = DateTime.Now.AddDays(1),
                 Str = "这是测试",
@@ -76,6 +71,7 @@ namespace Test_FreeSql
                     Console.WriteLine(obj.ToString());
                 }
             }
+
             Console.WriteLine("Hello World!");
         }
     }

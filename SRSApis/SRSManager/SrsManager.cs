@@ -396,7 +396,7 @@ namespace SrsApis.SrsManager
             string std = "";
             string err = "";
             bool ret = LinuxShell.Run(cmd, 1000, out std, out err);
-            if (!ret && (string.IsNullOrEmpty(err) &&  string.IsNullOrEmpty(std)))
+            if (!ret && (string.IsNullOrEmpty(err) && string.IsNullOrEmpty(std)))
             {
                 rs = new ResponseStruct()
                 {

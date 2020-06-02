@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace SrsApis.SrsManager.Apis.ApiModules
 {
-   
     [Serializable]
     public class SrsVhostSingleStatusModule
     {

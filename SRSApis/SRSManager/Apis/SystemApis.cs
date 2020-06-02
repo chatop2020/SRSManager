@@ -15,7 +15,6 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class SystemApis
     {
-        
         /// <summary>
         /// 删除一个SrsInstance
         /// </summary>
@@ -24,8 +23,9 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool DelSrsInstanceByDeviceId(string devid, out ResponseStruct rs)
         {
-            if(SRSApis.Common.SrsManagers==null) SRSApis.Common.SrsManagers= new List<SrsManager>();
-            var ret = SRSApis.Common.SrsManagers.FindLast(x => x.SrsDeviceId.Trim().ToUpper().Equals(devid.Trim().ToUpper()));
+            if (SRSApis.Common.SrsManagers == null) SRSApis.Common.SrsManagers = new List<SrsManager>();
+            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(devid.Trim().ToUpper()));
             if (ret != null)
             {
                 SRSApis.Common.SrsManagers.Remove(ret);
@@ -37,7 +37,8 @@ namespace SrsApis.SrsManager.Apis
                         ret.Stop(out rs);
                         Thread.Sleep(100);
                     }
-                } 
+                }
+
                 File.Delete(ret.SrsConfigPath);
                 rs = new ResponseStruct()
                 {
@@ -56,6 +57,7 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
         }
+
         /// <summary>
         /// 检查新建SRS实例的各类端口是否有冲突
         /// </summary>
@@ -238,7 +240,8 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            var ret = SRSApis.Common.SrsManagers.FindLast(x => x.SrsDeviceId.Trim().ToUpper().Equals(devId.Trim().ToUpper()));
+            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(devId.Trim().ToUpper()));
             if (ret != null)
             {
                 rs = new ResponseStruct()
@@ -249,7 +252,8 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            ret = SRSApis.Common.SrsManagers.FindLast(x => x.SrsConfigPath.Trim().ToUpper().Equals(confPath.Trim().ToUpper()));
+            ret = SRSApis.Common.SrsManagers.FindLast(x =>
+                x.SrsConfigPath.Trim().ToUpper().Equals(confPath.Trim().ToUpper()));
             if (ret != null)
             {
                 rs = new ResponseStruct()
@@ -372,7 +376,7 @@ namespace SrsApis.SrsManager.Apis
 
             return sm;
         }
-        
+
         /// <summary>
         /// 根据ip删除onvif配置文件
         /// </summary>
@@ -465,15 +469,15 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool RefreshSrsObject(string deviceId,out ResponseStruct rs )
+        public static bool RefreshSrsObject(string deviceId, out ResponseStruct rs)
         {
- 
             var ret = SRSApis.Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
-                return SRSApis.Common.RefreshSrsObject(ret, out  rs);
+                return SRSApis.Common.RefreshSrsObject(ret, out rs);
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -590,9 +594,9 @@ namespace SrsApis.SrsManager.Apis
                         {
                             string tmpStr = NetHelper.Get(reqUrl);
                             var retReq = JsonHelper.FromJson<SrsSystemInfo>(tmpStr);
-                            if (retReq!= null && retReq.Data!=null && retReq.Data.Self!=null)
+                            if (retReq != null && retReq.Data != null && retReq.Data.Self != null)
                             {
-                                if( sim.SrsList==null)  sim.SrsList= new List<Self_Srs>();
+                                if (sim.SrsList == null) sim.SrsList = new List<Self_Srs>();
                                 sim.SrsList.Add(retReq.Data.Self);
                                 if (sim.System == null)
                                 {
@@ -602,12 +606,13 @@ namespace SrsApis.SrsManager.Apis
                         }
                         catch
                         {
-                        
                         }
                     }
+
                     Thread.Sleep(50);
                 }
             }
+
             return sim;
         }
 

@@ -18,7 +18,6 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static List<string> GetVhostsInstanceName(string deviceId, out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -48,7 +47,7 @@ namespace SrsApis.SrsManager.Apis
                     return null!;
                 }
 
-                return ret.Srs.Vhosts.Select(x=>x.InstanceName).ToList()!;
+                return ret.Srs.Vhosts.Select(x => x.InstanceName).ToList()!;
             }
 
             rs = new ResponseStruct()
@@ -97,12 +96,13 @@ namespace SrsApis.SrsManager.Apis
                     return null!;
                 }
 
-                var retVhost=ret.Srs.Vhosts.FindLast(x =>
+                var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()))!;
                 if (retVhost != null)
                 {
                     return retVhost;
                 }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -155,7 +155,8 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
-                return  ret.Srs.Vhosts;
+
+                return ret.Srs.Vhosts;
             }
 
             rs = new ResponseStruct()
@@ -166,7 +167,6 @@ namespace SrsApis.SrsManager.Apis
             return null!;
         }
 
-       
 
         /// <summary>
         /// 获取Vhost的各类模板
@@ -298,12 +298,13 @@ namespace SrsApis.SrsManager.Apis
                     return false;
                 }
 
-                var retVhost=ret.Srs.Vhosts.FindLast(x =>
+                var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()))!;
                 if (retVhost != null)
                 {
                     return ret.Srs.Vhosts.Remove(retVhost);
                 }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -328,7 +329,8 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="rs"></param>
         /// <param name="deviceId"></param>
         /// <returns></returns>
-        public static bool ChangeVhostDomain(string deviceId, string vhostDomain, string newVhostDomain, out ResponseStruct rs)
+        public static bool ChangeVhostDomain(string deviceId, string vhostDomain, string newVhostDomain,
+            out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -359,10 +361,10 @@ namespace SrsApis.SrsManager.Apis
                     return false;
                 }
 
-                var retVhost=ret.Srs.Vhosts.FindLast(x =>
+                var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()))!;
-                
-                var retVhostNew=ret.Srs.Vhosts.FindLast(x =>
+
+                var retVhostNew = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(newVhostDomain.Trim().ToUpper()))!;
                 if (retVhost != null)
                 {
@@ -375,9 +377,11 @@ namespace SrsApis.SrsManager.Apis
                         };
                         return false;
                     }
+
                     retVhost.VhostDomain = newVhostDomain;
                     return true;
                 }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -403,11 +407,11 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="enabled">关闭或开启</param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool OnOrOffVhostIngest(string deviceId, string vhostDomain, string ingestInstanceName, bool enabled,
+        public static bool OnOrOffVhostIngest(string deviceId, string vhostDomain, string ingestInstanceName,
+            bool enabled,
             out ResponseStruct rs)
         {
-            
-             rs = new ResponseStruct()
+            rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
@@ -469,16 +473,17 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false;
                 }
+
                 retVhostVingest.Enabled = enabled;
                 return true;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
-            
         }
 
         /// <summary>
@@ -508,12 +513,14 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
-                   ret.Srs.Vhosts = new List<SrsvHostConfClass>();
-                   ret.Srs.Vhosts.Add(vhost);
-                   return true;
+                    ret.Srs.Vhosts = new List<SrsvHostConfClass>();
+                    ret.Srs.Vhosts.Add(vhost);
+                    return true;
                 }
+
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhost.VhostDomain!.Trim().ToUpper()));
 
@@ -522,17 +529,17 @@ namespace SrsApis.SrsManager.Apis
                     ret.Srs.Vhosts.Add(vhost);
                     return true;
                 }
+
                 retVhost = vhost;
                 return true;
-
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
-            
         }
     }
 }

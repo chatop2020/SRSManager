@@ -16,7 +16,6 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool DeleteVhostHds(string deviceId, string vhostDomain, out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -79,7 +78,6 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static Hds GetVhostHds(string deviceId, string vhostDomain, out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,

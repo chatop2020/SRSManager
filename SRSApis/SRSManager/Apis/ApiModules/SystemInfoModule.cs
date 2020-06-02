@@ -264,6 +264,7 @@ namespace SrsApis.SrsManager.Apis.ApiModules
             get => _srsList;
             set => _srsList = value;
         }
+
         [JsonProperty("System")]
         public System_Srs? System
         {

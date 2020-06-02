@@ -106,6 +106,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
+
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
                 if (retVhost == null)
@@ -120,6 +121,7 @@ namespace SrsApis.SrsManager.Apis
 
                 return retVhost.Vsecurity!;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,

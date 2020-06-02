@@ -16,16 +16,13 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class VhostDvrController
     {
-        
-        
-        
         /// <summary>
         /// 删除Dvr配置
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Route("/VhostDvr/DeleteVhostDvr")]
         public JsonResult DeleteVhostDvr(string deviceId, string vhostDomain)
@@ -66,7 +63,5 @@ namespace SrsWebApi.Controllers
             var rt = VhostDvrApis.SetVhostDvr(deviceId, vhostDomain, dvr, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-
-        
     }
 }

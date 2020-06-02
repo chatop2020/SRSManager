@@ -116,7 +116,8 @@ namespace Mictlanix.DotNet.Onvif.Imaging
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
     public interface ImagingChannel : Mictlanix.DotNet.Onvif.Imaging.Imaging, System.ServiceModel.IClientChannel
-    {}
+    {
+    }
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]

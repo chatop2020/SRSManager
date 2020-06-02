@@ -22,7 +22,7 @@ namespace SrsWebApi.Controllers
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/VhostExec/DeleteVhostExec")]
@@ -64,6 +64,5 @@ namespace SrsWebApi.Controllers
             var rt = VhostExecApis.SetVhostExec(deviceId, vhostDomain, exec, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
     }
 }

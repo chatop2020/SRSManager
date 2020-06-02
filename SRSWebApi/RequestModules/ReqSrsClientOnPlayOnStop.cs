@@ -2,15 +2,14 @@ using System;
 
 namespace SrsWebApi.RequestModules
 {
-    
     /// <summary>
     ///SRS onClose时的结构 
     /// </summary>
     [Serializable]
     public class ReqSrsClientOnPlayOnStop
     {
-          private string? _action;
-          private string? _device_id;
+        private string? _action;
+        private string? _device_id;
         private ushort? _clientId;
         private string? _ip;
         private string? _vhost;

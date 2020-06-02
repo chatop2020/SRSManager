@@ -58,8 +58,8 @@ namespace SrsWebApi.RequestModules
         {
             if (!string.IsNullOrEmpty(IpAddrs))
             {
-                _ipAddrArray=  System.Text.RegularExpressions.Regex.Split(_ipAddrs, @"[\s]+").ToList();
-               // _ipAddrArray = _ipAddrs.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
+                _ipAddrArray = System.Text.RegularExpressions.Regex.Split(_ipAddrs, @"[\s]+").ToList();
+                // _ipAddrArray = _ipAddrs.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
             }
         }
     }

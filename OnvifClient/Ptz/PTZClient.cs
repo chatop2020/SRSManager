@@ -502,7 +502,8 @@ namespace Mictlanix.DotNet.Onvif.Ptz
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
     public interface PTZChannel : Mictlanix.DotNet.Onvif.Ptz.PTZ, System.ServiceModel.IClientChannel
-    {}
+    {
+    }
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]

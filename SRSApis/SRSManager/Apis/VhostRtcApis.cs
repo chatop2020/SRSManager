@@ -16,7 +16,6 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool DeleteVhostRtc(string deviceId, string vhostDomain, out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -68,8 +67,6 @@ namespace SrsApis.SrsManager.Apis
                 Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
-            
-           
         }
 
         /// <summary>
@@ -109,6 +106,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
+
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
                 if (retVhost == null)
@@ -123,6 +121,7 @@ namespace SrsApis.SrsManager.Apis
 
                 return retVhost.Rtc!;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -142,7 +141,6 @@ namespace SrsApis.SrsManager.Apis
         public static bool SetVhostRtc(string deviceId, string vhostDomain, Rtc rtc,
             out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -194,7 +192,6 @@ namespace SrsApis.SrsManager.Apis
                 Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
             return false;
-            
         }
     }
 }

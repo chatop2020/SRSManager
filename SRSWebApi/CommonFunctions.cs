@@ -20,6 +20,7 @@ namespace SrsWebApi
         /// SrsOnlineClient管理
         /// </summary>
         public static SrsClientManager SrsOnlineClient = null!;
+
         /// <summary>
         /// 调试模式下不启用授权和session验证
         /// </summary>
@@ -45,7 +46,7 @@ namespace SrsWebApi
         /// Session管理器
         /// </summary>
         public SessionManager SessionManager = null!;
-        
+
 
         /// <summary>
         /// 工作目录
@@ -75,10 +76,10 @@ namespace SrsWebApi
         {
             if (!File.Exists(FFmpegBinPath))
             {
-                Console.WriteLine("FFMPEG程度不存在，启动异常..."+FFmpegBinPath);
+                Console.WriteLine("FFMPEG程度不存在，启动异常..." + FFmpegBinPath);
                 return;
             }
-           
+
             WorkPath = Environment.CurrentDirectory + "/";
             ConfPath = WorkPath + "srswebapi.wconf";
             BaseUrl = "http://*:" + Conf.HttpPort;
@@ -86,16 +87,15 @@ namespace SrsWebApi
             {
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
-               
+
                 Common.init_SrsServer();
-                SrsOnlineClient=new SrsClientManager();
+                SrsOnlineClient = new SrsClientManager();
             }
             else
             {
                 Console.WriteLine("读取配置文件失败，启动异常...");
                 return;
             }
-            
         }
 
         /// <summary>

@@ -46,14 +46,14 @@ namespace SrsManageCommon
         OnvifConfigLoadExcept = -5031, //onvif配置文件读取失败
         OnvifConfigWriteExcept = -5032, // Onvif配置文件写入失败
         SrsInstanceExists = -5033, //SRS实例已存在
-        SrsInstanceConfigPathExists=-5034, //SRS配置文件路径重复
-        SrsInstanceListenExists=-5035, //SRS的监听端口已经冲突
-        SrsInstanceHttpApiListenExists=-5035, //SRS的HttpApi监听端口已经冲突
-        SrsInstanceHttpServerListenExists=-5036, //SRS的HttpServer监听端口已经冲突
-        SrsInstanceRtcServerListenExists=-5037, //SRS的RtcServer监听端口已经冲突
-        SrsInstanceStreamCasterListenExists=-5038, //SRS的StreamCaster监听端口已经冲突
-        SrsInstanceStreamCasterSipListenExists=-5039, //SRS的StreamCaster[Sip]监听端口已经冲突
-        SrsInstanceSrtServerListenExists=-5040, //SRS的SrtServer监听端口已经冲突
+        SrsInstanceConfigPathExists = -5034, //SRS配置文件路径重复
+        SrsInstanceListenExists = -5035, //SRS的监听端口已经冲突
+        SrsInstanceHttpApiListenExists = -5035, //SRS的HttpApi监听端口已经冲突
+        SrsInstanceHttpServerListenExists = -5036, //SRS的HttpServer监听端口已经冲突
+        SrsInstanceRtcServerListenExists = -5037, //SRS的RtcServer监听端口已经冲突
+        SrsInstanceStreamCasterListenExists = -5038, //SRS的StreamCaster监听端口已经冲突
+        SrsInstanceStreamCasterSipListenExists = -5039, //SRS的StreamCaster[Sip]监听端口已经冲突
+        SrsInstanceSrtServerListenExists = -5040, //SRS的SrtServer监听端口已经冲突
 
         Other = -6000
     }

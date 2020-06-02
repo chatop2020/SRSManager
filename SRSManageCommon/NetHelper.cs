@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace SrsManageCommon
 {
-     /// <summary>
+    /// <summary>
     /// http协议请求方法封装
     /// </summary>
     public class NetHelper
     {
-        #region  Delete请求
+        #region Delete请求
 
         /// <summary>
         /// delete请求,无参
@@ -31,7 +31,9 @@ namespace SrsManageCommon
         }
 
         #endregion
+
         #region Get请求
+
         /// <summary>
         /// get请求,无参
         /// </summary>
@@ -47,6 +49,7 @@ namespace SrsManageCommon
             HttpContent respContent = resp.Content;
             return await respContent.ReadAsStringAsync();
         }
+
         /// <summary>
         /// Get 请求，指定参数
         /// </summary>
@@ -70,10 +73,11 @@ namespace SrsManageCommon
                     i++;
                 }
             }
+
             return await GetAsync(builder.ToString());
         }
-        
-        
+
+
         /// <summary>
         /// get 请求 -同步处理
         /// </summary>
@@ -85,7 +89,7 @@ namespace SrsManageCommon
             result.Wait();
             return result.Result;
         }
-        
+
 
         /// <summary>
         /// get 请求 -同步处理
@@ -98,6 +102,7 @@ namespace SrsManageCommon
             result.Wait();
             return result.Result;
         }
+
         /// <summary>
         /// Get请求-同步处理
         /// </summary>
@@ -121,11 +126,14 @@ namespace SrsManageCommon
                     i++;
                 }
             }
+
             return Get(builder.ToString());
         }
+
         #endregion
 
         #region Post 请求处理
+
         /// <summary>
         /// Post 请求，无参(注：默认使用UTF8编码)
         /// </summary>
@@ -138,12 +146,13 @@ namespace SrsManageCommon
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(content);
                 ms.Write(bytes, 0, bytes.Length);
-                ms.Seek(0, SeekOrigin.Begin);//设置指针读取位置，否则发送无效
+                ms.Seek(0, SeekOrigin.Begin); //设置指针读取位置，否则发送无效
                 HttpContent hc = new StreamContent(ms);
                 HttpResponseMessage resp = await client.PostAsync(url, hc);
                 return await resp.Content.ReadAsStringAsync();
             }
         }
+
         /// <summary>
         /// Post 请求，处理参数
         /// </summary>
@@ -178,6 +187,7 @@ namespace SrsManageCommon
             str.Wait();
             return str.Result;
         }
+
         /// <summary>
         /// Post 请求，同步，参数处理
         /// </summary>
@@ -190,9 +200,11 @@ namespace SrsManageCommon
             str.Wait();
             return str.Result;
         }
+
         #endregion
 
         #region 下载文件处理
+
         /// <summary>
         /// 下载文件
         /// </summary>
@@ -213,6 +225,7 @@ namespace SrsManageCommon
                     fs.Write(bytes, 0, bytes.Length);
                     fs.Close();
                 }
+
                 return true;
             }
             catch (Exception ex)
@@ -220,6 +233,7 @@ namespace SrsManageCommon
                 throw new Exception("下载文件失败，", ex);
             }
         }
+
         #endregion
     }
 }

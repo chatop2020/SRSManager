@@ -7,8 +7,6 @@ using Newtonsoft.Json.Converters;
 
 namespace SrsManageCommon
 {
-   
-    
     /// <summary>
     /// json工具类
     /// </summary>
@@ -25,8 +23,6 @@ namespace SrsManageCommon
             _jsonSettings.NullValueHandling = NullValueHandling.Ignore;
             _jsonSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             _jsonSettings.Converters.Add(datetimeConverter);
-            
-          
         }
 
 

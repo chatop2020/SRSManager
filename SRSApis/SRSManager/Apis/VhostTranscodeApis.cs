@@ -38,6 +38,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false!;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -57,12 +58,14 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceNotFound,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                     };
-                    return false; 
+                    return false;
                 }
+
                 if (retVhost.Vtranscodes == null)
                 {
-                    retVhost.Vtranscodes=new List<Transcode>();
+                    retVhost.Vtranscodes = new List<Transcode>();
                 }
+
                 var retVhostTranscode = retVhost.Vtranscodes.FindLast(x =>
                     x.InstanceName!.Trim().ToUpper().Equals(transcode.InstanceName!.Trim().ToUpper()));
                 if (retVhostTranscode == null)
@@ -70,6 +73,7 @@ namespace SrsApis.SrsManager.Apis
                     retVhost.Vtranscodes.Add(transcode);
                     return true;
                 }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceAlreadyExists,
@@ -100,7 +104,7 @@ namespace SrsApis.SrsManager.Apis
             Transcode transcode,
             out ResponseStruct rs, bool createIfNotFound = false)
         {
-             rs = new ResponseStruct()
+            rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
@@ -118,6 +122,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false!;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -137,12 +142,14 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceNotFound,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                     };
-                    return false; 
+                    return false;
                 }
+
                 if (retVhost.Vtranscodes == null)
                 {
-                    retVhost.Vtranscodes=new List<Transcode>();
+                    retVhost.Vtranscodes = new List<Transcode>();
                 }
+
                 var retVhostTranscode = retVhost.Vtranscodes.FindLast(x =>
                     x.InstanceName!.Trim().ToUpper().Equals(transcode.InstanceName!.Trim().ToUpper()));
                 if (retVhostTranscode == null)
@@ -150,6 +157,7 @@ namespace SrsApis.SrsManager.Apis
                     retVhost.Vtranscodes.Add(transcode);
                     return true;
                 }
+
                 retVhostTranscode = transcode;
                 return true;
             }
@@ -172,7 +180,7 @@ namespace SrsApis.SrsManager.Apis
         public static List<VhostTranscodeNameModule> GetVhostTranscodeNameList(string deviceId, out ResponseStruct rs,
             string vhostDomain = "")
         {
-             rs = new ResponseStruct()
+            rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
@@ -190,6 +198,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -199,6 +208,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
+
                 List<VhostTranscodeNameModule> result = new List<VhostTranscodeNameModule>();
                 if (string.IsNullOrEmpty(vhostDomain))
                 {
@@ -208,15 +218,17 @@ namespace SrsApis.SrsManager.Apis
                         {
                             foreach (var code in vhost.Vtranscodes)
                             {
-                                VhostTranscodeNameModule vn= new VhostTranscodeNameModule();
+                                VhostTranscodeNameModule vn = new VhostTranscodeNameModule();
                                 vn.VhostDomain = vhost.VhostDomain;
                                 vn.TranscodeInstanceName = code.InstanceName;
                                 result.Add(vn);
                             }
-                        } 
-                    } 
+                        }
+                    }
+
                     return result;
                 }
+
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
                 if (retVhost!.Vingests == null)
@@ -228,14 +240,15 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
-              
+
                 foreach (var code in retVhost.Vtranscodes!)
                 {
-                    VhostTranscodeNameModule vn= new VhostTranscodeNameModule();
+                    VhostTranscodeNameModule vn = new VhostTranscodeNameModule();
                     vn.VhostDomain = retVhost.VhostDomain;
                     vn.TranscodeInstanceName = code.InstanceName;
                     result.Add(vn);
                 }
+
                 return result;
             }
 
@@ -259,7 +272,7 @@ namespace SrsApis.SrsManager.Apis
             string transcodeInstanceName,
             out ResponseStruct rs)
         {
-             rs = new ResponseStruct()
+            rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
@@ -277,6 +290,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -290,7 +304,7 @@ namespace SrsApis.SrsManager.Apis
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
 
-                if (retVhost == null || retVhost.Vtranscodes==null)
+                if (retVhost == null || retVhost.Vtranscodes == null)
                 {
                     rs = new ResponseStruct()
                     {
@@ -309,8 +323,9 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceNotFound,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                     };
-                    return false; 
+                    return false;
                 }
+
                 return retVhost.Vtranscodes.Remove(retVhostTranscode);
             }
 
@@ -351,6 +366,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return null!;
                 }
+
                 if (ret.Srs.Vhosts == null)
                 {
                     rs = new ResponseStruct()
@@ -364,7 +380,7 @@ namespace SrsApis.SrsManager.Apis
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
 
-                if (retVhost == null || retVhost.Vtranscodes==null)
+                if (retVhost == null || retVhost.Vtranscodes == null)
                 {
                     rs = new ResponseStruct()
                     {
@@ -383,7 +399,7 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceNotFound,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
                     };
-                    return null!; 
+                    return null!;
                 }
 
                 return retVhostTranscode;
@@ -394,7 +410,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.SrsObjectNotInit,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
-            return null!;  
+            return null!;
         }
     }
 }

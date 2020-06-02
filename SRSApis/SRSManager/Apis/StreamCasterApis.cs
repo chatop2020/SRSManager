@@ -66,7 +66,6 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static List<SrsStreamCasterConfClass> GetStreamCasterList(string deviceId, out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -135,9 +134,10 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false!;
                 }
+
                 if (ret.Srs.Stream_casters == null)
                 {
-                    ret.Srs.Stream_casters= new List<SrsStreamCasterConfClass>();
+                    ret.Srs.Stream_casters = new List<SrsStreamCasterConfClass>();
                     ret.Srs.Stream_casters.Add(streamCaster);
                     return true;
                 }
@@ -257,8 +257,7 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool DeleteStreamCasterByInstanceName(string deviceId, string instanceName, out ResponseStruct rs)
         {
-            
-              rs = new ResponseStruct()
+            rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
@@ -276,6 +275,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false;
                 }
+
                 if (ret.Srs.Stream_casters == null)
                 {
                     rs = new ResponseStruct()
@@ -318,10 +318,9 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="newInstanceName"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool ChangeStreamCasterInstanceName(string  deviceId, string instanceName, string newInstanceName,
+        public static bool ChangeStreamCasterInstanceName(string deviceId, string instanceName, string newInstanceName,
             out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -340,6 +339,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false;
                 }
+
                 if (ret.Srs.Stream_casters == null)
                 {
                     rs = new ResponseStruct()
@@ -361,7 +361,8 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false;
                 }
-                var retStreamCasterNew= ret.Srs.Stream_casters.FindLast(x =>
+
+                var retStreamCasterNew = ret.Srs.Stream_casters.FindLast(x =>
                     x.InstanceName!.Trim().ToUpper().Equals(newInstanceName!.Trim().ToUpper()));
                 if (retStreamCasterNew != null)
                 {
@@ -370,11 +371,13 @@ namespace SrsApis.SrsManager.Apis
                         Code = ErrorNumber.SrsSubInstanceAlreadyExists,
                         Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceAlreadyExists],
                     };
-                    return false; 
+                    return false;
                 }
+
                 retStreamCaster.InstanceName = newInstanceName;
                 return true;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -391,7 +394,8 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="enabled"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool OnOrOffStreamCaster(string deviceId, string instanceName, bool enabled, out ResponseStruct rs)
+        public static bool OnOrOffStreamCaster(string deviceId, string instanceName, bool enabled,
+            out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -414,8 +418,10 @@ namespace SrsApis.SrsManager.Apis
                         {
                             retStreamCaster.sip.Enabled = enabled;
                         }
+
                         return true;
                     }
+
                     rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -423,6 +429,7 @@ namespace SrsApis.SrsManager.Apis
                     };
                     return false;
                 }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -430,6 +437,7 @@ namespace SrsApis.SrsManager.Apis
                 };
                 return false;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -445,7 +453,8 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="streamCaster"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool SetStreamCaster(string deviceId, SrsStreamCasterConfClass streamCaster, out ResponseStruct rs)
+        public static bool SetStreamCaster(string deviceId, SrsStreamCasterConfClass streamCaster,
+            out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -461,7 +470,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     var retStreamCaster = ret.Srs.Stream_casters.FindLast(x =>
                         x.InstanceName!.Trim().ToUpper().Equals(streamCaster.InstanceName!.Trim().ToUpper()));
-                    if (retStreamCaster != null)//修改
+                    if (retStreamCaster != null) //修改
                     {
                         retStreamCaster = streamCaster;
                         return true;
@@ -470,6 +479,7 @@ namespace SrsApis.SrsManager.Apis
                     ret.Srs.Stream_casters.Add(streamCaster);
                     return true;
                 }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -477,6 +487,7 @@ namespace SrsApis.SrsManager.Apis
                 };
                 return false;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,

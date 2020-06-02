@@ -26,6 +26,7 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         private long? _duration;
         private DateTime? _startTime;
         private DateTime? _endTime;
+
         [Column(IsIdentity = true)]
         public long Id
         {
@@ -50,6 +51,7 @@ namespace SrsApis.SrsManager.Apis.ApiModules
             get => _clientIp;
             set => _clientIp = value;
         }
+
         [Column(MapType = typeof(string))]
         public ClientType ClientType
         {
