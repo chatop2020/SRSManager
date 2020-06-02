@@ -1,6 +1,6 @@
 using System;
 
-namespace SRSApis.SRSManager.Apis.ApiModules
+namespace SrsApis.SrsManager.Apis.ApiModules
 {
     [Serializable]
     public class VhostTranscodeNameModule

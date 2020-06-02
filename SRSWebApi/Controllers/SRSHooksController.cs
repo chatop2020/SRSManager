@@ -1,14 +1,15 @@
 using System;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
-using SRSApis.SRSManager.Apis;
-using SRSApis.SRSManager.Apis.ApiModules;
-using SRSManageCommon;
-using SRSWebApi.Attributes;
-using SRSWebApi.RequestModules;
+using SrsApis.SrsManager.Apis;
+using SrsApis.SrsManager.Apis.ApiModules;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using SrsWebApi.Attributes;
+using SrsWebApi.RequestModules;
 using Common = SRSApis.Common;
 
-namespace SRSWebApi.Controllers
+namespace SrsWebApi.Controllers
 {
     /// <summary>
     /// SRSHooks控制类

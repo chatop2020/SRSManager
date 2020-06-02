@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 
-namespace SRSManageCommon
+namespace SrsManageCommon
 {
     public  static class OrmService
     {

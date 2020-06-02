@@ -1,6 +1,6 @@
 ﻿using System;
-using SRSConfFile;
-using SRSConfFile.SRSConfClass;
+using SrsConfFile;
+using SrsConfFile.SRSConfClass;
 
 namespace Test_SRSConfFile_Parse_Write
 {

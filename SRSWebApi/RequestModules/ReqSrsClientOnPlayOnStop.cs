@@ -1,6 +1,6 @@
 using System;
 
-namespace SRSWebApi.RequestModules
+namespace SrsWebApi.RequestModules
 {
     
     /// <summary>
@@ -27,6 +27,9 @@ namespace SRSWebApi.RequestModules
             set => _action = value;
         }
 
+        /// <summary>
+        /// srs实例id
+        /// </summary>
         public string? Device_Id
         {
             get => _device_id;

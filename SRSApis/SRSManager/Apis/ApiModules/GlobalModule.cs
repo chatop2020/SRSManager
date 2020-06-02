@@ -1,7 +1,7 @@
 using System;
 
 #nullable enable
-namespace SRSApis.SRSManager.Apis.ApiModules
+namespace SrsApis.SrsManager.Apis.ApiModules
 {
     [Serializable]
     public class GlobalModule

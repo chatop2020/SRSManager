@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using SRSManageCommon;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
 
 
 namespace Test_Onvif_Discovery

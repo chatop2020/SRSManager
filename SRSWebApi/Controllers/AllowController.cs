@@ -2,13 +2,14 @@
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SRSManageCommon;
-using SRSWebApi.Attributes;
-using SRSWebApi.RequestModules;
-using SRSWebApi.ResponseModules;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using SrsWebApi.Attributes;
+using SrsWebApi.RequestModules;
+using SrsWebApi.ResponseModules;
 using Common = SRSApis.Common;
 
-namespace SRSWebApi.Controllers
+namespace SrsWebApi.Controllers
 {
     /// <summary>
     /// 授权访问接口类
@@ -284,7 +285,7 @@ namespace SRSWebApi.Controllers
                 }
 
                 if (string.IsNullOrEmpty(request.Allowkey.Key.Trim()) ||
-                    !SRSManageCommon.Common.IsUuidByError(request.Allowkey.Key))
+                    !SrsManageCommon.Common.IsUuidByError(request.Allowkey.Key))
                 {
                     ResponseStruct rs = new ResponseStruct()
                     {

@@ -5,13 +5,32 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SRSManageCommon
+namespace SrsManageCommon
 {
      /// <summary>
     /// http协议请求方法封装
     /// </summary>
     public class NetHelper
     {
+        #region  Delete请求
+
+        /// <summary>
+        /// delete请求,无参
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static async Task<string> DeleteAsync(string url)
+        {
+            HttpClient client = new HttpClient();
+            HttpResponseMessage resp = await client.DeleteAsync(url);
+            //获取响应状态
+            //respMsg.StatusCode==200请求成功
+            //获取请求内容
+            HttpContent respContent = resp.Content;
+            return await respContent.ReadAsStringAsync();
+        }
+
+        #endregion
         #region Get请求
         /// <summary>
         /// get请求,无参
@@ -53,6 +72,20 @@ namespace SRSManageCommon
             }
             return await GetAsync(builder.ToString());
         }
+        
+        
+        /// <summary>
+        /// get 请求 -同步处理
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static string Delete(string url)
+        {
+            Task<string> result = DeleteAsync(url);
+            result.Wait();
+            return result.Result;
+        }
+        
 
         /// <summary>
         /// get 请求 -同步处理

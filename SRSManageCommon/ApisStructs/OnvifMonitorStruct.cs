@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Mictlanix.DotNet.Onvif.Common;
 
-namespace SRSManageCommon
+namespace SrsManageCommon.ApisStructs
 {
     /// <summary>
     /// ptz位置信息

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SRSConfFile.SRSConfClass
+namespace SrsConfFile.SRSConfClass
 {
     [Serializable]
     public class Sip : SrsConfBase

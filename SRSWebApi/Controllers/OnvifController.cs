@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using SRSApis.SRSManager.Apis;
-using SRSApis.SRSManager.Apis.ApiModules;
-using SRSManageCommon;
-using SRSWebApi.Attributes;
-using SRSWebApi.RequestModules;
+using SrsApis.SrsManager.Apis;
+using SrsApis.SrsManager.Apis.ApiModules;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using SrsWebApi.Attributes;
+using SrsWebApi.RequestModules;
 
-namespace SRSWebApi.Controllers
+namespace SrsWebApi.Controllers
 {
     /// <summary>
     /// onvif设备接口类

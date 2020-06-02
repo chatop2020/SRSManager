@@ -1,6 +1,6 @@
 using System;
 
-namespace SRSWebApi.ResponseModules
+namespace SrsWebApi.ResponseModules
 {
     /// <summary>
     /// SRS实例模型

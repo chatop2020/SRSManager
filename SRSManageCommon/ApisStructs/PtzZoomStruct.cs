@@ -1,6 +1,6 @@
 using System;
 
-namespace SRSManageCommon
+namespace SrsManageCommon.ApisStructs
 {
     [Serializable]
     public enum ZoomDir

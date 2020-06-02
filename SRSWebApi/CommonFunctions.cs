@@ -3,11 +3,12 @@ using System.IO;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using SRSApis;
-using SRSApis.SRSManager.Apis.ApiModules;
-using SRSManageCommon;
+using SrsApis.SrsManager.Apis.ApiModules;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
 using Common = SRSApis.Common;
 
-namespace SRSWebApi
+namespace SrsWebApi
 {
     /// <summary>
     /// 通用类

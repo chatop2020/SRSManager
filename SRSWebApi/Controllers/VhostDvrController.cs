@@ -1,12 +1,13 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using SRSApis.SRSManager;
-using SRSApis.SRSManager.Apis;
-using SRSConfFile.SRSConfClass;
-using SRSManageCommon;
-using SRSWebApi.Attributes;
+using SrsApis.SrsManager;
+using SrsApis.SrsManager.Apis;
+using SrsConfFile.SRSConfClass;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using SrsWebApi.Attributes;
 
-namespace SRSWebApi.Controllers
+namespace SrsWebApi.Controllers
 {
     /// <summary>
     /// vhost dvr接口类
@@ -15,6 +16,9 @@ namespace SRSWebApi.Controllers
     [Route("")]
     public class VhostDvrController
     {
+        
+        
+        
         /// <summary>
         /// 删除Dvr配置
         /// </summary>

@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
-using SRSApis.SRSManager;
-using SRSApis.SRSManager.Apis;
-using SRSConfFile;
-using SRSManageCommon;
+using SrsApis.SrsManager;
+using SrsApis.SrsManager.Apis;
+using SrsConfFile;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
 
 namespace SRSApis
 {

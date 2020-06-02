@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using SRSConfFile.Renders;
-using SRSConfFile.SRSConfClass;
+using SrsConfFile.Renders;
+using SrsConfFile.SRSConfClass;
 
-namespace SRSConfFile
+namespace SrsConfFile
 {
     public class SectionBody
     {

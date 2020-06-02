@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
-using SRSConfFile;
-using SRSConfFile.SRSConfClass;
-using SRSManageCommon;
+using SrsConfFile;
+using SrsConfFile.SRSConfClass;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using Common = SRSApis.Common;
 
-namespace SRSApis.SRSManager
+namespace SrsApis.SrsManager
 {
     [Serializable]
     public class SrsManager
@@ -190,7 +192,7 @@ namespace SRSApis.SRSManager
                     Srs.Max_connections = 512;
                 }
 
-                _srsDeviceId = SRSManageCommon.Common.CreateUuid()?.Trim()!;
+                _srsDeviceId = SrsManageCommon.Common.CreateUuid()?.Trim()!;
                 Srs.Srs_log_file = SrsWorkPath + SrsDeviceId + "/srs.log";
                 Srs.Srs_log_level = "verbose"; //初始为观察者
                 Srs.Pid = _srsWorkPath + SrsDeviceId + "/srs.pid";
@@ -212,14 +214,14 @@ namespace SRSApis.SRSManager
                 Srs.Http_api.Listen = 8000;
                 Srs.Http_api.InstanceName = "";
                 Srs.Http_api.SectionsName = "http_api";
-                Srs.Http_api.Raw_Api = new RawApi();
+                /*Srs.Http_api.Raw_Api = new RawApi();
                 Srs.Http_api.Raw_Api.Allow_query = true;
                 Srs.Http_api.Raw_Api.Allow_reload = true;
                 Srs.Http_api.Raw_Api.Allow_update = true;
                 Srs.Http_api.Raw_Api.SectionsName = "raw_api";
-                Srs.Http_api.Raw_Api.Enabled = true;
+                Srs.Http_api.Raw_Api.Enabled = true;*/
                 Srs.Heartbeat = new SrsHeartbeatConfClass();
-                Srs.Heartbeat.Device_id = SRSManageCommon.Common.AddDoubleQuotation(SrsDeviceId !);
+                Srs.Heartbeat.Device_id = SrsManageCommon.Common.AddDoubleQuotation(SrsDeviceId !);
                 Srs.Heartbeat.Enabled = true;
                 Srs.Heartbeat.SectionsName = "heartbeat";
                 Srs.Heartbeat.Interval = 5; //按秒计
@@ -319,9 +321,9 @@ namespace SRSApis.SRSManager
                     if (Srs.Heartbeat != null)
                     {
                         _srsConfigPath = _srsWorkPath +
-                                         SRSManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!) +
+                                         SrsManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!) +
                                          ".conf";
-                        _srsDeviceId = SRSManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!)!;
+                        _srsDeviceId = SrsManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!)!;
                     }
 
                     return true;

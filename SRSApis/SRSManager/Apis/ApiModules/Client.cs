@@ -1,9 +1,9 @@
 #nullable enable
 using System;
 using FreeSql.DataAnnotations;
-using SRSManageCommon;
+using SrsManageCommon;
 
-namespace SRSApis.SRSManager.Apis.ApiModules
+namespace SrsApis.SrsManager.Apis.ApiModules
 {
     
     [Index("uk_clientId", "ClientId", false)]

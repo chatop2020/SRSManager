@@ -1,4 +1,4 @@
-namespace SRSWebApi.RequestModules
+namespace SrsWebApi.RequestModules
 {
     /// <summary>
     /// 获取Session的请求结构 

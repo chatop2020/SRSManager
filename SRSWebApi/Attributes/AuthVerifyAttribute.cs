@@ -2,9 +2,9 @@ using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using SRSManageCommon;
+using SrsManageCommon;
 
-namespace SRSWebApi.Attributes
+namespace SrsWebApi.Attributes
 {
     /// <summary>
     /// 验证session和allowkey的类

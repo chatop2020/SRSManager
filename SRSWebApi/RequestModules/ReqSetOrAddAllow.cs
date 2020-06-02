@@ -1,4 +1,4 @@
-namespace SRSWebApi.RequestModules
+namespace SrsWebApi.RequestModules
 {
     /// <summary>
     /// 设置或添加Allow的请求结构

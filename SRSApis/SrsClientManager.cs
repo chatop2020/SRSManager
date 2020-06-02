@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using SRSApis.SRSManager.Apis;
-using SRSApis.SRSManager.Apis.ApiModules;
-using SRSManageCommon;
+using SrsApis.SrsManager.Apis;
+using SrsApis.SrsManager.Apis.ApiModules;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
 
 namespace SRSApis
 {
@@ -15,7 +16,7 @@ namespace SRSApis
             string url = httpUri + act;
             try
             {
-                string tmpStr = SRSManageCommon.NetHelper.Get(url);
+                string tmpStr = SrsManageCommon.NetHelper.Get(url);
                 var ret = JsonHelper.FromJson<SrsT28181QueryChannelModule>(tmpStr);
                 if (ret.Code == 0 && ret.Data != null)
                 {
@@ -51,9 +52,9 @@ namespace SRSApis
                                 if (ingest != null)
                                 {
                                     string inputIp =
-                                        SRSManageCommon.Common
+                                        SrsManageCommon.Common
                                             .GetIngestRtspMonitorUrlIpAddress(ingest.Input!.Url!)!;
-                                    if (SRSManageCommon.Common.IsIpAddr(inputIp!))
+                                    if (SrsManageCommon.Common.IsIpAddr(inputIp!))
                                     {
                                        
                                         var reti = OrmService.Db.Update<Client>().Set(x => x.MonitorIp, inputIp)

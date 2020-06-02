@@ -1,9 +1,9 @@
 using System;
 using FreeSql.DataAnnotations;
-using SRSManageCommon;
+using SrsManageCommon;
 
 #nullable enable
-namespace SRSApis.SRSManager.Apis.ApiModules
+namespace SrsApis.SrsManager.Apis.ApiModules
 {
     [Index("uk_dvr_clientId", "ClientId", false)]
     [Index("uk_dvr_stream", "Stream", false)]

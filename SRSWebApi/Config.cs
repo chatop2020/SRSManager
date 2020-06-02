@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace SRSWebApi
+namespace SrsWebApi
 {
     /// <summary>
     /// allowkey管理类

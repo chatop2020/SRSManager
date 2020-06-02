@@ -2,7 +2,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace SRSManageCommon
+namespace SrsManageCommon
 {
     [Serializable]
     public enum ClientType

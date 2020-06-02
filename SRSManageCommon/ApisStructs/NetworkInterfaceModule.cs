@@ -1,5 +1,5 @@
 #nullable enable
-namespace SRSManageCommon
+namespace SrsManageCommon.ApisStructs
 {
     public class NetworkInterfaceModule
     {

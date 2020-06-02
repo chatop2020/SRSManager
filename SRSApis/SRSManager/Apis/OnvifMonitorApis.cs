@@ -1,17 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
-using SRSApis.SRSManager.Apis.ApiModules;
-using SRSManageCommon;
+using SrsApis.SrsManager.Apis.ApiModules;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using Common = SRSApis.Common;
 
-namespace SRSApis.SRSManager.Apis
+namespace SrsApis.SrsManager.Apis
 {
     public static class OnvifMonitorApis
     {
         public static OnvifMonitor InitOnvifMonitorByIpAddrWhenNotInit(string ipAddr, out ResponseStruct rs)
         {
-            if (Common.OnvifManagers != null)
+            if (SRSApis.Common.OnvifManagers != null)
             {
-                OnvifInstance ovi = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ipAddr.Trim()))!;
+                OnvifInstance ovi = SRSApis.Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ipAddr.Trim()))!;
                 if (ovi != null)
                 {
                     if (ovi.OnvifMonitor == null)
@@ -47,9 +49,9 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static List<OnvifMonitorStruct> InitOnvifMonitorListWhenNotInit(out ResponseStruct rs)
         {
-            if (Common.OnvifManagers != null)
+            if (SRSApis.Common.OnvifManagers != null)
             {
-                foreach (var onvf in Common.OnvifManagers)
+                foreach (var onvf in SRSApis.Common.OnvifManagers)
                 {
                     if (onvf.OnvifMonitor == null)
                     {
@@ -83,7 +85,7 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static List<OnvifMonitorStruct> GetOnvifMonitorList(out ResponseStruct rs)
         {
-            if (Common.OnvifManagers == null || Common.OnvifManagers.Count == 0)
+            if (SRSApis.Common.OnvifManagers == null || SRSApis.Common.OnvifManagers.Count == 0)
             {
                 rs = new ResponseStruct()
                 {
@@ -94,7 +96,7 @@ namespace SRSApis.SRSManager.Apis
             }
 
             List<OnvifMonitorStruct> result = new List<OnvifMonitorStruct>();
-            foreach (var cov in Common.OnvifManagers)
+            foreach (var cov in SRSApis.Common.OnvifManagers)
             {
                 OnvifMonitorStruct oms = new OnvifMonitorStruct();
                 oms.Host = cov.IpAddr;
@@ -159,7 +161,7 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static float SetPtzZoom(string instanceIpaddr, string profileToken, int zoomDir, out ResponseStruct rs)
         {
-            if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
+            if (SRSApis.Common.OnvifManagers == null || SRSApis.Common.OnvifManagers.Count <= 0)
             {
                 rs = new ResponseStruct()
                 {
@@ -169,7 +171,7 @@ namespace SRSApis.SRSManager.Apis
                 return -999999;
             }
 
-            var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
+            var onvif = SRSApis.Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
             if (onvif == null)
             {
                 rs = new ResponseStruct()
@@ -231,7 +233,7 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static ResponsePosition GetPtzPosition(string instanceIpaddr, string profileToken, out ResponseStruct rs)
         {
-            if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
+            if (SRSApis.Common.OnvifManagers == null || SRSApis.Common.OnvifManagers.Count <= 0)
             {
                 rs = new ResponseStruct()
                 {
@@ -241,7 +243,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
+            var onvif = SRSApis.Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
             if (onvif == null)
             {
                 rs = new ResponseStruct()
@@ -306,7 +308,7 @@ namespace SRSApis.SRSManager.Apis
         public static ResponsePosition PtzKeepMoveStop(string instanceIpaddr, string profileToken,
             out ResponseStruct rs)
         {
-            if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
+            if (SRSApis.Common.OnvifManagers == null || SRSApis.Common.OnvifManagers.Count <= 0)
             {
                 rs = new ResponseStruct()
                 {
@@ -316,7 +318,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
+            var onvif = SRSApis.Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
             if (onvif == null)
             {
                 rs = new ResponseStruct()
@@ -381,7 +383,7 @@ namespace SRSApis.SRSManager.Apis
         public static ResponsePosition PtzMove(string instanceIpaddr, string profileToken, PtzMoveType moveType,
             PtzMoveDir moveDir, out ResponseStruct rs)
         {
-            if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
+            if (SRSApis.Common.OnvifManagers == null || SRSApis.Common.OnvifManagers.Count <= 0)
             {
                 rs = new ResponseStruct()
                 {
@@ -391,7 +393,7 @@ namespace SRSApis.SRSManager.Apis
                 return null!;
             }
 
-            var onvif = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
+            var onvif = SRSApis.Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()));
             if (onvif == null)
             {
                 rs = new ResponseStruct()
@@ -517,7 +519,7 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static OnvifMonitor GetOnvifMonitor(string instanceIpaddr, out ResponseStruct rs)
         {
-            if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
+            if (SRSApis.Common.OnvifManagers == null || SRSApis.Common.OnvifManagers.Count <= 0)
             {
                 rs = new ResponseStruct()
                 {
@@ -532,7 +534,7 @@ namespace SRSApis.SRSManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var tmp = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()))!;
+            var tmp = SRSApis.Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(instanceIpaddr.Trim()))!;
             if (tmp != null && tmp.OnvifMonitor != null)
             {
                 return tmp.OnvifMonitor;
@@ -548,7 +550,7 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static List<string> GetOnvifMonitorsIpAddress(out ResponseStruct rs)
         {
-            if (Common.OnvifManagers == null || Common.OnvifManagers.Count <= 0)
+            if (SRSApis.Common.OnvifManagers == null || SRSApis.Common.OnvifManagers.Count <= 0)
             {
                 rs = new ResponseStruct()
                 {
@@ -563,7 +565,7 @@ namespace SRSApis.SRSManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            return Common.OnvifManagers.Select(x => x.IpAddr).ToList();
+            return SRSApis.Common.OnvifManagers.Select(x => x.IpAddr).ToList();
         }
 
         /// <summary>
@@ -576,9 +578,9 @@ namespace SRSApis.SRSManager.Apis
         public static List<OnvifMonitorStruct> InitMonitors(DiscoveryOnvifMonitors onvif, out ResponseStruct rs,
             bool autoAdd = true)
         {
-            if (autoAdd && Common.OnvifManagers == null)
+            if (autoAdd && SRSApis.Common.OnvifManagers == null)
             {
-                Common.OnvifManagers = new List<OnvifInstance>();
+                SRSApis.Common.OnvifManagers = new List<OnvifInstance>();
             }
 
             if (onvif != null)
@@ -598,7 +600,7 @@ namespace SRSApis.SRSManager.Apis
 
                 foreach (var ip in onvif.IpAddrArray)
                 {
-                    if (Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ip.Trim())) != null) continue;
+                    if (SRSApis.Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ip.Trim())) != null) continue;
 
                     OnvifMonitor ovf = discoveryMonitor(ip, onvif.Username!, onvif.Password!, out rs);
                     try
@@ -617,15 +619,15 @@ namespace SRSApis.SRSManager.Apis
                         oi.Username = onvif.Username!;
                         oi.IpAddr = ip;
                         oi.OnvifMonitor = ovf;
-                        oi.ConfigPath = Common.WorkPath + "system.oconf";
-                        Common.OnvifManagers.Add(oi);
+                        oi.ConfigPath = SRSApis.Common.WorkPath + "system.oconf";
+                        SRSApis.Common.OnvifManagers.Add(oi);
                         tmpList.Add(oi);
                     }
                 }
 
                 if (autoAdd)
                 {
-                    if (Common.OnvifManagers != null && Common.OnvifManagers.Count > 0)
+                    if (SRSApis.Common.OnvifManagers != null && Common.OnvifManagers.Count > 0)
                     {
                         rs = new ResponseStruct()
                         {

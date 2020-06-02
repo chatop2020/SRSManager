@@ -1,8 +1,10 @@
 using System;
-using SRSApis.SRSManager.Apis.ApiModules;
-using SRSManageCommon;
+using SrsApis.SrsManager.Apis.ApiModules;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using Common = SRSApis.Common;
 
-namespace SRSApis.SRSManager.Apis
+namespace SrsApis.SrsManager.Apis
 {
     /// <summary>
     /// SRSHookApis
@@ -85,7 +87,7 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static bool OnPlay(Client client)
         {
-            lock (Common.LockObj)
+            lock (SRSApis.Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {
@@ -136,7 +138,7 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static bool OnStop(Client client)
         {
-            lock (Common.LockObj)
+            lock (SRSApis.Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {
@@ -188,7 +190,7 @@ namespace SRSApis.SRSManager.Apis
         public static bool OnPublish(Client client)
         {
             
-            lock (Common.LockObj)
+            lock (SRSApis.Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {
@@ -242,7 +244,7 @@ namespace SRSApis.SRSManager.Apis
         /// <returns></returns>
         public static bool OnUnPublish(Client client)
         {
-            lock (Common.LockObj)
+            lock (SRSApis.Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {

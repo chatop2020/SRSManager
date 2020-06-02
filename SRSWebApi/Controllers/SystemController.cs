@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using SRSApis.SRSManager;
-using SRSApis.SRSManager.Apis;
-using SRSManageCommon;
-using SRSWebApi.Attributes;
-using SRSWebApi.ResponseModules;
+using SrsApis.SrsManager;
+using SrsApis.SrsManager.Apis;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using SrsWebApi.Attributes;
+using SrsWebApi.ResponseModules;
 
-namespace SRSWebApi.Controllers
+namespace SrsWebApi.Controllers
 {
     /// <summary>
     /// 系统信息接口类

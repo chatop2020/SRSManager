@@ -3,9 +3,10 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
-using SRSManageCommon;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
 
-namespace SRSWebApi.Attributes
+namespace SrsWebApi.Attributes
 {
     /// <summary>
     /// 日志记录

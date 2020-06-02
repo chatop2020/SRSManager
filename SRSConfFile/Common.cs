@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SRSConfFile.SRSConfClass;
+using SrsConfFile.SRSConfClass;
 
-namespace SRSConfFile
+namespace SrsConfFile
 {
     public static class Common
     {

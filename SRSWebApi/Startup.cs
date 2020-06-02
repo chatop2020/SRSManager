@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace SRSWebApi
+namespace SrsWebApi
 {
     /// <summary>
     /// webapi配置启动类

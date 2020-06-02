@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SRSApis.SRSManager.Apis.ApiModules
+namespace SrsApis.SrsManager.Apis.ApiModules
 {
     [Serializable]
     public class DiscoveryOnvifMonitors

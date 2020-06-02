@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SRSWebApi.RequestModules
+namespace SrsWebApi.RequestModules
 {
     /// <summary>
     /// 初始化onvif设备的请求结构

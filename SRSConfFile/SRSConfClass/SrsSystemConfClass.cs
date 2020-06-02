@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace SRSConfFile.SRSConfClass
+namespace SrsConfFile.SRSConfClass
 {
     [Serializable]
     public class SrsSystemConfClass : SrsConfBase

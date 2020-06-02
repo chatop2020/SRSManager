@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SRSManageCommon
+namespace SrsManageCommon
 {
     /// <summary>
     /// 错误代码

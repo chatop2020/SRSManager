@@ -1,8 +1,8 @@
 using System;
-using SRSApis.SRSManager;
-using SRSApis.SRSManager.Apis.ApiModules;
+using SrsApis.SrsManager;
+using SrsApis.SrsManager.Apis.ApiModules;
 
-namespace SRSWebApi.RequestModules
+namespace SrsWebApi.RequestModules
 {
     /// <summary>
     /// 请求修改srs实例全局参数的结构

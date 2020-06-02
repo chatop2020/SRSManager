@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace SRSManageCommon
+namespace SrsManageCommon
 {
     public static class FFmpegGetDuration
     {

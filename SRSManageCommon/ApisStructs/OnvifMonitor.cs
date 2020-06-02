@@ -7,7 +7,7 @@ using Mictlanix.DotNet.Onvif.Device;
 using Mictlanix.DotNet.Onvif.Media;
 using Mictlanix.DotNet.Onvif.Ptz;
 
-namespace SRSManageCommon
+namespace SrsManageCommon.ApisStructs
 {
     [Serializable]
     public class OnvifMonitor

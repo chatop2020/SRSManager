@@ -1,6 +1,6 @@
 using System;
 
-namespace SRSWebApi.RequestModules
+namespace SrsWebApi.RequestModules
 {
     /// <summary>
     /// 获取授权访问列表的请求结构

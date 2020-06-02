@@ -1,6 +1,6 @@
 using System;
 
-namespace SRSManageCommon
+namespace SrsManageCommon.ApisStructs
 {
     /// <summary>
     /// ptz移动类型

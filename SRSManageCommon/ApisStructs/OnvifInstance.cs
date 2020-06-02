@@ -1,7 +1,7 @@
 #nullable enable
 using System;
 
-namespace SRSManageCommon
+namespace SrsManageCommon.ApisStructs
 {
     /// <summary>
     /// onvif实例结构

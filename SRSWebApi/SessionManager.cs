@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using SRSManageCommon;
+using SrsManageCommon;
 
-namespace SRSWebApi
+namespace SrsWebApi
 {
     /// <summary>
     /// session类结构

@@ -1,10 +1,14 @@
 #nullable enable
+using System;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace SRSManageCommon
+namespace SrsManageCommon
 {
+   
+    
     /// <summary>
     /// json工具类
     /// </summary>
@@ -21,8 +25,11 @@ namespace SRSManageCommon
             _jsonSettings.NullValueHandling = NullValueHandling.Ignore;
             _jsonSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             _jsonSettings.Converters.Add(datetimeConverter);
+            
+          
         }
-        
+
+
         //格式化json字符串
         public static string ConvertJsonString(string str)
         {
@@ -47,7 +54,7 @@ namespace SRSManageCommon
                 return str;
             }
         }
-        
+
 
         /// <summary>
         /// 将指定的对象序列化成 JSON 数据。

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SRSConfFile.SRSConfClass;
+using SrsConfFile.SRSConfClass;
 
-namespace SRSConfFile.Renders
+namespace SrsConfFile.Renders
 {
     public static class RenderStats
     {

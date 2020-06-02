@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SRSWebApi.ResponseModules
+namespace SrsWebApi.ResponseModules
 {
     /// <summary>
     /// allowkeylist返回结构

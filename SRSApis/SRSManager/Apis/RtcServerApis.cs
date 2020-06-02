@@ -1,7 +1,9 @@
-using SRSConfFile.SRSConfClass;
-using SRSManageCommon;
+using SrsConfFile.SRSConfClass;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
+using Common = SRSApis.Common;
 
-namespace SRSApis.SRSManager.Apis
+namespace SrsApis.SrsManager.Apis
 {
     public static class RtcServerApis
     {
@@ -19,7 +21,7 @@ namespace SRSApis.SRSManager.Apis
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
 
-            var ret = Common.SrsManagers.FindLast(x =>
+            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -82,7 +84,7 @@ namespace SRSApis.SRSManager.Apis
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
 
-            var ret = Common.SrsManagers.FindLast(x =>
+            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -122,7 +124,7 @@ namespace SRSApis.SRSManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = Common.SrsManagers.FindLast(x =>
+            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {

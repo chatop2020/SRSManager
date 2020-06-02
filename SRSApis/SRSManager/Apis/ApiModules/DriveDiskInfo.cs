@@ -1,4 +1,4 @@
-namespace SRSApis.SRSManager.Apis.ApiModules
+namespace SrsApis.SrsManager.Apis.ApiModules
 {
     public class DriveDiskInfo
     {

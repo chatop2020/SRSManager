@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SRSConfFile.SRSConfClass
+namespace SrsConfFile.SRSConfClass
 {
     public class Nack : SrsConfBase
     {

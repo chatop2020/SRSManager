@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SRSWebApi.ResponseModules
+namespace SrsWebApi.ResponseModules
 {
     /// <summary>
     ///webapi返回结构
