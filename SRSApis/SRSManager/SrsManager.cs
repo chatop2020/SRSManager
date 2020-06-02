@@ -14,7 +14,7 @@ namespace SrsApis.SrsManager
     [Serializable]
     public class SrsManager
     {
-        private SrsSystemConfClass srs = null!;
+        private SrsSystemConfClass _srs = null!;
         private string _srsConfigPath = "";
         private string _srsDeviceId = "";
         private string _srsPidValue = "";
@@ -22,8 +22,8 @@ namespace SrsApis.SrsManager
 
         public SrsSystemConfClass Srs
         {
-            get => srs;
-            set => srs = value ?? throw new ArgumentNullException(nameof(value));
+            get => _srs;
+            set => _srs = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         public string SrsConfigPath
