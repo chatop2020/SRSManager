@@ -9,4 +9,8 @@
         <PackageReference Include="FreeSql.All" Version="1.5.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SRSManageCommon\SRSManageCommon.csproj" />
+    </ItemGroup>
+
 </Project>

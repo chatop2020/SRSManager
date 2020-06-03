@@ -56,6 +56,8 @@ namespace SrsManageCommon
         SrsInstanceSrtServerListenExists = -5040, //SRS的SrtServer监听端口已经冲突
         SystemWebApiException =-5041,
         SrsClientNotGB28181=-5041, //不是gb28181设备
+        SrsStreamNotExists=5042,
+        SrsDvrPlanNotExists=5043,
         SrsGb28181IsDisabled6000=6000,
         SrsGb28181SessionOrMediaChannelExists6001 =6001,
         SrsGb28181SessionOrMediaChannelNotExists6002 =6002,
@@ -155,6 +157,10 @@ namespace SrsManageCommon
             ErrorDic[ErrorNumber.SrsGb28181SipPtzControlButNotInvite6017] = "通道不是INVITE状态，无法控制云台";
             ErrorDic[ErrorNumber.SrsGb28181SipPtzCmdError6018] = "无效的云台命令";
             ErrorDic[ErrorNumber.SystemWebApiException] = "WebApi系统级异常";
+            ErrorDic[ErrorNumber.SrsStreamNotExists] = "媒体流信息不存在";
+            ErrorDic[ErrorNumber.SrsDvrPlanNotExists] = "该录制方案不存在";
+            
+            
 
         }
     }

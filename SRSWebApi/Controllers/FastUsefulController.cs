@@ -14,7 +14,82 @@ namespace SrsWebApi.Controllers
     [ApiController]
     [Route("")]
     public class FastUsefulController : ControllerBase
-    {
+    {   /// <summary>
+        /// 修改录制计划ById
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/SetDvrPlanById")]
+        public JsonResult SetDvrPlanById(StreamDvrPlan sdp)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{sdp});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.SetDvrPlanById(sdp,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        /// <summary>
+        /// 修改或创建一个录制计划
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/SetDvrPlan")]
+        public JsonResult SetDvrPlan(StreamDvrPlan sdp)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{sdp});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.SetDvrPlan(sdp,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+        /// <summary>
+        /// 获取录制计划ById
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/GetDvrPlanById")]
+        public JsonResult GetDvrPlanById(long id)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{id});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.GetDvrPlanById(id,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+        /// <summary>
+        /// 获取录制计划
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/GetDvrPlan")]
+        public JsonResult GetDvrPlan(ReqDvrPlan rdp)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{rdp});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.GetDvrPlan(rdp,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+
+        
         /// <summary>
         /// 对某个vhost设置成低时延模式/正常模式
         /// </summary>

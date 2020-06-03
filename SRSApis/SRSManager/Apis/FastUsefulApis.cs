@@ -12,6 +12,298 @@ namespace SrsApis.SrsManager.Apis
     public static class FastUsefulApis
     {
         /// <summary>
+        /// 获取一个录制计划Byid
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<StreamDvrPlan> GetDvrPlanById(long id, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            if (id <= 0)
+            {
+                rs.Code = ErrorNumber.FunctionInputParamsError;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
+                return null!;
+            }
+
+            var retSdpList = OrmService.Db.Select<StreamDvrPlan>().Where(
+                x => x.Id == id).ToList();
+            if (retSdpList == null || retSdpList.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsDvrPlanNotExists;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
+                return null!;
+            }
+
+            foreach (var r in retSdpList)
+            {
+                if (r != null)
+                {
+                    var rr = OrmService.Db.Select<DvrDayTimeRange>()
+                        .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == r.Id).ToList();
+                    if (rr != null)
+                    {
+                        r.DvrDayTimeRange = rr;
+                    }
+                }
+            }
+
+            return retSdpList;
+        }
+
+        /// <summary>
+        /// 获取录制计划
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<StreamDvrPlan> GetDvrPlan(ReqDvrPlan obj, out ResponseStruct rs)
+        {
+            bool idFound = !string.IsNullOrEmpty(obj.DeviceId);
+            bool vhostFound = !string.IsNullOrEmpty(obj.VhostDomain);
+            bool streamFound = !string.IsNullOrEmpty(obj.Stream);
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            if (!string.IsNullOrEmpty(obj.DeviceId))
+            {
+                var retSrs = SystemApis.GetSrsManagerInstanceByDeviceId(obj.DeviceId);
+                if (retSrs == null || retSrs.Srs == null)
+                {
+                    rs.Code = ErrorNumber.SrsObjectNotInit;
+                    rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                    return null!;
+                }
+
+                if (!string.IsNullOrEmpty(obj.VhostDomain))
+                {
+                    if (retSrs.Srs.Vhosts == null || retSrs.Srs.Vhosts.Count == 0)
+                    {
+                        rs.Code = ErrorNumber.SrsObjectNotInit;
+                        rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                        return null!;
+                    }
+
+                    var retVhost = VhostApis.GetVhostByDomain(obj.DeviceId, obj.VhostDomain, out rs);
+                    if (retVhost == null)
+                    {
+                        return null!;
+                    }
+
+                    if (!string.IsNullOrEmpty(obj.Stream))
+                    {
+                        var onPublishList = GetOnPublishMonitorList(out rs);
+                        if (onPublishList == null || onPublishList.Count == 0)
+                        {
+                            rs.Code = ErrorNumber.SrsStreamNotExists;
+                            rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsStreamNotExists];
+                            return null!;
+                        }
+                    }
+                }
+            }
+
+            List<StreamDvrPlan> tmpList;
+            if (idFound && !vhostFound && !streamFound)
+            {
+                tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
+                    x => x.DeviceId.Trim().ToLower().Equals(obj.DeviceId.Trim().ToLower())).ToList();
+            }
+            else if (idFound && vhostFound && !streamFound)
+            {
+                tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
+                    x => x.DeviceId.Trim().ToLower().Equals(obj.DeviceId.Trim().ToLower())
+                         && x.VhostDomain.Trim().ToLower().Equals(obj.VhostDomain!.Trim().ToLower())).ToList();
+            }
+            else if (idFound && vhostFound && streamFound)
+            {
+                tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
+                    x => x.DeviceId.Trim().ToLower().Equals(obj.DeviceId.Trim().ToLower())
+                         && x.VhostDomain.Trim().ToLower().Equals(obj.VhostDomain!.Trim().ToLower())
+                         && x.Stream.Trim().ToLower().Equals(obj.Stream.Trim().ToLower())).ToList();
+            }
+            else
+            {
+                tmpList = OrmService.Db.Select<StreamDvrPlan>().Where("1=1").ToList();
+            }
+
+            if (tmpList != null)
+            {
+                foreach (var r in tmpList)
+                {
+                    if (r != null)
+                    {
+                        var rr = OrmService.Db.Select<DvrDayTimeRange>()
+                            .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == r.Id).ToList();
+                        if (rr != null)
+                        {
+                            r.DvrDayTimeRange = rr;
+                        }
+                    }
+                }
+
+                return tmpList;
+            }
+
+            return null!;
+        }
+
+        /// <summary>
+        /// 修改一个录制计划ByID
+        /// </summary>
+        /// <param name="sdp"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool SetDvrPlanById(StreamDvrPlan sdp, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            if (sdp.Id <= 0)
+            {
+                rs.Code = ErrorNumber.FunctionInputParamsError;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
+                return false;
+            }
+
+
+            var retSdp = OrmService.Db.Select<StreamDvrPlan>()
+                .Where(x => x.Id == sdp.Id)
+                .First();
+            if (retSdp != null)
+            {
+                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
+                if (retUpdate > 0)
+                {
+                    OrmService.Db.Delete<DvrDayTimeRange>().Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
+                        .ExecuteAffrows();
+                    for (int i = 0; i <= sdp.DvrDayTimeRange.Count - 1; i++)
+                    {
+                        sdp.DvrDayTimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
+                    }
+
+                    var retInsert = OrmService.Db.Insert<List<DvrDayTimeRange>>(sdp.DvrDayTimeRange).ExecuteAffrows();
+                    if (retInsert > 0)
+                        return true;
+                    return false;
+                }
+
+                return false;
+            }
+
+            rs.Code = ErrorNumber.SrsDvrPlanNotExists;
+            rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
+
+            return false;
+        }
+
+        /// <summary>
+        /// 修改或新建一个录制计划
+        /// </summary>
+        /// <param name="sdp"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool SetDvrPlan(StreamDvrPlan sdp, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToLower().Equals(sdp.DeviceId.Trim().ToLower()));
+            if (ret == null)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            if (ret.Srs.Vhosts == null || ret.Srs.Vhosts.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
+                return false;
+            }
+
+            var retVhost =
+                ret.Srs.Vhosts.FindLast(x => x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain.Trim().ToLower()));
+            if (retVhost == null)
+            {
+                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
+                return false;
+            }
+
+            var retSdp = OrmService.Db.Select<StreamDvrPlan>()
+                .Where(x => x.Stream == sdp.Stream && x.App == sdp.App && x.DeviceId == sdp.DeviceId &&
+                            x.VhostDomain == sdp.VhostDomain)
+                .First();
+            if (retSdp != null)
+            {
+                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
+                if (retUpdate > 0)
+                {
+                    OrmService.Db.Delete<DvrDayTimeRange>().Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
+                        .ExecuteAffrows();
+                    for (int i = 0; i <= sdp.DvrDayTimeRange.Count - 1; i++)
+                    {
+                        sdp.DvrDayTimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
+                    }
+
+                    var retInsert = OrmService.Db.Insert<List<DvrDayTimeRange>>(sdp.DvrDayTimeRange).ExecuteAffrows();
+                    if (retInsert > 0)
+                        return true;
+                    return false;
+                }
+
+                return false;
+            }
+
+            var repo = OrmService.Db.GetRepository<StreamDvrPlan>();
+            repo.Insert(sdp);
+            repo.SaveMany(sdp, "DvrDayTimeRange");
+            return true;
+        }
+
+        /// <summary>
         /// 对某个vhost启用或停用低时延模式
         /// </summary>
         /// <param name="deviceId"></param>
@@ -19,7 +311,7 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="enable"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool OnOrOffVhostMinDelay(string deviceId, string vhostDomain,bool enable, out ResponseStruct rs)
+        public static bool OnOrOffVhostMinDelay(string deviceId, string vhostDomain, bool enable, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -53,9 +345,9 @@ namespace SrsApis.SrsManager.Apis
                 ret.Srs.Vhosts.FindLast(x => x.VhostDomain!.Trim().ToLower().Equals(vhostDomain.Trim().ToLower()));
             if (retVhost == null)
             {
-                 rs.Code = ErrorNumber.SrsSubInstanceNotFound;
-                                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
-                                return false;
+                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
+                return false;
             }
 
             retVhost.Tcp_nodelay = enable;
@@ -64,8 +356,9 @@ namespace SrsApis.SrsManager.Apis
             {
                 if (retVhost.Vplay == null)
                 {
-                    retVhost.Vplay= new Play();
+                    retVhost.Vplay = new Play();
                 }
+
                 retVhost.Vplay.Gop_cache = !enable;
                 retVhost.Vplay.Queue_length = 10;
                 retVhost.Vplay.Mw_latency = 100;
@@ -73,6 +366,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     retVhost.Vpublish = new SrsConfFile.SRSConfClass.Publish();
                 }
+
                 retVhost.Vpublish.Mr = !enable;
             }
             else
@@ -85,7 +379,7 @@ namespace SrsApis.SrsManager.Apis
 
             return true;
         }
-        
+
         /// <summary>
         /// 用于28181的ptz镜头控制
         /// </summary>
@@ -159,9 +453,8 @@ namespace SrsApis.SrsManager.Apis
                 default:
                     cmd = "stop";
                     break;
-               
             }
-            
+
             if (obj.Stop == true) cmd = "stop";
             string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api.Listen.ToString() + "/api/v1/gb28181?id=" +
                             streams[0] + "&action=sip_ptz&chid=" +
@@ -188,7 +481,7 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
         }
-        
+
         /// <summary>
         /// 用于28181的ptz移动控制
         /// </summary>

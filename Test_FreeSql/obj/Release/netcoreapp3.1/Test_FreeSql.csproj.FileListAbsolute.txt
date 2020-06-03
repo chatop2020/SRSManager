@@ -76,3 +76,15 @@
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.dll
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.pdb
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.genruntimeconfig.cache
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/System.ServiceModel.Duplex.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/System.ServiceModel.Http.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/System.ServiceModel.NetTcp.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/System.ServiceModel.Primitives.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/System.ServiceModel.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/System.ServiceModel.Security.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/runtimes/unix/lib/netstandard2.0/System.Private.ServiceModel.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Private.ServiceModel.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/Mictlanix.DotNet.OnvifClient.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/SRSManageCommon.dll
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/SRSManageCommon.pdb
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/Mictlanix.DotNet.OnvifClient.pdb
