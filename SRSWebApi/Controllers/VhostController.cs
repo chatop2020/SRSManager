@@ -13,7 +13,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhost控制类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class VhostController
     {
@@ -27,6 +27,11 @@ namespace SrsWebApi.Controllers
         [Route("/Vhost/GetVhostsInstanceName")]
         public JsonResult GetVhostsInstanceName(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostApis.GetVhostsInstanceName(deviceId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -43,6 +48,11 @@ namespace SrsWebApi.Controllers
         [Route("/Vhost/GetVhostByDomain")]
         public JsonResult GetVhostByDomain(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostApis.GetVhostByDomain(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -58,6 +68,11 @@ namespace SrsWebApi.Controllers
         [Route("/Vhost/GetVhostList")]
         public JsonResult GetVhostList(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostApis.GetVhostList(deviceId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -73,6 +88,11 @@ namespace SrsWebApi.Controllers
         [Route("/Vhost/GetVhostTemplate")]
         public JsonResult GetVhostTemplate(VhostIngestInputType vtype)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{vtype});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostApis.GetVhostTemplate(vtype, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -90,6 +110,11 @@ namespace SrsWebApi.Controllers
         [Route("/Vhost/SetVhost")]
         public JsonResult SetVhost(string deviceId, SrsvHostConfClass vhost)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhost});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostApis.SetVhost(deviceId, vhost, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -98,15 +123,20 @@ namespace SrsWebApi.Controllers
         /// 删除一个vhost,用域名
         /// </summary>
         /// <param name="deviceId"></param>
-        /// <param name="domain"></param>
+        /// <param name="vhostDomain"></param>
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/Vhost/DeleteVhostByDomain")]
-        public JsonResult DeleteVhostByDomain(string deviceId, string domain)
+        public JsonResult DeleteVhostByDomain(string deviceId, string vhostDomain)
         {
-            var rt = VhostApis.DeleteVhostByDomain(deviceId, domain, out ResponseStruct rs);
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = VhostApis.DeleteVhostByDomain(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -114,16 +144,21 @@ namespace SrsWebApi.Controllers
         /// 修改vhost的域名
         /// </summary>
         /// <param name="deviceId"></param>
-        /// <param name="domain"></param>
-        /// <param name="newdomain"></param>
+        /// <param name="vhostDomain"></param>
+        /// <param name="newVhostDomain"></param>
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/Vhost/ChangeVhostDomain")]
-        public JsonResult ChangeVhostDomain(string deviceId, string domain, string newdomain)
+        public JsonResult ChangeVhostDomain(string deviceId, string vhostDomain, string newVhostDomain)
         {
-            var rt = VhostApis.ChangeVhostDomain(deviceId, domain, newdomain, out ResponseStruct rs);
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,newVhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = VhostApis.ChangeVhostDomain(deviceId, vhostDomain, newVhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }

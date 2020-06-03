@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhosthttpremux接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class VhostHttpRemux
     {
@@ -28,6 +28,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHttpRemux/DeleteVhostHttpRemux")]
         public JsonResult DeleteVhostHttpRemux(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHttpRemuxApis.DeleteVhostHttpRemux(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -44,6 +49,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHttpRemux/GetVhostHttpRemux")]
         public JsonResult GetVhostHttpRemux(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHttpRemuxApis.GetVhostHttpRemux(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -61,6 +71,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHttpRemux/SetVhostHttpRemux")]
         public JsonResult SetVhostHttpRemux(string deviceId, string vhostDomain, HttpRemux httpRemux)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,httpRemux});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHttpRemuxApis.SetVhostHttpRemux(deviceId, vhostDomain, httpRemux, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

@@ -10,6 +10,43 @@ namespace SRSApis
 {
     public class SrsClientManager
     {
+
+        private void rewriteMonitorType()
+        {
+            if (Common.SrsManagers != null)
+            {
+                foreach (var srs in Common.SrsManagers)
+                {
+                    if (srs.IsInit && srs.Srs != null && srs.IsRunning)
+                    {
+                        ushort? port = srs.Srs.Http_api!.Listen;
+                        if (port == null || srs.Srs.Http_api == null || srs.Srs.Http_api.Enabled == false)
+                            continue;
+                        var ret = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
+                        if (ret != null)
+                        {
+                            foreach (var r in ret)
+                            {
+                                if (!string.IsNullOrEmpty(r.Stream))
+                                {
+                                    var reti = OrmService.Db.Update<Client>()
+                                        .Set(x => x.MonitorType, MonitorType.GBT28181)
+                                        .Where(x => x.Stream!.Equals(r.Stream) &&
+                                                    x.Device_Id!.Equals(srs.SrsDeviceId) &&
+                                                    (x.MonitorIp == null || x.MonitorIp == "" ||
+                                                     x.MonitorIp == "127.0.0.1" || x.MonitorIp==r.Rtp_Peer_Ip))
+                                        .ExecuteAffrows();
+                                    /*if (reti > 0)
+                                    {
+                                        Console.WriteLine("补全28181客户端ip地址：" + reti.ToString());
+                                    }*/
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         private List<Channels> GetGB28181Channels(string httpUri)
         {
             string act = "/api/v1/gb28181?action=query_channel";
@@ -148,6 +185,12 @@ namespace SRSApis
                 clearOfflinePlayerUser();
                 Thread.Sleep(500);
 
+                #endregion
+
+                #region 重写摄像头类型
+
+                rewriteMonitorType();
+                Thread.Sleep(500);
                 #endregion
 
                 Thread.Sleep(5000);

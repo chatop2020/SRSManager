@@ -10,7 +10,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// SRSRtcServer设备接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class SrtServerController : ControllerBase
     {
@@ -24,6 +24,11 @@ namespace SrsWebApi.Controllers
         [Route("/SrtServer/GetSrtServer")]
         public JsonResult GetSrtServer(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = SrtServerApis.GetSrtServer(deviceId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -38,6 +43,11 @@ namespace SrsWebApi.Controllers
         [Route("/SrtServer/SetSrtServer")]
         public JsonResult SetSrsSrtServer(string deviceId, SrsSrtServerConfClass srt)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{srt,deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = SrtServerApis.SetSrtServer(deviceId, srt, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -52,6 +62,11 @@ namespace SrsWebApi.Controllers
         [Route("/SrtServer/DelSrtServer")]
         public JsonResult DelSrsSrtServer(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = SrtServerApis.DeleteSrtServer(deviceId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

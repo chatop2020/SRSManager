@@ -18,7 +18,8 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         private string? _monitorIp;
         private ushort? _clientId;
         private string? _clientIp;
-        private ClientType _clientType;
+        private ClientType? _clientType;
+        private MonitorType? _monitorType;
         private string? _rtmpUrl;
         private string? _httpUrl;
         private string? _rtspUrl;
@@ -64,10 +65,16 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         }
 
         [Column(MapType = typeof(string))]
-        public ClientType ClientType
+        public ClientType? ClientType
         {
             get => _clientType;
             set => _clientType = value;
+        }
+        [Column(MapType = typeof(string))]
+        public MonitorType? MonitorType
+        {
+            get => _monitorType;
+            set => _monitorType = value;
         }
 
         public string? RtmpUrl

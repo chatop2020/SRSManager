@@ -16,8 +16,10 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         private string? _device_id;
         private ushort? _clientId;
         private string? _clientIp;
-        private ClientType _clientType;
+        private ClientType? _clientType;
+        private MonitorType? _monitorType;
         private string? _videoPath;
+        private long? _fileSize;
         private string? _vhost;
         private string? _stream;
         private string? _param;
@@ -53,16 +55,28 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         }
 
         [Column(MapType = typeof(string))]
-        public ClientType ClientType
+        public ClientType? ClientType
         {
             get => _clientType;
             set => _clientType = value;
+        }
+        [Column(MapType = typeof(string))]
+        public MonitorType? MonitorType
+        {
+            get => _monitorType;
+            set => _monitorType = value;
         }
 
         public string? VideoPath
         {
             get => _videoPath;
             set => _videoPath = value;
+        }
+
+        public long? FileSize
+        {
+            get => _fileSize;
+            set => _fileSize = value;
         }
 
         public string? Vhost

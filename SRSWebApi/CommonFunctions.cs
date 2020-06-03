@@ -17,6 +17,30 @@ namespace SrsWebApi
 
     {
         /// <summary>
+        /// 检查controller的输入参数
+        /// </summary>
+        /// <param name="objs"></param>
+        /// <returns></returns>
+        public static ResponseStruct CheckParams(object[] objs)
+        {
+            foreach (var obj in objs)
+            {
+                if (obj == null)
+                {
+                    return new ResponseStruct()
+                    {
+                        Code = ErrorNumber.FunctionInputParamsError,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                    };
+                }
+            }
+            return new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+        }
+        /// <summary>
         /// SrsOnlineClient管理
         /// </summary>
         public static SrsClientManager SrsOnlineClient = null!;

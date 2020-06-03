@@ -8,9 +8,18 @@ namespace SrsManageCommon
     public enum ClientType
     {
         Monitor,
-        User
+        User,
     }
 
+    /// <summary>
+    /// 摄像头类型
+    /// </summary>
+    public enum MonitorType
+    {
+        Onvif,
+        GBT28181,
+        Unknow,
+    }
     public static class Common
     {
         public static string WorkPath = Environment.CurrentDirectory + "/";

@@ -10,7 +10,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// SRSRtcServer设备接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class RtcServerController : ControllerBase
     {
@@ -24,6 +24,11 @@ namespace SrsWebApi.Controllers
         [Route("/RtcServer/GetSrsRtcServer")]
         public JsonResult GetSrsRtcServer(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = RtcServerApis.GetRtcServer(deviceId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -38,6 +43,11 @@ namespace SrsWebApi.Controllers
         [Route("/RtcServer/SetRtcServer")]
         public JsonResult SetSrsRtcServer(string deviceId, SrsRtcServerConfClass rtc)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{rtc});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = RtcServerApis.SetRtcServer(deviceId, rtc, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -52,6 +62,11 @@ namespace SrsWebApi.Controllers
         [Route("/RtcServer/DelRtcServer")]
         public JsonResult DelSrsRtcServer(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = RtcServerApis.DeleteRtcServer(deviceId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

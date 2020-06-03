@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhosthls接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class VhostHlsController
     {
@@ -28,6 +28,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHls/DeleteVhostHls")]
         public JsonResult DeleteVhostHls(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHlsApis.DeleteVhostHls(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -44,6 +49,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHls/GetVhostHls")]
         public JsonResult GetVhostHls(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHlsApis.GetVhostHls(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -61,6 +71,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHls/SetVhostHls")]
         public JsonResult SetVhostHls(string deviceId, string vhostDomain, Hls hls)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,hls});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHlsApis.SetVhostHls(deviceId, vhostDomain, hls, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

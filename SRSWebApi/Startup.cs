@@ -1,14 +1,21 @@
+using System;
 using System.IO;
+using System.Net;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SrsManageCommon;
+using SrsManageCommon.ApisStructs;
 
 namespace SrsWebApi
 {
+   
+    
     /// <summary>
     /// webapi配置启动类
     /// </summary>
@@ -43,9 +50,11 @@ namespace SrsWebApi
                 //c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Model.xml"));//这里增加model注释，返回值会增加注释：需要Edu.Model项目属性，生成中输出xml文件
                 c.IncludeXmlComments(Path.Combine(Program.CommonFunctions.WorkPath, "Edu.Swagger.xml"));
             });
+           
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllers();
+         
         }
 
         /// <summary>
@@ -67,7 +76,33 @@ namespace SrsWebApi
             // 配置SwaggerUI
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "SRSWebApi"); });
 
+            app.UseExceptionHandler(
+                options =>
+                {
+                    options.Run(
+                        async context =>
+                        {
+                            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                            context.Response.ContentType = "application/json";
+                            
+                            
+                            var exceptionObject = context.Features.Get<IExceptionHandlerFeature>();
+                            if (null != exceptionObject)
+                            {
+                                ResponseStruct rs = new ResponseStruct()
+                                {
+                                    Code = ErrorNumber.SystemWebApiException,
+                                    Message = ErrorMessage.ErrorDic![ErrorNumber.SystemWebApiException] + "\r\n" +
+                                              exceptionObject.Error.Message + "\r\n" + exceptionObject.Error.StackTrace,
+                                };
+                                var errorMessage = JsonHelper.ToJson(rs);
+                                await context.Response.WriteAsync(errorMessage).ConfigureAwait(false);
+                            }
+                        });
+                }
+            );
 
+            /*app.UseMiddleware(typeof(ExceptionHandlerMiddleWare));*/
             app.UseRouting();
 
             app.UseAuthorization();

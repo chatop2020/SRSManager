@@ -11,6 +11,218 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class FastUsefulApis
     {
+        
+        /// <summary>
+        /// 用于28181的ptz镜头控制
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="obj"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool PtzZoomForGb28181(string deviceId, SrsGBT28181PtzZoomModule obj, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToLower().Equals(deviceId.Trim().ToLower()));
+            if (ret == null)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            var retClient = FastUsefulApis.GetClientInfoByStreamValue(obj.Stream!, out rs);
+            if (retClient == null)
+            {
+                return false;
+            }
+
+            if (retClient.MonitorType != MonitorType.GBT28181)
+            {
+                rs.Code = ErrorNumber.SrsClientNotGB28181;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsClientNotGB28181];
+                return false;
+            }
+
+            string[] streams = obj.Stream!.Split('@', StringSplitOptions.RemoveEmptyEntries);
+            if (streams.Length != 2)
+            {
+                rs.Code = ErrorNumber.FunctionInputParamsError;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
+                return false;
+            }
+
+            if (ret.Srs == null || ret.Srs.Http_api == null || ret.Srs.Http_api.Enabled == false)
+            {
+                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
+                return false;
+            }
+
+            if (obj.Speed > 255) obj.Speed = 255;
+            if (obj.Speed <= 0) obj.Speed = 1;
+
+            string cmd = "stop";
+            switch (obj.PtzZoomDir)
+            {
+                case ZoomDir.MORE:
+                    cmd = "zoomin";
+                    break;
+                case ZoomDir.LESS:
+                    cmd = "zoomout";
+                    break;
+                default:
+                    cmd = "stop";
+                    break;
+               
+            }
+            
+            if (obj.Stop == true) cmd = "stop";
+            string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api.Listen.ToString() + "/api/v1/gb28181?id=" +
+                            streams[0] + "&action=sip_ptz&chid=" +
+                            streams[1] + "&ptzcmd=" + cmd + "&speed=" + obj.Speed;
+            try
+            {
+                string tmpStr = NetHelper.Get(reqUrl);
+                var retReq = JsonHelper.FromJson<SrsGb28181PtzControlResponseModule>(tmpStr);
+                if (retReq != null && retReq.Code == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    rs.Code = (ErrorNumber) retReq!.Code;
+                    rs.Message = ErrorMessage.ErrorDic![rs.Code];
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                rs.Code = ErrorNumber.Other;
+                rs.Message = ex.Message;
+                return false;
+            }
+        }
+        
+        /// <summary>
+        /// 用于28181的ptz移动控制
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="obj"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool PtzMoveForGb28181(string deviceId, SrsGBT28181PtzMoveModule obj, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToLower().Equals(deviceId.Trim().ToLower()));
+            if (ret == null)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            var retClient = FastUsefulApis.GetClientInfoByStreamValue(obj.Stream!, out rs);
+            if (retClient == null)
+            {
+                return false;
+            }
+
+            if (retClient.MonitorType != MonitorType.GBT28181)
+            {
+                rs.Code = ErrorNumber.SrsClientNotGB28181;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsClientNotGB28181];
+                return false;
+            }
+
+            string[] streams = obj.Stream!.Split('@', StringSplitOptions.RemoveEmptyEntries);
+            if (streams.Length != 2)
+            {
+                rs.Code = ErrorNumber.FunctionInputParamsError;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
+                return false;
+            }
+
+            if (ret.Srs == null || ret.Srs.Http_api == null || ret.Srs.Http_api.Enabled == false)
+            {
+                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
+                return false;
+            }
+
+            if (obj.Speed > 255) obj.Speed = 255;
+            if (obj.Speed <= 0) obj.Speed = 1;
+
+            string cmd = "stop";
+            switch (obj.PtzMoveDir)
+            {
+                case PtzMoveDir.LEFT:
+                    cmd = "left";
+                    break;
+                case PtzMoveDir.RIGHT:
+                    cmd = "right";
+                    break;
+                case PtzMoveDir.UP:
+                    cmd = "up";
+                    break;
+                case PtzMoveDir.DOWN:
+                    cmd = "down";
+                    break;
+                default:
+                    cmd = "stop";
+                    break;
+            }
+
+
+            if (obj.Stop == true) cmd = "stop";
+            string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api.Listen.ToString() + "/api/v1/gb28181?id=" +
+                            streams[0] + "&action=sip_ptz&chid=" +
+                            streams[1] + "&ptzcmd=" + cmd + "&speed=" + obj.Speed;
+            try
+            {
+                string tmpStr = NetHelper.Get(reqUrl);
+                var retReq = JsonHelper.FromJson<SrsGb28181PtzControlResponseModule>(tmpStr);
+                if (retReq != null && retReq.Code == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    rs.Code = (ErrorNumber) retReq!.Code;
+                    rs.Message = ErrorMessage.ErrorDic![rs.Code];
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                rs.Code = ErrorNumber.Other;
+                rs.Message = ex.Message;
+                return false;
+            }
+        }
 
         /// <summary>
         /// 通过stream的值返回monitor的信息
@@ -18,7 +230,7 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="stream"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static Client GetClientInfoByStreamValue(string stream,out ResponseStruct rs)
+        public static Client GetClientInfoByStreamValue(string stream, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -29,6 +241,7 @@ namespace SrsApis.SrsManager.Apis
                 .Where(x => x.ClientType == ClientType.Monitor && x.Stream!.Equals(stream.Trim())).First();
             return ret;
         }
+
         /// <summary>
         /// 获取所有正在运行中的srs信息
         /// </summary>

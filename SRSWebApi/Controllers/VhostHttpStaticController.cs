@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhosthttpstatic接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class VhostHttpStaticController
     {
@@ -28,6 +28,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHttpStatic/DeleteVhostHttpStatic")]
         public JsonResult DeleteVhostHttpStatic(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHttpStaticApis.DeleteVhostHttpStatic(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -44,6 +49,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHttpStatic/GetVhostHttpStatic")]
         public JsonResult GetVhostHttpStatic(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHttpStaticApis.GetVhostHttpStatic(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -61,6 +71,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostHttpStatic/SetVhostHttpStatic")]
         public JsonResult SetVhostHttpStatic(string deviceId, string vhostDomain, HttpStatic httpStatic)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,httpStatic});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostHttpStaticApis.SetVhostHttpStatic(deviceId, vhostDomain, httpStatic, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

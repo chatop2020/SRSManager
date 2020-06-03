@@ -13,7 +13,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// 系统信息接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class SystemController : ControllerBase
     {
@@ -27,6 +27,11 @@ namespace SrsWebApi.Controllers
         [Route("/System/RefreshSrsObject")]
         public JsonResult RefreshSrsObject(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = SystemApis.RefreshSrsObject(deviceId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -42,6 +47,7 @@ namespace SrsWebApi.Controllers
         [Route("/System/GetAllSrsManagerDeviceId")]
         public JsonResult GetAllSrsManagerDeviceId()
         {
+            
             ResponseStruct rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -61,6 +67,11 @@ namespace SrsWebApi.Controllers
         [Route("/System/CreateNewSrsInstance")]
         public JsonResult CreateNewSrsInstance(SrsManager sm)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{sm});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = SystemApis.CreateNewSrsInstance(sm, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -91,6 +102,11 @@ namespace SrsWebApi.Controllers
         [Route("/System/DelSrsByDevId")]
         public JsonResult DelSrsInstanceByDeviceId(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = SystemApis.DelSrsInstanceByDeviceId(deviceId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -105,6 +121,11 @@ namespace SrsWebApi.Controllers
         [Route("/System/GetSrsInstanceByDeviceId")]
         public JsonResult GetSrsInstanceByDeviceId(string deviceId)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             ResponseStruct rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -154,6 +175,11 @@ namespace SrsWebApi.Controllers
         [Route("/System/DelOnvifConfigByIpAddress")]
         public JsonResult DelOnvifConfigByIpAddress(string ipAddress)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{ipAddress});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = SystemApis.DelOnvifConfigByIpAddress(ipAddress, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

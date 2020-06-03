@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// onvif设备接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class OnvifController : ControllerBase
     {
@@ -41,6 +41,11 @@ namespace SrsWebApi.Controllers
         [Route("/Onvif/InitByIpAddress")]
         public JsonResult InitByIpAddress(string ipAddress)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{ipAddress});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = OnvifMonitorApis.InitOnvifMonitorByIpAddrWhenNotInit(ipAddress, out ResponseStruct rs);
             if (rt == null)
             {
@@ -83,6 +88,11 @@ namespace SrsWebApi.Controllers
         [Route("/Onvif/SetPtzZoom")]
         public JsonResult SetPtzZoom(PtzZoomStruct ptzZoomStruct)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{ptzZoomStruct});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             int v = 0;
             v = (ptzZoomStruct.ZoomDir == ZoomDir.MORE) ? 1 : -1; //放大时值大于0,缩小时值小于0
             var rt = OnvifMonitorApis.SetPtzZoom(ptzZoomStruct.IpAddr, ptzZoomStruct.ProfileToken, v,
@@ -101,6 +111,11 @@ namespace SrsWebApi.Controllers
         [Route("/Onvif/GetPtzPosition")]
         public JsonResult GetPtzPosition(PtzMoveStruct ptzMove)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{ptzMove});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = OnvifMonitorApis.GetPtzPosition(ptzMove.IpAddr, ptzMove.ProfileToken, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -117,6 +132,11 @@ namespace SrsWebApi.Controllers
         [Route("/Onvif/PtzKeepMoveStop")]
         public JsonResult PtzKeepMoveStop(PtzMoveStruct ptzMove)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{ptzMove});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = OnvifMonitorApis.PtzKeepMoveStop(ptzMove.IpAddr, ptzMove.ProfileToken, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -133,6 +153,11 @@ namespace SrsWebApi.Controllers
         [Route("/Onvif/PtzMove")]
         public JsonResult PtzMove(PtzMoveStruct ptzMove)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{ptzMove});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = OnvifMonitorApis.PtzMove(ptzMove.IpAddr, ptzMove.ProfileToken, (PtzMoveType) ptzMove.MoveType,
                 ptzMove.MoveDir, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
@@ -149,6 +174,11 @@ namespace SrsWebApi.Controllers
         [Route("/Onvif/InitMonitor")]
         public JsonResult InitMonitor(ReqInitOnvif request)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{request});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             DiscoveryOnvifMonitors req = new DiscoveryOnvifMonitors()
             {
                 Username = request.Username,
@@ -185,6 +215,11 @@ namespace SrsWebApi.Controllers
         [Route("/Onvif/GetMonitor")]
         public JsonResult GetMonitor(string ipAddress)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{ipAddress});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = OnvifMonitorApis.GetOnvifMonitor(ipAddress, out ResponseStruct rs);
             if (rt == null)
             {

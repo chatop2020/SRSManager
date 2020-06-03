@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhostbandcheck接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class VhostBandcheckController
     {
@@ -28,6 +28,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostBandcheck/DeleteVhostBandcheck")]
         public JsonResult DeleteVhostBandcheck(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostBandcheckApis.DeleteVhostBandcheck(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -44,6 +49,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostBandcheck/GetVhostBandcheck")]
         public JsonResult GetVhostBandcheck(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostBandcheckApis.GetVhostBandcheck(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -61,6 +71,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostBandcheck/SetVhostBandcheck")]
         public JsonResult SetVhostBandcheck(string deviceId, string vhostDomain, Bandcheck bandcheck)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{vhostDomain,deviceId,bandcheck});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostBandcheckApis.SetVhostBandcheck(deviceId, vhostDomain, bandcheck, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

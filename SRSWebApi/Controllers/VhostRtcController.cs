@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhostrtc接口类
     /// </summary>
-    [ApiController]
+    
     [Route("")]
     public class VhostRtcController
     {
@@ -28,6 +28,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostRtc/DeleteVhostRtc")]
         public JsonResult DeleteVhostRtc(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostRtcApis.DeleteVhostRtc(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -44,6 +49,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostRtc/GetVhostRtc")]
         public JsonResult GetVhostRtc(string deviceId, string vhostDomain)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostRtcApis.GetVhostRtc(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -61,6 +71,11 @@ namespace SrsWebApi.Controllers
         [Route("/VhostRtc/SetVhostRtc")]
         public JsonResult SetVhostRtc(string deviceId, string vhostDomain, Rtc rtc)
         {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,rtc});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
             var rt = VhostRtcApis.SetVhostRtc(deviceId, vhostDomain, rtc, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
