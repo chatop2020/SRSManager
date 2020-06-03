@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhostpublish接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostPublishController
     {

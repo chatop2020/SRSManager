@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhosttranscode接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostTranscodeController
     {

@@ -11,9 +11,30 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// 快速使用接口类
     /// </summary>
+    [ApiController]
     [Route("")]
     public class FastUsefulController : ControllerBase
     {
+        /// <summary>
+        /// 对某个vhost设置成低时延模式/正常模式
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/OnOrOffVhostMinDelay")]
+        public JsonResult OnOrOffVhostMinDelay(string deviceId,string vhostDomain,bool enable)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,enable});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.OnOrOffVhostMinDelay(deviceId,vhostDomain,enable,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+
+        
         /// <summary>
         /// 用于gb28181的云台镜头缩放控制
         /// </summary>

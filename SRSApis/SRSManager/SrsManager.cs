@@ -115,8 +115,21 @@ namespace SrsApis.SrsManager
 
         private bool checkFile()
         {
+            if (!Directory.Exists(SrsWorkPath + SrsDeviceId))
+            {
+                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId);
+            }
+            if (!Directory.Exists(SrsWorkPath + SrsDeviceId+"/wwwroot"))
+            {
+                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId+"/wwwroot");
+            }
+            if (!Directory.Exists(SrsWorkPath + SrsDeviceId+"/ffmpegLog"))
+            {
+                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId+"/ffmpegLog");
+            }
             if (File.Exists(_srsConfigPath) && File.Exists(SrsWorkPath + "srs"))
             {
+                
                 return true;
             }
 

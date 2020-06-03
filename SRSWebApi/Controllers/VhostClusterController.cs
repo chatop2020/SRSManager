@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhostcluster接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostClusterController
     {

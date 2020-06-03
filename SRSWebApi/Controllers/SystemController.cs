@@ -13,7 +13,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// 系统信息接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class SystemController : ControllerBase
     {

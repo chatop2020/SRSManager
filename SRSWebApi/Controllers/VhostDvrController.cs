@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhost dvr接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostDvrController
     {

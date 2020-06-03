@@ -82,6 +82,8 @@ namespace SrsWebApi
         /// </summary>
         public string FFmpegBinPath = "./ffmpeg";
 
+       // public string FFmpegBinPath = "/usr/local/bin/ffmpeg";
+
 
         /// <summary>
         /// 获取时间戳(毫秒级)

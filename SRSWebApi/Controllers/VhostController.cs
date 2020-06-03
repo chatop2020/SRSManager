@@ -13,7 +13,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhost控制类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostController
     {

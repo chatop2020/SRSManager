@@ -11,6 +11,80 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class FastUsefulApis
     {
+        /// <summary>
+        /// 对某个vhost启用或停用低时延模式
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="vhostDomain"></param>
+        /// <param name="enable"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool OnOrOffVhostMinDelay(string deviceId, string vhostDomain,bool enable, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToLower().Equals(deviceId.Trim().ToLower()));
+            if (ret == null)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return false;
+            }
+
+            if (ret.Srs.Vhosts == null || ret.Srs.Vhosts.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
+                return false;
+            }
+
+            var retVhost =
+                ret.Srs.Vhosts.FindLast(x => x.VhostDomain!.Trim().ToLower().Equals(vhostDomain.Trim().ToLower()));
+            if (retVhost == null)
+            {
+                 rs.Code = ErrorNumber.SrsSubInstanceNotFound;
+                                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
+                                return false;
+            }
+
+            retVhost.Tcp_nodelay = enable;
+            retVhost.Min_latency = enable;
+            if (enable)
+            {
+                if (retVhost.Vplay == null)
+                {
+                    retVhost.Vplay= new Play();
+                }
+                retVhost.Vplay.Gop_cache = !enable;
+                retVhost.Vplay.Queue_length = 10;
+                retVhost.Vplay.Mw_latency = 100;
+                if (retVhost.Vpublish == null)
+                {
+                    retVhost.Vpublish = new SrsConfFile.SRSConfClass.Publish();
+                }
+                retVhost.Vpublish.Mr = !enable;
+            }
+            else
+            {
+                if (retVhost.Vplay != null)
+                    retVhost.Vplay = null;
+                if (retVhost.Vpublish != null)
+                    retVhost.Vpublish = null;
+            }
+
+            return true;
+        }
         
         /// <summary>
         /// 用于28181的ptz镜头控制

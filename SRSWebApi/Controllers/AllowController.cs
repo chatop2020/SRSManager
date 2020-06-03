@@ -14,7 +14,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// 授权访问接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class AllowController : ControllerBase
     {

@@ -10,7 +10,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// SRSStreamCaster接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class StreamCasterController : ControllerBase
     {

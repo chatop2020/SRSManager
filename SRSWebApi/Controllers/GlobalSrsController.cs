@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// 全局SRS接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class GlobalSrsController : ControllerBase
     {

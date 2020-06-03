@@ -10,7 +10,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// SRSRtcServer设备接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class StatsController : ControllerBase
     {

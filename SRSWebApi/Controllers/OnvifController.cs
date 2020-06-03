@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// onvif设备接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class OnvifController : ControllerBase
     {

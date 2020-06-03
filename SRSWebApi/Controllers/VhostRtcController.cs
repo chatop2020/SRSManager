@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhostrtc接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostRtcController
     {

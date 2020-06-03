@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhostexec接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostExecController
     {

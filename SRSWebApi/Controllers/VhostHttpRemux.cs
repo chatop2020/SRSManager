@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhosthttpremux接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostHttpRemux
     {

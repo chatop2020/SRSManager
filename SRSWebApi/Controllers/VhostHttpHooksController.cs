@@ -12,7 +12,7 @@ namespace SrsWebApi.Controllers
     /// <summary>
     /// vhosthttphooks接口类
     /// </summary>
-    
+    [ApiController]
     [Route("")]
     public class VhostHttpHooksController
     {
