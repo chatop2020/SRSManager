@@ -89,6 +89,7 @@ namespace SrsManageCommon.ApisStructs
     public class StreamDvrPlan
     {
         private long _id;
+        private bool _enable;
         private string _deviceId;
         private string _vhostDomain;
         private string _app;
@@ -98,11 +99,7 @@ namespace SrsManageCommon.ApisStructs
         private OverStepPlan? _overStepPlan;
         private List<DvrDayTimeRange> _dvrDayTimeRange;
 
-        public string DeviceId
-        {
-            get => _deviceId;
-            set => _deviceId = value;
-        }
+      
         [Column(IsPrimary = true,IsIdentity = true)]
 
         public long Id
@@ -110,6 +107,19 @@ namespace SrsManageCommon.ApisStructs
             get => _id;
             set => _id = value;
         }
+
+        public bool Enable
+        {
+            get => _enable;
+            set => _enable = value;
+        }
+
+        public string DeviceId
+        {
+            get => _deviceId;
+            set => _deviceId = value;
+        }
+        
 
         public string VhostDomain
         {

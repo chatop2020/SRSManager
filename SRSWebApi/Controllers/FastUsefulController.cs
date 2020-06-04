@@ -14,11 +14,51 @@ namespace SrsWebApi.Controllers
     [ApiController]
     [Route("")]
     public class FastUsefulController : ControllerBase
-    {   /// <summary>
-        /// 修改录制计划ById
+    { 
+        /// <summary>
+        /// 删除一个录制计划ById
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/DeleteDvrPlanById")]
+        public JsonResult DeleteDvrPlanById(long id)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{id});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.DeleteDvrPlanById(id,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+        /// <summary>
+        /// 启用或停用一个录制计划
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/OnOrOffDvrPlanById")]
+        public JsonResult OnOrOffDvrPlanById(long id,bool enable)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{id,enable});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.OnOrOffDvrPlanById(id,enable,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+        
+        /// <summary>
+        /// 修改录制计划ById
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/FastUseful/SetDvrPlanById")]
@@ -36,7 +76,7 @@ namespace SrsWebApi.Controllers
         /// 修改或创建一个录制计划
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/FastUseful/SetDvrPlan")]
@@ -74,11 +114,11 @@ namespace SrsWebApi.Controllers
         /// 获取录制计划
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/FastUseful/GetDvrPlan")]
-        public JsonResult GetDvrPlan(ReqDvrPlan rdp)
+        public JsonResult GetDvrPlan(ReqGetDvrPlan rdp)
         {
             ResponseStruct rss = CommonFunctions.CheckParams(new object[]{rdp});
             if (rss.Code != ErrorNumber.None)
