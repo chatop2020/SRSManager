@@ -37,7 +37,7 @@ namespace SrsWebApi.Controllers
         /// 设置或创建rtcserver
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/RtcServer/SetRtcServer")]

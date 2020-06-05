@@ -139,7 +139,8 @@ namespace SrsWebApi
                 SessionManager = new SessionManager();
                
                 Common.init_SrsServer();
-              
+                Console.WriteLine(JsonHelper.ToJson(Common.SrsManagers));
+
             }
             else
             {
