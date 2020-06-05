@@ -1,4 +1,6 @@
 using System;
+using System.Text.Json.Serialization;
+
 
 namespace SrsConfFile.SRSConfClass
 {
@@ -6,7 +8,8 @@ namespace SrsConfFile.SRSConfClass
     public class SrsConfBase
     {
         private string? sectionsName;
-
+      
+        [JsonIgnore]
         public string? SectionsName
         {
             get => sectionsName;

@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 using FreeSql.DataAnnotations;
 using SrsManageCommon;
 
@@ -30,6 +31,8 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         private DateTime? _endTime;
 
         [Column(IsIdentity = true)]
+        
+        [JsonIgnore]
         public long Id
         {
             get => _id;

@@ -9,7 +9,7 @@ namespace SrsConfFile
     {
         public static string? WorkDir = Environment.CurrentDirectory + "/";
         public static List<SrsSystemConfClass> StreamNodes = new List<SrsSystemConfClass>();
-
+      
         public static string GetBoolStr(PropertyInfo p, object? obj)
         {
             if (p.PropertyType == typeof(bool?))

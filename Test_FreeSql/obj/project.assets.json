@@ -2223,6 +2223,34 @@
           "bin/placeholder/Mictlanix.DotNet.OnvifClient.dll": {}
         }
       },
+      "SRSApis/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "SRSConfFile": "1.0.0",
+          "SRSManageCommon": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SRSApis.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SRSApis.dll": {}
+        }
+      },
+      "SRSConfFile/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "bin/placeholder/SRSConfFile.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SRSConfFile.dll": {}
+        }
+      },
       "SRSManageCommon/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -7463,6 +7491,16 @@
       "path": "../OnvifClient/OnvifClient.csproj",
       "msbuildProject": "../OnvifClient/OnvifClient.csproj"
     },
+    "SRSApis/1.0.0": {
+      "type": "project",
+      "path": "../SRSApis/SRSApis.csproj",
+      "msbuildProject": "../SRSApis/SRSApis.csproj"
+    },
+    "SRSConfFile/1.0.0": {
+      "type": "project",
+      "path": "../SRSConfFile/SRSConfFile.csproj",
+      "msbuildProject": "../SRSConfFile/SRSConfFile.csproj"
+    },
     "SRSManageCommon/1.0.0": {
       "type": "project",
       "path": "../SRSManageCommon/SRSManageCommon.csproj",
@@ -7471,7 +7509,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "FreeSql.All >= 1.5.0",
+      "SRSApis >= 1.0.0",
       "SRSManageCommon >= 1.0.0"
     ]
   },
@@ -7499,6 +7537,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+            "/Users/qiuzhouwei/Projects/SRSManager/SRSApis/SRSApis.csproj": {
+              "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSApis/SRSApis.csproj"
+            },
             "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj": {
               "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj"
             }
@@ -7513,12 +7554,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "dependencies": {
-          "FreeSql.All": {
-            "target": "Package",
-            "version": "[1.5.0, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

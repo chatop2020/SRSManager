@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace SrsApis.SrsManager.Apis.ApiModules
 {
@@ -30,6 +31,7 @@ namespace SrsApis.SrsManager.Apis.ApiModules
             set => _password = value;
         }
 
+        [JsonIgnore]
         public List<string> IpAddrArray
         {
             get => _ipAddrArray;

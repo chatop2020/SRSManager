@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using FreeSql.DataAnnotations;
+using Newtonsoft.Json;
 using SrsManageCommon;
 
 namespace SrsApis.SrsManager.Apis.ApiModules
@@ -33,6 +34,8 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         private DateTime? _updateTime;
 
         [Column(IsIdentity = true)]
+        
+        [JsonIgnore]
         public long Id
         {
             get => _id;

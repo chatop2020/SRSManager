@@ -1,10 +1,15 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
+using System.IO;
+using Mictlanix.DotNet.Onvif.Common;
+using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon.ApisStructs;
+using DateTime = System.DateTime;
 
 namespace Test_FreeSql
 {
+   
     class Program
     {
         static long Insert(Module obj)
@@ -50,7 +55,11 @@ namespace Test_FreeSql
 
         static void Main(string[] args)
         {
-            Module a = new Module()
+
+
+           Console.WriteLine( Path.GetFileName("'/root/StreamNode/22364bc4-5134-494d-8249-51d06777fb7f/ffmpegLog/ffmpeg-ingest-__defaultVhost__-live-192.168.2.165_profile_1.log"));
+           return;
+           Module a = new Module()
             {
                 End = DateTime.Now,
                 Start = DateTime.Now.AddDays(1),

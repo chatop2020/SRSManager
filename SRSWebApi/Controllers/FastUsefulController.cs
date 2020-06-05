@@ -15,6 +15,26 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class FastUsefulController : ControllerBase
     { 
+        
+        /// <summary>
+        /// 获取录像文件ByDeviceId
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/GetDvrList")]
+        public JsonResult GetDvrList(string deviceId)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.GetDvrList(deviceId,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
         /// <summary>
         /// 删除一个录制计划ById
         /// </summary>

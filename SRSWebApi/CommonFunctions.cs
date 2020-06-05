@@ -4,6 +4,7 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using SRSApis;
 using SrsApis.SrsManager.Apis.ApiModules;
+using SRSApis.SystemAutonomy;
 using SrsManageCommon;
 using SrsManageCommon.ApisStructs;
 using Common = SRSApis.Common;
@@ -40,10 +41,7 @@ namespace SrsWebApi
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
         }
-        /// <summary>
-        /// SrsOnlineClient管理
-        /// </summary>
-        public static SrsClientManager SrsOnlineClient = null!;
+        
 
         /// <summary>
         /// 调试模式下不启用授权和session验证
@@ -83,7 +81,8 @@ namespace SrsWebApi
         public string FFmpegBinPath = "./ffmpeg";
 
        // public string FFmpegBinPath = "/usr/local/bin/ffmpeg";
-
+       
+      
 
         /// <summary>
         /// 获取时间戳(毫秒级)
@@ -94,15 +93,40 @@ namespace SrsWebApi
             return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         }
 
+        private bool checkFFmpegBin(string ffpath="")
+        {
+            if (string.IsNullOrEmpty(ffpath))
+            {
+                ffpath = "ffmpeg";
+            }
+            LinuxShell.Run(ffpath, 1000, out string std, out string err);
+            if (!string.IsNullOrEmpty(std))
+            {
+                if (std.ToLower().Contains("ffmpeg version"))
+                {
+                    return true;
+                }
+            }  
+            if (!string.IsNullOrEmpty(err))
+            {
+                if (err.ToLower().Contains("ffmpeg version"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// 通用类初始化
         /// </summary>
         public void CommonInit()
         {
-            if (!File.Exists(FFmpegBinPath))
+           
+            if (!checkFFmpegBin(FFmpegBinPath))
             {
-                Console.WriteLine("FFMPEG程度不存在，启动异常..." + FFmpegBinPath);
+                Console.WriteLine("FFMPEG不存在，启动异常...,请保证ffmpeg可执行文件存在:"+FFmpegBinPath );
                 return;
             }
 
@@ -113,9 +137,9 @@ namespace SrsWebApi
             {
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
-
+               
                 Common.init_SrsServer();
-                SrsOnlineClient = new SrsClientManager();
+              
             }
             else
             {

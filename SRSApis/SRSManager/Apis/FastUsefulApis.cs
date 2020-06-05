@@ -1,16 +1,44 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using SrsApis.SrsManager.Apis.ApiModules;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
 using SrsManageCommon.ApisStructs;
 using Common = SRSApis.Common;
+using Dvr = SrsApis.SrsManager.Apis.ApiModules.Dvr;
 
 namespace SrsApis.SrsManager.Apis
 {
     public static class FastUsefulApis
     {
+
+        /// <summary>
+        /// 返回Dvr列表BydeviceId
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<Dvr> GetDvrList(string deviceId, out ResponseStruct rs)
+        {
+            
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+           return  OrmService.Db.Select<Dvr>().Where(x => x.Device_Id!.Trim().ToLower().Equals(deviceId.Trim().ToLower()))
+                .ToList();
+           
+        }
         /// <summary>
         /// 通过id删除一个录制计划
         /// </summary>
@@ -142,7 +170,7 @@ namespace SrsApis.SrsManager.Apis
                 .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id).ToList();
             if (rr != null)
             {
-                retSdp.DvrDayTimeRange = rr;
+                retSdp.TimeRange = rr;
             }
 
             return retSdp;
@@ -243,7 +271,7 @@ namespace SrsApis.SrsManager.Apis
                             .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == r.Id).ToList();
                         if (rr != null)
                         {
-                            r.DvrDayTimeRange = rr;
+                            r.TimeRange = rr;
                         }
                     }
                 }
@@ -281,9 +309,9 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            if (sdp.DvrDayTimeRange != null)
+            if (sdp.TimeRange != null)
             {
-                foreach (var s in sdp.DvrDayTimeRange)
+                foreach (var s in sdp.TimeRange)
                 {
                     if (s.StartTime >= s.EndTime)
                     {
@@ -307,19 +335,35 @@ namespace SrsApis.SrsManager.Apis
                 .First();
             if (retSdp != null)
             {
-                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
+                Console.WriteLine("retSDp!=njull");
+                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Set(x=>x.LimitDays,sdp.LimitDays).
+                    Set(x=>x.LimitSpace!=sdp.LimitSpace).Set(x=>x.OverStepPlan!=sdp.OverStepPlan).
+                    Set(x=>x.Enable!=sdp.Enable).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
+               Console.WriteLine("retUpdate:"+retUpdate);
                 if (retUpdate > 0)
                 {
-                    OrmService.Db.Delete<DvrDayTimeRange>().Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
-                        .ExecuteAffrows();
-                    for (int i = 0; i <= sdp.DvrDayTimeRange!.Count - 1; i++)
+                    if (sdp.TimeRange != null)
                     {
-                        sdp.DvrDayTimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
+                     var retDelete=   OrmService.Db.Delete<DvrDayTimeRange>()
+                            .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
+                            .ExecuteAffrows();
+                        Console.WriteLine("delete"+retDelete);
+                        for (int i = 0; i <= sdp.TimeRange!.Count - 1; i++)
+                        {
+                            sdp.TimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
+                        }
+
+                        var retInsert = OrmService.Db.Insert<List<DvrDayTimeRange>>(sdp.TimeRange)
+                            .ExecuteAffrows();
+                        Console.WriteLine("retInsert:" + retInsert);
+                        if (retInsert > 0)
+                            return true;
+                    }
+                    else
+                    {
+                        return true;
                     }
 
-                    var retInsert = OrmService.Db.Insert<List<DvrDayTimeRange>>(sdp.DvrDayTimeRange).ExecuteAffrows();
-                    if (retInsert > 0)
-                        return true;
                     return false;
                 }
 
@@ -368,9 +412,9 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            if (sdp.DvrDayTimeRange != null)
+            if (sdp.TimeRange != null)
             {
-                foreach (var s in sdp.DvrDayTimeRange)
+                foreach (var s in sdp.TimeRange)
                 {
                     if (s.StartTime >= s.EndTime)
                     {
@@ -404,19 +448,32 @@ namespace SrsApis.SrsManager.Apis
                 .First();
             if (retSdp != null)
             {
-                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
+                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Set(x=>x.LimitDays,sdp.LimitDays).
+                    Set(x=>x.LimitSpace!=sdp.LimitSpace).Set(x=>x.OverStepPlan!=sdp.OverStepPlan).
+                    Set(x=>x.Enable!=sdp.Enable).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
                 if (retUpdate > 0)
                 {
-                    OrmService.Db.Delete<DvrDayTimeRange>().Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
-                        .ExecuteAffrows();
-                    for (int i = 0; i <= sdp.DvrDayTimeRange!.Count - 1; i++)
+                    if (sdp.TimeRange != null)
                     {
-                        sdp.DvrDayTimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
+                        var retDelete=OrmService.Db.Delete<DvrDayTimeRange>()
+                            .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
+                            .ExecuteAffrows();
+                        Console.WriteLine("delete"+retDelete);
+                        for (int i = 0; i <= sdp.TimeRange!.Count - 1; i++)
+                        {
+                            sdp.TimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
+                        }
+
+                        var retInsert = OrmService.Db.Insert<List<DvrDayTimeRange>>(sdp.TimeRange)
+                            .ExecuteAffrows();
+                        if (retInsert > 0)
+                            return true;
+                    }
+                    else
+                    {
+                        return true;
                     }
 
-                    var retInsert = OrmService.Db.Insert<List<DvrDayTimeRange>>(sdp.DvrDayTimeRange).ExecuteAffrows();
-                    if (retInsert > 0)
-                        return true;
                     return false;
                 }
 

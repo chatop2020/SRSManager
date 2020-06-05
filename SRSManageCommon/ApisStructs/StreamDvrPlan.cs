@@ -6,21 +6,7 @@ using Newtonsoft.Json;
 namespace SrsManageCommon.ApisStructs
 {
    
-    [Serializable]
-    /// <summary>
-    /// 星期枚举
-    /// </summary>
-    public enum WeekdayEnum
-    {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
-    } ;
-    
+   
     
     [Serializable]
     [Table(Name = "DvrDayTimeRange")]
@@ -31,11 +17,13 @@ namespace SrsManageCommon.ApisStructs
     {
         private long _id;
         private long _dvrDayTimeRangeStreamDvrPlanId;
-        private WeekdayEnum _weekday;
+        private DayOfWeek _weekday;
         private DateTime _startTime;
         private DateTime _endTime;
         
         [Column(IsPrimary = true,IsIdentity = true)]
+        
+        [JsonIgnore]
         public long Id
         {
             get => _id;
@@ -49,7 +37,7 @@ namespace SrsManageCommon.ApisStructs
         }
 
         [Column(MapType = typeof(string))]
-        public WeekdayEnum WeekDay
+        public DayOfWeek WeekDay
         {
             get => _weekday;
             set => _weekday = value;
@@ -97,11 +85,12 @@ namespace SrsManageCommon.ApisStructs
         private long? _limitSpace;
         private ushort? _limitDays;
         private OverStepPlan? _overStepPlan;
-        private List<DvrDayTimeRange> _dvrDayTimeRange;
+        private List<DvrDayTimeRange> _timeRange;
 
       
         [Column(IsPrimary = true,IsIdentity = true)]
 
+        [JsonIgnore]
         public long Id
         {
             get => _id;
@@ -157,10 +146,10 @@ namespace SrsManageCommon.ApisStructs
             set => _overStepPlan = value;
         }
 
-        public List<DvrDayTimeRange> DvrDayTimeRange
+        public List<DvrDayTimeRange> TimeRange
         {
-            get => _dvrDayTimeRange;
-            set => _dvrDayTimeRange = value;
+            get => _timeRange;
+            set => _timeRange = value;
         }
     }
 }

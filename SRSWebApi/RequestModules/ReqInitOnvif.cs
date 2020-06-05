@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace SrsWebApi.RequestModules
 {
@@ -41,6 +42,8 @@ namespace SrsWebApi.RequestModules
             get => _password;
             set => _password = value;
         }
+        
+        [JsonIgnore]
 
         /// <summary>
         /// 初始化时不用传，此字段为内部使用

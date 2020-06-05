@@ -6,11 +6,10 @@ using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon;
 using SrsManageCommon.ApisStructs;
 
-namespace SRSApis
+namespace SRSApis.SystemAutonomy
 {
     public class SrsClientManager
     {
-
         private void rewriteMonitorType()
         {
             if (Common.SrsManagers != null)
@@ -36,10 +35,6 @@ namespace SRSApis
                                                     (x.MonitorIp == null || x.MonitorIp == "" ||
                                                      x.MonitorIp == "127.0.0.1" || x.MonitorIp==r.Rtp_Peer_Ip))
                                         .ExecuteAffrows();
-                                    /*if (reti > 0)
-                                    {
-                                        Console.WriteLine("补全28181客户端ip地址：" + reti.ToString());
-                                    }*/
                                 }
                             }
                         }
@@ -100,10 +95,6 @@ namespace SRSApis
                                                         (x.MonitorIp == null || x.MonitorIp == "" ||
                                                          x.MonitorIp == "127.0.0.1"))
                                             .ExecuteAffrows();
-                                        /*if (reti > 0)
-                                        {
-                                            Console.WriteLine("补全Onvif客户端ip地址：" + reti.ToString());
-                                        }*/
                                     }
                                 }
                             }
@@ -138,10 +129,6 @@ namespace SRSApis
                                                     (x.MonitorIp == null || x.MonitorIp == "" ||
                                                      x.MonitorIp == "127.0.0.1"))
                                         .ExecuteAffrows();
-                                    /*if (reti > 0)
-                                    {
-                                        Console.WriteLine("补全28181客户端ip地址：" + reti.ToString());
-                                    }*/
                                 }
                             }
                         }
@@ -156,10 +143,6 @@ namespace SRSApis
                                                                x.IsPlay == false &&
                                                                x.UpdateTime <= DateTime.Now.AddMinutes(-3))
                 .ExecuteAffrows();
-            /*if (re > 0)
-            {
-                Console.WriteLine("清理掉3分种以前没有更新并且不在播放状态的用户连接：" + re.ToString());
-            } */
         }
 
         private void Run()

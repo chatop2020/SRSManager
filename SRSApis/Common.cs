@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
+using SRSApis.SystemAutonomy;
 using SrsConfFile;
 using SrsManageCommon;
 using SrsManageCommon.ApisStructs;
@@ -43,11 +43,22 @@ namespace SRSApis
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
         public static List<OnvifInstance> OnvifManagers = new List<OnvifInstance>();
         public static Object LockObj = new object();
+        /// <summary>
+        /// SrsOnlineClient管理
+        /// </summary>
+        public static SrsClientManager SrsOnlineClient;
+
+        public static SrsAndFFmpegLogMonitor SrsAndFFmpegLogMonitor;
+        public static ExecutionDvrPlan ExecutionDvrPlan;
+
 
         static Common()
         {
             ErrorMessage.Init();
             Directory.CreateDirectory(LogPath);
+            SrsOnlineClient = new SrsClientManager();
+            SrsAndFFmpegLogMonitor= new SrsAndFFmpegLogMonitor();
+           // ExecutionDvrPlan= new ExecutionDvrPlan();
         }
 
         /*/// <summary>
@@ -245,14 +256,14 @@ namespace SRSApis
                 {
                     SrsManager sm = new SrsManager();
                     ret = sm.SRS_Init(file.FullName, out rs);
-                    string rs_str = JsonHelper.ToJson(rs);
+                    string rsStr = JsonHelper.ToJson(rs);
                     if (!ret)
                     {
-                        LogWriter.WriteLog("初始化SRS配置失败...ConfigPath:" + file.FullName, rs_str, ConsoleColor.Yellow);
+                        LogWriter.WriteLog("初始化SRS配置失败...ConfigPath:" + file.FullName, rsStr, ConsoleColor.Yellow);
                     }
                     else
                     {
-                        LogWriter.WriteLog("初始化SRS成功...ConfigPath:" + file.FullName, rs_str);
+                        LogWriter.WriteLog("初始化SRS成功...ConfigPath:" + file.FullName, rsStr);
                         SrsManagers.Add(sm);
                     }
                 }

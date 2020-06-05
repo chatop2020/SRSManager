@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace SrsManageCommon
 {
+    /// <summary>
+    /// 客户端类型
+    /// </summary>
     [Serializable]
     public enum ClientType
     {
@@ -14,6 +17,7 @@ namespace SrsManageCommon
     /// <summary>
     /// 摄像头类型
     /// </summary>
+     [Serializable]
     public enum MonitorType
     {
         Onvif,
