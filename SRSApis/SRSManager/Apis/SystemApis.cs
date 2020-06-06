@@ -597,6 +597,9 @@ namespace SrsApis.SrsManager.Apis
                             if (retReq != null && retReq.Data != null && retReq.Data.Self != null)
                             {
                                 if (sim.SrsList == null) sim.SrsList = new List<Self_Srs>();
+                                string filename = Path.GetFileName(retReq.Data.Self.Argv)!;
+                                string ext = Path.GetExtension(filename);
+                                retReq.Data.Self.Srs_DeviceId = filename.Replace(ext, "");
                                 sim.SrsList.Add(retReq.Data.Self);
                                 if (sim.System == null)
                                 {

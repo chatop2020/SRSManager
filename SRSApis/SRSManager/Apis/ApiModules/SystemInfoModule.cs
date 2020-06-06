@@ -54,6 +54,11 @@ namespace SrsApis.SrsManager.Apis.ApiModules
         /// 
         /// </summary>
         public long? Srs_uptime { get; set; }
+
+        /// <summary>
+        /// 额外补充
+        /// </summary>
+        public string? Srs_DeviceId { get; set; }
     }
 
     [Serializable]

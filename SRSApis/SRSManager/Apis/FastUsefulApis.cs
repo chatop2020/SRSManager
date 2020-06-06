@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using SrsApis.SrsManager.Apis.ApiModules;
@@ -826,6 +827,9 @@ namespace SrsApis.SrsManager.Apis
                             var retReq = JsonHelper.FromJson<SrsSystemInfo>(tmpStr);
                             if (retReq != null && retReq.Data != null && retReq.Data.Self != null)
                             {
+                                string filename = Path.GetFileName(retReq.Data.Self.Argv)!;
+                                string ext = Path.GetExtension(filename);
+                                retReq.Data.Self.Srs_DeviceId = filename.Replace(ext, "");
                                 result.Add(retReq.Data.Self);
                             }
                         }

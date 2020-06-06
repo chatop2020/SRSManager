@@ -1,0 +1,201 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/qiuzhouwei/Projects/SRSManager/Test_SqlSugar/Test_SqlSugar.csproj": {}
+  },
+  "projects": {
+    "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj",
+        "projectName": "Mictlanix.DotNet.OnvifClient",
+        "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj",
+        "packagesPath": "/Users/qiuzhouwei/.nuget/packages/",
+        "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/qiuzhouwei/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.ServiceModel.Duplex": {
+              "target": "Package",
+              "version": "[4.4.*, )"
+            },
+            "System.ServiceModel.Http": {
+              "target": "Package",
+              "version": "[4.5.3, )"
+            },
+            "System.ServiceModel.NetTcp": {
+              "target": "Package",
+              "version": "[4.4.*, )"
+            },
+            "System.ServiceModel.Security": {
+              "target": "Package",
+              "version": "[4.4.*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj",
+        "projectName": "SRSManageCommon",
+        "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj",
+        "packagesPath": "/Users/qiuzhouwei/.nuget/packages/",
+        "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/qiuzhouwei/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj": {
+                "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/OnvifClient/OnvifClient.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "FreeSql.All": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/qiuzhouwei/Projects/SRSManager/Test_SqlSugar/Test_SqlSugar.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/qiuzhouwei/Projects/SRSManager/Test_SqlSugar/Test_SqlSugar.csproj",
+        "projectName": "Test_SqlSugar",
+        "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/Test_SqlSugar/Test_SqlSugar.csproj",
+        "packagesPath": "/Users/qiuzhouwei/.nuget/packages/",
+        "outputPath": "/Users/qiuzhouwei/Projects/SRSManager/Test_SqlSugar/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/qiuzhouwei/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj": {
+                "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "sqlSugarCore": {
+              "target": "Package",
+              "version": "[5.0.0.15, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
