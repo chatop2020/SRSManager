@@ -503,6 +503,7 @@ namespace SrsApis.SrsManager
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\npid:(" + SrsPidValue + ")",
             };
+            OrmService.Db.Delete<SrsApis.SrsManager.Apis.ApiModules.Dvr>().Where(x => x.Device_Id!.Equals(SrsDeviceId));
             return true;
         }
 

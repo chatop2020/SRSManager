@@ -1443,7 +1443,6 @@ namespace SrsConfFile.SRSConfClass
             set => vnack = value;
         }
 
-
         public string? InstanceName
         {
             get => _instanceName;

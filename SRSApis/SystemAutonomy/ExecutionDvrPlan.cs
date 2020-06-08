@@ -376,7 +376,7 @@ namespace SRSApis.SystemAutonomy
                             {
                                 Console.WriteLine("needwriteConfig.dvr == null");
                                 dvr = new SrsConfFile.SRSConfClass.Dvr();
-                                dvr.Enabled = true;
+                                dvr.Enabled = false;
                                 foreach (var s in retStream)
                                 {
                                     dvr.Dvr_apply += s + "\t";

@@ -16,6 +16,30 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class VhostIngestController
     {
+        
+        /// <summary>
+        /// 获取IngestList，通过deviceId,vhostDomain
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="vhostDomain"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/VhostIngest/GetVhostIngestList")]
+        public JsonResult GetVhostIngestList(string deviceId, string vhostDomain)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = VhostIngestApis.GetVhostIngestList(deviceId, vhostDomain,
+                out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+        
         /// <summary>
         /// 通过VhostDomain和IngestInstanceName删除一个Ingest
         /// </summary>

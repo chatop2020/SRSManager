@@ -49,7 +49,7 @@ namespace SRSApis
         public static SrsClientManager SrsOnlineClient;
 
         public static SrsAndFFmpegLogMonitor SrsAndFFmpegLogMonitor;
-        public static ExecutionDvrPlan ExecutionDvrPlan;
+        public static ExecutionDvrPlan? ExecutionDvrPlan;
 
 
         static Common()
