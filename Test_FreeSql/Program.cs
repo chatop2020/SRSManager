@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Mictlanix.DotNet.Onvif.Common;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon.ApisStructs;
 using DateTime = System.DateTime;
 

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Threading;
 using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
-using Dvr = SrsApis.SrsManager.Apis.ApiModules.Dvr;
+using SRSManageCommon.DBMoudle;
+using SRSManageCommon.ManageStructs;
+using Dvr = SRSManageCommon.DBMoudle.Dvr;
 
 namespace SRSApis.SystemAutonomy
 {
@@ -53,9 +53,9 @@ namespace SRSApis.SystemAutonomy
         /// <returns></returns>
         private List<string> currDvrApplySetting(StreamDvrPlan plan)
         {
-            SrsManager srs = SystemApis.GetSrsManagerInstanceByDeviceId(plan.DeviceId);
+            SrsManager srs = SystemApis.GetSrsManagerInstanceByDeviceId(plan.DeviceId!);
             if (srs == null) return null!;
-            SrsvHostConfClass vhost = VhostApis.GetVhostByDomain(srs.SrsDeviceId, plan.VhostDomain,
+            SrsvHostConfClass vhost = VhostApis.GetVhostByDomain(srs.SrsDeviceId, plan.VhostDomain!,
                 out ResponseStruct rs);
             if (vhost == null || rs.Code != ErrorNumber.None) return null!;
             if (vhost.Vdvr == null || vhost.Vdvr.Enabled == false) return null!;
@@ -86,9 +86,9 @@ namespace SRSApis.SystemAutonomy
         private decimal getDvrFileSize(StreamDvrPlan plan)
         {
             return OrmService.Db.Select<Dvr>().Where(x =>
-                x.App!.Trim().ToLower().Equals(plan.App.Trim().ToLower())
-                && x.Stream!.Trim().ToLower().Equals(plan.Stream.Trim().ToLower())
-                && x.Device_Id!.Trim().ToLower().Equals(plan.DeviceId.Trim().ToLower())).Sum(x => x.FileSize);
+                x.App!.Trim().ToLower().Equals(plan.App!.Trim().ToLower())
+                && x.Stream!.Trim().ToLower().Equals(plan.Stream!.Trim().ToLower())
+                && x.Device_Id!.Trim().ToLower().Equals(plan.DeviceId!.Trim().ToLower())).Sum(x => x.FileSize);
         }
 
 
@@ -160,9 +160,9 @@ namespace SRSApis.SystemAutonomy
         {
             List<string> deleteFileList = new List<string>();
             List<Dvr> dvrList = OrmService.Db.Select<Dvr>()
-                .Where(x => x.Device_Id!.Trim().ToLower().Equals(plan.DeviceId.Trim().ToLower())
-                            && x.App!.Trim().ToLower().Equals(plan.App.Trim().ToLower())
-                            && x.Stream!.Trim().ToLower().Equals(plan.Stream.Trim().ToLower()))
+                .Where(x => x.Device_Id!.Trim().ToLower().Equals(plan.DeviceId!.Trim().ToLower())
+                            && x.App!.Trim().ToLower().Equals(plan.App!.Trim().ToLower())
+                            && x.Stream!.Trim().ToLower().Equals(plan.Stream!.Trim().ToLower()))
                 .OrderBy(x => x.EndTime).Limit(100).ToList();
             if (dvrList != null && dvrList.Count > 0)
             {
@@ -199,9 +199,9 @@ namespace SRSApis.SystemAutonomy
 
         private SrsConfFile.SRSConfClass.Dvr getOrCreateDvr(StreamDvrPlan plan)
         {
-            SrsConfFile.SRSConfClass.Dvr dvr = VhostDvrApis.GetVhostDvr(plan.DeviceId, plan.VhostDomain,
+            SrsConfFile.SRSConfClass.Dvr dvr = VhostDvrApis.GetVhostDvr(plan.DeviceId!, plan.VhostDomain!,
                 out ResponseStruct rs);
-            SrsManager sm = SystemApis.GetSrsManagerInstanceByDeviceId(plan.DeviceId);
+            SrsManager sm = SystemApis.GetSrsManagerInstanceByDeviceId(plan.DeviceId!);
             if (dvr == null)
             {
                 dvr = new SrsConfFile.SRSConfClass.Dvr();
@@ -255,12 +255,12 @@ namespace SRSApis.SystemAutonomy
                             if (dvr != null)
                             {
                                 Console.WriteLine("dvr != null");
-                                VhostDvrApis.SetVhostDvr(plan.DeviceId, plan.VhostDomain, dvr,
+                                VhostDvrApis.SetVhostDvr(plan.DeviceId!, plan.VhostDomain!, dvr,
                                     out ResponseStruct rs); //写入对应vhost
-                                if (SystemApis.RefreshSrsObject(plan.DeviceId, out rs)) //重写srsconf文件
+                                if (SystemApis.RefreshSrsObject(plan.DeviceId!, out rs)) //重写srsconf文件
                                 {
                                     Console.WriteLine("SystemApis.RefreshSrsObject");
-                                    GlobalSrsApis.ReloadSrs(plan.DeviceId, out rs); //重新加载srsconf配置
+                                    GlobalSrsApis.ReloadSrs(plan.DeviceId!, out rs); //重新加载srsconf配置
                                 }
                             }
 
@@ -369,9 +369,9 @@ namespace SRSApis.SystemAutonomy
                         {
                             Console.WriteLine("needwriteConfig");
                             needwriteConfig = false;
-                            SrsConfFile.SRSConfClass.Dvr dvr = VhostDvrApis.GetVhostDvr(plan.DeviceId, plan.VhostDomain,
+                            SrsConfFile.SRSConfClass.Dvr dvr = VhostDvrApis.GetVhostDvr(plan.DeviceId!, plan.VhostDomain!,
                                 out ResponseStruct rs);
-                            SrsManager sm = SystemApis.GetSrsManagerInstanceByDeviceId(plan.DeviceId);
+                            SrsManager sm = SystemApis.GetSrsManagerInstanceByDeviceId(plan.DeviceId!);
                             if (dvr == null)
                             {
                                 Console.WriteLine("needwriteConfig.dvr == null");
@@ -389,7 +389,7 @@ namespace SRSApis.SystemAutonomy
                                 dvr.Dvr_plan = "segment";
                                 dvr.Dvr_wait_keyframe = true;
                                 dvr.Time_Jitter = PlayTimeJitter.full;
-                                VhostDvrApis.SetVhostDvr(plan.DeviceId, plan.VhostDomain, dvr, out rs);
+                                VhostDvrApis.SetVhostDvr(plan.DeviceId!, plan.VhostDomain!, dvr, out rs);
                             }
                             else
                             {
@@ -417,13 +417,13 @@ namespace SRSApis.SystemAutonomy
 
                                     dvr.Dvr_apply = dvr.Dvr_apply.Trim();
                                 }
-                                VhostDvrApis.SetVhostDvr(plan.DeviceId, plan.VhostDomain, dvr, out rs);
+                                VhostDvrApis.SetVhostDvr(plan.DeviceId!, plan.VhostDomain!, dvr, out rs);
                             }
 
-                            if (SystemApis.RefreshSrsObject(plan.DeviceId, out rs)) //重写srsconf文件
+                            if (SystemApis.RefreshSrsObject(plan.DeviceId!, out rs)) //重写srsconf文件
                             {
                                 Console.WriteLine("needwriteConfig.SystemApis.RefreshSrsObject(plan.DeviceId, out rs)");
-                                GlobalSrsApis.ReloadSrs(plan.DeviceId, out rs); //重新加载srsconf配置
+                                GlobalSrsApis.ReloadSrs(plan.DeviceId!, out rs); //重新加载srsconf配置
                             }
                         }
                     }

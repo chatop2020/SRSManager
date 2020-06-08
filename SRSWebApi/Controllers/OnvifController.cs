@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using SrsApis.SrsManager.Apis;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ControllerStructs.RequestModules;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
-using SrsWebApi.RequestModules;
 
 namespace SrsWebApi.Controllers
 {
@@ -95,7 +94,7 @@ namespace SrsWebApi.Controllers
             }
             int v = 0;
             v = (ptzZoomStruct.ZoomDir == ZoomDir.MORE) ? 1 : -1; //放大时值大于0,缩小时值小于0
-            var rt = OnvifMonitorApis.SetPtzZoom(ptzZoomStruct.IpAddr, ptzZoomStruct.ProfileToken, v,
+            var rt = OnvifMonitorApis.SetPtzZoom(ptzZoomStruct.IpAddr!, ptzZoomStruct.ProfileToken!, v,
                 out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -116,7 +115,7 @@ namespace SrsWebApi.Controllers
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
-            var rt = OnvifMonitorApis.GetPtzPosition(ptzMove.IpAddr, ptzMove.ProfileToken, out ResponseStruct rs);
+            var rt = OnvifMonitorApis.GetPtzPosition(ptzMove.IpAddr!, ptzMove.ProfileToken!, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -137,7 +136,7 @@ namespace SrsWebApi.Controllers
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
-            var rt = OnvifMonitorApis.PtzKeepMoveStop(ptzMove.IpAddr, ptzMove.ProfileToken, out ResponseStruct rs);
+            var rt = OnvifMonitorApis.PtzKeepMoveStop(ptzMove.IpAddr!, ptzMove.ProfileToken!, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
@@ -158,7 +157,7 @@ namespace SrsWebApi.Controllers
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
-            var rt = OnvifMonitorApis.PtzMove(ptzMove.IpAddr, ptzMove.ProfileToken, (PtzMoveType) ptzMove.MoveType,
+            var rt = OnvifMonitorApis.PtzMove(ptzMove.IpAddr!, ptzMove.ProfileToken!, (PtzMoveType) ptzMove.MoveType,
                 ptzMove.MoveDir, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

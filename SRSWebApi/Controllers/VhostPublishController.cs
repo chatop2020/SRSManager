@@ -4,8 +4,9 @@ using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
+using Publish = SrsConfFile.SRSConfClass.Publish;
 
 namespace SrsWebApi.Controllers
 {

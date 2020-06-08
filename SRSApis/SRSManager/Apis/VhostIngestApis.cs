@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using Ubiety.Dns.Core.Records;
 using Common = SRSApis.Common;
 

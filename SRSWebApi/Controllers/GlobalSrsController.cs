@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ControllerStructs.RequestModules;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
-using SrsWebApi.RequestModules;
 
 namespace SrsWebApi.Controllers
 {

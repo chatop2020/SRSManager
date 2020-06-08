@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.DBMoudle;
+using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
-using Dvr = SrsApis.SrsManager.Apis.ApiModules.Dvr;
+using Dvr = SRSManageCommon.DBMoudle.Dvr;
 
 namespace SrsApis.SrsManager.Apis
 {
@@ -242,20 +242,20 @@ namespace SrsApis.SrsManager.Apis
             if (idFound && !vhostFound && !streamFound)
             {
                 tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
-                    x => x.DeviceId.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())).ToList();
+                    x => x.DeviceId!.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())).ToList();
             }
             else if (idFound && vhostFound && !streamFound)
             {
                 tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
-                    x => x.DeviceId.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())
-                         && x.VhostDomain.Trim().ToLower().Equals(obj.VhostDomain!.Trim().ToLower())).ToList();
+                    x => x.DeviceId!.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())
+                         && x.VhostDomain!.Trim().ToLower().Equals(obj.VhostDomain!.Trim().ToLower())).ToList();
             }
             else if (idFound && vhostFound && streamFound)
             {
                 tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
-                    x => x.DeviceId.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())
-                         && x.VhostDomain.Trim().ToLower().Equals(obj.VhostDomain!.Trim().ToLower())
-                         && x.Stream.Trim().ToLower().Equals(obj.Stream!.Trim().ToLower())).ToList();
+                    x => x.DeviceId!.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())
+                         && x.VhostDomain!.Trim().ToLower().Equals(obj.VhostDomain!.Trim().ToLower())
+                         && x.Stream!.Trim().ToLower().Equals(obj.Stream!.Trim().ToLower())).ToList();
             }
             else
             {
@@ -398,7 +398,7 @@ namespace SrsApis.SrsManager.Apis
             }
 
             var ret = Common.SrsManagers.FindLast(x =>
-                x.SrsDeviceId.Trim().ToLower().Equals(sdp.DeviceId.Trim().ToLower()));
+                x.SrsDeviceId.Trim().ToLower().Equals(sdp.DeviceId!.Trim().ToLower()));
             if (ret == null)
             {
                 rs.Code = ErrorNumber.SrsObjectNotInit;
@@ -435,7 +435,7 @@ namespace SrsApis.SrsManager.Apis
             }
 
             var retVhost =
-                ret.Srs.Vhosts.FindLast(x => x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain.Trim().ToLower()));
+                ret.Srs.Vhosts.FindLast(x => x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain!.Trim().ToLower()));
             if (retVhost == null)
             {
                 rs.Code = ErrorNumber.SrsSubInstanceNotFound;

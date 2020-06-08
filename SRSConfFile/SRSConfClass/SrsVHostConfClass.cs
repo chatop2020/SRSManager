@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SrsConfFile.SRSConfClass
 {
@@ -975,7 +976,7 @@ namespace SrsConfFile.SRSConfClass
         {
             SectionsName = "input";
         }
-
+   
         public IngestInputType? Type
         {
             get => type;

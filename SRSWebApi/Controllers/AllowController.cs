@@ -3,10 +3,10 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ControllerStructs.RequestModules;
+using SRSManageCommon.ControllerStructs.ResponseModules;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
-using SrsWebApi.RequestModules;
-using SrsWebApi.ResponseModules;
 using Common = SRSApis.Common;
 
 namespace SrsWebApi.Controllers
@@ -63,7 +63,7 @@ namespace SrsWebApi.Controllers
                         ResponseStruct rs = new ResponseStruct()
                         {
                             Code = ErrorNumber.SystemSessionExcept,
-                            Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept],
+                            Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionExcept]!,
                         };
                         var result = new JsonResult(rs);
                         result.StatusCode = (int) HttpStatusCode.OK;
@@ -75,7 +75,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.SystemSessionItWorks,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionItWorks],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemSessionItWorks]!,
                     };
                     var result = new JsonResult(rs);
                     result.StatusCode = (int) HttpStatusCode.OK;
@@ -87,7 +87,7 @@ namespace SrsWebApi.Controllers
                 ResponseStruct rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SystemCheckAllowKeyFail,
-                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail],
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail]!,
                 };
                 var result = new JsonResult(rs);
                 result.StatusCode = (int) HttpStatusCode.MethodNotAllowed;
@@ -124,7 +124,7 @@ namespace SrsWebApi.Controllers
                 ResponseStruct rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SystemCheckAllowKeyFail,
-                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail],
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckAllowKeyFail]!,
                 };
                 var result = new JsonResult(rs);
                 result.StatusCode = (int) HttpStatusCode.MethodNotAllowed;
@@ -170,7 +170,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.None,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None]!,
                     };
                     var result = new JsonResult(rs);
                     result.StatusCode = (int) HttpStatusCode.OK;
@@ -181,7 +181,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.SrsSubInstanceNotFound,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound]!,
                     };
                     var result = new JsonResult(rs);
                     result.StatusCode = (int) HttpStatusCode.BadRequest;
@@ -193,7 +193,7 @@ namespace SrsWebApi.Controllers
                 ResponseStruct rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SystemCheckPasswordFail,
-                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]!,
                 };
 
                 var result = new JsonResult(rs);
@@ -242,7 +242,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.None,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None]!,
                     };
 
                     var result = new JsonResult(rs);
@@ -254,7 +254,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.SrsSubInstanceNotFound,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceNotFound]!,
                     };
 
                     var result = new JsonResult(rs);
@@ -267,7 +267,7 @@ namespace SrsWebApi.Controllers
                 ResponseStruct rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SystemCheckPasswordFail,
-                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]!,
                 };
 
                 var result = new JsonResult(rs);
@@ -302,7 +302,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.SrsSubInstanceAlreadyExists,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceAlreadyExists],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.SrsSubInstanceAlreadyExists]!,
                     };
                     result = new JsonResult(rs);
                     result.StatusCode = (int) HttpStatusCode.BadRequest;
@@ -315,7 +315,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.FunctionInputParamsError,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.FunctionInputParamsError],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.FunctionInputParamsError]!,
                     };
                     result = new JsonResult(rs);
                     result.StatusCode = (int) HttpStatusCode.BadRequest;
@@ -328,7 +328,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.None,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.None]!,
                     };
                     result = new JsonResult(rs);
                     result.StatusCode = (int) HttpStatusCode.OK;
@@ -339,7 +339,7 @@ namespace SrsWebApi.Controllers
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.Other,
-                        Message = ErrorMessage.ErrorDic?[ErrorNumber.Other],
+                        Message = ErrorMessage.ErrorDic?[ErrorNumber.Other]!,
                     };
                     result = new JsonResult(rs);
                     result.StatusCode = (int) HttpStatusCode.BadRequest;
@@ -351,7 +351,7 @@ namespace SrsWebApi.Controllers
                 ResponseStruct rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SystemCheckPasswordFail,
-                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]!,
                 };
                 result = new JsonResult(rs);
                 result.StatusCode = (int) HttpStatusCode.Unauthorized;
@@ -390,7 +390,7 @@ namespace SrsWebApi.Controllers
                 ResponseStruct rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SystemCheckPasswordFail,
-                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail],
+                    Message = ErrorMessage.ErrorDic?[ErrorNumber.SystemCheckPasswordFail]!,
                 };
                 var result2 = new JsonResult(rs);
                 result2.StatusCode = (int) HttpStatusCode.Unauthorized;

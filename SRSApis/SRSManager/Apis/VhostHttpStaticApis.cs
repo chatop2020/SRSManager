@@ -1,6 +1,6 @@
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
 
 namespace SrsApis.SrsManager.Apis

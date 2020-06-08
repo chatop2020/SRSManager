@@ -6,8 +6,9 @@ using System.Threading;
 using SrsConfFile;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
+using Dvr = SRSManageCommon.DBMoudle.Dvr;
 
 namespace SrsApis.SrsManager
 {
@@ -503,7 +504,7 @@ namespace SrsApis.SrsManager
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\npid:(" + SrsPidValue + ")",
             };
-            OrmService.Db.Delete<SrsApis.SrsManager.Apis.ApiModules.Dvr>().Where(x => x.Device_Id!.Equals(SrsDeviceId));
+            OrmService.Db.Delete<Dvr>().Where(x => x.Device_Id!.Equals(SrsDeviceId));
             return true;
         }
 

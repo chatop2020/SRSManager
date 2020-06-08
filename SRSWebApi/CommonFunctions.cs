@@ -3,10 +3,9 @@ using System.IO;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using SRSApis;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SRSApis.SystemAutonomy;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
 
 namespace SrsWebApi

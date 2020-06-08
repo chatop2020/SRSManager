@@ -1,7 +1,8 @@
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
+using Hls = SrsConfFile.SRSConfClass.Hls;
 
 namespace SrsApis.SrsManager.Apis
 {
@@ -136,10 +137,10 @@ namespace SrsApis.SrsManager.Apis
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
-        /// <param name="hls"></param>
+        /// <param name="hostHls"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool SetVhostHls(string deviceId, string vhostDomain, Hls hls,
+        public static bool SetVhostHls(string deviceId, string vhostDomain, Hls hostHls,
             out ResponseStruct rs)
         {
             rs = new ResponseStruct()
@@ -183,7 +184,7 @@ namespace SrsApis.SrsManager.Apis
                     return false!;
                 }
 
-                retVhost.Vhls = hls;
+                retVhost.Vhls = hostHls;
                 return true;
             }
 

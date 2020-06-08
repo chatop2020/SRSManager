@@ -1,7 +1,8 @@
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
+using Publish = SrsConfFile.SRSConfClass.Publish;
 
 namespace SrsApis.SrsManager.Apis
 {

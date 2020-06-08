@@ -2,11 +2,11 @@ using System;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using SrsApis.SrsManager.Apis;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ControllerStructs.RequestModules;
+using SRSManageCommon.DBMoudle;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
-using SrsWebApi.RequestModules;
 using Common = SRSApis.Common;
 
 namespace SrsWebApi.Controllers
@@ -135,7 +135,7 @@ namespace SrsWebApi.Controllers
 
             FileInfo dvrFile= new FileInfo(dvr.File);
             tmpDvr.FileSize = dvrFile.Length;
-            if (FFmpegGetDuration.GetDuration(Program.CommonFunctions.FFmpegBinPath, dvr.File, out long duration))
+            if (FFmpegGetDuration.GetDuration(Program.CommonFunctions.FFmpegBinPath, dvr.File!, out long duration))
             {
                 tmpDvr.Duration = duration;
                 tmpDvr.StartTime = currentTime.AddMilliseconds(duration * (-1));

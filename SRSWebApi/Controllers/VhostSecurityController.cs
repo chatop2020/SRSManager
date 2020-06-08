@@ -4,7 +4,7 @@ using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
 
 namespace SrsWebApi.Controllers

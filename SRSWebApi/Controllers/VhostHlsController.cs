@@ -4,8 +4,9 @@ using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
+using Hls = SrsConfFile.SRSConfClass.Hls;
 
 namespace SrsWebApi.Controllers
 {
@@ -63,20 +64,20 @@ namespace SrsWebApi.Controllers
         /// </summary>
         /// <param name="deviceId"></param>
         /// <param name="vhostDomain"></param>
-        /// <param name="hls"></param>
+        /// <param name="hostHls"></param>
         /// <returns></returns>
         [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/VhostHls/SetVhostHls")]
-        public JsonResult SetVhostHls(string deviceId, string vhostDomain, Hls hls)
+        public JsonResult SetVhostHls(string deviceId, string vhostDomain, Hls hostHls)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,hls});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,hostHls});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
-            var rt = VhostHlsApis.SetVhostHls(deviceId, vhostDomain, hls, out ResponseStruct rs);
+            var rt = VhostHlsApis.SetVhostHls(deviceId, vhostDomain, hostHls, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }

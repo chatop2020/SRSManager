@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ControllerStructs.ResponseModules;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
-using SrsWebApi.ResponseModules;
 
 namespace SrsWebApi.Controllers
 {

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SrsApis.SrsManager.Apis;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.DBMoudle;
+using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
 
 namespace SrsWebApi.Controllers

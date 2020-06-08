@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using SrsApis.SrsManager.Apis;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.DBMoudle;
+using SRSManageCommon.ManageStructs;
 
 namespace SRSApis.SystemAutonomy
 {

@@ -1,7 +1,7 @@
 using System;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.DBMoudle;
+using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
 
 namespace SrsApis.SrsManager.Apis

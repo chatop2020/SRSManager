@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using SrsManageCommon;
 using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsConfFile;
 using SrsConfFile.SRSConfClass;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using Dvr = SrsConfFile.SRSConfClass.Dvr;
 using JsonHelper = SrsManageCommon.JsonHelper;
 

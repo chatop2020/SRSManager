@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using SrsApis.SrsManager.Apis.ApiModules;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
 
 namespace SrsApis.SrsManager.Apis
@@ -18,7 +17,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     if (ovi.OnvifMonitor == null)
                     {
-                        ovi.OnvifMonitor = new OnvifMonitor(ovi.IpAddr, ovi.Username, ovi.Password);
+                        ovi.OnvifMonitor = new OnvifMonitor(ovi.IpAddr, ovi.Username!, ovi.Password!);
                         ovi.OnvifMonitor.InitMonitor().Wait();
                         return GetOnvifMonitor(ipAddr, out rs);
                     }
@@ -57,7 +56,7 @@ namespace SrsApis.SrsManager.Apis
                     {
                         try
                         {
-                            onvf.OnvifMonitor = new OnvifMonitor(onvf.IpAddr, onvf.Username, onvf.Password);
+                            onvf.OnvifMonitor = new OnvifMonitor(onvf.IpAddr, onvf.Username!, onvf.Password!);
                             onvf.OnvifMonitor.InitMonitor().Wait();
                         }
                         catch
@@ -193,7 +192,7 @@ namespace SrsApis.SrsManager.Apis
             }
 
             OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
-                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
+                x.ProfileToken!.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
 
             if (pf == null)
             {
@@ -265,7 +264,7 @@ namespace SrsApis.SrsManager.Apis
             }
 
             OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
-                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
+                x.ProfileToken!.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
 
             if (pf == null)
             {
@@ -277,7 +276,7 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
-            ResponsePosition pos = onvif.OnvifMonitor.GetPtzPositionStatus(pf.ProfileToken);
+            ResponsePosition pos = onvif.OnvifMonitor.GetPtzPositionStatus(pf.ProfileToken!);
             if (pos != null)
             {
                 rs = new ResponseStruct()
@@ -340,7 +339,7 @@ namespace SrsApis.SrsManager.Apis
             }
 
             OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
-                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
+                x.ProfileToken!.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
 
             if (pf == null)
             {
@@ -353,7 +352,7 @@ namespace SrsApis.SrsManager.Apis
             }
 
             ResponsePosition pos;
-            if (onvif.OnvifMonitor.PtzMoveKeepStop(pf.ProfileToken, out pos))
+            if (onvif.OnvifMonitor.PtzMoveKeepStop(pf.ProfileToken!, out pos))
             {
                 rs = new ResponseStruct()
                 {
@@ -415,7 +414,7 @@ namespace SrsApis.SrsManager.Apis
             }
 
             OnvifProfile pf = onvif.OnvifMonitor.OnvifProfileList.FindLast(x =>
-                x.ProfileToken.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
+                x.ProfileToken!.Trim().ToUpper().Equals(profileToken.Trim().ToUpper()))!;
 
             if (pf == null)
             {
@@ -462,7 +461,7 @@ namespace SrsApis.SrsManager.Apis
                     }
 
                     ResponsePosition pos;
-                    if (onvif.OnvifMonitor.PtzMoveKeep(pf.ProfileToken, ppos, out pos))
+                    if (onvif.OnvifMonitor.PtzMoveKeep(pf.ProfileToken!, ppos, out pos))
                     {
                         rs = new ResponseStruct()
                         {
@@ -483,7 +482,7 @@ namespace SrsApis.SrsManager.Apis
 
                 case PtzMoveType.RELATIVE:
 
-                    if (onvif.OnvifMonitor.PtzMove(pf.ProfileToken, moveDir, out pos))
+                    if (onvif.OnvifMonitor.PtzMove(pf.ProfileToken!, moveDir, out pos))
                     {
                         rs = new ResponseStruct()
                         {

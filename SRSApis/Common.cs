@@ -6,7 +6,7 @@ using SrsApis.SrsManager.Apis;
 using SRSApis.SystemAutonomy;
 using SrsConfFile;
 using SrsManageCommon;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.ManageStructs;
 
 namespace SRSApis
 {
@@ -151,7 +151,7 @@ namespace SRSApis
                     try
                     {
                         if (om.OnvifMonitor == null)
-                            om.OnvifMonitor = new OnvifMonitor(om.IpAddr, om.Username, om.Password);
+                            om.OnvifMonitor = new OnvifMonitor(om.IpAddr, om.Username!, om.Password!);
                     }
                     catch
                     {
@@ -226,7 +226,7 @@ namespace SRSApis
                                 oi.Password = ov.Password;
                                 oi.Username = ov.Username;
                                 oi.ConfigPath = file.FullName;
-                                oi.IpAddr = ov.Host;
+                                oi.IpAddr = ov.Host!;
                                 OnvifManagers.Add(oi);
                             }
                         }
