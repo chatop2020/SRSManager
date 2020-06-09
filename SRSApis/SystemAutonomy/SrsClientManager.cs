@@ -18,26 +18,59 @@ namespace SRSApis.SystemAutonomy
                 {
                     if (srs.IsInit && srs.Srs != null && srs.IsRunning)
                     {
-                        ushort? port = srs.Srs.Http_api!.Listen;
-                        if (port == null || srs.Srs.Http_api == null || srs.Srs.Http_api.Enabled == false)
-                            continue;
-                        var ret = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
-                        if (ret != null)
+                        var onPublishList =
+                            FastUsefulApis.GetOnPublishMonitorListByDeviceId(srs.SrsDeviceId, out ResponseStruct rs);
+                        if(onPublishList==null || onPublishList.Count==0) continue;
+                        foreach (var client in onPublishList)
                         {
-                            foreach (var r in ret)
-                            {
-                                if (!string.IsNullOrEmpty(r.Stream))
+                            #region 处理28181设备
+                                ushort? port = srs.Srs.Http_api!.Listen;
+                                if (port == null || srs.Srs.Http_api == null || srs.Srs.Http_api.Enabled == false)
+                                    continue;
+                                var ret = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
+                                if (ret != null)
                                 {
-                                    var reti = OrmService.Db.Update<Client>()
-                                        .Set(x => x.MonitorType, MonitorType.GBT28181)
-                                        .Where(x => x.Stream!.Equals(r.Stream) &&
-                                                    x.Device_Id!.Equals(srs.SrsDeviceId) &&
-                                                    (x.MonitorIp == null || x.MonitorIp == "" ||
-                                                     x.MonitorIp == "127.0.0.1" || x.MonitorIp==r.Rtp_Peer_Ip))
-                                        .ExecuteAffrows();
+                                    foreach (var r in ret)
+                                    {
+                                        if (!string.IsNullOrEmpty(r.Stream) && r.Stream.Equals(client.Stream))
+                                        {
+ 
+                                            var reti = OrmService.Db.Update<Client>()
+                                                .Set(x => x.MonitorType, MonitorType.GBT28181)
+                                                .Where(x => x.Client_Id==client.Client_Id)
+                                                .ExecuteAffrows();
+                                        }
+                                    }
                                 }
-                            }
+                                #endregion
+                                #region 处理onvif设备
+                                var ingestList = FastUsefulApis.GetAllIngestByDeviceId(srs.SrsDeviceId, out rs);
+                                if (ingestList != null && ingestList.Count > 0)
+                                {
+                                    foreach (var ingest in ingestList)
+                                    {
+                                        
+                                        if (ingest != null && ingest.Input != null 
+                                            && client.RtspUrl!=null &&ingest.Input!.Url!.Equals(client.RtspUrl))
+                                        {
+                                            var reti = OrmService.Db.Update<Client>()
+                                                .Set(x => x.MonitorType, MonitorType.Onvif)
+                                                .Where(x => x.Client_Id==client.Client_Id)
+                                                .ExecuteAffrows(); 
+                                        }
+                                    }
+                                }
+                                #endregion
+                                #region 处理直播流
+                                int retj = OrmService.Db.Update<Client>()
+                                    .Set(x => x.MonitorType, MonitorType.Webcast)
+                                    .Where(x=>x.MonitorType==MonitorType.Unknow)
+                                    .ExecuteAffrows();
+                            
+                                #endregion
+                           // }
                         }
+                       
                     }
                 }
             }
@@ -88,7 +121,8 @@ namespace SRSApis.SystemAutonomy
                                             .GetIngestRtspMonitorUrlIpAddress(ingest.Input!.Url!)!;
                                     if (SrsManageCommon.Common.IsIpAddr(inputIp!))
                                     {
-                                        var reti = OrmService.Db.Update<Client>().Set(x => x.MonitorIp, inputIp)
+                                        var reti = OrmService.Db.Update<Client>()
+                                            .Set(x => x.MonitorIp, inputIp)
                                             .Set(x => x.RtspUrl, ingest.Input!.Url!)
                                             .Where(x => x.Stream!.Equals(ingest.IngestName) &&
                                                         x.Device_Id!.Equals(srs.SrsDeviceId) &&
@@ -174,6 +208,7 @@ namespace SRSApis.SystemAutonomy
 
                 rewriteMonitorType();
                 Thread.Sleep(500);
+
                 #endregion
 
                 Thread.Sleep(5000);

@@ -218,7 +218,6 @@ namespace SrsApis.SrsManager.Apis
                                 .Set(x => x.Param, client.Param)
                                 .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
                                 .Set(x => x.ClientType, ClientType.Monitor)
-                                .Set(x=>x.MonitorType,client.MonitorType)
                                 .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
                                 .ExecuteAffrows();
                             if (ret > 0)
@@ -229,6 +228,7 @@ namespace SrsApis.SrsManager.Apis
                         else
                         {
                             client.ClientType = ClientType.Monitor;
+                            client.MonitorType=MonitorType.Unknow;
                             client.IsOnline = true;
                             var ret = OrmService.Db.Insert(client).ExecuteAffrows();
                             if (ret > 0)
@@ -320,7 +320,7 @@ namespace SrsApis.SrsManager.Apis
                                 .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, client.HttpUrl)
                                 .Set(x => x.Param, client.Param)
                                 .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
-                                .Set(x => x.ClientType, ClientType.Monitor).Set(x => x.MonitorIp, client.ClientIp)
+                                .Set(x => x.MonitorIp, client.ClientIp)
                                 .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
                                 .ExecuteAffrows();
                             if (ret > 0)
@@ -333,6 +333,7 @@ namespace SrsApis.SrsManager.Apis
                             client.ClientType = ClientType.Monitor;
                             client.IsOnline = true;
                             client.MonitorIp = client.ClientIp;
+                            client.MonitorType = MonitorType.Unknow;
                             var ret = OrmService.Db.Insert(client).ExecuteAffrows();
                             if (ret > 0)
                             {

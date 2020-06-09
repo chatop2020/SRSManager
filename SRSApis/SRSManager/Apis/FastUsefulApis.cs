@@ -14,16 +14,17 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class FastUsefulApis
     {
-
         /// <summary>
-        /// 返回Dvr列表BydeviceId
+        /// 获取ingest下的一个流信息
         /// </summary>
         /// <param name="deviceId"></param>
+        /// <param name="vhostDomain"></param>
+        /// <param name="ingestName"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<Dvr> GetDvrList(string deviceId, out ResponseStruct rs)
+        public static SrsLiveStream GetStreamInfoByVhostIngestName(string deviceId, string vhostDomain,
+            string ingestName, out ResponseStruct rs)
         {
-            
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -36,10 +37,116 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
-           return  OrmService.Db.Select<Dvr>().Where(x => x.Device_Id!.Trim().ToLower().Equals(deviceId.Trim().ToLower()))
-                .ToList();
-           
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToLower().Equals(deviceId.Trim().ToLower()));
+            if (ret == null)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            var retIngest = VhostIngestApis.GetVhostIngest(deviceId, vhostDomain, ingestName, out rs);
+            if (retIngest == null)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            try
+            {
+                Uri uri = new Uri(retIngest.Engines![0].Output!);
+                return new SrsLiveStream()
+                {
+                    DeviceId = deviceId,
+                    IngestName = ingestName,
+                    LiveStream = uri.LocalPath,
+                    MonitorType = MonitorType.Onvif,
+                    VhostDomain = vhostDomain
+                };
+            }
+            catch
+            {
+                rs.Code = ErrorNumber.Other;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.Other];
+                return null!;
+            }
         }
+
+        /// <summary>
+        /// 获取所有ingestBydeviceid
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<Ingest> GetAllIngestByDeviceId(string deviceId, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToLower().Equals(deviceId.Trim().ToLower()));
+            if (ret == null)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            List<Ingest> ingestList = new List<Ingest>();
+            if (ret.Srs.Vhosts == null || ret.Srs.Vhosts.Count == 0) return null!;
+            foreach (var vhost in ret.Srs.Vhosts)
+            {
+                if (vhost != null && vhost.Vingests != null)
+                {
+                    foreach (var ingest in vhost.Vingests)
+                    {
+                        if (ingest != null)
+                        {
+                            ingestList.Add(ingest);
+                        }
+                    }
+                }
+            }
+
+            return ingestList;
+        }
+
+        /// <summary>
+        /// 返回Dvr列表BydeviceId
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<Dvr> GetDvrList(string deviceId, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            {
+                rs.Code = ErrorNumber.SrsObjectNotInit;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                return null!;
+            }
+
+            return OrmService.Db.Select<Dvr>()
+                .Where(x => x.Device_Id!.Trim().ToLower().Equals(deviceId.Trim().ToLower()))
+                .ToList();
+        }
+
         /// <summary>
         /// 通过id删除一个录制计划
         /// </summary>
@@ -337,18 +444,18 @@ namespace SrsApis.SrsManager.Apis
             if (retSdp != null)
             {
                 Console.WriteLine("retSDp!=njull");
-                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Set(x=>x.LimitDays,sdp.LimitDays).
-                    Set(x=>x.LimitSpace!=sdp.LimitSpace).Set(x=>x.OverStepPlan!=sdp.OverStepPlan).
-                    Set(x=>x.Enable!=sdp.Enable).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
-               Console.WriteLine("retUpdate:"+retUpdate);
+                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Set(x => x.LimitDays, sdp.LimitDays)
+                    .Set(x => x.LimitSpace != sdp.LimitSpace).Set(x => x.OverStepPlan != sdp.OverStepPlan)
+                    .Set(x => x.Enable != sdp.Enable).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
+                Console.WriteLine("retUpdate:" + retUpdate);
                 if (retUpdate > 0)
                 {
                     if (sdp.TimeRange != null)
                     {
-                     var retDelete=   OrmService.Db.Delete<DvrDayTimeRange>()
+                        var retDelete = OrmService.Db.Delete<DvrDayTimeRange>()
                             .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
                             .ExecuteAffrows();
-                        Console.WriteLine("delete"+retDelete);
+                        Console.WriteLine("delete" + retDelete);
                         for (int i = 0; i <= sdp.TimeRange!.Count - 1; i++)
                         {
                             sdp.TimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
@@ -449,17 +556,17 @@ namespace SrsApis.SrsManager.Apis
                 .First();
             if (retSdp != null)
             {
-                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Set(x=>x.LimitDays,sdp.LimitDays).
-                    Set(x=>x.LimitSpace!=sdp.LimitSpace).Set(x=>x.OverStepPlan!=sdp.OverStepPlan).
-                    Set(x=>x.Enable!=sdp.Enable).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
+                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Set(x => x.LimitDays, sdp.LimitDays)
+                    .Set(x => x.LimitSpace != sdp.LimitSpace).Set(x => x.OverStepPlan != sdp.OverStepPlan)
+                    .Set(x => x.Enable != sdp.Enable).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
                 if (retUpdate > 0)
                 {
                     if (sdp.TimeRange != null)
                     {
-                        var retDelete=OrmService.Db.Delete<DvrDayTimeRange>()
+                        var retDelete = OrmService.Db.Delete<DvrDayTimeRange>()
                             .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
                             .ExecuteAffrows();
-                        Console.WriteLine("delete"+retDelete);
+                        Console.WriteLine("delete" + retDelete);
                         for (int i = 0; i <= sdp.TimeRange!.Count - 1; i++)
                         {
                             sdp.TimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
@@ -1296,7 +1403,8 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="rs"></param>
         /// <param name="username"></param>
         /// <returns></returns>
-        public static Ingest GetOnvifMonitorIngestTemplate(string username,string password,string rtspUrl, out ResponseStruct rs)
+        public static Ingest GetOnvifMonitorIngestTemplate(string username, string password, string rtspUrl,
+            out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -1310,13 +1418,14 @@ namespace SrsApis.SrsManager.Apis
                     rtspUrl = rtspUrl.Insert(rtspUrl.IndexOf("://", StringComparison.Ordinal) + 3,
                         username + ":" + password + "@");
                 }
-            }else if (!string.IsNullOrEmpty(username) && string.IsNullOrEmpty(username))
+            }
+            else if (!string.IsNullOrEmpty(username) && string.IsNullOrEmpty(username))
             {
                 if (!rtspUrl.Contains("@"))
                 {
                     rtspUrl = rtspUrl.Insert(rtspUrl.IndexOf("://", StringComparison.Ordinal) + 3,
                         username + "@");
-                }  
+                }
             }
 
             Uri url = new Uri(rtspUrl);

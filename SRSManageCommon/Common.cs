@@ -22,6 +22,7 @@ namespace SrsManageCommon
     {
         Onvif,
         GBT28181,
+        Webcast,
         Unknow,
     }
     public static class Common

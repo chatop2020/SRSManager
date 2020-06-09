@@ -12,6 +12,10 @@ namespace Test_FreeSql
         static void Main(string[] args)
         {
 
+            string url = "rtmp://127.0.0.1/live/192.168.2.163_profile_201";
+            Uri abc= new Uri(url);
+            Console.WriteLine(abc.ToString());
+
             DBManager.fsql.Delete<StreamDvrPlan>().Where("1=1").ExecuteAffrows();
             DBManager.fsql.Delete<DvrDayTimeRange>().Where("1=1").ExecuteAffrows();
             var a = new StreamDvrPlan();

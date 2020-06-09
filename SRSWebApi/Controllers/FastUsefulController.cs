@@ -15,6 +15,44 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class FastUsefulController : ControllerBase
     { 
+       
+        /// <summary>
+        /// 获取流信息ByIngestName
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/GetStreamInfoByVhostIngestName")]
+        public JsonResult GetStreamInfoByVhostIngestName(string deviceId,string vhostDomain,string ingestName)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,ingestName});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.GetStreamInfoByVhostIngestName(deviceId,vhostDomain,ingestName,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+        /// <summary>
+        /// 获取Ingest列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/GetAllIngestByDeviceId")]
+        public JsonResult GetAllIngestByDeviceId(string deviceId)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.GetAllIngestByDeviceId(deviceId,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
         
         /// <summary>
         /// 获取录像文件ByDeviceId
