@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
@@ -63,7 +64,7 @@ namespace SRSApis.SystemAutonomy
             List<string> dvrStreams = new List<string>();
             if (!string.IsNullOrEmpty(dvrApply))
             {
-                dvrStreams = System.Text.RegularExpressions.Regex.Split(dvrApply, @"[\s]+").ToList();
+                dvrStreams = Regex.Split(dvrApply, @"[\s]+").ToList();
                 Console.WriteLine("WantStream:"+plan.App+"/"+plan.Stream);
                 foreach (var s in dvrStreams)
                 {

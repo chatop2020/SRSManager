@@ -1,12 +1,17 @@
+using System.CodeDom.Compiler;
+using System.Diagnostics;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+
 namespace Mictlanix.DotNet.Onvif.Ptz
 {
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver20/ptz/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver20/ptz/wsdl")]
     public partial class Capabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool eFlipField;
 
@@ -29,15 +34,15 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         private bool statusPositionFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool EFlip
         {
             get { return this.eFlipField; }
@@ -45,7 +50,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool EFlipSpecified
         {
             get { return this.eFlipFieldSpecified; }
@@ -53,7 +58,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool Reverse
         {
             get { return this.reverseField; }
@@ -61,7 +66,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ReverseSpecified
         {
             get { return this.reverseFieldSpecified; }
@@ -69,7 +74,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool GetCompatibleConfigurations
         {
             get { return this.getCompatibleConfigurationsField; }
@@ -77,7 +82,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool GetCompatibleConfigurationsSpecified
         {
             get { return this.getCompatibleConfigurationsFieldSpecified; }
@@ -85,7 +90,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool MoveStatus
         {
             get { return this.moveStatusField; }
@@ -93,7 +98,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MoveStatusSpecified
         {
             get { return this.moveStatusFieldSpecified; }
@@ -101,7 +106,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool StatusPosition
         {
             get { return this.statusPositionField; }
@@ -109,7 +114,7 @@ namespace Mictlanix.DotNet.Onvif.Ptz
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool StatusPositionSpecified
         {
             get { return this.statusPositionFieldSpecified; }

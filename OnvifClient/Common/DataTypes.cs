@@ -1,11 +1,17 @@
+using System.CodeDom.Compiler;
+using System.Diagnostics;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 using Mictlanix.DotNet.Onvif.Device;
 
 namespace Mictlanix.DotNet.Onvif.Common
 {
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OnvifVersion
     {
         private int majorField;
@@ -13,7 +19,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int minorField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int Major
         {
             get { return this.majorField; }
@@ -21,7 +27,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Minor
         {
             get { return this.minorField; }
@@ -30,12 +36,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class LocalOrientation
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private float panField;
 
@@ -50,15 +56,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool tiltFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float pan
         {
             get { return this.panField; }
@@ -66,7 +72,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool panSpecified
         {
             get { return this.panFieldSpecified; }
@@ -74,7 +80,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float tilt
         {
             get { return this.tiltField; }
@@ -82,7 +88,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool tiltSpecified
         {
             get { return this.tiltFieldSpecified; }
@@ -90,7 +96,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float roll
         {
             get { return this.rollField; }
@@ -98,7 +104,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool rollSpecified
         {
             get { return this.rollFieldSpecified; }
@@ -107,12 +113,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class LocalLocation
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private float xField;
 
@@ -127,15 +133,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool zFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float x
         {
             get { return this.xField; }
@@ -143,7 +149,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool xSpecified
         {
             get { return this.xFieldSpecified; }
@@ -151,7 +157,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float y
         {
             get { return this.yField; }
@@ -159,7 +165,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ySpecified
         {
             get { return this.yFieldSpecified; }
@@ -167,7 +173,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float z
         {
             get { return this.zField; }
@@ -175,7 +181,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool zSpecified
         {
             get { return this.zFieldSpecified; }
@@ -184,12 +190,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class GeoOrientation
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private float pitchField;
 
@@ -204,15 +210,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool yawFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float roll
         {
             get { return this.rollField; }
@@ -220,7 +226,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool rollSpecified
         {
             get { return this.rollFieldSpecified; }
@@ -228,7 +234,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float pitch
         {
             get { return this.pitchField; }
@@ -236,7 +242,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool pitchSpecified
         {
             get { return this.pitchFieldSpecified; }
@@ -244,7 +250,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float yaw
         {
             get { return this.yawField; }
@@ -252,7 +258,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool yawSpecified
         {
             get { return this.yawFieldSpecified; }
@@ -261,12 +267,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class GeoLocation
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private float elevationField;
 
@@ -281,15 +287,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool lonFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public double lon
         {
             get { return this.lonField; }
@@ -297,7 +303,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool lonSpecified
         {
             get { return this.lonFieldSpecified; }
@@ -305,7 +311,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public double lat
         {
             get { return this.latField; }
@@ -313,7 +319,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool latSpecified
         {
             get { return this.latFieldSpecified; }
@@ -321,7 +327,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float elevation
         {
             get { return this.elevationField; }
@@ -329,7 +335,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool elevationSpecified
         {
             get { return this.elevationFieldSpecified; }
@@ -338,9 +344,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class LocationEntity
     {
         private bool autoGeoField;
@@ -365,7 +371,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string tokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public GeoLocation GeoLocation
         {
             get { return this.geoLocationField; }
@@ -373,7 +379,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public GeoOrientation GeoOrientation
         {
             get { return this.geoOrientationField; }
@@ -381,7 +387,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public LocalLocation LocalLocation
         {
             get { return this.localLocationField; }
@@ -389,7 +395,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public LocalOrientation LocalOrientation
         {
             get { return this.localOrientationField; }
@@ -397,7 +403,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Entity
         {
             get { return this.entityField; }
@@ -405,7 +411,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Token
         {
             get { return this.tokenField; }
@@ -413,7 +419,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool Fixed
         {
             get { return this.fixedField; }
@@ -421,7 +427,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool FixedSpecified
         {
             get { return this.fixedFieldSpecified; }
@@ -429,7 +435,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+        [XmlAttribute(DataType = "anyURI")]
         public string GeoSource
         {
             get { return this.geoSourceField; }
@@ -437,7 +443,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool AutoGeo
         {
             get { return this.autoGeoField; }
@@ -445,7 +451,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool AutoGeoSpecified
         {
             get { return this.autoGeoFieldSpecified; }
@@ -454,18 +460,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SystemLogUri
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private SystemLogType typeField;
 
         private string uriField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public SystemLogType Type
         {
             get { return this.typeField; }
@@ -473,7 +479,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 1)]
+        [XmlElement(DataType = "anyURI", Order = 1)]
         public string Uri
         {
             get { return this.uriField; }
@@ -481,8 +487,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -490,8 +496,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum SystemLogType
     {
         /// <remarks/>
@@ -502,16 +508,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11AvailableNetworksExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -519,9 +525,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11AvailableNetworks
     {
         private Dot11AuthAndMangementSuite[] authAndMangementSuiteField;
@@ -540,7 +546,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private byte[] sSIDField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "hexBinary", Order = 0)]
+        [XmlElement(DataType = "hexBinary", Order = 0)]
         public byte[] SSID
         {
             get { return this.sSIDField; }
@@ -548,7 +554,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string BSSID
         {
             get { return this.bSSIDField; }
@@ -556,7 +562,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AuthAndMangementSuite", Order = 2)]
+        [XmlElement("AuthAndMangementSuite", Order = 2)]
         public Dot11AuthAndMangementSuite[] AuthAndMangementSuite
         {
             get { return this.authAndMangementSuiteField; }
@@ -564,7 +570,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PairCipher", Order = 3)]
+        [XmlElement("PairCipher", Order = 3)]
         public Dot11Cipher[] PairCipher
         {
             get { return this.pairCipherField; }
@@ -572,7 +578,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("GroupCipher", Order = 4)]
+        [XmlElement("GroupCipher", Order = 4)]
         public Dot11Cipher[] GroupCipher
         {
             get { return this.groupCipherField; }
@@ -580,7 +586,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public Dot11SignalStrength SignalStrength
         {
             get { return this.signalStrengthField; }
@@ -588,7 +594,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SignalStrengthSpecified
         {
             get { return this.signalStrengthFieldSpecified; }
@@ -596,7 +602,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public Dot11AvailableNetworksExtension Extension
         {
             get { return this.extensionField; }
@@ -605,8 +611,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum Dot11AuthAndMangementSuite
     {
         /// <remarks/>
@@ -623,8 +629,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum Dot11Cipher
     {
         /// <remarks/>
@@ -641,15 +647,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum Dot11SignalStrength
     {
         /// <remarks/>
         None,
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("Very Bad")]
+        [XmlEnum("Very Bad")]
         VeryBad,
 
         /// <remarks/>
@@ -659,7 +665,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         Good,
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("Very Good")]
+        [XmlEnum("Very Good")]
         VeryGood,
 
         /// <remarks/>
@@ -667,14 +673,14 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11Status
     {
         private string activeConfigAliasField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private string bSSIDField;
 
@@ -692,7 +698,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private byte[] sSIDField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "hexBinary", Order = 0)]
+        [XmlElement(DataType = "hexBinary", Order = 0)]
         public byte[] SSID
         {
             get { return this.sSIDField; }
@@ -700,7 +706,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string BSSID
         {
             get { return this.bSSIDField; }
@@ -708,7 +714,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Dot11Cipher PairCipher
         {
             get { return this.pairCipherField; }
@@ -716,7 +722,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool PairCipherSpecified
         {
             get { return this.pairCipherFieldSpecified; }
@@ -724,7 +730,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public Dot11Cipher GroupCipher
         {
             get { return this.groupCipherField; }
@@ -732,7 +738,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool GroupCipherSpecified
         {
             get { return this.groupCipherFieldSpecified; }
@@ -740,7 +746,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public Dot11SignalStrength SignalStrength
         {
             get { return this.signalStrengthField; }
@@ -748,7 +754,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SignalStrengthSpecified
         {
             get { return this.signalStrengthFieldSpecified; }
@@ -756,7 +762,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public string ActiveConfigAlias
         {
             get { return this.activeConfigAliasField; }
@@ -764,8 +770,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 6)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 6)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -773,14 +779,14 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11Capabilities
     {
         private bool adHocStationModeField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool multipleConfigurationField;
 
@@ -790,7 +796,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool wEPField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool TKIP
         {
             get { return this.tKIPField; }
@@ -798,7 +804,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool ScanAvailableNetworks
         {
             get { return this.scanAvailableNetworksField; }
@@ -806,7 +812,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool MultipleConfiguration
         {
             get { return this.multipleConfigurationField; }
@@ -814,7 +820,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool AdHocStationMode
         {
             get { return this.adHocStationModeField; }
@@ -822,7 +828,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public bool WEP
         {
             get { return this.wEPField; }
@@ -830,8 +836,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 5)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 5)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -839,16 +845,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot1XConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -856,16 +862,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EapMethodExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -873,16 +879,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class TLSConfiguration
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private string certificateIDField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 0)]
+        [XmlElement(DataType = "token", Order = 0)]
         public string CertificateID
         {
             get { return this.certificateIDField; }
@@ -890,8 +896,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -899,9 +905,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EAPMethodConfiguration
     {
         private EapMethodExtension extensionField;
@@ -910,7 +916,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private TLSConfiguration tLSConfigurationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public TLSConfiguration TLSConfiguration
         {
             get { return this.tLSConfigurationField; }
@@ -918,7 +924,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string Password
         {
             get { return this.passwordField; }
@@ -926,7 +932,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public EapMethodExtension Extension
         {
             get { return this.extensionField; }
@@ -935,9 +941,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot1XConfiguration
     {
         private string anonymousIDField;
@@ -954,7 +960,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string identityField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Dot1XConfigurationToken
         {
             get { return this.dot1XConfigurationTokenField; }
@@ -962,7 +968,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string Identity
         {
             get { return this.identityField; }
@@ -970,7 +976,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public string AnonymousID
         {
             get { return this.anonymousIDField; }
@@ -978,7 +984,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public int EAPMethod
         {
             get { return this.eAPMethodField; }
@@ -986,7 +992,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CACertificateID", DataType = "token", Order = 4)]
+        [XmlElement("CACertificateID", DataType = "token", Order = 4)]
         public string[] CACertificateID
         {
             get { return this.cACertificateIDField; }
@@ -994,7 +1000,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public EAPMethodConfiguration EAPMethodConfiguration
         {
             get { return this.eAPMethodConfigurationField; }
@@ -1002,7 +1008,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public Dot1XConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -1011,16 +1017,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class CertificateInformationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1028,18 +1034,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DateTimeRange
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private System.DateTime fromField;
 
         private System.DateTime untilField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public System.DateTime From
         {
             get { return this.fromField; }
@@ -1047,7 +1053,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public System.DateTime Until
         {
             get { return this.untilField; }
@@ -1055,8 +1061,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1064,9 +1070,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class CertificateUsage
     {
         private bool criticalField;
@@ -1074,7 +1080,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool Critical
         {
             get { return this.criticalField; }
@@ -1082,7 +1088,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [XmlText()]
         public string Value
         {
             get { return this.valueField; }
@@ -1091,9 +1097,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class CertificateInformation
     {
         private string certificateIDField;
@@ -1121,7 +1127,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string versionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 0)]
+        [XmlElement(DataType = "token", Order = 0)]
         public string CertificateID
         {
             get { return this.certificateIDField; }
@@ -1129,7 +1135,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string IssuerDN
         {
             get { return this.issuerDNField; }
@@ -1137,7 +1143,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public string SubjectDN
         {
             get { return this.subjectDNField; }
@@ -1145,7 +1151,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public CertificateUsage KeyUsage
         {
             get { return this.keyUsageField; }
@@ -1153,7 +1159,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public CertificateUsage ExtendedKeyUsage
         {
             get { return this.extendedKeyUsageField; }
@@ -1161,7 +1167,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public int KeyLength
         {
             get { return this.keyLengthField; }
@@ -1169,7 +1175,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool KeyLengthSpecified
         {
             get { return this.keyLengthFieldSpecified; }
@@ -1177,7 +1183,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public string Version
         {
             get { return this.versionField; }
@@ -1185,7 +1191,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public string SerialNum
         {
             get { return this.serialNumField; }
@@ -1193,7 +1199,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public string SignatureAlgorithm
         {
             get { return this.signatureAlgorithmField; }
@@ -1201,7 +1207,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public DateTimeRange Validity
         {
             get { return this.validityField; }
@@ -1209,7 +1215,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        [XmlElement(Order = 10)]
         public CertificateInformationExtension Extension
         {
             get { return this.extensionField; }
@@ -1218,12 +1224,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class CertificateWithPrivateKey
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private BinaryData certificateField;
         private string certificateIDField;
@@ -1231,7 +1237,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private BinaryData privateKeyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 0)]
+        [XmlElement(DataType = "token", Order = 0)]
         public string CertificateID
         {
             get { return this.certificateIDField; }
@@ -1239,7 +1245,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public BinaryData Certificate
         {
             get { return this.certificateField; }
@@ -1247,7 +1253,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public BinaryData PrivateKey
         {
             get { return this.privateKeyField; }
@@ -1255,8 +1261,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1264,16 +1270,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class BinaryData
     {
         private string contentTypeField;
         private byte[] dataField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "base64Binary", Order = 0)]
+        [XmlElement(DataType = "base64Binary", Order = 0)]
         public byte[] Data
         {
             get { return this.dataField; }
@@ -1281,7 +1287,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+        [XmlAttribute(Form = XmlSchemaForm.Qualified,
             Namespace = "http://www.w3.org/2005/05/xmlmime")]
         public string contentType
         {
@@ -1291,18 +1297,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class CertificateStatus
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private string certificateIDField;
 
         private bool statusField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 0)]
+        [XmlElement(DataType = "token", Order = 0)]
         public string CertificateID
         {
             get { return this.certificateIDField; }
@@ -1310,7 +1316,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Status
         {
             get { return this.statusField; }
@@ -1318,8 +1324,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1327,16 +1333,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Certificate
     {
         private BinaryData certificate1Field;
         private string certificateIDField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 0)]
+        [XmlElement(DataType = "token", Order = 0)]
         public string CertificateID
         {
             get { return this.certificateIDField; }
@@ -1344,7 +1350,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Certificate", Order = 1)]
+        [XmlElement("Certificate", Order = 1)]
         public BinaryData Certificate1
         {
             get { return this.certificate1Field; }
@@ -1353,16 +1359,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPAddressFilterExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1370,9 +1376,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPAddressFilter
     {
         private IPAddressFilterExtension extensionField;
@@ -1383,7 +1389,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private IPAddressFilterType typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IPAddressFilterType Type
         {
             get { return this.typeField; }
@@ -1391,7 +1397,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("IPv4Address", Order = 1)]
+        [XmlElement("IPv4Address", Order = 1)]
         public PrefixedIPv4Address[] IPv4Address
         {
             get { return this.iPv4AddressField; }
@@ -1399,7 +1405,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("IPv6Address", Order = 2)]
+        [XmlElement("IPv6Address", Order = 2)]
         public PrefixedIPv6Address[] IPv6Address
         {
             get { return this.iPv6AddressField; }
@@ -1407,7 +1413,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IPAddressFilterExtension Extension
         {
             get { return this.extensionField; }
@@ -1416,8 +1422,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum IPAddressFilterType
     {
         /// <remarks/>
@@ -1428,9 +1434,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PrefixedIPv4Address
     {
         private string addressField;
@@ -1438,7 +1444,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int prefixLengthField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 0)]
+        [XmlElement(DataType = "token", Order = 0)]
         public string Address
         {
             get { return this.addressField; }
@@ -1446,7 +1452,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int PrefixLength
         {
             get { return this.prefixLengthField; }
@@ -1455,9 +1461,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PrefixedIPv6Address
     {
         private string addressField;
@@ -1465,7 +1471,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int prefixLengthField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 0)]
+        [XmlElement(DataType = "token", Order = 0)]
         public string Address
         {
             get { return this.addressField; }
@@ -1473,7 +1479,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int PrefixLength
         {
             get { return this.prefixLengthField; }
@@ -1482,16 +1488,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkZeroConfigurationExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1499,26 +1505,26 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkZeroConfigurationExtension
     {
         private NetworkZeroConfiguration[] additionalField;
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private NetworkZeroConfigurationExtension2 extensionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Additional", Order = 1)]
+        [XmlElement("Additional", Order = 1)]
         public NetworkZeroConfiguration[] Additional
         {
             get { return this.additionalField; }
@@ -1526,7 +1532,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public NetworkZeroConfigurationExtension2 Extension
         {
             get { return this.extensionField; }
@@ -1535,9 +1541,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkZeroConfiguration
     {
         private string[] addressesField;
@@ -1548,7 +1554,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string interfaceTokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string InterfaceToken
         {
             get { return this.interfaceTokenField; }
@@ -1556,7 +1562,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -1564,7 +1570,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Addresses", DataType = "token", Order = 2)]
+        [XmlElement("Addresses", DataType = "token", Order = 2)]
         public string[] Addresses
         {
             get { return this.addressesField; }
@@ -1572,7 +1578,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public NetworkZeroConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -1581,9 +1587,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkGateway
     {
         private string[] iPv4AddressField;
@@ -1591,7 +1597,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string[] iPv6AddressField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("IPv4Address", DataType = "token", Order = 0)]
+        [XmlElement("IPv4Address", DataType = "token", Order = 0)]
         public string[] IPv4Address
         {
             get { return this.iPv4AddressField; }
@@ -1599,7 +1605,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("IPv6Address", DataType = "token", Order = 1)]
+        [XmlElement("IPv6Address", DataType = "token", Order = 1)]
         public string[] IPv6Address
         {
             get { return this.iPv6AddressField; }
@@ -1608,16 +1614,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkProtocolExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1625,9 +1631,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkProtocol
     {
         private bool enabledField;
@@ -1638,7 +1644,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int[] portField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public NetworkProtocolType Name
         {
             get { return this.nameField; }
@@ -1646,7 +1652,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -1654,7 +1660,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Port", Order = 2)]
+        [XmlElement("Port", Order = 2)]
         public int[] Port
         {
             get { return this.portField; }
@@ -1662,7 +1668,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public NetworkProtocolExtension Extension
         {
             get { return this.extensionField; }
@@ -1671,8 +1677,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum NetworkProtocolType
     {
         /// <remarks/>
@@ -1686,16 +1692,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterfaceSetConfigurationExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1703,12 +1709,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterfaceSetConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private Dot11Configuration[] dot11Field;
 
@@ -1717,15 +1723,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private NetworkInterfaceSetConfigurationExtension2 extensionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Dot3", Order = 1)]
+        [XmlElement("Dot3", Order = 1)]
         public Dot3Configuration[] Dot3
         {
             get { return this.dot3Field; }
@@ -1733,7 +1739,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Dot11", Order = 2)]
+        [XmlElement("Dot11", Order = 2)]
         public Dot11Configuration[] Dot11
         {
             get { return this.dot11Field; }
@@ -1741,7 +1747,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public NetworkInterfaceSetConfigurationExtension2 Extension
         {
             get { return this.extensionField; }
@@ -1750,16 +1756,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot3Configuration
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1767,14 +1773,14 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11Configuration
     {
         private string aliasField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private Dot11StationMode modeField;
 
@@ -1784,7 +1790,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private byte[] sSIDField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "hexBinary", Order = 0)]
+        [XmlElement(DataType = "hexBinary", Order = 0)]
         public byte[] SSID
         {
             get { return this.sSIDField; }
@@ -1792,7 +1798,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Dot11StationMode Mode
         {
             get { return this.modeField; }
@@ -1800,7 +1806,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public string Alias
         {
             get { return this.aliasField; }
@@ -1808,7 +1814,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer", Order = 3)]
+        [XmlElement(DataType = "integer", Order = 3)]
         public string Priority
         {
             get { return this.priorityField; }
@@ -1816,7 +1822,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public Dot11SecurityConfiguration Security
         {
             get { return this.securityField; }
@@ -1824,8 +1830,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 5)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 5)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1833,12 +1839,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum Dot11StationMode
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("Ad-hoc")]
+        [XmlEnum("Ad-hoc")]
         Adhoc,
 
         /// <remarks/>
@@ -1849,9 +1855,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11SecurityConfiguration
     {
         private Dot11Cipher algorithmField;
@@ -1866,7 +1872,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Dot11PSKSet pSKField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Dot11SecurityMode Mode
         {
             get { return this.modeField; }
@@ -1874,7 +1880,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Dot11Cipher Algorithm
         {
             get { return this.algorithmField; }
@@ -1882,7 +1888,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool AlgorithmSpecified
         {
             get { return this.algorithmFieldSpecified; }
@@ -1890,7 +1896,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Dot11PSKSet PSK
         {
             get { return this.pSKField; }
@@ -1898,7 +1904,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public string Dot1X
         {
             get { return this.dot1XField; }
@@ -1906,7 +1912,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public Dot11SecurityConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -1915,8 +1921,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum Dot11SecurityMode
     {
         /// <remarks/>
@@ -1936,9 +1942,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11PSKSet
     {
         private Dot11PSKSetExtension extensionField;
@@ -1947,7 +1953,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string passphraseField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "hexBinary", Order = 0)]
+        [XmlElement(DataType = "hexBinary", Order = 0)]
         public byte[] Key
         {
             get { return this.keyField; }
@@ -1955,7 +1961,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string Passphrase
         {
             get { return this.passphraseField; }
@@ -1963,7 +1969,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Dot11PSKSetExtension Extension
         {
             get { return this.extensionField; }
@@ -1972,16 +1978,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11PSKSetExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -1989,16 +1995,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Dot11SecurityConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -2006,9 +2012,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPv6NetworkInterfaceSetConfiguration
     {
         private bool acceptRouterAdvertField;
@@ -2025,7 +2031,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PrefixedIPv6Address[] manualField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -2033,7 +2039,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool EnabledSpecified
         {
             get { return this.enabledFieldSpecified; }
@@ -2041,7 +2047,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool AcceptRouterAdvert
         {
             get { return this.acceptRouterAdvertField; }
@@ -2049,7 +2055,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool AcceptRouterAdvertSpecified
         {
             get { return this.acceptRouterAdvertFieldSpecified; }
@@ -2057,7 +2063,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Manual", Order = 2)]
+        [XmlElement("Manual", Order = 2)]
         public PrefixedIPv6Address[] Manual
         {
             get { return this.manualField; }
@@ -2065,7 +2071,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IPv6DHCPConfiguration DHCP
         {
             get { return this.dHCPField; }
@@ -2073,7 +2079,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DHCPSpecified
         {
             get { return this.dHCPFieldSpecified; }
@@ -2082,8 +2088,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum IPv6DHCPConfiguration
     {
         /// <remarks/>
@@ -2100,9 +2106,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPv4NetworkInterfaceSetConfiguration
     {
         private bool dHCPField;
@@ -2115,7 +2121,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PrefixedIPv4Address[] manualField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -2123,7 +2129,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool EnabledSpecified
         {
             get { return this.enabledFieldSpecified; }
@@ -2131,7 +2137,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Manual", Order = 1)]
+        [XmlElement("Manual", Order = 1)]
         public PrefixedIPv4Address[] Manual
         {
             get { return this.manualField; }
@@ -2139,7 +2145,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool DHCP
         {
             get { return this.dHCPField; }
@@ -2147,7 +2153,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DHCPSpecified
         {
             get { return this.dHCPFieldSpecified; }
@@ -2156,9 +2162,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterfaceSetConfiguration
     {
         private bool enabledField;
@@ -2178,7 +2184,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool mTUFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -2186,7 +2192,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool EnabledSpecified
         {
             get { return this.enabledFieldSpecified; }
@@ -2194,7 +2200,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public NetworkInterfaceConnectionSetting Link
         {
             get { return this.linkField; }
@@ -2202,7 +2208,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int MTU
         {
             get { return this.mTUField; }
@@ -2210,7 +2216,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MTUSpecified
         {
             get { return this.mTUFieldSpecified; }
@@ -2218,7 +2224,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IPv4NetworkInterfaceSetConfiguration IPv4
         {
             get { return this.iPv4Field; }
@@ -2226,7 +2232,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public IPv6NetworkInterfaceSetConfiguration IPv6
         {
             get { return this.iPv6Field; }
@@ -2234,7 +2240,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public NetworkInterfaceSetConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -2243,9 +2249,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterfaceConnectionSetting
     {
         private bool autoNegotiationField;
@@ -2255,7 +2261,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int speedField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool AutoNegotiation
         {
             get { return this.autoNegotiationField; }
@@ -2263,7 +2269,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Speed
         {
             get { return this.speedField; }
@@ -2271,7 +2277,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Duplex Duplex
         {
             get { return this.duplexField; }
@@ -2280,8 +2286,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum Duplex
     {
         /// <remarks/>
@@ -2292,16 +2298,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -2309,16 +2315,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDImgConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -2326,16 +2332,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDImgConfiguration
     {
         private OSDImgConfigurationExtension extensionField;
         private string imgPathField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string ImgPath
         {
             get { return this.imgPathField; }
@@ -2343,7 +2349,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public OSDImgConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -2352,16 +2358,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDTextConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -2369,9 +2375,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Color
     {
         private string colorspaceField;
@@ -2382,7 +2388,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private float zField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float X
         {
             get { return this.xField; }
@@ -2390,7 +2396,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float Y
         {
             get { return this.yField; }
@@ -2398,7 +2404,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float Z
         {
             get { return this.zField; }
@@ -2406,7 +2412,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+        [XmlAttribute(DataType = "anyURI")]
         public string Colorspace
         {
             get { return this.colorspaceField; }
@@ -2415,9 +2421,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDColor
     {
         private Color colorField;
@@ -2427,7 +2433,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool transparentFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Color Color
         {
             get { return this.colorField; }
@@ -2435,7 +2441,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int Transparent
         {
             get { return this.transparentField; }
@@ -2443,7 +2449,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool TransparentSpecified
         {
             get { return this.transparentFieldSpecified; }
@@ -2452,9 +2458,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDTextConfiguration
     {
         private OSDColor backgroundColorField;
@@ -2479,7 +2485,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Type
         {
             get { return this.typeField; }
@@ -2487,7 +2493,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string DateFormat
         {
             get { return this.dateFormatField; }
@@ -2495,7 +2501,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public string TimeFormat
         {
             get { return this.timeFormatField; }
@@ -2503,7 +2509,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public int FontSize
         {
             get { return this.fontSizeField; }
@@ -2511,7 +2517,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool FontSizeSpecified
         {
             get { return this.fontSizeFieldSpecified; }
@@ -2519,7 +2525,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public OSDColor FontColor
         {
             get { return this.fontColorField; }
@@ -2527,7 +2533,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public OSDColor BackgroundColor
         {
             get { return this.backgroundColorField; }
@@ -2535,7 +2541,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public string PlainText
         {
             get { return this.plainTextField; }
@@ -2543,7 +2549,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public OSDTextConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -2551,7 +2557,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool IsPersistentText
         {
             get { return this.isPersistentTextField; }
@@ -2559,7 +2565,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IsPersistentTextSpecified
         {
             get { return this.isPersistentTextFieldSpecified; }
@@ -2568,16 +2574,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDPosConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -2585,9 +2591,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Vector
     {
         private float xField;
@@ -2599,7 +2605,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool yFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float x
         {
             get { return this.xField; }
@@ -2607,7 +2613,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool xSpecified
         {
             get { return this.xFieldSpecified; }
@@ -2615,7 +2621,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float y
         {
             get { return this.yField; }
@@ -2623,7 +2629,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ySpecified
         {
             get { return this.yFieldSpecified; }
@@ -2632,9 +2638,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDPosConfiguration
     {
         private OSDPosConfigurationExtension extensionField;
@@ -2643,7 +2649,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Type
         {
             get { return this.typeField; }
@@ -2651,7 +2657,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Vector Pos
         {
             get { return this.posField; }
@@ -2659,7 +2665,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public OSDPosConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -2668,15 +2674,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDReference
     {
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
+        [XmlText()]
         public string Value
         {
             get { return this.valueField; }
@@ -2685,16 +2691,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZNodeExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -2702,16 +2708,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourSupportedExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -2719,9 +2725,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourSupported
     {
         private PTZPresetTourSupportedExtension extensionField;
@@ -2730,7 +2736,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PTZPresetTourOperation[] pTZPresetTourOperationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int MaximumNumberOfPresetTours
         {
             get { return this.maximumNumberOfPresetToursField; }
@@ -2738,7 +2744,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PTZPresetTourOperation", Order = 1)]
+        [XmlElement("PTZPresetTourOperation", Order = 1)]
         public PTZPresetTourOperation[] PTZPresetTourOperation
         {
             get { return this.pTZPresetTourOperationField; }
@@ -2746,7 +2752,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PTZPresetTourSupportedExtension Extension
         {
             get { return this.extensionField; }
@@ -2755,8 +2761,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum PTZPresetTourOperation
     {
         /// <remarks/>
@@ -2773,27 +2779,27 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZNodeExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private PTZNodeExtension2 extensionField;
 
         private PTZPresetTourSupported supportedPresetTourField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTZPresetTourSupported SupportedPresetTour
         {
             get { return this.supportedPresetTourField; }
@@ -2801,7 +2807,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PTZNodeExtension2 Extension
         {
             get { return this.extensionField; }
@@ -2810,16 +2816,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZSpacesExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -2827,9 +2833,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Space1DDescription
     {
         private string uRIField;
@@ -2837,7 +2843,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private FloatRange xRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string URI
         {
             get { return this.uRIField; }
@@ -2845,7 +2851,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange XRange
         {
             get { return this.xRangeField; }
@@ -2854,16 +2860,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FloatRange
     {
         private float maxField;
         private float minField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float Min
         {
             get { return this.minField; }
@@ -2871,7 +2877,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Max
         {
             get { return this.maxField; }
@@ -2880,9 +2886,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Space2DDescription
     {
         private string uRIField;
@@ -2892,7 +2898,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private FloatRange yRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string URI
         {
             get { return this.uRIField; }
@@ -2900,7 +2906,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange XRange
         {
             get { return this.xRangeField; }
@@ -2908,7 +2914,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public FloatRange YRange
         {
             get { return this.yRangeField; }
@@ -2917,9 +2923,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZSpaces
     {
         private Space2DDescription[] absolutePanTiltPositionSpaceField;
@@ -2941,7 +2947,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Space1DDescription[] zoomSpeedSpaceField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AbsolutePanTiltPositionSpace", Order = 0)]
+        [XmlElement("AbsolutePanTiltPositionSpace", Order = 0)]
         public Space2DDescription[] AbsolutePanTiltPositionSpace
         {
             get { return this.absolutePanTiltPositionSpaceField; }
@@ -2949,7 +2955,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AbsoluteZoomPositionSpace", Order = 1)]
+        [XmlElement("AbsoluteZoomPositionSpace", Order = 1)]
         public Space1DDescription[] AbsoluteZoomPositionSpace
         {
             get { return this.absoluteZoomPositionSpaceField; }
@@ -2957,7 +2963,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("RelativePanTiltTranslationSpace", Order = 2)]
+        [XmlElement("RelativePanTiltTranslationSpace", Order = 2)]
         public Space2DDescription[] RelativePanTiltTranslationSpace
         {
             get { return this.relativePanTiltTranslationSpaceField; }
@@ -2965,7 +2971,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("RelativeZoomTranslationSpace", Order = 3)]
+        [XmlElement("RelativeZoomTranslationSpace", Order = 3)]
         public Space1DDescription[] RelativeZoomTranslationSpace
         {
             get { return this.relativeZoomTranslationSpaceField; }
@@ -2973,7 +2979,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ContinuousPanTiltVelocitySpace", Order = 4)]
+        [XmlElement("ContinuousPanTiltVelocitySpace", Order = 4)]
         public Space2DDescription[] ContinuousPanTiltVelocitySpace
         {
             get { return this.continuousPanTiltVelocitySpaceField; }
@@ -2981,7 +2987,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ContinuousZoomVelocitySpace", Order = 5)]
+        [XmlElement("ContinuousZoomVelocitySpace", Order = 5)]
         public Space1DDescription[] ContinuousZoomVelocitySpace
         {
             get { return this.continuousZoomVelocitySpaceField; }
@@ -2989,7 +2995,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PanTiltSpeedSpace", Order = 6)]
+        [XmlElement("PanTiltSpeedSpace", Order = 6)]
         public Space1DDescription[] PanTiltSpeedSpace
         {
             get { return this.panTiltSpeedSpaceField; }
@@ -2997,7 +3003,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ZoomSpeedSpace", Order = 7)]
+        [XmlElement("ZoomSpeedSpace", Order = 7)]
         public Space1DDescription[] ZoomSpeedSpace
         {
             get { return this.zoomSpeedSpaceField; }
@@ -3005,7 +3011,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public PTZSpacesExtension Extension
         {
             get { return this.extensionField; }
@@ -3014,9 +3020,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RelayOutputSettings
     {
         private string delayTimeField;
@@ -3025,7 +3031,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private RelayMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public RelayMode Mode
         {
             get { return this.modeField; }
@@ -3033,7 +3039,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 1)]
+        [XmlElement(DataType = "duration", Order = 1)]
         public string DelayTime
         {
             get { return this.delayTimeField; }
@@ -3041,7 +3047,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public RelayIdleState IdleState
         {
             get { return this.idleStateField; }
@@ -3050,8 +3056,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum RelayMode
     {
         /// <remarks/>
@@ -3062,8 +3068,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum RelayIdleState
     {
         /// <remarks/>
@@ -3074,16 +3080,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterfaceExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3091,12 +3097,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterfaceExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private Dot11Configuration[] dot11Field;
 
@@ -3107,15 +3113,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int interfaceTypeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int InterfaceType
         {
             get { return this.interfaceTypeField; }
@@ -3123,7 +3129,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Dot3", Order = 2)]
+        [XmlElement("Dot3", Order = 2)]
         public Dot3Configuration[] Dot3
         {
             get { return this.dot3Field; }
@@ -3131,7 +3137,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Dot11", Order = 3)]
+        [XmlElement("Dot11", Order = 3)]
         public Dot11Configuration[] Dot11
         {
             get { return this.dot11Field; }
@@ -3139,7 +3145,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public NetworkInterfaceExtension2 Extension
         {
             get { return this.extensionField; }
@@ -3148,16 +3154,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPv6ConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3165,9 +3171,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPv6Configuration
     {
         private bool acceptRouterAdvertField;
@@ -3187,7 +3193,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PrefixedIPv6Address[] manualField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool AcceptRouterAdvert
         {
             get { return this.acceptRouterAdvertField; }
@@ -3195,7 +3201,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool AcceptRouterAdvertSpecified
         {
             get { return this.acceptRouterAdvertFieldSpecified; }
@@ -3203,7 +3209,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IPv6DHCPConfiguration DHCP
         {
             get { return this.dHCPField; }
@@ -3211,7 +3217,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Manual", Order = 2)]
+        [XmlElement("Manual", Order = 2)]
         public PrefixedIPv6Address[] Manual
         {
             get { return this.manualField; }
@@ -3219,7 +3225,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("LinkLocal", Order = 3)]
+        [XmlElement("LinkLocal", Order = 3)]
         public PrefixedIPv6Address[] LinkLocal
         {
             get { return this.linkLocalField; }
@@ -3227,7 +3233,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("FromDHCP", Order = 4)]
+        [XmlElement("FromDHCP", Order = 4)]
         public PrefixedIPv6Address[] FromDHCP
         {
             get { return this.fromDHCPField; }
@@ -3235,7 +3241,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("FromRA", Order = 5)]
+        [XmlElement("FromRA", Order = 5)]
         public PrefixedIPv6Address[] FromRA
         {
             get { return this.fromRAField; }
@@ -3243,7 +3249,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public IPv6ConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -3252,16 +3258,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPv6NetworkInterface
     {
         private IPv6Configuration configField;
         private bool enabledField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -3269,7 +3275,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IPv6Configuration Config
         {
             get { return this.configField; }
@@ -3278,12 +3284,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPv4Configuration
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool dHCPField;
 
@@ -3293,7 +3299,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PrefixedIPv4Address[] manualField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Manual", Order = 0)]
+        [XmlElement("Manual", Order = 0)]
         public PrefixedIPv4Address[] Manual
         {
             get { return this.manualField; }
@@ -3301,7 +3307,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PrefixedIPv4Address LinkLocal
         {
             get { return this.linkLocalField; }
@@ -3309,7 +3315,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PrefixedIPv4Address FromDHCP
         {
             get { return this.fromDHCPField; }
@@ -3317,7 +3323,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool DHCP
         {
             get { return this.dHCPField; }
@@ -3325,8 +3331,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 4)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 4)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3334,16 +3340,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPv4NetworkInterface
     {
         private IPv4Configuration configField;
         private bool enabledField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -3351,7 +3357,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IPv4Configuration Config
         {
             get { return this.configField; }
@@ -3360,9 +3366,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterfaceLink
     {
         private NetworkInterfaceConnectionSetting adminSettingsField;
@@ -3372,7 +3378,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private NetworkInterfaceConnectionSetting operSettingsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public NetworkInterfaceConnectionSetting AdminSettings
         {
             get { return this.adminSettingsField; }
@@ -3380,7 +3386,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public NetworkInterfaceConnectionSetting OperSettings
         {
             get { return this.operSettingsField; }
@@ -3388,7 +3394,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int InterfaceType
         {
             get { return this.interfaceTypeField; }
@@ -3397,9 +3403,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterfaceInfo
     {
         private string hwAddressField;
@@ -3410,7 +3416,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string nameField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -3418,7 +3424,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 1)]
+        [XmlElement(DataType = "token", Order = 1)]
         public string HwAddress
         {
             get { return this.hwAddressField; }
@@ -3426,7 +3432,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int MTU
         {
             get { return this.mTUField; }
@@ -3434,7 +3440,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MTUSpecified
         {
             get { return this.mTUFieldSpecified; }
@@ -3443,16 +3449,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoOutputExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3460,16 +3466,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class LayoutExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3477,18 +3483,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PaneLayout
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private Rectangle areaField;
         private string paneField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Pane
         {
             get { return this.paneField; }
@@ -3496,7 +3502,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Rectangle Area
         {
             get { return this.areaField; }
@@ -3504,8 +3510,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3513,9 +3519,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Rectangle
     {
         private float bottomField;
@@ -3535,7 +3541,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool topFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float bottom
         {
             get { return this.bottomField; }
@@ -3543,7 +3549,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool bottomSpecified
         {
             get { return this.bottomFieldSpecified; }
@@ -3551,7 +3557,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float top
         {
             get { return this.topField; }
@@ -3559,7 +3565,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool topSpecified
         {
             get { return this.topFieldSpecified; }
@@ -3567,7 +3573,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float right
         {
             get { return this.rightField; }
@@ -3575,7 +3581,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool rightSpecified
         {
             get { return this.rightFieldSpecified; }
@@ -3583,7 +3589,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float left
         {
             get { return this.leftField; }
@@ -3591,7 +3597,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool leftSpecified
         {
             get { return this.leftFieldSpecified; }
@@ -3600,16 +3606,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Layout
     {
         private LayoutExtension extensionField;
         private PaneLayout[] paneLayoutField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PaneLayout", Order = 0)]
+        [XmlElement("PaneLayout", Order = 0)]
         public PaneLayout[] PaneLayout
         {
             get { return this.paneLayoutField; }
@@ -3617,7 +3623,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public LayoutExtension Extension
         {
             get { return this.extensionField; }
@@ -3626,16 +3632,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSourceExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3643,16 +3649,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingSettingsExtension204
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3660,16 +3666,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NoiseReduction
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private float levelField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float Level
         {
             get { return this.levelField; }
@@ -3677,8 +3683,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3686,16 +3692,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DefoggingExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3703,9 +3709,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Defogging
     {
         private DefoggingExtension extensionField;
@@ -3716,7 +3722,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Mode
         {
             get { return this.modeField; }
@@ -3724,7 +3730,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Level
         {
             get { return this.levelField; }
@@ -3732,7 +3738,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool LevelSpecified
         {
             get { return this.levelFieldSpecified; }
@@ -3740,7 +3746,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public DefoggingExtension Extension
         {
             get { return this.extensionField; }
@@ -3749,16 +3755,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ToneCompensationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3766,9 +3772,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ToneCompensation
     {
         private ToneCompensationExtension extensionField;
@@ -3779,7 +3785,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Mode
         {
             get { return this.modeField; }
@@ -3787,7 +3793,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Level
         {
             get { return this.levelField; }
@@ -3795,7 +3801,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool LevelSpecified
         {
             get { return this.levelFieldSpecified; }
@@ -3803,7 +3809,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ToneCompensationExtension Extension
         {
             get { return this.extensionField; }
@@ -3812,9 +3818,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingSettingsExtension203
     {
         private Defogging defoggingField;
@@ -3825,7 +3831,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ToneCompensation toneCompensationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ToneCompensation ToneCompensation
         {
             get { return this.toneCompensationField; }
@@ -3833,7 +3839,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Defogging Defogging
         {
             get { return this.defoggingField; }
@@ -3841,7 +3847,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public NoiseReduction NoiseReduction
         {
             get { return this.noiseReductionField; }
@@ -3849,7 +3855,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public ImagingSettingsExtension204 Extension
         {
             get { return this.extensionField; }
@@ -3858,16 +3864,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IrCutFilterAutoAdjustmentExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3875,9 +3881,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IrCutFilterAutoAdjustment
     {
         private float boundaryOffsetField;
@@ -3890,7 +3896,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string responseTimeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string BoundaryType
         {
             get { return this.boundaryTypeField; }
@@ -3898,7 +3904,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float BoundaryOffset
         {
             get { return this.boundaryOffsetField; }
@@ -3906,7 +3912,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool BoundaryOffsetSpecified
         {
             get { return this.boundaryOffsetFieldSpecified; }
@@ -3914,7 +3920,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 2)]
+        [XmlElement(DataType = "duration", Order = 2)]
         public string ResponseTime
         {
             get { return this.responseTimeField; }
@@ -3922,7 +3928,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IrCutFilterAutoAdjustmentExtension Extension
         {
             get { return this.extensionField; }
@@ -3931,16 +3937,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingSettingsExtension202
     {
         private ImagingSettingsExtension203 extensionField;
         private IrCutFilterAutoAdjustment[] irCutFilterAutoAdjustmentField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("IrCutFilterAutoAdjustment", Order = 0)]
+        [XmlElement("IrCutFilterAutoAdjustment", Order = 0)]
         public IrCutFilterAutoAdjustment[] IrCutFilterAutoAdjustment
         {
             get { return this.irCutFilterAutoAdjustmentField; }
@@ -3948,7 +3954,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ImagingSettingsExtension203 Extension
         {
             get { return this.extensionField; }
@@ -3957,16 +3963,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImageStabilizationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -3974,9 +3980,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImageStabilization
     {
         private ImageStabilizationExtension extensionField;
@@ -3987,7 +3993,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ImageStabilizationMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ImageStabilizationMode Mode
         {
             get { return this.modeField; }
@@ -3995,7 +4001,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Level
         {
             get { return this.levelField; }
@@ -4003,7 +4009,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool LevelSpecified
         {
             get { return this.levelFieldSpecified; }
@@ -4011,7 +4017,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ImageStabilizationExtension Extension
         {
             get { return this.extensionField; }
@@ -4020,8 +4026,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum ImageStabilizationMode
     {
         /// <remarks/>
@@ -4038,27 +4044,27 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingSettingsExtension20
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private ImagingSettingsExtension202 extensionField;
 
         private ImageStabilization imageStabilizationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ImageStabilization ImageStabilization
         {
             get { return this.imageStabilizationField; }
@@ -4066,7 +4072,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ImagingSettingsExtension202 Extension
         {
             get { return this.extensionField; }
@@ -4075,16 +4081,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class WhiteBalance20Extension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -4092,9 +4098,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class WhiteBalance20
     {
         private float cbGainField;
@@ -4109,7 +4115,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private WhiteBalanceMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public WhiteBalanceMode Mode
         {
             get { return this.modeField; }
@@ -4117,7 +4123,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float CrGain
         {
             get { return this.crGainField; }
@@ -4125,7 +4131,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool CrGainSpecified
         {
             get { return this.crGainFieldSpecified; }
@@ -4133,7 +4139,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float CbGain
         {
             get { return this.cbGainField; }
@@ -4141,7 +4147,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool CbGainSpecified
         {
             get { return this.cbGainFieldSpecified; }
@@ -4149,7 +4155,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public WhiteBalance20Extension Extension
         {
             get { return this.extensionField; }
@@ -4158,8 +4164,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum WhiteBalanceMode
     {
         /// <remarks/>
@@ -4170,9 +4176,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class WideDynamicRange20
     {
         private float levelField;
@@ -4181,7 +4187,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private WideDynamicMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public WideDynamicMode Mode
         {
             get { return this.modeField; }
@@ -4189,7 +4195,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Level
         {
             get { return this.levelField; }
@@ -4197,7 +4203,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool LevelSpecified
         {
             get { return this.levelFieldSpecified; }
@@ -4206,8 +4212,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum WideDynamicMode
     {
         /// <remarks/>
@@ -4218,16 +4224,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FocusConfiguration20Extension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -4235,9 +4241,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FocusConfiguration20
     {
         private AutoFocusMode autoFocusModeField;
@@ -4257,7 +4263,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool nearLimitFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AutoFocusMode AutoFocusMode
         {
             get { return this.autoFocusModeField; }
@@ -4265,7 +4271,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float DefaultSpeed
         {
             get { return this.defaultSpeedField; }
@@ -4273,7 +4279,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DefaultSpeedSpecified
         {
             get { return this.defaultSpeedFieldSpecified; }
@@ -4281,7 +4287,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float NearLimit
         {
             get { return this.nearLimitField; }
@@ -4289,7 +4295,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool NearLimitSpecified
         {
             get { return this.nearLimitFieldSpecified; }
@@ -4297,7 +4303,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public float FarLimit
         {
             get { return this.farLimitField; }
@@ -4305,7 +4311,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool FarLimitSpecified
         {
             get { return this.farLimitFieldSpecified; }
@@ -4313,7 +4319,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public FocusConfiguration20Extension Extension
         {
             get { return this.extensionField; }
@@ -4322,8 +4328,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum AutoFocusMode
     {
         /// <remarks/>
@@ -4334,9 +4340,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Exposure20
     {
         private float exposureTimeField;
@@ -4383,7 +4389,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Rectangle windowField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ExposureMode Mode
         {
             get { return this.modeField; }
@@ -4391,7 +4397,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ExposurePriority Priority
         {
             get { return this.priorityField; }
@@ -4399,7 +4405,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool PrioritySpecified
         {
             get { return this.priorityFieldSpecified; }
@@ -4407,7 +4413,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Rectangle Window
         {
             get { return this.windowField; }
@@ -4415,7 +4421,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public float MinExposureTime
         {
             get { return this.minExposureTimeField; }
@@ -4423,7 +4429,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MinExposureTimeSpecified
         {
             get { return this.minExposureTimeFieldSpecified; }
@@ -4431,7 +4437,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public float MaxExposureTime
         {
             get { return this.maxExposureTimeField; }
@@ -4439,7 +4445,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxExposureTimeSpecified
         {
             get { return this.maxExposureTimeFieldSpecified; }
@@ -4447,7 +4453,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public float MinGain
         {
             get { return this.minGainField; }
@@ -4455,7 +4461,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MinGainSpecified
         {
             get { return this.minGainFieldSpecified; }
@@ -4463,7 +4469,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public float MaxGain
         {
             get { return this.maxGainField; }
@@ -4471,7 +4477,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxGainSpecified
         {
             get { return this.maxGainFieldSpecified; }
@@ -4479,7 +4485,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public float MinIris
         {
             get { return this.minIrisField; }
@@ -4487,7 +4493,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MinIrisSpecified
         {
             get { return this.minIrisFieldSpecified; }
@@ -4495,7 +4501,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public float MaxIris
         {
             get { return this.maxIrisField; }
@@ -4503,7 +4509,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxIrisSpecified
         {
             get { return this.maxIrisFieldSpecified; }
@@ -4511,7 +4517,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public float ExposureTime
         {
             get { return this.exposureTimeField; }
@@ -4519,7 +4525,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ExposureTimeSpecified
         {
             get { return this.exposureTimeFieldSpecified; }
@@ -4527,7 +4533,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        [XmlElement(Order = 10)]
         public float Gain
         {
             get { return this.gainField; }
@@ -4535,7 +4541,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool GainSpecified
         {
             get { return this.gainFieldSpecified; }
@@ -4543,7 +4549,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 11)]
+        [XmlElement(Order = 11)]
         public float Iris
         {
             get { return this.irisField; }
@@ -4551,7 +4557,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IrisSpecified
         {
             get { return this.irisFieldSpecified; }
@@ -4560,8 +4566,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum ExposureMode
     {
         /// <remarks/>
@@ -4572,8 +4578,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum ExposurePriority
     {
         /// <remarks/>
@@ -4584,9 +4590,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class BacklightCompensation20
     {
         private float levelField;
@@ -4595,7 +4601,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private BacklightCompensationMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public BacklightCompensationMode Mode
         {
             get { return this.modeField; }
@@ -4603,7 +4609,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Level
         {
             get { return this.levelField; }
@@ -4611,7 +4617,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool LevelSpecified
         {
             get { return this.levelFieldSpecified; }
@@ -4620,8 +4626,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum BacklightCompensationMode
     {
         /// <remarks/>
@@ -4632,9 +4638,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingSettings20
     {
         private BacklightCompensation20 backlightCompensationField;
@@ -4670,7 +4676,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private WideDynamicRange20 wideDynamicRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public BacklightCompensation20 BacklightCompensation
         {
             get { return this.backlightCompensationField; }
@@ -4678,7 +4684,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Brightness
         {
             get { return this.brightnessField; }
@@ -4686,7 +4692,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool BrightnessSpecified
         {
             get { return this.brightnessFieldSpecified; }
@@ -4694,7 +4700,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float ColorSaturation
         {
             get { return this.colorSaturationField; }
@@ -4702,7 +4708,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ColorSaturationSpecified
         {
             get { return this.colorSaturationFieldSpecified; }
@@ -4710,7 +4716,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public float Contrast
         {
             get { return this.contrastField; }
@@ -4718,7 +4724,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ContrastSpecified
         {
             get { return this.contrastFieldSpecified; }
@@ -4726,7 +4732,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public Exposure20 Exposure
         {
             get { return this.exposureField; }
@@ -4734,7 +4740,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public FocusConfiguration20 Focus
         {
             get { return this.focusField; }
@@ -4742,7 +4748,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public IrCutFilterMode IrCutFilter
         {
             get { return this.irCutFilterField; }
@@ -4750,7 +4756,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IrCutFilterSpecified
         {
             get { return this.irCutFilterFieldSpecified; }
@@ -4758,7 +4764,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public float Sharpness
         {
             get { return this.sharpnessField; }
@@ -4766,7 +4772,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SharpnessSpecified
         {
             get { return this.sharpnessFieldSpecified; }
@@ -4774,7 +4780,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public WideDynamicRange20 WideDynamicRange
         {
             get { return this.wideDynamicRangeField; }
@@ -4782,7 +4788,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public WhiteBalance20 WhiteBalance
         {
             get { return this.whiteBalanceField; }
@@ -4790,7 +4796,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        [XmlElement(Order = 10)]
         public ImagingSettingsExtension20 Extension
         {
             get { return this.extensionField; }
@@ -4799,8 +4805,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum IrCutFilterMode
     {
         /// <remarks/>
@@ -4814,27 +4820,27 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSourceExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private VideoSourceExtension2 extensionField;
 
         private ImagingSettings20 imagingField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ImagingSettings20 Imaging
         {
             get { return this.imagingField; }
@@ -4842,7 +4848,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public VideoSourceExtension2 Extension
         {
             get { return this.extensionField; }
@@ -4851,16 +4857,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingSettingsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -4868,12 +4874,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class WhiteBalance
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private float cbGainField;
 
@@ -4881,7 +4887,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private WhiteBalanceMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public WhiteBalanceMode Mode
         {
             get { return this.modeField; }
@@ -4889,7 +4895,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float CrGain
         {
             get { return this.crGainField; }
@@ -4897,7 +4903,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float CbGain
         {
             get { return this.cbGainField; }
@@ -4905,8 +4911,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -4914,16 +4920,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class WideDynamicRange
     {
         private float levelField;
         private WideDynamicMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public WideDynamicMode Mode
         {
             get { return this.modeField; }
@@ -4931,7 +4937,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Level
         {
             get { return this.levelField; }
@@ -4940,12 +4946,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FocusConfiguration
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private AutoFocusMode autoFocusModeField;
 
         private float defaultSpeedField;
@@ -4955,7 +4961,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private float nearLimitField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AutoFocusMode AutoFocusMode
         {
             get { return this.autoFocusModeField; }
@@ -4963,7 +4969,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float DefaultSpeed
         {
             get { return this.defaultSpeedField; }
@@ -4971,7 +4977,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float NearLimit
         {
             get { return this.nearLimitField; }
@@ -4979,7 +4985,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public float FarLimit
         {
             get { return this.farLimitField; }
@@ -4987,8 +4993,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 4)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 4)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -4996,9 +5002,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Exposure
     {
         private float exposureTimeField;
@@ -5025,7 +5031,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Rectangle windowField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ExposureMode Mode
         {
             get { return this.modeField; }
@@ -5033,7 +5039,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ExposurePriority Priority
         {
             get { return this.priorityField; }
@@ -5041,7 +5047,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Rectangle Window
         {
             get { return this.windowField; }
@@ -5049,7 +5055,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public float MinExposureTime
         {
             get { return this.minExposureTimeField; }
@@ -5057,7 +5063,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public float MaxExposureTime
         {
             get { return this.maxExposureTimeField; }
@@ -5065,7 +5071,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public float MinGain
         {
             get { return this.minGainField; }
@@ -5073,7 +5079,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public float MaxGain
         {
             get { return this.maxGainField; }
@@ -5081,7 +5087,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public float MinIris
         {
             get { return this.minIrisField; }
@@ -5089,7 +5095,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public float MaxIris
         {
             get { return this.maxIrisField; }
@@ -5097,7 +5103,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public float ExposureTime
         {
             get { return this.exposureTimeField; }
@@ -5105,7 +5111,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        [XmlElement(Order = 10)]
         public float Gain
         {
             get { return this.gainField; }
@@ -5113,7 +5119,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 11)]
+        [XmlElement(Order = 11)]
         public float Iris
         {
             get { return this.irisField; }
@@ -5122,16 +5128,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class BacklightCompensation
     {
         private float levelField;
         private BacklightCompensationMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public BacklightCompensationMode Mode
         {
             get { return this.modeField; }
@@ -5139,7 +5145,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Level
         {
             get { return this.levelField; }
@@ -5148,9 +5154,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingSettings
     {
         private BacklightCompensation backlightCompensationField;
@@ -5186,7 +5192,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private WideDynamicRange wideDynamicRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public BacklightCompensation BacklightCompensation
         {
             get { return this.backlightCompensationField; }
@@ -5194,7 +5200,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Brightness
         {
             get { return this.brightnessField; }
@@ -5202,7 +5208,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool BrightnessSpecified
         {
             get { return this.brightnessFieldSpecified; }
@@ -5210,7 +5216,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float ColorSaturation
         {
             get { return this.colorSaturationField; }
@@ -5218,7 +5224,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ColorSaturationSpecified
         {
             get { return this.colorSaturationFieldSpecified; }
@@ -5226,7 +5232,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public float Contrast
         {
             get { return this.contrastField; }
@@ -5234,7 +5240,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ContrastSpecified
         {
             get { return this.contrastFieldSpecified; }
@@ -5242,7 +5248,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public Exposure Exposure
         {
             get { return this.exposureField; }
@@ -5250,7 +5256,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public FocusConfiguration Focus
         {
             get { return this.focusField; }
@@ -5258,7 +5264,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public IrCutFilterMode IrCutFilter
         {
             get { return this.irCutFilterField; }
@@ -5266,7 +5272,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IrCutFilterSpecified
         {
             get { return this.irCutFilterFieldSpecified; }
@@ -5274,7 +5280,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public float Sharpness
         {
             get { return this.sharpnessField; }
@@ -5282,7 +5288,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SharpnessSpecified
         {
             get { return this.sharpnessFieldSpecified; }
@@ -5290,7 +5296,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public WideDynamicRange WideDynamicRange
         {
             get { return this.wideDynamicRangeField; }
@@ -5298,7 +5304,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public WhiteBalance WhiteBalance
         {
             get { return this.whiteBalanceField; }
@@ -5306,7 +5312,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        [XmlElement(Order = 10)]
         public ImagingSettingsExtension Extension
         {
             get { return this.extensionField; }
@@ -5315,16 +5321,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoResolution
     {
         private int heightField;
         private int widthField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int Width
         {
             get { return this.widthField; }
@@ -5332,7 +5338,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Height
         {
             get { return this.heightField; }
@@ -5341,25 +5347,25 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(OSDConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PTZNode))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DigitalInput))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(RelayOutput))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(NetworkInterface))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudioOutput))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VideoOutput))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudioSource))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VideoSource))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(StorageConfiguration))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [XmlInclude(typeof(OSDConfiguration))]
+    [XmlInclude(typeof(PTZNode))]
+    [XmlInclude(typeof(DigitalInput))]
+    [XmlInclude(typeof(RelayOutput))]
+    [XmlInclude(typeof(NetworkInterface))]
+    [XmlInclude(typeof(AudioOutput))]
+    [XmlInclude(typeof(VideoOutput))]
+    [XmlInclude(typeof(AudioSource))]
+    [XmlInclude(typeof(VideoSource))]
+    [XmlInclude(typeof(StorageConfiguration))]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DeviceEntity
     {
         private string tokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string token
         {
             get { return this.tokenField; }
@@ -5368,9 +5374,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDConfiguration : DeviceEntity
     {
         private OSDConfigurationExtension extensionField;
@@ -5385,7 +5391,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private OSDReference videoSourceConfigurationTokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public OSDReference VideoSourceConfigurationToken
         {
             get { return this.videoSourceConfigurationTokenField; }
@@ -5393,7 +5399,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public OSDType Type
         {
             get { return this.typeField; }
@@ -5401,7 +5407,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public OSDPosConfiguration Position
         {
             get { return this.positionField; }
@@ -5409,7 +5415,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public OSDTextConfiguration TextString
         {
             get { return this.textStringField; }
@@ -5417,7 +5423,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public OSDImgConfiguration Image
         {
             get { return this.imageField; }
@@ -5425,7 +5431,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public OSDConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -5434,8 +5440,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum OSDType
     {
         /// <remarks/>
@@ -5449,9 +5455,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZNode : DeviceEntity
     {
         private string[] auxiliaryCommandsField;
@@ -5474,7 +5480,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PTZSpaces supportedPTZSpacesField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -5482,7 +5488,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTZSpaces SupportedPTZSpaces
         {
             get { return this.supportedPTZSpacesField; }
@@ -5490,7 +5496,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int MaximumNumberOfPresets
         {
             get { return this.maximumNumberOfPresetsField; }
@@ -5498,7 +5504,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool HomeSupported
         {
             get { return this.homeSupportedField; }
@@ -5506,7 +5512,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AuxiliaryCommands", Order = 4)]
+        [XmlElement("AuxiliaryCommands", Order = 4)]
         public string[] AuxiliaryCommands
         {
             get { return this.auxiliaryCommandsField; }
@@ -5514,7 +5520,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public PTZNodeExtension Extension
         {
             get { return this.extensionField; }
@@ -5522,7 +5528,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool FixedHomePosition
         {
             get { return this.fixedHomePositionField; }
@@ -5530,7 +5536,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool FixedHomePositionSpecified
         {
             get { return this.fixedHomePositionFieldSpecified; }
@@ -5538,7 +5544,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool GeoMove
         {
             get { return this.geoMoveField; }
@@ -5546,7 +5552,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool GeoMoveSpecified
         {
             get { return this.geoMoveFieldSpecified; }
@@ -5555,27 +5561,27 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DigitalInput : DeviceEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private DigitalIdleState idleStateField;
 
         private bool idleStateFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public DigitalIdleState IdleState
         {
             get { return this.idleStateField; }
@@ -5583,7 +5589,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IdleStateSpecified
         {
             get { return this.idleStateFieldSpecified; }
@@ -5592,8 +5598,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum DigitalIdleState
     {
         /// <remarks/>
@@ -5604,16 +5610,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RelayOutput : DeviceEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private RelayOutputSettings propertiesField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public RelayOutputSettings Properties
         {
             get { return this.propertiesField; }
@@ -5621,8 +5627,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -5630,9 +5636,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkInterface : DeviceEntity
     {
         private bool enabledField;
@@ -5648,7 +5654,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private NetworkInterfaceLink linkField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -5656,7 +5662,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public NetworkInterfaceInfo Info
         {
             get { return this.infoField; }
@@ -5664,7 +5670,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public NetworkInterfaceLink Link
         {
             get { return this.linkField; }
@@ -5672,7 +5678,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IPv4NetworkInterface IPv4
         {
             get { return this.iPv4Field; }
@@ -5680,7 +5686,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public IPv6NetworkInterface IPv6
         {
             get { return this.iPv6Field; }
@@ -5688,7 +5694,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public NetworkInterfaceExtension Extension
         {
             get { return this.extensionField; }
@@ -5697,16 +5703,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioOutput : DeviceEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -5714,9 +5720,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoOutput : DeviceEntity
     {
         private float aspectRatioField;
@@ -5733,7 +5739,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private VideoResolution resolutionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Layout Layout
         {
             get { return this.layoutField; }
@@ -5741,7 +5747,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public VideoResolution Resolution
         {
             get { return this.resolutionField; }
@@ -5749,7 +5755,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float RefreshRate
         {
             get { return this.refreshRateField; }
@@ -5757,7 +5763,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RefreshRateSpecified
         {
             get { return this.refreshRateFieldSpecified; }
@@ -5765,7 +5771,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public float AspectRatio
         {
             get { return this.aspectRatioField; }
@@ -5773,7 +5779,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool AspectRatioSpecified
         {
             get { return this.aspectRatioFieldSpecified; }
@@ -5781,7 +5787,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public VideoOutputExtension Extension
         {
             get { return this.extensionField; }
@@ -5790,16 +5796,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioSource : DeviceEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private int channelsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int Channels
         {
             get { return this.channelsField; }
@@ -5807,8 +5813,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -5816,9 +5822,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSource : DeviceEntity
     {
         private VideoSourceExtension extensionField;
@@ -5829,7 +5835,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private VideoResolution resolutionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float Framerate
         {
             get { return this.framerateField; }
@@ -5837,7 +5843,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public VideoResolution Resolution
         {
             get { return this.resolutionField; }
@@ -5845,7 +5851,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ImagingSettings Imaging
         {
             get { return this.imagingField; }
@@ -5853,7 +5859,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public VideoSourceExtension Extension
         {
             get { return this.extensionField; }
@@ -5862,16 +5868,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DynamicDNSInformationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -5879,9 +5885,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DynamicDNSInformation
     {
         private DynamicDNSInformationExtension extensionField;
@@ -5892,7 +5898,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private DynamicDNSType typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public DynamicDNSType Type
         {
             get { return this.typeField; }
@@ -5900,7 +5906,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 1)]
+        [XmlElement(DataType = "token", Order = 1)]
         public string Name
         {
             get { return this.nameField; }
@@ -5908,7 +5914,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 2)]
+        [XmlElement(DataType = "duration", Order = 2)]
         public string TTL
         {
             get { return this.tTLField; }
@@ -5916,7 +5922,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public DynamicDNSInformationExtension Extension
         {
             get { return this.extensionField; }
@@ -5925,8 +5931,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum DynamicDNSType
     {
         /// <remarks/>
@@ -5940,16 +5946,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NTPInformationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -5957,9 +5963,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NTPInformation
     {
         private NTPInformationExtension extensionField;
@@ -5970,7 +5976,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private NetworkHost[] nTPManualField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool FromDHCP
         {
             get { return this.fromDHCPField; }
@@ -5978,7 +5984,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("NTPFromDHCP", Order = 1)]
+        [XmlElement("NTPFromDHCP", Order = 1)]
         public NetworkHost[] NTPFromDHCP
         {
             get { return this.nTPFromDHCPField; }
@@ -5986,7 +5992,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("NTPManual", Order = 2)]
+        [XmlElement("NTPManual", Order = 2)]
         public NetworkHost[] NTPManual
         {
             get { return this.nTPManualField; }
@@ -5994,7 +6000,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public NTPInformationExtension Extension
         {
             get { return this.extensionField; }
@@ -6003,9 +6009,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkHost
     {
         private string dNSnameField;
@@ -6018,7 +6024,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private NetworkHostType typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public NetworkHostType Type
         {
             get { return this.typeField; }
@@ -6026,7 +6032,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 1)]
+        [XmlElement(DataType = "token", Order = 1)]
         public string IPv4Address
         {
             get { return this.iPv4AddressField; }
@@ -6034,7 +6040,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 2)]
+        [XmlElement(DataType = "token", Order = 2)]
         public string IPv6Address
         {
             get { return this.iPv6AddressField; }
@@ -6042,7 +6048,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 3)]
+        [XmlElement(DataType = "token", Order = 3)]
         public string DNSname
         {
             get { return this.dNSnameField; }
@@ -6050,7 +6056,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public NetworkHostExtension Extension
         {
             get { return this.extensionField; }
@@ -6059,8 +6065,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum NetworkHostType
     {
         /// <remarks/>
@@ -6074,16 +6080,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkHostExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6091,16 +6097,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DNSInformationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6108,9 +6114,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IPAddress
     {
         private string iPv4AddressField;
@@ -6119,7 +6125,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private IPType typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IPType Type
         {
             get { return this.typeField; }
@@ -6127,7 +6133,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 1)]
+        [XmlElement(DataType = "token", Order = 1)]
         public string IPv4Address
         {
             get { return this.iPv4AddressField; }
@@ -6135,7 +6141,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 2)]
+        [XmlElement(DataType = "token", Order = 2)]
         public string IPv6Address
         {
             get { return this.iPv6AddressField; }
@@ -6144,8 +6150,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum IPType
     {
         /// <remarks/>
@@ -6156,9 +6162,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DNSInformation
     {
         private IPAddress[] dNSFromDHCPField;
@@ -6171,7 +6177,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string[] searchDomainField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool FromDHCP
         {
             get { return this.fromDHCPField; }
@@ -6179,7 +6185,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SearchDomain", DataType = "token", Order = 1)]
+        [XmlElement("SearchDomain", DataType = "token", Order = 1)]
         public string[] SearchDomain
         {
             get { return this.searchDomainField; }
@@ -6187,7 +6193,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DNSFromDHCP", Order = 2)]
+        [XmlElement("DNSFromDHCP", Order = 2)]
         public IPAddress[] DNSFromDHCP
         {
             get { return this.dNSFromDHCPField; }
@@ -6195,7 +6201,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DNSManual", Order = 3)]
+        [XmlElement("DNSManual", Order = 3)]
         public IPAddress[] DNSManual
         {
             get { return this.dNSManualField; }
@@ -6203,7 +6209,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public DNSInformationExtension Extension
         {
             get { return this.extensionField; }
@@ -6212,16 +6218,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class HostnameInformationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6229,9 +6235,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class HostnameInformation
     {
         private HostnameInformationExtension extensionField;
@@ -6240,7 +6246,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string nameField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool FromDHCP
         {
             get { return this.fromDHCPField; }
@@ -6248,7 +6254,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 1)]
+        [XmlElement(DataType = "token", Order = 1)]
         public string Name
         {
             get { return this.nameField; }
@@ -6256,7 +6262,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public HostnameInformationExtension Extension
         {
             get { return this.extensionField; }
@@ -6265,16 +6271,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class CapabilitiesExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6282,16 +6288,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsDeviceExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6299,9 +6305,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsDeviceCapabilities
     {
         private AnalyticsDeviceExtension extensionField;
@@ -6312,7 +6318,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6320,7 +6326,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool RuleSupport
         {
             get { return this.ruleSupportField; }
@@ -6328,7 +6334,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RuleSupportSpecified
         {
             get { return this.ruleSupportFieldSpecified; }
@@ -6336,7 +6342,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public AnalyticsDeviceExtension Extension
         {
             get { return this.extensionField; }
@@ -6345,12 +6351,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ReceiverCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int maximumRTSPURILengthField;
 
@@ -6364,7 +6370,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6372,7 +6378,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool RTP_Multicast
         {
             get { return this.rTP_MulticastField; }
@@ -6380,7 +6386,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool RTP_TCP
         {
             get { return this.rTP_TCPField; }
@@ -6388,7 +6394,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool RTP_RTSP_TCP
         {
             get { return this.rTP_RTSP_TCPField; }
@@ -6396,7 +6402,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public int SupportedReceivers
         {
             get { return this.supportedReceiversField; }
@@ -6404,7 +6410,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public int MaximumRTSPURILength
         {
             get { return this.maximumRTSPURILengthField; }
@@ -6412,8 +6418,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 6)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 6)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6421,16 +6427,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ReplayCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6438,8 +6444,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6447,18 +6453,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SearchCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool metadataSearchField;
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6466,7 +6472,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool MetadataSearch
         {
             get { return this.metadataSearchField; }
@@ -6474,8 +6480,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6483,12 +6489,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RecordingCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool dynamicRecordingsField;
 
@@ -6502,7 +6508,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6510,7 +6516,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool ReceiverSource
         {
             get { return this.receiverSourceField; }
@@ -6518,7 +6524,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool MediaProfileSource
         {
             get { return this.mediaProfileSourceField; }
@@ -6526,7 +6532,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool DynamicRecordings
         {
             get { return this.dynamicRecordingsField; }
@@ -6534,7 +6540,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public bool DynamicTracks
         {
             get { return this.dynamicTracksField; }
@@ -6542,7 +6548,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public int MaxStringLength
         {
             get { return this.maxStringLengthField; }
@@ -6550,8 +6556,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 6)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 6)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6559,18 +6565,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DisplayCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool fixedLayoutField;
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6578,7 +6584,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool FixedLayout
         {
             get { return this.fixedLayoutField; }
@@ -6586,8 +6592,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6595,12 +6601,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DeviceIOCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int audioOutputsField;
 
@@ -6614,7 +6620,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6622,7 +6628,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int VideoSources
         {
             get { return this.videoSourcesField; }
@@ -6630,7 +6636,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int VideoOutputs
         {
             get { return this.videoOutputsField; }
@@ -6638,7 +6644,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public int AudioSources
         {
             get { return this.audioSourcesField; }
@@ -6646,7 +6652,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public int AudioOutputs
         {
             get { return this.audioOutputsField; }
@@ -6654,7 +6660,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public int RelayOutputs
         {
             get { return this.relayOutputsField; }
@@ -6662,8 +6668,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 6)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 6)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6671,13 +6677,13 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class CapabilitiesExtension
     {
         private AnalyticsDeviceCapabilities analyticsDeviceField;
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private DeviceIOCapabilities deviceIOField;
 
@@ -6694,15 +6700,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private SearchCapabilities searchField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public DeviceIOCapabilities DeviceIO
         {
             get { return this.deviceIOField; }
@@ -6710,7 +6716,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public DisplayCapabilities Display
         {
             get { return this.displayField; }
@@ -6718,7 +6724,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public RecordingCapabilities Recording
         {
             get { return this.recordingField; }
@@ -6726,7 +6732,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public SearchCapabilities Search
         {
             get { return this.searchField; }
@@ -6734,7 +6740,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public ReplayCapabilities Replay
         {
             get { return this.replayField; }
@@ -6742,7 +6748,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public ReceiverCapabilities Receiver
         {
             get { return this.receiverField; }
@@ -6750,7 +6756,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public AnalyticsDeviceCapabilities AnalyticsDevice
         {
             get { return this.analyticsDeviceField; }
@@ -6758,7 +6764,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public CapabilitiesExtension2 Extensions
         {
             get { return this.extensionsField; }
@@ -6767,16 +6773,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6784,8 +6790,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6793,16 +6799,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ProfileCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private int maximumNumberOfProfilesField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int MaximumNumberOfProfiles
         {
             get { return this.maximumNumberOfProfilesField; }
@@ -6810,8 +6816,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6819,16 +6825,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MediaCapabilitiesExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private ProfileCapabilities profileCapabilitiesField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ProfileCapabilities ProfileCapabilities
         {
             get { return this.profileCapabilitiesField; }
@@ -6836,8 +6842,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6845,16 +6851,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RealTimeStreamingCapabilitiesExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -6862,9 +6868,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RealTimeStreamingCapabilities
     {
         private RealTimeStreamingCapabilitiesExtension extensionField;
@@ -6881,7 +6887,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool rTPMulticastFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool RTPMulticast
         {
             get { return this.rTPMulticastField; }
@@ -6889,7 +6895,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RTPMulticastSpecified
         {
             get { return this.rTPMulticastFieldSpecified; }
@@ -6897,7 +6903,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool RTP_TCP
         {
             get { return this.rTP_TCPField; }
@@ -6905,7 +6911,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RTP_TCPSpecified
         {
             get { return this.rTP_TCPFieldSpecified; }
@@ -6913,7 +6919,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool RTP_RTSP_TCP
         {
             get { return this.rTP_RTSP_TCPField; }
@@ -6921,7 +6927,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RTP_RTSP_TCPSpecified
         {
             get { return this.rTP_RTSP_TCPFieldSpecified; }
@@ -6929,7 +6935,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public RealTimeStreamingCapabilitiesExtension Extension
         {
             get { return this.extensionField; }
@@ -6938,12 +6944,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MediaCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private MediaCapabilitiesExtension extensionField;
 
@@ -6951,7 +6957,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -6959,7 +6965,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public RealTimeStreamingCapabilities StreamingCapabilities
         {
             get { return this.streamingCapabilitiesField; }
@@ -6967,15 +6973,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public MediaCapabilitiesExtension Extension
         {
             get { return this.extensionField; }
@@ -6984,15 +6990,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingCapabilities
     {
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -7001,12 +7007,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EventCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool wSPausableSubscriptionManagerInterfaceSupportField;
 
@@ -7016,7 +7022,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -7024,7 +7030,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool WSSubscriptionPolicySupport
         {
             get { return this.wSSubscriptionPolicySupportField; }
@@ -7032,7 +7038,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool WSPullPointSupport
         {
             get { return this.wSPullPointSupportField; }
@@ -7040,7 +7046,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool WSPausableSubscriptionManagerInterfaceSupport
         {
             get { return this.wSPausableSubscriptionManagerInterfaceSupportField; }
@@ -7048,8 +7054,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 4)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 4)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -7057,16 +7063,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DeviceCapabilitiesExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -7074,12 +7080,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SecurityCapabilitiesExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private bool dot1XField;
 
         private bool remoteUserHandlingField;
@@ -7087,7 +7093,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int[] supportedEAPMethodField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Dot1X
         {
             get { return this.dot1XField; }
@@ -7095,7 +7101,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SupportedEAPMethod", Order = 1)]
+        [XmlElement("SupportedEAPMethod", Order = 1)]
         public int[] SupportedEAPMethod
         {
             get { return this.supportedEAPMethodField; }
@@ -7103,7 +7109,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool RemoteUserHandling
         {
             get { return this.remoteUserHandlingField; }
@@ -7111,8 +7117,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -7120,16 +7126,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SecurityCapabilitiesExtension
     {
         private SecurityCapabilitiesExtension2 extensionField;
         private bool tLS10Field;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TLS1.0", Order = 0)]
+        [XmlElement("TLS1.0", Order = 0)]
         public bool TLS10
         {
             get { return this.tLS10Field; }
@@ -7137,7 +7143,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public SecurityCapabilitiesExtension2 Extension
         {
             get { return this.extensionField; }
@@ -7146,15 +7152,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName = "SecurityCapabilities",
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(TypeName = "SecurityCapabilities",
         Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SecurityCapabilities1
     {
         private bool accessPolicyConfigField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private SecurityCapabilitiesExtension extensionField;
 
@@ -7172,7 +7178,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool x509TokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TLS1.1", Order = 0)]
+        [XmlElement("TLS1.1", Order = 0)]
         public bool TLS11
         {
             get { return this.tLS11Field; }
@@ -7180,7 +7186,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TLS1.2", Order = 1)]
+        [XmlElement("TLS1.2", Order = 1)]
         public bool TLS12
         {
             get { return this.tLS12Field; }
@@ -7188,7 +7194,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool OnboardKeyGeneration
         {
             get { return this.onboardKeyGenerationField; }
@@ -7196,7 +7202,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool AccessPolicyConfig
         {
             get { return this.accessPolicyConfigField; }
@@ -7204,7 +7210,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("X.509Token", Order = 4)]
+        [XmlElement("X.509Token", Order = 4)]
         public bool X509Token
         {
             get { return this.x509TokenField; }
@@ -7212,7 +7218,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public bool SAMLToken
         {
             get { return this.sAMLTokenField; }
@@ -7220,7 +7226,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public bool KerberosToken
         {
             get { return this.kerberosTokenField; }
@@ -7228,7 +7234,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public bool RELToken
         {
             get { return this.rELTokenField; }
@@ -7236,15 +7242,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 8)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 8)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public SecurityCapabilitiesExtension Extension
         {
             get { return this.extensionField; }
@@ -7253,16 +7259,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IOCapabilitiesExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -7270,12 +7276,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IOCapabilitiesExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private string[] auxiliaryCommandsField;
 
@@ -7286,15 +7292,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private IOCapabilitiesExtension2 extensionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Auxiliary
         {
             get { return this.auxiliaryField; }
@@ -7302,7 +7308,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool AuxiliarySpecified
         {
             get { return this.auxiliaryFieldSpecified; }
@@ -7310,7 +7316,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AuxiliaryCommands", Order = 2)]
+        [XmlElement("AuxiliaryCommands", Order = 2)]
         public string[] AuxiliaryCommands
         {
             get { return this.auxiliaryCommandsField; }
@@ -7318,7 +7324,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IOCapabilitiesExtension2 Extension
         {
             get { return this.extensionField; }
@@ -7327,9 +7333,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IOCapabilities
     {
         private IOCapabilitiesExtension extensionField;
@@ -7342,7 +7348,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool relayOutputsFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int InputConnectors
         {
             get { return this.inputConnectorsField; }
@@ -7350,7 +7356,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool InputConnectorsSpecified
         {
             get { return this.inputConnectorsFieldSpecified; }
@@ -7358,7 +7364,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int RelayOutputs
         {
             get { return this.relayOutputsField; }
@@ -7366,7 +7372,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RelayOutputsSpecified
         {
             get { return this.relayOutputsFieldSpecified; }
@@ -7374,7 +7380,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public IOCapabilitiesExtension Extension
         {
             get { return this.extensionField; }
@@ -7383,16 +7389,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SystemCapabilitiesExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -7400,12 +7406,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SystemCapabilitiesExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private SystemCapabilitiesExtension2 extensionField;
 
@@ -7426,15 +7432,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool httpSystemLoggingFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool HttpFirmwareUpgrade
         {
             get { return this.httpFirmwareUpgradeField; }
@@ -7442,7 +7448,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpFirmwareUpgradeSpecified
         {
             get { return this.httpFirmwareUpgradeFieldSpecified; }
@@ -7450,7 +7456,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool HttpSystemBackup
         {
             get { return this.httpSystemBackupField; }
@@ -7458,7 +7464,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpSystemBackupSpecified
         {
             get { return this.httpSystemBackupFieldSpecified; }
@@ -7466,7 +7472,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool HttpSystemLogging
         {
             get { return this.httpSystemLoggingField; }
@@ -7474,7 +7480,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpSystemLoggingSpecified
         {
             get { return this.httpSystemLoggingFieldSpecified; }
@@ -7482,7 +7488,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public bool HttpSupportInformation
         {
             get { return this.httpSupportInformationField; }
@@ -7490,7 +7496,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpSupportInformationSpecified
         {
             get { return this.httpSupportInformationFieldSpecified; }
@@ -7498,7 +7504,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public SystemCapabilitiesExtension2 Extension
         {
             get { return this.extensionField; }
@@ -7507,9 +7513,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName = "SystemCapabilities",
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(TypeName = "SystemCapabilities",
         Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SystemCapabilities1
     {
@@ -7529,7 +7535,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool systemLoggingField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool DiscoveryResolve
         {
             get { return this.discoveryResolveField; }
@@ -7537,7 +7543,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool DiscoveryBye
         {
             get { return this.discoveryByeField; }
@@ -7545,7 +7551,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool RemoteDiscovery
         {
             get { return this.remoteDiscoveryField; }
@@ -7553,7 +7559,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool SystemBackup
         {
             get { return this.systemBackupField; }
@@ -7561,7 +7567,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public bool SystemLogging
         {
             get { return this.systemLoggingField; }
@@ -7569,7 +7575,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public bool FirmwareUpgrade
         {
             get { return this.firmwareUpgradeField; }
@@ -7577,7 +7583,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SupportedVersions", Order = 6)]
+        [XmlElement("SupportedVersions", Order = 6)]
         public OnvifVersion[] SupportedVersions
         {
             get { return this.supportedVersionsField; }
@@ -7585,7 +7591,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public SystemCapabilitiesExtension Extension
         {
             get { return this.extensionField; }
@@ -7594,16 +7600,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkCapabilitiesExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -7611,12 +7617,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkCapabilitiesExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool dot11ConfigurationField;
 
@@ -7625,15 +7631,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private NetworkCapabilitiesExtension2 extensionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Dot11Configuration
         {
             get { return this.dot11ConfigurationField; }
@@ -7641,7 +7647,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool Dot11ConfigurationSpecified
         {
             get { return this.dot11ConfigurationFieldSpecified; }
@@ -7649,7 +7655,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public NetworkCapabilitiesExtension2 Extension
         {
             get { return this.extensionField; }
@@ -7658,9 +7664,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName = "NetworkCapabilities",
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(TypeName = "NetworkCapabilities",
         Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NetworkCapabilities1
     {
@@ -7682,7 +7688,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool zeroConfigurationFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool IPFilter
         {
             get { return this.iPFilterField; }
@@ -7690,7 +7696,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IPFilterSpecified
         {
             get { return this.iPFilterFieldSpecified; }
@@ -7698,7 +7704,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool ZeroConfiguration
         {
             get { return this.zeroConfigurationField; }
@@ -7706,7 +7712,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ZeroConfigurationSpecified
         {
             get { return this.zeroConfigurationFieldSpecified; }
@@ -7714,7 +7720,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool IPVersion6
         {
             get { return this.iPVersion6Field; }
@@ -7722,7 +7728,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IPVersion6Specified
         {
             get { return this.iPVersion6FieldSpecified; }
@@ -7730,7 +7736,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool DynDNS
         {
             get { return this.dynDNSField; }
@@ -7738,7 +7744,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DynDNSSpecified
         {
             get { return this.dynDNSFieldSpecified; }
@@ -7746,7 +7752,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public NetworkCapabilitiesExtension Extension
         {
             get { return this.extensionField; }
@@ -7755,9 +7761,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DeviceCapabilities
     {
         private DeviceCapabilitiesExtension extensionField;
@@ -7772,7 +7778,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -7780,7 +7786,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public NetworkCapabilities1 Network
         {
             get { return this.networkField; }
@@ -7788,7 +7794,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public SystemCapabilities1 System
         {
             get { return this.systemField; }
@@ -7796,7 +7802,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IOCapabilities IO
         {
             get { return this.ioField; }
@@ -7804,7 +7810,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public SecurityCapabilities1 Security
         {
             get { return this.securityField; }
@@ -7812,7 +7818,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public DeviceCapabilitiesExtension Extension
         {
             get { return this.extensionField; }
@@ -7821,20 +7827,20 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsCapabilities
     {
         private bool analyticsModuleSupportField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool ruleSupportField;
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -7842,7 +7848,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool RuleSupport
         {
             get { return this.ruleSupportField; }
@@ -7850,7 +7856,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool AnalyticsModuleSupport
         {
             get { return this.analyticsModuleSupportField; }
@@ -7858,8 +7864,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -7867,9 +7873,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Capabilities
     {
         private AnalyticsCapabilities analyticsField;
@@ -7887,7 +7893,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PTZCapabilities pTZField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AnalyticsCapabilities Analytics
         {
             get { return this.analyticsField; }
@@ -7895,7 +7901,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public DeviceCapabilities Device
         {
             get { return this.deviceField; }
@@ -7903,7 +7909,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public EventCapabilities Events
         {
             get { return this.eventsField; }
@@ -7911,7 +7917,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public ImagingCapabilities Imaging
         {
             get { return this.imagingField; }
@@ -7919,7 +7925,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public MediaCapabilities Media
         {
             get { return this.mediaField; }
@@ -7927,7 +7933,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public PTZCapabilities PTZ
         {
             get { return this.pTZField; }
@@ -7935,7 +7941,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public CapabilitiesExtension Extension
         {
             get { return this.extensionField; }
@@ -7944,16 +7950,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class UserExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -7961,9 +7967,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class User
     {
         private UserExtension extensionField;
@@ -7974,7 +7980,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string usernameField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Username
         {
             get { return this.usernameField; }
@@ -7982,7 +7988,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string Password
         {
             get { return this.passwordField; }
@@ -7990,7 +7996,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public UserLevel UserLevel
         {
             get { return this.userLevelField; }
@@ -7998,7 +8004,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public UserExtension Extension
         {
             get { return this.extensionField; }
@@ -8007,8 +8013,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum UserLevel
     {
         /// <remarks/>
@@ -8028,12 +8034,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RemoteUser
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private string passwordField;
 
@@ -8041,7 +8047,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string usernameField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Username
         {
             get { return this.usernameField; }
@@ -8049,7 +8055,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string Password
         {
             get { return this.passwordField; }
@@ -8057,7 +8063,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool UseDerivedPassword
         {
             get { return this.useDerivedPasswordField; }
@@ -8065,8 +8071,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -8074,9 +8080,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Scope
     {
         private ScopeDefinition scopeDefField;
@@ -8084,7 +8090,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string scopeItemField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ScopeDefinition ScopeDef
         {
             get { return this.scopeDefField; }
@@ -8092,7 +8098,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 1)]
+        [XmlElement(DataType = "anyURI", Order = 1)]
         public string ScopeItem
         {
             get { return this.scopeItemField; }
@@ -8101,8 +8107,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum ScopeDefinition
     {
         /// <remarks/>
@@ -8113,9 +8119,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SupportInformation
     {
         private AttachmentData binaryField;
@@ -8123,7 +8129,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string stringField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AttachmentData Binary
         {
             get { return this.binaryField; }
@@ -8131,7 +8137,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string String
         {
             get { return this.stringField; }
@@ -8140,16 +8146,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AttachmentData
     {
         private string contentTypeField;
         private Include includeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://www.w3.org/2004/08/xop/include", Order = 0)]
+        [XmlElement(Namespace = "http://www.w3.org/2004/08/xop/include", Order = 0)]
         public Include Include
         {
             get { return this.includeField; }
@@ -8157,7 +8163,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified,
+        [XmlAttribute(Form = XmlSchemaForm.Qualified,
             Namespace = "http://www.w3.org/2005/05/xmlmime")]
         public string contentType
         {
@@ -8167,25 +8173,25 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2004/08/xop/include")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.w3.org/2004/08/xop/include")]
     public partial class Include
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private string hrefField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+        [XmlAttribute(DataType = "anyURI")]
         public string href
         {
             get { return this.hrefField; }
@@ -8194,9 +8200,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SystemLog
     {
         private AttachmentData binaryField;
@@ -8204,7 +8210,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string stringField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AttachmentData Binary
         {
             get { return this.binaryField; }
@@ -8212,7 +8218,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string String
         {
             get { return this.stringField; }
@@ -8221,16 +8227,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class BackupFile
     {
         private AttachmentData dataField;
         private string nameField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -8238,7 +8244,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public AttachmentData Data
         {
             get { return this.dataField; }
@@ -8247,16 +8253,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SystemDateTimeExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -8264,9 +8270,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SystemDateTime
     {
         private SetDateTimeType dateTimeTypeField;
@@ -8282,7 +8288,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private DateTime uTCDateTimeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public SetDateTimeType DateTimeType
         {
             get { return this.dateTimeTypeField; }
@@ -8290,7 +8296,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool DaylightSavings
         {
             get { return this.daylightSavingsField; }
@@ -8298,7 +8304,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public TimeZone TimeZone
         {
             get { return this.timeZoneField; }
@@ -8306,7 +8312,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public DateTime UTCDateTime
         {
             get { return this.uTCDateTimeField; }
@@ -8314,7 +8320,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public DateTime LocalDateTime
         {
             get { return this.localDateTimeField; }
@@ -8322,7 +8328,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public SystemDateTimeExtension Extension
         {
             get { return this.extensionField; }
@@ -8331,8 +8337,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum SetDateTimeType
     {
         /// <remarks/>
@@ -8343,15 +8349,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class TimeZone
     {
         private string tzField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token", Order = 0)]
+        [XmlElement(DataType = "token", Order = 0)]
         public string TZ
         {
             get { return this.tzField; }
@@ -8360,16 +8366,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DateTime
     {
         private Date dateField;
         private Time timeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Time Time
         {
             get { return this.timeField; }
@@ -8377,7 +8383,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Date Date
         {
             get { return this.dateField; }
@@ -8386,9 +8392,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Time
     {
         private int hourField;
@@ -8398,7 +8404,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int secondField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int Hour
         {
             get { return this.hourField; }
@@ -8406,7 +8412,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Minute
         {
             get { return this.minuteField; }
@@ -8414,7 +8420,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int Second
         {
             get { return this.secondField; }
@@ -8423,9 +8429,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Date
     {
         private int dayField;
@@ -8434,7 +8440,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int yearField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int Year
         {
             get { return this.yearField; }
@@ -8442,7 +8448,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Month
         {
             get { return this.monthField; }
@@ -8450,7 +8456,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int Day
         {
             get { return this.dayField; }
@@ -8459,8 +8465,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum FactoryDefaultType
     {
         /// <remarks/>
@@ -8471,8 +8477,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum DiscoveryMode
     {
         /// <remarks/>
@@ -8483,8 +8489,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum CapabilityCategory
     {
         /// <remarks/>
@@ -8510,8 +8516,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum RelayLogicalState
     {
         /// <remarks/>
@@ -8523,16 +8529,16 @@ namespace Mictlanix.DotNet.Onvif.Common
 
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDConfigurationOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -8540,16 +8546,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDImgOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -8557,9 +8563,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDImgOptions
     {
         private OSDImgOptionsExtension extensionField;
@@ -8580,7 +8586,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool maxWidthFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ImagePath", DataType = "anyURI", Order = 0)]
+        [XmlElement("ImagePath", DataType = "anyURI", Order = 0)]
         public string[] ImagePath
         {
             get { return this.imagePathField; }
@@ -8588,7 +8594,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public OSDImgOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -8596,7 +8602,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string[] FormatsSupported
         {
             get { return this.formatsSupportedField; }
@@ -8604,7 +8610,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaxSize
         {
             get { return this.maxSizeField; }
@@ -8612,7 +8618,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxSizeSpecified
         {
             get { return this.maxSizeFieldSpecified; }
@@ -8620,7 +8626,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaxWidth
         {
             get { return this.maxWidthField; }
@@ -8628,7 +8634,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxWidthSpecified
         {
             get { return this.maxWidthFieldSpecified; }
@@ -8636,7 +8642,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaxHeight
         {
             get { return this.maxHeightField; }
@@ -8644,7 +8650,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxHeightSpecified
         {
             get { return this.maxHeightFieldSpecified; }
@@ -8653,16 +8659,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDTextOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -8670,16 +8676,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDColorOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -8687,9 +8693,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ColorspaceRange
     {
         private string colorspaceField;
@@ -8700,7 +8706,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private FloatRange zField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public FloatRange X
         {
             get { return this.xField; }
@@ -8708,7 +8714,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange Y
         {
             get { return this.yField; }
@@ -8716,7 +8722,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public FloatRange Z
         {
             get { return this.zField; }
@@ -8724,7 +8730,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 3)]
+        [XmlElement(DataType = "anyURI", Order = 3)]
         public string Colorspace
         {
             get { return this.colorspaceField; }
@@ -8733,16 +8739,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ColorOptions
     {
         private object[] itemsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ColorList", typeof(Color), Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("ColorspaceRange", typeof(ColorspaceRange), Order = 0)]
+        [XmlElement("ColorList", typeof(Color), Order = 0)]
+        [XmlElement("ColorspaceRange", typeof(ColorspaceRange), Order = 0)]
         public object[] Items
         {
             get { return this.itemsField; }
@@ -8751,9 +8757,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDColorOptions
     {
         private ColorOptions colorField;
@@ -8763,7 +8769,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private IntRange transparentField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ColorOptions Color
         {
             get { return this.colorField; }
@@ -8771,7 +8777,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IntRange Transparent
         {
             get { return this.transparentField; }
@@ -8779,7 +8785,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public OSDColorOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -8788,16 +8794,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IntRange
     {
         private int maxField;
         private int minField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int Min
         {
             get { return this.minField; }
@@ -8805,7 +8811,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Max
         {
             get { return this.maxField; }
@@ -8814,9 +8820,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDTextOptions
     {
         private OSDColorOptions backgroundColorField;
@@ -8833,7 +8839,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string[] typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Type", Order = 0)]
+        [XmlElement("Type", Order = 0)]
         public string[] Type
         {
             get { return this.typeField; }
@@ -8841,7 +8847,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IntRange FontSizeRange
         {
             get { return this.fontSizeRangeField; }
@@ -8849,7 +8855,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DateFormat", Order = 2)]
+        [XmlElement("DateFormat", Order = 2)]
         public string[] DateFormat
         {
             get { return this.dateFormatField; }
@@ -8857,7 +8863,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TimeFormat", Order = 3)]
+        [XmlElement("TimeFormat", Order = 3)]
         public string[] TimeFormat
         {
             get { return this.timeFormatField; }
@@ -8865,7 +8871,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public OSDColorOptions FontColor
         {
             get { return this.fontColorField; }
@@ -8873,7 +8879,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public OSDColorOptions BackgroundColor
         {
             get { return this.backgroundColorField; }
@@ -8881,7 +8887,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public OSDTextOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -8890,9 +8896,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MaximumNumberOfOSDs
     {
         private int dateAndTimeField;
@@ -8917,7 +8923,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int totalField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int Total
         {
             get { return this.totalField; }
@@ -8925,7 +8931,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int Image
         {
             get { return this.imageField; }
@@ -8933,7 +8939,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ImageSpecified
         {
             get { return this.imageFieldSpecified; }
@@ -8941,7 +8947,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int PlainText
         {
             get { return this.plainTextField; }
@@ -8949,7 +8955,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool PlainTextSpecified
         {
             get { return this.plainTextFieldSpecified; }
@@ -8957,7 +8963,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int Date
         {
             get { return this.dateField; }
@@ -8965,7 +8971,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DateSpecified
         {
             get { return this.dateFieldSpecified; }
@@ -8973,7 +8979,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int Time
         {
             get { return this.timeField; }
@@ -8981,7 +8987,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool TimeSpecified
         {
             get { return this.timeFieldSpecified; }
@@ -8989,7 +8995,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int DateAndTime
         {
             get { return this.dateAndTimeField; }
@@ -8997,7 +9003,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DateAndTimeSpecified
         {
             get { return this.dateAndTimeFieldSpecified; }
@@ -9006,9 +9012,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class OSDConfigurationOptions
     {
         private OSDConfigurationOptionsExtension extensionField;
@@ -9023,7 +9029,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private OSDType[] typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public MaximumNumberOfOSDs MaximumNumberOfOSDs
         {
             get { return this.maximumNumberOfOSDsField; }
@@ -9031,7 +9037,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Type", Order = 1)]
+        [XmlElement("Type", Order = 1)]
         public OSDType[] Type
         {
             get { return this.typeField; }
@@ -9039,7 +9045,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PositionOption", Order = 2)]
+        [XmlElement("PositionOption", Order = 2)]
         public string[] PositionOption
         {
             get { return this.positionOptionField; }
@@ -9047,7 +9053,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public OSDTextOptions TextOption
         {
             get { return this.textOptionField; }
@@ -9055,7 +9061,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public OSDImgOptions ImageOption
         {
             get { return this.imageOptionField; }
@@ -9063,7 +9069,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public OSDConfigurationOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -9072,12 +9078,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MediaUri
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool invalidAfterConnectField;
 
@@ -9087,7 +9093,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string uriField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string Uri
         {
             get { return this.uriField; }
@@ -9095,7 +9101,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool InvalidAfterConnect
         {
             get { return this.invalidAfterConnectField; }
@@ -9103,7 +9109,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool InvalidAfterReboot
         {
             get { return this.invalidAfterRebootField; }
@@ -9111,7 +9117,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 3)]
+        [XmlElement(DataType = "duration", Order = 3)]
         public string Timeout
         {
             get { return this.timeoutField; }
@@ -9119,8 +9125,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 4)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 4)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9128,9 +9134,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Transport
     {
         private TransportProtocol protocolField;
@@ -9138,7 +9144,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Transport tunnelField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public TransportProtocol Protocol
         {
             get { return this.protocolField; }
@@ -9146,7 +9152,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Transport Tunnel
         {
             get { return this.tunnelField; }
@@ -9155,8 +9161,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum TransportProtocol
     {
         /// <remarks/>
@@ -9173,18 +9179,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class StreamSetup
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private StreamType streamField;
 
         private Transport transportField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public StreamType Stream
         {
             get { return this.streamField; }
@@ -9192,7 +9198,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Transport Transport
         {
             get { return this.transportField; }
@@ -9200,8 +9206,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9209,30 +9215,30 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum StreamType
     {
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("RTP-Unicast")]
+        [XmlEnum("RTP-Unicast")]
         RTPUnicast,
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("RTP-Multicast")]
+        [XmlEnum("RTP-Multicast")]
         RTPMulticast,
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioDecoderConfigurationOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9240,19 +9246,19 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class G726DecOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private int[] bitrateField;
 
         private int[] sampleRateRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 0)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] Bitrate
         {
             get { return this.bitrateField; }
@@ -9260,8 +9266,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 1)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] SampleRateRange
         {
             get { return this.sampleRateRangeField; }
@@ -9269,8 +9275,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9278,19 +9284,19 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class G711DecOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private int[] bitrateField;
 
         private int[] sampleRateRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 0)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] Bitrate
         {
             get { return this.bitrateField; }
@@ -9298,8 +9304,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 1)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] SampleRateRange
         {
             get { return this.sampleRateRangeField; }
@@ -9307,8 +9313,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9316,19 +9322,19 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AACDecOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private int[] bitrateField;
 
         private int[] sampleRateRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 0)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] Bitrate
         {
             get { return this.bitrateField; }
@@ -9336,8 +9342,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 1)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] SampleRateRange
         {
             get { return this.sampleRateRangeField; }
@@ -9345,8 +9351,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9354,9 +9360,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioDecoderConfigurationOptions
     {
         private AACDecOptions aACDecOptionsField;
@@ -9368,7 +9374,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private G726DecOptions g726DecOptionsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AACDecOptions AACDecOptions
         {
             get { return this.aACDecOptionsField; }
@@ -9376,7 +9382,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public G711DecOptions G711DecOptions
         {
             get { return this.g711DecOptionsField; }
@@ -9384,7 +9390,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public G726DecOptions G726DecOptions
         {
             get { return this.g726DecOptionsField; }
@@ -9392,7 +9398,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public AudioDecoderConfigurationOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -9401,12 +9407,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioOutputConfigurationOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private IntRange outputLevelRangeField;
         private string[] outputTokensAvailableField;
@@ -9414,7 +9420,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string[] sendPrimacyOptionsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("OutputTokensAvailable", Order = 0)]
+        [XmlElement("OutputTokensAvailable", Order = 0)]
         public string[] OutputTokensAvailable
         {
             get { return this.outputTokensAvailableField; }
@@ -9422,7 +9428,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SendPrimacyOptions", DataType = "anyURI", Order = 1)]
+        [XmlElement("SendPrimacyOptions", DataType = "anyURI", Order = 1)]
         public string[] SendPrimacyOptions
         {
             get { return this.sendPrimacyOptionsField; }
@@ -9430,7 +9436,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public IntRange OutputLevelRange
         {
             get { return this.outputLevelRangeField; }
@@ -9438,8 +9444,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9447,16 +9453,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MetadataConfigurationOptionsExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9464,9 +9470,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MetadataConfigurationOptionsExtension
     {
         private string[] compressionTypeField;
@@ -9474,7 +9480,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private MetadataConfigurationOptionsExtension2 extensionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CompressionType", Order = 0)]
+        [XmlElement("CompressionType", Order = 0)]
         public string[] CompressionType
         {
             get { return this.compressionTypeField; }
@@ -9482,7 +9488,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public MetadataConfigurationOptionsExtension2 Extension
         {
             get { return this.extensionField; }
@@ -9491,16 +9497,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZStatusFilterOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9508,12 +9514,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZStatusFilterOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private PTZStatusFilterOptionsExtension extensionField;
 
@@ -9529,7 +9535,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool zoomStatusSupportedField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool PanTiltStatusSupported
         {
             get { return this.panTiltStatusSupportedField; }
@@ -9537,7 +9543,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool ZoomStatusSupported
         {
             get { return this.zoomStatusSupportedField; }
@@ -9545,15 +9551,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool PanTiltPositionSupported
         {
             get { return this.panTiltPositionSupportedField; }
@@ -9561,7 +9567,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool PanTiltPositionSupportedSpecified
         {
             get { return this.panTiltPositionSupportedFieldSpecified; }
@@ -9569,7 +9575,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public bool ZoomPositionSupported
         {
             get { return this.zoomPositionSupportedField; }
@@ -9577,7 +9583,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ZoomPositionSupportedSpecified
         {
             get { return this.zoomPositionSupportedFieldSpecified; }
@@ -9585,7 +9591,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public PTZStatusFilterOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -9594,12 +9600,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MetadataConfigurationOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private MetadataConfigurationOptionsExtension extensionField;
 
@@ -9609,7 +9615,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PTZStatusFilterOptions pTZStatusFilterOptionsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public PTZStatusFilterOptions PTZStatusFilterOptions
         {
             get { return this.pTZStatusFilterOptionsField; }
@@ -9617,15 +9623,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public MetadataConfigurationOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -9633,7 +9639,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool GeoLocation
         {
             get { return this.geoLocationField; }
@@ -9641,7 +9647,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool GeoLocationSpecified
         {
             get { return this.geoLocationFieldSpecified; }
@@ -9650,12 +9656,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioEncoderConfigurationOption
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int[] bitrateListField;
         private AudioEncoding encodingField;
@@ -9663,7 +9669,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int[] sampleRateListField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AudioEncoding Encoding
         {
             get { return this.encodingField; }
@@ -9671,8 +9677,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 1)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] BitrateList
         {
             get { return this.bitrateListField; }
@@ -9680,8 +9686,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 2)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 2)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] SampleRateList
         {
             get { return this.sampleRateListField; }
@@ -9689,8 +9695,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9698,8 +9704,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum AudioEncoding
     {
         /// <remarks/>
@@ -9713,15 +9719,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioEncoderConfigurationOptions
     {
         private AudioEncoderConfigurationOption[] optionsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Options", Order = 0)]
+        [XmlElement("Options", Order = 0)]
         public AudioEncoderConfigurationOption[] Options
         {
             get { return this.optionsField; }
@@ -9730,16 +9736,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioSourceOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9747,16 +9753,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioSourceConfigurationOptions
     {
         private AudioSourceOptionsExtension extensionField;
         private string[] inputTokensAvailableField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("InputTokensAvailable", Order = 0)]
+        [XmlElement("InputTokensAvailable", Order = 0)]
         public string[] InputTokensAvailable
         {
             get { return this.inputTokensAvailableField; }
@@ -9764,7 +9770,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public AudioSourceOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -9773,16 +9779,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoEncoderOptionsExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9790,12 +9796,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoEncoderOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private VideoEncoderOptionsExtension2 extensionField;
 
@@ -9806,15 +9812,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Mpeg4Options2 mPEG4Field;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public JpegOptions2 JPEG
         {
             get { return this.jPEGField; }
@@ -9822,7 +9828,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Mpeg4Options2 MPEG4
         {
             get { return this.mPEG4Field; }
@@ -9830,7 +9836,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public H264Options2 H264
         {
             get { return this.h264Field; }
@@ -9838,7 +9844,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public VideoEncoderOptionsExtension2 Extension
         {
             get { return this.extensionField; }
@@ -9847,16 +9853,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class JpegOptions2 : JpegOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private IntRange bitrateRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IntRange BitrateRange
         {
             get { return this.bitrateRangeField; }
@@ -9864,8 +9870,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9873,10 +9879,10 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(JpegOptions2))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [XmlInclude(typeof(JpegOptions2))]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class JpegOptions
     {
         private IntRange encodingIntervalRangeField;
@@ -9885,7 +9891,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private VideoResolution[] resolutionsAvailableField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ResolutionsAvailable", Order = 0)]
+        [XmlElement("ResolutionsAvailable", Order = 0)]
         public VideoResolution[] ResolutionsAvailable
         {
             get { return this.resolutionsAvailableField; }
@@ -9893,7 +9899,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IntRange FrameRateRange
         {
             get { return this.frameRateRangeField; }
@@ -9901,7 +9907,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public IntRange EncodingIntervalRange
         {
             get { return this.encodingIntervalRangeField; }
@@ -9910,16 +9916,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Mpeg4Options2 : Mpeg4Options
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private IntRange bitrateRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IntRange BitrateRange
         {
             get { return this.bitrateRangeField; }
@@ -9927,8 +9933,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -9936,10 +9942,10 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Mpeg4Options2))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [XmlInclude(typeof(Mpeg4Options2))]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Mpeg4Options
     {
         private IntRange encodingIntervalRangeField;
@@ -9952,7 +9958,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private VideoResolution[] resolutionsAvailableField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ResolutionsAvailable", Order = 0)]
+        [XmlElement("ResolutionsAvailable", Order = 0)]
         public VideoResolution[] ResolutionsAvailable
         {
             get { return this.resolutionsAvailableField; }
@@ -9960,7 +9966,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IntRange GovLengthRange
         {
             get { return this.govLengthRangeField; }
@@ -9968,7 +9974,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public IntRange FrameRateRange
         {
             get { return this.frameRateRangeField; }
@@ -9976,7 +9982,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IntRange EncodingIntervalRange
         {
             get { return this.encodingIntervalRangeField; }
@@ -9984,7 +9990,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mpeg4ProfilesSupported", Order = 4)]
+        [XmlElement("Mpeg4ProfilesSupported", Order = 4)]
         public Mpeg4Profile[] Mpeg4ProfilesSupported
         {
             get { return this.mpeg4ProfilesSupportedField; }
@@ -9993,8 +9999,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum Mpeg4Profile
     {
         /// <remarks/>
@@ -10005,16 +10011,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class H264Options2 : H264Options
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private IntRange bitrateRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IntRange BitrateRange
         {
             get { return this.bitrateRangeField; }
@@ -10022,8 +10028,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10031,10 +10037,10 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(H264Options2))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [XmlInclude(typeof(H264Options2))]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class H264Options
     {
         private IntRange encodingIntervalRangeField;
@@ -10047,7 +10053,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private VideoResolution[] resolutionsAvailableField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ResolutionsAvailable", Order = 0)]
+        [XmlElement("ResolutionsAvailable", Order = 0)]
         public VideoResolution[] ResolutionsAvailable
         {
             get { return this.resolutionsAvailableField; }
@@ -10055,7 +10061,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IntRange GovLengthRange
         {
             get { return this.govLengthRangeField; }
@@ -10063,7 +10069,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public IntRange FrameRateRange
         {
             get { return this.frameRateRangeField; }
@@ -10071,7 +10077,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IntRange EncodingIntervalRange
         {
             get { return this.encodingIntervalRangeField; }
@@ -10079,7 +10085,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("H264ProfilesSupported", Order = 4)]
+        [XmlElement("H264ProfilesSupported", Order = 4)]
         public H264Profile[] H264ProfilesSupported
         {
             get { return this.h264ProfilesSupportedField; }
@@ -10088,8 +10094,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum H264Profile
     {
         /// <remarks/>
@@ -10106,9 +10112,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoEncoderConfigurationOptions
     {
         private VideoEncoderOptionsExtension extensionField;
@@ -10121,7 +10127,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private IntRange qualityRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IntRange QualityRange
         {
             get { return this.qualityRangeField; }
@@ -10129,7 +10135,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public JpegOptions JPEG
         {
             get { return this.jPEGField; }
@@ -10137,7 +10143,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Mpeg4Options MPEG4
         {
             get { return this.mPEG4Field; }
@@ -10145,7 +10151,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public H264Options H264
         {
             get { return this.h264Field; }
@@ -10153,7 +10159,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public VideoEncoderOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -10162,16 +10168,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSourceConfigurationOptionsExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private SceneOrientationMode[] sceneOrientationModeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SceneOrientationMode", Order = 0)]
+        [XmlElement("SceneOrientationMode", Order = 0)]
         public SceneOrientationMode[] SceneOrientationMode
         {
             get { return this.sceneOrientationModeField; }
@@ -10179,8 +10185,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10188,8 +10194,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum SceneOrientationMode
     {
         /// <remarks/>
@@ -10200,16 +10206,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RotateOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10217,9 +10223,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RotateOptions
     {
         private int[] degreeListField;
@@ -10228,7 +10234,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private RotateMode[] modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public RotateMode[] Mode
         {
             get { return this.modeField; }
@@ -10236,8 +10242,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order = 1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Items", IsNullable = false)]
+        [XmlArray(Order = 1)]
+        [XmlArrayItem("Items", IsNullable = false)]
         public int[] DegreeList
         {
             get { return this.degreeListField; }
@@ -10245,7 +10251,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public RotateOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -10254,8 +10260,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum RotateMode
     {
         /// <remarks/>
@@ -10269,27 +10275,27 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSourceConfigurationOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private VideoSourceConfigurationOptionsExtension2 extensionField;
 
         private RotateOptions rotateField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public RotateOptions Rotate
         {
             get { return this.rotateField; }
@@ -10297,7 +10303,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public VideoSourceConfigurationOptionsExtension2 Extension
         {
             get { return this.extensionField; }
@@ -10306,9 +10312,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IntRectangleRange
     {
         private IntRange heightRangeField;
@@ -10319,7 +10325,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private IntRange yRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IntRange XRange
         {
             get { return this.xRangeField; }
@@ -10327,7 +10333,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IntRange YRange
         {
             get { return this.yRangeField; }
@@ -10335,7 +10341,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public IntRange WidthRange
         {
             get { return this.widthRangeField; }
@@ -10343,7 +10349,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IntRange HeightRange
         {
             get { return this.heightRangeField; }
@@ -10352,9 +10358,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSourceConfigurationOptions
     {
         private IntRectangleRange boundsRangeField;
@@ -10368,7 +10374,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string[] videoSourceTokensAvailableField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IntRectangleRange BoundsRange
         {
             get { return this.boundsRangeField; }
@@ -10376,7 +10382,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("VideoSourceTokensAvailable", Order = 1)]
+        [XmlElement("VideoSourceTokensAvailable", Order = 1)]
         public string[] VideoSourceTokensAvailable
         {
             get { return this.videoSourceTokensAvailableField; }
@@ -10384,7 +10390,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public VideoSourceConfigurationOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -10392,7 +10398,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaximumNumberOfProfiles
         {
             get { return this.maximumNumberOfProfilesField; }
@@ -10400,7 +10406,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaximumNumberOfProfilesSpecified
         {
             get { return this.maximumNumberOfProfilesFieldSpecified; }
@@ -10409,16 +10415,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ProfileExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10426,12 +10432,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ProfileExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private AudioDecoderConfiguration audioDecoderConfigurationField;
 
@@ -10440,15 +10446,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ProfileExtension2 extensionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public AudioOutputConfiguration AudioOutputConfiguration
         {
             get { return this.audioOutputConfigurationField; }
@@ -10456,7 +10462,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public AudioDecoderConfiguration AudioDecoderConfiguration
         {
             get { return this.audioDecoderConfigurationField; }
@@ -10464,7 +10470,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public ProfileExtension2 Extension
         {
             get { return this.extensionField; }
@@ -10473,12 +10479,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioOutputConfiguration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int outputLevelField;
         private string outputTokenField;
@@ -10486,7 +10492,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string sendPrimacyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string OutputToken
         {
             get { return this.outputTokenField; }
@@ -10494,7 +10500,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 1)]
+        [XmlElement(DataType = "anyURI", Order = 1)]
         public string SendPrimacy
         {
             get { return this.sendPrimacyField; }
@@ -10502,7 +10508,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int OutputLevel
         {
             get { return this.outputLevelField; }
@@ -10510,8 +10516,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10519,24 +10525,24 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AnalyticsEngineControl))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AnalyticsEngineInput))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AnalyticsEngine))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PTZConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudioDecoderConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudioOutputConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VideoOutputConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MetadataConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VideoAnalyticsConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudioEncoder2Configuration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudioEncoderConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudioSourceConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VideoEncoder2Configuration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VideoEncoderConfiguration))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VideoSourceConfiguration))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [XmlInclude(typeof(AnalyticsEngineControl))]
+    [XmlInclude(typeof(AnalyticsEngineInput))]
+    [XmlInclude(typeof(AnalyticsEngine))]
+    [XmlInclude(typeof(PTZConfiguration))]
+    [XmlInclude(typeof(AudioDecoderConfiguration))]
+    [XmlInclude(typeof(AudioOutputConfiguration))]
+    [XmlInclude(typeof(VideoOutputConfiguration))]
+    [XmlInclude(typeof(MetadataConfiguration))]
+    [XmlInclude(typeof(VideoAnalyticsConfiguration))]
+    [XmlInclude(typeof(AudioEncoder2Configuration))]
+    [XmlInclude(typeof(AudioEncoderConfiguration))]
+    [XmlInclude(typeof(AudioSourceConfiguration))]
+    [XmlInclude(typeof(VideoEncoder2Configuration))]
+    [XmlInclude(typeof(VideoEncoderConfiguration))]
+    [XmlInclude(typeof(VideoSourceConfiguration))]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ConfigurationEntity
     {
         private string nameField;
@@ -10546,7 +10552,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int useCountField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -10554,7 +10560,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int UseCount
         {
             get { return this.useCountField; }
@@ -10562,7 +10568,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string token
         {
             get { return this.tokenField; }
@@ -10571,12 +10577,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsEngineControl : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private string engineConfigTokenField;
         private string engineTokenField;
@@ -10592,7 +10598,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Config subscriptionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string EngineToken
         {
             get { return this.engineTokenField; }
@@ -10600,7 +10606,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string EngineConfigToken
         {
             get { return this.engineConfigTokenField; }
@@ -10608,7 +10614,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("InputToken", Order = 2)]
+        [XmlElement("InputToken", Order = 2)]
         public string[] InputToken
         {
             get { return this.inputTokenField; }
@@ -10616,7 +10622,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ReceiverToken", Order = 3)]
+        [XmlElement("ReceiverToken", Order = 3)]
         public string[] ReceiverToken
         {
             get { return this.receiverTokenField; }
@@ -10624,7 +10630,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public MulticastConfiguration Multicast
         {
             get { return this.multicastField; }
@@ -10632,7 +10638,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public Config Subscription
         {
             get { return this.subscriptionField; }
@@ -10640,7 +10646,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public ModeOfOperation Mode
         {
             get { return this.modeField; }
@@ -10648,8 +10654,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 7)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 7)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10657,14 +10663,14 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MulticastConfiguration
     {
         private IPAddress addressField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool autoStartField;
 
@@ -10673,7 +10679,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int tTLField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IPAddress Address
         {
             get { return this.addressField; }
@@ -10681,7 +10687,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Port
         {
             get { return this.portField; }
@@ -10689,7 +10695,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int TTL
         {
             get { return this.tTLField; }
@@ -10697,7 +10703,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool AutoStart
         {
             get { return this.autoStartField; }
@@ -10705,8 +10711,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 4)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 4)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10714,18 +10720,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Config
     {
         private string nameField;
         private ItemList parametersField;
 
-        private System.Xml.XmlQualifiedName typeField;
+        private XmlQualifiedName typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ItemList Parameters
         {
             get { return this.parametersField; }
@@ -10733,7 +10739,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Name
         {
             get { return this.nameField; }
@@ -10741,8 +10747,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.Xml.XmlQualifiedName Type
+        [XmlAttribute()]
+        public XmlQualifiedName Type
         {
             get { return this.typeField; }
             set { this.typeField = value; }
@@ -10750,9 +10756,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ItemList
     {
         private ItemListElementItem[] elementItemField;
@@ -10761,7 +10767,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ItemListSimpleItem[] simpleItemField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SimpleItem", Order = 0)]
+        [XmlElement("SimpleItem", Order = 0)]
         public ItemListSimpleItem[] SimpleItem
         {
             get { return this.simpleItemField; }
@@ -10769,7 +10775,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ElementItem", Order = 1)]
+        [XmlElement("ElementItem", Order = 1)]
         public ItemListElementItem[] ElementItem
         {
             get { return this.elementItemField; }
@@ -10777,7 +10783,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ItemListExtension Extension
         {
             get { return this.extensionField; }
@@ -10786,9 +10792,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ItemListSimpleItem
     {
         private string nameField;
@@ -10796,7 +10802,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string valueField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Name
         {
             get { return this.nameField; }
@@ -10804,7 +10810,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Value
         {
             get { return this.valueField; }
@@ -10813,25 +10819,25 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ItemListElementItem
     {
-        private System.Xml.Linq.XElement anyField;
+        private XElement anyField;
 
         private string nameField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement Any
+        [XmlAnyElement(Order = 0)]
+        public XElement Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Name
         {
             get { return this.nameField; }
@@ -10840,16 +10846,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ItemListExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10857,8 +10863,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum ModeOfOperation
     {
         /// <remarks/>
@@ -10872,12 +10878,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsEngineInput : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private MetadataInput metadataInputField;
         private SourceIdentification sourceIdentificationField;
@@ -10885,7 +10891,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private VideoEncoderConfiguration videoInputField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public SourceIdentification SourceIdentification
         {
             get { return this.sourceIdentificationField; }
@@ -10893,7 +10899,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public VideoEncoderConfiguration VideoInput
         {
             get { return this.videoInputField; }
@@ -10901,7 +10907,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public MetadataInput MetadataInput
         {
             get { return this.metadataInputField; }
@@ -10909,8 +10915,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10918,9 +10924,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SourceIdentification
     {
         private SourceIdentificationExtension extensionField;
@@ -10929,7 +10935,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string[] tokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -10937,7 +10943,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Token", Order = 1)]
+        [XmlElement("Token", Order = 1)]
         public string[] Token
         {
             get { return this.tokenField; }
@@ -10945,7 +10951,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public SourceIdentificationExtension Extension
         {
             get { return this.extensionField; }
@@ -10954,16 +10960,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SourceIdentificationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -10971,12 +10977,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoEncoderConfiguration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private VideoEncoding encodingField;
 
         private H264Configuration h264Field;
@@ -10994,7 +11000,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string sessionTimeoutField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public VideoEncoding Encoding
         {
             get { return this.encodingField; }
@@ -11002,7 +11008,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public VideoResolution Resolution
         {
             get { return this.resolutionField; }
@@ -11010,7 +11016,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float Quality
         {
             get { return this.qualityField; }
@@ -11018,7 +11024,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public VideoRateControl RateControl
         {
             get { return this.rateControlField; }
@@ -11026,7 +11032,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public Mpeg4Configuration MPEG4
         {
             get { return this.mPEG4Field; }
@@ -11034,7 +11040,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public H264Configuration H264
         {
             get { return this.h264Field; }
@@ -11042,7 +11048,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public MulticastConfiguration Multicast
         {
             get { return this.multicastField; }
@@ -11050,7 +11056,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 7)]
+        [XmlElement(DataType = "duration", Order = 7)]
         public string SessionTimeout
         {
             get { return this.sessionTimeoutField; }
@@ -11058,8 +11064,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 8)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 8)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11067,8 +11073,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum VideoEncoding
     {
         /// <remarks/>
@@ -11083,9 +11089,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoRateControl
     {
         private int bitrateLimitField;
@@ -11094,7 +11100,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int frameRateLimitField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int FrameRateLimit
         {
             get { return this.frameRateLimitField; }
@@ -11102,7 +11108,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int EncodingInterval
         {
             get { return this.encodingIntervalField; }
@@ -11110,7 +11116,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int BitrateLimit
         {
             get { return this.bitrateLimitField; }
@@ -11119,9 +11125,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Mpeg4Configuration
     {
         private int govLengthField;
@@ -11129,7 +11135,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Mpeg4Profile mpeg4ProfileField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int GovLength
         {
             get { return this.govLengthField; }
@@ -11137,7 +11143,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Mpeg4Profile Mpeg4Profile
         {
             get { return this.mpeg4ProfileField; }
@@ -11146,9 +11152,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class H264Configuration
     {
         private int govLengthField;
@@ -11156,7 +11162,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private H264Profile h264ProfileField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int GovLength
         {
             get { return this.govLengthField; }
@@ -11164,7 +11170,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public H264Profile H264Profile
         {
             get { return this.h264ProfileField; }
@@ -11173,16 +11179,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MetadataInput
     {
         private MetadataInputExtension extensionField;
         private Config[] metadataConfigField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("MetadataConfig", Order = 0)]
+        [XmlElement("MetadataConfig", Order = 0)]
         public Config[] MetadataConfig
         {
             get { return this.metadataConfigField; }
@@ -11190,7 +11196,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public MetadataInputExtension Extension
         {
             get { return this.extensionField; }
@@ -11199,16 +11205,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MetadataInputExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11216,17 +11222,17 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsEngine : ConfigurationEntity
     {
         private AnalyticsDeviceEngineConfiguration analyticsEngineConfigurationField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AnalyticsDeviceEngineConfiguration AnalyticsEngineConfiguration
         {
             get { return this.analyticsEngineConfigurationField; }
@@ -11234,8 +11240,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11243,9 +11249,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsDeviceEngineConfiguration
     {
         private EngineConfiguration[] engineConfigurationField;
@@ -11253,7 +11259,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private AnalyticsDeviceEngineConfigurationExtension extensionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("EngineConfiguration", Order = 0)]
+        [XmlElement("EngineConfiguration", Order = 0)]
         public EngineConfiguration[] EngineConfiguration
         {
             get { return this.engineConfigurationField; }
@@ -11261,7 +11267,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public AnalyticsDeviceEngineConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -11270,18 +11276,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EngineConfiguration
     {
         private AnalyticsEngineInputInfo analyticsEngineInputInfoField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private VideoAnalyticsConfiguration videoAnalyticsConfigurationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public VideoAnalyticsConfiguration VideoAnalyticsConfiguration
         {
             get { return this.videoAnalyticsConfigurationField; }
@@ -11289,7 +11295,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public AnalyticsEngineInputInfo AnalyticsEngineInputInfo
         {
             get { return this.analyticsEngineInputInfoField; }
@@ -11297,8 +11303,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11306,19 +11312,19 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoAnalyticsConfiguration : ConfigurationEntity
     {
         private AnalyticsEngineConfiguration analyticsEngineConfigurationField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private RuleEngineConfiguration ruleEngineConfigurationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AnalyticsEngineConfiguration AnalyticsEngineConfiguration
         {
             get { return this.analyticsEngineConfigurationField; }
@@ -11326,7 +11332,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public RuleEngineConfiguration RuleEngineConfiguration
         {
             get { return this.ruleEngineConfigurationField; }
@@ -11334,8 +11340,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11343,9 +11349,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsEngineConfiguration
     {
         private Config[] analyticsModuleField;
@@ -11353,7 +11359,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private AnalyticsEngineConfigurationExtension extensionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AnalyticsModule", Order = 0)]
+        [XmlElement("AnalyticsModule", Order = 0)]
         public Config[] AnalyticsModule
         {
             get { return this.analyticsModuleField; }
@@ -11361,7 +11367,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public AnalyticsEngineConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -11370,16 +11376,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsEngineConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11387,16 +11393,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RuleEngineConfiguration
     {
         private RuleEngineConfigurationExtension extensionField;
         private Config[] ruleField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Rule", Order = 0)]
+        [XmlElement("Rule", Order = 0)]
         public Config[] Rule
         {
             get { return this.ruleField; }
@@ -11404,7 +11410,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public RuleEngineConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -11413,16 +11419,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RuleEngineConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11430,16 +11436,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsEngineInputInfo
     {
         private AnalyticsEngineInputInfoExtension extensionField;
         private Config inputInfoField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Config InputInfo
         {
             get { return this.inputInfoField; }
@@ -11447,7 +11453,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public AnalyticsEngineInputInfoExtension Extension
         {
             get { return this.extensionField; }
@@ -11456,16 +11462,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsEngineInputInfoExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11473,16 +11479,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AnalyticsDeviceEngineConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11490,9 +11496,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZConfiguration : ConfigurationEntity
     {
         private string defaultAbsolutePantTiltPositionSpaceField;
@@ -11531,7 +11537,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ZoomLimits zoomLimitsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string NodeToken
         {
             get { return this.nodeTokenField; }
@@ -11539,7 +11545,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 1)]
+        [XmlElement(DataType = "anyURI", Order = 1)]
         public string DefaultAbsolutePantTiltPositionSpace
         {
             get { return this.defaultAbsolutePantTiltPositionSpaceField; }
@@ -11547,7 +11553,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 2)]
+        [XmlElement(DataType = "anyURI", Order = 2)]
         public string DefaultAbsoluteZoomPositionSpace
         {
             get { return this.defaultAbsoluteZoomPositionSpaceField; }
@@ -11555,7 +11561,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 3)]
+        [XmlElement(DataType = "anyURI", Order = 3)]
         public string DefaultRelativePanTiltTranslationSpace
         {
             get { return this.defaultRelativePanTiltTranslationSpaceField; }
@@ -11563,7 +11569,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 4)]
+        [XmlElement(DataType = "anyURI", Order = 4)]
         public string DefaultRelativeZoomTranslationSpace
         {
             get { return this.defaultRelativeZoomTranslationSpaceField; }
@@ -11571,7 +11577,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 5)]
+        [XmlElement(DataType = "anyURI", Order = 5)]
         public string DefaultContinuousPanTiltVelocitySpace
         {
             get { return this.defaultContinuousPanTiltVelocitySpaceField; }
@@ -11579,7 +11585,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 6)]
+        [XmlElement(DataType = "anyURI", Order = 6)]
         public string DefaultContinuousZoomVelocitySpace
         {
             get { return this.defaultContinuousZoomVelocitySpaceField; }
@@ -11587,7 +11593,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public PTZSpeed DefaultPTZSpeed
         {
             get { return this.defaultPTZSpeedField; }
@@ -11595,7 +11601,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 8)]
+        [XmlElement(DataType = "duration", Order = 8)]
         public string DefaultPTZTimeout
         {
             get { return this.defaultPTZTimeoutField; }
@@ -11603,7 +11609,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public PanTiltLimits PanTiltLimits
         {
             get { return this.panTiltLimitsField; }
@@ -11611,7 +11617,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        [XmlElement(Order = 10)]
         public ZoomLimits ZoomLimits
         {
             get { return this.zoomLimitsField; }
@@ -11619,7 +11625,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 11)]
+        [XmlElement(Order = 11)]
         public PTZConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -11627,7 +11633,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MoveRamp
         {
             get { return this.moveRampField; }
@@ -11635,7 +11641,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MoveRampSpecified
         {
             get { return this.moveRampFieldSpecified; }
@@ -11643,7 +11649,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int PresetRamp
         {
             get { return this.presetRampField; }
@@ -11651,7 +11657,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool PresetRampSpecified
         {
             get { return this.presetRampFieldSpecified; }
@@ -11659,7 +11665,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int PresetTourRamp
         {
             get { return this.presetTourRampField; }
@@ -11667,7 +11673,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool PresetTourRampSpecified
         {
             get { return this.presetTourRampFieldSpecified; }
@@ -11676,9 +11682,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZSpeed
     {
         private Vector2D panTiltField;
@@ -11686,7 +11692,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Vector1D zoomField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Vector2D PanTilt
         {
             get { return this.panTiltField; }
@@ -11694,7 +11700,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Vector1D Zoom
         {
             get { return this.zoomField; }
@@ -11703,9 +11709,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Vector2D
     {
         private string spaceField;
@@ -11714,7 +11720,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private float yField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float x
         {
             get { return this.xField; }
@@ -11722,7 +11728,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float y
         {
             get { return this.yField; }
@@ -11730,7 +11736,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+        [XmlAttribute(DataType = "anyURI")]
         public string space
         {
             get { return this.spaceField; }
@@ -11739,16 +11745,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Vector1D
     {
         private string spaceField;
         private float xField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float x
         {
             get { return this.xField; }
@@ -11756,7 +11762,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "anyURI")]
+        [XmlAttribute(DataType = "anyURI")]
         public string space
         {
             get { return this.spaceField; }
@@ -11765,15 +11771,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PanTiltLimits
     {
         private Space2DDescription rangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Space2DDescription Range
         {
             get { return this.rangeField; }
@@ -11782,15 +11788,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ZoomLimits
     {
         private Space1DDescription rangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Space1DDescription Range
         {
             get { return this.rangeField; }
@@ -11799,27 +11805,27 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private PTZConfigurationExtension2 extensionField;
 
         private PTControlDirection pTControlDirectionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTControlDirection PTControlDirection
         {
             get { return this.pTControlDirectionField; }
@@ -11827,7 +11833,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PTZConfigurationExtension2 Extension
         {
             get { return this.extensionField; }
@@ -11836,9 +11842,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTControlDirection
     {
         private EFlip eFlipField;
@@ -11848,7 +11854,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Reverse reverseField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public EFlip EFlip
         {
             get { return this.eFlipField; }
@@ -11856,7 +11862,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Reverse Reverse
         {
             get { return this.reverseField; }
@@ -11864,7 +11870,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PTControlDirectionExtension Extension
         {
             get { return this.extensionField; }
@@ -11873,16 +11879,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EFlip
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private EFlipMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public EFlipMode Mode
         {
             get { return this.modeField; }
@@ -11890,8 +11896,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11899,8 +11905,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum EFlipMode
     {
         /// <remarks/>
@@ -11914,16 +11920,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Reverse
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private ReverseMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ReverseMode Mode
         {
             get { return this.modeField; }
@@ -11931,8 +11937,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11940,8 +11946,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum ReverseMode
     {
         /// <remarks/>
@@ -11958,16 +11964,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTControlDirectionExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11975,16 +11981,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZConfigurationExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -11992,16 +11998,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioDecoderConfiguration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12009,16 +12015,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoOutputConfiguration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private string outputTokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string OutputToken
         {
             get { return this.outputTokenField; }
@@ -12026,8 +12032,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12035,9 +12041,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MetadataConfiguration : ConfigurationEntity
     {
         private AnalyticsEngineConfiguration analyticsEngineConfigurationField;
@@ -12046,7 +12052,7 @@ namespace Mictlanix.DotNet.Onvif.Common
 
         private bool analyticsFieldSpecified;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private string compressionTypeField;
 
@@ -12064,7 +12070,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string sessionTimeoutField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public PTZFilter PTZStatus
         {
             get { return this.pTZStatusField; }
@@ -12072,7 +12078,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public EventSubscription Events
         {
             get { return this.eventsField; }
@@ -12080,7 +12086,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool Analytics
         {
             get { return this.analyticsField; }
@@ -12088,7 +12094,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool AnalyticsSpecified
         {
             get { return this.analyticsFieldSpecified; }
@@ -12096,7 +12102,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public MulticastConfiguration Multicast
         {
             get { return this.multicastField; }
@@ -12104,7 +12110,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 4)]
+        [XmlElement(DataType = "duration", Order = 4)]
         public string SessionTimeout
         {
             get { return this.sessionTimeoutField; }
@@ -12112,15 +12118,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 5)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 5)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public AnalyticsEngineConfiguration AnalyticsEngineConfiguration
         {
             get { return this.analyticsEngineConfigurationField; }
@@ -12128,7 +12134,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public MetadataConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -12136,7 +12142,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string CompressionType
         {
             get { return this.compressionTypeField; }
@@ -12144,7 +12150,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool GeoLocation
         {
             get { return this.geoLocationField; }
@@ -12152,7 +12158,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool GeoLocationSpecified
         {
             get { return this.geoLocationFieldSpecified; }
@@ -12161,16 +12167,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZFilter
     {
         private bool positionField;
         private bool statusField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Status
         {
             get { return this.statusField; }
@@ -12178,7 +12184,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Position
         {
             get { return this.positionField; }
@@ -12187,18 +12193,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EventSubscription
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private FilterType filterField;
 
         private EventSubscriptionSubscriptionPolicy subscriptionPolicyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public FilterType Filter
         {
             get { return this.filterField; }
@@ -12206,7 +12212,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public EventSubscriptionSubscriptionPolicy SubscriptionPolicy
         {
             get { return this.subscriptionPolicyField; }
@@ -12214,8 +12220,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12223,17 +12229,17 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EventFilter))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://docs.oasis-open.org/wsn/b-2")]
+    [XmlInclude(typeof(EventFilter))]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://docs.oasis-open.org/wsn/b-2")]
     public partial class FilterType
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12241,23 +12247,23 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EventFilter : FilterType
     {}
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EventSubscriptionSubscriptionPolicy
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12265,16 +12271,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MetadataConfigurationExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12282,12 +12288,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioEncoder2Configuration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int bitrateField;
         private string encodingField;
@@ -12297,7 +12303,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int sampleRateField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Encoding
         {
             get { return this.encodingField; }
@@ -12305,7 +12311,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public MulticastConfiguration Multicast
         {
             get { return this.multicastField; }
@@ -12313,7 +12319,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int Bitrate
         {
             get { return this.bitrateField; }
@@ -12321,7 +12327,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public int SampleRate
         {
             get { return this.sampleRateField; }
@@ -12329,8 +12335,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 4)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 4)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12338,12 +12344,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioEncoderConfiguration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int bitrateField;
         private AudioEncoding encodingField;
@@ -12355,7 +12361,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string sessionTimeoutField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AudioEncoding Encoding
         {
             get { return this.encodingField; }
@@ -12363,7 +12369,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Bitrate
         {
             get { return this.bitrateField; }
@@ -12371,7 +12377,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public int SampleRate
         {
             get { return this.sampleRateField; }
@@ -12379,7 +12385,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public MulticastConfiguration Multicast
         {
             get { return this.multicastField; }
@@ -12387,7 +12393,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 4)]
+        [XmlElement(DataType = "duration", Order = 4)]
         public string SessionTimeout
         {
             get { return this.sessionTimeoutField; }
@@ -12395,8 +12401,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 5)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 5)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12404,16 +12410,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AudioSourceConfiguration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private string sourceTokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string SourceToken
         {
             get { return this.sourceTokenField; }
@@ -12421,8 +12427,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12430,12 +12436,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoEncoder2Configuration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private string encodingField;
 
         private int govLengthField;
@@ -12453,7 +12459,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private VideoResolution2 resolutionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Encoding
         {
             get { return this.encodingField; }
@@ -12461,7 +12467,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public VideoResolution2 Resolution
         {
             get { return this.resolutionField; }
@@ -12469,7 +12475,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public VideoRateControl2 RateControl
         {
             get { return this.rateControlField; }
@@ -12477,7 +12483,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public MulticastConfiguration Multicast
         {
             get { return this.multicastField; }
@@ -12485,7 +12491,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public float Quality
         {
             get { return this.qualityField; }
@@ -12493,15 +12499,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 5)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 5)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int GovLength
         {
             get { return this.govLengthField; }
@@ -12509,7 +12515,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool GovLengthSpecified
         {
             get { return this.govLengthFieldSpecified; }
@@ -12517,7 +12523,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string Profile
         {
             get { return this.profileField; }
@@ -12526,18 +12532,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoResolution2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int heightField;
         private int widthField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int Width
         {
             get { return this.widthField; }
@@ -12545,7 +12551,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Height
         {
             get { return this.heightField; }
@@ -12553,8 +12559,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12562,12 +12568,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoRateControl2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int bitrateLimitField;
 
@@ -12577,7 +12583,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private float frameRateLimitField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float FrameRateLimit
         {
             get { return this.frameRateLimitField; }
@@ -12585,7 +12591,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int BitrateLimit
         {
             get { return this.bitrateLimitField; }
@@ -12593,15 +12599,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool ConstantBitRate
         {
             get { return this.constantBitRateField; }
@@ -12609,7 +12615,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ConstantBitRateSpecified
         {
             get { return this.constantBitRateFieldSpecified; }
@@ -12618,12 +12624,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSourceConfiguration : ConfigurationEntity
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private IntRectangle boundsField;
 
@@ -12633,7 +12639,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string viewModeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string SourceToken
         {
             get { return this.sourceTokenField; }
@@ -12641,7 +12647,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public IntRectangle Bounds
         {
             get { return this.boundsField; }
@@ -12649,15 +12655,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public VideoSourceConfigurationExtension Extension
         {
             get { return this.extensionField; }
@@ -12665,7 +12671,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string ViewMode
         {
             get { return this.viewModeField; }
@@ -12674,9 +12680,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IntRectangle
     {
         private int heightField;
@@ -12687,7 +12693,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private int yField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int x
         {
             get { return this.xField; }
@@ -12695,7 +12701,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int y
         {
             get { return this.yField; }
@@ -12703,7 +12709,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int width
         {
             get { return this.widthField; }
@@ -12711,7 +12717,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int height
         {
             get { return this.heightField; }
@@ -12720,16 +12726,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSourceConfigurationExtension
     {
         private VideoSourceConfigurationExtension2 extensionField;
         private Rotate rotateField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Rotate Rotate
         {
             get { return this.rotateField; }
@@ -12737,7 +12743,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public VideoSourceConfigurationExtension2 Extension
         {
             get { return this.extensionField; }
@@ -12746,9 +12752,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Rotate
     {
         private int degreeField;
@@ -12759,7 +12765,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private RotateMode modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public RotateMode Mode
         {
             get { return this.modeField; }
@@ -12767,7 +12773,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public int Degree
         {
             get { return this.degreeField; }
@@ -12775,7 +12781,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DegreeSpecified
         {
             get { return this.degreeFieldSpecified; }
@@ -12783,7 +12789,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public RotateExtension Extension
         {
             get { return this.extensionField; }
@@ -12792,16 +12798,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RotateExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12809,18 +12815,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class VideoSourceConfigurationExtension2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private LensDescription[] lensDescriptionField;
 
         private SceneOrientation sceneOrientationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("LensDescription", Order = 0)]
+        [XmlElement("LensDescription", Order = 0)]
         public LensDescription[] LensDescription
         {
             get { return this.lensDescriptionField; }
@@ -12828,7 +12834,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public SceneOrientation SceneOrientation
         {
             get { return this.sceneOrientationField; }
@@ -12836,8 +12842,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -12845,12 +12851,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class LensDescription
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private float focalLengthField;
 
@@ -12862,7 +12868,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private float xFactorField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public LensOffset Offset
         {
             get { return this.offsetField; }
@@ -12870,7 +12876,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Projection", Order = 1)]
+        [XmlElement("Projection", Order = 1)]
         public LensProjection[] Projection
         {
             get { return this.projectionField; }
@@ -12878,7 +12884,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float XFactor
         {
             get { return this.xFactorField; }
@@ -12886,15 +12892,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float FocalLength
         {
             get { return this.focalLengthField; }
@@ -12902,7 +12908,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool FocalLengthSpecified
         {
             get { return this.focalLengthFieldSpecified; }
@@ -12911,9 +12917,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class LensOffset
     {
         private float xField;
@@ -12925,7 +12931,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool yFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float x
         {
             get { return this.xField; }
@@ -12933,7 +12939,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool xSpecified
         {
             get { return this.xFieldSpecified; }
@@ -12941,7 +12947,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public float y
         {
             get { return this.yField; }
@@ -12949,7 +12955,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ySpecified
         {
             get { return this.yFieldSpecified; }
@@ -12958,14 +12964,14 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class LensProjection
     {
         private float angleField;
 
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private float radiusField;
 
@@ -12974,7 +12980,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool transmittanceFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float Angle
         {
             get { return this.angleField; }
@@ -12982,7 +12988,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Radius
         {
             get { return this.radiusField; }
@@ -12990,7 +12996,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public float Transmittance
         {
             get { return this.transmittanceField; }
@@ -12998,7 +13004,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool TransmittanceSpecified
         {
             get { return this.transmittanceFieldSpecified; }
@@ -13006,8 +13012,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13015,9 +13021,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class SceneOrientation
     {
         private SceneOrientationMode modeField;
@@ -13025,7 +13031,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string orientationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public SceneOrientationMode Mode
         {
             get { return this.modeField; }
@@ -13033,7 +13039,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string Orientation
         {
             get { return this.orientationField; }
@@ -13042,9 +13048,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class Profile
     {
         private AudioEncoderConfiguration audioEncoderConfigurationField;
@@ -13071,7 +13077,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private VideoSourceConfiguration videoSourceConfigurationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -13079,7 +13085,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public VideoSourceConfiguration VideoSourceConfiguration
         {
             get { return this.videoSourceConfigurationField; }
@@ -13087,7 +13093,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public AudioSourceConfiguration AudioSourceConfiguration
         {
             get { return this.audioSourceConfigurationField; }
@@ -13095,7 +13101,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public VideoEncoderConfiguration VideoEncoderConfiguration
         {
             get { return this.videoEncoderConfigurationField; }
@@ -13103,7 +13109,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public AudioEncoderConfiguration AudioEncoderConfiguration
         {
             get { return this.audioEncoderConfigurationField; }
@@ -13111,7 +13117,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public VideoAnalyticsConfiguration VideoAnalyticsConfiguration
         {
             get { return this.videoAnalyticsConfigurationField; }
@@ -13119,7 +13125,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public PTZConfiguration PTZConfiguration
         {
             get { return this.pTZConfigurationField; }
@@ -13127,7 +13133,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public MetadataConfiguration MetadataConfiguration
         {
             get { return this.metadataConfigurationField; }
@@ -13135,7 +13141,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public ProfileExtension Extension
         {
             get { return this.extensionField; }
@@ -13143,7 +13149,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string token
         {
             get { return this.tokenField; }
@@ -13151,7 +13157,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool @fixed
         {
             get { return this.fixedField; }
@@ -13159,7 +13165,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool fixedSpecified
         {
             get { return this.fixedFieldSpecified; }
@@ -13169,16 +13175,16 @@ namespace Mictlanix.DotNet.Onvif.Common
 
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourPresetDetailOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13186,9 +13192,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourPresetDetailOptions
     {
         private PTZPresetTourPresetDetailOptionsExtension extensionField;
@@ -13203,7 +13209,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Space1DDescription zoomPositionSpaceField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("PresetToken", Order = 0)]
+        [XmlElement("PresetToken", Order = 0)]
         public string[] PresetToken
         {
             get { return this.presetTokenField; }
@@ -13211,7 +13217,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Home
         {
             get { return this.homeField; }
@@ -13219,7 +13225,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HomeSpecified
         {
             get { return this.homeFieldSpecified; }
@@ -13227,7 +13233,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public Space2DDescription PanTiltPositionSpace
         {
             get { return this.panTiltPositionSpaceField; }
@@ -13235,7 +13241,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public Space1DDescription ZoomPositionSpace
         {
             get { return this.zoomPositionSpaceField; }
@@ -13243,7 +13249,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public PTZPresetTourPresetDetailOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -13252,18 +13258,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourSpotOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private PTZPresetTourPresetDetailOptions presetDetailField;
 
         private DurationRange stayTimeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public PTZPresetTourPresetDetailOptions PresetDetail
         {
             get { return this.presetDetailField; }
@@ -13271,7 +13277,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public DurationRange StayTime
         {
             get { return this.stayTimeField; }
@@ -13279,8 +13285,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13288,16 +13294,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DurationRange
     {
         private string maxField;
         private string minField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 0)]
+        [XmlElement(DataType = "duration", Order = 0)]
         public string Min
         {
             get { return this.minField; }
@@ -13305,7 +13311,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 1)]
+        [XmlElement(DataType = "duration", Order = 1)]
         public string Max
         {
             get { return this.maxField; }
@@ -13314,16 +13320,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourStartingConditionOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13331,9 +13337,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourStartingConditionOptions
     {
         private PTZPresetTourDirection[] directionField;
@@ -13344,7 +13350,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private IntRange recurringTimeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IntRange RecurringTime
         {
             get { return this.recurringTimeField; }
@@ -13352,7 +13358,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public DurationRange RecurringDuration
         {
             get { return this.recurringDurationField; }
@@ -13360,7 +13366,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Direction", Order = 2)]
+        [XmlElement("Direction", Order = 2)]
         public PTZPresetTourDirection[] Direction
         {
             get { return this.directionField; }
@@ -13368,7 +13374,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public PTZPresetTourStartingConditionOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -13377,8 +13383,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum PTZPresetTourDirection
     {
         /// <remarks/>
@@ -13392,12 +13398,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private bool autoStartField;
 
         private PTZPresetTourStartingConditionOptions startingConditionField;
@@ -13405,7 +13411,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PTZPresetTourSpotOptions tourSpotField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool AutoStart
         {
             get { return this.autoStartField; }
@@ -13413,7 +13419,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTZPresetTourStartingConditionOptions StartingCondition
         {
             get { return this.startingConditionField; }
@@ -13421,7 +13427,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PTZPresetTourSpotOptions TourSpot
         {
             get { return this.tourSpotField; }
@@ -13429,8 +13435,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 3)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 3)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13438,16 +13444,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13455,16 +13461,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourStartingConditionExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13472,9 +13478,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourStartingCondition
     {
         private PTZPresetTourDirection directionField;
@@ -13493,7 +13499,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool recurringTimeFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public int RecurringTime
         {
             get { return this.recurringTimeField; }
@@ -13501,7 +13507,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RecurringTimeSpecified
         {
             get { return this.recurringTimeFieldSpecified; }
@@ -13509,7 +13515,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 1)]
+        [XmlElement(DataType = "duration", Order = 1)]
         public string RecurringDuration
         {
             get { return this.recurringDurationField; }
@@ -13517,7 +13523,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PTZPresetTourDirection Direction
         {
             get { return this.directionField; }
@@ -13525,7 +13531,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DirectionSpecified
         {
             get { return this.directionFieldSpecified; }
@@ -13533,7 +13539,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public PTZPresetTourStartingConditionExtension Extension
         {
             get { return this.extensionField; }
@@ -13541,7 +13547,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool RandomPresetOrder
         {
             get { return this.randomPresetOrderField; }
@@ -13549,7 +13555,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RandomPresetOrderSpecified
         {
             get { return this.randomPresetOrderFieldSpecified; }
@@ -13558,16 +13564,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourStatusExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13575,16 +13581,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourSpotExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13592,16 +13598,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourTypeExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13609,19 +13615,19 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourPresetDetail
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private object itemField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Home", typeof(bool), Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("PTZPosition", typeof(PTZVector), Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("PresetToken", typeof(string), Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("TypeExtension", typeof(PTZPresetTourTypeExtension), Order = 0)]
+        [XmlElement("Home", typeof(bool), Order = 0)]
+        [XmlElement("PTZPosition", typeof(PTZVector), Order = 0)]
+        [XmlElement("PresetToken", typeof(string), Order = 0)]
+        [XmlElement("TypeExtension", typeof(PTZPresetTourTypeExtension), Order = 0)]
         public object Item
         {
             get { return this.itemField; }
@@ -13629,8 +13635,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13638,9 +13644,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZVector
     {
         private Vector2D panTiltField;
@@ -13648,7 +13654,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private Vector1D zoomField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public Vector2D PanTilt
         {
             get { return this.panTiltField; }
@@ -13656,7 +13662,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public Vector1D Zoom
         {
             get { return this.zoomField; }
@@ -13665,9 +13671,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourSpot
     {
         private PTZPresetTourSpotExtension extensionField;
@@ -13678,7 +13684,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string stayTimeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public PTZPresetTourPresetDetail PresetDetail
         {
             get { return this.presetDetailField; }
@@ -13686,7 +13692,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTZSpeed Speed
         {
             get { return this.speedField; }
@@ -13694,7 +13700,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 2)]
+        [XmlElement(DataType = "duration", Order = 2)]
         public string StayTime
         {
             get { return this.stayTimeField; }
@@ -13702,7 +13708,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public PTZPresetTourSpotExtension Extension
         {
             get { return this.extensionField; }
@@ -13711,9 +13717,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPresetTourStatus
     {
         private PTZPresetTourSpot currentTourSpotField;
@@ -13722,7 +13728,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PTZPresetTourState stateField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public PTZPresetTourState State
         {
             get { return this.stateField; }
@@ -13730,7 +13736,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTZPresetTourSpot CurrentTourSpot
         {
             get { return this.currentTourSpotField; }
@@ -13738,7 +13744,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PTZPresetTourStatusExtension Extension
         {
             get { return this.extensionField; }
@@ -13747,8 +13753,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum PTZPresetTourState
     {
         /// <remarks/>
@@ -13765,9 +13771,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PresetTour
     {
         private bool autoStartField;
@@ -13784,7 +13790,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PTZPresetTourSpot[] tourSpotField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -13792,7 +13798,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTZPresetTourStatus Status
         {
             get { return this.statusField; }
@@ -13800,7 +13806,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public bool AutoStart
         {
             get { return this.autoStartField; }
@@ -13808,7 +13814,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public PTZPresetTourStartingCondition StartingCondition
         {
             get { return this.startingConditionField; }
@@ -13816,7 +13822,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("TourSpot", Order = 4)]
+        [XmlElement("TourSpot", Order = 4)]
         public PTZPresetTourSpot[] TourSpot
         {
             get { return this.tourSpotField; }
@@ -13824,7 +13830,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public PTZPresetTourExtension Extension
         {
             get { return this.extensionField; }
@@ -13832,7 +13838,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string token
         {
             get { return this.tokenField; }
@@ -13841,9 +13847,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZMoveStatus
     {
         private MoveStatus panTiltField;
@@ -13855,7 +13861,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool zoomFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public MoveStatus PanTilt
         {
             get { return this.panTiltField; }
@@ -13863,7 +13869,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool PanTiltSpecified
         {
             get { return this.panTiltFieldSpecified; }
@@ -13871,7 +13877,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public MoveStatus Zoom
         {
             get { return this.zoomField; }
@@ -13879,7 +13885,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ZoomSpecified
         {
             get { return this.zoomFieldSpecified; }
@@ -13888,8 +13894,8 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public enum MoveStatus
     {
         /// <remarks/>
@@ -13903,12 +13909,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZStatus
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private string errorField;
 
@@ -13918,7 +13924,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private System.DateTime utcTimeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public PTZVector Position
         {
             get { return this.positionField; }
@@ -13926,7 +13932,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTZMoveStatus MoveStatus
         {
             get { return this.moveStatusField; }
@@ -13934,7 +13940,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public string Error
         {
             get { return this.errorField; }
@@ -13942,7 +13948,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public System.DateTime UtcTime
         {
             get { return this.utcTimeField; }
@@ -13950,8 +13956,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 4)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 4)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -13959,9 +13965,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZPreset
     {
         private string nameField;
@@ -13971,7 +13977,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private string tokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -13979,7 +13985,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public PTZVector PTZPosition
         {
             get { return this.pTZPositionField; }
@@ -13987,7 +13993,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string token
         {
             get { return this.tokenField; }
@@ -13996,16 +14002,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZConfigurationOptions2
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14013,16 +14019,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTControlDirectionOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14030,16 +14036,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ReverseOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14047,16 +14053,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ReverseOptions
     {
         private ReverseOptionsExtension extensionField;
         private ReverseMode[] modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public ReverseMode[] Mode
         {
             get { return this.modeField; }
@@ -14064,7 +14070,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ReverseOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -14073,16 +14079,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EFlipOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14090,16 +14096,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class EFlipOptions
     {
         private EFlipOptionsExtension extensionField;
         private EFlipMode[] modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public EFlipMode[] Mode
         {
             get { return this.modeField; }
@@ -14107,7 +14113,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public EFlipOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -14116,9 +14122,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTControlDirectionOptions
     {
         private EFlipOptions eFlipField;
@@ -14128,7 +14134,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ReverseOptions reverseField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public EFlipOptions EFlip
         {
             get { return this.eFlipField; }
@@ -14136,7 +14142,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ReverseOptions Reverse
         {
             get { return this.reverseField; }
@@ -14144,7 +14150,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public PTControlDirectionOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -14153,12 +14159,12 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class PTZConfigurationOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private PTZConfigurationOptions2 extensionField;
 
@@ -14170,7 +14176,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private PTZSpaces spacesField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public PTZSpaces Spaces
         {
             get { return this.spacesField; }
@@ -14178,7 +14184,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public DurationRange PTZTimeout
         {
             get { return this.pTZTimeoutField; }
@@ -14186,15 +14192,15 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public PTControlDirectionOptions PTControlDirection
         {
             get { return this.pTControlDirectionField; }
@@ -14202,7 +14208,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public PTZConfigurationOptions2 Extension
         {
             get { return this.extensionField; }
@@ -14210,7 +14216,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int[] PTZRamps
         {
             get { return this.pTZRampsField; }
@@ -14220,16 +14226,16 @@ namespace Mictlanix.DotNet.Onvif.Common
 
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingStatus20Extension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14237,16 +14243,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FocusStatus20Extension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14254,9 +14260,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FocusStatus20
     {
         private string errorField;
@@ -14267,7 +14273,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private float positionField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float Position
         {
             get { return this.positionField; }
@@ -14275,7 +14281,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public MoveStatus MoveStatus
         {
             get { return this.moveStatusField; }
@@ -14283,7 +14289,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public string Error
         {
             get { return this.errorField; }
@@ -14291,7 +14297,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public FocusStatus20Extension Extension
         {
             get { return this.extensionField; }
@@ -14300,16 +14306,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingStatus20
     {
         private ImagingStatus20Extension extensionField;
         private FocusStatus20 focusStatus20Field;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public FocusStatus20 FocusStatus20
         {
             get { return this.focusStatus20Field; }
@@ -14317,7 +14323,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ImagingStatus20Extension Extension
         {
             get { return this.extensionField; }
@@ -14326,15 +14332,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ContinuousFocusOptions
     {
         private FloatRange speedField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public FloatRange Speed
         {
             get { return this.speedField; }
@@ -14343,9 +14349,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RelativeFocusOptions20
     {
         private FloatRange distanceField;
@@ -14353,7 +14359,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private FloatRange speedField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public FloatRange Distance
         {
             get { return this.distanceField; }
@@ -14361,7 +14367,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange Speed
         {
             get { return this.speedField; }
@@ -14370,9 +14376,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AbsoluteFocusOptions
     {
         private FloatRange positionField;
@@ -14380,7 +14386,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private FloatRange speedField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public FloatRange Position
         {
             get { return this.positionField; }
@@ -14388,7 +14394,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange Speed
         {
             get { return this.speedField; }
@@ -14397,9 +14403,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class MoveOptions20
     {
         private AbsoluteFocusOptions absoluteField;
@@ -14409,7 +14415,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private RelativeFocusOptions20 relativeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AbsoluteFocusOptions Absolute
         {
             get { return this.absoluteField; }
@@ -14417,7 +14423,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public RelativeFocusOptions20 Relative
         {
             get { return this.relativeField; }
@@ -14425,7 +14431,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ContinuousFocusOptions Continuous
         {
             get { return this.continuousField; }
@@ -14434,15 +14440,15 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ContinuousFocus
     {
         private float speedField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float Speed
         {
             get { return this.speedField; }
@@ -14451,9 +14457,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class RelativeFocus
     {
         private float distanceField;
@@ -14463,7 +14469,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool speedFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float Distance
         {
             get { return this.distanceField; }
@@ -14471,7 +14477,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Speed
         {
             get { return this.speedField; }
@@ -14479,7 +14485,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SpeedSpecified
         {
             get { return this.speedFieldSpecified; }
@@ -14488,9 +14494,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class AbsoluteFocus
     {
         private float positionField;
@@ -14500,7 +14506,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private bool speedFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float Position
         {
             get { return this.positionField; }
@@ -14508,7 +14514,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public float Speed
         {
             get { return this.speedField; }
@@ -14516,7 +14522,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SpeedSpecified
         {
             get { return this.speedFieldSpecified; }
@@ -14525,9 +14531,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FocusMove
     {
         private AbsoluteFocus absoluteField;
@@ -14537,7 +14543,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private RelativeFocus relativeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public AbsoluteFocus Absolute
         {
             get { return this.absoluteField; }
@@ -14545,7 +14551,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public RelativeFocus Relative
         {
             get { return this.relativeField; }
@@ -14553,7 +14559,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ContinuousFocus Continuous
         {
             get { return this.continuousField; }
@@ -14562,16 +14568,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingOptions20Extension4
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14579,16 +14585,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class NoiseReductionOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
         private bool levelField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public bool Level
         {
             get { return this.levelField; }
@@ -14596,8 +14602,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 1)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 1)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14605,18 +14611,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class DefoggingOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool levelField;
         private string[] modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public string[] Mode
         {
             get { return this.modeField; }
@@ -14624,7 +14630,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Level
         {
             get { return this.levelField; }
@@ -14632,8 +14638,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14641,18 +14647,18 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ToneCompensationOptions
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool levelField;
         private string[] modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public string[] Mode
         {
             get { return this.modeField; }
@@ -14660,7 +14666,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool Level
         {
             get { return this.levelField; }
@@ -14668,8 +14674,8 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14677,9 +14683,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingOptions20Extension3
     {
         private DefoggingOptions defoggingOptionsField;
@@ -14690,7 +14696,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ToneCompensationOptions toneCompensationOptionsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ToneCompensationOptions ToneCompensationOptions
         {
             get { return this.toneCompensationOptionsField; }
@@ -14698,7 +14704,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public DefoggingOptions DefoggingOptions
         {
             get { return this.defoggingOptionsField; }
@@ -14706,7 +14712,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public NoiseReductionOptions NoiseReductionOptions
         {
             get { return this.noiseReductionOptionsField; }
@@ -14714,7 +14720,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public ImagingOptions20Extension4 Extension
         {
             get { return this.extensionField; }
@@ -14723,16 +14729,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IrCutFilterAutoAdjustmentOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Namespace = "http://www.onvif.org/ver10/schema", Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14740,9 +14746,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class IrCutFilterAutoAdjustmentOptions
     {
         private bool boundaryOffsetField;
@@ -14755,7 +14761,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private DurationRange responseTimeRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("BoundaryType", Order = 0)]
+        [XmlElement("BoundaryType", Order = 0)]
         public string[] BoundaryType
         {
             get { return this.boundaryTypeField; }
@@ -14763,7 +14769,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public bool BoundaryOffset
         {
             get { return this.boundaryOffsetField; }
@@ -14771,7 +14777,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool BoundaryOffsetSpecified
         {
             get { return this.boundaryOffsetFieldSpecified; }
@@ -14779,7 +14785,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public DurationRange ResponseTimeRange
         {
             get { return this.responseTimeRangeField; }
@@ -14787,7 +14793,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public IrCutFilterAutoAdjustmentOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -14796,16 +14802,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingOptions20Extension2
     {
         private ImagingOptions20Extension3 extensionField;
         private IrCutFilterAutoAdjustmentOptions irCutFilterAutoAdjustmentField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public IrCutFilterAutoAdjustmentOptions IrCutFilterAutoAdjustment
         {
             get { return this.irCutFilterAutoAdjustmentField; }
@@ -14813,7 +14819,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ImagingOptions20Extension3 Extension
         {
             get { return this.extensionField; }
@@ -14822,16 +14828,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImageStabilizationOptionsExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14839,9 +14845,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImageStabilizationOptions
     {
         private ImageStabilizationOptionsExtension extensionField;
@@ -14850,7 +14856,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ImageStabilizationMode[] modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public ImageStabilizationMode[] Mode
         {
             get { return this.modeField; }
@@ -14858,7 +14864,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange Level
         {
             get { return this.levelField; }
@@ -14866,7 +14872,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ImageStabilizationOptionsExtension Extension
         {
             get { return this.extensionField; }
@@ -14875,27 +14881,27 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingOptions20Extension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private ImagingOptions20Extension2 extensionField;
 
         private ImageStabilizationOptions imageStabilizationField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public ImageStabilizationOptions ImageStabilization
         {
             get { return this.imageStabilizationField; }
@@ -14903,7 +14909,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public ImagingOptions20Extension2 Extension
         {
             get { return this.extensionField; }
@@ -14912,16 +14918,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class WhiteBalanceOptions20Extension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -14929,9 +14935,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class WhiteBalanceOptions20
     {
         private WhiteBalanceOptions20Extension extensionField;
@@ -14942,7 +14948,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private FloatRange yrGainField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public WhiteBalanceMode[] Mode
         {
             get { return this.modeField; }
@@ -14950,7 +14956,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange YrGain
         {
             get { return this.yrGainField; }
@@ -14958,7 +14964,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public FloatRange YbGain
         {
             get { return this.ybGainField; }
@@ -14966,7 +14972,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public WhiteBalanceOptions20Extension Extension
         {
             get { return this.extensionField; }
@@ -14975,16 +14981,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class WideDynamicRangeOptions20
     {
         private FloatRange levelField;
         private WideDynamicMode[] modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public WideDynamicMode[] Mode
         {
             get { return this.modeField; }
@@ -14992,7 +14998,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange Level
         {
             get { return this.levelField; }
@@ -15001,16 +15007,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FocusOptions20Extension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -15018,9 +15024,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class FocusOptions20
     {
         private AutoFocusMode[] autoFocusModesField;
@@ -15034,7 +15040,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private FloatRange nearLimitField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AutoFocusModes", Order = 0)]
+        [XmlElement("AutoFocusModes", Order = 0)]
         public AutoFocusMode[] AutoFocusModes
         {
             get { return this.autoFocusModesField; }
@@ -15042,7 +15048,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange DefaultSpeed
         {
             get { return this.defaultSpeedField; }
@@ -15050,7 +15056,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public FloatRange NearLimit
         {
             get { return this.nearLimitField; }
@@ -15058,7 +15064,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public FloatRange FarLimit
         {
             get { return this.farLimitField; }
@@ -15066,7 +15072,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public FocusOptions20Extension Extension
         {
             get { return this.extensionField; }
@@ -15075,9 +15081,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ExposureOptions20
     {
         private FloatRange exposureTimeField;
@@ -15102,7 +15108,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private ExposurePriority[] priorityField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public ExposureMode[] Mode
         {
             get { return this.modeField; }
@@ -15110,7 +15116,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Priority", Order = 1)]
+        [XmlElement("Priority", Order = 1)]
         public ExposurePriority[] Priority
         {
             get { return this.priorityField; }
@@ -15118,7 +15124,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public FloatRange MinExposureTime
         {
             get { return this.minExposureTimeField; }
@@ -15126,7 +15132,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public FloatRange MaxExposureTime
         {
             get { return this.maxExposureTimeField; }
@@ -15134,7 +15140,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public FloatRange MinGain
         {
             get { return this.minGainField; }
@@ -15142,7 +15148,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public FloatRange MaxGain
         {
             get { return this.maxGainField; }
@@ -15150,7 +15156,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
+        [XmlElement(Order = 6)]
         public FloatRange MinIris
         {
             get { return this.minIrisField; }
@@ -15158,7 +15164,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public FloatRange MaxIris
         {
             get { return this.maxIrisField; }
@@ -15166,7 +15172,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public FloatRange ExposureTime
         {
             get { return this.exposureTimeField; }
@@ -15174,7 +15180,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public FloatRange Gain
         {
             get { return this.gainField; }
@@ -15182,7 +15188,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        [XmlElement(Order = 10)]
         public FloatRange Iris
         {
             get { return this.irisField; }
@@ -15191,16 +15197,16 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class BacklightCompensationOptions20
     {
         private FloatRange levelField;
         private BacklightCompensationMode[] modeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Mode", Order = 0)]
+        [XmlElement("Mode", Order = 0)]
         public BacklightCompensationMode[] Mode
         {
             get { return this.modeField; }
@@ -15208,7 +15214,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange Level
         {
             get { return this.levelField; }
@@ -15217,9 +15223,9 @@ namespace Mictlanix.DotNet.Onvif.Common
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/schema")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/schema")]
     public partial class ImagingOptions20
     {
         private BacklightCompensationOptions20 backlightCompensationField;
@@ -15245,7 +15251,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         private WideDynamicRangeOptions20 wideDynamicRangeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public BacklightCompensationOptions20 BacklightCompensation
         {
             get { return this.backlightCompensationField; }
@@ -15253,7 +15259,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public FloatRange Brightness
         {
             get { return this.brightnessField; }
@@ -15261,7 +15267,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public FloatRange ColorSaturation
         {
             get { return this.colorSaturationField; }
@@ -15269,7 +15275,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public FloatRange Contrast
         {
             get { return this.contrastField; }
@@ -15277,7 +15283,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public ExposureOptions20 Exposure
         {
             get { return this.exposureField; }
@@ -15285,7 +15291,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public FocusOptions20 Focus
         {
             get { return this.focusField; }
@@ -15293,7 +15299,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("IrCutFilterModes", Order = 6)]
+        [XmlElement("IrCutFilterModes", Order = 6)]
         public IrCutFilterMode[] IrCutFilterModes
         {
             get { return this.irCutFilterModesField; }
@@ -15301,7 +15307,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 7)]
+        [XmlElement(Order = 7)]
         public FloatRange Sharpness
         {
             get { return this.sharpnessField; }
@@ -15309,7 +15315,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 8)]
+        [XmlElement(Order = 8)]
         public WideDynamicRangeOptions20 WideDynamicRange
         {
             get { return this.wideDynamicRangeField; }
@@ -15317,7 +15323,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 9)]
+        [XmlElement(Order = 9)]
         public WhiteBalanceOptions20 WhiteBalance
         {
             get { return this.whiteBalanceField; }
@@ -15325,7 +15331,7 @@ namespace Mictlanix.DotNet.Onvif.Common
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 10)]
+        [XmlElement(Order = 10)]
         public ImagingOptions20Extension Extension
         {
             get { return this.extensionField; }

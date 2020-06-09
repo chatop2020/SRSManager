@@ -101,7 +101,7 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnPlay(Client client)
         {
-            lock (SRSApis.Common.LockObj)
+            lock (Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {
@@ -152,7 +152,7 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnStop(Client client)
         {
-            lock (SRSApis.Common.LockObj)
+            lock (Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {
@@ -203,7 +203,7 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnPublish(Client client)
         {
-            lock (SRSApis.Common.LockObj)
+            lock (Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {
@@ -218,6 +218,7 @@ namespace SrsApis.SrsManager.Apis
                                 .Set(x => x.Param, client.Param)
                                 .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
                                 .Set(x => x.ClientType, ClientType.Monitor)
+                                .Set(x=>x.MonitorType,client.MonitorType)
                                 .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
                                 .ExecuteAffrows();
                             if (ret > 0)
@@ -255,7 +256,7 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnUnPublish(Client client)
         {
-            lock (SRSApis.Common.LockObj)
+            lock (Common.LockObj)
             {
                 if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
                 {

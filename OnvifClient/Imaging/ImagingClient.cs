@@ -1,84 +1,92 @@
-﻿using Mictlanix.DotNet.Onvif.Common;
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Mictlanix.DotNet.Onvif.Common;
 
 namespace Mictlanix.DotNet.Onvif.Imaging
 {
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace = "http://www.onvif.org/ver20/imaging/wsdl",
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [ServiceContract(Namespace = "http://www.onvif.org/ver20/imaging/wsdl",
         ConfigurationName = "Mictlanix.DotNet.Onvif.Imaging.Imaging")]
     public interface Imaging
     {
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver20/imaging/wsdl/GetServiceCapabilities", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Capabilities")]
-        System.Threading.Tasks.Task<Capabilities> GetServiceCapabilitiesAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [return: MessageParameter(Name = "Capabilities")]
+        Task<Capabilities> GetServiceCapabilitiesAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver20/imaging/wsdl/GetImagingSettings", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "ImagingSettings")]
-        System.Threading.Tasks.Task<ImagingSettings20> GetImagingSettingsAsync(string VideoSourceToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [return: MessageParameter(Name = "ImagingSettings")]
+        Task<ImagingSettings20> GetImagingSettingsAsync(string VideoSourceToken);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver20/imaging/wsdl/SetImagingSettings", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        System.Threading.Tasks.Task SetImagingSettingsAsync(string VideoSourceToken, ImagingSettings20 ImagingSettings,
+        [XmlSerializerFormat(SupportFaults = true)]
+        Task SetImagingSettingsAsync(string VideoSourceToken, ImagingSettings20 ImagingSettings,
             bool ForcePersistence);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver20/imaging/wsdl/GetOptions",
+        [OperationContract(Action = "http://www.onvif.org/ver20/imaging/wsdl/GetOptions",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "ImagingOptions")]
-        System.Threading.Tasks.Task<ImagingOptions20> GetOptionsAsync(string VideoSourceToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [return: MessageParameter(Name = "ImagingOptions")]
+        Task<ImagingOptions20> GetOptionsAsync(string VideoSourceToken);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver20/imaging/wsdl/Move",
+        [OperationContract(Action = "http://www.onvif.org/ver20/imaging/wsdl/Move",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        System.Threading.Tasks.Task MoveAsync(string VideoSourceToken, FocusMove Focus);
+        [XmlSerializerFormat(SupportFaults = true)]
+        Task MoveAsync(string VideoSourceToken, FocusMove Focus);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver20/imaging/wsdl/GetMoveOptions", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "MoveOptions")]
-        System.Threading.Tasks.Task<MoveOptions20> GetMoveOptionsAsync(string VideoSourceToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [return: MessageParameter(Name = "MoveOptions")]
+        Task<MoveOptions20> GetMoveOptionsAsync(string VideoSourceToken);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver20/imaging/wsdl/FocusStop",
+        [OperationContract(Action = "http://www.onvif.org/ver20/imaging/wsdl/FocusStop",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        System.Threading.Tasks.Task StopAsync(string VideoSourceToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        Task StopAsync(string VideoSourceToken);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver20/imaging/wsdl/GetStatus",
+        [OperationContract(Action = "http://www.onvif.org/ver20/imaging/wsdl/GetStatus",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Status")]
-        System.Threading.Tasks.Task<ImagingStatus20> GetStatusAsync(string VideoSourceToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [return: MessageParameter(Name = "Status")]
+        Task<ImagingStatus20> GetStatusAsync(string VideoSourceToken);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver20/imaging/wsdl/GetPresets",
+        [OperationContract(Action = "http://www.onvif.org/ver20/imaging/wsdl/GetPresets",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Imaging.GetPresetsResponse> GetPresetsAsync(
-            Mictlanix.DotNet.Onvif.Imaging.GetPresetsRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        Task<GetPresetsResponse> GetPresetsAsync(
+            GetPresetsRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver20/imaging/wsdl/GetCurrentPreset", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Preset")]
-        System.Threading.Tasks.Task<ImagingPreset> GetCurrentPresetAsync(string VideoSourceToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [return: MessageParameter(Name = "Preset")]
+        Task<ImagingPreset> GetCurrentPresetAsync(string VideoSourceToken);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver20/imaging/wsdl/SetCurrentPreset", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        System.Threading.Tasks.Task SetCurrentPresetAsync(string VideoSourceToken, string PresetToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        Task SetCurrentPresetAsync(string VideoSourceToken, string PresetToken);
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetPresets",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetPresets",
         WrapperNamespace = "http://www.onvif.org/ver20/imaging/wsdl", IsWrapped = true)]
     public partial class GetPresetsRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/imaging/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver20/imaging/wsdl",
             Order = 0)]
         public string VideoSourceToken;
 
@@ -92,16 +100,16 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetPresetsResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetPresetsResponse",
         WrapperNamespace = "http://www.onvif.org/ver20/imaging/wsdl", IsWrapped = true)]
     public partial class GetPresetsResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver20/imaging/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver20/imaging/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Preset")]
+        [XmlElement("Preset")]
         public ImagingPreset[] Preset;
 
         public GetPresetsResponse()
@@ -114,102 +122,102 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    public interface ImagingChannel : Mictlanix.DotNet.Onvif.Imaging.Imaging, System.ServiceModel.IClientChannel
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    public interface ImagingChannel : Imaging, IClientChannel
     {
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    public partial class ImagingClient : System.ServiceModel.ClientBase<Mictlanix.DotNet.Onvif.Imaging.Imaging>,
-        Mictlanix.DotNet.Onvif.Imaging.Imaging
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    public partial class ImagingClient : ClientBase<Imaging>,
+        Imaging
     {
-        internal ImagingClient(System.ServiceModel.Channels.Binding binding,
-            System.ServiceModel.EndpointAddress remoteAddress) :
+        internal ImagingClient(Binding binding,
+            EndpointAddress remoteAddress) :
             base(binding, remoteAddress)
         {
         }
 
-        public System.Threading.Tasks.Task<Capabilities> GetServiceCapabilitiesAsync()
+        public Task<Capabilities> GetServiceCapabilitiesAsync()
         {
             return base.Channel.GetServiceCapabilitiesAsync();
         }
 
-        public System.Threading.Tasks.Task<ImagingSettings20> GetImagingSettingsAsync(string VideoSourceToken)
+        public Task<ImagingSettings20> GetImagingSettingsAsync(string VideoSourceToken)
         {
             return base.Channel.GetImagingSettingsAsync(VideoSourceToken);
         }
 
-        public System.Threading.Tasks.Task SetImagingSettingsAsync(string VideoSourceToken,
+        public Task SetImagingSettingsAsync(string VideoSourceToken,
             ImagingSettings20 ImagingSettings, bool ForcePersistence)
         {
             return base.Channel.SetImagingSettingsAsync(VideoSourceToken, ImagingSettings, ForcePersistence);
         }
 
-        public System.Threading.Tasks.Task<ImagingOptions20> GetOptionsAsync(string VideoSourceToken)
+        public Task<ImagingOptions20> GetOptionsAsync(string VideoSourceToken)
         {
             return base.Channel.GetOptionsAsync(VideoSourceToken);
         }
 
-        public System.Threading.Tasks.Task MoveAsync(string VideoSourceToken, FocusMove Focus)
+        public Task MoveAsync(string VideoSourceToken, FocusMove Focus)
         {
             return base.Channel.MoveAsync(VideoSourceToken, Focus);
         }
 
-        public System.Threading.Tasks.Task<MoveOptions20> GetMoveOptionsAsync(string VideoSourceToken)
+        public Task<MoveOptions20> GetMoveOptionsAsync(string VideoSourceToken)
         {
             return base.Channel.GetMoveOptionsAsync(VideoSourceToken);
         }
 
-        public System.Threading.Tasks.Task StopAsync(string VideoSourceToken)
+        public Task StopAsync(string VideoSourceToken)
         {
             return base.Channel.StopAsync(VideoSourceToken);
         }
 
-        public System.Threading.Tasks.Task<ImagingStatus20> GetStatusAsync(string VideoSourceToken)
+        public Task<ImagingStatus20> GetStatusAsync(string VideoSourceToken)
         {
             return base.Channel.GetStatusAsync(VideoSourceToken);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Imaging.GetPresetsResponse>
-            Mictlanix.DotNet.Onvif.Imaging.Imaging.GetPresetsAsync(
-                Mictlanix.DotNet.Onvif.Imaging.GetPresetsRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetPresetsResponse>
+            Imaging.GetPresetsAsync(
+                GetPresetsRequest request)
         {
             return base.Channel.GetPresetsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<ImagingPreset> GetCurrentPresetAsync(string VideoSourceToken)
+        public Task<ImagingPreset> GetCurrentPresetAsync(string VideoSourceToken)
         {
             return base.Channel.GetCurrentPresetAsync(VideoSourceToken);
         }
 
-        public System.Threading.Tasks.Task SetCurrentPresetAsync(string VideoSourceToken, string PresetToken)
+        public Task SetCurrentPresetAsync(string VideoSourceToken, string PresetToken)
         {
             return base.Channel.SetCurrentPresetAsync(VideoSourceToken, PresetToken);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Imaging.GetPresetsResponse> GetPresetsAsync(
+        public Task<GetPresetsResponse> GetPresetsAsync(
             string VideoSourceToken)
         {
-            Mictlanix.DotNet.Onvif.Imaging.GetPresetsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Imaging.GetPresetsRequest();
+            GetPresetsRequest inValue =
+                new GetPresetsRequest();
             inValue.VideoSourceToken = VideoSourceToken;
-            return ((Mictlanix.DotNet.Onvif.Imaging.Imaging) (this)).GetPresetsAsync(inValue);
+            return ((Imaging) (this)).GetPresetsAsync(inValue);
         }
 
-        public virtual System.Threading.Tasks.Task OpenAsync()
+        public virtual Task OpenAsync()
         {
-            return System.Threading.Tasks.Task.Factory.FromAsync(
-                ((System.ServiceModel.ICommunicationObject) (this)).BeginOpen(null, null),
-                new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject) (this)).EndOpen));
+            return Task.Factory.FromAsync(
+                ((ICommunicationObject) (this)).BeginOpen(null, null),
+                new Action<IAsyncResult>(((ICommunicationObject) (this)).EndOpen));
         }
 
-        public virtual System.Threading.Tasks.Task CloseAsync()
+        public virtual Task CloseAsync()
         {
-            return System.Threading.Tasks.Task.Factory.FromAsync(
-                ((System.ServiceModel.ICommunicationObject) (this)).BeginClose(null, null),
-                new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject) (this)).EndClose));
+            return Task.Factory.FromAsync(
+                ((ICommunicationObject) (this)).BeginClose(null, null),
+                new Action<IAsyncResult>(((ICommunicationObject) (this)).EndClose));
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using SrsManageCommon;
 using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
 using SrsConfFile;
 using SrsConfFile.SRSConfClass;
+using SrsManageCommon;
 using SRSManageCommon.ManageStructs;
-using Dvr = SrsConfFile.SRSConfClass.Dvr;
-using JsonHelper = SrsManageCommon.JsonHelper;
+using Common = SRSApis.Common;
 
 namespace Test_SRSApis
 {
@@ -22,8 +21,8 @@ namespace Test_SRSApis
             Console.WriteLine("Hello World!");
             Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
             Console.WriteLine(JsonHelper.ToJson(SystemApis.GetSystemInfo()));
-            SRSApis.Common.init_SrsServer();
-            SRSApis.Common.startServers();
+            Common.init_SrsServer();
+            Common.startServers();
             List<string> srsdevidlist = SystemApis.GetAllSrsManagerDeviceId();
             Console.WriteLine(JsonHelper.ToJson(srsdevidlist));
             foreach (var s in srsdevidlist)

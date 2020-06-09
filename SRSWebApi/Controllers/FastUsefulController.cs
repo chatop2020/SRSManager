@@ -443,14 +443,14 @@ namespace SrsWebApi.Controllers
         [AuthVerify]
         [Log]
         [Route("/FastUseful/GetOnvifMonitorIngestTemplate")]
-        public JsonResult GetOnvifMonitorIngestTemplate(string rtspUrl)
+        public JsonResult GetOnvifMonitorIngestTemplate(string username,string password ,string rtspUrl)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{rtspUrl});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{username,password,rtspUrl});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
-            var rt = FastUsefulApis.GetOnvifMonitorIngestTemplate(rtspUrl, out ResponseStruct rs);
+            var rt = FastUsefulApis.GetOnvifMonitorIngestTemplate(username,password,rtspUrl, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }

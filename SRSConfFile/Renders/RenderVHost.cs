@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using SrsConfFile.SRSConfClass;
 
 namespace SrsConfFile.Renders
@@ -335,7 +336,7 @@ namespace SrsConfFile.Renders
 
                             SecurityObj seo = new SecurityObj();
                             seo.Sem = (SecurityMethod) Enum.Parse(typeof(SecurityMethod), tmpkv.Key);
-                            string[] sArr = System.Text.RegularExpressions.Regex.Split(tmpkv.Value, @"[\s]+");
+                            string[] sArr = Regex.Split(tmpkv.Value, @"[\s]+");
                             // string[] s_arr = tmpkv.Value.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                             if (sArr.Length > 1)
                             {

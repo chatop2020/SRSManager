@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace SRSManageCommon.ControllerStructs.RequestModules
 {
@@ -62,7 +63,7 @@ namespace SRSManageCommon.ControllerStructs.RequestModules
         {
             if (!string.IsNullOrEmpty(IpAddrs))
             {
-                _ipAddrArray = System.Text.RegularExpressions.Regex.Split(_ipAddrs, @"[\s]+").ToList();
+                _ipAddrArray = Regex.Split(_ipAddrs, @"[\s]+").ToList();
                 // _ipAddrArray = _ipAddrs.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
             }
         }

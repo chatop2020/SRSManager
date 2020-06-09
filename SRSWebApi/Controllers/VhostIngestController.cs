@@ -1,6 +1,4 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Mvc;
-using SrsApis.SrsManager;
+﻿using Microsoft.AspNetCore.Mvc;
 using SrsApis.SrsManager.Apis;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
@@ -127,6 +125,31 @@ namespace SrsWebApi.Controllers
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
             var rt = VhostIngestApis.SetVhostIngest(deviceId, vhostDomain, ingestInstanceName, ingest,
+                out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+
+        /// <summary>
+        /// 启用或停用一个ingest
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="vhostDomain"></param>
+        /// <param name="ingestInstanceName"></param>
+        /// <param name="enable"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/VhostIngest/OnOrOffIngest")]
+        public JsonResult OnOrOffIngest(string deviceId, string vhostDomain, string ingestInstanceName, bool enable)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,enable,ingestInstanceName});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = VhostIngestApis.OnOrOffIngest(deviceId, vhostDomain, ingestInstanceName,  enable,
                 out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

@@ -1,14 +1,18 @@
+using System.CodeDom.Compiler;
+using System.Diagnostics;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 using Mictlanix.DotNet.Onvif.Common;
 
 namespace Mictlanix.DotNet.Onvif.Media
 {
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
     public partial class Capabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool eXICompressionField;
 
@@ -38,7 +42,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         private bool videoSourceModeFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public ProfileCapabilities ProfileCapabilities
         {
             get { return this.profileCapabilitiesField; }
@@ -46,7 +50,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public StreamingCapabilities StreamingCapabilities
         {
             get { return this.streamingCapabilitiesField; }
@@ -54,15 +58,15 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 2)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool SnapshotUri
         {
             get { return this.snapshotUriField; }
@@ -70,7 +74,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SnapshotUriSpecified
         {
             get { return this.snapshotUriFieldSpecified; }
@@ -78,7 +82,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool Rotation
         {
             get { return this.rotationField; }
@@ -86,7 +90,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RotationSpecified
         {
             get { return this.rotationFieldSpecified; }
@@ -94,7 +98,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool VideoSourceMode
         {
             get { return this.videoSourceModeField; }
@@ -102,7 +106,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool VideoSourceModeSpecified
         {
             get { return this.videoSourceModeFieldSpecified; }
@@ -110,7 +114,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool OSD
         {
             get { return this.oSDField; }
@@ -118,7 +122,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool OSDSpecified
         {
             get { return this.oSDFieldSpecified; }
@@ -126,7 +130,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool TemporaryOSDText
         {
             get { return this.temporaryOSDTextField; }
@@ -134,7 +138,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool TemporaryOSDTextSpecified
         {
             get { return this.temporaryOSDTextFieldSpecified; }
@@ -142,7 +146,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool EXICompression
         {
             get { return this.eXICompressionField; }
@@ -150,7 +154,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool EXICompressionSpecified
         {
             get { return this.eXICompressionFieldSpecified; }
@@ -159,27 +163,27 @@ namespace Mictlanix.DotNet.Onvif.Media
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
     public partial class ProfileCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private int maximumNumberOfProfilesField;
 
         private bool maximumNumberOfProfilesFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaximumNumberOfProfiles
         {
             get { return this.maximumNumberOfProfilesField; }
@@ -187,7 +191,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaximumNumberOfProfilesSpecified
         {
             get { return this.maximumNumberOfProfilesFieldSpecified; }
@@ -197,16 +201,16 @@ namespace Mictlanix.DotNet.Onvif.Media
 
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
     public partial class VideoSourceModeExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -214,9 +218,9 @@ namespace Mictlanix.DotNet.Onvif.Media
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
     public partial class VideoSourceMode
     {
         private string descriptionField;
@@ -237,7 +241,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         private string tokenField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public float MaxFramerate
         {
             get { return this.maxFramerateField; }
@@ -245,7 +249,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public VideoResolution MaxResolution
         {
             get { return this.maxResolutionField; }
@@ -253,7 +257,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public string Encodings
         {
             get { return this.encodingsField; }
@@ -261,7 +265,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public bool Reboot
         {
             get { return this.rebootField; }
@@ -269,7 +273,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 4)]
+        [XmlElement(Order = 4)]
         public string Description
         {
             get { return this.descriptionField; }
@@ -277,7 +281,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
+        [XmlElement(Order = 5)]
         public VideoSourceModeExtension Extension
         {
             get { return this.extensionField; }
@@ -285,7 +289,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string token
         {
             get { return this.tokenField; }
@@ -293,7 +297,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool Enabled
         {
             get { return this.enabledField; }
@@ -301,7 +305,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool EnabledSpecified
         {
             get { return this.enabledFieldSpecified; }
@@ -311,12 +315,12 @@ namespace Mictlanix.DotNet.Onvif.Media
 
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/media/wsdl")]
     public partial class StreamingCapabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool nonAggregateControlField;
 
@@ -339,15 +343,15 @@ namespace Mictlanix.DotNet.Onvif.Media
         private bool rTPMulticastFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool RTPMulticast
         {
             get { return this.rTPMulticastField; }
@@ -355,7 +359,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RTPMulticastSpecified
         {
             get { return this.rTPMulticastFieldSpecified; }
@@ -363,7 +367,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool RTP_TCP
         {
             get { return this.rTP_TCPField; }
@@ -371,7 +375,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RTP_TCPSpecified
         {
             get { return this.rTP_TCPFieldSpecified; }
@@ -379,7 +383,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool RTP_RTSP_TCP
         {
             get { return this.rTP_RTSP_TCPField; }
@@ -387,7 +391,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RTP_RTSP_TCPSpecified
         {
             get { return this.rTP_RTSP_TCPFieldSpecified; }
@@ -395,7 +399,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool NonAggregateControl
         {
             get { return this.nonAggregateControlField; }
@@ -403,7 +407,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool NonAggregateControlSpecified
         {
             get { return this.nonAggregateControlFieldSpecified; }
@@ -411,7 +415,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool NoRTSPStreaming
         {
             get { return this.noRTSPStreamingField; }
@@ -419,7 +423,7 @@ namespace Mictlanix.DotNet.Onvif.Media
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool NoRTSPStreamingSpecified
         {
             get { return this.noRTSPStreamingFieldSpecified; }

@@ -1,645 +1,656 @@
-﻿using Mictlanix.DotNet.Onvif.Common;
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using Mictlanix.DotNet.Onvif.Common;
+using DateTime = Mictlanix.DotNet.Onvif.Common.DateTime;
+using TimeZone = Mictlanix.DotNet.Onvif.Common.TimeZone;
 
 namespace Mictlanix.DotNet.Onvif.Device
 {
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [ServiceContract(Namespace = "http://www.onvif.org/ver10/device/wsdl",
         ConfigurationName = "Mictlanix.DotNet.Onvif.Device.Device")]
     public interface Device
     {
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetServices",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetServices",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetServicesResponse> GetServicesAsync(
-            Mictlanix.DotNet.Onvif.Device.GetServicesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetServicesResponse> GetServicesAsync(
+            GetServicesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetServiceCapabilities", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Capabilities")]
-        System.Threading.Tasks.Task<DeviceServiceCapabilities> GetServiceCapabilitiesAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "Capabilities")]
+        Task<DeviceServiceCapabilities> GetServiceCapabilitiesAsync();
 
         // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetDeviceInformation", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDeviceInformationResponse>
-            GetDeviceInformationAsync(Mictlanix.DotNet.Onvif.Device.GetDeviceInformationRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetDeviceInformationResponse>
+            GetDeviceInformationAsync(GetDeviceInformationRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetSystemDateAndTime", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetSystemDateAndTimeAsync(SetDateTimeType DateTimeType, bool DaylightSavings,
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetSystemDateAndTimeAsync(SetDateTimeType DateTimeType, bool DaylightSavings,
             TimeZone TimeZone, DateTime UTCDateTime);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetSystemDateAndTime", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "SystemDateAndTime")]
-        System.Threading.Tasks.Task<SystemDateTime> GetSystemDateAndTimeAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "SystemDateAndTime")]
+        Task<SystemDateTime> GetSystemDateAndTimeAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetSystemFactoryDefault", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetSystemFactoryDefaultAsync(FactoryDefaultType FactoryDefault);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetSystemFactoryDefaultAsync(FactoryDefaultType FactoryDefault);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/UpgradeSystemFirmware", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Message")]
-        System.Threading.Tasks.Task<string> UpgradeSystemFirmwareAsync(AttachmentData Firmware);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "Message")]
+        Task<string> UpgradeSystemFirmwareAsync(AttachmentData Firmware);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/SystemReboot",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/SystemReboot",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Message")]
-        System.Threading.Tasks.Task<string> SystemRebootAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "Message")]
+        Task<string> SystemRebootAsync();
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/RestoreSystem",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/RestoreSystem",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.RestoreSystemResponse> RestoreSystemAsync(
-            Mictlanix.DotNet.Onvif.Device.RestoreSystemRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<RestoreSystemResponse> RestoreSystemAsync(
+            RestoreSystemRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetSystemBackup", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemBackupResponse> GetSystemBackupAsync(
-            Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetSystemBackupResponse> GetSystemBackupAsync(
+            GetSystemBackupRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetSystemLog",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetSystemLog",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "SystemLog")]
-        System.Threading.Tasks.Task<SystemLog> GetSystemLogAsync(SystemLogType LogType);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "SystemLog")]
+        Task<SystemLog> GetSystemLogAsync(SystemLogType LogType);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetSystemSupportInformation", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "SupportInformation")]
-        System.Threading.Tasks.Task<SupportInformation> GetSystemSupportInformationAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "SupportInformation")]
+        Task<SupportInformation> GetSystemSupportInformationAsync();
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetScopes",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetScopes",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetScopesResponse> GetScopesAsync(
-            Mictlanix.DotNet.Onvif.Device.GetScopesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetScopesResponse> GetScopesAsync(
+            GetScopesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/SetScopes",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/SetScopes",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetScopesResponse> SetScopesAsync(
-            Mictlanix.DotNet.Onvif.Device.SetScopesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetScopesResponse> SetScopesAsync(
+            SetScopesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/AddScopes",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/AddScopes",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.AddScopesResponse> AddScopesAsync(
-            Mictlanix.DotNet.Onvif.Device.AddScopesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<AddScopesResponse> AddScopesAsync(
+            AddScopesRequest request);
 
         // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/RemoveScopes",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/RemoveScopes",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.RemoveScopesResponse> RemoveScopesAsync(
-            Mictlanix.DotNet.Onvif.Device.RemoveScopesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<RemoveScopesResponse> RemoveScopesAsync(
+            RemoveScopesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetDiscoveryMode", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "DiscoveryMode")]
-        System.Threading.Tasks.Task<DiscoveryMode> GetDiscoveryModeAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "DiscoveryMode")]
+        Task<DiscoveryMode> GetDiscoveryModeAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetDiscoveryMode", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetDiscoveryModeAsync(DiscoveryMode DiscoveryMode);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetDiscoveryModeAsync(DiscoveryMode DiscoveryMode);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetRemoteDiscoveryMode", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "RemoteDiscoveryMode")]
-        System.Threading.Tasks.Task<DiscoveryMode> GetRemoteDiscoveryModeAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "RemoteDiscoveryMode")]
+        Task<DiscoveryMode> GetRemoteDiscoveryModeAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetRemoteDiscoveryMode", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetRemoteDiscoveryModeAsync(DiscoveryMode RemoteDiscoveryMode);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetRemoteDiscoveryModeAsync(DiscoveryMode RemoteDiscoveryMode);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetDPAddresses", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDPAddressesResponse> GetDPAddressesAsync(
-            Mictlanix.DotNet.Onvif.Device.GetDPAddressesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetDPAddressesResponse> GetDPAddressesAsync(
+            GetDPAddressesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetDPAddresses", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDPAddressesResponse> SetDPAddressesAsync(
-            Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetDPAddressesResponse> SetDPAddressesAsync(
+            SetDPAddressesRequest request);
 
         // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetEndpointReference", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetEndpointReferenceResponse>
-            GetEndpointReferenceAsync(Mictlanix.DotNet.Onvif.Device.GetEndpointReferenceRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetEndpointReferenceResponse>
+            GetEndpointReferenceAsync(GetEndpointReferenceRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetRemoteUser",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetRemoteUser",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "RemoteUser")]
-        System.Threading.Tasks.Task<RemoteUser> GetRemoteUserAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "RemoteUser")]
+        Task<RemoteUser> GetRemoteUserAsync();
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/SetRemoteUser",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/SetRemoteUser",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetRemoteUserAsync(RemoteUser RemoteUser);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetRemoteUserAsync(RemoteUser RemoteUser);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetUsers",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetUsers",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetUsersResponse> GetUsersAsync(
-            Mictlanix.DotNet.Onvif.Device.GetUsersRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetUsersResponse> GetUsersAsync(
+            GetUsersRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/CreateUsers",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/CreateUsers",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateUsersResponse> CreateUsersAsync(
-            Mictlanix.DotNet.Onvif.Device.CreateUsersRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<CreateUsersResponse> CreateUsersAsync(
+            CreateUsersRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/DeleteUsers",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/DeleteUsers",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteUsersResponse> DeleteUsersAsync(
-            Mictlanix.DotNet.Onvif.Device.DeleteUsersRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<DeleteUsersResponse> DeleteUsersAsync(
+            DeleteUsersRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/SetUser",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/SetUser",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetUserResponse> SetUserAsync(
-            Mictlanix.DotNet.Onvif.Device.SetUserRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetUserResponse> SetUserAsync(
+            SetUserRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetWsdlUrl",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetWsdlUrl",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetWsdlUrlResponse> GetWsdlUrlAsync(
-            Mictlanix.DotNet.Onvif.Device.GetWsdlUrlRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetWsdlUrlResponse> GetWsdlUrlAsync(
+            GetWsdlUrlRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetCapabilities", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCapabilitiesResponse> GetCapabilitiesAsync(
-            Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetCapabilitiesResponse> GetCapabilitiesAsync(
+            GetCapabilitiesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetHostname",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetHostname",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "HostnameInformation")]
-        System.Threading.Tasks.Task<HostnameInformation> GetHostnameAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "HostnameInformation")]
+        Task<HostnameInformation> GetHostnameAsync();
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/SetHostname",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/SetHostname",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetHostnameResponse> SetHostnameAsync(
-            Mictlanix.DotNet.Onvif.Device.SetHostnameRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetHostnameResponse> SetHostnameAsync(
+            SetHostnameRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetHostnameFromDHCP", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "RebootNeeded")]
-        System.Threading.Tasks.Task<bool> SetHostnameFromDHCPAsync(bool FromDHCP);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "RebootNeeded")]
+        Task<bool> SetHostnameFromDHCPAsync(bool FromDHCP);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetDNS",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetDNS",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "DNSInformation")]
-        System.Threading.Tasks.Task<DNSInformation> GetDNSAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "DNSInformation")]
+        Task<DNSInformation> GetDNSAsync();
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/SetDNS",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/SetDNS",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDNSResponse> SetDNSAsync(
-            Mictlanix.DotNet.Onvif.Device.SetDNSRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetDNSResponse> SetDNSAsync(
+            SetDNSRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetNTP",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetNTP",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "NTPInformation")]
-        System.Threading.Tasks.Task<NTPInformation> GetNTPAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "NTPInformation")]
+        Task<NTPInformation> GetNTPAsync();
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/SetNTP",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/SetNTP",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNTPResponse> SetNTPAsync(
-            Mictlanix.DotNet.Onvif.Device.SetNTPRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetNTPResponse> SetNTPAsync(
+            SetNTPRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetDynamicDNS",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetDynamicDNS",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "DynamicDNSInformation")]
-        System.Threading.Tasks.Task<DynamicDNSInformation> GetDynamicDNSAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "DynamicDNSInformation")]
+        Task<DynamicDNSInformation> GetDynamicDNSAsync();
 
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/SetDynamicDNS",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/SetDynamicDNS",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDynamicDNSResponse> SetDynamicDNSAsync(
-            Mictlanix.DotNet.Onvif.Device.SetDynamicDNSRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetDynamicDNSResponse> SetDynamicDNSAsync(
+            SetDynamicDNSRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetNetworkInterfaces", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesResponse>
-            GetNetworkInterfacesAsync(Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetNetworkInterfacesResponse>
+            GetNetworkInterfacesAsync(GetNetworkInterfacesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetNetworkInterfaces", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "RebootNeeded")]
-        System.Threading.Tasks.Task<bool> SetNetworkInterfacesAsync(string InterfaceToken,
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "RebootNeeded")]
+        Task<bool> SetNetworkInterfacesAsync(string InterfaceToken,
             NetworkInterfaceSetConfiguration NetworkInterface);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetNetworkProtocols", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsResponse> GetNetworkProtocolsAsync(
-            Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetNetworkProtocolsResponse> GetNetworkProtocolsAsync(
+            GetNetworkProtocolsRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetNetworkProtocols", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsResponse> SetNetworkProtocolsAsync(
-            Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetNetworkProtocolsResponse> SetNetworkProtocolsAsync(
+            SetNetworkProtocolsRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetNetworkDefaultGateway", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "NetworkGateway")]
-        System.Threading.Tasks.Task<NetworkGateway> GetNetworkDefaultGatewayAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "NetworkGateway")]
+        Task<NetworkGateway> GetNetworkDefaultGatewayAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetNetworkDefaultGateway", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayResponse>
-            SetNetworkDefaultGatewayAsync(Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetNetworkDefaultGatewayResponse>
+            SetNetworkDefaultGatewayAsync(SetNetworkDefaultGatewayRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetZeroConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "ZeroConfiguration")]
-        System.Threading.Tasks.Task<NetworkZeroConfiguration> GetZeroConfigurationAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "ZeroConfiguration")]
+        Task<NetworkZeroConfiguration> GetZeroConfigurationAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetZeroConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetZeroConfigurationAsync(string InterfaceToken, bool Enabled);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetZeroConfigurationAsync(string InterfaceToken, bool Enabled);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetIPAddressFilter", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "IPAddressFilter")]
-        System.Threading.Tasks.Task<IPAddressFilter> GetIPAddressFilterAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "IPAddressFilter")]
+        Task<IPAddressFilter> GetIPAddressFilterAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetIPAddressFilter", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetIPAddressFilterAsync(IPAddressFilter IPAddressFilter);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetIPAddressFilterAsync(IPAddressFilter IPAddressFilter);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/AddIPAddressFilter", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task AddIPAddressFilterAsync(IPAddressFilter IPAddressFilter);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task AddIPAddressFilterAsync(IPAddressFilter IPAddressFilter);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/RemoveIPAddressFilter", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task RemoveIPAddressFilterAsync(IPAddressFilter IPAddressFilter);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task RemoveIPAddressFilterAsync(IPAddressFilter IPAddressFilter);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetAccessPolicy", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "PolicyFile")]
-        System.Threading.Tasks.Task<BinaryData> GetAccessPolicyAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "PolicyFile")]
+        Task<BinaryData> GetAccessPolicyAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetAccessPolicy", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetAccessPolicyAsync(BinaryData PolicyFile);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetAccessPolicyAsync(BinaryData PolicyFile);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/CreateCertificate", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateCertificateResponse> CreateCertificateAsync(
-            Mictlanix.DotNet.Onvif.Device.CreateCertificateRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<CreateCertificateResponse> CreateCertificateAsync(
+            CreateCertificateRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetCertificates", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesResponse> GetCertificatesAsync(
-            Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetCertificatesResponse> GetCertificatesAsync(
+            GetCertificatesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetCertificatesStatus", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusResponse>
-            GetCertificatesStatusAsync(Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetCertificatesStatusResponse>
+            GetCertificatesStatusAsync(GetCertificatesStatusRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetCertificatesStatus", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusResponse>
-            SetCertificatesStatusAsync(Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetCertificatesStatusResponse>
+            SetCertificatesStatusAsync(SetCertificatesStatusRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/DeleteCertificates", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteCertificatesResponse> DeleteCertificatesAsync(
-            Mictlanix.DotNet.Onvif.Device.DeleteCertificatesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<DeleteCertificatesResponse> DeleteCertificatesAsync(
+            DeleteCertificatesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetPkcs10Request", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestResponse> GetPkcs10RequestAsync(
-            Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetPkcs10RequestResponse> GetPkcs10RequestAsync(
+            GetPkcs10RequestRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/LoadCertificates", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificatesResponse> LoadCertificatesAsync(
-            Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<LoadCertificatesResponse> LoadCertificatesAsync(
+            LoadCertificatesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetClientCertificateMode", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Enabled")]
-        System.Threading.Tasks.Task<bool> GetClientCertificateModeAsync();
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "Enabled")]
+        Task<bool> GetClientCertificateModeAsync();
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetClientCertificateMode", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetClientCertificateModeAsync(bool Enabled);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetClientCertificateModeAsync(bool Enabled);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetRelayOutputs", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetRelayOutputsResponse> GetRelayOutputsAsync(
-            Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetRelayOutputsResponse> GetRelayOutputsAsync(
+            GetRelayOutputsRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetRelayOutputSettings", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task
             SetRelayOutputSettingsAsync(string RelayOutputToken, RelayOutputSettings Properties);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetRelayOutputState", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetRelayOutputStateAsync(string RelayOutputToken, RelayLogicalState LogicalState);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetRelayOutputStateAsync(string RelayOutputToken, RelayLogicalState LogicalState);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SendAuxiliaryCommand", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "AuxiliaryCommandResponse")]
-        System.Threading.Tasks.Task<string> SendAuxiliaryCommandAsync(string AuxiliaryCommand);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "AuxiliaryCommandResponse")]
+        Task<string> SendAuxiliaryCommandAsync(string AuxiliaryCommand);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetCACertificates", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCACertificatesResponse> GetCACertificatesAsync(
-            Mictlanix.DotNet.Onvif.Device.GetCACertificatesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetCACertificatesResponse> GetCACertificatesAsync(
+            GetCACertificatesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/LoadCertificateWithPrivateKey", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyResponse>
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<LoadCertificateWithPrivateKeyResponse>
             LoadCertificateWithPrivateKeyAsync(
-                Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest request);
+                LoadCertificateWithPrivateKeyRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetCertificateInformation", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificateInformationResponse>
-            GetCertificateInformationAsync(Mictlanix.DotNet.Onvif.Device.GetCertificateInformationRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetCertificateInformationResponse>
+            GetCertificateInformationAsync(GetCertificateInformationRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/LoadCACertificates", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCACertificatesResponse> LoadCACertificatesAsync(
-            Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<LoadCACertificatesResponse> LoadCACertificatesAsync(
+            LoadCACertificatesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/CreateDot1XConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task CreateDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task CreateDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetDot1XConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetDot1XConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Dot1XConfiguration")]
-        System.Threading.Tasks.Task<Dot1XConfiguration> GetDot1XConfigurationAsync(string Dot1XConfigurationToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "Dot1XConfiguration")]
+        Task<Dot1XConfiguration> GetDot1XConfigurationAsync(string Dot1XConfigurationToken);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetDot1XConfigurations", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsResponse>
-            GetDot1XConfigurationsAsync(Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetDot1XConfigurationsResponse>
+            GetDot1XConfigurationsAsync(GetDot1XConfigurationsRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/DeleteDot1XConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationResponse>
-            DeleteDot1XConfigurationAsync(Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<DeleteDot1XConfigurationResponse>
+            DeleteDot1XConfigurationAsync(DeleteDot1XConfigurationRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetDot11Capabilities", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesResponse>
-            GetDot11CapabilitiesAsync(Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetDot11CapabilitiesResponse>
+            GetDot11CapabilitiesAsync(GetDot11CapabilitiesRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetDot11Status", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Status")]
-        System.Threading.Tasks.Task<Dot11Status> GetDot11StatusAsync(string InterfaceToken);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "Status")]
+        Task<Dot11Status> GetDot11StatusAsync(string InterfaceToken);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/ScanAvailableDot11Networks", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksResponse>
-            ScanAvailableDot11NetworksAsync(Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<ScanAvailableDot11NetworksResponse>
+            ScanAvailableDot11NetworksAsync(ScanAvailableDot11NetworksRequest request);
 
         // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(Action = "http://www.onvif.org/ver10/device/wsdl/GetSystemUris",
+        [OperationContract(Action = "http://www.onvif.org/ver10/device/wsdl/GetSystemUris",
             ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemUrisResponse> GetSystemUrisAsync(
-            Mictlanix.DotNet.Onvif.Device.GetSystemUrisRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetSystemUrisResponse> GetSystemUrisAsync(
+            GetSystemUrisRequest request);
 
         // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/StartFirmwareUpgrade", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.StartFirmwareUpgradeResponse>
-            StartFirmwareUpgradeAsync(Mictlanix.DotNet.Onvif.Device.StartFirmwareUpgradeRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<StartFirmwareUpgradeResponse>
+            StartFirmwareUpgradeAsync(StartFirmwareUpgradeRequest request);
 
         // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/StartSystemRestore", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.StartSystemRestoreResponse> StartSystemRestoreAsync(
-            Mictlanix.DotNet.Onvif.Device.StartSystemRestoreRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<StartSystemRestoreResponse> StartSystemRestoreAsync(
+            StartSystemRestoreRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetStorageConfigurations", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsResponse>
-            GetStorageConfigurationsAsync(Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetStorageConfigurationsResponse>
+            GetStorageConfigurationsAsync(GetStorageConfigurationsRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/CreateStorageConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "Token")]
-        System.Threading.Tasks.Task<string> CreateStorageConfigurationAsync(
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "Token")]
+        Task<string> CreateStorageConfigurationAsync(
             StorageConfigurationData StorageConfiguration);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetStorageConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name = "StorageConfiguration")]
-        System.Threading.Tasks.Task<StorageConfiguration> GetStorageConfigurationAsync(string Token);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        [return: MessageParameter(Name = "StorageConfiguration")]
+        Task<StorageConfiguration> GetStorageConfigurationAsync(string Token);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetStorageConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task SetStorageConfigurationAsync(StorageConfiguration StorageConfiguration);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task SetStorageConfigurationAsync(StorageConfiguration StorageConfiguration);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/DeleteStorageConfiguration", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task DeleteStorageConfigurationAsync(string Token);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task DeleteStorageConfigurationAsync(string Token);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/GetGeoLocation", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetGeoLocationResponse> GetGeoLocationAsync(
-            Mictlanix.DotNet.Onvif.Device.GetGeoLocationRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<GetGeoLocationResponse> GetGeoLocationAsync(
+            GetGeoLocationRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/SetGeoLocation", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetGeoLocationResponse> SetGeoLocationAsync(
-            Mictlanix.DotNet.Onvif.Device.SetGeoLocationRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<SetGeoLocationResponse> SetGeoLocationAsync(
+            SetGeoLocationRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(
+        [OperationContract(
             Action = "http://www.onvif.org/ver10/device/wsdl/DeleteGeoLocation", ReplyAction = "*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DeviceEntity))]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationResponse> DeleteGeoLocationAsync(
-            Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationRequest request);
+        [XmlSerializerFormat(SupportFaults = true)]
+        [ServiceKnownType(typeof(DeviceEntity))]
+        Task<DeleteGeoLocationResponse> DeleteGeoLocationAsync(
+            DeleteGeoLocationRequest request);
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetServices",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetServices",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetServicesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public bool IncludeCapability;
 
@@ -653,16 +664,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetServicesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetServicesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetServicesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Service")]
+        [XmlElement("Service")]
         public Service[] Service;
 
         public GetServicesResponse()
@@ -675,9 +686,9 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetDeviceInformation",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "GetDeviceInformation",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetDeviceInformationRequest
     {
@@ -686,29 +697,29 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetDeviceInformationResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "GetDeviceInformationResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetDeviceInformationResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 2)]
         public string FirmwareVersion;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 4)]
         public string HardwareId;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public string Manufacturer;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
         public string Model;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 3)]
         public string SerialNumber;
 
@@ -727,16 +738,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "RestoreSystem",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "RestoreSystem",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class RestoreSystemRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("BackupFiles")]
+        [XmlElement("BackupFiles")]
         public BackupFile[] BackupFiles;
 
         public RestoreSystemRequest()
@@ -749,10 +760,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "RestoreSystemResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "RestoreSystemResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class RestoreSystemResponse
     {
@@ -761,10 +772,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetSystemBackup",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetSystemBackup",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetSystemBackupRequest
     {
@@ -773,16 +784,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetSystemBackupResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetSystemBackupResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetSystemBackupResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("BackupFiles")]
+        [XmlElement("BackupFiles")]
         public BackupFile[] BackupFiles;
 
         public GetSystemBackupResponse()
@@ -795,10 +806,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetScopes",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetScopes",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetScopesRequest
     {
@@ -807,16 +818,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetScopesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetScopesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetScopesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Scopes")]
+        [XmlElement("Scopes")]
         public Scope[] Scopes;
 
         public GetScopesResponse()
@@ -829,16 +840,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetScopes",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetScopes",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetScopesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Scopes", DataType = "anyURI")]
+        [XmlElement("Scopes", DataType = "anyURI")]
         public string[] Scopes;
 
         public SetScopesRequest()
@@ -851,10 +862,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetScopesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetScopesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetScopesResponse
     {
@@ -863,16 +874,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "AddScopes",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "AddScopes",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class AddScopesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("ScopeItem", DataType = "anyURI")]
+        [XmlElement("ScopeItem", DataType = "anyURI")]
         public string[] ScopeItem;
 
         public AddScopesRequest()
@@ -885,10 +896,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "AddScopesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "AddScopesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class AddScopesResponse
     {
@@ -897,15 +908,15 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "RemoveScopes",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "RemoveScopes",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class RemoveScopesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("ScopeItem", DataType = "anyURI")]
+        [XmlElement("ScopeItem", DataType = "anyURI")]
         public string[] ScopeItem;
 
         public RemoveScopesRequest()
@@ -918,15 +929,15 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "RemoveScopesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "RemoveScopesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class RemoveScopesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("ScopeItem", DataType = "anyURI")]
+        [XmlElement("ScopeItem", DataType = "anyURI")]
         public string[] ScopeItem;
 
         public RemoveScopesResponse()
@@ -939,10 +950,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetDPAddresses",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetDPAddresses",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetDPAddressesRequest
     {
@@ -951,16 +962,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetDPAddressesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetDPAddressesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetDPAddressesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("DPAddress")]
+        [XmlElement("DPAddress")]
         public NetworkHost[] DPAddress;
 
         public GetDPAddressesResponse()
@@ -973,16 +984,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetDPAddresses",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetDPAddresses",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetDPAddressesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("DPAddress")]
+        [XmlElement("DPAddress")]
         public NetworkHost[] DPAddress;
 
         public SetDPAddressesRequest()
@@ -995,10 +1006,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetDPAddressesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetDPAddressesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetDPAddressesResponse
     {
@@ -1007,9 +1018,9 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetEndpointReference",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "GetEndpointReference",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetEndpointReferenceRequest
     {
@@ -1018,17 +1029,17 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetEndpointReferenceResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "GetEndpointReferenceResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetEndpointReferenceResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 1)]
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.Linq.XElement[] Any;
+        [MessageBodyMember(Namespace = "", Order = 1)]
+        [XmlAnyElement()]
+        public XElement[] Any;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public string GUID;
 
@@ -1036,17 +1047,17 @@ namespace Mictlanix.DotNet.Onvif.Device
         {
         }
 
-        public GetEndpointReferenceResponse(string GUID, System.Xml.Linq.XElement[] Any)
+        public GetEndpointReferenceResponse(string GUID, XElement[] Any)
         {
             this.GUID = GUID;
             this.Any = Any;
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetUsers",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetUsers",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetUsersRequest
     {
@@ -1055,16 +1066,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetUsersResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetUsersResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetUsersResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("User")]
+        [XmlElement("User")]
         public User[] User;
 
         public GetUsersResponse()
@@ -1077,16 +1088,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "CreateUsers",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "CreateUsers",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class CreateUsersRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("User")]
+        [XmlElement("User")]
         public User[] User;
 
         public CreateUsersRequest()
@@ -1099,10 +1110,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "CreateUsersResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "CreateUsersResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class CreateUsersResponse
     {
@@ -1111,16 +1122,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteUsers",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "DeleteUsers",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class DeleteUsersRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Username")]
+        [XmlElement("Username")]
         public string[] Username;
 
         public DeleteUsersRequest()
@@ -1133,10 +1144,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteUsersResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "DeleteUsersResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class DeleteUsersResponse
     {
@@ -1145,16 +1156,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetUser",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetUser",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetUserRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("User")]
+        [XmlElement("User")]
         public User[] User;
 
         public SetUserRequest()
@@ -1167,10 +1178,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetUserResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetUserResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetUserResponse
     {
@@ -1179,10 +1190,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetWsdlUrl",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetWsdlUrl",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetWsdlUrlRequest
     {
@@ -1191,16 +1202,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetWsdlUrlResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetWsdlUrlResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetWsdlUrlResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+        [XmlElement(DataType = "anyURI")]
         public string WsdlUrl;
 
         public GetWsdlUrlResponse()
@@ -1213,16 +1224,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCapabilities",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCapabilities",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCapabilitiesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Category")]
+        [XmlElement("Category")]
         public CapabilityCategory[] Category;
 
         public GetCapabilitiesRequest()
@@ -1235,14 +1246,14 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCapabilitiesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCapabilitiesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCapabilitiesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public Capabilities Capabilities;
 
@@ -1256,16 +1267,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetHostname",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetHostname",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetHostnameRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token")]
+        [XmlElement(DataType = "token")]
         public string Name;
 
         public SetHostnameRequest()
@@ -1278,10 +1289,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetHostnameResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetHostnameResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetHostnameResponse
     {
@@ -1290,24 +1301,24 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetDNS",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetDNS",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetDNSRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
-        [System.Xml.Serialization.XmlElementAttribute("SearchDomain", DataType = "token")]
+        [XmlElement("SearchDomain", DataType = "token")]
         public string[] SearchDomain;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 2)]
-        [System.Xml.Serialization.XmlElementAttribute("DNSManual")]
+        [XmlElement("DNSManual")]
         public IPAddress[] DNSManual;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public bool FromDHCP;
 
@@ -1324,10 +1335,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetDNSResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetDNSResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetDNSResponse
     {
@@ -1336,20 +1347,20 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetNTP",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetNTP",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetNTPRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public bool FromDHCP;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
-        [System.Xml.Serialization.XmlElementAttribute("NTPManual")]
+        [XmlElement("NTPManual")]
         public NetworkHost[] NTPManual;
 
         public SetNTPRequest()
@@ -1363,10 +1374,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetNTPResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetNTPResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetNTPResponse
     {
@@ -1375,24 +1386,24 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetDynamicDNS",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetDynamicDNS",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetDynamicDNSRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token")]
+        [XmlElement(DataType = "token")]
         public string Name;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 2)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration")]
+        [XmlElement(DataType = "duration")]
         public string TTL;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public DynamicDNSType Type;
 
@@ -1408,10 +1419,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetDynamicDNSResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetDynamicDNSResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetDynamicDNSResponse
     {
@@ -1420,10 +1431,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetNetworkInterfaces",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetNetworkInterfaces",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetNetworkInterfacesRequest
     {
@@ -1432,16 +1443,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetNetworkInterfacesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetNetworkInterfacesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetNetworkInterfacesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("NetworkInterfaces")]
+        [XmlElement("NetworkInterfaces")]
         public NetworkInterface[] NetworkInterfaces;
 
         public GetNetworkInterfacesResponse()
@@ -1454,10 +1465,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetNetworkProtocols",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetNetworkProtocols",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetNetworkProtocolsRequest
     {
@@ -1466,16 +1477,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetNetworkProtocolsResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetNetworkProtocolsResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetNetworkProtocolsResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("NetworkProtocols")]
+        [XmlElement("NetworkProtocols")]
         public NetworkProtocol[] NetworkProtocols;
 
         public GetNetworkProtocolsResponse()
@@ -1488,16 +1499,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetNetworkProtocols",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetNetworkProtocols",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetNetworkProtocolsRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("NetworkProtocols")]
+        [XmlElement("NetworkProtocols")]
         public NetworkProtocol[] NetworkProtocols;
 
         public SetNetworkProtocolsRequest()
@@ -1510,10 +1521,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetNetworkProtocolsResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetNetworkProtocolsResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetNetworkProtocolsResponse
     {
@@ -1522,21 +1533,21 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetNetworkDefaultGateway",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetNetworkDefaultGateway",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetNetworkDefaultGatewayRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("IPv4Address", DataType = "token")]
+        [XmlElement("IPv4Address", DataType = "token")]
         public string[] IPv4Address;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
-        [System.Xml.Serialization.XmlElementAttribute("IPv6Address", DataType = "token")]
+        [XmlElement("IPv6Address", DataType = "token")]
         public string[] IPv6Address;
 
         public SetNetworkDefaultGatewayRequest()
@@ -1550,10 +1561,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetNetworkDefaultGatewayResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetNetworkDefaultGatewayResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetNetworkDefaultGatewayResponse
     {
@@ -1562,27 +1573,27 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "CreateCertificate",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "CreateCertificate",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class CreateCertificateRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token")]
+        [XmlElement(DataType = "token")]
         public string CertificateID;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
         public string Subject;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 3)]
         public System.DateTime ValidNotAfter;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 2)]
         public System.DateTime ValidNotBefore;
 
@@ -1600,14 +1611,14 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "CreateCertificateResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "CreateCertificateResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class CreateCertificateResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public Certificate NvtCertificate;
 
@@ -1621,10 +1632,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCertificates",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCertificates",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCertificatesRequest
     {
@@ -1633,16 +1644,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCertificatesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCertificatesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCertificatesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("NvtCertificate")]
+        [XmlElement("NvtCertificate")]
         public Certificate[] NvtCertificate;
 
         public GetCertificatesResponse()
@@ -1655,10 +1666,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCertificatesStatus",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCertificatesStatus",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCertificatesStatusRequest
     {
@@ -1667,16 +1678,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCertificatesStatusResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCertificatesStatusResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCertificatesStatusResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("CertificateStatus")]
+        [XmlElement("CertificateStatus")]
         public CertificateStatus[] CertificateStatus;
 
         public GetCertificatesStatusResponse()
@@ -1689,16 +1700,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetCertificatesStatus",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetCertificatesStatus",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetCertificatesStatusRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("CertificateStatus")]
+        [XmlElement("CertificateStatus")]
         public CertificateStatus[] CertificateStatus;
 
         public SetCertificatesStatusRequest()
@@ -1711,10 +1722,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetCertificatesStatusResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetCertificatesStatusResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetCertificatesStatusResponse
     {
@@ -1723,16 +1734,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteCertificates",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "DeleteCertificates",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class DeleteCertificatesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("CertificateID", DataType = "token")]
+        [XmlElement("CertificateID", DataType = "token")]
         public string[] CertificateID;
 
         public DeleteCertificatesRequest()
@@ -1745,10 +1756,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteCertificatesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "DeleteCertificatesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class DeleteCertificatesResponse
     {
@@ -1757,23 +1768,23 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetPkcs10Request",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetPkcs10Request",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetPkcs10RequestRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 2)]
         public BinaryData Attributes;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token")]
+        [XmlElement(DataType = "token")]
         public string CertificateID;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
         public string Subject;
 
@@ -1789,14 +1800,14 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetPkcs10RequestResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetPkcs10RequestResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetPkcs10RequestResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public BinaryData Pkcs10Request;
 
@@ -1810,16 +1821,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "LoadCertificates",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "LoadCertificates",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class LoadCertificatesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("NVTCertificate")]
+        [XmlElement("NVTCertificate")]
         public Certificate[] NVTCertificate;
 
         public LoadCertificatesRequest()
@@ -1832,10 +1843,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "LoadCertificatesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "LoadCertificatesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class LoadCertificatesResponse
     {
@@ -1844,10 +1855,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetRelayOutputs",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetRelayOutputs",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetRelayOutputsRequest
     {
@@ -1856,16 +1867,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetRelayOutputsResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetRelayOutputsResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetRelayOutputsResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("RelayOutputs")]
+        [XmlElement("RelayOutputs")]
         public RelayOutput[] RelayOutputs;
 
         public GetRelayOutputsResponse()
@@ -1878,10 +1889,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCACertificates",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCACertificates",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCACertificatesRequest
     {
@@ -1890,16 +1901,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCACertificatesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCACertificatesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCACertificatesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("CACertificate")]
+        [XmlElement("CACertificate")]
         public Certificate[] CACertificate;
 
         public GetCACertificatesResponse()
@@ -1912,16 +1923,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "LoadCertificateWithPrivateKey",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "LoadCertificateWithPrivateKey",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class LoadCertificateWithPrivateKeyRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("CertificateWithPrivateKey")]
+        [XmlElement("CertificateWithPrivateKey")]
         public CertificateWithPrivateKey[] CertificateWithPrivateKey;
 
         public LoadCertificateWithPrivateKeyRequest()
@@ -1934,10 +1945,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "LoadCertificateWithPrivateKeyResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "LoadCertificateWithPrivateKeyResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class LoadCertificateWithPrivateKeyResponse
     {
@@ -1946,16 +1957,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCertificateInformation",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCertificateInformation",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCertificateInformationRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "token")]
+        [XmlElement(DataType = "token")]
         public string CertificateID;
 
         public GetCertificateInformationRequest()
@@ -1968,14 +1979,14 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCertificateInformationResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetCertificateInformationResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetCertificateInformationResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public CertificateInformation CertificateInformation;
 
@@ -1989,16 +2000,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "LoadCACertificates",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "LoadCACertificates",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class LoadCACertificatesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("CACertificate")]
+        [XmlElement("CACertificate")]
         public Certificate[] CACertificate;
 
         public LoadCACertificatesRequest()
@@ -2011,10 +2022,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "LoadCACertificatesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "LoadCACertificatesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class LoadCACertificatesResponse
     {
@@ -2023,10 +2034,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetDot1XConfigurations",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetDot1XConfigurations",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetDot1XConfigurationsRequest
     {
@@ -2035,16 +2046,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetDot1XConfigurationsResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetDot1XConfigurationsResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetDot1XConfigurationsResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Dot1XConfiguration")]
+        [XmlElement("Dot1XConfiguration")]
         public Dot1XConfiguration[] Dot1XConfiguration;
 
         public GetDot1XConfigurationsResponse()
@@ -2057,16 +2068,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteDot1XConfiguration",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "DeleteDot1XConfiguration",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class DeleteDot1XConfigurationRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Dot1XConfigurationToken")]
+        [XmlElement("Dot1XConfigurationToken")]
         public string[] Dot1XConfigurationToken;
 
         public DeleteDot1XConfigurationRequest()
@@ -2079,10 +2090,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteDot1XConfigurationResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "DeleteDot1XConfigurationResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class DeleteDot1XConfigurationResponse
     {
@@ -2091,35 +2102,35 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetDot11Capabilities",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetDot11Capabilities",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetDot11CapabilitiesRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "", Order = 0)]
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.Linq.XElement[] Any;
+        [MessageBodyMember(Namespace = "", Order = 0)]
+        [XmlAnyElement()]
+        public XElement[] Any;
 
         public GetDot11CapabilitiesRequest()
         {
         }
 
-        public GetDot11CapabilitiesRequest(System.Xml.Linq.XElement[] Any)
+        public GetDot11CapabilitiesRequest(XElement[] Any)
         {
             this.Any = Any;
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetDot11CapabilitiesResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetDot11CapabilitiesResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetDot11CapabilitiesResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public Dot11Capabilities Capabilities;
 
@@ -2133,14 +2144,14 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "ScanAvailableDot11Networks",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "ScanAvailableDot11Networks",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class ScanAvailableDot11NetworksRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
         public string InterfaceToken;
 
@@ -2154,16 +2165,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "ScanAvailableDot11NetworksResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "ScanAvailableDot11NetworksResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class ScanAvailableDot11NetworksResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Networks")]
+        [XmlElement("Networks")]
         public Dot11AvailableNetworks[] Networks;
 
         public ScanAvailableDot11NetworksResponse()
@@ -2176,9 +2187,9 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetSystemUris",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "GetSystemUris",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetSystemUrisRequest
     {
@@ -2187,29 +2198,29 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetSystemUrisResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "GetSystemUrisResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetSystemUrisResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 3)]
         public GetSystemUrisResponseExtension Extension;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+        [XmlElement(DataType = "anyURI")]
         public string SupportInfoUri;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 2)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+        [XmlElement(DataType = "anyURI")]
         public string SystemBackupUri;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("SystemLog", Namespace = "http://www.onvif.org/ver10/schema",
+        [XmlArrayItem("SystemLog", Namespace = "http://www.onvif.org/ver10/schema",
             IsNullable = false)]
         public SystemLogUri[] SystemLogUris;
 
@@ -2227,9 +2238,9 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "StartFirmwareUpgrade",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "StartFirmwareUpgrade",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class StartFirmwareUpgradeRequest
     {
@@ -2238,25 +2249,25 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "StartFirmwareUpgradeResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "StartFirmwareUpgradeResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class StartFirmwareUpgradeResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+        [XmlElement(DataType = "anyURI")]
         public string UploadUri;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration")]
+        [XmlElement(DataType = "duration")]
         public string UploadDelay;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 2)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration")]
+        [XmlElement(DataType = "duration")]
         public string ExpectedDownTime;
 
 
@@ -2272,9 +2283,9 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "StartSystemRestore",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "StartSystemRestore",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class StartSystemRestoreRequest
     {
@@ -2283,20 +2294,20 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "StartSystemRestoreResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [MessageContract(WrapperName = "StartSystemRestoreResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class StartSystemRestoreResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+        [XmlElement(DataType = "anyURI")]
         public string UploadUri;
 
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 1)]
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration")]
+        [XmlElement(DataType = "duration")]
         public string ExpectedDownTime;
 
 
@@ -2311,10 +2322,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetStorageConfigurations",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetStorageConfigurations",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetStorageConfigurationsRequest
     {
@@ -2323,16 +2334,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetStorageConfigurationsResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetStorageConfigurationsResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetStorageConfigurationsResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("StorageConfigurations")]
+        [XmlElement("StorageConfigurations")]
         public StorageConfiguration[] StorageConfigurations;
 
         public GetStorageConfigurationsResponse()
@@ -2345,10 +2356,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetGeoLocation",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetGeoLocation",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetGeoLocationRequest
     {
@@ -2357,16 +2368,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetGeoLocationResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "GetGeoLocationResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class GetGeoLocationResponse
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Location")]
+        [XmlElement("Location")]
         public LocationEntity[] Location;
 
         public GetGeoLocationResponse()
@@ -2379,16 +2390,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetGeoLocation",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetGeoLocation",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetGeoLocationRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Location")]
+        [XmlElement("Location")]
         public LocationEntity[] Location;
 
         public SetGeoLocationRequest()
@@ -2401,10 +2412,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "SetGeoLocationResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "SetGeoLocationResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class SetGeoLocationResponse
     {
@@ -2413,16 +2424,16 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteGeoLocation",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "DeleteGeoLocation",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class DeleteGeoLocationRequest
     {
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl",
+        [MessageBodyMember(Namespace = "http://www.onvif.org/ver10/device/wsdl",
             Order = 0)]
-        [System.Xml.Serialization.XmlElementAttribute("Location")]
+        [XmlElement("Location")]
         public LocationEntity[] Location;
 
         public DeleteGeoLocationRequest()
@@ -2435,10 +2446,10 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteGeoLocationResponse",
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MessageContract(WrapperName = "DeleteGeoLocationResponse",
         WrapperNamespace = "http://www.onvif.org/ver10/device/wsdl", IsWrapped = true)]
     public partial class DeleteGeoLocationResponse
     {
@@ -2447,978 +2458,978 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    public interface DeviceChannel : Mictlanix.DotNet.Onvif.Device.Device, System.ServiceModel.IClientChannel
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    public interface DeviceChannel : Device, IClientChannel
     {
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    public partial class DeviceClient : System.ServiceModel.ClientBase<Mictlanix.DotNet.Onvif.Device.Device>,
-        Mictlanix.DotNet.Onvif.Device.Device
+    [DebuggerStepThrough()]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    public partial class DeviceClient : ClientBase<Device>,
+        Device
     {
-        internal DeviceClient(System.ServiceModel.Channels.Binding binding,
-            System.ServiceModel.EndpointAddress remoteAddress) :
+        internal DeviceClient(Binding binding,
+            EndpointAddress remoteAddress) :
             base(binding, remoteAddress)
         {
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetServicesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetServicesAsync(
-                Mictlanix.DotNet.Onvif.Device.GetServicesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetServicesResponse>
+            Device.GetServicesAsync(
+                GetServicesRequest request)
         {
             return base.Channel.GetServicesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<DeviceServiceCapabilities> GetServiceCapabilitiesAsync()
+        public Task<DeviceServiceCapabilities> GetServiceCapabilitiesAsync()
         {
             return base.Channel.GetServiceCapabilitiesAsync();
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDeviceInformationResponse>
-            GetDeviceInformationAsync(Mictlanix.DotNet.Onvif.Device.GetDeviceInformationRequest request)
+        public Task<GetDeviceInformationResponse>
+            GetDeviceInformationAsync(GetDeviceInformationRequest request)
         {
             return base.Channel.GetDeviceInformationAsync(request);
         }
 
-        public System.Threading.Tasks.Task SetSystemDateAndTimeAsync(SetDateTimeType DateTimeType, bool DaylightSavings,
+        public Task SetSystemDateAndTimeAsync(SetDateTimeType DateTimeType, bool DaylightSavings,
             TimeZone TimeZone, DateTime UTCDateTime)
         {
             return base.Channel.SetSystemDateAndTimeAsync(DateTimeType, DaylightSavings, TimeZone, UTCDateTime);
         }
 
-        public System.Threading.Tasks.Task<SystemDateTime> GetSystemDateAndTimeAsync()
+        public Task<SystemDateTime> GetSystemDateAndTimeAsync()
         {
             return base.Channel.GetSystemDateAndTimeAsync();
         }
 
-        public System.Threading.Tasks.Task SetSystemFactoryDefaultAsync(FactoryDefaultType FactoryDefault)
+        public Task SetSystemFactoryDefaultAsync(FactoryDefaultType FactoryDefault)
         {
             return base.Channel.SetSystemFactoryDefaultAsync(FactoryDefault);
         }
 
-        public System.Threading.Tasks.Task<string> UpgradeSystemFirmwareAsync(AttachmentData Firmware)
+        public Task<string> UpgradeSystemFirmwareAsync(AttachmentData Firmware)
         {
             return base.Channel.UpgradeSystemFirmwareAsync(Firmware);
         }
 
-        public System.Threading.Tasks.Task<string> SystemRebootAsync()
+        public Task<string> SystemRebootAsync()
         {
             return base.Channel.SystemRebootAsync();
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.RestoreSystemResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.RestoreSystemAsync(
-                Mictlanix.DotNet.Onvif.Device.RestoreSystemRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<RestoreSystemResponse>
+            Device.RestoreSystemAsync(
+                RestoreSystemRequest request)
         {
             return base.Channel.RestoreSystemAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemBackupResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetSystemBackupAsync(
-                Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetSystemBackupResponse>
+            Device.GetSystemBackupAsync(
+                GetSystemBackupRequest request)
         {
             return base.Channel.GetSystemBackupAsync(request);
         }
 
-        public System.Threading.Tasks.Task<SystemLog> GetSystemLogAsync(SystemLogType LogType)
+        public Task<SystemLog> GetSystemLogAsync(SystemLogType LogType)
         {
             return base.Channel.GetSystemLogAsync(LogType);
         }
 
-        public System.Threading.Tasks.Task<SupportInformation> GetSystemSupportInformationAsync()
+        public Task<SupportInformation> GetSystemSupportInformationAsync()
         {
             return base.Channel.GetSystemSupportInformationAsync();
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetScopesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetScopesAsync(Mictlanix.DotNet.Onvif.Device.GetScopesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetScopesResponse>
+            Device.GetScopesAsync(GetScopesRequest request)
         {
             return base.Channel.GetScopesAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetScopesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.SetScopesAsync(Mictlanix.DotNet.Onvif.Device.SetScopesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetScopesResponse>
+            Device.SetScopesAsync(SetScopesRequest request)
         {
             return base.Channel.SetScopesAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.AddScopesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.AddScopesAsync(Mictlanix.DotNet.Onvif.Device.AddScopesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<AddScopesResponse>
+            Device.AddScopesAsync(AddScopesRequest request)
         {
             return base.Channel.AddScopesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.RemoveScopesResponse> RemoveScopesAsync(
-            Mictlanix.DotNet.Onvif.Device.RemoveScopesRequest request)
+        public Task<RemoveScopesResponse> RemoveScopesAsync(
+            RemoveScopesRequest request)
         {
             return base.Channel.RemoveScopesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<DiscoveryMode> GetDiscoveryModeAsync()
+        public Task<DiscoveryMode> GetDiscoveryModeAsync()
         {
             return base.Channel.GetDiscoveryModeAsync();
         }
 
-        public System.Threading.Tasks.Task SetDiscoveryModeAsync(DiscoveryMode DiscoveryMode)
+        public Task SetDiscoveryModeAsync(DiscoveryMode DiscoveryMode)
         {
             return base.Channel.SetDiscoveryModeAsync(DiscoveryMode);
         }
 
-        public System.Threading.Tasks.Task<DiscoveryMode> GetRemoteDiscoveryModeAsync()
+        public Task<DiscoveryMode> GetRemoteDiscoveryModeAsync()
         {
             return base.Channel.GetRemoteDiscoveryModeAsync();
         }
 
-        public System.Threading.Tasks.Task SetRemoteDiscoveryModeAsync(DiscoveryMode RemoteDiscoveryMode)
+        public Task SetRemoteDiscoveryModeAsync(DiscoveryMode RemoteDiscoveryMode)
         {
             return base.Channel.SetRemoteDiscoveryModeAsync(RemoteDiscoveryMode);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDPAddressesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetDPAddressesAsync(
-                Mictlanix.DotNet.Onvif.Device.GetDPAddressesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetDPAddressesResponse>
+            Device.GetDPAddressesAsync(
+                GetDPAddressesRequest request)
         {
             return base.Channel.GetDPAddressesAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDPAddressesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.SetDPAddressesAsync(
-                Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetDPAddressesResponse>
+            Device.SetDPAddressesAsync(
+                SetDPAddressesRequest request)
         {
             return base.Channel.SetDPAddressesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetEndpointReferenceResponse>
-            GetEndpointReferenceAsync(Mictlanix.DotNet.Onvif.Device.GetEndpointReferenceRequest request)
+        public Task<GetEndpointReferenceResponse>
+            GetEndpointReferenceAsync(GetEndpointReferenceRequest request)
         {
             return base.Channel.GetEndpointReferenceAsync(request);
         }
 
-        public System.Threading.Tasks.Task<RemoteUser> GetRemoteUserAsync()
+        public Task<RemoteUser> GetRemoteUserAsync()
         {
             return base.Channel.GetRemoteUserAsync();
         }
 
-        public System.Threading.Tasks.Task SetRemoteUserAsync(RemoteUser RemoteUser)
+        public Task SetRemoteUserAsync(RemoteUser RemoteUser)
         {
             return base.Channel.SetRemoteUserAsync(RemoteUser);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetUsersResponse> Mictlanix.DotNet.Onvif.Device.Device
-            .GetUsersAsync(Mictlanix.DotNet.Onvif.Device.GetUsersRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetUsersResponse> Device
+            .GetUsersAsync(GetUsersRequest request)
         {
             return base.Channel.GetUsersAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateUsersResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.CreateUsersAsync(
-                Mictlanix.DotNet.Onvif.Device.CreateUsersRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<CreateUsersResponse>
+            Device.CreateUsersAsync(
+                CreateUsersRequest request)
         {
             return base.Channel.CreateUsersAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteUsersResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.DeleteUsersAsync(
-                Mictlanix.DotNet.Onvif.Device.DeleteUsersRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<DeleteUsersResponse>
+            Device.DeleteUsersAsync(
+                DeleteUsersRequest request)
         {
             return base.Channel.DeleteUsersAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetUserResponse> Mictlanix.DotNet.Onvif.Device.Device.
-            SetUserAsync(Mictlanix.DotNet.Onvif.Device.SetUserRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetUserResponse> Device.
+            SetUserAsync(SetUserRequest request)
         {
             return base.Channel.SetUserAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetWsdlUrlResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetWsdlUrlAsync(
-                Mictlanix.DotNet.Onvif.Device.GetWsdlUrlRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetWsdlUrlResponse>
+            Device.GetWsdlUrlAsync(
+                GetWsdlUrlRequest request)
         {
             return base.Channel.GetWsdlUrlAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCapabilitiesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetCapabilitiesAsync(
-                Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetCapabilitiesResponse>
+            Device.GetCapabilitiesAsync(
+                GetCapabilitiesRequest request)
         {
             return base.Channel.GetCapabilitiesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<HostnameInformation> GetHostnameAsync()
+        public Task<HostnameInformation> GetHostnameAsync()
         {
             return base.Channel.GetHostnameAsync();
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetHostnameResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.SetHostnameAsync(
-                Mictlanix.DotNet.Onvif.Device.SetHostnameRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetHostnameResponse>
+            Device.SetHostnameAsync(
+                SetHostnameRequest request)
         {
             return base.Channel.SetHostnameAsync(request);
         }
 
-        public System.Threading.Tasks.Task<bool> SetHostnameFromDHCPAsync(bool FromDHCP)
+        public Task<bool> SetHostnameFromDHCPAsync(bool FromDHCP)
         {
             return base.Channel.SetHostnameFromDHCPAsync(FromDHCP);
         }
 
-        public System.Threading.Tasks.Task<DNSInformation> GetDNSAsync()
+        public Task<DNSInformation> GetDNSAsync()
         {
             return base.Channel.GetDNSAsync();
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDNSResponse> Mictlanix.DotNet.Onvif.Device.Device.
-            SetDNSAsync(Mictlanix.DotNet.Onvif.Device.SetDNSRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetDNSResponse> Device.
+            SetDNSAsync(SetDNSRequest request)
         {
             return base.Channel.SetDNSAsync(request);
         }
 
-        public System.Threading.Tasks.Task<NTPInformation> GetNTPAsync()
+        public Task<NTPInformation> GetNTPAsync()
         {
             return base.Channel.GetNTPAsync();
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNTPResponse> Mictlanix.DotNet.Onvif.Device.Device.
-            SetNTPAsync(Mictlanix.DotNet.Onvif.Device.SetNTPRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetNTPResponse> Device.
+            SetNTPAsync(SetNTPRequest request)
         {
             return base.Channel.SetNTPAsync(request);
         }
 
-        public System.Threading.Tasks.Task<DynamicDNSInformation> GetDynamicDNSAsync()
+        public Task<DynamicDNSInformation> GetDynamicDNSAsync()
         {
             return base.Channel.GetDynamicDNSAsync();
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDynamicDNSResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.SetDynamicDNSAsync(
-                Mictlanix.DotNet.Onvif.Device.SetDynamicDNSRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetDynamicDNSResponse>
+            Device.SetDynamicDNSAsync(
+                SetDynamicDNSRequest request)
         {
             return base.Channel.SetDynamicDNSAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetNetworkInterfacesAsync(
-                Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetNetworkInterfacesResponse>
+            Device.GetNetworkInterfacesAsync(
+                GetNetworkInterfacesRequest request)
         {
             return base.Channel.GetNetworkInterfacesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<bool> SetNetworkInterfacesAsync(string InterfaceToken,
+        public Task<bool> SetNetworkInterfacesAsync(string InterfaceToken,
             NetworkInterfaceSetConfiguration NetworkInterface)
         {
             return base.Channel.SetNetworkInterfacesAsync(InterfaceToken, NetworkInterface);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetNetworkProtocolsAsync(
-                Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetNetworkProtocolsResponse>
+            Device.GetNetworkProtocolsAsync(
+                GetNetworkProtocolsRequest request)
         {
             return base.Channel.GetNetworkProtocolsAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.SetNetworkProtocolsAsync(
-                Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetNetworkProtocolsResponse>
+            Device.SetNetworkProtocolsAsync(
+                SetNetworkProtocolsRequest request)
         {
             return base.Channel.SetNetworkProtocolsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<NetworkGateway> GetNetworkDefaultGatewayAsync()
+        public Task<NetworkGateway> GetNetworkDefaultGatewayAsync()
         {
             return base.Channel.GetNetworkDefaultGatewayAsync();
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.SetNetworkDefaultGatewayAsync(
-                Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetNetworkDefaultGatewayResponse>
+            Device.SetNetworkDefaultGatewayAsync(
+                SetNetworkDefaultGatewayRequest request)
         {
             return base.Channel.SetNetworkDefaultGatewayAsync(request);
         }
 
-        public System.Threading.Tasks.Task<NetworkZeroConfiguration> GetZeroConfigurationAsync()
+        public Task<NetworkZeroConfiguration> GetZeroConfigurationAsync()
         {
             return base.Channel.GetZeroConfigurationAsync();
         }
 
-        public System.Threading.Tasks.Task SetZeroConfigurationAsync(string InterfaceToken, bool Enabled)
+        public Task SetZeroConfigurationAsync(string InterfaceToken, bool Enabled)
         {
             return base.Channel.SetZeroConfigurationAsync(InterfaceToken, Enabled);
         }
 
-        public System.Threading.Tasks.Task<IPAddressFilter> GetIPAddressFilterAsync()
+        public Task<IPAddressFilter> GetIPAddressFilterAsync()
         {
             return base.Channel.GetIPAddressFilterAsync();
         }
 
-        public System.Threading.Tasks.Task SetIPAddressFilterAsync(IPAddressFilter IPAddressFilter)
+        public Task SetIPAddressFilterAsync(IPAddressFilter IPAddressFilter)
         {
             return base.Channel.SetIPAddressFilterAsync(IPAddressFilter);
         }
 
-        public System.Threading.Tasks.Task AddIPAddressFilterAsync(IPAddressFilter IPAddressFilter)
+        public Task AddIPAddressFilterAsync(IPAddressFilter IPAddressFilter)
         {
             return base.Channel.AddIPAddressFilterAsync(IPAddressFilter);
         }
 
-        public System.Threading.Tasks.Task RemoveIPAddressFilterAsync(IPAddressFilter IPAddressFilter)
+        public Task RemoveIPAddressFilterAsync(IPAddressFilter IPAddressFilter)
         {
             return base.Channel.RemoveIPAddressFilterAsync(IPAddressFilter);
         }
 
-        public System.Threading.Tasks.Task<BinaryData> GetAccessPolicyAsync()
+        public Task<BinaryData> GetAccessPolicyAsync()
         {
             return base.Channel.GetAccessPolicyAsync();
         }
 
-        public System.Threading.Tasks.Task SetAccessPolicyAsync(BinaryData PolicyFile)
+        public Task SetAccessPolicyAsync(BinaryData PolicyFile)
         {
             return base.Channel.SetAccessPolicyAsync(PolicyFile);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateCertificateResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.CreateCertificateAsync(
-                Mictlanix.DotNet.Onvif.Device.CreateCertificateRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<CreateCertificateResponse>
+            Device.CreateCertificateAsync(
+                CreateCertificateRequest request)
         {
             return base.Channel.CreateCertificateAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetCertificatesAsync(
-                Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetCertificatesResponse>
+            Device.GetCertificatesAsync(
+                GetCertificatesRequest request)
         {
             return base.Channel.GetCertificatesAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetCertificatesStatusAsync(
-                Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetCertificatesStatusResponse>
+            Device.GetCertificatesStatusAsync(
+                GetCertificatesStatusRequest request)
         {
             return base.Channel.GetCertificatesStatusAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.SetCertificatesStatusAsync(
-                Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetCertificatesStatusResponse>
+            Device.SetCertificatesStatusAsync(
+                SetCertificatesStatusRequest request)
         {
             return base.Channel.SetCertificatesStatusAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteCertificatesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.DeleteCertificatesAsync(
-                Mictlanix.DotNet.Onvif.Device.DeleteCertificatesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<DeleteCertificatesResponse>
+            Device.DeleteCertificatesAsync(
+                DeleteCertificatesRequest request)
         {
             return base.Channel.DeleteCertificatesAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetPkcs10RequestAsync(
-                Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetPkcs10RequestResponse>
+            Device.GetPkcs10RequestAsync(
+                GetPkcs10RequestRequest request)
         {
             return base.Channel.GetPkcs10RequestAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificatesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.LoadCertificatesAsync(
-                Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<LoadCertificatesResponse>
+            Device.LoadCertificatesAsync(
+                LoadCertificatesRequest request)
         {
             return base.Channel.LoadCertificatesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<bool> GetClientCertificateModeAsync()
+        public Task<bool> GetClientCertificateModeAsync()
         {
             return base.Channel.GetClientCertificateModeAsync();
         }
 
-        public System.Threading.Tasks.Task SetClientCertificateModeAsync(bool Enabled)
+        public Task SetClientCertificateModeAsync(bool Enabled)
         {
             return base.Channel.SetClientCertificateModeAsync(Enabled);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetRelayOutputsResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetRelayOutputsAsync(
-                Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetRelayOutputsResponse>
+            Device.GetRelayOutputsAsync(
+                GetRelayOutputsRequest request)
         {
             return base.Channel.GetRelayOutputsAsync(request);
         }
 
-        public System.Threading.Tasks.Task SetRelayOutputSettingsAsync(string RelayOutputToken,
+        public Task SetRelayOutputSettingsAsync(string RelayOutputToken,
             RelayOutputSettings Properties)
         {
             return base.Channel.SetRelayOutputSettingsAsync(RelayOutputToken, Properties);
         }
 
-        public System.Threading.Tasks.Task SetRelayOutputStateAsync(string RelayOutputToken,
+        public Task SetRelayOutputStateAsync(string RelayOutputToken,
             RelayLogicalState LogicalState)
         {
             return base.Channel.SetRelayOutputStateAsync(RelayOutputToken, LogicalState);
         }
 
-        public System.Threading.Tasks.Task<string> SendAuxiliaryCommandAsync(string AuxiliaryCommand)
+        public Task<string> SendAuxiliaryCommandAsync(string AuxiliaryCommand)
         {
             return base.Channel.SendAuxiliaryCommandAsync(AuxiliaryCommand);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCACertificatesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetCACertificatesAsync(
-                Mictlanix.DotNet.Onvif.Device.GetCACertificatesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetCACertificatesResponse>
+            Device.GetCACertificatesAsync(
+                GetCACertificatesRequest request)
         {
             return base.Channel.GetCACertificatesAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.LoadCertificateWithPrivateKeyAsync(
-                Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<LoadCertificateWithPrivateKeyResponse>
+            Device.LoadCertificateWithPrivateKeyAsync(
+                LoadCertificateWithPrivateKeyRequest request)
         {
             return base.Channel.LoadCertificateWithPrivateKeyAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificateInformationResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetCertificateInformationAsync(
-                Mictlanix.DotNet.Onvif.Device.GetCertificateInformationRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetCertificateInformationResponse>
+            Device.GetCertificateInformationAsync(
+                GetCertificateInformationRequest request)
         {
             return base.Channel.GetCertificateInformationAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCACertificatesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.LoadCACertificatesAsync(
-                Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<LoadCACertificatesResponse>
+            Device.LoadCACertificatesAsync(
+                LoadCACertificatesRequest request)
         {
             return base.Channel.LoadCACertificatesAsync(request);
         }
 
-        public System.Threading.Tasks.Task CreateDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration)
+        public Task CreateDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration)
         {
             return base.Channel.CreateDot1XConfigurationAsync(Dot1XConfiguration);
         }
 
-        public System.Threading.Tasks.Task SetDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration)
+        public Task SetDot1XConfigurationAsync(Dot1XConfiguration Dot1XConfiguration)
         {
             return base.Channel.SetDot1XConfigurationAsync(Dot1XConfiguration);
         }
 
-        public System.Threading.Tasks.Task<Dot1XConfiguration> GetDot1XConfigurationAsync(
+        public Task<Dot1XConfiguration> GetDot1XConfigurationAsync(
             string Dot1XConfigurationToken)
         {
             return base.Channel.GetDot1XConfigurationAsync(Dot1XConfigurationToken);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetDot1XConfigurationsAsync(
-                Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetDot1XConfigurationsResponse>
+            Device.GetDot1XConfigurationsAsync(
+                GetDot1XConfigurationsRequest request)
         {
             return base.Channel.GetDot1XConfigurationsAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.DeleteDot1XConfigurationAsync(
-                Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<DeleteDot1XConfigurationResponse>
+            Device.DeleteDot1XConfigurationAsync(
+                DeleteDot1XConfigurationRequest request)
         {
             return base.Channel.DeleteDot1XConfigurationAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetDot11CapabilitiesAsync(
-                Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetDot11CapabilitiesResponse>
+            Device.GetDot11CapabilitiesAsync(
+                GetDot11CapabilitiesRequest request)
         {
             return base.Channel.GetDot11CapabilitiesAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Dot11Status> GetDot11StatusAsync(string InterfaceToken)
+        public Task<Dot11Status> GetDot11StatusAsync(string InterfaceToken)
         {
             return base.Channel.GetDot11StatusAsync(InterfaceToken);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.ScanAvailableDot11NetworksAsync(
-                Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<ScanAvailableDot11NetworksResponse>
+            Device.ScanAvailableDot11NetworksAsync(
+                ScanAvailableDot11NetworksRequest request)
         {
             return base.Channel.ScanAvailableDot11NetworksAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemUrisResponse> GetSystemUrisAsync(
-            Mictlanix.DotNet.Onvif.Device.GetSystemUrisRequest request)
+        public Task<GetSystemUrisResponse> GetSystemUrisAsync(
+            GetSystemUrisRequest request)
         {
             return base.Channel.GetSystemUrisAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.StartFirmwareUpgradeResponse>
-            StartFirmwareUpgradeAsync(Mictlanix.DotNet.Onvif.Device.StartFirmwareUpgradeRequest request)
+        public Task<StartFirmwareUpgradeResponse>
+            StartFirmwareUpgradeAsync(StartFirmwareUpgradeRequest request)
         {
             return base.Channel.StartFirmwareUpgradeAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.StartSystemRestoreResponse>
-            StartSystemRestoreAsync(Mictlanix.DotNet.Onvif.Device.StartSystemRestoreRequest request)
+        public Task<StartSystemRestoreResponse>
+            StartSystemRestoreAsync(StartSystemRestoreRequest request)
         {
             return base.Channel.StartSystemRestoreAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetStorageConfigurationsAsync(
-                Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetStorageConfigurationsResponse>
+            Device.GetStorageConfigurationsAsync(
+                GetStorageConfigurationsRequest request)
         {
             return base.Channel.GetStorageConfigurationsAsync(request);
         }
 
-        public System.Threading.Tasks.Task<string> CreateStorageConfigurationAsync(
+        public Task<string> CreateStorageConfigurationAsync(
             StorageConfigurationData StorageConfiguration)
         {
             return base.Channel.CreateStorageConfigurationAsync(StorageConfiguration);
         }
 
-        public System.Threading.Tasks.Task<StorageConfiguration> GetStorageConfigurationAsync(string Token)
+        public Task<StorageConfiguration> GetStorageConfigurationAsync(string Token)
         {
             return base.Channel.GetStorageConfigurationAsync(Token);
         }
 
-        public System.Threading.Tasks.Task SetStorageConfigurationAsync(StorageConfiguration StorageConfiguration)
+        public Task SetStorageConfigurationAsync(StorageConfiguration StorageConfiguration)
         {
             return base.Channel.SetStorageConfigurationAsync(StorageConfiguration);
         }
 
-        public System.Threading.Tasks.Task DeleteStorageConfigurationAsync(string Token)
+        public Task DeleteStorageConfigurationAsync(string Token)
         {
             return base.Channel.DeleteStorageConfigurationAsync(Token);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetGeoLocationResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.GetGeoLocationAsync(
-                Mictlanix.DotNet.Onvif.Device.GetGeoLocationRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<GetGeoLocationResponse>
+            Device.GetGeoLocationAsync(
+                GetGeoLocationRequest request)
         {
             return base.Channel.GetGeoLocationAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetGeoLocationResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.SetGeoLocationAsync(
-                Mictlanix.DotNet.Onvif.Device.SetGeoLocationRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<SetGeoLocationResponse>
+            Device.SetGeoLocationAsync(
+                SetGeoLocationRequest request)
         {
             return base.Channel.SetGeoLocationAsync(request);
         }
 
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationResponse>
-            Mictlanix.DotNet.Onvif.Device.Device.DeleteGeoLocationAsync(
-                Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationRequest request)
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        Task<DeleteGeoLocationResponse>
+            Device.DeleteGeoLocationAsync(
+                DeleteGeoLocationRequest request)
         {
             return base.Channel.DeleteGeoLocationAsync(request);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetServicesResponse> GetServicesAsync(
+        public Task<GetServicesResponse> GetServicesAsync(
             bool IncludeCapability)
         {
-            Mictlanix.DotNet.Onvif.Device.GetServicesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetServicesRequest();
+            GetServicesRequest inValue =
+                new GetServicesRequest();
             inValue.IncludeCapability = IncludeCapability;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetServicesAsync(inValue);
+            return ((Device) (this)).GetServicesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.RestoreSystemResponse> RestoreSystemAsync(
+        public Task<RestoreSystemResponse> RestoreSystemAsync(
             BackupFile[] BackupFiles)
         {
-            Mictlanix.DotNet.Onvif.Device.RestoreSystemRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.RestoreSystemRequest();
+            RestoreSystemRequest inValue =
+                new RestoreSystemRequest();
             inValue.BackupFiles = BackupFiles;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).RestoreSystemAsync(inValue);
+            return ((Device) (this)).RestoreSystemAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetSystemBackupResponse> GetSystemBackupAsync()
+        public Task<GetSystemBackupResponse> GetSystemBackupAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetSystemBackupRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetSystemBackupAsync(inValue);
+            GetSystemBackupRequest inValue =
+                new GetSystemBackupRequest();
+            return ((Device) (this)).GetSystemBackupAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetScopesResponse> GetScopesAsync()
+        public Task<GetScopesResponse> GetScopesAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetScopesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetScopesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetScopesAsync(inValue);
+            GetScopesRequest inValue =
+                new GetScopesRequest();
+            return ((Device) (this)).GetScopesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetScopesResponse> SetScopesAsync(
+        public Task<SetScopesResponse> SetScopesAsync(
             string[] Scopes)
         {
-            Mictlanix.DotNet.Onvif.Device.SetScopesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetScopesRequest();
+            SetScopesRequest inValue =
+                new SetScopesRequest();
             inValue.Scopes = Scopes;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetScopesAsync(inValue);
+            return ((Device) (this)).SetScopesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.AddScopesResponse> AddScopesAsync(
+        public Task<AddScopesResponse> AddScopesAsync(
             string[] ScopeItem)
         {
-            Mictlanix.DotNet.Onvif.Device.AddScopesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.AddScopesRequest();
+            AddScopesRequest inValue =
+                new AddScopesRequest();
             inValue.ScopeItem = ScopeItem;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).AddScopesAsync(inValue);
+            return ((Device) (this)).AddScopesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDPAddressesResponse> GetDPAddressesAsync()
+        public Task<GetDPAddressesResponse> GetDPAddressesAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetDPAddressesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetDPAddressesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDPAddressesAsync(inValue);
+            GetDPAddressesRequest inValue =
+                new GetDPAddressesRequest();
+            return ((Device) (this)).GetDPAddressesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDPAddressesResponse> SetDPAddressesAsync(
+        public Task<SetDPAddressesResponse> SetDPAddressesAsync(
             NetworkHost[] DPAddress)
         {
-            Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetDPAddressesRequest();
+            SetDPAddressesRequest inValue =
+                new SetDPAddressesRequest();
             inValue.DPAddress = DPAddress;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDPAddressesAsync(inValue);
+            return ((Device) (this)).SetDPAddressesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetUsersResponse> GetUsersAsync()
+        public Task<GetUsersResponse> GetUsersAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetUsersRequest inValue = new Mictlanix.DotNet.Onvif.Device.GetUsersRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetUsersAsync(inValue);
+            GetUsersRequest inValue = new GetUsersRequest();
+            return ((Device) (this)).GetUsersAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateUsersResponse> CreateUsersAsync(
+        public Task<CreateUsersResponse> CreateUsersAsync(
             User[] User)
         {
-            Mictlanix.DotNet.Onvif.Device.CreateUsersRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.CreateUsersRequest();
+            CreateUsersRequest inValue =
+                new CreateUsersRequest();
             inValue.User = User;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).CreateUsersAsync(inValue);
+            return ((Device) (this)).CreateUsersAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteUsersResponse> DeleteUsersAsync(
+        public Task<DeleteUsersResponse> DeleteUsersAsync(
             string[] Username)
         {
-            Mictlanix.DotNet.Onvif.Device.DeleteUsersRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.DeleteUsersRequest();
+            DeleteUsersRequest inValue =
+                new DeleteUsersRequest();
             inValue.Username = Username;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteUsersAsync(inValue);
+            return ((Device) (this)).DeleteUsersAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetUserResponse> SetUserAsync(User[] User)
+        public Task<SetUserResponse> SetUserAsync(User[] User)
         {
-            Mictlanix.DotNet.Onvif.Device.SetUserRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetUserRequest();
+            SetUserRequest inValue = new SetUserRequest();
             inValue.User = User;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetUserAsync(inValue);
+            return ((Device) (this)).SetUserAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetWsdlUrlResponse> GetWsdlUrlAsync()
+        public Task<GetWsdlUrlResponse> GetWsdlUrlAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetWsdlUrlRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetWsdlUrlRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetWsdlUrlAsync(inValue);
+            GetWsdlUrlRequest inValue =
+                new GetWsdlUrlRequest();
+            return ((Device) (this)).GetWsdlUrlAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCapabilitiesResponse> GetCapabilitiesAsync(
+        public Task<GetCapabilitiesResponse> GetCapabilitiesAsync(
             CapabilityCategory[] Category)
         {
-            Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCapabilitiesRequest();
+            GetCapabilitiesRequest inValue =
+                new GetCapabilitiesRequest();
             inValue.Category = Category;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCapabilitiesAsync(inValue);
+            return ((Device) (this)).GetCapabilitiesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetHostnameResponse> SetHostnameAsync(
+        public Task<SetHostnameResponse> SetHostnameAsync(
             string Name)
         {
-            Mictlanix.DotNet.Onvif.Device.SetHostnameRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetHostnameRequest();
+            SetHostnameRequest inValue =
+                new SetHostnameRequest();
             inValue.Name = Name;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetHostnameAsync(inValue);
+            return ((Device) (this)).SetHostnameAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDNSResponse> SetDNSAsync(bool FromDHCP,
+        public Task<SetDNSResponse> SetDNSAsync(bool FromDHCP,
             string[] SearchDomain, IPAddress[] DNSManual)
         {
-            Mictlanix.DotNet.Onvif.Device.SetDNSRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetDNSRequest();
+            SetDNSRequest inValue = new SetDNSRequest();
             inValue.FromDHCP = FromDHCP;
             inValue.SearchDomain = SearchDomain;
             inValue.DNSManual = DNSManual;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDNSAsync(inValue);
+            return ((Device) (this)).SetDNSAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNTPResponse> SetNTPAsync(bool FromDHCP,
+        public Task<SetNTPResponse> SetNTPAsync(bool FromDHCP,
             NetworkHost[] NTPManual)
         {
-            Mictlanix.DotNet.Onvif.Device.SetNTPRequest inValue = new Mictlanix.DotNet.Onvif.Device.SetNTPRequest();
+            SetNTPRequest inValue = new SetNTPRequest();
             inValue.FromDHCP = FromDHCP;
             inValue.NTPManual = NTPManual;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNTPAsync(inValue);
+            return ((Device) (this)).SetNTPAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetDynamicDNSResponse> SetDynamicDNSAsync(
+        public Task<SetDynamicDNSResponse> SetDynamicDNSAsync(
             DynamicDNSType Type, string Name, string TTL)
         {
-            Mictlanix.DotNet.Onvif.Device.SetDynamicDNSRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetDynamicDNSRequest();
+            SetDynamicDNSRequest inValue =
+                new SetDynamicDNSRequest();
             inValue.Type = Type;
             inValue.Name = Name;
             inValue.TTL = TTL;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetDynamicDNSAsync(inValue);
+            return ((Device) (this)).SetDynamicDNSAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesResponse>
+        public Task<GetNetworkInterfacesResponse>
             GetNetworkInterfacesAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetNetworkInterfacesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetNetworkInterfacesAsync(inValue);
+            GetNetworkInterfacesRequest inValue =
+                new GetNetworkInterfacesRequest();
+            return ((Device) (this)).GetNetworkInterfacesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsResponse>
+        public Task<GetNetworkProtocolsResponse>
             GetNetworkProtocolsAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetNetworkProtocolsRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetNetworkProtocolsAsync(inValue);
+            GetNetworkProtocolsRequest inValue =
+                new GetNetworkProtocolsRequest();
+            return ((Device) (this)).GetNetworkProtocolsAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsResponse>
+        public Task<SetNetworkProtocolsResponse>
             SetNetworkProtocolsAsync(NetworkProtocol[] NetworkProtocols)
         {
-            Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetNetworkProtocolsRequest();
+            SetNetworkProtocolsRequest inValue =
+                new SetNetworkProtocolsRequest();
             inValue.NetworkProtocols = NetworkProtocols;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNetworkProtocolsAsync(inValue);
+            return ((Device) (this)).SetNetworkProtocolsAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayResponse>
+        public Task<SetNetworkDefaultGatewayResponse>
             SetNetworkDefaultGatewayAsync(string[] IPv4Address, string[] IPv6Address)
         {
-            Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetNetworkDefaultGatewayRequest();
+            SetNetworkDefaultGatewayRequest inValue =
+                new SetNetworkDefaultGatewayRequest();
             inValue.IPv4Address = IPv4Address;
             inValue.IPv6Address = IPv6Address;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetNetworkDefaultGatewayAsync(inValue);
+            return ((Device) (this)).SetNetworkDefaultGatewayAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.CreateCertificateResponse>
+        public Task<CreateCertificateResponse>
             CreateCertificateAsync(string CertificateID, string Subject, System.DateTime ValidNotBefore,
                 System.DateTime ValidNotAfter)
         {
-            Mictlanix.DotNet.Onvif.Device.CreateCertificateRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.CreateCertificateRequest();
+            CreateCertificateRequest inValue =
+                new CreateCertificateRequest();
             inValue.CertificateID = CertificateID;
             inValue.Subject = Subject;
             inValue.ValidNotBefore = ValidNotBefore;
             inValue.ValidNotAfter = ValidNotAfter;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).CreateCertificateAsync(inValue);
+            return ((Device) (this)).CreateCertificateAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesResponse> GetCertificatesAsync()
+        public Task<GetCertificatesResponse> GetCertificatesAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCertificatesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificatesAsync(inValue);
+            GetCertificatesRequest inValue =
+                new GetCertificatesRequest();
+            return ((Device) (this)).GetCertificatesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusResponse>
+        public Task<GetCertificatesStatusResponse>
             GetCertificatesStatusAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCertificatesStatusRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificatesStatusAsync(inValue);
+            GetCertificatesStatusRequest inValue =
+                new GetCertificatesStatusRequest();
+            return ((Device) (this)).GetCertificatesStatusAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusResponse>
+        public Task<SetCertificatesStatusResponse>
             SetCertificatesStatusAsync(CertificateStatus[] CertificateStatus)
         {
-            Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetCertificatesStatusRequest();
+            SetCertificatesStatusRequest inValue =
+                new SetCertificatesStatusRequest();
             inValue.CertificateStatus = CertificateStatus;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetCertificatesStatusAsync(inValue);
+            return ((Device) (this)).SetCertificatesStatusAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteCertificatesResponse>
+        public Task<DeleteCertificatesResponse>
             DeleteCertificatesAsync(string[] CertificateID)
         {
-            Mictlanix.DotNet.Onvif.Device.DeleteCertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.DeleteCertificatesRequest();
+            DeleteCertificatesRequest inValue =
+                new DeleteCertificatesRequest();
             inValue.CertificateID = CertificateID;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteCertificatesAsync(inValue);
+            return ((Device) (this)).DeleteCertificatesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestResponse>
+        public Task<GetPkcs10RequestResponse>
             GetPkcs10RequestAsync(string CertificateID, string Subject, BinaryData Attributes)
         {
-            Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetPkcs10RequestRequest();
+            GetPkcs10RequestRequest inValue =
+                new GetPkcs10RequestRequest();
             inValue.CertificateID = CertificateID;
             inValue.Subject = Subject;
             inValue.Attributes = Attributes;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetPkcs10RequestAsync(inValue);
+            return ((Device) (this)).GetPkcs10RequestAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificatesResponse>
+        public Task<LoadCertificatesResponse>
             LoadCertificatesAsync(Certificate[] NVTCertificate)
         {
-            Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.LoadCertificatesRequest();
+            LoadCertificatesRequest inValue =
+                new LoadCertificatesRequest();
             inValue.NVTCertificate = NVTCertificate;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCertificatesAsync(inValue);
+            return ((Device) (this)).LoadCertificatesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetRelayOutputsResponse> GetRelayOutputsAsync()
+        public Task<GetRelayOutputsResponse> GetRelayOutputsAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetRelayOutputsRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetRelayOutputsAsync(inValue);
+            GetRelayOutputsRequest inValue =
+                new GetRelayOutputsRequest();
+            return ((Device) (this)).GetRelayOutputsAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCACertificatesResponse>
+        public Task<GetCACertificatesResponse>
             GetCACertificatesAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetCACertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCACertificatesRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCACertificatesAsync(inValue);
+            GetCACertificatesRequest inValue =
+                new GetCACertificatesRequest();
+            return ((Device) (this)).GetCACertificatesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyResponse>
+        public Task<LoadCertificateWithPrivateKeyResponse>
             LoadCertificateWithPrivateKeyAsync(CertificateWithPrivateKey[] CertificateWithPrivateKey)
         {
-            Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.LoadCertificateWithPrivateKeyRequest();
+            LoadCertificateWithPrivateKeyRequest inValue =
+                new LoadCertificateWithPrivateKeyRequest();
             inValue.CertificateWithPrivateKey = CertificateWithPrivateKey;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCertificateWithPrivateKeyAsync(inValue);
+            return ((Device) (this)).LoadCertificateWithPrivateKeyAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetCertificateInformationResponse>
+        public Task<GetCertificateInformationResponse>
             GetCertificateInformationAsync(string CertificateID)
         {
-            Mictlanix.DotNet.Onvif.Device.GetCertificateInformationRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetCertificateInformationRequest();
+            GetCertificateInformationRequest inValue =
+                new GetCertificateInformationRequest();
             inValue.CertificateID = CertificateID;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetCertificateInformationAsync(inValue);
+            return ((Device) (this)).GetCertificateInformationAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.LoadCACertificatesResponse>
+        public Task<LoadCACertificatesResponse>
             LoadCACertificatesAsync(Certificate[] CACertificate)
         {
-            Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.LoadCACertificatesRequest();
+            LoadCACertificatesRequest inValue =
+                new LoadCACertificatesRequest();
             inValue.CACertificate = CACertificate;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).LoadCACertificatesAsync(inValue);
+            return ((Device) (this)).LoadCACertificatesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsResponse>
+        public Task<GetDot1XConfigurationsResponse>
             GetDot1XConfigurationsAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetDot1XConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDot1XConfigurationsAsync(inValue);
+            GetDot1XConfigurationsRequest inValue =
+                new GetDot1XConfigurationsRequest();
+            return ((Device) (this)).GetDot1XConfigurationsAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationResponse>
+        public Task<DeleteDot1XConfigurationResponse>
             DeleteDot1XConfigurationAsync(string[] Dot1XConfigurationToken)
         {
-            Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.DeleteDot1XConfigurationRequest();
+            DeleteDot1XConfigurationRequest inValue =
+                new DeleteDot1XConfigurationRequest();
             inValue.Dot1XConfigurationToken = Dot1XConfigurationToken;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteDot1XConfigurationAsync(inValue);
+            return ((Device) (this)).DeleteDot1XConfigurationAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesResponse>
-            GetDot11CapabilitiesAsync(System.Xml.Linq.XElement[] Any)
+        public Task<GetDot11CapabilitiesResponse>
+            GetDot11CapabilitiesAsync(XElement[] Any)
         {
-            Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetDot11CapabilitiesRequest();
+            GetDot11CapabilitiesRequest inValue =
+                new GetDot11CapabilitiesRequest();
             inValue.Any = Any;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetDot11CapabilitiesAsync(inValue);
+            return ((Device) (this)).GetDot11CapabilitiesAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksResponse>
+        public Task<ScanAvailableDot11NetworksResponse>
             ScanAvailableDot11NetworksAsync(string InterfaceToken)
         {
-            Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.ScanAvailableDot11NetworksRequest();
+            ScanAvailableDot11NetworksRequest inValue =
+                new ScanAvailableDot11NetworksRequest();
             inValue.InterfaceToken = InterfaceToken;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).ScanAvailableDot11NetworksAsync(inValue);
+            return ((Device) (this)).ScanAvailableDot11NetworksAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsResponse>
+        public Task<GetStorageConfigurationsResponse>
             GetStorageConfigurationsAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetStorageConfigurationsRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetStorageConfigurationsAsync(inValue);
+            GetStorageConfigurationsRequest inValue =
+                new GetStorageConfigurationsRequest();
+            return ((Device) (this)).GetStorageConfigurationsAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.GetGeoLocationResponse> GetGeoLocationAsync()
+        public Task<GetGeoLocationResponse> GetGeoLocationAsync()
         {
-            Mictlanix.DotNet.Onvif.Device.GetGeoLocationRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.GetGeoLocationRequest();
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).GetGeoLocationAsync(inValue);
+            GetGeoLocationRequest inValue =
+                new GetGeoLocationRequest();
+            return ((Device) (this)).GetGeoLocationAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.SetGeoLocationResponse> SetGeoLocationAsync(
+        public Task<SetGeoLocationResponse> SetGeoLocationAsync(
             LocationEntity[] Location)
         {
-            Mictlanix.DotNet.Onvif.Device.SetGeoLocationRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.SetGeoLocationRequest();
+            SetGeoLocationRequest inValue =
+                new SetGeoLocationRequest();
             inValue.Location = Location;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).SetGeoLocationAsync(inValue);
+            return ((Device) (this)).SetGeoLocationAsync(inValue);
         }
 
-        public System.Threading.Tasks.Task<Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationResponse>
+        public Task<DeleteGeoLocationResponse>
             DeleteGeoLocationAsync(LocationEntity[] Location)
         {
-            Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationRequest inValue =
-                new Mictlanix.DotNet.Onvif.Device.DeleteGeoLocationRequest();
+            DeleteGeoLocationRequest inValue =
+                new DeleteGeoLocationRequest();
             inValue.Location = Location;
-            return ((Mictlanix.DotNet.Onvif.Device.Device) (this)).DeleteGeoLocationAsync(inValue);
+            return ((Device) (this)).DeleteGeoLocationAsync(inValue);
         }
 
-        public virtual System.Threading.Tasks.Task OpenAsync()
+        public virtual Task OpenAsync()
         {
-            return System.Threading.Tasks.Task.Factory.FromAsync(
-                ((System.ServiceModel.ICommunicationObject) (this)).BeginOpen(null, null),
-                new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject) (this)).EndOpen));
+            return Task.Factory.FromAsync(
+                ((ICommunicationObject) (this)).BeginOpen(null, null),
+                new Action<IAsyncResult>(((ICommunicationObject) (this)).EndOpen));
         }
 
-        public virtual System.Threading.Tasks.Task CloseAsync()
+        public virtual Task CloseAsync()
         {
-            return System.Threading.Tasks.Task.Factory.FromAsync(
-                ((System.ServiceModel.ICommunicationObject) (this)).BeginClose(null, null),
-                new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject) (this)).EndClose));
+            return Task.Factory.FromAsync(
+                ((ICommunicationObject) (this)).BeginClose(null, null),
+                new Action<IAsyncResult>(((ICommunicationObject) (this)).EndClose));
         }
     }
 }

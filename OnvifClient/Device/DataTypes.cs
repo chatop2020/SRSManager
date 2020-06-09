@@ -1,16 +1,20 @@
+using System.CodeDom.Compiler;
+using System.Diagnostics;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 using Mictlanix.DotNet.Onvif.Common;
 
 namespace Mictlanix.DotNet.Onvif.Device
 {
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class Service
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
-        private System.Xml.Linq.XElement capabilitiesField;
+        private XElement capabilitiesField;
         private string namespaceField;
 
         private OnvifVersion versionField;
@@ -18,7 +22,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         private string xAddrField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string Namespace
         {
             get { return this.namespaceField; }
@@ -26,7 +30,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 1)]
+        [XmlElement(DataType = "anyURI", Order = 1)]
         public string XAddr
         {
             get { return this.xAddrField; }
@@ -34,15 +38,15 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
-        public System.Xml.Linq.XElement Capabilities
+        [XmlElement(Order = 2)]
+        public XElement Capabilities
         {
             get { return this.capabilitiesField; }
             set { this.capabilitiesField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public OnvifVersion Version
         {
             get { return this.versionField; }
@@ -50,8 +54,8 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 4)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 4)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -59,9 +63,9 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class UserCredential
     {
         private UserCredentialExtension extensionField;
@@ -70,7 +74,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         private string userNameField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string UserName
         {
             get { return this.userNameField; }
@@ -78,7 +82,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public string Password
         {
             get { return this.passwordField; }
@@ -86,7 +90,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public UserCredentialExtension Extension
         {
             get { return this.extensionField; }
@@ -95,17 +99,17 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(AnonymousType = true,
         Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class UserCredentialExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -113,9 +117,9 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class StorageConfigurationData
     {
         private StorageConfigurationDataExtension extensionField;
@@ -128,7 +132,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         private UserCredential userField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 0)]
+        [XmlElement(DataType = "anyURI", Order = 0)]
         public string LocalPath
         {
             get { return this.localPathField; }
@@ -136,7 +140,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI", Order = 1)]
+        [XmlElement(DataType = "anyURI", Order = 1)]
         public string StorageUri
         {
             get { return this.storageUriField; }
@@ -144,7 +148,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public UserCredential User
         {
             get { return this.userField; }
@@ -152,7 +156,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public StorageConfigurationDataExtension Extension
         {
             get { return this.extensionField; }
@@ -160,7 +164,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string type
         {
             get { return this.typeField; }
@@ -169,17 +173,17 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(AnonymousType = true,
         Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class StorageConfigurationDataExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
@@ -187,15 +191,15 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class StorageConfiguration : DeviceEntity
     {
         private StorageConfigurationData dataField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public StorageConfigurationData Data
         {
             get { return this.dataField; }
@@ -204,15 +208,15 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class MiscCapabilities
     {
         private string[] auxiliaryCommandsField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string[] AuxiliaryCommands
         {
             get { return this.auxiliaryCommandsField; }
@@ -221,9 +225,9 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class SystemCapabilities
     {
         private string[] autoGeoField;
@@ -282,7 +286,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         private bool systemLoggingFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool DiscoveryResolve
         {
             get { return this.discoveryResolveField; }
@@ -290,7 +294,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DiscoveryResolveSpecified
         {
             get { return this.discoveryResolveFieldSpecified; }
@@ -298,7 +302,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool DiscoveryBye
         {
             get { return this.discoveryByeField; }
@@ -306,7 +310,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DiscoveryByeSpecified
         {
             get { return this.discoveryByeFieldSpecified; }
@@ -314,7 +318,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool RemoteDiscovery
         {
             get { return this.remoteDiscoveryField; }
@@ -322,7 +326,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RemoteDiscoverySpecified
         {
             get { return this.remoteDiscoveryFieldSpecified; }
@@ -330,7 +334,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool SystemBackup
         {
             get { return this.systemBackupField; }
@@ -338,7 +342,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SystemBackupSpecified
         {
             get { return this.systemBackupFieldSpecified; }
@@ -346,7 +350,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool SystemLogging
         {
             get { return this.systemLoggingField; }
@@ -354,7 +358,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SystemLoggingSpecified
         {
             get { return this.systemLoggingFieldSpecified; }
@@ -362,7 +366,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool FirmwareUpgrade
         {
             get { return this.firmwareUpgradeField; }
@@ -370,7 +374,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool FirmwareUpgradeSpecified
         {
             get { return this.firmwareUpgradeFieldSpecified; }
@@ -378,7 +382,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool HttpFirmwareUpgrade
         {
             get { return this.httpFirmwareUpgradeField; }
@@ -386,7 +390,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpFirmwareUpgradeSpecified
         {
             get { return this.httpFirmwareUpgradeFieldSpecified; }
@@ -394,7 +398,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool HttpSystemBackup
         {
             get { return this.httpSystemBackupField; }
@@ -402,7 +406,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpSystemBackupSpecified
         {
             get { return this.httpSystemBackupFieldSpecified; }
@@ -410,7 +414,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool HttpSystemLogging
         {
             get { return this.httpSystemLoggingField; }
@@ -418,7 +422,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpSystemLoggingSpecified
         {
             get { return this.httpSystemLoggingFieldSpecified; }
@@ -426,7 +430,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool HttpSupportInformation
         {
             get { return this.httpSupportInformationField; }
@@ -434,7 +438,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpSupportInformationSpecified
         {
             get { return this.httpSupportInformationFieldSpecified; }
@@ -442,7 +446,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool StorageConfiguration
         {
             get { return this.storageConfigurationField; }
@@ -450,7 +454,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool StorageConfigurationSpecified
         {
             get { return this.storageConfigurationFieldSpecified; }
@@ -458,7 +462,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaxStorageConfigurations
         {
             get { return this.maxStorageConfigurationsField; }
@@ -466,7 +470,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxStorageConfigurationsSpecified
         {
             get { return this.maxStorageConfigurationsFieldSpecified; }
@@ -474,7 +478,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int GeoLocationEntries
         {
             get { return this.geoLocationEntriesField; }
@@ -482,7 +486,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool GeoLocationEntriesSpecified
         {
             get { return this.geoLocationEntriesFieldSpecified; }
@@ -490,7 +494,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string[] AutoGeo
         {
             get { return this.autoGeoField; }
@@ -498,7 +502,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string[] StorageTypesSupported
         {
             get { return this.storageTypesSupportedField; }
@@ -507,9 +511,9 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class SecurityCapabilities
     {
         private bool accessPolicyConfigField;
@@ -582,7 +586,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         private bool x509TokenFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute("TLS1.0")]
+        [XmlAttribute("TLS1.0")]
         public bool TLS10
         {
             get { return this.tLS10Field; }
@@ -590,7 +594,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool TLS10Specified
         {
             get { return this.tLS10FieldSpecified; }
@@ -598,7 +602,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute("TLS1.1")]
+        [XmlAttribute("TLS1.1")]
         public bool TLS11
         {
             get { return this.tLS11Field; }
@@ -606,7 +610,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool TLS11Specified
         {
             get { return this.tLS11FieldSpecified; }
@@ -614,7 +618,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute("TLS1.2")]
+        [XmlAttribute("TLS1.2")]
         public bool TLS12
         {
             get { return this.tLS12Field; }
@@ -622,7 +626,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool TLS12Specified
         {
             get { return this.tLS12FieldSpecified; }
@@ -630,7 +634,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool OnboardKeyGeneration
         {
             get { return this.onboardKeyGenerationField; }
@@ -638,7 +642,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool OnboardKeyGenerationSpecified
         {
             get { return this.onboardKeyGenerationFieldSpecified; }
@@ -646,7 +650,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool AccessPolicyConfig
         {
             get { return this.accessPolicyConfigField; }
@@ -654,7 +658,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool AccessPolicyConfigSpecified
         {
             get { return this.accessPolicyConfigFieldSpecified; }
@@ -662,7 +666,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool DefaultAccessPolicy
         {
             get { return this.defaultAccessPolicyField; }
@@ -670,7 +674,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DefaultAccessPolicySpecified
         {
             get { return this.defaultAccessPolicyFieldSpecified; }
@@ -678,7 +682,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool Dot1X
         {
             get { return this.dot1XField; }
@@ -686,7 +690,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool Dot1XSpecified
         {
             get { return this.dot1XFieldSpecified; }
@@ -694,7 +698,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool RemoteUserHandling
         {
             get { return this.remoteUserHandlingField; }
@@ -702,7 +706,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RemoteUserHandlingSpecified
         {
             get { return this.remoteUserHandlingFieldSpecified; }
@@ -710,7 +714,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute("X.509Token")]
+        [XmlAttribute("X.509Token")]
         public bool X509Token
         {
             get { return this.x509TokenField; }
@@ -718,7 +722,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool X509TokenSpecified
         {
             get { return this.x509TokenFieldSpecified; }
@@ -726,7 +730,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool SAMLToken
         {
             get { return this.sAMLTokenField; }
@@ -734,7 +738,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool SAMLTokenSpecified
         {
             get { return this.sAMLTokenFieldSpecified; }
@@ -742,7 +746,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool KerberosToken
         {
             get { return this.kerberosTokenField; }
@@ -750,7 +754,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool KerberosTokenSpecified
         {
             get { return this.kerberosTokenFieldSpecified; }
@@ -758,7 +762,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool UsernameToken
         {
             get { return this.usernameTokenField; }
@@ -766,7 +770,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool UsernameTokenSpecified
         {
             get { return this.usernameTokenFieldSpecified; }
@@ -774,7 +778,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool HttpDigest
         {
             get { return this.httpDigestField; }
@@ -782,7 +786,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HttpDigestSpecified
         {
             get { return this.httpDigestFieldSpecified; }
@@ -790,7 +794,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool RELToken
         {
             get { return this.rELTokenField; }
@@ -798,7 +802,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool RELTokenSpecified
         {
             get { return this.rELTokenFieldSpecified; }
@@ -806,7 +810,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int[] SupportedEAPMethods
         {
             get { return this.supportedEAPMethodsField; }
@@ -814,7 +818,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaxUsers
         {
             get { return this.maxUsersField; }
@@ -822,7 +826,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxUsersSpecified
         {
             get { return this.maxUsersFieldSpecified; }
@@ -830,7 +834,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaxUserNameLength
         {
             get { return this.maxUserNameLengthField; }
@@ -838,7 +842,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxUserNameLengthSpecified
         {
             get { return this.maxUserNameLengthFieldSpecified; }
@@ -846,7 +850,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int MaxPasswordLength
         {
             get { return this.maxPasswordLengthField; }
@@ -854,7 +858,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool MaxPasswordLengthSpecified
         {
             get { return this.maxPasswordLengthFieldSpecified; }
@@ -863,9 +867,9 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class NetworkCapabilities
     {
         private bool dHCPv6Field;
@@ -904,7 +908,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         private bool zeroConfigurationFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool IPFilter
         {
             get { return this.iPFilterField; }
@@ -912,7 +916,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IPFilterSpecified
         {
             get { return this.iPFilterFieldSpecified; }
@@ -920,7 +924,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool ZeroConfiguration
         {
             get { return this.zeroConfigurationField; }
@@ -928,7 +932,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ZeroConfigurationSpecified
         {
             get { return this.zeroConfigurationFieldSpecified; }
@@ -936,7 +940,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool IPVersion6
         {
             get { return this.iPVersion6Field; }
@@ -944,7 +948,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool IPVersion6Specified
         {
             get { return this.iPVersion6FieldSpecified; }
@@ -952,7 +956,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool DynDNS
         {
             get { return this.dynDNSField; }
@@ -960,7 +964,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DynDNSSpecified
         {
             get { return this.dynDNSFieldSpecified; }
@@ -968,7 +972,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool Dot11Configuration
         {
             get { return this.dot11ConfigurationField; }
@@ -976,7 +980,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool Dot11ConfigurationSpecified
         {
             get { return this.dot11ConfigurationFieldSpecified; }
@@ -984,7 +988,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int Dot1XConfigurations
         {
             get { return this.dot1XConfigurationsField; }
@@ -992,7 +996,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool Dot1XConfigurationsSpecified
         {
             get { return this.dot1XConfigurationsFieldSpecified; }
@@ -1000,7 +1004,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool HostnameFromDHCP
         {
             get { return this.hostnameFromDHCPField; }
@@ -1008,7 +1012,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool HostnameFromDHCPSpecified
         {
             get { return this.hostnameFromDHCPFieldSpecified; }
@@ -1016,7 +1020,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public int NTP
         {
             get { return this.nTPField; }
@@ -1024,7 +1028,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool NTPSpecified
         {
             get { return this.nTPFieldSpecified; }
@@ -1032,7 +1036,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool DHCPv6
         {
             get { return this.dHCPv6Field; }
@@ -1040,7 +1044,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool DHCPv6Specified
         {
             get { return this.dHCPv6FieldSpecified; }
@@ -1049,9 +1053,9 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class DeviceServiceCapabilities
     {
         private MiscCapabilities miscField;
@@ -1062,7 +1066,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         private SystemCapabilities systemField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public NetworkCapabilities Network
         {
             get { return this.networkField; }
@@ -1070,7 +1074,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [XmlElement(Order = 1)]
         public SecurityCapabilities Security
         {
             get { return this.securityField; }
@@ -1078,7 +1082,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
+        [XmlElement(Order = 2)]
         public SystemCapabilities System
         {
             get { return this.systemField; }
@@ -1086,7 +1090,7 @@ namespace Mictlanix.DotNet.Onvif.Device
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
+        [XmlElement(Order = 3)]
         public MiscCapabilities Misc
         {
             get { return this.miscField; }
@@ -1095,17 +1099,17 @@ namespace Mictlanix.DotNet.Onvif.Device
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(AnonymousType = true,
         Namespace = "http://www.onvif.org/ver10/device/wsdl")]
     public partial class GetSystemUrisResponseExtension
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }

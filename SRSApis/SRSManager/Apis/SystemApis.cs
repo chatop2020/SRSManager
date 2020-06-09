@@ -22,12 +22,12 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool DelSrsInstanceByDeviceId(string devid, out ResponseStruct rs)
         {
-            if (SRSApis.Common.SrsManagers == null) SRSApis.Common.SrsManagers = new List<SrsManager>();
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            if (Common.SrsManagers == null) Common.SrsManagers = new List<SrsManager>();
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(devid.Trim().ToUpper()));
             if (ret != null)
             {
-                SRSApis.Common.SrsManagers.Remove(ret);
+                Common.SrsManagers.Remove(ret);
                 if (ret.Srs != null && (ret.IsRunning || ret.IsInit))
                 {
                     //停掉srs进程
@@ -86,7 +86,7 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            var ret = SRSApis.Common.SrsManagers.FindLast(x => x.Srs.Listen == port);
+            var ret = Common.SrsManagers.FindLast(x => x.Srs.Listen == port);
             if (ret != null)
             {
                 rs = new ResponseStruct()
@@ -100,7 +100,7 @@ namespace SrsApis.SrsManager.Apis
             if (sm.Srs.Http_api != null && sm.Srs.Http_api.Listen != null)
             {
                 port = sm.Srs.Http_api.Listen;
-                ret = SRSApis.Common.SrsManagers.FindLast(x => x.Srs.Http_api!.Listen == port);
+                ret = Common.SrsManagers.FindLast(x => x.Srs.Http_api!.Listen == port);
                 if (ret != null)
                 {
                     rs = new ResponseStruct()
@@ -115,7 +115,7 @@ namespace SrsApis.SrsManager.Apis
             if (sm.Srs.Http_server != null && sm.Srs.Http_server.Listen != null)
             {
                 port = sm.Srs.Http_server.Listen;
-                ret = SRSApis.Common.SrsManagers.FindLast(x => x.Srs.Http_server!.Listen == port);
+                ret = Common.SrsManagers.FindLast(x => x.Srs.Http_server!.Listen == port);
                 if (ret != null)
                 {
                     rs = new ResponseStruct()
@@ -130,7 +130,7 @@ namespace SrsApis.SrsManager.Apis
             if (sm.Srs.Rtc_server != null && sm.Srs.Rtc_server.Listen != null)
             {
                 port = sm.Srs.Rtc_server.Listen;
-                ret = SRSApis.Common.SrsManagers.FindLast(x => x.Srs.Rtc_server!.Listen == port);
+                ret = Common.SrsManagers.FindLast(x => x.Srs.Rtc_server!.Listen == port);
                 if (ret != null)
                 {
                     rs = new ResponseStruct()
@@ -145,7 +145,7 @@ namespace SrsApis.SrsManager.Apis
             if (sm.Srs.Srt_server != null && sm.Srs.Srt_server.Listen != null)
             {
                 port = sm.Srs.Srt_server.Listen;
-                ret = SRSApis.Common.SrsManagers.FindLast(x => x.Srs.Srt_server!.Listen == port);
+                ret = Common.SrsManagers.FindLast(x => x.Srs.Srt_server!.Listen == port);
                 if (ret != null)
                 {
                     rs = new ResponseStruct()
@@ -163,7 +163,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     if (caster != null && caster.Listen != null)
                     {
-                        foreach (var srs in SRSApis.Common.SrsManagers)
+                        foreach (var srs in Common.SrsManagers)
                         {
                             foreach (var sc in srs.Srs.Stream_casters!)
                             {
@@ -239,7 +239,7 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(devId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -251,7 +251,7 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            ret = Common.SrsManagers.FindLast(x =>
                 x.SrsConfigPath.Trim().ToUpper().Equals(confPath.Trim().ToUpper()));
             if (ret != null)
             {
@@ -297,7 +297,7 @@ namespace SrsApis.SrsManager.Apis
             }
 
             srsManager.SrsDeviceId = SrsManageCommon.Common.CreateUuid()?.Trim()!;
-            srsManager.SrsWorkPath = SRSApis.Common.WorkPath;
+            srsManager.SrsWorkPath = Common.WorkPath;
             srsManager.Srs.Srs_log_file = srsManager.SrsWorkPath + srsManager.SrsDeviceId + "/srs.log";
             srsManager.Srs.Srs_log_level = "verbose"; //初始为观察者
             srsManager.Srs.Pid = srsManager.SrsWorkPath + srsManager.SrsDeviceId + "/srs.pid";
@@ -357,7 +357,7 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static SrsManager CreateNewSrsInstance(SrsManager sm, out ResponseStruct rs)
         {
-            if (SRSApis.Common.SrsManagers == null) SRSApis.Common.SrsManagers = new List<SrsManager>();
+            if (Common.SrsManagers == null) Common.SrsManagers = new List<SrsManager>();
             if (!checkNewSrsInstancePathRight(sm, out rs)) //检查路径是否正常
             {
                 return null!;
@@ -384,12 +384,12 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static List<OnvifMonitorStruct> DelOnvifConfigByIpAddress(string ipAddr, out ResponseStruct rs)
         {
-            if (SRSApis.Common.OnvifManagers != null && SRSApis.Common.OnvifManagers.Count > 0)
+            if (Common.OnvifManagers != null && Common.OnvifManagers.Count > 0)
             {
-                OnvifInstance ovi = SRSApis.Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ipAddr.Trim()))!;
+                OnvifInstance ovi = Common.OnvifManagers.FindLast(x => x.IpAddr.Trim().Equals(ipAddr.Trim()))!;
                 if (ovi != null)
                 {
-                    SRSApis.Common.OnvifManagers.Remove(ovi);
+                    Common.OnvifManagers.Remove(ovi);
                 }
 
                 return OnvifMonitorApis.GetOnvifMonitorList(out rs);
@@ -412,9 +412,9 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static List<OnvifMonitorStruct> WriteOnvifConfig(out ResponseStruct rs)
         {
-            if (SRSApis.Common.OnvifManagers != null && SRSApis.Common.OnvifManagers.Count > 0)
+            if (Common.OnvifManagers != null && Common.OnvifManagers.Count > 0)
             {
-                if (SRSApis.Common.WriteOnvifMonitors())
+                if (Common.WriteOnvifMonitors())
                 {
                     return OnvifMonitorApis.GetOnvifMonitorList(out rs);
                 }
@@ -446,7 +446,7 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static List<OnvifMonitorStruct> LoadOnvifConfig(out ResponseStruct rs)
         {
-            if (SRSApis.Common.LoadOnvifMonitors())
+            if (Common.LoadOnvifMonitors())
             {
                 return OnvifMonitorApis.GetOnvifMonitorList(out rs);
             }
@@ -470,11 +470,11 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool RefreshSrsObject(string deviceId, out ResponseStruct rs)
         {
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
-                return SRSApis.Common.RefreshSrsObject(ret, out rs);
+                return Common.RefreshSrsObject(ret, out rs);
             }
 
             rs = new ResponseStruct()
@@ -492,7 +492,7 @@ namespace SrsApis.SrsManager.Apis
         public static List<string> GetAllSrsManagerDeviceId()
         {
             List<string> list = null!;
-            if (SRSApis.Common.SrsManagers.Count > 0)
+            if (Common.SrsManagers.Count > 0)
             {
                 list = new List<string>();
             }
@@ -501,7 +501,7 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
-            foreach (var srs in SRSApis.Common.SrsManagers)
+            foreach (var srs in Common.SrsManagers)
             {
                 if (srs != null)
                 {

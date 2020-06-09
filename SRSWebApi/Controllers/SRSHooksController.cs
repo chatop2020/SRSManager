@@ -7,7 +7,6 @@ using SRSManageCommon.ControllerStructs.RequestModules;
 using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
-using Common = SRSApis.Common;
 
 namespace SrsWebApi.Controllers
 {
@@ -230,6 +229,7 @@ namespace SrsWebApi.Controllers
                 Client_Id = client.Client_Id,
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
+                MonitorType = MonitorType.Onvif,
                 App = client.App,
                 HttpUrl = "",
                 IsOnline = true,

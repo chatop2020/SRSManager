@@ -8,6 +8,7 @@ using Mictlanix.DotNet.Onvif.Imaging;
 using Mictlanix.DotNet.Onvif.Media;
 using Mictlanix.DotNet.Onvif.Ptz;
 using Mictlanix.DotNet.Onvif.Security;
+using DateTime = System.DateTime;
 
 namespace Mictlanix.DotNet.Onvif
 {
@@ -113,9 +114,9 @@ namespace Mictlanix.DotNet.Onvif
         static async Task<TimeSpan> GetDeviceTimeShift(DeviceClient device)
         {
             var utc = (await device.GetSystemDateAndTimeAsync()).UTCDateTime;
-            var dt = new System.DateTime(utc.Date.Year, utc.Date.Month, utc.Date.Day,
+            var dt = new DateTime(utc.Date.Year, utc.Date.Month, utc.Date.Day,
                 utc.Time.Hour, utc.Time.Minute, utc.Time.Second);
-            return dt - System.DateTime.UtcNow;
+            return dt - DateTime.UtcNow;
         }
     }
 }

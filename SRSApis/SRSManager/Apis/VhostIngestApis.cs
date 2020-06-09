@@ -2,13 +2,83 @@ using System.Collections.Generic;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
 using SRSManageCommon.ManageStructs;
-using Ubiety.Dns.Core.Records;
 using Common = SRSApis.Common;
 
 namespace SrsApis.SrsManager.Apis
 {
     public static class VhostIngestApis
     {
+
+        public static bool OnOrOffIngest(string deviceId, string vhostDomain, string ingestName,bool enable,out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = Common.SrsManagers.FindLast(x =>
+                x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
+            if (ret != null)
+            {
+                if (ret.Srs == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsObjectNotInit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+                    };
+                    return false!;
+                }
+
+                if (ret.Srs.Vhosts == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                var retVhost = ret.Srs.Vhosts.FindLast(x =>
+                    x.VhostDomain!.Trim().ToUpper().Equals(vhostDomain.Trim().ToUpper()));
+                if (retVhost == null)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.SrsSubInstanceNotFound,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                    };
+                    return false;
+                }
+
+                if (retVhost.Vingests == null)
+                {
+                    retVhost.Vingests = new List<Ingest>();
+                }
+
+                var retVhostIngest = retVhost.Vingests.FindLast(x =>
+                    x.IngestName!.Trim().ToUpper().Equals(ingestName!.Trim().ToUpper()));
+                if (retVhostIngest != null)
+                {
+                    retVhostIngest.Enabled = enable;
+                    return true;
+                }
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.SrsSubInstanceNotFound,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound],
+                };
+                return false;
+            }
+
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.SrsObjectNotInit,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
+            };
+            return false; 
+        }
 
         /// <summary>
         /// 返回vhostIngest列表
@@ -24,7 +94,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -87,7 +157,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -169,7 +239,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -245,7 +315,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -337,7 +407,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
@@ -9,6 +8,7 @@ using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
 using Common = SRSApis.Common;
 using Dvr = SRSManageCommon.DBMoudle.Dvr;
+using Publish = SrsConfFile.SRSConfClass.Publish;
 
 namespace SrsApis.SrsManager.Apis
 {
@@ -548,7 +548,7 @@ namespace SrsApis.SrsManager.Apis
                 retVhost.Vplay.Mw_latency = 100;
                 if (retVhost.Vpublish == null)
                 {
-                    retVhost.Vpublish = new SrsConfFile.SRSConfClass.Publish();
+                    retVhost.Vpublish = new Publish();
                 }
 
                 retVhost.Vpublish.Mr = !enable;
@@ -594,7 +594,7 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            var retClient = FastUsefulApis.GetClientInfoByStreamValue(obj.Stream!, out rs);
+            var retClient = GetClientInfoByStreamValue(obj.Stream!, out rs);
             if (retClient == null)
             {
                 return false;
@@ -696,7 +696,7 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            var retClient = FastUsefulApis.GetClientInfoByStreamValue(obj.Stream!, out rs);
+            var retClient = GetClientInfoByStreamValue(obj.Stream!, out rs);
             if (retClient == null)
             {
                 return false;
@@ -1222,7 +1222,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<Client> result = SrsManageCommon.OrmService.Db.Select<Client>()
+            List<Client> result = OrmService.Db.Select<Client>()
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true &&
                             x.Device_Id!.Equals(deviceId)).ToList();
             return result;
@@ -1240,7 +1240,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<Client> result = SrsManageCommon.OrmService.Db.Select<Client>()
+            List<Client> result = OrmService.Db.Select<Client>()
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true).ToList();
             return result;
         }
@@ -1265,7 +1265,7 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
-            List<Client> result = SrsManageCommon.OrmService.Db.Select<Client>()
+            List<Client> result = OrmService.Db.Select<Client>()
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor &&
                             x.Device_Id!.Equals(deviceId.Trim())).ToList();
             return result;
@@ -1283,7 +1283,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<Client> result = SrsManageCommon.OrmService.Db.Select<Client>()
+            List<Client> result = OrmService.Db.Select<Client>()
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor).ToList();
             return result;
         }
@@ -1291,16 +1291,34 @@ namespace SrsApis.SrsManager.Apis
         /// <summary>
         /// 通过rtsp地址获取一个ingest的配置
         /// </summary>
+        /// <param name="password"></param>
         /// <param name="rtspUrl"></param>
         /// <param name="rs"></param>
+        /// <param name="username"></param>
         /// <returns></returns>
-        public static Ingest GetOnvifMonitorIngestTemplate(string rtspUrl, out ResponseStruct rs)
+        public static Ingest GetOnvifMonitorIngestTemplate(string username,string password,string rtspUrl, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                if (!rtspUrl.Contains("@"))
+                {
+                    rtspUrl = rtspUrl.Insert(rtspUrl.IndexOf("://", StringComparison.Ordinal) + 3,
+                        username + ":" + password + "@");
+                }
+            }else if (!string.IsNullOrEmpty(username) && string.IsNullOrEmpty(username))
+            {
+                if (!rtspUrl.Contains("@"))
+                {
+                    rtspUrl = rtspUrl.Insert(rtspUrl.IndexOf("://", StringComparison.Ordinal) + 3,
+                        username + "@");
+                }  
+            }
+
             Uri url = new Uri(rtspUrl);
             string ip = url.Host;
             ushort port = (ushort) url.Port;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using SrsConfFile.SRSConfClass;
 
 namespace SrsConfFile
@@ -29,7 +30,7 @@ namespace SrsConfFile
 
         public static KeyValuePair<string, string> GetKV(string s)
         {
-            string[] tmpSarr = System.Text.RegularExpressions.Regex.Split(s, @"[\s]+");
+            string[] tmpSarr = Regex.Split(s, @"[\s]+");
             //string[] tmp_sarr = s.Split('\t', StringSplitOptions.RemoveEmptyEntries);
 
             if (tmpSarr.Length == 2)
@@ -152,7 +153,7 @@ namespace SrsConfFile
             string[] sArr;
             if (s != null && s.Contains(' '))
             {
-                sArr = System.Text.RegularExpressions.Regex.Split(s, @"[\s]+");
+                sArr = Regex.Split(s, @"[\s]+");
                 // s_arr = s.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                 if (sArr.Length > 1)
                 {

@@ -50,7 +50,7 @@ namespace SRSApis
 
         public static SrsAndFFmpegLogMonitor SrsAndFFmpegLogMonitor;
         public static ExecutionDvrPlan? ExecutionDvrPlan;
-
+        public static KeepIngestStream KeepIngestStream;
 
         static Common()
         {
@@ -58,7 +58,8 @@ namespace SRSApis
             Directory.CreateDirectory(LogPath);
             SrsOnlineClient = new SrsClientManager();
             SrsAndFFmpegLogMonitor= new SrsAndFFmpegLogMonitor();
-           // ExecutionDvrPlan= new ExecutionDvrPlan();
+            ExecutionDvrPlan= new ExecutionDvrPlan();
+            KeepIngestStream = new KeepIngestStream();
         }
 
         /*/// <summary>

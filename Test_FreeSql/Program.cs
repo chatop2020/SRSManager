@@ -1,11 +1,7 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Mictlanix.DotNet.Onvif.Common;
 using SrsManageCommon.ApisStructs;
-using DateTime = System.DateTime;
 
 namespace Test_FreeSql
 {
@@ -15,6 +11,16 @@ namespace Test_FreeSql
 
         static void Main(string[] args)
         {
+
+            string rtsp = "rtsp://192.168.2.1/aaaa.txt?cjdkf";
+            if (!rtsp.Contains("@"))
+            {
+
+                rtsp=   rtsp.Insert(rtsp.IndexOf("://",StringComparison.Ordinal) + 3, "abc" + ":" + "def" + "@");
+            }
+            Console.WriteLine(rtsp);
+            return;
+            
             DBManager.fsql.Delete<StreamDvrPlan>().Where("1=1").ExecuteAffrows();
             DBManager.fsql.Delete<DvrDayTimeRange>().Where("1=1").ExecuteAffrows();
             var a = new StreamDvrPlan();

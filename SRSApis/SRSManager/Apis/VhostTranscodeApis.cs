@@ -24,7 +24,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -108,7 +108,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -184,7 +184,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {
@@ -276,7 +276,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = SRSApis.Common.SrsManagers.FindLast(x =>
+            var ret = Common.SrsManagers.FindLast(x =>
                 x.SrsDeviceId.Trim().ToUpper().Equals(deviceId.Trim().ToUpper()));
             if (ret != null)
             {

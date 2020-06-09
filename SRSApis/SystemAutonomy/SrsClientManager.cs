@@ -48,7 +48,7 @@ namespace SRSApis.SystemAutonomy
             string url = httpUri + act;
             try
             {
-                string tmpStr = SrsManageCommon.NetHelper.Get(url);
+                string tmpStr = NetHelper.Get(url);
                 var ret = JsonHelper.FromJson<SrsT28181QueryChannelModule>(tmpStr);
                 if (ret.Code == 0 && ret.Data != null)
                 {

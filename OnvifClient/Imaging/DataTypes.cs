@@ -1,12 +1,17 @@
+using System.CodeDom.Compiler;
+using System.Diagnostics;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+
 namespace Mictlanix.DotNet.Onvif.Imaging
 {
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver20/imaging/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver20/imaging/wsdl")]
     public partial class Capabilities
     {
-        private System.Xml.Linq.XElement[] anyField;
+        private XElement[] anyField;
 
         private bool imageStabilizationField;
 
@@ -17,15 +22,15 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         private bool presetsFieldSpecified;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order = 0)]
-        public System.Xml.Linq.XElement[] Any
+        [XmlAnyElement(Order = 0)]
+        public XElement[] Any
         {
             get { return this.anyField; }
             set { this.anyField = value; }
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool ImageStabilization
         {
             get { return this.imageStabilizationField; }
@@ -33,7 +38,7 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool ImageStabilizationSpecified
         {
             get { return this.imageStabilizationFieldSpecified; }
@@ -41,7 +46,7 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public bool Presets
         {
             get { return this.presetsField; }
@@ -49,7 +54,7 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [XmlIgnore()]
         public bool PresetsSpecified
         {
             get { return this.presetsFieldSpecified; }
@@ -58,9 +63,9 @@ namespace Mictlanix.DotNet.Onvif.Imaging
     }
 
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.3")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.onvif.org/ver20/imaging/wsdl")]
+    [GeneratedCode("dotnet-svcutil", "1.0.3")]
+    [DebuggerStepThrough()]
+    [XmlType(Namespace = "http://www.onvif.org/ver20/imaging/wsdl")]
     public partial class ImagingPreset
     {
         private string nameField;
@@ -70,7 +75,7 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         private string typeField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        [XmlElement(Order = 0)]
         public string Name
         {
             get { return this.nameField; }
@@ -78,7 +83,7 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string token
         {
             get { return this.tokenField; }
@@ -86,7 +91,7 @@ namespace Mictlanix.DotNet.Onvif.Imaging
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [XmlAttribute()]
         public string type
         {
             get { return this.typeField; }
