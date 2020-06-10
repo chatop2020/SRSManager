@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SrsApis.SrsManager.Apis;
 using SrsManageCommon;
+using SRSManageCommon.ControllerStructs.RequestModules;
 using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
@@ -21,15 +22,15 @@ namespace SrsWebApi.Controllers
         [HttpGet]
         [AuthVerify]
         [Log]
-        [Route("/DvrPlan/GetDvrList")]
-        public JsonResult GetDvrList(string deviceId)
+        [Route("/DvrPlan/GetDvrVideoList")]
+        public JsonResult GetDvrVideoList(ReqGetDvrVideo rgdv)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{rgdv});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
-            var rt = DvrPlanApis.GetDvrList(deviceId,out ResponseStruct rs);
+            var rt = DvrPlanApis.GetDvrVideoList(rgdv,out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
         
@@ -72,7 +73,7 @@ namespace SrsWebApi.Controllers
         }
         
         
-        /// <summary>
+        /*/// <summary>
         /// 修改录制计划ById
         /// </summary>
         /// <returns></returns>
@@ -89,9 +90,9 @@ namespace SrsWebApi.Controllers
             }
             var rt = DvrPlanApis.SetDvrPlanById(sdp,out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
-        }
+        }*/
         /// <summary>
-        /// 修改或创建一个录制计划
+        /// 修改录制计划
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -110,6 +111,26 @@ namespace SrsWebApi.Controllers
         }
         
         /// <summary>
+        /// 创建录制计划
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/DvrPlan/CreateDvrPlan")]
+        public JsonResult CreateDvrPlan(StreamDvrPlan sdp)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{sdp});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = DvrPlanApis.CreateDvrPlan(sdp,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+        /*
+        /// <summary>
         /// 获取录制计划ById
         /// </summary>
         /// <returns></returns>
@@ -127,6 +148,7 @@ namespace SrsWebApi.Controllers
             var rt = DvrPlanApis.GetDvrPlanById(id,out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
+        */
         
         /// <summary>
         /// 获取录制计划
@@ -136,14 +158,14 @@ namespace SrsWebApi.Controllers
         [AuthVerify]
         [Log]
         [Route("/DvrPlan/GetDvrPlan")]
-        public JsonResult GetDvrPlan(ReqGetDvrPlan rdp)
+        public JsonResult GetDvrPlanList(ReqGetDvrPlan rdp)
         {
             ResponseStruct rss = CommonFunctions.CheckParams(new object[]{rdp});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
-            var rt = DvrPlanApis.GetDvrPlan(rdp,out ResponseStruct rs);
+            var rt = DvrPlanApis.GetDvrPlanList(rdp,out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
     }

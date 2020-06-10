@@ -58,7 +58,7 @@ namespace SRSApis
             Directory.CreateDirectory(LogPath);
             SrsOnlineClient = new SrsClientManager();
             SrsAndFFmpegLogMonitor= new SrsAndFFmpegLogMonitor();
-            ExecutionDvrPlan= new ExecutionDvrPlan();
+           // ExecutionDvrPlan= new ExecutionDvrPlan();
             KeepIngestStream = new KeepIngestStream();
         }
 

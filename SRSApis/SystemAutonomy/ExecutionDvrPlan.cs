@@ -8,9 +8,9 @@ using SrsApis.SrsManager;
 using SrsApis.SrsManager.Apis;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
+using SRSManageCommon.ControllerStructs.RequestModules;
 using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
-using Dvr = SRSManageCommon.DBMoudle.Dvr;
 
 namespace SRSApis.SystemAutonomy
 {
@@ -38,7 +38,7 @@ namespace SRSApis.SystemAutonomy
                 Stream = "",
                 VhostDomain = "",
             };
-            var result = DvrPlanApis.GetDvrPlan(rgdp, out ResponseStruct rs);
+            var result = DvrPlanApis.GetDvrPlanList(rgdp, out ResponseStruct rs);
             if (rs.Code == ErrorNumber.None)
             {
                 return result;
@@ -82,7 +82,7 @@ namespace SRSApis.SystemAutonomy
 
         private decimal getDvrFileSize(StreamDvrPlan plan)
         {
-            return OrmService.Db.Select<Dvr>().Where(x =>
+            return OrmService.Db.Select<DvrVideo>().Where(x =>
                 x.App!.Trim().ToLower().Equals(plan.App!.Trim().ToLower())
                 && x.Stream!.Trim().ToLower().Equals(plan.Stream!.Trim().ToLower())
                 && x.Device_Id!.Trim().ToLower().Equals(plan.DeviceId!.Trim().ToLower())).Sum(x => x.FileSize);
@@ -106,13 +106,13 @@ namespace SRSApis.SystemAutonomy
         }
 
 
-        private void updateDBAfterDeleteFile(List<Dvr> dvrList)
+        private void updateDBAfterDeleteFile(List<DvrVideo> dvrList)
         {
             if (dvrList == null || dvrList.Count == 0) return;
             foreach (var d in dvrList)
             {
                 if (d == null) continue;
-                OrmService.Db.Delete<Dvr>().Where(x => x.Id == d.Id).ExecuteAffrows();
+                OrmService.Db.Delete<DvrVideo>().Where(x => x.Id == d.Id).ExecuteAffrows();
                 Thread.Sleep(10);
             }
         }
@@ -135,7 +135,7 @@ namespace SRSApis.SystemAutonomy
                 string sql =
                     "select * from Dvr where Device_Id=\"{0}\" and App=\"{1}\" and Stream=\"{2}\" and date(endtime)=\"{3}\"";
                 sql = string.Format(sql, plan!.DeviceId, plan.App, plan.Stream, d);
-                var retDvrList = OrmService.Db.Select<Dvr>().WithSql(sql).ToList();
+                var retDvrList = OrmService.Db.Select<DvrVideo>().WithSql(sql).ToList();
                 if (retDvrList != null && retDvrList.Count > 0)
                 {
                     for (int i = 0; i <= retDvrList.Count - 1; i++)
@@ -155,7 +155,7 @@ namespace SRSApis.SystemAutonomy
         private void deleteDvrfilesBySpace(StreamDvrPlan plan, decimal exitsFileSize)
         {
             List<string> deleteFileList = new List<string>();
-            List<Dvr> dvrList = OrmService.Db.Select<Dvr>()
+            List<DvrVideo> dvrList = OrmService.Db.Select<DvrVideo>()
                 .Where(x => x.Device_Id!.Trim().ToLower().Equals(plan.DeviceId!.Trim().ToLower())
                             && x.App!.Trim().ToLower().Equals(plan.App!.Trim().ToLower())
                             && x.Stream!.Trim().ToLower().Equals(plan.Stream!.Trim().ToLower()))
@@ -259,9 +259,9 @@ namespace SRSApis.SystemAutonomy
 
                         if (retStream.Contains(plan.App+"/"+plan.Stream) && plan.Enable) //如果dvr实例中已经存在本plan的情况，并且plan的enable为true
                         {
-                            if (plan.TimeRange != null && plan.TimeRange.Count > 0)
+                            if (plan.TimeRangeList != null && plan.TimeRangeList.Count > 0)
                             {
-                                foreach (DvrDayTimeRange t in plan.TimeRange)
+                                foreach (DvrDayTimeRange t in plan.TimeRangeList)
                                 {
                                     if (t != null)
                                     {
@@ -318,9 +318,9 @@ namespace SRSApis.SystemAutonomy
                         ) //如果plan的enable为true,但是dvr实例中没有stream存在
                         {
 
-                            if (plan.TimeRange != null && plan.TimeRange.Count > 0)
+                            if (plan.TimeRangeList != null && plan.TimeRangeList.Count > 0)
                             {
-                                foreach (DvrDayTimeRange t in plan.TimeRange)
+                                foreach (DvrDayTimeRange t in plan.TimeRangeList)
                                 {
                                     if (t != null)
                                     {

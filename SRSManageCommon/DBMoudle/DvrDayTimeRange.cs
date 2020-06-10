@@ -11,55 +11,34 @@ namespace SRSManageCommon.DBMoudle
     /// </summary>
     public class DvrDayTimeRange
     {
-        private long _id;
-        private long _dvrDayTimeRangeStreamDvrPlanId;
-        private DayOfWeek _weekday;
-        private DateTime _startTime;
-        private DateTime _endTime;
-        
         [Column(IsPrimary = true,IsIdentity = true)]
         
         [JsonIgnore]
-        public long Id
+        public int Id
         {
-            get => _id;
-            set => _id = value;
+            get;
+            set;
         }
-
-        public long DvrDayTimeRangeStreamDvrPlanId
+        public int StreamDvrPlanId
         {
-            get => _dvrDayTimeRangeStreamDvrPlanId;
-            set => _dvrDayTimeRangeStreamDvrPlanId = value;
+            get;
+            set;
         }
-
         [Column(MapType = typeof(string))]
         public DayOfWeek WeekDay
         {
-            get => _weekday;
-            set => _weekday = value;
+            get;
+            set;
         }
-
         public DateTime StartTime
         {
-            get => _startTime;
-            set => _startTime = value;
+            get;
+            set;
         }
-
         public DateTime EndTime
         {
-            get => _endTime;
-            set => _endTime = value;
+            get;
+            set;
         }
-    }
-    
-
-    [Serializable]
-    /// <summary>
-    /// 超过限制时怎么处理
-    /// </summary>
-    public enum OverStepPlan
-    {
-        StopDvr,
-        DeleteFile,
     }
 }

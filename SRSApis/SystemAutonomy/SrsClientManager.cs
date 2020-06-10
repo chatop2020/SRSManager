@@ -35,7 +35,7 @@ namespace SRSApis.SystemAutonomy
                                         if (!string.IsNullOrEmpty(r.Stream) && r.Stream.Equals(client.Stream))
                                         {
  
-                                            var reti = OrmService.Db.Update<Client>()
+                                            var reti = OrmService.Db.Update<OnlineClient>()
                                                 .Set(x => x.MonitorType, MonitorType.GBT28181)
                                                 .Where(x => x.Client_Id==client.Client_Id)
                                                 .ExecuteAffrows();
@@ -53,7 +53,7 @@ namespace SRSApis.SystemAutonomy
                                         if (ingest != null && ingest.Input != null 
                                             && client.RtspUrl!=null &&ingest.Input!.Url!.Equals(client.RtspUrl))
                                         {
-                                            var reti = OrmService.Db.Update<Client>()
+                                            var reti = OrmService.Db.Update<OnlineClient>()
                                                 .Set(x => x.MonitorType, MonitorType.Onvif)
                                                 .Where(x => x.Client_Id==client.Client_Id)
                                                 .ExecuteAffrows(); 
@@ -62,7 +62,7 @@ namespace SRSApis.SystemAutonomy
                                 }
                                 #endregion
                                 #region 处理直播流
-                                int retj = OrmService.Db.Update<Client>()
+                                int retj = OrmService.Db.Update<OnlineClient>()
                                     .Set(x => x.MonitorType, MonitorType.Webcast)
                                     .Where(x=>x.MonitorType==MonitorType.Unknow)
                                     .ExecuteAffrows();
@@ -121,7 +121,7 @@ namespace SRSApis.SystemAutonomy
                                             .GetIngestRtspMonitorUrlIpAddress(ingest.Input!.Url!)!;
                                     if (SrsManageCommon.Common.IsIpAddr(inputIp!))
                                     {
-                                        var reti = OrmService.Db.Update<Client>()
+                                        var reti = OrmService.Db.Update<OnlineClient>()
                                             .Set(x => x.MonitorIp, inputIp)
                                             .Set(x => x.RtspUrl, ingest.Input!.Url!)
                                             .Where(x => x.Stream!.Equals(ingest.IngestName) &&
@@ -156,7 +156,7 @@ namespace SRSApis.SystemAutonomy
                             {
                                 if (!string.IsNullOrEmpty(r.Rtp_Peer_Ip) && !string.IsNullOrEmpty(r.Stream))
                                 {
-                                    var reti = OrmService.Db.Update<Client>()
+                                    var reti = OrmService.Db.Update<OnlineClient>()
                                         .Set(x => x.MonitorIp, r.Rtp_Peer_Ip)
                                         .Where(x => x.Stream!.Equals(r.Stream) &&
                                                     x.Device_Id!.Equals(srs.SrsDeviceId) &&
@@ -173,7 +173,7 @@ namespace SRSApis.SystemAutonomy
 
         private void clearOfflinePlayerUser()
         {
-            var re = OrmService.Db.Delete<Client>().Where(x => x.ClientType == ClientType.User &&
+            var re = OrmService.Db.Delete<OnlineClient>().Where(x => x.ClientType == ClientType.User &&
                                                                x.IsPlay == false &&
                                                                x.UpdateTime <= DateTime.Now.AddMinutes(-3))
                 .ExecuteAffrows();
@@ -217,7 +217,7 @@ namespace SRSApis.SystemAutonomy
 
         public SrsClientManager()
         {
-            OrmService.Db.Delete<Client>().Where("1=1").ExecuteAffrows();
+            OrmService.Db.Delete<OnlineClient>().Where("1=1").ExecuteAffrows();
             new Thread(new ThreadStart(delegate
 
             {

@@ -62,7 +62,7 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/OnClose")]
         public int OnClose(ReqSrsClientOnClose client)
         {
-            Client tmpClient = new Client()
+            OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
                 Client_Id = client.Client_Id,
@@ -70,7 +70,7 @@ namespace SrsWebApi.Controllers
                 App = client.App,
                 Vhost = client.Vhost,
             };
-            var rt = SrsHooksApis.OnClose(tmpClient);
+            var rt = SrsHooksApis.OnClose(tmpOnlineClient);
             if (rt) return 0;
             return -1;
         }
@@ -85,7 +85,7 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/OnUnPublish")]
         public int OnUnPublish(ReqSrsClientOnOrUnPublish client)
         {
-            Client tmpClient = new Client()
+            OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
                 Client_Id = client.Client_Id,
@@ -100,7 +100,7 @@ namespace SrsWebApi.Controllers
                 UpdateTime = DateTime.Now,
                 Vhost = client.Vhost,
             };
-            var rt = SrsHooksApis.OnPublish(tmpClient);
+            var rt = SrsHooksApis.OnPublish(tmpOnlineClient);
             if (rt) return 0;
             return -1;
         }
@@ -118,7 +118,7 @@ namespace SrsWebApi.Controllers
         {
             DateTime currentTime = DateTime.Now;
 
-            Dvr tmpDvr = new Dvr()
+            DvrVideo tmpDvrVideo = new DvrVideo()
             {
                 Device_Id = dvr.Device_Id,
                 Client_Id = dvr.Client_Id,
@@ -133,21 +133,21 @@ namespace SrsWebApi.Controllers
             };
 
             FileInfo dvrFile= new FileInfo(dvr.File);
-            tmpDvr.FileSize = dvrFile.Length;
+            tmpDvrVideo.FileSize = dvrFile.Length;
             if (FFmpegGetDuration.GetDuration(Program.CommonFunctions.FFmpegBinPath, dvr.File!, out long duration))
             {
-                tmpDvr.Duration = duration;
-                tmpDvr.StartTime = currentTime.AddMilliseconds(duration * (-1));
-                tmpDvr.EndTime = currentTime;
+                tmpDvrVideo.Duration = duration;
+                tmpDvrVideo.StartTime = currentTime.AddMilliseconds(duration * (-1));
+                tmpDvrVideo.EndTime = currentTime;
             }
             else
             {
-                tmpDvr.Duration = -1;
-                tmpDvr.StartTime = currentTime;
-                tmpDvr.EndTime = currentTime;
+                tmpDvrVideo.Duration = -1;
+                tmpDvrVideo.StartTime = currentTime;
+                tmpDvrVideo.EndTime = currentTime;
             }
 
-            SrsHooksApis.OnDvr(tmpDvr);
+            SrsHooksApis.OnDvr(tmpDvrVideo);
             return 0;
         }
 
@@ -162,7 +162,7 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/OnPlay")]
         public int OnPlay(ReqSrsClientOnPlayOnStop client)
         {
-            Client tmpClient = new Client()
+            OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
                 Client_Id = client.Client_Id,
@@ -177,7 +177,7 @@ namespace SrsWebApi.Controllers
                 Vhost = client.Vhost,
                 PageUrl = client.PageUrl,
             };
-            var rt = SrsHooksApis.OnPlay(tmpClient);
+            var rt = SrsHooksApis.OnPlay(tmpOnlineClient);
             if (rt) return 0;
             return -1;
         }
@@ -192,7 +192,7 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/OnStop")]
         public int OnStop(ReqSrsClientOnPlayOnStop client)
         {
-            Client tmpClient = new Client()
+            OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
                 Client_Id = client.Client_Id,
@@ -207,7 +207,7 @@ namespace SrsWebApi.Controllers
                 Vhost = client.Vhost,
                 PageUrl = client.PageUrl,
             };
-            var rt = SrsHooksApis.OnStop(tmpClient);
+            var rt = SrsHooksApis.OnStop(tmpOnlineClient);
             if (rt) return 0;
             return -1;
         }
@@ -223,7 +223,7 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/OnPublish")]
         public int OnPublish(ReqSrsClientOnOrUnPublish client)
         {
-            Client tmpClient = new Client()
+            OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
                 Client_Id = client.Client_Id,
@@ -239,7 +239,7 @@ namespace SrsWebApi.Controllers
                 UpdateTime = DateTime.Now,
                 Vhost = client.Vhost,
             };
-            var rt = SrsHooksApis.OnPublish(tmpClient);
+            var rt = SrsHooksApis.OnPublish(tmpOnlineClient);
             if (rt) return 0;
             return -1;
         }
@@ -254,7 +254,7 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/OnConnect")]
         public int OnConnect(ReqSrsClientOnConnect client)
         {
-            Client tmpClient = new Client()
+            OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 MonitorType = MonitorType.Unknow,
                 Device_Id = client.Device_Id,
@@ -270,7 +270,7 @@ namespace SrsWebApi.Controllers
                 UpdateTime = DateTime.Now,
                 Vhost = client.Vhost,
             };
-            var rt = SrsHooksApis.OnConnect(tmpClient);
+            var rt = SrsHooksApis.OnConnect(tmpOnlineClient);
             if (rt) return 0;
             return -1;
         }

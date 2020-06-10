@@ -1,7 +1,8 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using SrsManageCommon.ApisStructs;
+using SRSManageCommon.DBMoudle;
+
 
 namespace Test_FreeSql
 {
@@ -11,10 +12,6 @@ namespace Test_FreeSql
 
         static void Main(string[] args)
         {
-
-            string url = "rtsp://admin:3987qzwas@192.168.2.163:554/Streaming/Channels/201?transportmode=unicast&profile=Profile_201";
-            Uri abc= new Uri(url);
-            Console.WriteLine(abc.ToString());
 
             DBManager.fsql.Delete<StreamDvrPlan>().Where("1=1").ExecuteAffrows();
             DBManager.fsql.Delete<DvrDayTimeRange>().Where("1=1").ExecuteAffrows();
@@ -27,24 +24,24 @@ namespace Test_FreeSql
             a.LimitSpace = 99999999;
             a.VhostDomain = "vhost";
             a.OverStepPlan = OverStepPlan.DeleteFile;
-            a.TimeRange = new List<DvrDayTimeRange>();
+            a.TimeRangeList = new List<DvrDayTimeRange>();
             DvrDayTimeRange b = new DvrDayTimeRange();
             b.EndTime = DateTime.Now.AddDays(10);
             b.StartTime = DateTime.Now;
             b.WeekDay = DateTime.Now.DayOfWeek;
-            a.TimeRange.Add(b);
+            a.TimeRangeList.Add(b);
             DvrDayTimeRange c = new DvrDayTimeRange();
             c.EndTime = DateTime.Now.AddDays(15);
             c.StartTime = DateTime.Now.AddDays(-5);
             c.WeekDay = DayOfWeek.Monday;
-            a.TimeRange.Add(c);
+            a.TimeRangeList.Add(c);
             /*联同子类一起插入*/
             var repo = DBManager.fsql.GetRepository<StreamDvrPlan>();
             repo.DbContextOptions.EnableAddOrUpdateNavigateList = true; //需要手工开启
             repo.Insert(a);
             /*联同子类一起插入*/
             /*联同子类一起查出*/
-            var ret = DBManager.fsql.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRange)
+            var ret = DBManager.fsql.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRangeList)
                 .ToList();
              /*联同子类一起查出*/
              

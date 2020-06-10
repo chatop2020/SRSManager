@@ -5,6 +5,15 @@ using Newtonsoft.Json;
 
 namespace SRSManageCommon.DBMoudle
 {
+    [Serializable]
+    /// <summary>
+    /// 超过限制时怎么处理
+    /// </summary>
+    public enum OverStepPlan
+    {
+        StopDvr,
+        DeleteFile,
+    }
     [Table(Name = "StreamDvrPlan")]
     [Index("uk_dvrPlan_DeviceId", "DeviceId", false)]
     [Index("uk_dvrPlan_VhostDomain", "VhostDomain", false)]
@@ -15,80 +24,68 @@ namespace SRSManageCommon.DBMoudle
     /// </summary>
     public class StreamDvrPlan
     {
-        private long _id;
-        private bool _enable;
-        private string? _deviceId;
-        private string? _vhostDomain;
-        private string? _app;
-        private string? _stream;
-        private long? _limitSpace;
-        private ushort? _limitDays;
-        private OverStepPlan? _overStepPlan;
-        private List<DvrDayTimeRange>? _timeRange;
-
-      
         [Column(IsPrimary = true,IsIdentity = true)]
 
         [JsonIgnore]
-        public long Id
+        public int Id
         {
-            get => _id;
-            set => _id = value;
+            get;
+            set;
         }
 
         public bool Enable
         {
-            get => _enable;
-            set => _enable = value;
+            get;
+            set;
         }
 
-        public string? DeviceId
+        public string DeviceId
         {
-            get => _deviceId;
-            set => _deviceId = value;
-        }
-        
+            get;
+            set;
+        } = null!;
 
-        public string? VhostDomain
-        {
-            get => _vhostDomain;
-            set => _vhostDomain = value;
-        }
 
-        public string? App
-        {
-            get => _app;
-            set => _app = value;
-        }
+        public string VhostDomain
+        {  get;
+            set;
+        } = null!;
 
-        public string? Stream
+        public string App
         {
-            get => _stream;
-            set => _stream = value;
-        }
+            get;
+            set;
+        } = null!;
+
+        public string Stream
+        {
+            get;
+            set;
+        } = null!;
 
         public long? LimitSpace
         {
-            get => _limitSpace;
-            set => _limitSpace = value;
+            get;
+            set;
         }
 
-        public ushort? LimitDays
+        public int? LimitDays
         {
-            get => _limitDays;
-            set => _limitDays = value;
+            get;
+            set;
         }
         [Column(MapType = typeof(string))]
         public OverStepPlan? OverStepPlan
         {
-            get => _overStepPlan;
-            set => _overStepPlan = value;
+            get;
+            set;
         }
-
-        public List<DvrDayTimeRange>? TimeRange
+        
+        [Navigate(nameof(DvrDayTimeRange.StreamDvrPlanId))]
+        public List<DvrDayTimeRange> TimeRangeList
         {
-            get => _timeRange;
-            set => _timeRange = value;
-        }
+            get;
+            set;
+        } = null!;
     }
 }

@@ -529,14 +529,14 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="stream"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static Client GetClientInfoByStreamValue(string stream, out ResponseStruct rs)
+        public static OnlineClient GetClientInfoByStreamValue(string stream, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = OrmService.Db.Select<Client>()
+            var ret = OrmService.Db.Select<OnlineClient>()
                 .Where(x => x.ClientType == ClientType.Monitor && x.Stream!.Equals(stream.Trim())).First();
             return ret;
         }
@@ -963,14 +963,14 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="deviceId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<Client> GetOnlinePlayerByDeviceId(string deviceId, out ResponseStruct rs)
+        public static List<OnlineClient> GetOnlinePlayerByDeviceId(string deviceId, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<Client> result = OrmService.Db.Select<Client>()
+            List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true &&
                             x.Device_Id!.Equals(deviceId)).ToList();
             return result;
@@ -981,14 +981,14 @@ namespace SrsApis.SrsManager.Apis
         /// </summary>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<Client> GetOnlinePlayer(out ResponseStruct rs)
+        public static List<OnlineClient> GetOnlinePlayer(out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<Client> result = OrmService.Db.Select<Client>()
+            List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true).ToList();
             return result;
         }
@@ -999,7 +999,7 @@ namespace SrsApis.SrsManager.Apis
         /// </summary>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<Client> GetOnPublishMonitorListByDeviceId(string deviceId, out ResponseStruct rs)
+        public static List<OnlineClient> GetOnPublishMonitorListByDeviceId(string deviceId, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -1013,7 +1013,7 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
-            List<Client> result = OrmService.Db.Select<Client>()
+            List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor &&
                             x.Device_Id!.Equals(deviceId.Trim())).ToList();
             return result;
@@ -1024,14 +1024,14 @@ namespace SrsApis.SrsManager.Apis
         /// </summary>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<Client> GetOnPublishMonitorList(out ResponseStruct rs)
+        public static List<OnlineClient> GetOnPublishMonitorList(out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<Client> result = OrmService.Db.Select<Client>()
+            List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
                 .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor).ToList();
             return result;
         }

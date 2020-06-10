@@ -1,34 +1,38 @@
+#nullable enable
 using System;
-using System.Text.Json.Serialization;
 using FreeSql.DataAnnotations;
+using Newtonsoft.Json;
 using SrsManageCommon;
 
-#nullable enable
 namespace SRSManageCommon.DBMoudle
 {
-    [Index("uk_dvr_clientId", "ClientId", false)]
-    [Index("uk_dvr_stream", "Stream", false)]
-    [Index("uk_dvr_groupTime", "StartTime, EndTime", false)]
-    [Index("uk_dvr_deviceId", "StartTime, EndTime", false)]
+    [Table(Name = "OnlineClient")]
+    [Index("uk_clientId", "ClientId", false)]
+    [Index("uk_stream", "Stream", false)]
+    [Index("uk_isonline", "IsOnline", false)]
+    [Index("uk_updateTime", "UpdateTime", false)]
+    [Index("uk_deviceId", "StartTime, EndTime", false)]
     [Serializable]
-    public class Dvr
+    public class OnlineClient
     {
         private long _id;
         private string? _device_id;
+        private string? _monitorIp;
         private ushort? _clientId;
         private string? _clientIp;
         private ClientType? _clientType;
         private MonitorType? _monitorType;
-        private string? _videoPath;
-        private long? _fileSize;
+        private string? _rtmpUrl;
+        private string? _httpUrl;
+        private string? _rtspUrl;
         private string? _vhost;
+        private string? _app;
         private string? _stream;
         private string? _param;
-        private string? _app;
-        private string? _dir;
-        private long? _duration;
-        private DateTime? _startTime;
-        private DateTime? _endTime;
+        private bool? _isOnline;
+        private bool? _isPlay = false;
+        private string? _pageUrl;
+        private DateTime? _updateTime;
 
         [Column(IsIdentity = true)]
         
@@ -43,6 +47,13 @@ namespace SRSManageCommon.DBMoudle
         {
             get => _device_id;
             set => _device_id = value;
+        }
+
+
+        public string? MonitorIp
+        {
+            get => _monitorIp;
+            set => _monitorIp = value;
         }
 
         public ushort? Client_Id
@@ -70,16 +81,22 @@ namespace SRSManageCommon.DBMoudle
             set => _monitorType = value;
         }
 
-        public string? VideoPath
+        public string? RtmpUrl
         {
-            get => _videoPath;
-            set => _videoPath = value;
+            get => _rtmpUrl;
+            set => _rtmpUrl = value;
         }
 
-        public long? FileSize
+        public string? HttpUrl
         {
-            get => _fileSize;
-            set => _fileSize = value;
+            get => _httpUrl;
+            set => _httpUrl = value;
+        }
+
+        public string? RtspUrl
+        {
+            get => _rtspUrl;
+            set => _rtspUrl = value;
         }
 
         public string? Vhost
@@ -88,10 +105,10 @@ namespace SRSManageCommon.DBMoudle
             set => _vhost = value;
         }
 
-        public string? Dir
+        public string? App
         {
-            get => _dir;
-            set => _dir = value;
+            get => _app;
+            set => _app = value;
         }
 
         public string? Stream
@@ -100,34 +117,34 @@ namespace SRSManageCommon.DBMoudle
             set => _stream = value;
         }
 
-        public string? App
-        {
-            get => _app;
-            set => _app = value;
-        }
-
-        public long? Duration
-        {
-            get => _duration;
-            set => _duration = value;
-        }
-
-        public DateTime? StartTime
-        {
-            get => _startTime;
-            set => _startTime = value;
-        }
-
-        public DateTime? EndTime
-        {
-            get => _endTime;
-            set => _endTime = value;
-        }
-
         public string? Param
         {
             get => _param;
             set => _param = value;
+        }
+
+        public bool? IsOnline
+        {
+            get => _isOnline;
+            set => _isOnline = value;
+        }
+
+        public DateTime? UpdateTime
+        {
+            get => _updateTime;
+            set => _updateTime = value;
+        }
+
+        public bool? IsPlay
+        {
+            get => _isPlay;
+            set => _isPlay = value;
+        }
+
+        public string? PageUrl
+        {
+            get => _pageUrl;
+            set => _pageUrl = value;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SRSApis.SystemAutonomy
     {
         private void doThing(string deviceId, string vhostDomain,Ingest ingest)
         {
-            OrmService.Db.Delete<Client>().Where(x => x.RtspUrl == ingest.Input!.Url).ExecuteAffrows();
+            OrmService.Db.Delete<OnlineClient>().Where(x => x.RtspUrl == ingest.Input!.Url).ExecuteAffrows();
             var retInt = foundProcess(ingest);
             if (retInt > -1)
             {
