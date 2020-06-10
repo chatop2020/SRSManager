@@ -23,8 +23,6 @@ namespace SRSApis.SystemAutonomy
             string dirPath = Path.GetDirectoryName(ffmpegFilePath)!;
             fileName = dirPath+"/ffmpeglogback_" + DateTime.Now.ToString("yyyy-MM-ddTHH-mm-ss") + fileName;
             
-            Console.WriteLine("oldFile:"+ffmpegFilePath);
-            Console.WriteLine("newFile:"+fileName);
             File.Copy(ffmpegFilePath,fileName);
             LinuxShell.Run("cat /dev/null >" + ffmpegFilePath);
         }

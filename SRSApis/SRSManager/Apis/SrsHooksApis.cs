@@ -47,7 +47,6 @@ namespace SrsApis.SrsManager.Apis
             };
             string jsonStr = JsonHelper.ToJson(heartbeat);
             jsonStr = JsonHelper.ConvertJsonString(jsonStr);
-            Console.WriteLine(jsonStr);
             return true;
         }
 

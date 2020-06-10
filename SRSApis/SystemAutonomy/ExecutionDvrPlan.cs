@@ -38,7 +38,7 @@ namespace SRSApis.SystemAutonomy
                 Stream = "",
                 VhostDomain = "",
             };
-            var result = FastUsefulApis.GetDvrPlan(rgdp, out ResponseStruct rs);
+            var result = DvrPlanApis.GetDvrPlan(rgdp, out ResponseStruct rs);
             if (rs.Code == ErrorNumber.None)
             {
                 return result;
@@ -65,11 +65,7 @@ namespace SRSApis.SystemAutonomy
             if (!string.IsNullOrEmpty(dvrApply))
             {
                 dvrStreams = Regex.Split(dvrApply, @"[\s]+").ToList();
-                Console.WriteLine("WantStream:"+plan.App+"/"+plan.Stream);
-                foreach (var s in dvrStreams)
-                {
-                    Console.WriteLine("GetStream:"+s);
-                }
+               
             }
             else
             {
@@ -116,7 +112,7 @@ namespace SRSApis.SystemAutonomy
             foreach (var d in dvrList)
             {
                 if (d == null) continue;
-                Console.WriteLine("deleteDB:"+OrmService.Db.Delete<Dvr>().Where(x => x.Id == d.Id).ExecuteAffrows());
+                OrmService.Db.Delete<Dvr>().Where(x => x.Id == d.Id).ExecuteAffrows();
                 Thread.Sleep(10);
             }
         }
@@ -147,7 +143,6 @@ namespace SRSApis.SystemAutonomy
                         if (File.Exists(retDvrList[i].VideoPath))
                         {
                             File.Delete(retDvrList[i].VideoPath);
-                            Console.WriteLine("deletefile:"+retDvrList[i].VideoPath);
                             Thread.Sleep(30);
                         }
                     }
@@ -190,7 +185,6 @@ namespace SRSApis.SystemAutonomy
                 foreach (var filePath in deleteFileList)
                 {
                     File.Delete(filePath);
-                    Console.WriteLine("deletefile_space:"+filePath);
                     Thread.Sleep(30);
                 }
             }
@@ -231,10 +225,8 @@ namespace SRSApis.SystemAutonomy
             Console.WriteLine("nowDt"+nowDt.ToString("yyyy-MM-dd HH:mm:ss"));
             if (nowDt > workStartDT && nowDt < workEndDT)
             {
-                Console.WriteLine("isTimeRange:"+true);
                 return true;
             }
-            Console.WriteLine("isTimeRange:"+false);
             return false;
         }
 
@@ -251,21 +243,17 @@ namespace SRSApis.SystemAutonomy
                         List<string> retStream = currDvrApplySetting(plan); //获取录制计划对应的dvr实例
                         if (retStream == null) //如果是为，说明dvr不存在
                         {
-                            Console.WriteLine("retStream == null");
                             SrsConfFile.SRSConfClass.Dvr dvr = getOrCreateDvr(plan); //创建一个Dvr
                             if (dvr != null)
                             {
-                                Console.WriteLine("dvr != null");
                                 VhostDvrApis.SetVhostDvr(plan.DeviceId!, plan.VhostDomain!, dvr,
                                     out ResponseStruct rs); //写入对应vhost
                                 if (SystemApis.RefreshSrsObject(plan.DeviceId!, out rs)) //重写srsconf文件
                                 {
-                                    Console.WriteLine("SystemApis.RefreshSrsObject");
                                     GlobalSrsApis.ReloadSrs(plan.DeviceId!, out rs); //重新加载srsconf配置
                                 }
                             }
-
-                            Console.WriteLine("retStream = currDvrApplySetting(plan)");
+                            
                             retStream = currDvrApplySetting(plan); //再获取一次，保证dvr的存在
                         }
 
@@ -285,23 +273,17 @@ namespace SRSApis.SystemAutonomy
                                     }
                                 }
                             }
-                            Console.WriteLine("etStream.Contains(plan.Stream) && plan.Enable");
                             if (plan.LimitSpace != null && plan.LimitSpace > 0) //如果有磁盘限制
                             {
-                                Console.WriteLine("plan.LimitSpace != null && plan.LimitSpace > 0");
                                 decimal planFileSize = getDvrFileSize(plan);
 
                                 if (planFileSize > plan.LimitSpace && plan.OverStepPlan == OverStepPlan.DeleteFile)
                                 {
-                                    Console.WriteLine(
-                                        "planFileSize > plan.LimitSpace && plan.OverStepPlan == OverStepPlan.DeleteFile");
                                     deleteDvrfilesBySpace(plan, planFileSize);
                                     //删除文件
                                 }
                                 else if (planFileSize > plan.LimitSpace && plan.OverStepPlan == OverStepPlan.StopDvr)
                                 {
-                                    Console.WriteLine(
-                                        "planFileSize > plan.LimitSpace && plan.OverStepPlan == OverStepPlan.StopDvr");
                                     //停止dvr
                                     retStream.Remove(plan.App+"/"+plan.Stream);
                                     needwriteConfig = true; //要重写配置
@@ -310,21 +292,21 @@ namespace SRSApis.SystemAutonomy
 
                             if (plan.LimitDays != null && plan.LimitDays > 0) //如果有保存天数限制
                             {
-                                Console.WriteLine("plan.LimitDays != null && plan.LimitDays > 0");
+
                                 var listDays = getDvrFileDataList(plan);
 
                                 if (listDays != null && listDays.Count > plan.LimitDays)
                                 {
-                                    Console.WriteLine("listDays != null && listDays.Count > plan.LimitDays");
+
                                     if (plan.OverStepPlan == OverStepPlan.DeleteFile)
                                     {
-                                        Console.WriteLine("plan.OverStepPlan == OverStepPlan.DeleteFile");
+
                                         deleteDvrFilesByDays(plan, listDays);
                                         //删除文件
                                     }
                                     else if (plan.OverStepPlan == OverStepPlan.StopDvr)
                                     {
-                                        Console.WriteLine("plan.OverStepPlan == OverStepPlan.StopDvr");
+                   
                                         //停止dvr
                                         retStream.Remove(plan.App+"/"+plan.Stream);
                                         needwriteConfig = true; //要重写配置
@@ -335,7 +317,7 @@ namespace SRSApis.SystemAutonomy
                         else if (plan.Enable && !retStream.Contains(plan.App+"/"+plan.Stream)
                         ) //如果plan的enable为true,但是dvr实例中没有stream存在
                         {
-                            Console.WriteLine("plan.Enable && !retStream.Contains(plan.Stream)");
+
                             if (plan.TimeRange != null && plan.TimeRange.Count > 0)
                             {
                                 foreach (DvrDayTimeRange t in plan.TimeRange)
@@ -360,7 +342,7 @@ namespace SRSApis.SystemAutonomy
                         else if (!plan.Enable && retStream.Contains(plan.App+"/"+plan.Stream)
                         ) //如果plan的enable为false,并且存在于dvr实例中，要删除掉自己
                         {
-                            Console.WriteLine("!plan.Enable && retStream.Contains(plan.Stream)");
+
                             retStream.Remove(plan.App+"/"+plan.Stream);
                             needwriteConfig = true; //要重写配置
                         }
@@ -368,14 +350,13 @@ namespace SRSApis.SystemAutonomy
 
                         if (needwriteConfig) //重写配置
                         {
-                            Console.WriteLine("needwriteConfig");
+
                             needwriteConfig = false;
                             SrsConfFile.SRSConfClass.Dvr dvr = VhostDvrApis.GetVhostDvr(plan.DeviceId!, plan.VhostDomain!,
                                 out ResponseStruct rs);
                             SrsManager sm = SystemApis.GetSrsManagerInstanceByDeviceId(plan.DeviceId!);
                             if (dvr == null)
                             {
-                                Console.WriteLine("needwriteConfig.dvr == null");
                                 dvr = new SrsConfFile.SRSConfClass.Dvr();
                                 dvr.Enabled = false;
                                 foreach (var s in retStream)
@@ -394,7 +375,7 @@ namespace SRSApis.SystemAutonomy
                             }
                             else
                             {
-                                Console.WriteLine("needwriteConfig.dvr !!= null");
+     
                                 dvr.Dvr_apply = "";
                                 foreach (var s in retStream)
                                 {
@@ -423,14 +404,12 @@ namespace SRSApis.SystemAutonomy
 
                             if (SystemApis.RefreshSrsObject(plan.DeviceId!, out rs)) //重写srsconf文件
                             {
-                                Console.WriteLine("needwriteConfig.SystemApis.RefreshSrsObject(plan.DeviceId, out rs)");
                                 GlobalSrsApis.ReloadSrs(plan.DeviceId!, out rs); //重新加载srsconf配置
                             }
                         }
                     }
                 }
 
-                Console.WriteLine(" will Thread.Sleep(1000 * 60)");
                 Thread.Sleep(5000);
             }
         }
@@ -442,7 +421,6 @@ namespace SRSApis.SystemAutonomy
             {
                 try
                 {
-                    Console.WriteLine("ExecutionDvrPlan启动");
                     Run();
                 }
                 catch (Exception ex)
