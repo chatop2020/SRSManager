@@ -126,6 +126,7 @@
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.xml
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/bin/Release/netcoreapp3.1/Microsoft.Extensions.Hosting.Abstractions.xml
+/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.csprojAssemblyReference.cache
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.csproj.CoreCompileInputs.cache
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.AssemblyInfoInputs.cache
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.AssemblyInfo.cs
@@ -133,4 +134,3 @@
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.dll
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.pdb
 /Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.genruntimeconfig.cache
-/Users/qiuzhouwei/Projects/SRSManager/Test_FreeSql/obj/Release/netcoreapp3.1/Test_FreeSql.csprojAssemblyReference.cache

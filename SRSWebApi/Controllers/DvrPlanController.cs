@@ -15,8 +15,46 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class DvrPlanController: ControllerBase
     {
+        /// <summary>
+        /// 删除一个录像文件ById（硬删除，立即删除文件，数据库做delete标记）
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/DvrPlan/HardDeleteDvrVideoById")]
+        public JsonResult HardDeleteDvrVideoById(long dvrVideoId)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{dvrVideoId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = DvrPlanApis.HardDeleteDvrVideoById(dvrVideoId,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
+        /// <summary>
+        /// 删除一个录像文件ById（软删除，只做标记，不删除文件，文件在24小时后删除）
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/DvrPlan/SoftDeleteDvrVideoById")]
+        public JsonResult SoftDeleteDvrVideoById(long dvrVideoId)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{dvrVideoId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = DvrPlanApis.SoftDeleteDvrVideoById(dvrVideoId,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
             /// <summary>
-        /// 获取录像文件ByDeviceId
+        /// 获取录像文件(条件灵活)
         /// </summary>
         /// <returns></returns>
         [HttpPost]

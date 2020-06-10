@@ -22,6 +22,15 @@ namespace SrsApis.SrsManager.Apis
             try
             {
                 dvrVideo.Deleted = false;
+                dvrVideo.UpdateTime=DateTime.Now;
+                var onPublishList =
+                    FastUsefulApis.GetOnPublishMonitorListByDeviceId(dvrVideo.Device_Id!, out ResponseStruct rs);
+                var ret = onPublishList.FindLast(x => x.Client_Id == dvrVideo.Client_Id);
+                if (ret != null)
+                {
+                    dvrVideo.ClientIp = ret.MonitorIp;
+                    dvrVideo.MonitorType = ret.MonitorType;
+                }
                 OrmService.Db.Insert(dvrVideo).ExecuteAffrows();
             }
             catch (Exception ex)

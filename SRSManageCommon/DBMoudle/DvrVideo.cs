@@ -31,10 +31,10 @@ namespace SRSManageCommon.DBMoudle
         private bool? _deleted;
         private DateTime? _startTime;
         private DateTime? _endTime;
+        private DateTime? _updateTime;
 
         [Column(IsIdentity = true)]
         
-        [JsonIgnore]
         public long Id
         {
             get => _id;
@@ -136,6 +136,12 @@ namespace SRSManageCommon.DBMoudle
         {
             get => _deleted;
             set => _deleted = value;
+        }
+
+        public DateTime? UpdateTime
+        {
+            get => _updateTime;
+            set => _updateTime = value;
         }
     }
 }

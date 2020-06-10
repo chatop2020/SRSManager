@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml.Schema;
 using SrsManageCommon;
 using SRSManageCommon.ControllerStructs.RequestModules;
@@ -12,6 +13,70 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class DvrPlanApis
     {
+        /// <summary>
+        /// 删除一个录像文件（硬删除，立即删除文件，数据库置Delete）
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool HardDeleteDvrVideoById(long id, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var retSelect = OrmService.Db.Select<DvrVideo>().Where(x => x.Id == id).ToList();
+            var retUpdate=OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, true)
+                .Set(x=>x.UpdateTime,DateTime.Now).Where(x => x.Id == (long)id).ExecuteAffrows();
+            if (retUpdate>0)
+            {
+                foreach (var select in retSelect)
+                {
+                    try
+                    {
+                        File.Delete(select.VideoPath);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+                return true;
+            }
+           
+            return false;
+        }
+        
+        /// <summary>
+        /// 删除一个录像文件（软删除，只做标记不删除文件，文件保留24小时后删除）
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool SoftDeleteDvrVideoById(long id, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+          
+            var retUpdate=OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, true)
+                .Set(x=>x.UpdateTime,DateTime.Now).Where(x => x.Id == (long)id).ExecuteAffrows();
+            if (retUpdate>0)
+           {
+               return true;
+           }
+           
+           return false;
+        }
+        /// <summary>
+        /// 获取录像文件列表
+        /// </summary>
+        /// <param name="rgdv"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
         public static DvrVideoResponseList GetDvrVideoList(ReqGetDvrVideo rgdv, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
@@ -47,6 +112,7 @@ namespace SrsApis.SrsManager.Apis
                     return null!;
                 }
             }
+        
 
 
             long total = -1;
@@ -141,17 +207,19 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            var retDeleteList = OrmService.Db.Delete<StreamDvrPlan>().Where(x => x.Id == id).ExecuteDeleted();
-            if (retDeleteList != null && retDeleteList.Count > 0)
+            var retSelect=OrmService.Db.Select<StreamDvrPlan>().Where(x => x.Id == id).ToList();
+            var retDelete = OrmService.Db.Delete<StreamDvrPlan>().Where(x => x.Id == id).ExecuteAffrows();
+            if (retDelete > 0)
             {
-                foreach (var del in retDeleteList)
+                foreach (var select in retSelect)
                 {
-                    OrmService.Db.Delete<DvrDayTimeRange>().Where(x => x.StreamDvrPlanId == del.Id)
+                    OrmService.Db.Delete<DvrDayTimeRange>().Where(x => x.StreamDvrPlanId == select.Id)
                         .ExecuteAffrows();
                 }
 
-                return true;
+                return true; 
             }
+           
 
             rs.Code = ErrorNumber.SrsDvrPlanNotExists;
             rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
@@ -509,17 +577,23 @@ namespace SrsApis.SrsManager.Apis
 
             try
             {
+                var retSelect = OrmService.Db.Select<StreamDvrPlan>().Where(x =>
+                    x.DeviceId!.Trim().ToLower().Equals(sdp.DeviceId!.Trim().ToLower())
+                    && x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain!.Trim().ToLower())
+                    && x.App!.Trim().ToLower().Equals(sdp.App!.Trim().ToLower())
+                    && x.Stream!.Trim().ToLower().Equals(sdp.Stream!.Trim().ToLower())).ToList();
                 var retDelete = OrmService.Db.Delete<StreamDvrPlan>().Where(x =>
                     x.DeviceId!.Trim().ToLower().Equals(sdp.DeviceId!.Trim().ToLower())
                     && x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain!.Trim().ToLower())
                     && x.App!.Trim().ToLower().Equals(sdp.App!.Trim().ToLower())
-                    && x.Stream!.Trim().ToLower().Equals(sdp.Stream!.Trim().ToLower())).ExecuteDeleted();
-                if (retDelete != null && retDelete.Count > 0)
+                    && x.Stream!.Trim().ToLower().Equals(sdp.Stream!.Trim().ToLower())).ExecuteAffrows();
+
+                if (retDelete > 0)
                 {
-                    foreach (var del in retDelete) //删除子类数据
+                    foreach (var select in retSelect) //删除子类数据
                     {
                         OrmService.Db.Delete<DvrDayTimeRange>()
-                            .Where(x => x.StreamDvrPlanId == del.Id).ExecuteAffrows();
+                            .Where(x => x.StreamDvrPlanId == select.Id).ExecuteAffrows();
                     }
 
                     var retCreate = CreateDvrPlan(sdp, out rs); //创建新的dvr
@@ -530,7 +604,7 @@ namespace SrsApis.SrsManager.Apis
 
                     return false;
                 }
-
+                
                 rs.Code = ErrorNumber.SrsDvrPlanNotExists;
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
                 return false;
