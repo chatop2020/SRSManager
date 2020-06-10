@@ -15,7 +15,25 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class FastUsefulController : ControllerBase
     { 
-       
+        /// <summary>
+        /// 获取onvif设备信息ByIngestInfo
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/GetOnvifMonitorInfoByIngest")]
+        public JsonResult GetOnvifMonitorInfoByIngest(string deviceId,string vhostDomain,string ingestName)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,ingestName});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.GetOnvifMonitorInfoByIngest(deviceId,vhostDomain,ingestName,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
         /// <summary>
         /// 获取流信息ByIngestName
         /// </summary>

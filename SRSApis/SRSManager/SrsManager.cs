@@ -505,7 +505,7 @@ namespace SrsApis.SrsManager
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\npid:(" + SrsPidValue + ")",
             };
-            OrmService.Db.Delete<Client>().Where(x => x.Device_Id!.Equals(SrsDeviceId));
+            OrmService.Db.Delete<Client>().Where(x => x.Device_Id!.Equals(SrsDeviceId)).ExecuteAffrows();
             return true;
         }
 

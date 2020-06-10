@@ -14,6 +14,106 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class FastUsefulApis
     {
+
+        /// <summary>
+        /// 通过ingest获取onvif设备配置
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="vhostDomain"></param>
+        /// <param name="ingestName"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+
+        public static OnvifMonitorStruct GetOnvifMonitorInfoByIngest(string deviceId, string vhostDomain,
+            string ingestName, out ResponseStruct rs)
+        {
+            Console.WriteLine("1");
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            Console.WriteLine("2");
+            var ingest = VhostIngestApis.GetVhostIngest(deviceId, vhostDomain, ingestName, out rs);
+            Console.WriteLine("3");
+            if (ingest == null || string.IsNullOrEmpty(ingest!.Input!.Url))
+            {
+                Console.WriteLine("4");
+                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
+                return null!;
+            }
+            Console.WriteLine("5");
+            string rtspUrl = ingest.Input.Url;
+            string username = "";
+            string password = "";
+            string host = "";
+            Uri uri= new Uri(rtspUrl);
+            string userInfo = uri.UserInfo;
+            if (userInfo.Contains(":"))
+            {
+                Console.WriteLine("6");
+                string[] strArr = userInfo.Split(":", StringSplitOptions.RemoveEmptyEntries);
+                if (strArr.Length == 2)
+                {
+                    username = strArr[0].Trim();
+                    password = strArr[1].Trim();
+                } 
+            }
+            else if(!string.IsNullOrEmpty(userInfo))
+            {
+                Console.WriteLine("7");
+                username = userInfo;
+            }
+
+            host = uri.Host;
+            Console.WriteLine("host:"+host+" username:"+username+" password:"+password);
+            var retOnvif = OnvifMonitorApis.GetOnvifMonitor(host, out rs);
+            Console.WriteLine("8");
+            DiscoveryOnvifMonitors dis = new DiscoveryOnvifMonitors()
+            {
+                IpAddrs = host,
+                Password = password,
+                Username = username,
+            };
+            if (retOnvif == null)
+            {
+                Console.WriteLine("9");
+               
+              var ret=  OnvifMonitorApis.InitMonitors(dis, out rs, true);
+              if (ret != null && ret.Count > 0)
+              {
+                  return ret.FindLast(x => x.Host!.Trim().Equals(host.Trim()))!;
+
+              }
+            
+              return null!;
+            }
+           
+            OnvifMonitorStruct ovm = new OnvifMonitorStruct();
+            ovm.OnvifProfileLimitList = new List<ProfileLimit>();
+            ovm.MediaSourceInfoList = new List<MediaSourceInfo>();
+            ovm.Host = retOnvif.Host;
+            ovm.Password = retOnvif.Password;
+            ovm.Username = retOnvif.Username;
+            ovm.IsInited = retOnvif.IsInited;
+            if (retOnvif.OnvifProfileList != null)
+                foreach (var p in retOnvif.OnvifProfileList)
+                {
+                    ProfileLimit pl = new ProfileLimit();
+                    pl.AbsoluteMove = p.AbsoluteMove;
+                    pl.ContinuousMove = p.ContinuousMove;
+                    pl.RelativeMove = p.RelativeMove;
+                    pl.MediaUrl = p.MediaUrl;
+                    pl.ProfileToken = p.ProfileToken;
+                    pl.PtzMoveSupport = p.PtzMoveSupport;
+                    ovm.OnvifProfileLimitList.Add(pl);
+                }
+
+            if (retOnvif.MediaSourceInfoList != null)
+                ovm.MediaSourceInfoList = retOnvif.MediaSourceInfoList;
+            return ovm;
+        }
         /// <summary>
         /// 获取ingest下的一个流信息
         /// </summary>
@@ -57,13 +157,35 @@ namespace SrsApis.SrsManager.Apis
             try
             {
                 Uri uri = new Uri(retIngest.Engines![0].Output!);
+                Uri uriInput= new Uri(retIngest.Input!.Url!);
+                string userInfo = uriInput.UserInfo;
+                string username = "";
+                string password = "";
+                if (userInfo.Contains(":"))
+                {
+                    string[] strArr = userInfo.Split(":", StringSplitOptions.RemoveEmptyEntries);
+                    if (strArr.Length == 2)
+                    {
+                        username = strArr[0].Trim();
+                        password = strArr[1].Trim();
+                    } 
+                }
+                else if(!string.IsNullOrEmpty(userInfo))
+                {
+                    username = userInfo;
+                }
+                
                 return new SrsLiveStream()
                 {
                     DeviceId = deviceId,
                     IngestName = ingestName,
                     LiveStream = uri.LocalPath,
                     MonitorType = MonitorType.Onvif,
-                    VhostDomain = vhostDomain
+                    VhostDomain = vhostDomain,
+                    IpAddress = uriInput.Host,
+                    Username = username,
+                    Password = password,
+                    
                 };
             }
             catch

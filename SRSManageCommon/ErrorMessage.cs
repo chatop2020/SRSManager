@@ -59,6 +59,7 @@ namespace SrsManageCommon
         SrsStreamNotExists=-5042,//媒体流不存在
         SrsDvrPlanNotExists=-5043,//录制计划不存在
         SrsDvrPlanTimeLimitExcept=-5044,//录制计划中时间异常
+        OnvifMonitorInitExcept=-5045,//onvif设备初始化异常
         SrsGb28181IsDisabled6000=6000, //GB28181服务没有启用
         SrsGb28181SessionOrMediaChannelExists6001 =6001,//SIP会话或媒体通道已存在
         SrsGb28181SessionOrMediaChannelNotExists6002 =6002,//SIP会话或媒体通道不存在
@@ -161,6 +162,8 @@ namespace SrsManageCommon
             ErrorDic[ErrorNumber.SrsStreamNotExists] = "媒体流信息不存在";
             ErrorDic[ErrorNumber.SrsDvrPlanNotExists] = "该录制方案不存在";
             ErrorDic[ErrorNumber.SrsDvrPlanTimeLimitExcept] = "该录制方案中周录制开始时间与结束时间需要大于120秒";
+            ErrorDic[ErrorNumber.OnvifMonitorInitExcept] = "Onvif设备初始化异常";
+            
             
             
 

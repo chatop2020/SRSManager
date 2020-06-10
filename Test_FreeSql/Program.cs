@@ -12,7 +12,7 @@ namespace Test_FreeSql
         static void Main(string[] args)
         {
 
-            string url = "rtmp://127.0.0.1/live/192.168.2.163_profile_201";
+            string url = "rtsp://admin:3987qzwas@192.168.2.163:554/Streaming/Channels/201?transportmode=unicast&profile=Profile_201";
             Uri abc= new Uri(url);
             Console.WriteLine(abc.ToString());
 

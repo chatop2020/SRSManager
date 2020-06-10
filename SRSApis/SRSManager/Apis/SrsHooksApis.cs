@@ -297,6 +297,8 @@ namespace SrsApis.SrsManager.Apis
             }
         }
 
+        
+        
 
         /// <summary>
         /// 当有设备连接时
