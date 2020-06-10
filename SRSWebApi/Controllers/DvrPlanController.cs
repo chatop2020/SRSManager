@@ -19,7 +19,7 @@ namespace SrsWebApi.Controllers
         /// 获取录像文件ByDeviceId
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [AuthVerify]
         [Log]
         [Route("/DvrPlan/GetDvrVideoList")]
