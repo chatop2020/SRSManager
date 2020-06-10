@@ -21,6 +21,7 @@ namespace SrsApis.SrsManager.Apis
         {
             try
             {
+                dvrVideo.Deleted = false;
                 OrmService.Db.Insert(dvrVideo).ExecuteAffrows();
             }
             catch (Exception ex)

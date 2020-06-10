@@ -19,7 +19,6 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-
             bool idFound = !string.IsNullOrEmpty(rgdv.DeviceId);
             bool vhostFound = !string.IsNullOrEmpty(rgdv.VhostDomain);
             bool streamFound = !string.IsNullOrEmpty(rgdv.Stream);
@@ -49,202 +48,32 @@ namespace SrsApis.SrsManager.Apis
                 }
             }
 
+
             long total = -1;
             List<DvrVideo> retList = null!;
-            if (idFound && vhostFound && streamFound && appFound)
-            {
-                if (!isPageQuery)
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                            x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                            && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                            && x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower())
-                            && x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower())).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                            x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                            && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                            && x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower())
-                            && x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower())
-                            && x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime).ToList();
-                    }
-                }
-                else
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                                x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                                && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                                && x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower())
-                                && x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower())).Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                                x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                                && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                                && x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower())
-                                && x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower())
-                                && x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime).Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                }
-            }
 
-            if (idFound && vhostFound && streamFound && !appFound)
+            if (!isPageQuery)
             {
-                if (!isPageQuery)
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                            x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                            && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                            && x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower())).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                            x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                            && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                            && x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower())
-                            && x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime).ToList();
-                    }
-                }
-                else
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                                x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                                && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                                && x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower()))
-                            .Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                                x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                                && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                                && x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower())
-                                && x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime)
-                            .Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                }
+                retList = OrmService.Db.Select<DvrVideo>().Where("1=1")
+                    .WhereIf(idFound, x => x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower()))
+                    .WhereIf(vhostFound, x => x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower()))
+                    .WhereIf(streamFound, x => x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower()))
+                    .WhereIf(isTimeRangeQuery, x => x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime)
+                    .WhereIf(appFound, x => x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower()))
+                    .WhereIf(!(bool) rgdv.IncludeDeleted!, x => x.Deleted == false)
+                    .ToList();
             }
-
-            if (idFound && vhostFound && !streamFound && !appFound)
+            else
             {
-                if (!isPageQuery)
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                            x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                            && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                            x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                            && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                            && x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime).ToList();
-                    }
-                }
-                else
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                                x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                                && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower()))
-                            .Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                                x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                                && x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower())
-                                && x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime)
-                            .Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                }
-            }
-
-            if (idFound && !vhostFound && !streamFound && !appFound)
-            {
-                if (!isPageQuery)
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                            x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                            x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                            && x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime).ToList();
-                    }
-                }
-                else
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                                x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower()))
-                            .Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where(x =>
-                                x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower())
-                                && x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime)
-                            .Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                }
-            }
-
-            if (!idFound && !vhostFound && !streamFound && !appFound)
-            {
-                if (!isPageQuery)
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where("1=1").ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>()
-                            .Where(x => x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime).ToList();
-                    }
-                }
-                else
-                {
-                    if (!isTimeRangeQuery)
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>().Where("1=1").Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                    else
-                    {
-                        retList = OrmService.Db.Select<DvrVideo>()
-                            .Where(x => x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime).Count(out total)
-                            .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!).ToList();
-                    }
-                }
+                retList = OrmService.Db.Select<DvrVideo>().Where("1=1")
+                    .WhereIf(idFound, x => x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower()))
+                    .WhereIf(vhostFound, x => x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower()))
+                    .WhereIf(streamFound, x => x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower()))
+                    .WhereIf(isTimeRangeQuery, x => x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime)
+                    .WhereIf(appFound, x => x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower()))
+                    .WhereIf(!(bool) rgdv.IncludeDeleted!, x => x.Deleted == false).Count(out total)
+                    .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!)
+                    .ToList();
             }
 
             DvrVideoResponseList result = new DvrVideoResponseList();
