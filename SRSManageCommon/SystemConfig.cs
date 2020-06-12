@@ -20,8 +20,8 @@ namespace SrsManageCommon
         private DataType _dbType = DataType.Sqlite;
         private int _dvrPlanExecServiceinterval=1000 * 60;
         private int _keepIngestStreamServiceinterval=1000 * 10;
-        private int _srsAdnffmpegLogMonitorServiceinterval=1000 * 60;
-        private int _srsClientManagerServiceinterval=1000 * 60;
+        private int _srsAdnffmpegLogMonitorServiceinterval=1000 * 60 * 5;
+        private int _srsClientManagerServiceinterval=1000 * 5;
 
         /// <summary>
         /// http端口
