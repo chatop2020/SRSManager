@@ -8,8 +8,8 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class VhostIngestApis
     {
-
-        public static bool OnOrOffIngest(string deviceId, string vhostDomain, string ingestName,bool enable,out ResponseStruct rs)
+        public static bool OnOrOffIngest(string deviceId, string vhostDomain, string ingestName, bool enable,
+            out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -64,6 +64,7 @@ namespace SrsApis.SrsManager.Apis
                     retVhostIngest.Enabled = enable;
                     return true;
                 }
+
                 rs = new ResponseStruct()
                 {
                     Code = ErrorNumber.SrsSubInstanceNotFound,
@@ -77,7 +78,7 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.SrsObjectNotInit,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit],
             };
-            return false; 
+            return false;
         }
 
         /// <summary>
@@ -132,6 +133,7 @@ namespace SrsApis.SrsManager.Apis
 
                 return retVhost.Vingests!;
             }
+
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.SrsObjectNotInit,
@@ -139,7 +141,6 @@ namespace SrsApis.SrsManager.Apis
             };
             return null!;
         }
-        
 
 
         /// <summary>

@@ -975,7 +975,7 @@ namespace SrsConfFile.SRSConfClass
         {
             SectionsName = "input";
         }
-   
+
         public IngestInputType? Type
         {
             get => type;

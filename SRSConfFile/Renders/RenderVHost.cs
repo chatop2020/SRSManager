@@ -802,6 +802,8 @@ namespace SrsConfFile.Renders
         private static void render_ingest_engine(SectionBody scbin, Ingest igs, string instanceName = "")
         {
             if (igs.Engines == null) igs.Engines = new List<IngestTranscodeEngine>();
+            if (null != igs.Engines .Find(s => s.InstanceName == instanceName))
+                return; //filter the same engiest instance
             IngestTranscodeEngine eng = new IngestTranscodeEngine();
             eng.EngineName = instanceName;
             eng.InstanceName = instanceName;
@@ -902,6 +904,8 @@ namespace SrsConfFile.Renders
         private static void render_transcode_engine(SectionBody scbin, Transcode tsc, string instanceName = "")
         {
             if (tsc.Engines == null) tsc.Engines = new List<IngestTranscodeEngine>();
+            if (null != tsc.Engines .Find(s => s.InstanceName == instanceName))
+                return; //filter the same engiest instance
             IngestTranscodeEngine eng = new IngestTranscodeEngine
             {
                 EngineName = instanceName, InstanceName = instanceName, SectionsName = "engine"
@@ -1150,7 +1154,8 @@ namespace SrsConfFile.Renders
         private static void render_ingest(SectionBody scbin, SrsvHostConfClass svcc, string instanceName = "")
         {
             if (svcc.Vingests == null) svcc.Vingests = new List<Ingest>();
-
+            if (null != svcc.Vingests .Find(s => s.InstanceName == instanceName))
+                return; //filter the same ingest instance
             Ingest igs = new Ingest();
 
             igs.IngestName = instanceName;
@@ -1198,7 +1203,8 @@ namespace SrsConfFile.Renders
         private static void render_transcode(SectionBody scbin, SrsvHostConfClass svcc, string instanceName = "")
         {
             if (svcc.Vtranscodes == null) svcc.Vtranscodes = new List<Transcode>();
-
+            if (null != svcc.Vtranscodes .Find(s => s.InstanceName == instanceName))
+                return; //filter the same ingest instance
             Transcode trc = new Transcode();
 
             trc.InstanceName = instanceName;

@@ -16,6 +16,7 @@ namespace Test_SRSConfFile_Parse_Write
             SrsConfigParse.Trim(); //配置去重
             SrsSystemConfClass srs = new SrsSystemConfClass(); //创建SRS配置实例
             SrsConfigParse.Render(SrsConfigParse.RootSection, srs); //写入SRS配置实例
+            SrsConfigParse.Render(SrsConfigParse.RootSection, srs); //写入SRS配置实例
             Console.WriteLine(SrsConfigBuild.Build(srs, "conf/full1.conf")); //重建配置文件，可输出文件
             Console.Read();
             Console.WriteLine("end!");

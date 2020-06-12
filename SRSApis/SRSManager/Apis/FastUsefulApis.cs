@@ -13,7 +13,6 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class FastUsefulApis
     {
-
         /// <summary>
         /// 通过ingest获取onvif设备配置
         /// </summary>
@@ -22,7 +21,6 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="ingestName"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-
         public static OnvifMonitorStruct GetOnvifMonitorInfoByIngest(string deviceId, string vhostDomain,
             string ingestName, out ResponseStruct rs)
         {
@@ -38,24 +36,28 @@ namespace SrsApis.SrsManager.Apis
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
                 return null!;
             }
+
             string rtspUrl = ingest.Input.Url;
             string username = "";
             string password = "";
             string host = "";
-            Uri uri= new Uri(rtspUrl);
-            string userInfo = uri.UserInfo;
-            if (userInfo.Contains(":"))
+            Uri uri = new Uri(rtspUrl);
+            if (!string.IsNullOrEmpty(uri.UserInfo))
             {
-                string[] strArr = userInfo.Split(":", StringSplitOptions.RemoveEmptyEntries);
-                if (strArr.Length == 2)
+                string userInfo = uri.UserInfo;
+                if (userInfo.Contains(":"))
                 {
-                    username = strArr[0].Trim();
-                    password = strArr[1].Trim();
-                } 
-            }
-            else if(!string.IsNullOrEmpty(userInfo))
-            {
-                username = userInfo;
+                    string[] strArr = userInfo.Split(":", StringSplitOptions.RemoveEmptyEntries);
+                    if (strArr.Length == 2)
+                    {
+                        username = strArr[0].Trim();
+                        password = strArr[1].Trim();
+                    }
+                }
+                else if (!string.IsNullOrEmpty(userInfo))
+                {
+                    username = userInfo;
+                }
             }
 
             host = uri.Host;
@@ -68,17 +70,15 @@ namespace SrsApis.SrsManager.Apis
             };
             if (retOnvif == null)
             {
+                var ret = OnvifMonitorApis.InitMonitors(dis, out rs, true);
+                if (ret != null && ret.Count > 0)
+                {
+                    return ret.FindLast(x => x.Host!.Trim().Equals(host.Trim()))!;
+                }
 
-                var ret=  OnvifMonitorApis.InitMonitors(dis, out rs, true);
-              if (ret != null && ret.Count > 0)
-              {
-                  return ret.FindLast(x => x.Host!.Trim().Equals(host.Trim()))!;
-
-              }
-            
-              return null!;
+                return null!;
             }
-           
+
             OnvifMonitorStruct ovm = new OnvifMonitorStruct();
             ovm.OnvifProfileLimitList = new List<ProfileLimit>();
             ovm.MediaSourceInfoList = new List<MediaSourceInfo>();
@@ -103,6 +103,7 @@ namespace SrsApis.SrsManager.Apis
                 ovm.MediaSourceInfoList = retOnvif.MediaSourceInfoList;
             return ovm;
         }
+
         /// <summary>
         /// 获取ingest下的一个流信息
         /// </summary>
@@ -146,7 +147,7 @@ namespace SrsApis.SrsManager.Apis
             try
             {
                 Uri uri = new Uri(retIngest.Engines![0].Output!);
-                Uri uriInput= new Uri(retIngest.Input!.Url!);
+                Uri uriInput = new Uri(retIngest.Input!.Url!);
                 string userInfo = uriInput.UserInfo;
                 string username = "";
                 string password = "";
@@ -157,13 +158,13 @@ namespace SrsApis.SrsManager.Apis
                     {
                         username = strArr[0].Trim();
                         password = strArr[1].Trim();
-                    } 
+                    }
                 }
-                else if(!string.IsNullOrEmpty(userInfo))
+                else if (!string.IsNullOrEmpty(userInfo))
                 {
                     username = userInfo;
                 }
-                
+
                 return new SrsLiveStream()
                 {
                     DeviceId = deviceId,
@@ -174,7 +175,6 @@ namespace SrsApis.SrsManager.Apis
                     IpAddress = uriInput.Host,
                     Username = username,
                     Password = password,
-                    
                 };
             }
             catch
@@ -233,7 +233,6 @@ namespace SrsApis.SrsManager.Apis
             return ingestList;
         }
 
-      
 
         /// <summary>
         /// 对某个vhost启用或停用低时延模式
@@ -536,9 +535,12 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = OrmService.Db.Select<OnlineClient>()
-                .Where(x => x.ClientType == ClientType.Monitor && x.Stream!.Equals(stream.Trim())).First();
-            return ret;
+            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+            {
+                var ret = OrmService.Db.Select<OnlineClient>()
+                    .Where(x => x.ClientType == ClientType.Monitor && x.Stream!.Equals(stream.Trim())).First();
+                return ret;
+            }
         }
 
         /// <summary>
@@ -659,6 +661,8 @@ namespace SrsApis.SrsManager.Apis
                     if (ret)
                     {
                         ret = sm.Start(out rs);
+                        
+                     
                     }
 
                     SrsStartStatus sts = new SrsStartStatus();
@@ -970,10 +974,13 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
-                .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true &&
-                            x.Device_Id!.Equals(deviceId)).ToList();
-            return result;
+            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+            {
+                List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
+                    .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true &&
+                                x.Device_Id!.Equals(deviceId)).ToList();
+                return result;
+            }
         }
 
         /// <summary>
@@ -988,9 +995,12 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
-                .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true).ToList();
-            return result;
+            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+            {
+                List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
+                    .Where(x => x.IsOnline == true && x.ClientType == ClientType.User && x.IsPlay == true).ToList();
+                return result;
+            }
         }
 
 
@@ -1013,10 +1023,13 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
-            List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
-                .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor &&
-                            x.Device_Id!.Equals(deviceId.Trim())).ToList();
-            return result;
+            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+            {
+                List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
+                    .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor &&
+                                x.Device_Id!.Equals(deviceId.Trim())).ToList();
+                return result;
+            }
         }
 
         /// <summary>
@@ -1031,9 +1044,12 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
-                .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor).ToList();
-            return result;
+            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+            {
+                List<OnlineClient> result = OrmService.Db.Select<OnlineClient>()
+                    .Where(x => x.IsOnline == true && x.ClientType == ClientType.Monitor).ToList();
+                return result;
+            }
         }
 
         /// <summary>

@@ -2,7 +2,6 @@ using System;
 using SrsManageCommon;
 using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
-using Common = SRSApis.Common;
 
 namespace SrsApis.SrsManager.Apis
 {
@@ -22,7 +21,7 @@ namespace SrsApis.SrsManager.Apis
             try
             {
                 dvrVideo.Deleted = false;
-                dvrVideo.UpdateTime=DateTime.Now;
+                dvrVideo.UpdateTime = DateTime.Now;
                 var onPublishList =
                     FastUsefulApis.GetOnPublishMonitorListByDeviceId(dvrVideo.Device_Id!, out ResponseStruct rs);
                 var ret = onPublishList.FindLast(x => x.Client_Id == dvrVideo.Client_Id);
@@ -30,8 +29,13 @@ namespace SrsApis.SrsManager.Apis
                 {
                     dvrVideo.ClientIp = ret.MonitorIp;
                     dvrVideo.MonitorType = ret.MonitorType;
+                    dvrVideo.RecordDate = DateTime.Now.ToString("yyyy-MM-dd");
                 }
-                OrmService.Db.Insert(dvrVideo).ExecuteAffrows();
+
+                lock (Common.LockDbObjForDvrVideo)
+                {
+                    OrmService.Db.Insert(dvrVideo).ExecuteAffrows();
+                }
             }
             catch (Exception ex)
             {
@@ -57,7 +61,10 @@ namespace SrsApis.SrsManager.Apis
             };
             string jsonStr = JsonHelper.ToJson(heartbeat);
             jsonStr = JsonHelper.ConvertJsonString(jsonStr);
-            return true;
+            lock (Common.LockDbObjForHeartbeat)
+            {
+                return true;
+            }
         }
 
         /// <summary>
@@ -71,8 +78,12 @@ namespace SrsApis.SrsManager.Apis
             {
                 try
                 {
-                    OrmService.Db.Delete<OnlineClient>()
-                        .Where(x => x.Client_Id == onlineClient.Client_Id && x.ClientIp == onlineClient.ClientIp).ExecuteAffrows();
+                    lock (Common.LockDbObjForOnlineClient)
+                    {
+                        OrmService.Db.Delete<OnlineClient>()
+                            .Where(x => x.Client_Id == onlineClient.Client_Id && x.ClientIp == onlineClient.ClientIp)
+                            .ExecuteAffrows();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -94,12 +105,17 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         private static string getMonitorIpAddressFromStream(string stream)
         {
-            var ret = OrmService.Db.Select<OnlineClient>()
-                .Where(x => x.Stream!.Trim().Equals(stream.Trim()) && x.ClientType == ClientType.Monitor).First();
-            if (ret != null)
+            lock (Common.LockDbObjForOnlineClient)
             {
-                return ret.MonitorIp!;
+                var ret = OrmService.Db.Select<OnlineClient>()
+                    .Where(x => x.Stream!.Trim().Equals(stream.Trim()) && x.ClientType == ClientType.Monitor).First();
+
+                if (ret != null)
+                {
+                    return ret.MonitorIp!;
+                }
             }
+
 
             return "unknow";
         }
@@ -111,14 +127,16 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnPlay(OnlineClient onlineClient)
         {
-            lock (Common.LockObj)
+            if (onlineClient != null && onlineClient.Client_Id != null &&
+                !string.IsNullOrEmpty(onlineClient.Device_Id))
             {
-                if (onlineClient != null && onlineClient.Client_Id != null && !string.IsNullOrEmpty(onlineClient.Device_Id))
+                try
                 {
-                    try
+                    lock (Common.LockDbObjForOnlineClient)
                     {
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.User)
-                            .Set(x => x.IsOnline, true).Set(x => x.IsPlay, true).Set(x => x.Param, onlineClient.Param)
+                            .Set(x => x.IsOnline, true).Set(x => x.IsPlay, true)
+                            .Set(x => x.Param, onlineClient.Param)
                             .Set(x => x.Stream, onlineClient.Stream).Set(x => x.UpdateTime, onlineClient.UpdateTime)
                             .Set(x => x.PageUrl, onlineClient.PageUrl).Set(x => x.MonitorIp,
                                 getMonitorIpAddressFromStream(onlineClient.Stream!))
@@ -139,70 +157,20 @@ namespace SrsApis.SrsManager.Apis
 
                             return false;
                         }
+                    }
 
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
+                    return true;
                 }
-
-                return false;
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
             }
+
+            return false;
         }
 
-        /*/// <summary>
-        /// 客户端播放时
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        public static bool OnPlay(Client client)
-        {
-            lock (Common.LockObj)
-            {
-                if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
-                {
-                    try
-                    {
-                        Client tmpClient = OrmService.Db.Select<Client>()
-                            .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp).First();
-                        if (tmpClient != null)
-                        {
-                            var ret = OrmService.Db.Update<Client>().Set(x => x.ClientType, ClientType.User)
-                                .Set(x => x.IsOnline, true).Set(x => x.IsPlay, true).Set(x => x.Param, client.Param)
-                                .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
-                                .Set(x => x.PageUrl, client.PageUrl).Set(x=>x.MonitorIp,getMonitorIpAddressFromStream(client.Stream!))
-                                .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
-                                .ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                        else
-                        {
-                            client.ClientType = ClientType.User;
-                            client.IsOnline = true;
-                            client.IsPlay = true;
-                            var ret = OrmService.Db.Insert(client).ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
-                }
-
-                return false;
-            }
-        }*/
 
         /// <summary>
         /// 客户端停止播放时
@@ -211,11 +179,12 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnStop(OnlineClient onlineClient)
         {
-            lock (Common.LockObj)
+            if (onlineClient != null && !string.IsNullOrEmpty(onlineClient.Device_Id) &&
+                onlineClient.Client_Id != null)
             {
-                if (onlineClient != null && !string.IsNullOrEmpty(onlineClient.Device_Id) && onlineClient.Client_Id != null)
+                try
                 {
-                    try
+                    lock (Common.LockDbObjForOnlineClient)
                     {
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.User)
                             .Set(x => x.IsOnline, true).Set(x => x.IsPlay, false)
@@ -236,69 +205,21 @@ namespace SrsApis.SrsManager.Apis
 
                             return false;
                         }
+                    }
 
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
+
+                    return true;
                 }
-
-                return false;
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
             }
+
+            return false;
         }
 
-        /*/// <summary>
-        /// 客户端停止播放时
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        public static bool OnStop(Client client)
-        {
-            lock (Common.LockObj)
-            {
-                if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
-                {
-                    try
-                    {
-                        Client tmpClient = OrmService.Db.Select<Client>()
-                            .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp).First();
-                        if (tmpClient != null)
-                        {
-                            var ret = OrmService.Db.Update<Client>().Set(x => x.ClientType, ClientType.User)
-                                .Set(x => x.IsOnline, true).Set(x => x.IsPlay, false)
-                                .Set(x => x.UpdateTime, client.UpdateTime)
-                                .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
-                                .ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                        else
-                        {
-                            client.ClientType = ClientType.User;
-                            client.IsOnline = true;
-                            client.IsPlay = false;
-                            var ret = OrmService.Db.Insert(client).ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
-                }
-
-                return false;
-            }
-        }*/
 
         /// <summary>
         /// 摄像头推流的时候
@@ -307,11 +228,12 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnPublish(OnlineClient onlineClient)
         {
-            lock (Common.LockObj)
+            if (onlineClient != null && !string.IsNullOrEmpty(onlineClient.Device_Id) &&
+                onlineClient.Client_Id != null)
             {
-                if (onlineClient != null && !string.IsNullOrEmpty(onlineClient.Device_Id) && onlineClient.Client_Id != null)
+                try
                 {
-                    try
+                    lock (Common.LockDbObjForOnlineClient)
                     {
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.Monitor)
                             .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, onlineClient.HttpUrl)
@@ -334,71 +256,20 @@ namespace SrsApis.SrsManager.Apis
 
                             return false;
                         }
+                    }
 
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
+                    return true;
                 }
-
-                return false;
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
             }
+
+            return false;
         }
 
-        /*/// <summary>
-        /// 摄像头推流的时候
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        public static bool OnPublish(Client client)
-        {
-            lock (Common.LockObj)
-            {
-                if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
-                {
-                    try
-                    {
-                        Client tmpClient = OrmService.Db.Select<Client>()
-                            .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp).First();
-                        if (tmpClient != null)
-                        {
-                            var ret = OrmService.Db.Update<Client>().Set(x => x.ClientType, ClientType.Monitor)
-                                .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, client.HttpUrl)
-                                .Set(x => x.Param, client.Param)
-                                .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
-                                .Set(x => x.ClientType, ClientType.Monitor)
-                                .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
-                                .ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                        else
-                        {
-                            client.ClientType = ClientType.Monitor;
-                            client.MonitorType=MonitorType.Unknow;
-                            client.IsOnline = true;
-                            var ret = OrmService.Db.Insert(client).ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
-                }
-
-                return false;
-            }
-        }*/
 
         /// <summary>
         /// 摄像头停止推流的时候
@@ -407,18 +278,18 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnUnPublish(OnlineClient onlineClient)
         {
-            lock (Common.LockObj)
+            if (onlineClient != null && !string.IsNullOrEmpty(onlineClient.Device_Id) &&
+                onlineClient.Client_Id != null)
             {
-                if (onlineClient != null && !string.IsNullOrEmpty(onlineClient.Device_Id) && onlineClient.Client_Id != null)
+                try
                 {
-                    try
+                    lock (Common.LockDbObjForOnlineClient)
                     {
                         var ret = OrmService.Db.Update<OnlineClient>()
                             .Set(x => x.IsOnline, false).Set(x => x.UpdateTime, onlineClient.UpdateTime)
                             .Where(x => x.Client_Id == onlineClient.Client_Id &&
                                         x.Device_Id!.Trim() == onlineClient.Device_Id.Trim())
                             .ExecuteAffrows();
-
                         if (ret <= 0)
                         {
                             onlineClient.ClientType = ClientType.Monitor;
@@ -431,67 +302,20 @@ namespace SrsApis.SrsManager.Apis
 
                             return false;
                         }
+                    }
 
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
+
+                    return true;
                 }
-
-                return false;
-            }
-        }
-
-        /*/// <summary>
-        /// 摄像头停止推流的时候
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns></returns>
-        public static bool OnUnPublish(Client client)
-        {
-            lock (Common.LockObj)
-            {
-                if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        Client tmpClient = OrmService.Db.Select<Client>()
-                            .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp).First();
-                        if (tmpClient != null)
-                        {
-                            var ret = OrmService.Db.Update<Client>()
-                                .Set(x => x.IsOnline, false).Set(x => x.UpdateTime, client.UpdateTime)
-                                .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
-                                .ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                        else
-                        {
-                            client.ClientType = ClientType.Monitor;
-                            client.IsOnline = false;
-                            var ret = OrmService.Db.Insert(client).ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
+                    Console.WriteLine(ex.Message);
+                    return false;
                 }
-
-                return false;
             }
-        }*/
+
+            return false;
+        }
 
 
         /// <summary>
@@ -502,11 +326,12 @@ namespace SrsApis.SrsManager.Apis
         /// <returns></returns>
         public static bool OnConnect(OnlineClient onlineClient)
         {
-            lock (Common.LockObj)
+            if (onlineClient != null && !string.IsNullOrEmpty(onlineClient.Device_Id) &&
+                onlineClient.Client_Id != null)
             {
-                if (onlineClient != null && !string.IsNullOrEmpty(onlineClient.Device_Id) && onlineClient.Client_Id != null)
+                try
                 {
-                    try
+                    lock (Common.LockDbObjForOnlineClient)
                     {
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.Monitor)
                             .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, onlineClient.HttpUrl)
@@ -530,73 +355,19 @@ namespace SrsApis.SrsManager.Apis
 
                             return false;
                         }
+                    }
 
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
+
+                    return true;
                 }
-
-                return false;
-            }
-        }
-
-        /*
-        /// <summary>
-        /// 当有设备连接时
-        /// </summary>
-        /// <param name="client"></param>
-        /// <param name="rs"></param>
-        /// <returns></returns>
-        public static bool OnConnect(Client client)
-        {
-            lock (Common.LockObj)
-            {
-                if (client != null && !string.IsNullOrEmpty(client.ClientIp) && client.Client_Id != null)
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        Client tmpClient = OrmService.Db.Select<Client>()
-                            .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp).First();
-                        if (tmpClient != null)
-                        {
-                            var ret = OrmService.Db.Update<Client>().Set(x => x.ClientType, ClientType.Monitor)
-                                .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, client.HttpUrl)
-                                .Set(x => x.Param, client.Param)
-                                .Set(x => x.Stream, client.Stream).Set(x => x.UpdateTime, client.UpdateTime)
-                                .Set(x => x.MonitorIp, client.ClientIp)
-                                .Where(x => x.Client_Id == client.Client_Id && x.ClientIp == client.ClientIp)
-                                .ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                        else
-                        {
-                            client.ClientType = ClientType.Monitor;
-                            client.IsOnline = true;
-                            client.MonitorIp = client.ClientIp;
-                            client.MonitorType = MonitorType.Unknow;
-                            var ret = OrmService.Db.Insert(client).ExecuteAffrows();
-                            if (ret > 0)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        return false;
-                    }
+                    Console.WriteLine(ex.Message);
+                    return false;
                 }
-
-                return false;
             }
-        }*/
+
+            return false;
+        }
     }
 }

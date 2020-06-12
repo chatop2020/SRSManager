@@ -30,5 +30,4 @@ namespace SRSManageCommon.ManageStructs
             set => _ipArray = value;
         }
     }
-
 }

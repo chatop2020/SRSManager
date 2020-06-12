@@ -26,11 +26,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostDash/DeleteVhostDash")]
         public JsonResult DeleteVhostDash(string deviceId, string vhostDomain)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostDashApis.DeleteVhostDash(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -47,11 +48,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostDash/GetVhostDash")]
         public JsonResult GetVhostDash(string deviceId, string vhostDomain)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostDashApis.GetVhostDash(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -69,11 +71,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostDash/SetVhostDash")]
         public JsonResult SetVhostDash(string deviceId, string vhostDomain, Dash dash)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,dash});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain, dash});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostDashApis.SetVhostDash(deviceId, vhostDomain, dash, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

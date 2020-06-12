@@ -2,20 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using FreeSql;
 using SRSManageCommon.ManageStructs;
 
-namespace SrsWebApi
+namespace SrsManageCommon
 {
-   
     /// <summary>
     /// 配置文件类
     /// </summary>
     [Serializable]
-    public class Config
+    public class SystemConfig
     {
         private List<AllowKey> _allowKeys = new List<AllowKey>();
         private ushort _httpPort = 5800;
         private string _password = "password123!@#";
+        private string? _db = "data source=" + Common.WorkPath + "SRSWebApi.db";
+        private DataType _dbType = DataType.Sqlite;
 
         /// <summary>
         /// http端口
@@ -44,7 +46,19 @@ namespace SrsWebApi
             set => _allowKeys = value;
         }
 
-        private string[] getkv(string s, char splitchar)
+        public string? Db
+        {
+            get => _db;
+            set => _db = value;
+        }
+
+        public DataType DbType
+        {
+            get => _dbType;
+            set => _dbType = value;
+        }
+
+        private string[] getkv(string s, string splitchar)
         {
             return s.Split(splitchar, StringSplitOptions.RemoveEmptyEntries);
         }
@@ -55,13 +69,72 @@ namespace SrsWebApi
             foreach (var s in lines)
             {
                 string tmps = s.Trim();
-                if (!tmps.EndsWith(";")) continue;
-                tmps = tmps.Replace(";", "");
-                string[] kv = getkv(tmps, '=');
+                if (!tmps.EndsWith(";") || tmps.StartsWith("#")) continue;
+                tmps = tmps.TrimEnd(';');
+                string[] kv = getkv(tmps, "::");
                 if (kv.Length != 2) continue;
                 kv[0] = kv[0].Trim().ToLower();
                 switch (kv[0])
                 {
+                    case "db":
+                        if (kv.Length == 2)
+                        {
+                            if (!string.IsNullOrEmpty(kv[1]))
+                            {
+                                Db = kv[1].Trim();
+                            }
+                        }
+
+                        break;
+                    case "dbtype":
+                        if (kv.Length == 2)
+                        {
+                            if (!string.IsNullOrEmpty(kv[1]))
+                            {
+                                string tmpStr = kv[1].Trim();
+                                if (tmpStr.ToLower().Contains("mysql"))
+                                {
+                                    DbType = DataType.MySql;
+                                }
+
+                                if (tmpStr.ToLower().Contains("sqlite"))
+                                {
+                                    DbType = DataType.Sqlite;
+                                }
+
+                                if (tmpStr.ToLower().Contains("oracle"))
+                                {
+                                    DbType = DataType.Oracle;
+                                }
+
+                                if (tmpStr.ToLower().Contains("dameng"))
+                                {
+                                    DbType = DataType.Dameng;
+                                }
+
+                                if (tmpStr.ToLower().Contains("sqlserver"))
+                                {
+                                    DbType = DataType.SqlServer;
+                                }
+
+                                if (tmpStr.ToLower().Contains("postagre"))
+                                {
+                                    DbType = DataType.PostgreSQL;
+                                }
+
+                                if (tmpStr.ToLower().Contains("access"))
+                                {
+                                    DbType = DataType.MsAccess;
+                                }
+
+                                if (tmpStr.ToLower().Contains("odbc"))
+                                {
+                                    DbType = DataType.Odbc;
+                                }
+                            }
+                        }
+
+                        break;
                     case "httpport":
 
                         if (kv.Length == 2)
@@ -86,7 +159,7 @@ namespace SrsWebApi
 
                         break;
                     case "allowkey":
-                        string[] kv1 = getkv(kv[1], '\t');
+                        string[] kv1 = getkv(kv[1], "\t");
                         if (kv1.Length > 1)
                         {
                             AllowKey ak = new AllowKey();
@@ -114,8 +187,10 @@ namespace SrsWebApi
         public bool RebuidConfig(string filePath)
         {
             List<string> writeFile = new List<string>();
-            writeFile.Add("httpport=" + HttpPort + ";");
-            writeFile.Add("password=" + Password + ";");
+            writeFile.Add("httpport::" + HttpPort + ";");
+            writeFile.Add("password::" + Password + ";");
+            writeFile.Add("db::" + Db + ";");
+            writeFile.Add("dbtype::" + Enum.GetName(typeof(DataType), this.DbType)!.ToLower() + ";");
             foreach (var ak in _allowKeys)
             {
                 if (ak != null)

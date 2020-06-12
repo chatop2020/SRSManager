@@ -41,7 +41,6 @@ namespace SrsManageCommon
         OnvifMonitorNotInit = -5027, //非onvif设备
         OnvifPtzKeepMoveOnlyUpdownleftright = -5028,
         OnvifPtzMoveExcept = -5029,
-        SystemSessionItWorks = -5029, //session没有过期
         OnvifMonitorListIsNull = -5030, //onvif设备列表为空
         OnvifConfigLoadExcept = -5031, //onvif配置文件读取失败
         OnvifConfigWriteExcept = -5032, // Onvif配置文件写入失败
@@ -54,35 +53,38 @@ namespace SrsManageCommon
         SrsInstanceStreamCasterListenExists = -5038, //SRS的StreamCaster监听端口已经冲突
         SrsInstanceStreamCasterSipListenExists = -5039, //SRS的StreamCaster[Sip]监听端口已经冲突
         SrsInstanceSrtServerListenExists = -5040, //SRS的SrtServer监听端口已经冲突
-        SystemWebApiException =-5041, //WebApi系统级异常
-        SrsClientNotGB28181=-5041, //不是gb28181设备
-        SrsStreamNotExists=-5042,//媒体流不存在
-        SrsDvrPlanNotExists=-5043,//录制计划不存在
-        SrsDvrPlanTimeLimitExcept=-5044,//录制计划中时间异常
-        OnvifMonitorInitExcept=-5045,//onvif设备初始化异常
-        SrsDvrPlanAlreadyExists=-5046, //录制计划已经存在了
-        SystemDataBaseExcept=-5047,//数据库操作异常
-        SystemDataBaseLimited=-5048, //数据库操作受限
-        SrsGb28181IsDisabled6000=6000, //GB28181服务没有启用
-        SrsGb28181SessionOrMediaChannelExists6001 =6001,//SIP会话或媒体通道已存在
-        SrsGb28181SessionOrMediaChannelNotExists6002 =6002,//SIP会话或媒体通道不存在
-        SrsGb28181RtpOutOfPort6003 =6003,//RTP端口数量已经用完
-        SrsGb28181RtpPortModeInvalid6004 =6004,//无效的端口分配方式
-        SrsGb28181InputParamsError6005 =6005,//输入参数错误，参数不能为空
-        SrsGb28181FuncationUnsupported6006 =6006,//此API未被支持
-        SrsGb28181SipNotStarted6007 =6007,//SIP服务没有启用
-        SrsGb28181SipInviteFailed6008 =6008,//SIP INVITE 失败
-        SrsGb28181SipByeFailed6009 =6009,//SIP BYE 失败
-        SrsGb28181SipInviteSucceeded6010 =6010,//INVITE 已调用成功
-        SrsGb28181CreateRtmpRemuxFailed6011 =6011,//创建媒体通道RTMP复合器失败
-        SrsGb28181SipChannelOffline6012 =6012,//SIP设备不在线
-        SrsGb28181SipChannelNotExists6013 =6013,//SIP设备不存在
-        SrsGb28181SipSendSipRawDataFailed6014 =6014,//发送SIP_RAW_DATA失败
-        SrsGb28181SipParseMessageFailed6015 =6015,//SIP消息解析失败
-        SrsGb28181SipPtzControlFailed6016 =6016,//云台控制失败
-        SrsGb28181SipPtzControlButNotInvite6017 =6017,//通道不是INVITE状态，无法控制云台
-        SrsGb28181SipPtzCmdError6018 =6018,//无效的云台命令
-        Other = -6000//其他异常
+        SystemWebApiException = -5041, //WebApi系统级异常
+        SrsClientNotGB28181 = -5041, //不是gb28181设备
+        SrsStreamNotExists = -5042, //媒体流不存在
+        SrsDvrPlanNotExists = -5043, //录制计划不存在
+        SrsDvrPlanTimeLimitExcept = -5044, //录制计划中时间异常
+        OnvifMonitorInitExcept = -5045, //onvif设备初始化异常
+        SrsDvrPlanAlreadyExists = -5046, //录制计划已经存在了
+        SystemDataBaseExcept = -5047, //数据库操作异常
+        SystemDataBaseLimited = -5048, //数据库操作受限
+        SystemSessionItWorks = -5049, //session没有过期
+        SystemDataBaseRecordNotExists = -5050, //记录不存在
+        DvrVideoFileNotExists = -5051, //录制文件不存在
+        SrsGb28181IsDisabled6000 = 6000, //GB28181服务没有启用
+        SrsGb28181SessionOrMediaChannelExists6001 = 6001, //SIP会话或媒体通道已存在
+        SrsGb28181SessionOrMediaChannelNotExists6002 = 6002, //SIP会话或媒体通道不存在
+        SrsGb28181RtpOutOfPort6003 = 6003, //RTP端口数量已经用完
+        SrsGb28181RtpPortModeInvalid6004 = 6004, //无效的端口分配方式
+        SrsGb28181InputParamsError6005 = 6005, //输入参数错误，参数不能为空
+        SrsGb28181FuncationUnsupported6006 = 6006, //此API未被支持
+        SrsGb28181SipNotStarted6007 = 6007, //SIP服务没有启用
+        SrsGb28181SipInviteFailed6008 = 6008, //SIP INVITE 失败
+        SrsGb28181SipByeFailed6009 = 6009, //SIP BYE 失败
+        SrsGb28181SipInviteSucceeded6010 = 6010, //INVITE 已调用成功
+        SrsGb28181CreateRtmpRemuxFailed6011 = 6011, //创建媒体通道RTMP复合器失败
+        SrsGb28181SipChannelOffline6012 = 6012, //SIP设备不在线
+        SrsGb28181SipChannelNotExists6013 = 6013, //SIP设备不存在
+        SrsGb28181SipSendSipRawDataFailed6014 = 6014, //发送SIP_RAW_DATA失败
+        SrsGb28181SipParseMessageFailed6015 = 6015, //SIP消息解析失败
+        SrsGb28181SipPtzControlFailed6016 = 6016, //云台控制失败
+        SrsGb28181SipPtzControlButNotInvite6017 = 6017, //通道不是INVITE状态，无法控制云台
+        SrsGb28181SipPtzCmdError6018 = 6018, //无效的云台命令
+        Other = -6000 //其他异常
     }
 
     /// <summary>
@@ -150,7 +152,7 @@ namespace SrsManageCommon
             ErrorDic[ErrorNumber.SrsGb28181InputParamsError6005] = "输入参数错误，参数不能为空";
             ErrorDic[ErrorNumber.SrsGb28181FuncationUnsupported6006] = "此API未被支持";
             ErrorDic[ErrorNumber.SrsGb28181SipNotStarted6007] = "SIP服务没有启用";
-            ErrorDic[ErrorNumber.SrsGb28181SipInviteFailed6008] = "SIP INVITE 失败"; 
+            ErrorDic[ErrorNumber.SrsGb28181SipInviteFailed6008] = "SIP INVITE 失败";
             ErrorDic[ErrorNumber.SrsGb28181SipByeFailed6009] = "SIP BYE 失败";
             ErrorDic[ErrorNumber.SrsGb28181SipInviteSucceeded6010] = "INVITE 已调用成功";
             ErrorDic[ErrorNumber.SrsGb28181CreateRtmpRemuxFailed6011] = "创建媒体通道RTMP复合器失败";
@@ -169,10 +171,8 @@ namespace SrsManageCommon
             ErrorDic[ErrorNumber.SrsDvrPlanAlreadyExists] = "录制计划已经存在";
             ErrorDic[ErrorNumber.SystemDataBaseExcept] = "数据库操作异常";
             ErrorDic[ErrorNumber.SystemDataBaseLimited] = "数据库操作受限，不允许一次查询数据超过10000条，pageIndex从1开始";
-            
-            
-            
-
+            ErrorDic[ErrorNumber.SystemDataBaseRecordNotExists] = "数据库无此记录";
+            ErrorDic[ErrorNumber.DvrVideoFileNotExists] = "录制文件不存在";
         }
     }
 }

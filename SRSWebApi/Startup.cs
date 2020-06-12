@@ -44,12 +44,10 @@ namespace SRSWebApi
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SRSWebApi", Version = "v1"});
                 //c.IncludeXmlComments(Path.Combine(Program.common.WorkPath, "Edu.Model.xml"));//这里增加model注释，返回值会增加注释：需要Edu.Model项目属性，生成中输出xml文件
                 c.IncludeXmlComments(Path.Combine(Program.CommonFunctions.WorkPath, "Edu.Swagger.xml"));
-      
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-         
-            services.AddControllers().
-                AddJsonOptions(options => //把所有枚举转成string
+
+            services.AddControllers().AddJsonOptions(options => //把所有枚举转成string
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         }
 

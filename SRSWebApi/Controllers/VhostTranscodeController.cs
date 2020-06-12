@@ -28,11 +28,13 @@ namespace SrsWebApi.Controllers
         public JsonResult DeleteVhostTranscodeByTranscodeInstanceName(string deviceId, string vhostDomain,
             string transcodeInstanceName)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,transcodeInstanceName});
+            ResponseStruct rss =
+                CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain, transcodeInstanceName});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostTranscodeApis.DeleteVhostTranscodeByTranscodeInstanceName(deviceId, vhostDomain,
                 transcodeInstanceName, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
@@ -50,11 +52,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostTranscode/GetVhostTranscodeNameList")]
         public JsonResult GetVhostTranscodeNameList(string deviceId, string vhostDomain = "")
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostTranscodeApis.GetVhostTranscodeNameList(deviceId, out ResponseStruct rs, vhostDomain);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -72,11 +75,13 @@ namespace SrsWebApi.Controllers
         [Route("/VhostTranscode/GetVhostTranscode")]
         public JsonResult GetVhostTranscode(string deviceId, string vhostDomain, string transcodeInstanceName)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,transcodeInstanceName});
+            ResponseStruct rss =
+                CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain, transcodeInstanceName});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostTranscodeApis.GetVhostTranscode(deviceId, vhostDomain, transcodeInstanceName,
                 out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
@@ -97,11 +102,13 @@ namespace SrsWebApi.Controllers
         public JsonResult SetVhostTranscode(string deviceId, string vhostDomain, string transcodeInstanceName,
             Transcode transcode)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,transcodeInstanceName,transcode});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[]
+                {deviceId, vhostDomain, transcodeInstanceName, transcode});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostTranscodeApis.SetVhostTranscode(deviceId, vhostDomain, transcodeInstanceName, transcode,
                 out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);

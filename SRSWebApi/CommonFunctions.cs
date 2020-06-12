@@ -3,7 +3,6 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using SrsManageCommon;
 using SRSManageCommon.ManageStructs;
-using Common = SRSApis.Common;
 
 namespace SrsWebApi
 {
@@ -31,13 +30,14 @@ namespace SrsWebApi
                     };
                 }
             }
+
             return new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
         }
-        
+
 
         /// <summary>
         /// 调试模式下不启用授权和session验证
@@ -49,11 +49,6 @@ namespace SrsWebApi
         /// </summary>
         public string BaseUrl = null!;
 
-
-        /// <summary>
-        /// srswebapi配置文件类
-        /// </summary>
-        public Config Conf = new Config();
 
         /// <summary>
         /// 配置文件地址
@@ -76,9 +71,8 @@ namespace SrsWebApi
         /// </summary>
         public string FFmpegBinPath = "./ffmpeg";
 
-       // public string FFmpegBinPath = "/usr/local/bin/ffmpeg";
-       
-      
+        // public string FFmpegBinPath = "/usr/local/bin/ffmpeg";
+
 
         /// <summary>
         /// 获取时间戳(毫秒级)
@@ -89,12 +83,13 @@ namespace SrsWebApi
             return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         }
 
-        private bool checkFFmpegBin(string ffpath="")
+        private bool checkFFmpegBin(string ffpath = "")
         {
             if (string.IsNullOrEmpty(ffpath))
             {
                 ffpath = "ffmpeg";
             }
+
             LinuxShell.Run(ffpath, 1000, out string std, out string err);
             if (!string.IsNullOrEmpty(std))
             {
@@ -102,7 +97,8 @@ namespace SrsWebApi
                 {
                     return true;
                 }
-            }  
+            }
+
             if (!string.IsNullOrEmpty(err))
             {
                 if (err.ToLower().Contains("ffmpeg version"))
@@ -119,24 +115,22 @@ namespace SrsWebApi
         /// </summary>
         public void CommonInit()
         {
-           
             if (!checkFFmpegBin(FFmpegBinPath))
             {
-                Console.WriteLine("FFMPEG不存在，启动异常...,请保证ffmpeg可执行文件存在:"+FFmpegBinPath );
+                Console.WriteLine("FFMPEG不存在，启动异常...,请保证ffmpeg可执行文件存在:" + FFmpegBinPath);
                 return;
             }
 
+            Common.SystemConfig = new SystemConfig();
             WorkPath = Environment.CurrentDirectory + "/";
             ConfPath = WorkPath + "srswebapi.wconf";
-            BaseUrl = "http://*:" + Conf.HttpPort;
-            if (Conf.LoadConfig(ConfPath))
+
+            if (Common.SystemConfig.LoadConfig(ConfPath))
             {
+                BaseUrl = "http://*:" + Common.SystemConfig.HttpPort;
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
-               
-                Common.init_SrsServer();
-
-
+                SRSApis.Common.init_SrsServer();
             }
             else
             {
@@ -166,7 +160,7 @@ namespace SrsWebApi
         /// <returns></returns>
         public bool CheckPassword(string password)
         {
-            return Conf.Password.Trim().Equals(password.Trim());
+            return Common.SystemConfig.Password.Trim().Equals(password.Trim());
         }
 
         /// <summary>
@@ -196,8 +190,9 @@ namespace SrsWebApi
         /// <returns></returns>
         public bool CheckAllow(string ipAddr, string allowKey)
         {
-            if (Conf.AllowKeys == null || Conf.AllowKeys.Count == 0) return true;
-            foreach (var ak in Conf.AllowKeys)
+            if (Common.SystemConfig.AllowKeys == null ||
+                Common.SystemConfig.AllowKeys.Count == 0) return true;
+            foreach (var ak in Common.SystemConfig.AllowKeys)
             {
                 foreach (var ip in ak.IpArray)
                 {

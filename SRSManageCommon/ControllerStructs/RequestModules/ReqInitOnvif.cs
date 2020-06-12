@@ -44,7 +44,7 @@ namespace SRSManageCommon.ControllerStructs.RequestModules
             get => _password;
             set => _password = value;
         }
-        
+
         [JsonIgnore]
 
         /// <summary>

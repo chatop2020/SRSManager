@@ -1,15 +1,18 @@
 using System;
+using System.Collections.Generic;
 
 namespace SRSManageCommon.ControllerStructs.RequestModules
 {
     [Serializable]
-    public class ReqGetDvrVideo:ReqGetDvrPlan
+    public class ReqGetDvrVideo : ReqGetDvrPlan
     {
         private int? _pageIndex;
         private int? _pageSzie;
         private bool? _includeDeleted;
         private DateTime? _startTime;
         private DateTime? _endTime;
+        private List<OrderByStruct>? _orderBy;
+
 
         public int? PageIndex
         {
@@ -39,6 +42,12 @@ namespace SRSManageCommon.ControllerStructs.RequestModules
         {
             get => _endTime;
             set => _endTime = value;
+        }
+
+        public List<OrderByStruct>? OrderBy
+        {
+            get => _orderBy;
+            set => _orderBy = value;
         }
     }
 }

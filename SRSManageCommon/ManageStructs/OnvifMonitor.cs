@@ -320,8 +320,9 @@ namespace SRSManageCommon.ManageStructs
 
                 return false;
             }
-            catch
+            catch (Exception exception)
             {
+                Console.WriteLine(exception.Message + "\r\n" + exception.StackTrace);
                 pos = null!;
                 return false;
             }

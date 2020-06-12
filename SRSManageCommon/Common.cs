@@ -17,7 +17,7 @@ namespace SrsManageCommon
     /// <summary>
     /// 摄像头类型
     /// </summary>
-     [Serializable]
+    [Serializable]
     public enum MonitorType
     {
         Onvif,
@@ -25,10 +25,15 @@ namespace SrsManageCommon
         Webcast,
         Unknow,
     }
+
     public static class Common
     {
         public static string WorkPath = Environment.CurrentDirectory + "/";
-        public static Object LockObj = new object();
+        public static SystemConfig SystemConfig = null!;
+        public static Object LockDbObjForOnlineClient = new object();
+        public static Object LockDbObjForDvrVideo = new object();
+        public static Object LockDbObjForStreamDvrPlan = new object();
+        public static Object LockDbObjForHeartbeat = new object();
 
         public static string? GetIngestRtspMonitorUrlIpAddress(string url)
         {
@@ -36,10 +41,6 @@ namespace SrsManageCommon
             {
                 Uri link = new Uri(url);
                 return link.Host;
-                /*string p = @"(rtsp)://(?<domain>[^(:|/]*)";
-                Regex reg = new Regex(p, RegexOptions.IgnoreCase);
-                Match m = reg.Match(url);
-                return m.Groups["domain"].Value;*/
             }
             catch
             {

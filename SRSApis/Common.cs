@@ -42,42 +42,24 @@ namespace SRSApis
         public static readonly string LogPath = WorkPath + "logs/";
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
         public static List<OnvifInstance> OnvifManagers = new List<OnvifInstance>();
-        public static Object LockObj = new object();
+
         /// <summary>
         /// SrsOnlineClient管理
         /// </summary>
         public static SrsClientManager SrsOnlineClient;
-
         public static SrsAndFFmpegLogMonitor SrsAndFFmpegLogMonitor;
-        public static ExecutionDvrPlan? ExecutionDvrPlan;
         public static KeepIngestStream KeepIngestStream;
+        public static DvrPlanExec? DvrPlanExec;
 
         static Common()
         {
             ErrorMessage.Init();
             Directory.CreateDirectory(LogPath);
             SrsOnlineClient = new SrsClientManager();
-            SrsAndFFmpegLogMonitor= new SrsAndFFmpegLogMonitor();
-           // ExecutionDvrPlan= new ExecutionDvrPlan();
+            SrsAndFFmpegLogMonitor = new SrsAndFFmpegLogMonitor();
+            DvrPlanExec = new DvrPlanExec();
             KeepIngestStream = new KeepIngestStream();
         }
-
-        /*/// <summary>
-        /// 对象克隆
-        /// </summary>
-        /// <param name="RealObject"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static T ObjectClone<T>(T RealObject)
-        {
-            using (Stream objectStream = new MemoryStream())
-            {
-                IFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(objectStream, RealObject);
-                objectStream.Seek(0, SeekOrigin.Begin);
-                return (T) formatter.Deserialize(objectStream);
-            }
-        }*/
 
         /// <summary>
         /// 删除List<T>中null的记录

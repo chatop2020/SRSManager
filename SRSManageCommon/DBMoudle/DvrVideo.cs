@@ -1,5 +1,4 @@
 using System;
-using System.Text.Json.Serialization;
 using FreeSql.DataAnnotations;
 using SrsManageCommon;
 
@@ -7,10 +6,10 @@ using SrsManageCommon;
 namespace SRSManageCommon.DBMoudle
 {
     [Table(Name = "DvrVideo")]
-    [Index("uk_dvr_clientId", "ClientId", false)]
     [Index("uk_dvr_stream", "Stream", false)]
     [Index("uk_dvr_groupTime", "StartTime, EndTime", false)]
-    [Index("uk_dvr_deviceId", "StartTime, EndTime", false)]
+    [Index("uk_dvr_groupFind", "Device_Id, Vhost, Stream, App", false)]
+    [Index("uk_dvr_recordDate", "RecordDate", false)]
     [Serializable]
     public class DvrVideo
     {
@@ -32,9 +31,9 @@ namespace SRSManageCommon.DBMoudle
         private DateTime? _startTime;
         private DateTime? _endTime;
         private DateTime? _updateTime;
+        private string? _recordDate;
 
         [Column(IsIdentity = true)]
-        
         public long Id
         {
             get => _id;
@@ -65,6 +64,7 @@ namespace SRSManageCommon.DBMoudle
             get => _clientType;
             set => _clientType = value;
         }
+
         [Column(MapType = typeof(string))]
         public MonitorType? MonitorType
         {
@@ -142,6 +142,12 @@ namespace SRSManageCommon.DBMoudle
         {
             get => _updateTime;
             set => _updateTime = value;
+        }
+
+        public string? RecordDate
+        {
+            get => _recordDate;
+            set => _recordDate = value;
         }
     }
 }

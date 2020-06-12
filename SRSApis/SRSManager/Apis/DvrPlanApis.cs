@@ -1,18 +1,61 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml.Schema;
 using SrsManageCommon;
 using SRSManageCommon.ControllerStructs.RequestModules;
 using SRSManageCommon.ControllerStructs.ResponseModules;
 using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
-using Common = SRSApis.Common;
 
 namespace SrsApis.SrsManager.Apis
 {
     public static class DvrPlanApis
     {
+        /// <summary>
+        /// 恢复被软删除的录制文件
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static bool UndoSoftDelete(long id, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            DvrVideo retSelect = null!;
+            lock (Common.LockDbObjForDvrVideo)
+            {
+                retSelect = OrmService.Db.Select<DvrVideo>().Where(x => x.Id == id).First();
+                if (retSelect == null)
+                {
+                    rs.Code = ErrorNumber.SystemDataBaseRecordNotExists;
+                    rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SystemDataBaseRecordNotExists];
+                    return false;
+                }
+            }
+
+            if (!File.Exists(retSelect.VideoPath))
+            {
+                rs.Code = ErrorNumber.DvrVideoFileNotExists;
+                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.DvrVideoFileNotExists];
+                return false;
+            }
+
+            lock (Common.LockDbObjForDvrVideo)
+            {
+                var retUpdate = OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, false)
+                    .Set(x => x.UpdateTime, DateTime.Now).Where(x => x.Id == (long) id).ExecuteAffrows();
+                if (retUpdate > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// 删除一个录像文件（硬删除，立即删除文件，数据库置Delete）
         /// </summary>
@@ -26,10 +69,16 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var retSelect = OrmService.Db.Select<DvrVideo>().Where(x => x.Id == id).ToList();
-            var retUpdate=OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, true)
-                .Set(x=>x.UpdateTime,DateTime.Now).Where(x => x.Id == (long)id).ExecuteAffrows();
-            if (retUpdate>0)
+            List<DvrVideo> retSelect = null!;
+            int retUpdate = -1;
+            lock (Common.LockDbObjForDvrVideo)
+            {
+                retSelect = OrmService.Db.Select<DvrVideo>().Where(x => x.Id == id).ToList();
+                retUpdate = OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, true)
+                    .Set(x => x.UpdateTime, DateTime.Now).Where(x => x.Id == (long) id).ExecuteAffrows();
+            }
+
+            if (retUpdate > 0)
             {
                 foreach (var select in retSelect)
                 {
@@ -42,12 +91,13 @@ namespace SrsApis.SrsManager.Apis
                         // ignored
                     }
                 }
+
                 return true;
             }
-           
+
             return false;
         }
-        
+
         /// <summary>
         /// 删除一个录像文件（软删除，只做标记不删除文件，文件保留24小时后删除）
         /// </summary>
@@ -61,16 +111,19 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-          
-            var retUpdate=OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, true)
-                .Set(x=>x.UpdateTime,DateTime.Now).Where(x => x.Id == (long)id).ExecuteAffrows();
-            if (retUpdate>0)
-           {
-               return true;
-           }
-           
-           return false;
+            lock (Common.LockDbObjForDvrVideo)
+            {
+                var retUpdate = OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, true)
+                    .Set(x => x.UpdateTime, DateTime.Now).Where(x => x.Id == (long) id).ExecuteAffrows();
+                if (retUpdate > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
+
         /// <summary>
         /// 获取录像文件列表
         /// </summary>
@@ -89,7 +142,7 @@ namespace SrsApis.SrsManager.Apis
             bool streamFound = !string.IsNullOrEmpty(rgdv.Stream);
             bool appFound = !string.IsNullOrEmpty(rgdv.App);
             bool isPageQuery = (rgdv.PageIndex != null && rgdv.PageIndex >= 1);
-            bool isTimeRangeQuery = (rgdv.StartTime != null && rgdv.EndTime != null);
+            bool haveOrderBy = rgdv.OrderBy != null;
             if (isPageQuery)
             {
                 if (rgdv.PageSize > 10000)
@@ -112,34 +165,56 @@ namespace SrsApis.SrsManager.Apis
                     return null!;
                 }
             }
-        
 
+            string orderBy = "";
+            if (haveOrderBy)
+            {
+                foreach (var order in rgdv.OrderBy!)
+                {
+                    if (order != null)
+                    {
+                        orderBy += order.FieldName + " " + Enum.GetName(typeof(OrderByDir), order.OrderByDir) + ",";
+                    }
+                }
+
+                orderBy = orderBy.TrimEnd(',');
+            }
 
             long total = -1;
             List<DvrVideo> retList = null!;
 
             if (!isPageQuery)
             {
-                retList = OrmService.Db.Select<DvrVideo>().Where("1=1")
-                    .WhereIf(idFound, x => x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower()))
-                    .WhereIf(vhostFound, x => x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower()))
-                    .WhereIf(streamFound, x => x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower()))
-                    .WhereIf(isTimeRangeQuery, x => x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime)
-                    .WhereIf(appFound, x => x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower()))
-                    .WhereIf(!(bool) rgdv.IncludeDeleted!, x => x.Deleted == false)
-                    .ToList();
+                lock (Common.LockDbObjForDvrVideo)
+                {
+                    retList = OrmService.Db.Select<DvrVideo>().Where("1=1")
+                        .WhereIf(idFound, x => x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower()))
+                        .WhereIf(vhostFound, x => x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower()))
+                        .WhereIf(streamFound, x => x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower()))
+                        .WhereIf(rgdv.StartTime != null, x => x.StartTime >= rgdv.StartTime)
+                        .WhereIf(rgdv.EndTime != null, x => x.EndTime <= rgdv.EndTime)
+                        .WhereIf(appFound, x => x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower()))
+                        .WhereIf(!(bool) rgdv.IncludeDeleted!, x => x.Deleted == false)
+                        .OrderBy(orderBy)
+                        .ToList();
+                }
             }
             else
             {
-                retList = OrmService.Db.Select<DvrVideo>().Where("1=1")
-                    .WhereIf(idFound, x => x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower()))
-                    .WhereIf(vhostFound, x => x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower()))
-                    .WhereIf(streamFound, x => x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower()))
-                    .WhereIf(isTimeRangeQuery, x => x.StartTime >= rgdv.StartTime && x.EndTime <= rgdv.EndTime)
-                    .WhereIf(appFound, x => x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower()))
-                    .WhereIf(!(bool) rgdv.IncludeDeleted!, x => x.Deleted == false).Count(out total)
-                    .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!)
-                    .ToList();
+                lock (Common.LockDbObjForDvrVideo)
+                {
+                    retList = OrmService.Db.Select<DvrVideo>().Where("1=1")
+                        .WhereIf(idFound, x => x.Device_Id!.Trim().ToLower().Equals(rgdv.DeviceId!.Trim().ToLower()))
+                        .WhereIf(vhostFound, x => x.Vhost!.Trim().ToLower().Equals(rgdv.VhostDomain!.Trim().ToLower()))
+                        .WhereIf(streamFound, x => x.Stream!.Trim().ToLower().Equals(rgdv.Stream!.Trim().ToLower()))
+                        .WhereIf(rgdv.StartTime != null, x => x.StartTime >= rgdv.StartTime)
+                        .WhereIf(rgdv.EndTime != null, x => x.EndTime <= rgdv.EndTime)
+                        .WhereIf(appFound, x => x.App!.Trim().ToLower().Equals(rgdv.App!.Trim().ToLower()))
+                        .WhereIf(!(bool) rgdv.IncludeDeleted!, x => x.Deleted == false).OrderBy(orderBy)
+                        .Count(out total)
+                        .Page((int) rgdv.PageIndex!, (int) rgdv.PageSize!)
+                        .ToList();
+                }
             }
 
             DvrVideoResponseList result = new DvrVideoResponseList();
@@ -160,30 +235,7 @@ namespace SrsApis.SrsManager.Apis
             result.Request = rgdv;
             return result;
         }
-        /*/// <summary>
-        /// 返回Dvr列表BydeviceId
-        /// </summary>
-        /// <param name="deviceId"></param>
-        /// <param name="rs"></param>
-        /// <returns></returns>
-        public static List<Dvr> GetDvrList(string deviceId, out ResponseStruct rs)
-        {
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-            };
-            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
-            {
-                rs.Code = ErrorNumber.SrsObjectNotInit;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                return null!;
-            }
 
-            return OrmService.Db.Select<Dvr>()
-                .Where(x => x.Device_Id!.Trim().ToLower().Equals(deviceId.Trim().ToLower()))
-                .ToList();
-        }*/
 
         /// <summary>
         /// 通过id删除一个录制计划
@@ -207,19 +259,28 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            var retSelect=OrmService.Db.Select<StreamDvrPlan>().Where(x => x.Id == id).ToList();
-            var retDelete = OrmService.Db.Delete<StreamDvrPlan>().Where(x => x.Id == id).ExecuteAffrows();
+            List<StreamDvrPlan> retSelect = null!;
+            int retDelete = -1;
+            lock (Common.LockDbObjForStreamDvrPlan)
+            {
+                retSelect = OrmService.Db.Select<StreamDvrPlan>().Where(x => x.Id == id).ToList();
+                retDelete = OrmService.Db.Delete<StreamDvrPlan>().Where(x => x.Id == id).ExecuteAffrows();
+            }
+
             if (retDelete > 0)
             {
-                foreach (var select in retSelect)
+                lock (Common.LockDbObjForStreamDvrPlan)
                 {
-                    OrmService.Db.Delete<DvrDayTimeRange>().Where(x => x.StreamDvrPlanId == select.Id)
-                        .ExecuteAffrows();
+                    foreach (var select in retSelect)
+                    {
+                        OrmService.Db.Delete<DvrDayTimeRange>().Where(x => x.StreamDvrPlanId == select.Id)
+                            .ExecuteAffrows();
+                    }
                 }
 
-                return true; 
+                return true;
             }
-           
+
 
             rs.Code = ErrorNumber.SrsDvrPlanNotExists;
             rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
@@ -249,61 +310,20 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
 
-            var retUpdate = OrmService.Db.Update<StreamDvrPlan>().Set(x => x.Enable, enable)
-                .Where(x => x.Id == id)
-                .ExecuteAffrows();
-            if (retUpdate > 0)
-                return true;
+            lock (Common.LockDbObjForStreamDvrPlan)
+            {
+                var retUpdate = OrmService.Db.Update<StreamDvrPlan>().Set(x => x.Enable, enable)
+                    .Where(x => x.Id == id)
+                    .ExecuteAffrows();
+                if (retUpdate > 0)
+                    return true;
+            }
+
             rs.Code = ErrorNumber.SrsDvrPlanNotExists;
             rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
             return false;
         }
 
-        /*/// <summary>
-        /// 获取一个录制计划Byid
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="rs"></param>
-        /// <returns></returns>
-        public static StreamDvrPlan GetDvrPlanById(long id, out ResponseStruct rs)
-        {
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-            };
-            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
-            {
-                rs.Code = ErrorNumber.SrsObjectNotInit;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                return null!;
-            }
-
-            if (id <= 0)
-            {
-                rs.Code = ErrorNumber.FunctionInputParamsError;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
-                return null!;
-            }
-
-            var retSdp = OrmService.Db.Select<StreamDvrPlan>().Where(
-                x => x.Id == id).First();
-            if (retSdp == null)
-            {
-                rs.Code = ErrorNumber.SrsDvrPlanNotExists;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
-                return null!;
-            }
-
-            var rr = OrmService.Db.Select<DvrDayTimeRange>()
-                .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id).ToList();
-            if (rr != null)
-            {
-                retSdp.TimeRange = rr;
-            }
-
-            return retSdp;
-        }*/
 
         public static List<StreamDvrPlan> GetDvrPlanList(ReqGetDvrPlan rgdp, out ResponseStruct rs)
         {
@@ -316,206 +336,20 @@ namespace SrsApis.SrsManager.Apis
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            if (idFound)
-            {
-                var retSrs = SystemApis.GetSrsManagerInstanceByDeviceId(rgdp.DeviceId!);
-                if (retSrs == null)
-                {
-                    rs.Code = ErrorNumber.SrsObjectNotInit;
-                    rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                    return null!;
-                }
-            }
 
-            if (vhostFound)
-            {
-                var retVhost = VhostApis.GetVhostByDomain(rgdp.DeviceId!, rgdp.VhostDomain!, out rs);
-                if (retVhost == null)
-                {
-                    rs.Code = ErrorNumber.SrsSubInstanceNotFound;
-                    rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
-                    return null!;
-                }
-            }
-
-            if (streamFound)
-            {
-                var onPublishList = FastUsefulApis.GetOnPublishMonitorList(out rs);
-                if (onPublishList == null || onPublishList.Count == 0)
-                {
-                    rs.Code = ErrorNumber.SrsStreamNotExists;
-                    rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsStreamNotExists];
-                    return null!;
-                }
-
-                var retPub = onPublishList.FindLast(x =>
-                    x.Device_Id!.Trim().ToLower().Equals(rgdp.DeviceId!.Trim().ToLower()) &&
-                    x.Vhost!.Trim().ToLower().Equals(rgdp.VhostDomain!.Trim().ToLower()) &&
-                    x.Stream!.Trim().ToLower().Equals(rgdp.Stream!.ToLower().Trim()));
-                if (retPub == null)
-                {
-                    rs.Code = ErrorNumber.SrsStreamNotExists;
-                    rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsStreamNotExists];
-                    return null!;
-                }
-            }
-
-            if (idFound && streamFound && vhostFound && appFound)
+            lock (Common.LockDbObjForStreamDvrPlan)
             {
                 /*联同子类一起查出*/
-                return OrmService.Db.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRangeList).Where(x =>
-                        x.DeviceId.Trim().ToLower().Equals(rgdp.DeviceId!.Trim().ToLower())
-                        && x.VhostDomain.Trim().ToLower().Equals(rgdp.VhostDomain!.Trim().ToLower())
-                        && x.Stream.Trim().ToLower().Equals(rgdp.Stream!.Trim().ToLower())
-                        && x.App.Trim().ToLower().Equals(rgdp.App!.Trim().ToLower()))
+                return OrmService.Db.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRangeList)
+                    .WhereIf(idFound == true, x => x.DeviceId.Trim().ToLower().Equals(rgdp.DeviceId!.Trim().ToLower()))
+                    .WhereIf(vhostFound == true,
+                        x => x.VhostDomain.Trim().ToLower().Equals(rgdp.VhostDomain!.Trim().ToLower()))
+                    .WhereIf(appFound == true, x => x.App.Trim().ToLower().Equals(rgdp.App!.Trim().ToLower()))
+                    .WhereIf(streamFound == true, x => x.Stream.Trim().ToLower().Equals(rgdp.Stream!.Trim().ToLower()))
                     .ToList();
                 /*联同子类一起查出*/
             }
-
-            if (idFound && !streamFound && vhostFound && appFound)
-            {
-                /*联同子类一起查出*/
-                return OrmService.Db.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRangeList).Where(x =>
-                        x.DeviceId.Trim().ToLower().Equals(rgdp.DeviceId!.Trim().ToLower())
-                        && x.VhostDomain.Trim().ToLower().Equals(rgdp.VhostDomain!.Trim().ToLower())
-                        && x.App.Trim().ToLower().Equals(rgdp.App!.Trim().ToLower()))
-                    .ToList();
-                /*联同子类一起查出*/
-            }
-
-            if (idFound && !streamFound && !vhostFound && appFound)
-            {
-                /*联同子类一起查出*/
-                return OrmService.Db.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRangeList).Where(x =>
-                        x.DeviceId.Trim().ToLower().Equals(rgdp.DeviceId!.Trim().ToLower())
-                        && x.App.Trim().ToLower().Equals(rgdp.App!.Trim().ToLower()))
-                    .ToList();
-                /*联同子类一起查出*/
-            }
-
-            if (!idFound && !streamFound && !vhostFound && appFound)
-            {
-                /*联同子类一起查出*/
-                return OrmService.Db.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRangeList).Where(
-                    x => x.App.Trim().ToLower().Equals(rgdp.App!.Trim().ToLower())).ToList();
-                /*联同子类一起查出*/
-            }
-
-            if (!idFound && !streamFound && !vhostFound && !appFound)
-            {
-                /*联同子类一起查出*/
-                return OrmService.Db.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRangeList).Where("1=1").ToList();
-                /*联同子类一起查出*/
-            }
-
-            return null!;
         }
-
-        /*/// <summary>
-        /// 获取录制计划
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="rs"></param>
-        /// <returns></returns>
-        public static List<StreamDvrPlan> GetDvrPlan(ReqGetDvrPlan obj, out ResponseStruct rs)
-        {
-            bool idFound = !string.IsNullOrEmpty(obj.DeviceId);
-            bool vhostFound = !string.IsNullOrEmpty(obj.VhostDomain);
-            bool streamFound = !string.IsNullOrEmpty(obj.Stream);
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-            };
-            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
-            {
-                rs.Code = ErrorNumber.SrsObjectNotInit;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                return null!;
-            }
-
-            if (!string.IsNullOrEmpty(obj.DeviceId))
-            {
-                var retSrs = SystemApis.GetSrsManagerInstanceByDeviceId(obj.DeviceId);
-                if (retSrs == null || retSrs.Srs == null)
-                {
-                    rs.Code = ErrorNumber.SrsObjectNotInit;
-                    rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                    return null!;
-                }
-
-                if (!string.IsNullOrEmpty(obj.VhostDomain))
-                {
-                    if (retSrs.Srs.Vhosts == null || retSrs.Srs.Vhosts.Count == 0)
-                    {
-                        rs.Code = ErrorNumber.SrsObjectNotInit;
-                        rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                        return null!;
-                    }
-
-                    var retVhost = VhostApis.GetVhostByDomain(obj.DeviceId, obj.VhostDomain, out rs);
-                    if (retVhost == null)
-                    {
-                        return null!;
-                    }
-
-                    if (!string.IsNullOrEmpty(obj.Stream))
-                    {
-                        var onPublishList = FastUsefulApis.GetOnPublishMonitorList(out rs);
-                        if (onPublishList == null || onPublishList.Count == 0)
-                        {
-                            rs.Code = ErrorNumber.SrsStreamNotExists;
-                            rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsStreamNotExists];
-                            return null!;
-                        }
-                    }
-                }
-            }
-
-            List<StreamDvrPlan> tmpList;
-            if (idFound && !vhostFound && !streamFound)
-            {
-                tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
-                    x => x.DeviceId!.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())).ToList();
-            }
-            else if (idFound && vhostFound && !streamFound)
-            {
-                tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
-                    x => x.DeviceId!.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())
-                         && x.VhostDomain!.Trim().ToLower().Equals(obj.VhostDomain!.Trim().ToLower())).ToList();
-            }
-            else if (idFound && vhostFound && streamFound)
-            {
-                tmpList = OrmService.Db.Select<StreamDvrPlan>().Where(
-                    x => x.DeviceId!.Trim().ToLower().Equals(obj.DeviceId!.Trim().ToLower())
-                         && x.VhostDomain!.Trim().ToLower().Equals(obj.VhostDomain!.Trim().ToLower())
-                         && x.Stream!.Trim().ToLower().Equals(obj.Stream!.Trim().ToLower())).ToList();
-            }
-            else
-            {
-                tmpList = OrmService.Db.Select<StreamDvrPlan>().Where("1=1").ToList();
-            }
-
-            if (tmpList != null)
-            {
-                foreach (var r in tmpList)
-                {
-                    if (r != null)
-                    {
-                        var rr = OrmService.Db.Select<DvrDayTimeRange>()
-                            .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == r.Id).ToList();
-                        if (rr != null)
-                        {
-                            r.TimeRange = rr;
-                        }
-                    }
-                }
-
-                return tmpList;
-            }
-
-            return null!;
-        }*/
 
 
         /// <summary>
@@ -524,14 +358,14 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="sdp"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool SetDvrPlan(StreamDvrPlan sdp, out ResponseStruct rs)
+        public static bool SetDvrPlanById(int id,ReqStreamDvrPlan sdp, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            if (SRSApis.Common.SrsManagers == null || SRSApis.Common.SrsManagers.Count == 0)
             {
                 rs.Code = ErrorNumber.SrsObjectNotInit;
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
@@ -577,25 +411,25 @@ namespace SrsApis.SrsManager.Apis
 
             try
             {
-                var retSelect = OrmService.Db.Select<StreamDvrPlan>().Where(x =>
-                    x.DeviceId!.Trim().ToLower().Equals(sdp.DeviceId!.Trim().ToLower())
-                    && x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain!.Trim().ToLower())
-                    && x.App!.Trim().ToLower().Equals(sdp.App!.Trim().ToLower())
-                    && x.Stream!.Trim().ToLower().Equals(sdp.Stream!.Trim().ToLower())).ToList();
-                var retDelete = OrmService.Db.Delete<StreamDvrPlan>().Where(x =>
-                    x.DeviceId!.Trim().ToLower().Equals(sdp.DeviceId!.Trim().ToLower())
-                    && x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain!.Trim().ToLower())
-                    && x.App!.Trim().ToLower().Equals(sdp.App!.Trim().ToLower())
-                    && x.Stream!.Trim().ToLower().Equals(sdp.Stream!.Trim().ToLower())).ExecuteAffrows();
+                StreamDvrPlan retSelect = null!;
+                int retDelete = -1;
+                lock (Common.LockDbObjForStreamDvrPlan)
+                {
+                    retSelect = OrmService.Db.Select<StreamDvrPlan>().Where(x => x.Id==id).First();
+                    retDelete = OrmService.Db.Delete<StreamDvrPlan>().Where(x => x.Id==id).ExecuteAffrows();
+                }
+
 
                 if (retDelete > 0)
                 {
-                    foreach (var select in retSelect) //删除子类数据
+                    lock (Common.LockDbObjForStreamDvrPlan)
                     {
-                        OrmService.Db.Delete<DvrDayTimeRange>()
-                            .Where(x => x.StreamDvrPlanId == select.Id).ExecuteAffrows();
+                       
+                            OrmService.Db.Delete<DvrDayTimeRange>()
+                                .Where(x => x.StreamDvrPlanId == retSelect.Id).ExecuteAffrows();
+                        
                     }
-
+                    
                     var retCreate = CreateDvrPlan(sdp, out rs); //创建新的dvr
                     if (retCreate)
                     {
@@ -604,7 +438,7 @@ namespace SrsApis.SrsManager.Apis
 
                     return false;
                 }
-                
+
                 rs.Code = ErrorNumber.SrsDvrPlanNotExists;
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
                 return false;
@@ -618,95 +452,6 @@ namespace SrsApis.SrsManager.Apis
             }
         }
 
-        /*/// <summary>
-        /// 修改一个录制计划ByID
-        /// </summary>
-        /// <param name="sdp"></param>
-        /// <param name="rs"></param>
-        /// <returns></returns>
-        public static bool SetDvrPlanById(StreamDvrPlan sdp, out ResponseStruct rs)
-        {
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-            };
-            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
-            {
-                rs.Code = ErrorNumber.SrsObjectNotInit;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                return false;
-            }
-
-            if (sdp.Id <= 0)
-            {
-                rs.Code = ErrorNumber.FunctionInputParamsError;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
-                return false;
-            }
-
-            if (sdp.TimeRange != null)
-            {
-                foreach (var s in sdp.TimeRange)
-                {
-                    if (s.StartTime >= s.EndTime)
-                    {
-                        rs.Code = ErrorNumber.FunctionInputParamsError;
-                        rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
-                        return false;
-                    }
-
-                    if ((s.EndTime - s.StartTime).TotalSeconds <= 120)
-                    {
-                        rs.Code = ErrorNumber.SrsDvrPlanTimeLimitExcept;
-                        rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanTimeLimitExcept];
-
-                        return false;
-                    }
-                }
-            }
-
-            var retSdp = OrmService.Db.Select<StreamDvrPlan>()
-                .Where(x => x.Id == sdp.Id)
-                .First();
-            if (retSdp != null)
-            {
-                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Set(x => x.LimitDays, sdp.LimitDays)
-                    .Set(x => x.LimitSpace != sdp.LimitSpace).Set(x => x.OverStepPlan != sdp.OverStepPlan)
-                    .Set(x => x.Enable != sdp.Enable).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
-                if (retUpdate > 0)
-                {
-                    if (sdp.TimeRange != null)
-                    {
-                        var retDelete = OrmService.Db.Delete<DvrDayTimeRange>()
-                            .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
-                            .ExecuteAffrows();
-                        for (int i = 0; i <= sdp.TimeRange!.Count - 1; i++)
-                        {
-                            sdp.TimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
-                        }
-
-                        var retInsert = OrmService.Db.Insert<List<DvrDayTimeRange>>(sdp.TimeRange)
-                            .ExecuteAffrows();
-                        if (retInsert > 0)
-                            return true;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-
-                    return false;
-                }
-
-                return false;
-            }
-
-            rs.Code = ErrorNumber.SrsDvrPlanNotExists;
-            rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanNotExists];
-
-            return false;
-        }*/
 
         /// <summary>
         /// 创建一个录制计划
@@ -714,14 +459,14 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="sdp"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool CreateDvrPlan(StreamDvrPlan sdp, out ResponseStruct rs)
+        public static bool CreateDvrPlan(ReqStreamDvrPlan sdp, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
+            if (SRSApis.Common.SrsManagers == null || SRSApis.Common.SrsManagers.Count == 0)
             {
                 rs.Code = ErrorNumber.SrsObjectNotInit;
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
@@ -765,11 +510,16 @@ namespace SrsApis.SrsManager.Apis
                 }
             }
 
-            var retSelect = OrmService.Db.Select<StreamDvrPlan>().Where(x =>
-                x.DeviceId!.Trim().ToLower().Equals(sdp.DeviceId!.Trim().ToLower())
-                && x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain!.Trim().ToLower())
-                && x.App!.Trim().ToLower().Equals(sdp.App!.Trim().ToLower())
-                && x.Stream!.Trim().ToLower().Equals(sdp.Stream!.Trim().ToLower())).First();
+            StreamDvrPlan retSelect = null!;
+            lock (Common.LockDbObjForStreamDvrPlan)
+            {
+                retSelect = OrmService.Db.Select<StreamDvrPlan>().Where(x =>
+                    x.DeviceId!.Trim().ToLower().Equals(sdp.DeviceId!.Trim().ToLower())
+                    && x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain!.Trim().ToLower())
+                    && x.App!.Trim().ToLower().Equals(sdp.App!.Trim().ToLower())
+                    && x.Stream!.Trim().ToLower().Equals(sdp.Stream!.Trim().ToLower())).First();
+            }
+
             if (retSelect != null)
             {
                 rs.Code = ErrorNumber.SrsDvrPlanAlreadyExists;
@@ -780,14 +530,39 @@ namespace SrsApis.SrsManager.Apis
 
             try
             {
-                /*联同子类一起插入*/
-                var repo = OrmService.Db.GetRepository<StreamDvrPlan>();
-                repo.DbContextOptions.EnableAddOrUpdateNavigateList = true; //需要手工开启
-                var ret = repo.Insert(sdp);
-                /*联同子类一起插入*/
-                if (ret != null)
+                lock (Common.LockDbObjForStreamDvrPlan)
                 {
-                    return true;
+                   StreamDvrPlan tmpStream =new StreamDvrPlan();
+                   tmpStream.App = sdp.App;
+                   tmpStream.Enable = sdp.Enable;
+                   tmpStream.Stream = sdp.Stream;
+                   tmpStream.DeviceId = sdp.DeviceId;
+                   tmpStream.LimitDays = sdp.LimitDays;
+                   tmpStream.LimitSpace = sdp.LimitSpace;
+                   tmpStream.VhostDomain = sdp.VhostDomain;
+                   tmpStream.OverStepPlan = sdp.OverStepPlan;
+                   tmpStream.TimeRangeList=new List<DvrDayTimeRange>();
+                   if (sdp.TimeRangeList != null && sdp.TimeRangeList.Count > 0)
+                   {
+                       foreach (var tmp in sdp.TimeRangeList)
+                       {
+                           tmpStream.TimeRangeList.Add(new DvrDayTimeRange()
+                           {
+                               EndTime = tmp.EndTime,
+                               StartTime = tmp.StartTime,
+                               WeekDay = tmp.WeekDay,
+                           });
+                       }
+                   }
+                    /*联同子类一起插入*/
+                    var repo = OrmService.Db.GetRepository<StreamDvrPlan>();
+                    repo.DbContextOptions.EnableAddOrUpdateNavigateList = true; //需要手工开启
+                    var ret = repo.Insert(tmpStream);
+                    /*联同子类一起插入*/
+                    if (ret != null)
+                    {
+                        return true;
+                    }
                 }
 
                 return false;
@@ -800,114 +575,5 @@ namespace SrsApis.SrsManager.Apis
                 return false;
             }
         }
-
-        /*/// <summary>
-        /// 修改或新建一个录制计划
-        /// </summary>
-        /// <param name="sdp"></param>
-        /// <param name="rs"></param>
-        /// <returns></returns>
-        public static bool SetDvrPlan(StreamDvrPlan sdp, out ResponseStruct rs)
-        {
-            rs = new ResponseStruct()
-            {
-                Code = ErrorNumber.None,
-                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
-            };
-            if (Common.SrsManagers == null || Common.SrsManagers.Count == 0)
-            {
-                rs.Code = ErrorNumber.SrsObjectNotInit;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                return false;
-            }
-
-            var ret = Common.SrsManagers.FindLast(x =>
-                x.SrsDeviceId.Trim().ToLower().Equals(sdp.DeviceId!.Trim().ToLower()));
-            if (ret == null)
-            {
-                rs.Code = ErrorNumber.SrsObjectNotInit;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                return false;
-            }
-
-            if (ret.Srs.Vhosts == null || ret.Srs.Vhosts.Count == 0)
-            {
-                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
-                return false;
-            }
-
-            if (sdp.TimeRange != null)
-            {
-                foreach (var s in sdp.TimeRange)
-                {
-                    if (s.StartTime >= s.EndTime)
-                    {
-                        rs.Code = ErrorNumber.FunctionInputParamsError;
-                        rs.Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError];
-                        return false;
-                    }
-
-                    if ((s.EndTime - s.StartTime).TotalSeconds <= 120)
-                    {
-                        rs.Code = ErrorNumber.SrsDvrPlanTimeLimitExcept;
-                        rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsDvrPlanTimeLimitExcept];
-
-                        return false;
-                    }
-                }
-            }
-
-            var retVhost =
-                ret.Srs.Vhosts.FindLast(x => x.VhostDomain!.Trim().ToLower().Equals(sdp.VhostDomain!.Trim().ToLower()));
-            if (retVhost == null)
-            {
-                rs.Code = ErrorNumber.SrsSubInstanceNotFound;
-                rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsSubInstanceNotFound];
-                return false;
-            }
-
-            var retSdp = OrmService.Db.Select<StreamDvrPlan>()
-                .Where(x => x.Stream == sdp.Stream && x.App == sdp.App && x.DeviceId == sdp.DeviceId &&
-                            x.VhostDomain == sdp.VhostDomain)
-                .First();
-            if (retSdp != null)
-            {
-                var retUpdate = OrmService.Db.Update<StreamDvrPlan>(sdp).Set(x => x.LimitDays, sdp.LimitDays)
-                    .Set(x => x.LimitSpace != sdp.LimitSpace).Set(x => x.OverStepPlan != sdp.OverStepPlan)
-                    .Set(x => x.Enable != sdp.Enable).Where(x => x.Id == retSdp.Id).ExecuteAffrows();
-                if (retUpdate > 0)
-                {
-                    if (sdp.TimeRange != null)
-                    {
-                        var retDelete = OrmService.Db.Delete<DvrDayTimeRange>()
-                            .Where(x => x.DvrDayTimeRangeStreamDvrPlanId == retSdp.Id)
-                            .ExecuteAffrows();
-                        for (int i = 0; i <= sdp.TimeRange!.Count - 1; i++)
-                        {
-                            sdp.TimeRange[i].DvrDayTimeRangeStreamDvrPlanId = retSdp.Id;
-                        }
-
-                        var retInsert = OrmService.Db.Insert<List<DvrDayTimeRange>>(sdp.TimeRange)
-                            .ExecuteAffrows();
-                        if (retInsert > 0)
-                            return true;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-
-                    return false;
-                }
-
-                return false;
-            }
-
-            var repo = OrmService.Db.GetRepository<StreamDvrPlan>();
-            repo.Insert(sdp);
-            repo.SaveMany(sdp, "DvrDayTimeRange");
-            return true;
-        }*/
     }
 }

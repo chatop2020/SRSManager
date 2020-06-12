@@ -62,7 +62,9 @@ namespace SrsConfFile.Renders
         public static void Render(SectionBody scbin, SrsSystemConfClass sccout, string instanceName = "")
         {
             if (sccout.Stream_casters == null) sccout.Stream_casters = new List<SrsStreamCasterConfClass>();
-
+         
+            if (null != sccout.Stream_casters.Find(s => s.InstanceName == instanceName))
+                return; //filter the same streamcaster instance
             SrsStreamCasterConfClass sccc = new SrsStreamCasterConfClass();
             if (scbin.BodyList != null)
                 foreach (string s in scbin.BodyList)

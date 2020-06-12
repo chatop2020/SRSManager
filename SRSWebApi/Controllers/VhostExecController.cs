@@ -26,11 +26,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostExec/DeleteVhostExec")]
         public JsonResult DeleteVhostExec(string deviceId, string vhostDomain)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostExecApis.DeleteVhostExec(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -47,11 +48,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostExec/GetVhostExec")]
         public JsonResult GetVhostExec(string deviceId, string vhostDomain)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostExecApis.GetVhostExec(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -69,11 +71,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostExec/SetVhostExec")]
         public JsonResult SetVhostExec(string deviceId, string vhostDomain, Exec exec)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,exec});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain, exec});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostExecApis.SetVhostExec(deviceId, vhostDomain, exec, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

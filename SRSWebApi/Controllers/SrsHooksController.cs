@@ -27,7 +27,6 @@ namespace SrsWebApi.Controllers
         [Route("/SrsHooks/Test")]
         public int Test(Object obj)
         {
-          
             //  Console.WriteLine("Test:"+SRSApis.JsonHelper.ToJson(obj));
             return 0;
         }
@@ -132,7 +131,7 @@ namespace SrsWebApi.Controllers
                 Dir = Path.GetDirectoryName(dvr.File),
             };
 
-            FileInfo dvrFile= new FileInfo(dvr.File);
+            FileInfo dvrFile = new FileInfo(dvr.File);
             tmpDvrVideo.FileSize = dvrFile.Length;
             if (FFmpegGetDuration.GetDuration(Program.CommonFunctions.FFmpegBinPath, dvr.File!, out long duration))
             {

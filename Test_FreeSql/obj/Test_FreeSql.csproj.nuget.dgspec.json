@@ -156,7 +156,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj": {
+                "projectPath": "/Users/qiuzhouwei/Projects/SRSManager/SRSManageCommon/SRSManageCommon.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

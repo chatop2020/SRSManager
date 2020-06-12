@@ -35,7 +35,6 @@ namespace SRSManageCommon.DBMoudle
         private DateTime? _updateTime;
 
         [Column(IsIdentity = true)]
-        
         [JsonIgnore]
         public long Id
         {
@@ -74,6 +73,7 @@ namespace SRSManageCommon.DBMoudle
             get => _clientType;
             set => _clientType = value;
         }
+
         [Column(MapType = typeof(string))]
         public MonitorType? MonitorType
         {

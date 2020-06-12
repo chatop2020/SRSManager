@@ -7,7 +7,6 @@ using SRSManageCommon.ControllerStructs.RequestModules;
 using SRSManageCommon.ControllerStructs.ResponseModules;
 using SRSManageCommon.ManageStructs;
 using SrsWebApi.Attributes;
-using Common = SRSApis.Common;
 
 namespace SrsWebApi.Controllers
 {
@@ -39,11 +38,12 @@ namespace SrsWebApi.Controllers
         [Route("/Allow/RefreshSession")]
         public JsonResult RefreshSession([FromBody] Session request)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{request});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {request});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             string remoteIpaddr = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
             if (Program.CommonFunctions.CheckAllow(remoteIpaddr, request.AllowKey))
             {
@@ -105,11 +105,12 @@ namespace SrsWebApi.Controllers
         [Route("/Allow/GetSession")]
         public JsonResult GetSession([FromBody] ReqGetSession request)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{request});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {request});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             string remoteIpaddr = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
             string allowKey = request.AllowKey;
             if (Program.CommonFunctions.CheckAllow(remoteIpaddr, allowKey))
@@ -142,21 +143,22 @@ namespace SrsWebApi.Controllers
         [Route("/Allow/SetAllowByKey")]
         public JsonResult SetAllowByKey([FromBody] ReqSetOrAddAllow request)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{request});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {request});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             if (Program.CommonFunctions.CheckPassword(request.Password))
             {
                 bool found = false;
-                for (int i = 0; i <= Program.CommonFunctions.Conf.AllowKeys.Count - 1; i++)
+                for (int i = 0; i <= Common.SystemConfig.AllowKeys.Count - 1; i++)
                 {
-                    if (Program.CommonFunctions.Conf.AllowKeys[i].Key.Trim().ToLower()
+                    if (Common.SystemConfig.AllowKeys[i].Key.Trim().ToLower()
                         .Equals(request.Allowkey.Key.Trim().ToLower()))
                     {
-                        Program.CommonFunctions.Conf.AllowKeys[i] = request.Allowkey;
-                        if (Program.CommonFunctions.Conf.RebuidConfig(Program.CommonFunctions.ConfPath))
+                        Common.SystemConfig.AllowKeys[i] = request.Allowkey;
+                        if (Common.SystemConfig.RebuidConfig(Program.CommonFunctions.ConfPath))
                         {
                             found = true;
                         }
@@ -213,21 +215,22 @@ namespace SrsWebApi.Controllers
         [Route("/Allow/DelAllowByKey")]
         public JsonResult DelAllowByKey([FromBody] ReqDelAllow request)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{request});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {request});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             if (Program.CommonFunctions.CheckPassword(request.Password))
             {
                 bool found = false;
-                for (int i = 0; i <= Program.CommonFunctions.Conf.AllowKeys.Count - 1; i++)
+                for (int i = 0; i <= Common.SystemConfig.AllowKeys.Count - 1; i++)
                 {
-                    if (Program.CommonFunctions.Conf.AllowKeys[i].Key.Trim().ToLower()
+                    if (Common.SystemConfig.AllowKeys[i].Key.Trim().ToLower()
                         .Equals(request.Key.Trim().ToLower()))
                     {
-                        Program.CommonFunctions.Conf.AllowKeys[i] = null!;
-                        if (Program.CommonFunctions.Conf.RebuidConfig(Program.CommonFunctions.ConfPath))
+                        Common.SystemConfig.AllowKeys[i] = null!;
+                        if (Common.SystemConfig.RebuidConfig(Program.CommonFunctions.ConfPath))
                         {
                             found = true;
                         }
@@ -238,7 +241,7 @@ namespace SrsWebApi.Controllers
 
                 if (found)
                 {
-                    Common.RemoveNull(Program.CommonFunctions.Conf.AllowKeys);
+                    SRSApis.Common.RemoveNull(Common.SystemConfig.AllowKeys);
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.None,
@@ -286,15 +289,16 @@ namespace SrsWebApi.Controllers
         [Route("Allow/AddAllow")]
         public JsonResult AddAllow([FromBody] ReqSetOrAddAllow request)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{request});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {request});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             JsonResult result;
             if (Program.CommonFunctions.CheckPassword(request.Password))
             {
-                var obj = Program.CommonFunctions.Conf.AllowKeys.FindLast(x =>
+                var obj = Common.SystemConfig.AllowKeys.FindLast(x =>
                     x.Key.Trim().ToLower().Equals(request.Allowkey.Key.Trim().ToLower()));
 
                 if (obj != null)
@@ -310,7 +314,7 @@ namespace SrsWebApi.Controllers
                 }
 
                 if (string.IsNullOrEmpty(request.Allowkey.Key.Trim()) ||
-                    !SrsManageCommon.Common.IsUuidByError(request.Allowkey.Key))
+                    !Common.IsUuidByError(request.Allowkey.Key))
                 {
                     ResponseStruct rs = new ResponseStruct()
                     {
@@ -322,8 +326,8 @@ namespace SrsWebApi.Controllers
                     return result;
                 }
 
-                Program.CommonFunctions.Conf.AllowKeys.Add(request.Allowkey);
-                if (Program.CommonFunctions.Conf.RebuidConfig(Program.CommonFunctions.ConfPath))
+                Common.SystemConfig.AllowKeys.Add(request.Allowkey);
+                if (Common.SystemConfig.RebuidConfig(Program.CommonFunctions.ConfPath))
                 {
                     ResponseStruct rs = new ResponseStruct()
                     {
@@ -370,16 +374,17 @@ namespace SrsWebApi.Controllers
         [Route("Allow/GetAllows")]
         public JsonResult GetAllows([FromBody] ReqGetAllows request)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{request});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {request});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             if (Program.CommonFunctions.CheckPassword(request.Password))
             {
                 AllowListModule result = new AllowListModule()
                 {
-                    AllowKeys = Program.CommonFunctions.Conf.AllowKeys,
+                    AllowKeys = Common.SystemConfig.AllowKeys,
                 };
                 var result2 = new JsonResult(result);
                 result2.StatusCode = (int) HttpStatusCode.OK;

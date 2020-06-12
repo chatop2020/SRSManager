@@ -42,7 +42,6 @@ namespace SrsWebApi.Attributes
             }
             catch
             {
-                
             }
         }
 
@@ -70,7 +69,6 @@ namespace SrsWebApi.Attributes
             }
             catch
             {
-                
             }
         }
     }

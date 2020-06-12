@@ -7,7 +7,7 @@ namespace SrsConfFile.SRSConfClass
     public class SrsConfBase
     {
         private string? sectionsName;
-      
+
         [JsonIgnore]
         public string? SectionsName
         {

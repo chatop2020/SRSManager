@@ -52,7 +52,6 @@ namespace SRSManageCommon.ManageStructs
                     // ignored
                 }
             }
-          
         }
 
         public string? App

@@ -26,11 +26,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostCluster/DeleteVhostCluster")]
         public JsonResult DeleteVhostCluster(string deviceId, string vhostDomain)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostClusterApis.DeleteVhostCluster(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -47,11 +48,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostCluster/GetVhostCluster")]
         public JsonResult GetVhostCluster(string deviceId, string vhostDomain)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostClusterApis.GetVhostCluster(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -69,11 +71,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostCluster/SetVhostCluster")]
         public JsonResult SetVhostCluster(string deviceId, string vhostDomain, Cluster cluster)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,cluster});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain, cluster});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostClusterApis.SetVhostCluster(deviceId, vhostDomain, cluster, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

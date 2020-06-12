@@ -26,11 +26,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostPlay/DeleteVhostPlay")]
         public JsonResult DeleteVhostPlay(string deviceId, string vhostDomain)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostPlayApis.DeleteVhostPlay(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -47,11 +48,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostPlay/GetVhostPlay")]
         public JsonResult GetVhostPlay(string deviceId, string vhostDomain)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostPlayApis.GetVhostPlay(deviceId, vhostDomain, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
@@ -69,11 +71,12 @@ namespace SrsWebApi.Controllers
         [Route("/VhostPlay/SetVhostPlay")]
         public JsonResult SetVhostPlay(string deviceId, string vhostDomain, Play play)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[]{deviceId,vhostDomain,play});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, vhostDomain, play});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
+
             var rt = VhostPlayApis.SetVhostPlay(deviceId, vhostDomain, play, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }

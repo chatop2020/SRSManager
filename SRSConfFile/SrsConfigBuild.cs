@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using SrsConfFile.SRSConfClass;
+using SrsManageCommon;
 
 namespace SrsConfFile
 {
@@ -259,7 +260,7 @@ namespace SrsConfFile
                 object? obj = p.GetValue(o);
                 if (obj == null) continue;
                 if (p.Name.ToLower().Trim() == "sectionsname" || p.Name.Trim().ToLower() == "instancename" ||
-                    p.Name.ToLower().Trim() == "ingestname")                       
+                    p.Name.ToLower().Trim() == "ingestname")
                 {
                     continue;
                 }
@@ -724,6 +725,7 @@ namespace SrsConfFile
 
         public static string Build(SrsSystemConfClass sccout, string filepath = "")
         {
+      
             string output_heartbeat = "";
             string output_httpserver = "";
             string output_httpapi = "";
@@ -823,6 +825,7 @@ namespace SrsConfFile
                     if (sccout.Stream_casters != null)
                         foreach (SrsStreamCasterConfClass s in sccout.Stream_casters)
                         {
+                            
                             List<Type> types = new List<Type>();
                             types.Add(typeof(CasterEnum?));
                             write_StreamCaster(s, out output_streamcaster, 1, types);

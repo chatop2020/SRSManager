@@ -22,7 +22,6 @@ namespace SrsWebApi
         public static void Main(string[] args)
         {
             CommonFunctions.CommonInit();
-            Console.WriteLine(CommonFunctions.GetTimeStampMilliseconds());
             CreateHostBuilder(args).Build().Run();
         }
 

@@ -2242,7 +2242,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "12.0.3",
+          "SRSManageCommon": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SRSConfFile.dll": {}

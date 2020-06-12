@@ -10,9 +10,14 @@ namespace SRSApis.SystemAutonomy
 {
     public class KeepIngestStream
     {
-        private void doThing(string deviceId, string vhostDomain,Ingest ingest)
+        private int interval = 1000 * 10;
+        private void doThing(string deviceId, string vhostDomain, Ingest ingest)
         {
-            OrmService.Db.Delete<OnlineClient>().Where(x => x.RtspUrl == ingest.Input!.Url).ExecuteAffrows();
+            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+            {
+                OrmService.Db.Delete<OnlineClient>().Where(x => x.RtspUrl == ingest.Input!.Url).ExecuteAffrows();
+            }
+
             var retInt = foundProcess(ingest);
             if (retInt > -1)
             {
@@ -26,28 +31,31 @@ namespace SRSApis.SystemAutonomy
                     // ignored
                 }
             }
+
             ResponseStruct rs = null!;
-            VhostIngestApis.OnOrOffIngest(deviceId, vhostDomain, ingest.IngestName!, false,out  rs);
+            VhostIngestApis.OnOrOffIngest(deviceId, vhostDomain, ingest.IngestName!, false, out rs);
             SystemApis.RefreshSrsObject(deviceId, out rs);
             Thread.Sleep(100);
-            VhostIngestApis.OnOrOffIngest(deviceId, vhostDomain, ingest.IngestName!, true,out  rs);
+            VhostIngestApis.OnOrOffIngest(deviceId, vhostDomain, ingest.IngestName!, true, out rs);
             SystemApis.RefreshSrsObject(deviceId, out rs);
         }
-        
+
         private int foundProcess(Ingest ingest)
         {
             string url = ingest.Input!.Url!.Replace("&", @"\&");
-            string cmd = "ps  -aux |grep " + url+ "|grep -v grep |awk '{print $2}'";
+            string cmd = "ps  -aux |grep " + url + "|grep -v grep |awk '{print $2}'";
             LinuxShell.Run(cmd, 1000, out string sdt, out string err);
             if (string.IsNullOrEmpty(sdt) && string.IsNullOrEmpty(err))
             {
                 return -1;
             }
-            if (int.TryParse(sdt, out int i) )
+
+            if (int.TryParse(sdt, out int i))
             {
                 return i;
             }
-            if (int.TryParse(err, out int j) )
+
+            if (int.TryParse(err, out int j))
             {
                 return j;
             }
@@ -55,25 +63,28 @@ namespace SRSApis.SystemAutonomy
             return -1;
         }
 
-        private bool ingestIsDead(string deviceId,Ingest ingest)
+        private bool ingestIsDead(string deviceId, Ingest ingest)
         {
-            var onPublishList = FastUsefulApis.GetOnPublishMonitorListByDeviceId(deviceId,out ResponseStruct rs);
+            var onPublishList = FastUsefulApis.GetOnPublishMonitorListByDeviceId(deviceId, out ResponseStruct rs);
             if (onPublishList == null || onPublishList.Count == 0)
             {
                 return true;
             }
 
-            var client=onPublishList.FindLast(x => x.RtspUrl!.Trim() == ingest.Input!.Url!.Trim());
+            var client = onPublishList.FindLast(x => x.RtspUrl!.Trim() == ingest.Input!.Url!.Trim());
             if (client != null)
             {
-                if (client.IsOnline==false)
+                if (client.IsOnline == false)
                 {
                     return true;
                 }
+
                 return false;
             }
+
             return true;
         }
+
         private void Run()
         {
             while (true)
@@ -96,14 +107,16 @@ namespace SRSApis.SystemAutonomy
                                 if (ingest.Enabled == false) continue;
                                 if (ingestIsDead(dev, ingest))
                                 {
-                                    doThing(dev,vhost.InstanceName!,ingest);
+                                    doThing(dev, vhost.InstanceName!, ingest);
                                 }
+
                                 Thread.Sleep(30);
                             }
                         }
                     }
                 }
-                Thread.Sleep(1000*10);
+
+                Thread.Sleep(interval);
             }
         }
 
@@ -114,6 +127,7 @@ namespace SRSApis.SystemAutonomy
             {
                 try
                 {
+                    LogWriter.WriteLog("启动Ingest守护服务...(循环间隔：" + interval + "ms)");
                     Run();
                 }
                 catch (Exception ex)

@@ -120,17 +120,19 @@ namespace SrsApis.SrsManager
             {
                 Directory.CreateDirectory(SrsWorkPath + SrsDeviceId);
             }
-            if (!Directory.Exists(SrsWorkPath + SrsDeviceId+"/wwwroot"))
+
+            if (!Directory.Exists(SrsWorkPath + SrsDeviceId + "/wwwroot"))
             {
-                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId+"/wwwroot");
+                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId + "/wwwroot");
             }
-            if (!Directory.Exists(SrsWorkPath + SrsDeviceId+"/ffmpegLog"))
+
+            if (!Directory.Exists(SrsWorkPath + SrsDeviceId + "/ffmpegLog"))
             {
-                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId+"/ffmpegLog");
+                Directory.CreateDirectory(SrsWorkPath + SrsDeviceId + "/ffmpegLog");
             }
+
             if (File.Exists(_srsConfigPath) && File.Exists(SrsWorkPath + "srs"))
             {
-                
                 return true;
             }
 
@@ -238,9 +240,9 @@ namespace SrsApis.SrsManager
                 Srs.Heartbeat.Device_id = SrsManageCommon.Common.AddDoubleQuotation(SrsDeviceId !);
                 Srs.Heartbeat.Enabled = true;
                 Srs.Heartbeat.SectionsName = "heartbeat";
-                Srs.Heartbeat.Interval = 5; //按秒计
+                Srs.Heartbeat.Interval = 60; //按秒计
                 Srs.Heartbeat.Summaries = true;
-                Srs.Heartbeat.Url = "http://127.0.0.1:5000/api/v1/heartbeat";
+                Srs.Heartbeat.Url = "http://127.0.0.1:5800/SrsHooks/OnHeartbeat";
                 Srs.Http_server = new SrsHttpServerConfClass();
                 Srs.Http_server.Enabled = true;
                 Srs.Http_server.Dir = SrsWorkPath + SrsDeviceId + "/wwwroot";
@@ -251,6 +253,17 @@ namespace SrsApis.SrsManager
                 SrsvHostConfClass vhost = new SrsvHostConfClass();
                 vhost.SectionsName = "vhost";
                 vhost.VhostDomain = "__defaultVhost__";
+                vhost.Vhttp_hooks = new HttpHooks();
+                vhost.Vhttp_hooks!.Enabled = true;
+                vhost.Vhttp_hooks!.On_connect = "http://127.0.0.1:5800/SrsHooks/OnConnect";
+                vhost.Vhttp_hooks!.On_publish = "http://127.0.0.1:5800/SrsHooks/OnPublish";
+                vhost.Vhttp_hooks!.On_close = "http://127.0.0.1:5800/SrsHooks/OnClose";
+                vhost.Vhttp_hooks!.On_play = "http://127.0.0.1:5800/SrsHooks/OnPlay";
+                vhost.Vhttp_hooks!.On_unpublish = "http://127.0.0.1:5800/SrsHooks/OnUnPublish";
+                vhost.Vhttp_hooks!.On_stop = "http://127.0.0.1:5800/SrsHooks/OnStop";
+                vhost.Vhttp_hooks!.On_dvr = "http://127.0.0.1:5800/SrsHooks/OnDvr";
+                vhost.Vhttp_hooks!.On_hls = "http://127.0.0.1:5800/SrsHooks/Test";
+                vhost.Vhttp_hooks!.On_hls_notify = "http://127.0.0.1:5800/SrsHooks/Test";
                 Srs.Vhosts.Add(vhost);
                 Directory.CreateDirectory(SrsWorkPath + SrsDeviceId);
                 Directory.CreateDirectory(Srs.Ff_log_dir);
@@ -504,7 +517,11 @@ namespace SrsApis.SrsManager
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None] + "\r\npid:(" + SrsPidValue + ")",
             };
-            OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Equals(SrsDeviceId)).ExecuteAffrows();
+            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+            {
+                OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Equals(SrsDeviceId)).ExecuteAffrows();
+            }
+
             return true;
         }
 
