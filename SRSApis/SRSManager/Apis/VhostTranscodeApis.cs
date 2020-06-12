@@ -157,7 +157,7 @@ namespace SrsApis.SrsManager.Apis
                     return true;
                 }
 
-                retVhostTranscode = transcode;
+                retVhost.Vtranscodes[retVhost.Vtranscodes.IndexOf(retVhostTranscode)] = transcode;
                 return true;
             }
 

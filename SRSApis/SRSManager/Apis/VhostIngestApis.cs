@@ -289,7 +289,7 @@ namespace SrsApis.SrsManager.Apis
                     return true;
                 }
 
-                retVhostIngest = ingest;
+                retVhost.Vingests[retVhost.Vingests.IndexOf(retVhostIngest)] = ingest;
                 return true;
             }
 

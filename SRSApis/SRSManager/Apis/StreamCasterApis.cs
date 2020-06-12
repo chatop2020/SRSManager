@@ -472,7 +472,7 @@ namespace SrsApis.SrsManager.Apis
                         x.InstanceName!.Trim().ToUpper().Equals(streamCaster.InstanceName!.Trim().ToUpper()));
                     if (retStreamCaster != null) //修改
                     {
-                        retStreamCaster = streamCaster;
+                        ret.Srs.Stream_casters[ret.Srs.Stream_casters.IndexOf(retStreamCaster)] = streamCaster;
                         return true;
                     }
 

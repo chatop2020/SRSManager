@@ -130,6 +130,7 @@ namespace SrsApis.SrsManager.Apis
             {
                 if (ret.Srs != null)
                 {
+                   
                     ret.Srs.Rtc_server = rtc;
                     return true;
                 }
