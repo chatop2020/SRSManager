@@ -7,7 +7,7 @@ namespace SRSApis.SystemAutonomy
 {
     public class SrsAndFFmpegLogMonitor
     {
-        private int interval = 1000 * 5;
+        private int interval =  SrsManageCommon.Common.SystemConfig.SrsAdnffmpegLogMonitorServiceinterval;
         private void processSrsFileMove(string srsFilePath)
         {
             string fileName = Path.GetFileName(srsFilePath);

@@ -10,7 +10,7 @@ namespace SRSApis.SystemAutonomy
 {
     public class KeepIngestStream
     {
-        private int interval = 1000 * 10;
+        private int interval = SrsManageCommon.Common.SystemConfig.KeepIngestStreamServiceinterval;
         private void doThing(string deviceId, string vhostDomain, Ingest ingest)
         {
             lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
@@ -65,8 +65,7 @@ namespace SRSApis.SystemAutonomy
 
         private bool ingestIsDead(string deviceId, Ingest ingest)
         {
-            try
-            {
+         
                 var onPublishList = FastUsefulApis.GetOnPublishMonitorListByDeviceId(deviceId, out ResponseStruct rs);
                 if (onPublishList == null || onPublishList.Count == 0)
                 {
@@ -86,20 +85,14 @@ namespace SRSApis.SystemAutonomy
 
 
                 return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
-                return true;
-            }
+            
         }
 
         private void Run()
         {
             while (true)
             {
-                try
-                {
+              
                     var retDeviceList = SystemApis.GetAllSrsManagerDeviceId();
                     if (retDeviceList != null && retDeviceList.Count > 0)
                     {
@@ -129,11 +122,7 @@ namespace SRSApis.SystemAutonomy
                     }
 
                     Thread.Sleep(interval);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
-                }
+                
             }
         }
 

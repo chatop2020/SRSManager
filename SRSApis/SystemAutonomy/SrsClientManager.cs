@@ -10,7 +10,7 @@ namespace SRSApis.SystemAutonomy
 {
     public class SrsClientManager
     {
-        private int interval = 1000 * 5;
+        private int interval =  SrsManageCommon.Common.SystemConfig.SrsClientManagerServiceinterval;
         private void rewriteMonitorType()
         {
             if (Common.SrsManagers != null)
@@ -199,6 +199,7 @@ namespace SRSApis.SystemAutonomy
                                                                          x.IsPlay == false &&
                                                                          x.UpdateTime <= DateTime.Now.AddMinutes(-3))
                     .ExecuteAffrows();
+               
             }
         }
 

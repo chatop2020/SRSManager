@@ -121,6 +121,8 @@ namespace SrsWebApi
                 return;
             }
 
+      
+
             Common.SystemConfig = new SystemConfig();
             WorkPath = Environment.CurrentDirectory + "/";
             ConfPath = WorkPath + "srswebapi.wconf";

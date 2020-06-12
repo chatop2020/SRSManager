@@ -15,7 +15,7 @@ namespace SRSApis.SystemAutonomy
 {
     public class DvrPlanExec
     {
-        private int interval = 1000 * 10;
+        private int interval = SrsManageCommon.Common.SystemConfig.DvrPlanExecServiceinterval;
         private List<string> getDvrPlanFileDataList(StreamDvrPlan plan)
         {
             List<string?> ret = null!;
@@ -485,7 +485,7 @@ namespace SRSApis.SystemAutonomy
             {
                 try
                 {
-                    LogWriter.WriteLog("启动自动录制计划...(循环间隔：" + interval + "ms)");
+                    LogWriter.WriteLog("启动自动录制计划服务...(循环间隔：" + interval + "ms)");
                     Run();
                 }
                 catch (Exception ex)

@@ -46,9 +46,9 @@ namespace SRSApis
         /// <summary>
         /// SrsOnlineClient管理
         /// </summary>
-        public static SrsClientManager SrsOnlineClient=null!;
-        public static SrsAndFFmpegLogMonitor SrsAndFFmpegLogMonitor=null!;
-        public static KeepIngestStream KeepIngestStream=null!;
+        public static SrsClientManager SrsOnlineClient;
+        public static SrsAndFFmpegLogMonitor SrsAndFFmpegLogMonitor;
+        public static KeepIngestStream KeepIngestStream;
         public static DvrPlanExec? DvrPlanExec=null!;
 
         static Common()

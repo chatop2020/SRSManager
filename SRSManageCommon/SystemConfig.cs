@@ -18,6 +18,10 @@ namespace SrsManageCommon
         private string _password = "password123!@#";
         private string? _db = "data source=" + Common.WorkPath + "SRSWebApi.db";
         private DataType _dbType = DataType.Sqlite;
+        private int _dvrPlanExecServiceinterval=1000 * 60;
+        private int _keepIngestStreamServiceinterval=1000 * 60;
+        private int _srsAdnffmpegLogMonitorServiceinterval=1000 * 60;
+        private int _srsClientManagerServiceinterval=1000 * 60;
 
         /// <summary>
         /// http端口
@@ -58,6 +62,30 @@ namespace SrsManageCommon
             set => _dbType = value;
         }
 
+        public int DvrPlanExecServiceinterval
+        {
+            get => _dvrPlanExecServiceinterval;
+            set => _dvrPlanExecServiceinterval = value;
+        }
+
+        public int KeepIngestStreamServiceinterval
+        {
+            get => _keepIngestStreamServiceinterval;
+            set => _keepIngestStreamServiceinterval = value;
+        }
+
+        public int SrsAdnffmpegLogMonitorServiceinterval
+        {
+            get => _srsAdnffmpegLogMonitorServiceinterval;
+            set => _srsAdnffmpegLogMonitorServiceinterval = value;
+        }
+
+        public int SrsClientManagerServiceinterval
+        {
+            get => _srsClientManagerServiceinterval;
+            set => _srsClientManagerServiceinterval = value;
+        }
+
         private string[] getkv(string s, string splitchar)
         {
             return s.Split(splitchar, StringSplitOptions.RemoveEmptyEntries);
@@ -76,6 +104,43 @@ namespace SrsManageCommon
                 kv[0] = kv[0].Trim().ToLower();
                 switch (kv[0])
                 {
+                    case "auto_cleintmanagerinterval":
+                        if (kv.Length == 2)
+                        {
+                            if (!string.IsNullOrEmpty(kv[1]))
+                            {
+                                SrsClientManagerServiceinterval = int.Parse(kv[1].Trim());
+                            }
+                        }
+
+                        break;
+                    case "auto_logmonitorinterval":
+                        if (kv.Length == 2)
+                        {
+                            if (!string.IsNullOrEmpty(kv[1]))
+                            {
+                                SrsAdnffmpegLogMonitorServiceinterval = int.Parse(kv[1].Trim());
+                            }
+                        }
+                        break;
+                    case "auto_keepingeinterval":
+                        if (kv.Length == 2)
+                        {
+                            if (!string.IsNullOrEmpty(kv[1]))
+                            {
+                                KeepIngestStreamServiceinterval = int.Parse(kv[1].Trim());
+                            }
+                        }
+                        break;
+                    case "auto_dvrplaninterval":
+                        if (kv.Length == 2)
+                        {
+                            if (!string.IsNullOrEmpty(kv[1]))
+                            {
+                                DvrPlanExecServiceinterval = int.Parse(kv[1].Trim());
+                            }
+                        }
+                        break;
                     case "db":
                         if (kv.Length == 2)
                         {
@@ -191,6 +256,10 @@ namespace SrsManageCommon
             writeFile.Add("password::" + Password + ";");
             writeFile.Add("db::" + Db + ";");
             writeFile.Add("dbtype::" + Enum.GetName(typeof(DataType), this.DbType)!.ToLower() + ";");
+            writeFile.Add("auto_cleintmanagerinterval::" + SrsClientManagerServiceinterval + ";");
+            writeFile.Add("auto_logmonitorinterval::" + SrsAdnffmpegLogMonitorServiceinterval + ";");
+            writeFile.Add("auto_keepingeinterval::" + KeepIngestStreamServiceinterval + ";");
+            writeFile.Add("auto_dvrplaninterval::" + DvrPlanExecServiceinterval + ";");
             foreach (var ak in _allowKeys)
             {
                 if (ak != null)
