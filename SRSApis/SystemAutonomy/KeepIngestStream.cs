@@ -65,58 +65,75 @@ namespace SRSApis.SystemAutonomy
 
         private bool ingestIsDead(string deviceId, Ingest ingest)
         {
-            var onPublishList = FastUsefulApis.GetOnPublishMonitorListByDeviceId(deviceId, out ResponseStruct rs);
-            if (onPublishList == null || onPublishList.Count == 0)
+            try
             {
-                return true;
-            }
-
-            var client = onPublishList.FindLast(x => x.RtspUrl!.Trim() == ingest.Input!.Url!.Trim());
-            if (client != null)
-            {
-                if (client.IsOnline == false)
+                var onPublishList = FastUsefulApis.GetOnPublishMonitorListByDeviceId(deviceId, out ResponseStruct rs);
+                if (onPublishList == null || onPublishList.Count == 0)
                 {
                     return true;
                 }
 
-                return false;
-            }
+                var client = onPublishList.FindLast(x => x.RtspUrl! == ingest.Input!.Url!);
+                if (client != null)
+                {
+                    if (client.IsOnline == false)
+                    {
+                        return true;
+                    }
 
-            return true;
+                    return false;
+                }
+
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
+                return true;
+            }
         }
 
         private void Run()
         {
             while (true)
             {
-                var retDeviceList = SystemApis.GetAllSrsManagerDeviceId();
-                if (retDeviceList != null && retDeviceList.Count > 0)
+                try
                 {
-                    foreach (var dev in retDeviceList)
+                    var retDeviceList = SystemApis.GetAllSrsManagerDeviceId();
+                    if (retDeviceList != null && retDeviceList.Count > 0)
                     {
-                        if (string.IsNullOrEmpty(dev)) continue;
-                        var retSrsManager = SystemApis.GetSrsManagerInstanceByDeviceId(dev);
-                        if (retSrsManager == null || retSrsManager.Srs == null) continue;
-                        var retSrsVhostList = VhostApis.GetVhostList(retSrsManager.SrsDeviceId, out ResponseStruct rs);
-                        if (retSrsVhostList == null || retSrsVhostList.Count == 0) continue;
-                        foreach (var vhost in retSrsVhostList)
+                        foreach (var dev in retDeviceList)
                         {
-                            if (vhost == null || vhost.Vingests == null || vhost.Vingests.Count == 0) continue;
-                            foreach (var ingest in vhost.Vingests)
+                            if (string.IsNullOrEmpty(dev)) continue;
+                            var retSrsManager = SystemApis.GetSrsManagerInstanceByDeviceId(dev);
+                            if (retSrsManager == null || retSrsManager.Srs == null) continue;
+                            var retSrsVhostList =
+                                VhostApis.GetVhostList(retSrsManager.SrsDeviceId, out ResponseStruct rs);
+                            if (retSrsVhostList == null || retSrsVhostList.Count == 0) continue;
+                            foreach (var vhost in retSrsVhostList)
                             {
-                                if (ingest.Enabled == false) continue;
-                                if (ingestIsDead(dev, ingest))
+                                if (vhost == null || vhost.Vingests == null || vhost.Vingests.Count == 0) continue;
+                                foreach (var ingest in vhost.Vingests)
                                 {
-                                    doThing(dev, vhost.InstanceName!, ingest);
-                                }
+                                    if (ingest.Enabled == false) continue;
+                                    if (ingestIsDead(dev, ingest))
+                                    {
+                                        doThing(dev, vhost.InstanceName!, ingest);
+                                    }
 
-                                Thread.Sleep(30);
+                                    Thread.Sleep(30);
+                                }
                             }
                         }
                     }
-                }
 
-                Thread.Sleep(interval);
+                    Thread.Sleep(interval);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
+                }
             }
         }
 
