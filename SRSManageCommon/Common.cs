@@ -1,5 +1,7 @@
 #nullable enable
 using System;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace SrsManageCommon
@@ -34,7 +36,65 @@ namespace SrsManageCommon
         public static Object LockDbObjForDvrVideo = new object();
         public static Object LockDbObjForStreamDvrPlan = new object();
         public static Object LockDbObjForHeartbeat = new object();
+        public static readonly string LogPath = WorkPath + "logs/";
 
+        static Common()
+        {
+            Directory.CreateDirectory(LogPath);
+        }
+
+        /// <summary>
+        /// 结束自己
+        /// </summary>
+        public static void KillSelf()
+        {
+            LogWriter.WriteLog("因异常结束进程...");
+            string fileName= Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+            var ret = GetProcessPid(fileName);
+            if (ret > 0)
+            {
+                KillProcess(ret);
+            }
+        }
+        public static void KillProcess(int pid)
+        {
+            string cmd = "kill -9 " + pid.ToString();
+            LinuxShell.Run(cmd, 1000);
+        }
+        /// <summary>
+        /// 获取pid
+        /// </summary>
+        /// <param name="processName"></param>
+        /// <returns></returns>
+        public static int GetProcessPid(string processName)
+        {
+            string cmd = "";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                cmd = "ps -aux |grep " + processName + "|grep -v grep|awk \'{print $2}\'";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                cmd = "ps -A |grep " + processName + "|grep -v grep|awk \'{print $1}\'";
+            }
+
+            LinuxShell.Run(cmd, 1000, out string std, out string err);
+            if (string.IsNullOrEmpty(std) && string.IsNullOrEmpty(err))
+            {
+                return -1;
+            }
+
+            int pid = -1;
+            if (!string.IsNullOrEmpty(std))
+            {
+                int.TryParse(std, out pid);
+            }
+            if (!string.IsNullOrEmpty(err))
+            {
+                int.TryParse(err, out pid);
+            }
+            return pid;
+        }
         public static string? GetIngestRtspMonitorUrlIpAddress(string url)
         {
             try

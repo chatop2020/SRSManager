@@ -71,7 +71,8 @@ namespace SrsManageCommon
                                 hour = hour * 3600; //换成秒数
                                 min = min * 60;
                                 sec = sec + hour + min; //合计秒数
-                                duartion = sec * 1000 + (msec * 10); //算计成毫秒
+                                duartion = sec * 1000 + (msec * 10); //算成毫秒
+                                LogWriter.WriteLog("获取视频时长："+duartion.ToString()+"毫秒",videoFilePath);
                                 return true;
                             }
                         }

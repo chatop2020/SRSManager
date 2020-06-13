@@ -3,6 +3,7 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
+using SrsManageCommon;
 using SRSManageCommon.ManageStructs;
 
 namespace SrsWebApi.Attributes

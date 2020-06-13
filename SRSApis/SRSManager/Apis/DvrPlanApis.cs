@@ -355,6 +355,7 @@ namespace SrsApis.SrsManager.Apis
         /// <summary>
         /// 修改dvrplan
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="sdp"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
@@ -369,6 +370,7 @@ namespace SrsApis.SrsManager.Apis
             {
                 rs.Code = ErrorNumber.SrsObjectNotInit;
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
+                
                 return false;
             }
 

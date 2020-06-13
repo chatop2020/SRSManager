@@ -39,7 +39,7 @@ namespace SRSApis
     public static class Common
     {
         public static readonly string WorkPath = Environment.CurrentDirectory + "/";
-        public static readonly string LogPath = WorkPath + "logs/";
+      
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
         public static List<OnvifInstance> OnvifManagers = new List<OnvifInstance>();
 
@@ -54,7 +54,6 @@ namespace SRSApis
         static Common()
         {
             ErrorMessage.Init();
-            Directory.CreateDirectory(LogPath);
             SrsOnlineClient = new SrsClientManager();
             SrsAndFFmpegLogMonitor = new SrsAndFFmpegLogMonitor();
             DvrPlanExec = new DvrPlanExec();
@@ -96,6 +95,7 @@ namespace SRSApis
         public static bool RefreshSrsObject(SrsManager sm, out ResponseStruct rs)
         {
             SrsConfigBuild.Build(sm.Srs, sm.SrsConfigPath);
+            LogWriter.WriteLog("重写Srs配置文件刷新Srs实例...",sm.Srs.ConfFilePath!);
             return sm.Reload(out rs);
         }
 
@@ -122,6 +122,7 @@ namespace SRSApis
         }
 
 
+        /*
         /// <summary>
         /// 初始化onvif设备
         /// </summary>
@@ -142,7 +143,7 @@ namespace SRSApis
                     }
                 }
             }
-        }
+        }*/
 
 
         public static bool WriteOnvifMonitors()
@@ -160,11 +161,13 @@ namespace SRSApis
 
                         if (string.IsNullOrEmpty(configStr))
                         {
+                            LogWriter.WriteLog("Onvif配置文件写入失败，配置内容为空...",WorkPath + "system.oconf",ConsoleColor.Yellow);
                             return false;
                         }
                         else
                         {
                             File.WriteAllText(WorkPath + "system.oconf", configStr);
+                            LogWriter.WriteLog("Onvif配置文件写入完成...",WorkPath + "system.oconf");
                             return true;
                         }
                     }
@@ -178,8 +181,9 @@ namespace SRSApis
                     return false;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                LogWriter.WriteLog("Onvif配置文件写入失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
                 return false;
             }
         }
@@ -215,11 +219,12 @@ namespace SRSApis
                         }
                     }
                 }
-
+                LogWriter.WriteLog("Onvif配置文件加载成功...");
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
+                LogWriter.WriteLog("Onvif配置文件加载失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
                 return false;
             }
         }
@@ -230,6 +235,7 @@ namespace SRSApis
         /// </summary>
         public static void init_SrsServer()
         {
+            LogWriter.WriteLog("初始化Srs服务器实例...");
             DirectoryInfo dir = new DirectoryInfo(WorkPath);
             ResponseStruct rs;
             bool ret = false;
@@ -252,8 +258,10 @@ namespace SRSApis
                 }
             }
 
+            
             if (SrsManagers.Count == 0)
             {
+                LogWriter.WriteLog("没有的到Srs实例配置文件，系统将自动创建一个Srs实例配置文件");
                 SrsManager sm = new SrsManager();
                 ret = sm.CreateSrsManager(out rs);
                 string rsStr = JsonHelper.ToJson(rs);

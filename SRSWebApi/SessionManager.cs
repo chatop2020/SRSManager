@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using SRSApis;
 using SrsManageCommon;
+using Common = SrsManageCommon.Common;
 
 namespace SrsWebApi
 {
@@ -75,8 +77,8 @@ namespace SrsWebApi
                 }
                 catch (Exception ex)
                 {
-                    LogWebApiWriter.WriteWebApiLog(ex.Message, ex.StackTrace!, ConsoleColor.Red);
-                    throw ex;
+                    LogWriter.WriteLog("Session管理线程启动异常...，系统退出", ex.Message+"\r\n"+ex.StackTrace);
+                    Common.KillSelf();
                 }
             })).Start();
         }

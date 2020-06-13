@@ -108,6 +108,8 @@ namespace SRSApis.SystemAutonomy
                                     if (File.Exists(ret.VideoPath))
                                     {
                                         File.Delete(ret.VideoPath);
+                                        LogWriter.WriteLog("删除被软删除的录制文件（24小时）",ret.VideoPath!);
+                                        Thread.Sleep(20);
                                     }
 
                                     OrmService.Db.Update<DvrVideo>().Set(x => x.UpdateTime, DateTime.Now)
@@ -239,6 +241,8 @@ namespace SRSApis.SystemAutonomy
                                     {
                                         File.Delete(ret.VideoPath);
                                         deleteSize += (long) ret.FileSize!;
+                                        LogWriter.WriteLog("删除录制文件",ret.VideoPath!);
+                                        Thread.Sleep(20);
                                     }
 
                                     OrmService.Db.Update<DvrVideo>().Set(x => x.UpdateTime, DateTime.Now)
@@ -263,6 +267,7 @@ namespace SRSApis.SystemAutonomy
                     OrmService.Db.Update<DvrVideo>().Set(x => x.UpdateTime, DateTime.Now)
                         .Set(x => x.Deleted, true)
                         .Where(x => x.RecordDate == day).ExecuteAffrows();
+                    LogWriter.WriteLog("要删除除一天的文件，数据库标记为删除",day!);
                 }
 
                 if (deleteList != null && deleteList.Count > 0)
@@ -274,6 +279,7 @@ namespace SRSApis.SystemAutonomy
                             if (File.Exists(del.VideoPath))
                             {
                                 File.Delete(del.VideoPath);
+                                LogWriter.WriteLog("删除录制文件",del.VideoPath!);
                                 Thread.Sleep(20);
                             }
                         }
@@ -490,8 +496,7 @@ namespace SRSApis.SystemAutonomy
                 }
                 catch (Exception ex)
                 {
-                    // ignored
-                    Console.WriteLine(ex.Message);
+                    LogWriter.WriteLog("启动自动录制计划服务失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
                 }
             })).Start();
         }

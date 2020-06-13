@@ -20,6 +20,7 @@ namespace SRSApis.SystemAutonomy
             fileName = dirPath + "/logbak/srslogback_" + DateTime.Now.ToString("yyyy-MM-ddTHH-mm-ss") + fileName;
             File.Copy(srsFilePath, fileName);
             LinuxShell.Run("cat /dev/null >" + srsFilePath);
+            LogWriter.WriteLog("转存srs日志,并清空现有日志",srsFilePath+"->"+fileName);
         }
 
         private void processFFmpegFileMove(string ffmpegFilePath)
@@ -35,6 +36,7 @@ namespace SRSApis.SystemAutonomy
 
             File.Copy(ffmpegFilePath, fileName);
             LinuxShell.Run("cat /dev/null >" + ffmpegFilePath);
+            LogWriter.WriteLog("转存ffmpeg日志,并清空现有日志",ffmpegFilePath+"->"+fileName);
         }
 
         private void Run()
@@ -89,8 +91,7 @@ namespace SRSApis.SystemAutonomy
                 }
                 catch (Exception ex)
                 {
-                    // ignored
-                    Console.WriteLine(ex.Message);
+                    LogWriter.WriteLog("启动日志转存服务失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
                 }
             })).Start();
         }

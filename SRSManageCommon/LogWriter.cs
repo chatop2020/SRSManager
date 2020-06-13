@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace SRSApis
+namespace SrsManageCommon
 {
     public static class LogWriter
     {

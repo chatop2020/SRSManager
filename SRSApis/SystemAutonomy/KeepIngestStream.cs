@@ -13,6 +13,8 @@ namespace SRSApis.SystemAutonomy
         private int interval = SrsManageCommon.Common.SystemConfig.KeepIngestStreamServiceinterval;
         private void doThing(string deviceId, string vhostDomain, Ingest ingest)
         {
+            LogWriter.WriteLog("重启设备ID"+deviceId+"下的"+vhostDomain+"下的"+ingest.IngestName+" Ingest");
+
             lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
             {
                 OrmService.Db.Delete<OnlineClient>().Where(x => x.RtspUrl == ingest.Input!.Url).ExecuteAffrows();
@@ -26,9 +28,9 @@ namespace SRSApis.SystemAutonomy
                     string cmd = "kill -9 " + retInt.ToString();
                     LinuxShell.Run(cmd, 1000);
                 }
-                catch
+                catch(Exception ex)
                 {
-                    // ignored
+                    LogWriter.WriteLog("重启设备ID"+deviceId+"下的"+vhostDomain+"下的"+ingest.IngestName+" Ingest失败",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
                 }
             }
 
@@ -38,6 +40,7 @@ namespace SRSApis.SystemAutonomy
             Thread.Sleep(100);
             VhostIngestApis.OnOrOffIngest(deviceId, vhostDomain, ingest.IngestName!, true, out rs);
             SystemApis.RefreshSrsObject(deviceId, out rs);
+            
         }
 
         private int foundProcess(Ingest ingest)
@@ -112,7 +115,8 @@ namespace SRSApis.SystemAutonomy
                                     if (ingest.Enabled == false) continue;
                                     if (ingestIsDead(dev, ingest))
                                     {
-                                        doThing(dev, vhost.InstanceName!, ingest);
+                                        LogWriter.WriteLog("监控到设备ID"+dev+"下的"+vhost.VhostDomain+"下的"+ingest.IngestName+" 处于异常状态，立即重启ingest","",ConsoleColor.Red);
+                                        doThing(dev, vhost.VhostDomain!, ingest);
                                     }
 
                                     Thread.Sleep(30);
@@ -129,7 +133,6 @@ namespace SRSApis.SystemAutonomy
         public KeepIngestStream()
         {
             new Thread(new ThreadStart(delegate
-
             {
                 try
                 {
@@ -138,7 +141,7 @@ namespace SRSApis.SystemAutonomy
                 }
                 catch (Exception ex)
                 {
-                    // ignored
+                    LogWriter.WriteLog("启动Ingest守护服务失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
                     Console.WriteLine(ex.Message);
                 }
             })).Start();

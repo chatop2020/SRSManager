@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.IO;
 
-namespace SrsWebApi
+namespace SrsManageCommon
 {
     /// <summary>
     /// webapi日志记录类

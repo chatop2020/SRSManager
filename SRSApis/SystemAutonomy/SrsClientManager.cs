@@ -106,7 +106,7 @@ namespace SRSApis.SystemAutonomy
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                LogWriter.WriteLog("获取SRS-GB28181通道数据异常...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
                 return null!;
             }
         }
@@ -208,8 +208,8 @@ namespace SRSApis.SystemAutonomy
             while (true)
             {
                 #region 补全ingest过来的monitorip地址
-
                 completionOnvifIpAddress();
+                LogWriter.WriteLog("补全Ingest拉流器中的摄像头IP地址...");
                 Thread.Sleep(500);
 
                 #endregion
@@ -217,6 +217,7 @@ namespace SRSApis.SystemAutonomy
                 #region 补28181 monitorip 地址
 
                 completionT28181IpAddress();
+                LogWriter.WriteLog("补全StreamCaster收流器中的摄像头IP地址...");
                 Thread.Sleep(500);
 
                 #endregion
@@ -224,6 +225,7 @@ namespace SRSApis.SystemAutonomy
                 #region 删除长期没更新的user类型的非播放的客户端
 
                 clearOfflinePlayerUser();
+                LogWriter.WriteLog("清理已经死亡的客户端播放连接...");
                 Thread.Sleep(500);
 
                 #endregion
@@ -231,6 +233,7 @@ namespace SRSApis.SystemAutonomy
                 #region 重写摄像头类型
 
                 rewriteMonitorType();
+                LogWriter.WriteLog("获取并更新摄像头类型...");
                 Thread.Sleep(500);
 
                 #endregion
@@ -251,8 +254,7 @@ namespace SRSApis.SystemAutonomy
                 }
                 catch (Exception ex)
                 {
-                    // ignored
-                    Console.WriteLine(ex.Message);
+                    LogWriter.WriteLog("启动客户端监控服务失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
                 }
             })).Start();
         }

@@ -1,8 +1,11 @@
 using System;
 using System.Net;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
+using SRSApis;
 using SrsManageCommon;
 using SRSManageCommon.ManageStructs;
+using Common = SrsManageCommon.Common;
 
 namespace SrsWebApi
 {
@@ -115,15 +118,14 @@ namespace SrsWebApi
         /// </summary>
         public void CommonInit()
         {
+            Common.SystemConfig = new SystemConfig();
             if (!checkFFmpegBin(FFmpegBinPath))
             {
-                Console.WriteLine("FFMPEG不存在，启动异常...,请保证ffmpeg可执行文件存在:" + FFmpegBinPath);
-                return;
+                LogWriter.WriteLog("FFmpeg可执行文件不存在，系统退出，请保证FFmpeg可执行文件存在", FFmpegBinPath);
+                Common.KillSelf();
             }
 
-      
-
-            Common.SystemConfig = new SystemConfig();
+            
             WorkPath = Environment.CurrentDirectory + "/";
             ConfPath = WorkPath + "srswebapi.wconf";
 
@@ -136,8 +138,8 @@ namespace SrsWebApi
             }
             else
             {
-                Console.WriteLine("读取配置文件失败，启动异常...");
-                return;
+                LogWriter.WriteLog("系统配置文件加载异常，系统退出", ConfPath);
+                Common.KillSelf();
             }
         }
 
