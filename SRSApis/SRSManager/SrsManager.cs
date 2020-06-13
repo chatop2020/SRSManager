@@ -20,6 +20,7 @@ namespace SrsApis.SrsManager
         private string _srsDeviceId = "";
         private string _srsPidValue = "";
         private string _srsWorkPath = Environment.CurrentDirectory + "/";
+        private bool _isStopedByUser = false; //主动停止
 
         public SrsSystemConfClass Srs
         {
@@ -65,6 +66,15 @@ namespace SrsApis.SrsManager
 
                 return true;
             }
+        }
+
+        /// <summary>
+        /// 被主动停止
+        /// </summary>
+        public bool IsStopedByUser
+        {
+            get => _isStopedByUser;
+            set => _isStopedByUser = value;
         }
 
         /// <summary>
@@ -519,9 +529,10 @@ namespace SrsApis.SrsManager
             };
             lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
             {
-                OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Equals(SrsDeviceId)).ExecuteAffrows();
+                OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
             }
-
+            
+            IsStopedByUser = false;
             return true;
         }
 
@@ -546,6 +557,10 @@ namespace SrsApis.SrsManager
                             Code = ErrorNumber.None,
                             Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                         };
+                        lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                        {
+                            OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
+                        }
                         return true;
                     }
 
@@ -564,6 +579,10 @@ namespace SrsApis.SrsManager
                             Code = ErrorNumber.None,
                             Message = ErrorMessage.ErrorDic![ErrorNumber.ConfigFile],
                         };
+                        lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                        {
+                            OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
+                        }
                         return true;
                     }
 
@@ -584,6 +603,11 @@ namespace SrsApis.SrsManager
                     Code = ErrorNumber.None,
                     Message = ErrorMessage.ErrorDic![ErrorNumber.None],
                 };
+                IsStopedByUser = true;
+                lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                {
+                    OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
+                }
                 return true;
             }
         }
