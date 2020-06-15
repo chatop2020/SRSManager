@@ -210,7 +210,7 @@ namespace SRSApis.SystemAutonomy
 
         private void clearOfflinePlayerUser()
         {
-            if (Common.HaveAnySrsInsInstanceRunning())
+            if (Common.HaveAnySrsInstanceRunning())
             {
                 lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
                 {

@@ -64,7 +64,7 @@ namespace SRSApis
         /// 有没有srs正在运行
         /// </summary>
         /// <returns></returns>
-        public static bool HaveAnySrsInsInstanceRunning()
+        public static bool HaveAnySrsInstanceRunning()
         {
             if (SrsManagers != null && SrsManagers.Count > 0)
             {

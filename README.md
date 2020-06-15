@@ -40,7 +40,8 @@
   Onvif设备同时存在，SRS进程以uuid来区分彼此，onvif设备以ip地址及profile中的uuid来区分不同设备及不同设备下的不同
   媒体流。
 - 我将OnvifClient,SRSApis,SRSConfFile,SRSManageCommon,SRSWebApi工程的集成称之为一个StreamNode，在StreamNode
-  中我尽可能不采用任何关系型数据库组件来实现所有功能，这样可以保证程序最大程度上的自由性，简化其安装部署的难度。
+  中~~我尽可能不采用任何关系型数据库组件~~来实现所有功能，这样可以保证程序最大程度上的自由性，简化其安装部署的难度。
+- 打脸了，随着开发深入，发现不使用数据库组件使很多问题变得复杂，因此引入了FreeSql开源数据库组件，来支持相关数据的存储与查询。
 - 对SRS原有HTTP API进行封装与转发，实现风格统一，鉴权统一的webapi接口。
 
 ## 现有接口
