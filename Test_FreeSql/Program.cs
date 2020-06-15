@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using SrsManageCommon;
 using SRSManageCommon.DBMoudle;
 
 
@@ -11,11 +12,11 @@ namespace Test_FreeSql
     class Program
     {
       
-
         static void Main(string[] args)
         {
-
           
+
+
             DBManager.fsql.Delete<StreamDvrPlan>().Where("1=1").ExecuteAffrows();
             DBManager.fsql.Delete<DvrDayTimeRange>().Where("1=1").ExecuteAffrows();
             var a = new StreamDvrPlan();
@@ -46,8 +47,8 @@ namespace Test_FreeSql
             /*联同子类一起查出*/
             var ret = DBManager.fsql.Select<StreamDvrPlan>().IncludeMany(a => a.TimeRangeList)
                 .ToList();
-             /*联同子类一起查出*/
-             
+            /*联同子类一起查出*/
+
             Console.WriteLine("Hello World!");
         }
     }

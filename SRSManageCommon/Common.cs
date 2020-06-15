@@ -43,6 +43,19 @@ namespace SrsManageCommon
             Directory.CreateDirectory(LogPath);
         }
 
+
+        /// <summary>
+        /// 获取两个时间差的毫秒数
+        /// </summary>
+        /// <param name="starttime"></param>
+        /// <param name="endtime"></param>
+        /// <returns></returns>
+        public static long GetTimeGoneMilliseconds(DateTime starttime,DateTime endtime)
+        {
+            TimeSpan ts = endtime.Subtract(starttime);
+            return (long)ts.TotalMilliseconds;
+        }
+
         /// <summary>
         /// 结束自己
         /// </summary>

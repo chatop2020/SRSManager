@@ -11,9 +11,10 @@ namespace SRSApis.SystemAutonomy
     public class KeepIngestStream
     {
         private int interval = SrsManageCommon.Common.SystemConfig.KeepIngestStreamServiceinterval;
+
         private void doThing(string deviceId, string vhostDomain, Ingest ingest)
         {
-            LogWriter.WriteLog("重启设备ID"+deviceId+"下的"+vhostDomain+"下的"+ingest.IngestName+" Ingest");
+            LogWriter.WriteLog("重启设备ID" + deviceId + "下的" + vhostDomain + "下的" + ingest.IngestName + " Ingest");
 
             lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
             {
@@ -28,19 +29,20 @@ namespace SRSApis.SystemAutonomy
                     string cmd = "kill -9 " + retInt.ToString();
                     LinuxShell.Run(cmd, 1000);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    LogWriter.WriteLog("重启设备ID"+deviceId+"下的"+vhostDomain+"下的"+ingest.IngestName+" Ingest失败",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
+                    LogWriter.WriteLog(
+                        "重启设备ID" + deviceId + "下的" + vhostDomain + "下的" + ingest.IngestName + " Ingest失败",
+                        ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                 }
             }
 
             ResponseStruct rs = null!;
             VhostIngestApis.OnOrOffIngest(deviceId, vhostDomain, ingest.IngestName!, false, out rs);
             SystemApis.RefreshSrsObject(deviceId, out rs);
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
             VhostIngestApis.OnOrOffIngest(deviceId, vhostDomain, ingest.IngestName!, true, out rs);
             SystemApis.RefreshSrsObject(deviceId, out rs);
-            
         }
 
         private int foundProcess(Ingest ingest)
@@ -68,65 +70,64 @@ namespace SRSApis.SystemAutonomy
 
         private bool ingestIsDead(string deviceId, Ingest ingest)
         {
-         
-                var onPublishList = FastUsefulApis.GetOnPublishMonitorListByDeviceId(deviceId, out ResponseStruct rs);
-                if (onPublishList == null || onPublishList.Count == 0)
+            var onPublishList = FastUsefulApis.GetOnPublishMonitorListByDeviceId(deviceId, out ResponseStruct rs);
+            if (onPublishList == null || onPublishList.Count == 0)
+            {
+                return true;
+            }
+
+            var client =
+                onPublishList.FindLast(x => !string.IsNullOrEmpty(x.RtspUrl) && x.RtspUrl! == ingest.Input!.Url!);
+            if (client != null)
+            {
+                if (client.IsOnline == false)
                 {
                     return true;
                 }
 
-                var client = onPublishList.FindLast(x => x.RtspUrl! == ingest.Input!.Url!);
-                if (client != null)
-                {
-                    if (client.IsOnline == false)
-                    {
-                        return true;
-                    }
-
-                    return false;
-                }
+                return false;
+            }
 
 
-                return true;
-            
+            return true;
         }
 
         private void Run()
         {
             while (true)
             {
-              
-                    var retDeviceList = SystemApis.GetAllSrsManagerDeviceId();
-                    if (retDeviceList != null && retDeviceList.Count > 0)
+                var retDeviceList = SystemApis.GetAllSrsManagerDeviceId();
+                if (retDeviceList != null && retDeviceList.Count > 0)
+                {
+                    foreach (var dev in retDeviceList)
                     {
-                        foreach (var dev in retDeviceList)
+                        if (string.IsNullOrEmpty(dev)) continue;
+                        var retSrsManager = SystemApis.GetSrsManagerInstanceByDeviceId(dev);
+                        if (retSrsManager == null || retSrsManager.Srs == null || !retSrsManager.IsRunning) continue;
+                        var retSrsVhostList =
+                            VhostApis.GetVhostList(retSrsManager.SrsDeviceId, out ResponseStruct rs);
+                        if (retSrsVhostList == null || retSrsVhostList.Count == 0) continue;
+                        foreach (var vhost in retSrsVhostList)
                         {
-                            if (string.IsNullOrEmpty(dev)) continue;
-                            var retSrsManager = SystemApis.GetSrsManagerInstanceByDeviceId(dev);
-                            if (retSrsManager == null || retSrsManager.Srs == null) continue;
-                            var retSrsVhostList =
-                                VhostApis.GetVhostList(retSrsManager.SrsDeviceId, out ResponseStruct rs);
-                            if (retSrsVhostList == null || retSrsVhostList.Count == 0) continue;
-                            foreach (var vhost in retSrsVhostList)
+                            if (vhost == null || vhost.Vingests == null || vhost.Vingests.Count == 0) continue;
+                            foreach (var ingest in vhost.Vingests)
                             {
-                                if (vhost == null || vhost.Vingests == null || vhost.Vingests.Count == 0) continue;
-                                foreach (var ingest in vhost.Vingests)
+                                if (ingest.Enabled == false) continue;
+                                if (ingestIsDead(dev, ingest))
                                 {
-                                    if (ingest.Enabled == false) continue;
-                                    if (ingestIsDead(dev, ingest))
-                                    {
-                                        LogWriter.WriteLog("监控到设备ID"+dev+"下的"+vhost.VhostDomain+"下的"+ingest.IngestName+" 处于异常状态，立即重启ingest","",ConsoleColor.Red);
-                                        doThing(dev, vhost.VhostDomain!, ingest);
-                                    }
-
-                                    Thread.Sleep(30);
+                                    LogWriter.WriteLog(
+                                        "监控到设备ID" + dev + "下的" + vhost.VhostDomain + "下的" + ingest.IngestName +
+                                        " 处于异常状态，立即重启ingest", "", ConsoleColor.Red);
+                                    doThing(dev, vhost.VhostDomain!, ingest);
                                 }
+
+                                Thread.Sleep(30);
                             }
                         }
                     }
+                }
 
-                    Thread.Sleep(interval);
-                
+                Thread.Sleep(interval);
             }
         }
 
@@ -141,7 +142,7 @@ namespace SRSApis.SystemAutonomy
                 }
                 catch (Exception ex)
                 {
-                    LogWriter.WriteLog("启动Ingest守护服务失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
+                    LogWriter.WriteLog("启动Ingest守护服务失败...", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                     Console.WriteLine(ex.Message);
                 }
             })).Start();

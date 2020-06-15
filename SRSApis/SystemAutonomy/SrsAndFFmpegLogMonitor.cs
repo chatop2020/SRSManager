@@ -43,37 +43,39 @@ namespace SRSApis.SystemAutonomy
         {
             while (true)
             {
-                foreach (var srs in Common.SrsManagers)
-                {
-                    if (srs != null)
+                
+                    foreach (var srs in Common.SrsManagers)
                     {
-                        string srsLogFile = srs.Srs.Srs_log_file!;
-                        string ffmpegLogPath = srs.Srs.Ff_log_dir!;
-                        FileInfo srsLog = new FileInfo(srsLogFile);
-                        if (srsLog.Exists && srsLog.Length >= (1024 * 1000 * 10)) //10M
+                        if (srs != null && srs.IsRunning)
                         {
-                            processSrsFileMove(srsLogFile);
-                        }
-
-                        DirectoryInfo ffmpegDir = new DirectoryInfo(ffmpegLogPath);
-                        if (ffmpegDir.Exists)
-                        {
-                            foreach (var file in ffmpegDir.GetFiles())
+                            string srsLogFile = srs.Srs.Srs_log_file!;
+                            string ffmpegLogPath = srs.Srs.Ff_log_dir!;
+                            FileInfo srsLog = new FileInfo(srsLogFile);
+                            if (srsLog.Exists && srsLog.Length >= (1024 * 1000 * 10)) //10M
                             {
-                                if (file.FullName.Contains("ffmpeglogback")) continue;
+                                processSrsFileMove(srsLogFile);
+                            }
 
-                                if (file.Exists && file.Length >= 1024 * 1000 * 10) //10M
+                            DirectoryInfo ffmpegDir = new DirectoryInfo(ffmpegLogPath);
+                            if (ffmpegDir.Exists)
+                            {
+                                foreach (var file in ffmpegDir.GetFiles())
                                 {
-                                    processFFmpegFileMove(file.FullName);
-                                }
+                                    if (file.FullName.Contains("ffmpeglogback")) continue;
 
-                                Thread.Sleep(500);
+                                    if (file.Exists && file.Length >= 1024 * 1000 * 10) //10M
+                                    {
+                                        processFFmpegFileMove(file.FullName);
+                                    }
+
+                                    Thread.Sleep(500);
+                                }
                             }
                         }
-                    }
 
-                    Thread.Sleep(1000);
-                }
+                        Thread.Sleep(1000);
+                    }
+                
 
                 Thread.Sleep(interval);
             }

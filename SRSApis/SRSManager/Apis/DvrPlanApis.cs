@@ -11,6 +11,191 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class DvrPlanApis
     {
+
+        /// <summary>
+        /// 获取需要裁剪合并的文件列表 
+        /// </summary>
+        /// <param name="rcmv"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        private static List<CutMergeStruct> analysisVideoFile(ReqCutOrMergeVideoFile rcmv ,out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            int startPos = -1;
+            int endPos = -1;
+            DateTime _start = DateTime.Parse(rcmv.StartTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            DateTime _end = DateTime.Parse(rcmv.EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            var videoList = OrmService.Db.Select<DvrVideo>()
+                .Where(x => x.StartTime > _start.AddMinutes(-60) && x.EndTime <= _end.AddMinutes(60)).ToList();//取前后预留60分钟数据
+            List<DvrVideo> cutMegerList = null!;
+            if (videoList != null && videoList.Count > 0)
+            {
+                for (int i = 0; i <= videoList.Count - 1; i++)
+                {
+                    DateTime startInDb =
+                        DateTime.Parse(((DateTime) videoList[i].StartTime!).ToString("yyyy-MM-dd HH:mm:ss"));
+                    DateTime endInDb =
+                        DateTime.Parse(((DateTime) videoList[i].EndTime!).ToString("yyyy-MM-dd HH:mm:ss"));
+                    if (startInDb <= rcmv.StartTime && endInDb > rcmv.StartTime)
+                    {
+                        startPos = i;
+                    }
+
+                    if (startInDb < rcmv.EndTime && endInDb >= rcmv.EndTime)
+                    {
+                        endPos = i;
+                    }
+                }
+
+                if (startPos >= 0 && endPos >= 0)
+                {
+                    cutMegerList = videoList.GetRange(startPos, endPos-startPos+1);
+                }
+
+                if (startPos < 0 && endPos >= 0)
+                {
+                    cutMegerList = videoList.GetRange(0, endPos);
+                }
+
+                if (startPos >= 0 && endPos < 0)
+                {
+                    cutMegerList = videoList.GetRange(startPos, videoList.Count);
+                }
+
+                if (startPos < 0 && endPos < 0)
+                {
+                    cutMegerList = videoList;
+                }
+            }
+
+            if (cutMegerList != null && cutMegerList.Count > 0)
+            {
+                List<CutMergeStruct> cutMergeStructList = new List<CutMergeStruct>();
+                for (int i = 0; i <= cutMegerList.Count - 1; i++)
+                {
+                    var tmpCutMeger = cutMegerList[i];
+                    if (tmpCutMeger != null && i == 0)
+                    {
+                        DateTime tmpCutMegerStartTime =
+                            DateTime.Parse(((DateTime) tmpCutMeger.StartTime!).ToString("yyyy-MM-dd HH:mm:ss"));
+                        DateTime tmpCutMegerEndTime =
+                            DateTime.Parse(((DateTime) tmpCutMeger.EndTime!).ToString("yyyy-MM-dd HH:mm:ss"));
+                        if (tmpCutMegerStartTime < _start && tmpCutMegerEndTime > _start)
+                        {
+                            TimeSpan ts = -tmpCutMegerStartTime.Subtract(_start);
+                            TimeSpan ts2 = tmpCutMegerEndTime.Subtract(_start) + ts;
+                            CutMergeStruct tmpStruct = new CutMergeStruct()
+                            {
+                                DbId = cutMegerList[i].Id,
+                                CutEndPos = ts2.Hours.ToString().PadLeft(2, '0') + ":" +
+                                            ts2.Minutes.ToString().PadLeft(2, '0') + ":" +
+                                            ts2.Seconds.ToString().PadLeft(2, '0'),
+                                CutStartPos = ts.Hours.ToString().PadLeft(2, '0') + ":" +
+                                              ts.Minutes.ToString().PadLeft(2, '0') + ":" +
+                                              ts.Seconds.ToString().PadLeft(2, '0'),
+                                Duration = cutMegerList[i].Duration,
+                                EndTime = cutMegerList[i].EndTime,
+                                FilePath = cutMegerList[i].VideoPath,
+                                FileSize = cutMegerList[i].FileSize,
+                                StartTime = cutMegerList[i].StartTime,
+                            };
+                            cutMergeStructList.Add(tmpStruct);
+                        }
+                        
+                    }
+                    else if (tmpCutMeger != null && i == cutMegerList.Count - 1)
+                    {
+                        DateTime tmpCutMegerStartTime =
+                            DateTime.Parse(((DateTime) tmpCutMeger.StartTime!).ToString("yyyy-MM-dd HH:mm:ss"));
+                        DateTime tmpCutMegerEndTime =
+                            DateTime.Parse(((DateTime) tmpCutMeger.EndTime!).ToString("yyyy-MM-dd HH:mm:ss"));
+                        if (tmpCutMegerEndTime >rcmv.EndTime)
+                        {
+                            TimeSpan ts = tmpCutMegerEndTime.Subtract(rcmv.EndTime);
+                            ts = (tmpCutMegerEndTime - tmpCutMegerStartTime).Subtract(ts);
+                            CutMergeStruct tmpStruct = new CutMergeStruct()
+                            {
+                                DbId = cutMegerList[i].Id,
+                                CutEndPos = ts.Hours.ToString().PadLeft(2, '0') + ":" +
+                                            ts.Minutes.ToString().PadLeft(2, '0') + ":" +
+                                            ts.Seconds.ToString().PadLeft(2, '0'),
+                                CutStartPos = "00:00:00",
+                                Duration = cutMegerList[i].Duration,
+                                EndTime = cutMegerList[i].EndTime,
+                                FilePath = cutMegerList[i].VideoPath,
+                                FileSize = cutMegerList[i].FileSize,
+                                StartTime = cutMegerList[i].StartTime,
+                            };
+                            cutMergeStructList.Add(tmpStruct);
+                        }
+                        else if(tmpCutMegerEndTime == rcmv.EndTime)
+                        {
+                            CutMergeStruct tmpStruct = new CutMergeStruct()
+                            {
+                                DbId = cutMegerList[i].Id,
+                                CutEndPos = null,
+                                CutStartPos =null,
+                                Duration = cutMegerList[i].Duration,
+                                EndTime = cutMegerList[i].EndTime,
+                                FilePath = cutMegerList[i].VideoPath,
+                                FileSize = cutMegerList[i].FileSize,
+                                StartTime = cutMegerList[i].StartTime,
+                            };
+                            cutMergeStructList.Add(tmpStruct); 
+                        }
+                    }
+                    else
+                    {
+                        CutMergeStruct tmpStruct = new CutMergeStruct()
+                        {
+                            DbId = cutMegerList[i].Id,
+                            CutEndPos = null,
+                            CutStartPos = null,
+                            Duration = cutMegerList[i].Duration,
+                            EndTime = cutMegerList[i].EndTime,
+                            FilePath = cutMegerList[i].VideoPath,
+                            FileSize = cutMegerList[i].FileSize,
+                            StartTime = cutMegerList[i].StartTime,
+                        };
+                        cutMergeStructList.Add(tmpStruct);
+                    }
+                }
+
+                return cutMergeStructList;
+            }
+
+            return null!;
+        }
+        
+        public static string CutOrMergeVideoFile(ReqCutOrMergeVideoFile rcmv, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (string.IsNullOrEmpty(rcmv.CallbackUrl))
+            {
+                /*
+                 *start:2020-06-11 12:01:10
+                 *end:2020-06-11 13:25:33
+                 * select * from video where starttime>=start and endtime<=end
+                 
+                 */
+                //同步返回
+                return "";
+            }
+            else
+            {
+                //异步回调
+                string taskId = Common.CreateUuid()!;
+                return taskId;
+            }
+        }
         /// <summary>
         /// 恢复被软删除的录制文件
         /// </summary>

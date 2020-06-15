@@ -59,6 +59,27 @@ namespace SRSApis
             DvrPlanExec = new DvrPlanExec();
             KeepIngestStream = new KeepIngestStream();
         }
+        
+        /// <summary>
+        /// 有没有srs正在运行
+        /// </summary>
+        /// <returns></returns>
+        public static bool HaveAnySrsInsInstanceRunning()
+        {
+            if (SrsManagers != null && SrsManagers.Count > 0)
+            {
+                foreach (var srs in SrsManagers)
+                {
+                    if (srs.IsRunning)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+        
 
         /// <summary>
         /// 删除List<T>中null的记录

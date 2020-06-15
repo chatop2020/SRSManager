@@ -371,6 +371,26 @@ namespace SrsWebApi.Controllers
             var rt = FastUsefulApis.GetOnPublishMonitorList(out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
+        
+        /// <summary>
+        /// 获取在线摄像头ById，支持多个id,用空格隔开
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/FastUseful/GetOnPublishMonitorById")]
+        public JsonResult GetOnPublishMonitorById(string id)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {id});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+            var rt = FastUsefulApis.GetOnPublishMonitorById(id,out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
 
         /// <summary>
         /// 获取一个用于rtsp拉流的ingest配置

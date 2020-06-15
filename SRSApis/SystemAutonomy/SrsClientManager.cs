@@ -10,7 +10,8 @@ namespace SRSApis.SystemAutonomy
 {
     public class SrsClientManager
     {
-        private int interval =  SrsManageCommon.Common.SystemConfig.SrsClientManagerServiceinterval;
+        private int interval = SrsManageCommon.Common.SystemConfig.SrsClientManagerServiceinterval;
+
         private void rewriteMonitorType()
         {
             if (Common.SrsManagers != null)
@@ -22,17 +23,21 @@ namespace SRSApis.SystemAutonomy
                         var onPublishList =
                             FastUsefulApis.GetOnPublishMonitorListByDeviceId(srs.SrsDeviceId, out ResponseStruct rs);
                         if (onPublishList == null || onPublishList.Count == 0) continue;
+                        var ingestList = FastUsefulApis.GetAllIngestByDeviceId(srs.SrsDeviceId, out rs);
+                       
+                        ushort? port = srs.Srs.Http_api!.Listen;
+                        List<Channels> ret28181 = null!;
+                        if (port != null && srs.Srs!=null && srs.Srs.Http_api!=null && srs.Srs.Http_api.Enabled==true)
+                        {
+                             ret28181 = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
+                        }
                         foreach (var client in onPublishList)
                         {
+                            if ( srs.Srs!.Http_api == null || srs.Srs.Http_api.Enabled == false) continue;
                             #region 处理28181设备
-
-                            ushort? port = srs.Srs.Http_api!.Listen;
-                            if (port == null || srs.Srs.Http_api == null || srs.Srs.Http_api.Enabled == false)
-                                continue;
-                            var ret = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
-                            if (ret != null)
+                            if (ret28181 != null)
                             {
-                                foreach (var r in ret)
+                                foreach (var r in ret28181)
                                 {
                                     if (!string.IsNullOrEmpty(r.Stream) && r.Stream.Equals(client.Stream))
                                     {
@@ -42,6 +47,7 @@ namespace SRSApis.SystemAutonomy
                                                 .Set(x => x.MonitorType, MonitorType.GBT28181)
                                                 .Where(x => x.Client_Id == client.Client_Id)
                                                 .ExecuteAffrows();
+                                            
                                         }
                                     }
                                 }
@@ -51,7 +57,7 @@ namespace SRSApis.SystemAutonomy
 
                             #region 处理onvif设备
 
-                            var ingestList = FastUsefulApis.GetAllIngestByDeviceId(srs.SrsDeviceId, out rs);
+                          
                             if (ingestList != null && ingestList.Count > 0)
                             {
                                 foreach (var ingest in ingestList)
@@ -66,6 +72,7 @@ namespace SRSApis.SystemAutonomy
                                                 .Set(x => x.MonitorType, MonitorType.Onvif)
                                                 .Where(x => x.Client_Id == client.Client_Id)
                                                 .ExecuteAffrows();
+                                            
                                         }
                                     }
                                 }
@@ -79,10 +86,9 @@ namespace SRSApis.SystemAutonomy
                                 .Set(x => x.MonitorType, MonitorType.Webcast)
                                 .Where(x => x.MonitorType == MonitorType.Unknow && x.ClientType == ClientType.Monitor)
                                 .ExecuteAffrows();
+                            
 
                             #endregion
-
-                            // }
                         }
                     }
                 }
@@ -106,7 +112,7 @@ namespace SRSApis.SystemAutonomy
             }
             catch (Exception ex)
             {
-                LogWriter.WriteLog("获取SRS-GB28181通道数据异常...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
+                LogWriter.WriteLog("获取SRS-GB28181通道数据异常...", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                 return null!;
             }
         }
@@ -145,6 +151,12 @@ namespace SRSApis.SystemAutonomy
                                                             (x.MonitorIp == null || x.MonitorIp == "" ||
                                                              x.MonitorIp == "127.0.0.1"))
                                                 .ExecuteAffrows();
+                                            if (reti > 0)
+                                            {
+                                                LogWriter.WriteLog("补全Ingest拉流器中的摄像头IP地址...", 
+                                                    srs.SrsDeviceId + "/" + r.VhostDomain + "/" + ingest.IngestName +
+                                                    " 获取到IP:" + inputIp + " 获取到Rtsp地址:" + ingest.Input!.Url);
+                                            }
                                         }
                                     }
                                 }
@@ -182,6 +194,11 @@ namespace SRSApis.SystemAutonomy
                                                         (x.MonitorIp == null || x.MonitorIp == "" ||
                                                          x.MonitorIp == "127.0.0.1"))
                                             .ExecuteAffrows();
+                                        if (reti > 0)
+                                        {
+                                            LogWriter.WriteLog("补全StreamCaster收流器中的摄像头IP地址...",
+                                                srs.SrsDeviceId + "/"  +r.Stream+ " 获取到IP:" + r.Rtp_Peer_Ip );
+                                        }
                                     }
                                 }
                             }
@@ -193,13 +210,20 @@ namespace SRSApis.SystemAutonomy
 
         private void clearOfflinePlayerUser()
         {
-            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+            if (Common.HaveAnySrsInsInstanceRunning())
             {
-                var re = OrmService.Db.Delete<OnlineClient>().Where(x => x.ClientType == ClientType.User &&
-                                                                         x.IsPlay == false &&
-                                                                         x.UpdateTime <= DateTime.Now.AddMinutes(-3))
-                    .ExecuteAffrows();
-               
+                lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                {
+                    var re = OrmService.Db.Delete<OnlineClient>().Where(x => x.ClientType == ClientType.User &&
+                                                                             x.IsPlay == false &&
+                                                                             x.UpdateTime <=
+                                                                             DateTime.Now.AddMinutes(-3))
+                        .ExecuteAffrows();
+                    if (re > 0)
+                    {
+                        LogWriter.WriteLog("清理已经死亡的客户端播放连接...清理数量：" + re);
+                    }
+                }
             }
         }
 
@@ -208,8 +232,9 @@ namespace SRSApis.SystemAutonomy
             while (true)
             {
                 #region 补全ingest过来的monitorip地址
+
                 completionOnvifIpAddress();
-                LogWriter.WriteLog("补全Ingest拉流器中的摄像头IP地址...");
+
                 Thread.Sleep(500);
 
                 #endregion
@@ -217,7 +242,7 @@ namespace SRSApis.SystemAutonomy
                 #region 补28181 monitorip 地址
 
                 completionT28181IpAddress();
-                LogWriter.WriteLog("补全StreamCaster收流器中的摄像头IP地址...");
+
                 Thread.Sleep(500);
 
                 #endregion
@@ -225,7 +250,7 @@ namespace SRSApis.SystemAutonomy
                 #region 删除长期没更新的user类型的非播放的客户端
 
                 clearOfflinePlayerUser();
-                LogWriter.WriteLog("清理已经死亡的客户端播放连接...");
+
                 Thread.Sleep(500);
 
                 #endregion
@@ -233,10 +258,11 @@ namespace SRSApis.SystemAutonomy
                 #region 重写摄像头类型
 
                 rewriteMonitorType();
-                LogWriter.WriteLog("获取并更新摄像头类型...");
+
                 Thread.Sleep(500);
 
                 #endregion
+
 
                 Thread.Sleep(interval);
             }
@@ -254,7 +280,7 @@ namespace SRSApis.SystemAutonomy
                 }
                 catch (Exception ex)
                 {
-                    LogWriter.WriteLog("启动客户端监控服务失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
+                    LogWriter.WriteLog("启动客户端监控服务失败...", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                 }
             })).Start();
         }

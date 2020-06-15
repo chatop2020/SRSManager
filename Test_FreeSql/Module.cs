@@ -11,10 +11,10 @@ namespace Test_FreeSql
 
     public class Module
     {
-        [Column(IsIdentity = true)] public long Id { get; set; }
+     //   [Column(IsIdentity = true)] public long Id { get; set; }
 
         public string Str { get; set; }
-        [Column(MapType = typeof(string))] public Strtype Type { get; set; }
+      //  [Column(MapType = typeof(string))] public Strtype Type { get; set; }
 
 
         public DateTime Start { get; set; }
@@ -22,10 +22,6 @@ namespace Test_FreeSql
 
         public DateTime End { get; set; }
 
-        public override string ToString()
-        {
-            return
-                $"{nameof(Id)}: {Id}, {nameof(Str)}: {Str}, {nameof(Type)}: {Type}, {nameof(Start)}: {Start}, {nameof(End)}: {End}";
-        }
+      
     }
 }

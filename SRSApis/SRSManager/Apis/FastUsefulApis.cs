@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
+using System.Xml.Schema;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
 using SRSManageCommon.DBMoudle;
@@ -1031,6 +1033,32 @@ namespace SrsApis.SrsManager.Apis
                 return result;
             }
         }
+        
+        /// <summary>
+        /// 获取发布中的摄像头ByID,支持多个id用空格隔开
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<OnlineClient> GetOnPublishMonitorById(string id,out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            string[] strArr = id.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            if (strArr.Length > 0)
+            {
+                long[] lIds = Array.ConvertAll(strArr , long.Parse);
+                lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                {
+                    return OrmService.Db.Select<OnlineClient>().Where(x =>lIds.Contains(x.Id)).ToList();
+
+                }
+            }
+            return null!;
+        }
+        
 
         /// <summary>
         /// 获取所有发布中的摄像头
