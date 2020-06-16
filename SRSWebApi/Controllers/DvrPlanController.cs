@@ -15,6 +15,27 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class DvrPlanController : ControllerBase
     {
+    
+        /// <summary>
+        /// 裁剪合并视频文件
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/DvrPlan/CutOrMergeVideoFile")]
+        public JsonResult CutOrMergeVideoFile(ReqCutOrMergeVideoFile rcmv)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {rcmv});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+
+            var rt = DvrPlanApis.CutOrMergeVideoFile(rcmv, out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
         /// <summary>
         /// 恢复被软删除的录像文件
         /// </summary>

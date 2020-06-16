@@ -1,24 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using SRSApis.SystemAutonomy;
 using SrsManageCommon;
 using SRSManageCommon.ControllerStructs.RequestModules;
 using SRSManageCommon.ControllerStructs.ResponseModules;
 using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
+using TaskStatus = SRSManageCommon.ManageStructs.TaskStatus;
 
 namespace SrsApis.SrsManager.Apis
 {
     public static class DvrPlanApis
     {
-
         /// <summary>
         /// 获取需要裁剪合并的文件列表 
         /// </summary>
         /// <param name="rcmv"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        private static List<CutMergeStruct> analysisVideoFile(ReqCutOrMergeVideoFile rcmv ,out ResponseStruct rs)
+        private static List<CutMergeStruct> analysisVideoFile(ReqCutOrMergeVideoFile rcmv, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -27,128 +29,226 @@ namespace SrsApis.SrsManager.Apis
             };
             int startPos = -1;
             int endPos = -1;
-            DateTime _start = DateTime.Parse(rcmv.StartTime.ToString("yyyy-MM-dd HH:mm:ss"));
-            DateTime _end = DateTime.Parse(rcmv.EndTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            DateTime _start = DateTime.Parse(rcmv.StartTime.ToString("yyyy-MM-dd HH:mm:ss")).AddSeconds(-20); //向前推20秒
+            DateTime _end = DateTime.Parse(rcmv.EndTime.ToString("yyyy-MM-dd HH:mm:ss")).AddSeconds(20); //向后延迟20秒
             var videoList = OrmService.Db.Select<DvrVideo>()
-                .Where(x => x.StartTime > _start.AddMinutes(-60) && x.EndTime <= _end.AddMinutes(60)).ToList();//取前后预留60分钟数据
+                .Where(x => x.StartTime > _start.AddMinutes(-60) && x.EndTime <= _end.AddMinutes(60))
+                .ToList(); //取条件范围的前60分钟及后60分钟内的所有数据
             List<DvrVideo> cutMegerList = null!;
             if (videoList != null && videoList.Count > 0)
             {
                 for (int i = 0; i <= videoList.Count - 1; i++)
                 {
+                    if (!File.Exists(videoList[i].VideoPath))
+                    {
+                        continue; //文件不存在的，跳过
+                    }
+
                     DateTime startInDb =
                         DateTime.Parse(((DateTime) videoList[i].StartTime!).ToString("yyyy-MM-dd HH:mm:ss"));
                     DateTime endInDb =
                         DateTime.Parse(((DateTime) videoList[i].EndTime!).ToString("yyyy-MM-dd HH:mm:ss"));
-                    if (startInDb <= rcmv.StartTime && endInDb > rcmv.StartTime)
+                    if (startInDb <= _start && endInDb > _start) //找符合要求的开始视频
                     {
                         startPos = i;
                     }
 
-                    if (startInDb < rcmv.EndTime && endInDb >= rcmv.EndTime)
+                    if (startInDb < _end && endInDb >= _end) //找符合要求的结束视频
                     {
                         endPos = i;
                     }
                 }
 
-                if (startPos >= 0 && endPos >= 0)
+                if (startPos >= 0 && endPos >= 0) //如果开始和结束都找到了，就取这个范围内的视频
                 {
-                    cutMegerList = videoList.GetRange(startPos, endPos-startPos+1);
+                    cutMegerList = videoList.GetRange(startPos, endPos - startPos + 1);
                 }
 
-                if (startPos < 0 && endPos >= 0)
+                if (startPos < 0 && endPos >= 0) //如果开始没有找到，而结束找到了
                 {
-                    cutMegerList = videoList.GetRange(0, endPos);
+                    List<KeyValuePair<int, double>> tmpStartList = new List<KeyValuePair<int, double>>();
+                    for (int i = 0; i <= videoList.Count - 1; i++)
+                    {
+                        tmpStartList.Add(new KeyValuePair<int, double>(i,
+                            Math.Abs(((DateTime) videoList[i]!.StartTime!).Subtract(_start)
+                                .TotalMilliseconds))); //对所有视频做开始时间减需的开始时间，取绝对值
+                    }
+
+                    tmpStartList.Sort((left, right) => //对相减后的绝对值排序
+                    {
+                        if (left.Value > right.Value)
+                            return 1;
+                        else if ((int) left.Value == (int) right.Value)
+                            return 0;
+                        else
+                            return -1;
+                    });
+
+                    cutMegerList =
+                        videoList.GetRange(tmpStartList[0].Key, endPos - tmpStartList[0].Key + 1); //取离要求时间最近的那个视频为开始视频
+                    for (int i = cutMegerList.Count - 1; i >= 0; i--)
+                    {
+                        if (cutMegerList[i].StartTime > _end && cutMegerList[i].EndTime > _end
+                        ) //如果视频的开始时间大于要求的结束时间，并且不是最后一个视频，就过滤掉这个视频
+                        {
+                            if (i > 0)
+                            {
+                                cutMegerList[i] = null!;
+                            }
+                        }
+                    }
+
+                    Common.RemoveNull(cutMegerList);
                 }
 
-                if (startPos >= 0 && endPos < 0)
+                if (startPos >= 0 && endPos < 0) //开始视频找到了，结束视频没有找到
                 {
-                    cutMegerList = videoList.GetRange(startPos, videoList.Count);
+                    List<KeyValuePair<int, double>> tmpEndList = new List<KeyValuePair<int, double>>();
+
+                    for (int i = 0; i <= videoList.Count - 1; i++)
+                    {
+                        tmpEndList.Add(new KeyValuePair<int, double>(i,
+                            Math.Abs(((DateTime) videoList[i]!.EndTime!).Subtract(_end)
+                                .TotalMilliseconds))); //上上面一样，取绝对值
+                    }
+
+                    tmpEndList.Sort((left, right) => //排序
+                    {
+                        if (left.Value > right.Value)
+                            return 1;
+                        else if ((int) left.Value == (int) right.Value)
+                            return 0;
+                        else
+                            return -1;
+                    });
+                    cutMegerList = videoList.GetRange(startPos, tmpEndList[0].Key - startPos + 1);
+                    for (int i = cutMegerList.Count - 1; i >= 0; i--)
+                    {
+                        if (cutMegerList[i].StartTime > _end && cutMegerList[i].EndTime > _end) //过滤
+                        {
+                            if (i > 0)
+                            {
+                                cutMegerList[i] = null!;
+                            }
+                        }
+                    }
+
+                    Common.RemoveNull(cutMegerList);
                 }
 
-                if (startPos < 0 && endPos < 0)
+                if (startPos < 0 && endPos < 0) //如果开始也没找到，结束也没找到，那就报错
                 {
-                    cutMegerList = videoList;
                 }
             }
 
-            if (cutMegerList != null && cutMegerList.Count > 0)
+            if (cutMegerList != null && cutMegerList.Count > 0) //取到了要合并文件的列表
             {
                 List<CutMergeStruct> cutMergeStructList = new List<CutMergeStruct>();
                 for (int i = 0; i <= cutMegerList.Count - 1; i++)
                 {
                     var tmpCutMeger = cutMegerList[i];
-                    if (tmpCutMeger != null && i == 0)
+                    if (tmpCutMeger != null && i == 0) //看第一个文件是否需要裁剪
                     {
                         DateTime tmpCutMegerStartTime =
                             DateTime.Parse(((DateTime) tmpCutMeger.StartTime!).ToString("yyyy-MM-dd HH:mm:ss"));
                         DateTime tmpCutMegerEndTime =
                             DateTime.Parse(((DateTime) tmpCutMeger.EndTime!).ToString("yyyy-MM-dd HH:mm:ss"));
-                        if (tmpCutMegerStartTime < _start && tmpCutMegerEndTime > _start)
+                        if (tmpCutMegerStartTime < _start && tmpCutMegerEndTime > _start
+                        ) //如果视频开始时间大于需要的开始时间，而视频结束时间大于需要的开始时间
                         {
-                            TimeSpan ts = -tmpCutMegerStartTime.Subtract(_start);
-                            TimeSpan ts2 = tmpCutMegerEndTime.Subtract(_start) + ts;
-                            CutMergeStruct tmpStruct = new CutMergeStruct()
+                            TimeSpan ts = -tmpCutMegerStartTime.Subtract(_start); //视频的开始时间减去需要的开始时间，再取反
+                            TimeSpan ts2 = tmpCutMegerEndTime.Subtract(_start) + ts; //视频的结束时间减去需要的开始时间，再加上前面的值
+                            CutMergeStruct tmpStruct = new CutMergeStruct();
+                            tmpStruct.DbId = cutMegerList[i].Id;
+                            tmpStruct.Duration = cutMegerList[i].Duration;
+                            tmpStruct.EndTime = cutMegerList[i].EndTime;
+                            tmpStruct.FilePath = cutMegerList[i].VideoPath;
+                            tmpStruct.FileSize = cutMegerList[i].FileSize;
+                            tmpStruct.StartTime = cutMegerList[i].StartTime;
+
+                            if (ts2.Hours <= 0 && ts2.Minutes <= 0 && ts2.Seconds <= 0) //如果时间ts2的各项都小于0，说明不需要裁剪
                             {
-                                DbId = cutMegerList[i].Id,
-                                CutEndPos = ts2.Hours.ToString().PadLeft(2, '0') + ":" +
-                                            ts2.Minutes.ToString().PadLeft(2, '0') + ":" +
-                                            ts2.Seconds.ToString().PadLeft(2, '0'),
-                                CutStartPos = ts.Hours.ToString().PadLeft(2, '0') + ":" +
-                                              ts.Minutes.ToString().PadLeft(2, '0') + ":" +
-                                              ts.Seconds.ToString().PadLeft(2, '0'),
-                                Duration = cutMegerList[i].Duration,
-                                EndTime = cutMegerList[i].EndTime,
-                                FilePath = cutMegerList[i].VideoPath,
-                                FileSize = cutMegerList[i].FileSize,
-                                StartTime = cutMegerList[i].StartTime,
-                            };
-                            cutMergeStructList.Add(tmpStruct);
-                        }
-                        
-                    }
-                    else if (tmpCutMeger != null && i == cutMegerList.Count - 1)
-                    {
-                        DateTime tmpCutMegerStartTime =
-                            DateTime.Parse(((DateTime) tmpCutMeger.StartTime!).ToString("yyyy-MM-dd HH:mm:ss"));
-                        DateTime tmpCutMegerEndTime =
-                            DateTime.Parse(((DateTime) tmpCutMeger.EndTime!).ToString("yyyy-MM-dd HH:mm:ss"));
-                        if (tmpCutMegerEndTime >rcmv.EndTime)
-                        {
-                            TimeSpan ts = tmpCutMegerEndTime.Subtract(rcmv.EndTime);
-                            ts = (tmpCutMegerEndTime - tmpCutMegerStartTime).Subtract(ts);
-                            CutMergeStruct tmpStruct = new CutMergeStruct()
+                                tmpStruct.CutEndPos = "";
+                                tmpStruct.CutStartPos = "";
+                            }
+                            else //否则做裁剪参数设置
                             {
-                                DbId = cutMegerList[i].Id,
-                                CutEndPos = ts.Hours.ToString().PadLeft(2, '0') + ":" +
-                                            ts.Minutes.ToString().PadLeft(2, '0') + ":" +
-                                            ts.Seconds.ToString().PadLeft(2, '0'),
-                                CutStartPos = "00:00:00",
-                                Duration = cutMegerList[i].Duration,
-                                EndTime = cutMegerList[i].EndTime,
-                                FilePath = cutMegerList[i].VideoPath,
-                                FileSize = cutMegerList[i].FileSize,
-                                StartTime = cutMegerList[i].StartTime,
-                            };
-                            cutMergeStructList.Add(tmpStruct);
+                                tmpStruct.CutEndPos = ts2.Hours.ToString().PadLeft(2, '0') + ":" +
+                                                      ts2.Minutes.ToString().PadLeft(2, '0') + ":" +
+                                                      ts2.Seconds.ToString().PadLeft(2, '0');
+                                tmpStruct.CutStartPos = ts.Hours.ToString().PadLeft(2, '0') + ":" +
+                                                        ts.Minutes.ToString().PadLeft(2, '0') + ":" +
+                                                        ts.Seconds.ToString().PadLeft(2, '0');
+                            }
+
+                            cutMergeStructList.Add(tmpStruct); //加入到处理列表中
                         }
-                        else if(tmpCutMegerEndTime == rcmv.EndTime)
+                        else //如果视频时间大于等于需要的开始时间或者大于等于需要的结束时间，时间刚刚正好，直接加进来
                         {
                             CutMergeStruct tmpStruct = new CutMergeStruct()
                             {
                                 DbId = cutMegerList[i].Id,
                                 CutEndPos = null,
-                                CutStartPos =null,
+                                CutStartPos = null,
                                 Duration = cutMegerList[i].Duration,
                                 EndTime = cutMegerList[i].EndTime,
                                 FilePath = cutMegerList[i].VideoPath,
                                 FileSize = cutMegerList[i].FileSize,
                                 StartTime = cutMegerList[i].StartTime,
                             };
-                            cutMergeStructList.Add(tmpStruct); 
+                            cutMergeStructList.Add(tmpStruct);
                         }
                     }
-                    else
+                    else if (tmpCutMeger != null && i == cutMegerList.Count - 1) //处理最后一个视频，看是否需要裁剪，后续操作同上
+                    {
+                        DateTime tmpCutMegerStartTime =
+                            DateTime.Parse(((DateTime) tmpCutMeger.StartTime!).ToString("yyyy-MM-dd HH:mm:ss"));
+                        DateTime tmpCutMegerEndTime =
+                            DateTime.Parse(((DateTime) tmpCutMeger.EndTime!).ToString("yyyy-MM-dd HH:mm:ss"));
+                        if (tmpCutMegerEndTime > _end)
+                        {
+                            TimeSpan ts = tmpCutMegerEndTime.Subtract(_end);
+                            ts = (tmpCutMegerEndTime - tmpCutMegerStartTime).Subtract(ts);
+                            CutMergeStruct tmpStruct = new CutMergeStruct();
+                            tmpStruct.DbId = cutMegerList[i].Id;
+                            tmpStruct.Duration = cutMegerList[i].Duration;
+                            tmpStruct.EndTime = cutMegerList[i].EndTime;
+                            tmpStruct.FilePath = cutMegerList[i].VideoPath;
+                            tmpStruct.FileSize = cutMegerList[i].FileSize;
+                            tmpStruct.StartTime = cutMegerList[i].StartTime;
+                            if (ts.Hours <= 0 && ts.Minutes <= 0 && ts.Seconds <= 0)
+                            {
+                                tmpStruct.CutEndPos = "";
+                                tmpStruct.CutStartPos = "";
+                            }
+                            else
+                            {
+                                tmpStruct.CutEndPos = ts.Hours.ToString().PadLeft(2, '0') + ":" +
+                                                      ts.Minutes.ToString().PadLeft(2, '0') + ":" +
+                                                      ts.Seconds.ToString().PadLeft(2, '0');
+                                tmpStruct.CutStartPos = "00:00:00";
+                            }
+
+
+                            cutMergeStructList.Add(tmpStruct);
+                        }
+                        else if (tmpCutMegerEndTime <= _end)
+                        {
+                            CutMergeStruct tmpStruct = new CutMergeStruct()
+                            {
+                                DbId = cutMegerList[i].Id,
+                                CutEndPos = null,
+                                CutStartPos = null,
+                                Duration = cutMegerList[i].Duration,
+                                EndTime = cutMegerList[i].EndTime,
+                                FilePath = cutMegerList[i].VideoPath,
+                                FileSize = cutMegerList[i].FileSize,
+                                StartTime = cutMegerList[i].StartTime,
+                            };
+                            cutMergeStructList.Add(tmpStruct);
+                        }
+                    }
+                    else //如果不是第一个也不是最后一个，就是中间部分，直接加进列表 
                     {
                         CutMergeStruct tmpStruct = new CutMergeStruct()
                         {
@@ -168,34 +268,105 @@ namespace SrsApis.SrsManager.Apis
                 return cutMergeStructList;
             }
 
+            rs = new ResponseStruct() //报错，视频资源没有找到
+            {
+                Code = ErrorNumber.DvrCutMergeFileNotFound,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.DvrCutMergeFileNotFound],
+            };
             return null!;
         }
-        
-        public static string CutOrMergeVideoFile(ReqCutOrMergeVideoFile rcmv, out ResponseStruct rs)
+
+        public static CutMergeTaskResponse CutOrMergeVideoFile(ReqCutOrMergeVideoFile rcmv, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
+            if (rcmv.StartTime >= rcmv.EndTime)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.FunctionInputParamsError,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.FunctionInputParamsError],
+                };
+                return null!;
+            }
+
             if (string.IsNullOrEmpty(rcmv.CallbackUrl))
             {
-                /*
-                 *start:2020-06-11 12:01:10
-                 *end:2020-06-11 13:25:33
-                 * select * from video where starttime>=start and endtime<=end
-                 
-                 */
                 //同步返回
-                return "";
+                if ((rcmv.EndTime - rcmv.StartTime).Minutes > 10)
+                {
+                    rs = new ResponseStruct()
+                    {
+                        Code = ErrorNumber.DvrCutMergeTimeLimit,
+                        Message = ErrorMessage.ErrorDic![ErrorNumber.DvrCutMergeTimeLimit],
+                    };
+
+                    return null!;
+                }
+
+                var mergeList = analysisVideoFile(rcmv, out rs);
+
+                if (mergeList != null && mergeList.Count > 0)
+                {
+                    CutMergeTask task = new CutMergeTask()
+                    {
+                        CutMergeFileList = mergeList,
+                        CallbakUrl = null,
+                        CreateTime = DateTime.Now,
+                        TaskId = Common.CreateUuid()!,
+                        TaskStatus = TaskStatus.Create,
+                    };
+                    var taskReturn=Task.Factory.StartNew(() => CutMergeService.CutMerge(task));//抛线程处理
+                    Task.WaitAny(taskReturn);//等待所有任务结束
+                    return taskReturn.Result;
+                }
+
+                return null!;
             }
             else
             {
                 //异步回调
-                string taskId = Common.CreateUuid()!;
-                return taskId;
+                var mergeList = analysisVideoFile(rcmv, out rs);
+                if (mergeList != null && mergeList.Count > 0)
+                {
+                    CutMergeTask task = new CutMergeTask()
+                    {
+                        CutMergeFileList = mergeList,
+                        CallbakUrl =rcmv.CallbackUrl,
+                        CreateTime = DateTime.Now,
+                        TaskId = Common.CreateUuid()!,
+                        TaskStatus = TaskStatus.Create,
+                    };
+                    try
+                    {
+                        CutMergeService.CutMergeTaskList.Add(task);
+                   
+                        return new CutMergeTaskResponse()
+                        {
+                            Duration = -1,
+                            FilePath = "",
+                            FileSize = -1,
+                            Status = CutMergeRequestStatus.WaitForCallBack,
+                            Task = task,
+                        };
+                    }
+                    catch (Exception ex)
+                    {
+                        rs = new ResponseStruct() //报错，队列大于最大值
+                        {
+                            Code = ErrorNumber.DvrCutProcessQueueLimit,
+                            Message = ErrorMessage.ErrorDic![ErrorNumber.DvrCutProcessQueueLimit]+"\r\n"+ex.Message+"\r\n"+ex.StackTrace,
+                        };
+                        return null!;
+                    }
+                }
+                return null!;
             }
         }
+
         /// <summary>
         /// 恢复被软删除的录制文件
         /// </summary>
@@ -544,7 +715,7 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="sdp"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static bool SetDvrPlanById(int id,ReqStreamDvrPlan sdp, out ResponseStruct rs)
+        public static bool SetDvrPlanById(int id, ReqStreamDvrPlan sdp, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -555,7 +726,7 @@ namespace SrsApis.SrsManager.Apis
             {
                 rs.Code = ErrorNumber.SrsObjectNotInit;
                 rs.Message = ErrorMessage.ErrorDic![ErrorNumber.SrsObjectNotInit];
-                
+
                 return false;
             }
 
@@ -602,8 +773,8 @@ namespace SrsApis.SrsManager.Apis
                 int retDelete = -1;
                 lock (Common.LockDbObjForStreamDvrPlan)
                 {
-                    retSelect = OrmService.Db.Select<StreamDvrPlan>().Where(x => x.Id==id).First();
-                    retDelete = OrmService.Db.Delete<StreamDvrPlan>().Where(x => x.Id==id).ExecuteAffrows();
+                    retSelect = OrmService.Db.Select<StreamDvrPlan>().Where(x => x.Id == id).First();
+                    retDelete = OrmService.Db.Delete<StreamDvrPlan>().Where(x => x.Id == id).ExecuteAffrows();
                 }
 
 
@@ -611,12 +782,10 @@ namespace SrsApis.SrsManager.Apis
                 {
                     lock (Common.LockDbObjForStreamDvrPlan)
                     {
-                       
-                            OrmService.Db.Delete<DvrDayTimeRange>()
-                                .Where(x => x.StreamDvrPlanId == retSelect.Id).ExecuteAffrows();
-                        
+                        OrmService.Db.Delete<DvrDayTimeRange>()
+                            .Where(x => x.StreamDvrPlanId == retSelect.Id).ExecuteAffrows();
                     }
-                    
+
                     var retCreate = CreateDvrPlan(sdp, out rs); //创建新的dvr
                     if (retCreate)
                     {
@@ -719,28 +888,29 @@ namespace SrsApis.SrsManager.Apis
             {
                 lock (Common.LockDbObjForStreamDvrPlan)
                 {
-                   StreamDvrPlan tmpStream =new StreamDvrPlan();
-                   tmpStream.App = sdp.App;
-                   tmpStream.Enable = sdp.Enable;
-                   tmpStream.Stream = sdp.Stream;
-                   tmpStream.DeviceId = sdp.DeviceId;
-                   tmpStream.LimitDays = sdp.LimitDays;
-                   tmpStream.LimitSpace = sdp.LimitSpace;
-                   tmpStream.VhostDomain = sdp.VhostDomain;
-                   tmpStream.OverStepPlan = sdp.OverStepPlan;
-                   tmpStream.TimeRangeList=new List<DvrDayTimeRange>();
-                   if (sdp.TimeRangeList != null && sdp.TimeRangeList.Count > 0)
-                   {
-                       foreach (var tmp in sdp.TimeRangeList)
-                       {
-                           tmpStream.TimeRangeList.Add(new DvrDayTimeRange()
-                           {
-                               EndTime = tmp.EndTime,
-                               StartTime = tmp.StartTime,
-                               WeekDay = tmp.WeekDay,
-                           });
-                       }
-                   }
+                    StreamDvrPlan tmpStream = new StreamDvrPlan();
+                    tmpStream.App = sdp.App;
+                    tmpStream.Enable = sdp.Enable;
+                    tmpStream.Stream = sdp.Stream;
+                    tmpStream.DeviceId = sdp.DeviceId;
+                    tmpStream.LimitDays = sdp.LimitDays;
+                    tmpStream.LimitSpace = sdp.LimitSpace;
+                    tmpStream.VhostDomain = sdp.VhostDomain;
+                    tmpStream.OverStepPlan = sdp.OverStepPlan;
+                    tmpStream.TimeRangeList = new List<DvrDayTimeRange>();
+                    if (sdp.TimeRangeList != null && sdp.TimeRangeList.Count > 0)
+                    {
+                        foreach (var tmp in sdp.TimeRangeList)
+                        {
+                            tmpStream.TimeRangeList.Add(new DvrDayTimeRange()
+                            {
+                                EndTime = tmp.EndTime,
+                                StartTime = tmp.StartTime,
+                                WeekDay = tmp.WeekDay,
+                            });
+                        }
+                    }
+
                     /*联同子类一起插入*/
                     var repo = OrmService.Db.GetRepository<StreamDvrPlan>();
                     repo.DbContextOptions.EnableAddOrUpdateNavigateList = true; //需要手工开启

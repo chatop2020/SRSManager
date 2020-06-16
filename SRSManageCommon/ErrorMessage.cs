@@ -65,6 +65,9 @@ namespace SrsManageCommon
         SystemSessionItWorks = -5049, //session没有过期
         SystemDataBaseRecordNotExists = -5050, //记录不存在
         DvrVideoFileNotExists = -5051, //录制文件不存在
+        DvrCutMergeTimeLimit =-5052, //时间跨度超过10分钟，不允许同步返回，请使用异步回调方式进行
+        DvrCutMergeFileNotFound =-5053,//时间周期内没有找到相关视频文件
+        DvrCutProcessQueueLimit =-5054,//处理队列已满，请稍后再试
         SrsGb28181IsDisabled6000 = 6000, //GB28181服务没有启用
         SrsGb28181SessionOrMediaChannelExists6001 = 6001, //SIP会话或媒体通道已存在
         SrsGb28181SessionOrMediaChannelNotExists6002 = 6002, //SIP会话或媒体通道不存在
@@ -173,6 +176,12 @@ namespace SrsManageCommon
             ErrorDic[ErrorNumber.SystemDataBaseLimited] = "数据库操作受限，不允许一次查询数据超过10000条，pageIndex从1开始";
             ErrorDic[ErrorNumber.SystemDataBaseRecordNotExists] = "数据库无此记录";
             ErrorDic[ErrorNumber.DvrVideoFileNotExists] = "录制文件不存在";
+            ErrorDic[ErrorNumber.DvrCutMergeTimeLimit] = "时间跨度超过10分钟，不允许同步返回，请使用异步回调方式进行";
+            ErrorDic[ErrorNumber.DvrCutMergeFileNotFound] = "时间周期内没有找到相关视频文件";
+            ErrorDic[ErrorNumber.DvrCutProcessQueueLimit] = "合并请求处理队列已满，请稍后再试";
+
+
+
         }
     }
 }

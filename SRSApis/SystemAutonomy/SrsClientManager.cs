@@ -14,84 +14,99 @@ namespace SRSApis.SystemAutonomy
 
         private void rewriteMonitorType()
         {
-            if (Common.SrsManagers != null)
+            try
             {
-                foreach (var srs in Common.SrsManagers)
+                if (Common.SrsManagers != null)
                 {
-                    if (srs.IsInit && srs.Srs != null && srs.IsRunning)
+                    foreach (var srs in Common.SrsManagers)
                     {
-                        var onPublishList =
-                            FastUsefulApis.GetOnPublishMonitorListByDeviceId(srs.SrsDeviceId, out ResponseStruct rs);
-                        if (onPublishList == null || onPublishList.Count == 0) continue;
-                        var ingestList = FastUsefulApis.GetAllIngestByDeviceId(srs.SrsDeviceId, out rs);
-                       
-                        ushort? port = srs.Srs.Http_api!.Listen;
-                        List<Channels> ret28181 = null!;
-                        if (port != null && srs.Srs!=null && srs.Srs.Http_api!=null && srs.Srs.Http_api.Enabled==true)
+                        if(srs==null || srs.Srs==null) continue;
+                        
+                        if (srs.IsInit && srs.Srs != null && srs.IsRunning)
                         {
-                             ret28181 = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
-                        }
-                        foreach (var client in onPublishList)
-                        {
-                            if ( srs.Srs!.Http_api == null || srs.Srs.Http_api.Enabled == false) continue;
-                            #region 处理28181设备
-                            if (ret28181 != null)
+                            var onPublishList =
+                                FastUsefulApis.GetOnPublishMonitorListByDeviceId(srs.SrsDeviceId,
+                                    out ResponseStruct rs);
+                            if (onPublishList == null || onPublishList.Count == 0) continue;
+                            var ingestList = FastUsefulApis.GetAllIngestByDeviceId(srs.SrsDeviceId, out rs);
+
+                            ushort? port = srs.Srs.Http_api!.Listen;
+                            List<Channels> ret28181 = null!;
+                            if (port != null && srs.Srs != null && srs.Srs.Http_api != null &&
+                                srs.Srs.Http_api.Enabled == true)
                             {
-                                foreach (var r in ret28181)
+                                ret28181 = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
+                            }
+
+                            foreach (var client in onPublishList)
+                            {
+                                if (srs.Srs!.Http_api == null || srs.Srs.Http_api.Enabled == false) continue;
+
+                                #region 处理28181设备
+
+                                if (ret28181 != null)
                                 {
-                                    if (!string.IsNullOrEmpty(r.Stream) && r.Stream.Equals(client.Stream))
+                                    foreach (var r in ret28181)
                                     {
-                                        lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                                        if (!string.IsNullOrEmpty(r.Stream) && r.Stream.Equals(client.Stream))
                                         {
-                                            var reti = OrmService.Db.Update<OnlineClient>()
-                                                .Set(x => x.MonitorType, MonitorType.GBT28181)
-                                                .Where(x => x.Client_Id == client.Client_Id)
-                                                .ExecuteAffrows();
-                                            
+                                            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                                            {
+                                                var reti = OrmService.Db.Update<OnlineClient>()
+                                                    .Set(x => x.MonitorType, MonitorType.GBT28181)
+                                                    .Where(x => x.Client_Id == client.Client_Id)
+                                                    .ExecuteAffrows();
+
+                                            }
                                         }
                                     }
                                 }
-                            }
 
-                            #endregion
+                                #endregion
 
-                            #region 处理onvif设备
+                                #region 处理onvif设备
 
-                          
-                            if (ingestList != null && ingestList.Count > 0)
-                            {
-                                foreach (var ingest in ingestList)
+
+                                if (ingestList != null && ingestList.Count > 0)
                                 {
-                                    if (ingest != null && ingest.Input != null
-                                                       && client.RtspUrl != null &&
-                                                       ingest.Input!.Url!.Equals(client.RtspUrl))
+                                    foreach (var ingest in ingestList)
                                     {
-                                        lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                                        if (ingest != null && ingest.Input != null
+                                                           && client.RtspUrl != null &&
+                                                           ingest.Input!.Url!.Equals(client.RtspUrl))
                                         {
-                                            var reti = OrmService.Db.Update<OnlineClient>()
-                                                .Set(x => x.MonitorType, MonitorType.Onvif)
-                                                .Where(x => x.Client_Id == client.Client_Id)
-                                                .ExecuteAffrows();
-                                            
+                                            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                                            {
+                                                var reti = OrmService.Db.Update<OnlineClient>()
+                                                    .Set(x => x.MonitorType, MonitorType.Onvif)
+                                                    .Where(x => x.Client_Id == client.Client_Id)
+                                                    .ExecuteAffrows();
+
+                                            }
                                         }
                                     }
                                 }
+
+                                #endregion
+
+                                #region 处理直播流
+
+                                int retj = OrmService.Db.Update<OnlineClient>()
+                                    .Set(x => x.MonitorType, MonitorType.Webcast)
+                                    .Where(x => x.MonitorType == MonitorType.Unknow &&
+                                                x.ClientType == ClientType.Monitor)
+                                    .ExecuteAffrows();
+
+
+                                #endregion
                             }
-
-                            #endregion
-
-                            #region 处理直播流
-
-                            int retj = OrmService.Db.Update<OnlineClient>()
-                                .Set(x => x.MonitorType, MonitorType.Webcast)
-                                .Where(x => x.MonitorType == MonitorType.Unknow && x.ClientType == ClientType.Monitor)
-                                .ExecuteAffrows();
-                            
-
-                            #endregion
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteLog("rewriteMonitorType异常",ex.Message+"\r\n"+ex.StackTrace, ConsoleColor.Yellow);  
             }
         }
 
@@ -119,43 +134,48 @@ namespace SRSApis.SystemAutonomy
 
         private void completionOnvifIpAddress()
         {
-            if (Common.SrsManagers != null)
+            try
             {
-                foreach (var srs in Common.SrsManagers)
+                if (Common.SrsManagers != null)
                 {
-                    if (srs.IsInit && srs.Srs != null && srs.IsRunning)
+                    foreach (var srs in Common.SrsManagers)
                     {
-                        var ret = VhostIngestApis.GetVhostIngestNameList(srs.SrsDeviceId, out ResponseStruct rs);
-                        if (ret != null)
+                        if(srs==null || srs.Srs==null) continue;
+                        if (srs.IsInit && srs.Srs != null && srs.IsRunning)
                         {
-                            foreach (var r in ret)
+                            var ret = VhostIngestApis.GetVhostIngestNameList(srs.SrsDeviceId, out ResponseStruct rs);
+                            if (ret != null)
                             {
-                                var ingest = VhostIngestApis.GetVhostIngest(srs.SrsDeviceId, r.VhostDomain!,
-                                    r.IngestInstanceName!,
-                                    out rs);
-
-                                if (ingest != null)
+                                foreach (var r in ret)
                                 {
-                                    string inputIp =
-                                        SrsManageCommon.Common
-                                            .GetIngestRtspMonitorUrlIpAddress(ingest.Input!.Url!)!;
-                                    if (SrsManageCommon.Common.IsIpAddr(inputIp!))
+                                    var ingest = VhostIngestApis.GetVhostIngest(srs.SrsDeviceId, r.VhostDomain!,
+                                        r.IngestInstanceName!,
+                                        out rs);
+
+                                    if (ingest != null)
                                     {
-                                        lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                                        string inputIp =
+                                            SrsManageCommon.Common
+                                                .GetIngestRtspMonitorUrlIpAddress(ingest.Input!.Url!)!;
+                                        if (SrsManageCommon.Common.IsIpAddr(inputIp!))
                                         {
-                                            var reti = OrmService.Db.Update<OnlineClient>()
-                                                .Set(x => x.MonitorIp, inputIp)
-                                                .Set(x => x.RtspUrl, ingest.Input!.Url!)
-                                                .Where(x => x.Stream!.Equals(ingest.IngestName) &&
-                                                            x.Device_Id!.Equals(srs.SrsDeviceId) &&
-                                                            (x.MonitorIp == null || x.MonitorIp == "" ||
-                                                             x.MonitorIp == "127.0.0.1"))
-                                                .ExecuteAffrows();
-                                            if (reti > 0)
+                                            lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
                                             {
-                                                LogWriter.WriteLog("补全Ingest拉流器中的摄像头IP地址...", 
-                                                    srs.SrsDeviceId + "/" + r.VhostDomain + "/" + ingest.IngestName +
-                                                    " 获取到IP:" + inputIp + " 获取到Rtsp地址:" + ingest.Input!.Url);
+                                                var reti = OrmService.Db.Update<OnlineClient>()
+                                                    .Set(x => x.MonitorIp, inputIp)
+                                                    .Set(x => x.RtspUrl, ingest.Input!.Url!)
+                                                    .Where(x => x.Stream!.Equals(ingest.IngestName) &&
+                                                                x.Device_Id!.Equals(srs.SrsDeviceId) &&
+                                                                (x.MonitorIp == null || x.MonitorIp == "" ||
+                                                                 x.MonitorIp == "127.0.0.1"))
+                                                    .ExecuteAffrows();
+                                                if (reti > 0)
+                                                {
+                                                    LogWriter.WriteLog("补全Ingest拉流器中的摄像头IP地址...",
+                                                        srs.SrsDeviceId + "/" + r.VhostDomain + "/" +
+                                                        ingest.IngestName +
+                                                        " 获取到IP:" + inputIp + " 获取到Rtsp地址:" + ingest.Input!.Url);
+                                                }
                                             }
                                         }
                                     }
@@ -165,39 +185,48 @@ namespace SRSApis.SystemAutonomy
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                LogWriter.WriteLog("completionOnvifIpAddress异常",ex.Message+"\r\n"+ex.StackTrace, ConsoleColor.Yellow);
+            }
+
         }
 
         private void completionT28181IpAddress()
         {
-            if (Common.SrsManagers != null)
+            try
             {
-                foreach (var srs in Common.SrsManagers)
+                if (Common.SrsManagers != null)
                 {
-                    if (srs.IsInit && srs.Srs != null && srs.IsRunning)
+                    foreach (var srs in Common.SrsManagers)
                     {
-                        ushort? port = srs.Srs.Http_api!.Listen;
-                        if (port == null || srs.Srs.Http_api == null || srs.Srs.Http_api.Enabled == false)
-                            continue;
-                        var ret = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
-                        if (ret != null)
+                        if(srs==null || srs.Srs==null) continue;
+                        if (srs.IsInit && srs.Srs != null && srs.IsRunning)
                         {
-                            foreach (var r in ret)
+                            ushort? port = srs.Srs.Http_api!.Listen;
+                            if (port == null || srs.Srs.Http_api == null || srs.Srs.Http_api.Enabled == false)
+                                continue;
+                            var ret = GetGB28181Channels("http://127.0.0.1:" + port.ToString());
+                            if (ret != null)
                             {
-                                if (!string.IsNullOrEmpty(r.Rtp_Peer_Ip) && !string.IsNullOrEmpty(r.Stream))
+                                foreach (var r in ret)
                                 {
-                                    lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                                    if (!string.IsNullOrEmpty(r.Rtp_Peer_Ip) && !string.IsNullOrEmpty(r.Stream))
                                     {
-                                        var reti = OrmService.Db.Update<OnlineClient>()
-                                            .Set(x => x.MonitorIp, r.Rtp_Peer_Ip)
-                                            .Where(x => x.Stream!.Equals(r.Stream) &&
-                                                        x.Device_Id!.Equals(srs.SrsDeviceId) &&
-                                                        (x.MonitorIp == null || x.MonitorIp == "" ||
-                                                         x.MonitorIp == "127.0.0.1"))
-                                            .ExecuteAffrows();
-                                        if (reti > 0)
+                                        lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
                                         {
-                                            LogWriter.WriteLog("补全StreamCaster收流器中的摄像头IP地址...",
-                                                srs.SrsDeviceId + "/"  +r.Stream+ " 获取到IP:" + r.Rtp_Peer_Ip );
+                                            var reti = OrmService.Db.Update<OnlineClient>()
+                                                .Set(x => x.MonitorIp, r.Rtp_Peer_Ip)
+                                                .Where(x => x.Stream!.Equals(r.Stream) &&
+                                                            x.Device_Id!.Equals(srs.SrsDeviceId) &&
+                                                            (x.MonitorIp == null || x.MonitorIp == "" ||
+                                                             x.MonitorIp == "127.0.0.1"))
+                                                .ExecuteAffrows();
+                                            if (reti > 0)
+                                            {
+                                                LogWriter.WriteLog("补全StreamCaster收流器中的摄像头IP地址...",
+                                                    srs.SrsDeviceId + "/" + r.Stream + " 获取到IP:" + r.Rtp_Peer_Ip);
+                                            }
                                         }
                                     }
                                 }
@@ -206,24 +235,35 @@ namespace SRSApis.SystemAutonomy
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                LogWriter.WriteLog("completionT28181IpAddress异常", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
+            }
         }
 
         private void clearOfflinePlayerUser()
         {
-            if (Common.HaveAnySrsInstanceRunning())
+            try
             {
-                lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
+                if (Common.HaveAnySrsInstanceRunning())
                 {
-                    var re = OrmService.Db.Delete<OnlineClient>().Where(x => x.ClientType == ClientType.User &&
-                                                                             x.IsPlay == false &&
-                                                                             x.UpdateTime <=
-                                                                             DateTime.Now.AddMinutes(-3))
-                        .ExecuteAffrows();
-                    if (re > 0)
+                    lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
                     {
-                        LogWriter.WriteLog("清理已经死亡的客户端播放连接...清理数量：" + re);
+                        var re = OrmService.Db.Delete<OnlineClient>().Where(x => x.ClientType == ClientType.User &&
+                                                                                 x.IsPlay == false &&
+                                                                                 x.UpdateTime <=
+                                                                                 DateTime.Now.AddMinutes(-3))
+                            .ExecuteAffrows();
+                        if (re > 0)
+                        {
+                            LogWriter.WriteLog("清理已经死亡的客户端播放连接...清理数量：" + re);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteLog("clearOfflinePlayerUser", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow); 
             }
         }
 

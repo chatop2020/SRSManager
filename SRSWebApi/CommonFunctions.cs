@@ -69,12 +69,7 @@ namespace SrsWebApi
         /// </summary>
         public string WorkPath = null!;
 
-        /// <summary>
-        /// ffmpeg的可执行文件地址
-        /// </summary>
-        public string FFmpegBinPath = "./ffmpeg";
 
-        // public string FFmpegBinPath = "/usr/local/bin/ffmpeg";
 
 
         /// <summary>
@@ -119,9 +114,9 @@ namespace SrsWebApi
         public void CommonInit()
         {
             Common.SystemConfig = new SystemConfig();
-            if (!checkFFmpegBin(FFmpegBinPath))
+            if (!checkFFmpegBin(Common.FFmpegBinPath))
             {
-                LogWriter.WriteLog("FFmpeg可执行文件不存在，系统退出，请保证FFmpeg可执行文件存在", FFmpegBinPath);
+                LogWriter.WriteLog("FFmpeg可执行文件不存在，系统退出，请保证FFmpeg可执行文件存在", Common.FFmpegBinPath);
                 Common.KillSelf();
             }
 

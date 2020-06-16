@@ -96,37 +96,42 @@ namespace SRSApis.SystemAutonomy
         {
             while (true)
             {
-                var retDeviceList = SystemApis.GetAllSrsManagerDeviceId();
-                if (retDeviceList != null && retDeviceList.Count > 0)
+                try
                 {
-                    foreach (var dev in retDeviceList)
+                    var retDeviceList = SystemApis.GetAllSrsManagerDeviceId();
+                    if (retDeviceList != null && retDeviceList.Count > 0)
                     {
-                        if (string.IsNullOrEmpty(dev)) continue;
-                        var retSrsManager = SystemApis.GetSrsManagerInstanceByDeviceId(dev);
-                        if (retSrsManager == null || retSrsManager.Srs == null || !retSrsManager.IsRunning) continue;
-                        var retSrsVhostList =
-                            VhostApis.GetVhostList(retSrsManager.SrsDeviceId, out ResponseStruct rs);
-                        if (retSrsVhostList == null || retSrsVhostList.Count == 0) continue;
-                        foreach (var vhost in retSrsVhostList)
+                        foreach (var dev in retDeviceList)
                         {
-                            if (vhost == null || vhost.Vingests == null || vhost.Vingests.Count == 0) continue;
-                            foreach (var ingest in vhost.Vingests)
+                            if (string.IsNullOrEmpty(dev)) continue;
+                            var retSrsManager = SystemApis.GetSrsManagerInstanceByDeviceId(dev);
+                            if (retSrsManager == null || retSrsManager.Srs == null || !retSrsManager.IsRunning)
+                                continue;
+                            var retSrsVhostList =
+                                VhostApis.GetVhostList(retSrsManager.SrsDeviceId, out ResponseStruct rs);
+                            if (retSrsVhostList == null || retSrsVhostList.Count == 0) continue;
+                            foreach (var vhost in retSrsVhostList)
                             {
-                                if (ingest.Enabled == false) continue;
-                                if (ingestIsDead(dev, ingest))
+                                if (vhost == null || vhost.Vingests == null || vhost.Vingests.Count == 0) continue;
+                                foreach (var ingest in vhost.Vingests)
                                 {
-                                    LogWriter.WriteLog(
-                                        "监控到设备ID" + dev + "下的" + vhost.VhostDomain + "下的" + ingest.IngestName +
-                                        " 处于异常状态，立即重启ingest", "", ConsoleColor.Red);
-                                    doThing(dev, vhost.VhostDomain!, ingest);
-                                }
+                                    if (ingest.Enabled == false) continue;
+                                    if (ingestIsDead(dev, ingest))
+                                    {
+                                        LogWriter.WriteLog(
+                                            "监控到设备ID" + dev + "下的" + vhost.VhostDomain + "下的" + ingest.IngestName +
+                                            " 处于异常状态，立即重启ingest", "", ConsoleColor.Red);
+                                        doThing(dev, vhost.VhostDomain!, ingest);
+                                    }
 
-                                Thread.Sleep(30);
+                                    Thread.Sleep(30);
+                                }
                             }
                         }
                     }
+                }catch (Exception ex) {
+                    LogWriter.WriteLog("Ingest守护异常...", ex.Message + "\r\n" + ex.StackTrace);
                 }
-
                 Thread.Sleep(interval);
             }
         }

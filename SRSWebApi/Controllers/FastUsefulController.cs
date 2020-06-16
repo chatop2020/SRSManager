@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using SrsApis.SrsManager.Apis;
 using SrsManageCommon;
@@ -13,6 +14,21 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class FastUsefulController : ControllerBase
     {
+        /// <summary>
+        /// TESTTEST
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [LogSrsCallBack]
+        [Route("/FastUseful/Test")]
+        public int Test(CutMergeTaskResponse obj)
+        {
+            Console.WriteLine("这是测试输出:" + JsonHelper.ToJson(obj));
+            return 0;
+        }
+
+
         /// <summary>
         /// 获取onvif设备信息ByIngestInfo
         /// </summary>
@@ -371,7 +387,7 @@ namespace SrsWebApi.Controllers
             var rt = FastUsefulApis.GetOnPublishMonitorList(out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
+
         /// <summary>
         /// 获取在线摄像头ById，支持多个id,用空格隔开
         /// </summary>
@@ -387,10 +403,11 @@ namespace SrsWebApi.Controllers
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
-            var rt = FastUsefulApis.GetOnPublishMonitorById(id,out ResponseStruct rs);
+
+            var rt = FastUsefulApis.GetOnPublishMonitorById(id, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
-        
+
 
         /// <summary>
         /// 获取一个用于rtsp拉流的ingest配置

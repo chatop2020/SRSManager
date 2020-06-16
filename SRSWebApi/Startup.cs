@@ -1,5 +1,8 @@
+using System;
 using System.IO;
+using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -23,6 +26,24 @@ namespace SRSWebApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            /*ThreadPool.GetMinThreads(out var workThreads, out var completionPortThreads);
+            Console.WriteLine(new StringBuilder()
+                .Append($"ThreadPool.ThreadCount: {ThreadPool.ThreadCount}, ")
+                .Append($"Minimum work threads: {workThreads}, ")
+                .Append($"Minimum completion port threads: {completionPortThreads})").ToString());
+            int maxT; //最大工作线程数
+            int maxIO; //最大IO工作线程数
+            ThreadPool.GetMaxThreads(out maxT, out maxIO);
+            string thMin = string.Format("默认的 最大工作线程数 {0},最大IO工作线程数{1}", maxT, maxIO);
+            Console.WriteLine(thMin);
+            ThreadPool.SetMinThreads(200, 200); // MinThreads 值不要超过 (max_thread /2  )，否则会不生效。要不然就同时加大设置max_thread
+
+
+            ThreadPool.GetMinThreads(out workThreads, out completionPortThreads);
+            Console.WriteLine(new StringBuilder()
+                .Append($"ThreadPool.ThreadCount: {ThreadPool.ThreadCount}, ")
+                .Append($"Minimum work threads: {workThreads}, ")
+                .Append($"Minimum completion port threads: {completionPortThreads})").ToString());*/
         }
 
         /// <summary>
@@ -47,8 +68,12 @@ namespace SRSWebApi
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddControllers().AddJsonOptions(options => //把所有枚举转成string
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            services.AddControllers().AddJsonOptions(
+                options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
+            ).AddJsonOptions(configure =>
+            {
+                configure.JsonSerializerOptions.Converters.Add(new DatetimeJsonConverter());
+            });
         }
 
         /// <summary>

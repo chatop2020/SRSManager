@@ -1,5 +1,6 @@
 #nullable enable
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -37,13 +38,58 @@ namespace SrsManageCommon
         public static Object LockDbObjForStreamDvrPlan = new object();
         public static Object LockDbObjForHeartbeat = new object();
         public static readonly string LogPath = WorkPath + "logs/";
+        /// <summary>
+        /// ffmpeg的可执行文件地址
+        /// </summary>
+        public static string FFmpegBinPath = "./ffmpeg";
+
 
         static Common()
         {
             Directory.CreateDirectory(LogPath);
         }
 
+        /// <summary>
+        /// 删除List<T>中null的记录
+        /// </summary>
+        /// <param name="list"></param>
+        /// <typeparam name="T"></typeparam>
+        public static void RemoveNull<T>(List<T> list)
+        {
+            // 找出第一个空元素 O(n)
+            int count = list.Count;
+            for (int i = 0; i < count; i++)
+                if (list[i] == null)
+                {
+                    // 记录当前位置
+                    int newCount = i++;
 
+                    // 对每个非空元素，复制至当前位置 O(n)
+                    for (; i < count; i++)
+                        if (list[i] != null)
+                            list[newCount++] = list[i];
+
+                    // 移除多余的元素 O(n)
+                    list.RemoveRange(newCount, count - newCount);
+                    break;
+                }
+        }
+
+        /// <summary>
+        /// 正则获取内容
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="s"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public static string GetValue(string str, string s, string e)
+        {
+            Regex rg = new Regex("(?<=(" + s + "))[.\\s\\S]*?(?=(" + e + "))",
+                RegexOptions.Multiline | RegexOptions.Singleline);
+            return rg.Match(str).Value;
+        }
+        
+        
         /// <summary>
         /// 获取两个时间差的毫秒数
         /// </summary>

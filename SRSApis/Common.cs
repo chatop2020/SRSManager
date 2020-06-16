@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using SrsApis.SrsManager;
@@ -39,7 +40,7 @@ namespace SRSApis
     public static class Common
     {
         public static readonly string WorkPath = Environment.CurrentDirectory + "/";
-      
+
         public static List<SrsManager> SrsManagers = new List<SrsManager>();
         public static List<OnvifInstance> OnvifManagers = new List<OnvifInstance>();
 
@@ -47,9 +48,12 @@ namespace SRSApis
         /// SrsOnlineClient管理
         /// </summary>
         public static SrsClientManager SrsOnlineClient;
+
         public static SrsAndFFmpegLogMonitor SrsAndFFmpegLogMonitor;
         public static KeepIngestStream KeepIngestStream;
-        public static DvrPlanExec? DvrPlanExec=null!;
+        public static DvrPlanExec? DvrPlanExec = null!;
+
+        // public static BlockingCollection<string>()
 
         static Common()
         {
@@ -57,9 +61,9 @@ namespace SRSApis
             SrsOnlineClient = new SrsClientManager();
             SrsAndFFmpegLogMonitor = new SrsAndFFmpegLogMonitor();
             DvrPlanExec = new DvrPlanExec();
-            KeepIngestStream = new KeepIngestStream();
+           // KeepIngestStream = new KeepIngestStream();
         }
-        
+
         /// <summary>
         /// 有没有srs正在运行
         /// </summary>
@@ -70,42 +74,17 @@ namespace SRSApis
             {
                 foreach (var srs in SrsManagers)
                 {
-                    if (srs.IsRunning)
-                    {
-                        return true;
-                    }
+                    if (srs.Srs != null)
+                        if (srs.IsRunning)
+                        {
+                            return true;
+                        }
                 }
             }
 
             return false;
         }
-        
 
-        /// <summary>
-        /// 删除List<T>中null的记录
-        /// </summary>
-        /// <param name="list"></param>
-        /// <typeparam name="T"></typeparam>
-        public static void RemoveNull<T>(List<T> list)
-        {
-            // 找出第一个空元素 O(n)
-            int count = list.Count;
-            for (int i = 0; i < count; i++)
-                if (list[i] == null)
-                {
-                    // 记录当前位置
-                    int newCount = i++;
-
-                    // 对每个非空元素，复制至当前位置 O(n)
-                    for (; i < count; i++)
-                        if (list[i] != null)
-                            list[newCount++] = list[i];
-
-                    // 移除多余的元素 O(n)
-                    list.RemoveRange(newCount, count - newCount);
-                    break;
-                }
-        }
 
         /// <summary>
         /// 刷新并向磁盘写入SRS实例的配置文件
@@ -116,7 +95,7 @@ namespace SRSApis
         public static bool RefreshSrsObject(SrsManager sm, out ResponseStruct rs)
         {
             SrsConfigBuild.Build(sm.Srs, sm.SrsConfigPath);
-            LogWriter.WriteLog("重写Srs配置文件刷新Srs实例...",sm.Srs.ConfFilePath!);
+            LogWriter.WriteLog("重写Srs配置文件刷新Srs实例...", sm.Srs.ConfFilePath!);
             return sm.Reload(out rs);
         }
 
@@ -143,30 +122,6 @@ namespace SRSApis
         }
 
 
-        /*
-        /// <summary>
-        /// 初始化onvif设备
-        /// </summary>
-        public static void InitOnvifMonitors()
-        {
-            if (OnvifManagers != null && OnvifManagers.Count > 0)
-            {
-                foreach (var om in OnvifManagers)
-                {
-                    try
-                    {
-                        if (om.OnvifMonitor == null)
-                            om.OnvifMonitor = new OnvifMonitor(om.IpAddr, om.Username!, om.Password!);
-                    }
-                    catch
-                    {
-                        om.OnvifMonitor = null!;
-                    }
-                }
-            }
-        }*/
-
-
         public static bool WriteOnvifMonitors()
         {
             try
@@ -182,13 +137,14 @@ namespace SRSApis
 
                         if (string.IsNullOrEmpty(configStr))
                         {
-                            LogWriter.WriteLog("Onvif配置文件写入失败，配置内容为空...",WorkPath + "system.oconf",ConsoleColor.Yellow);
+                            LogWriter.WriteLog("Onvif配置文件写入失败，配置内容为空...", WorkPath + "system.oconf",
+                                ConsoleColor.Yellow);
                             return false;
                         }
                         else
                         {
                             File.WriteAllText(WorkPath + "system.oconf", configStr);
-                            LogWriter.WriteLog("Onvif配置文件写入完成...",WorkPath + "system.oconf");
+                            LogWriter.WriteLog("Onvif配置文件写入完成...", WorkPath + "system.oconf");
                             return true;
                         }
                     }
@@ -202,9 +158,9 @@ namespace SRSApis
                     return false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                LogWriter.WriteLog("Onvif配置文件写入失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
+                LogWriter.WriteLog("Onvif配置文件写入失败...", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                 return false;
             }
         }
@@ -240,12 +196,13 @@ namespace SRSApis
                         }
                     }
                 }
+
                 LogWriter.WriteLog("Onvif配置文件加载成功...");
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                LogWriter.WriteLog("Onvif配置文件加载失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
+                LogWriter.WriteLog("Onvif配置文件加载失败...", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                 return false;
             }
         }
@@ -279,7 +236,7 @@ namespace SRSApis
                 }
             }
 
-            
+
             if (SrsManagers.Count == 0)
             {
                 LogWriter.WriteLog("没有的到Srs实例配置文件，系统将自动创建一个Srs实例配置文件");

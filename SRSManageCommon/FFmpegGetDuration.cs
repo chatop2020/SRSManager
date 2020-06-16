@@ -6,19 +6,7 @@ namespace SrsManageCommon
 {
     public static class FFmpegGetDuration
     {
-        /// <summary>
-        /// 正则获取内容
-        /// </summary>
-        /// <param name="str"></param>
-        /// <param name="s"></param>
-        /// <param name="e"></param>
-        /// <returns></returns>
-        public static string GetValue(string str, string s, string e)
-        {
-            Regex rg = new Regex("(?<=(" + s + "))[.\\s\\S]*?(?=(" + e + "))",
-                RegexOptions.Multiline | RegexOptions.Singleline);
-            return rg.Match(str).Value;
-        }
+     
 
         /// <summary>
         /// 输出视频的时长（毫秒）
@@ -40,12 +28,12 @@ namespace SrsManageCommon
                         string tmp = "";
                         if (!string.IsNullOrEmpty(std))
                         {
-                            tmp = GetValue(std, "Duration:", ",");
+                            tmp = Common.GetValue(std, "Duration:", ",");
                         }
 
                         if (string.IsNullOrEmpty(tmp))
                         {
-                            tmp = GetValue(err, "Duration:", ",");
+                            tmp =  Common.GetValue(err, "Duration:", ",");
                         }
 
                         if (!string.IsNullOrEmpty(tmp))

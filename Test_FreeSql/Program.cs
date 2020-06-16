@@ -3,18 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using SrsApis.SrsManager.Apis;
 using SrsManageCommon;
+using SRSManageCommon.ControllerStructs.RequestModules;
 using SRSManageCommon.DBMoudle;
+using SRSManageCommon.ManageStructs;
 
 
 namespace Test_FreeSql
 {
     class Program
     {
-      
         static void Main(string[] args)
         {
-          
+            
 
 
             DBManager.fsql.Delete<StreamDvrPlan>().Where("1=1").ExecuteAffrows();

@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace SRSManageCommon.ManageStructs
 {
@@ -35,6 +36,7 @@ namespace SRSManageCommon.ManageStructs
             set => _startTime = value;
         }
 
+    
         public DateTime? EndTime
         {
             get => _endTime;

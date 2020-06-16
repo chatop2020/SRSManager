@@ -87,6 +87,11 @@ namespace SrsApis.SrsManager
                 if (Srs != null)
                 {
                     string pidValue = "";
+                    if (string.IsNullOrEmpty(Srs.Pid))
+                    {
+                        return false;
+                    }
+
                     if (getPidValue(Srs.Pid!, out pidValue))
                     {
                         string cmd = "";
@@ -306,21 +311,32 @@ namespace SrsApis.SrsManager
         private bool getPidValue(string pidPath, out string pidValue)
         {
             pidValue = "";
-            if (File.Exists(pidPath))
+            if (!string.IsNullOrEmpty(pidPath) && File.Exists(pidPath))
             {
                 string stdout = "";
                 string errout = "";
-                LinuxShell.Run("cat " + pidPath, 300, out stdout, out errout);
-                pidValue = stdout.Trim();
+                var ret=LinuxShell.Run("cat " + pidPath, 300, out stdout, out errout);
+                if (!string.IsNullOrEmpty(stdout) && ret)
+                {
+                    if (int.TryParse(stdout, out int a))
+                    {
+                        pidValue = stdout.Trim();
+                    }
+                }
+                if (!string.IsNullOrEmpty(errout) && ret)
+                {
+                    if (int.TryParse(errout, out int a))
+                    {
+                        pidValue = errout.Trim();
+                    }
+                }
                 if (!string.IsNullOrEmpty(pidValue))
                 {
                     SrsPidValue = pidValue;
                     return true;
                 }
-
                 return false;
             }
-
             return false;
         }
 
@@ -529,9 +545,10 @@ namespace SrsApis.SrsManager
             };
             lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
             {
-                OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
+                OrmService.Db.Delete<OnlineClient>()
+                    .Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
             }
-            
+
             IsStopedByUser = false;
             return true;
         }
@@ -559,8 +576,11 @@ namespace SrsApis.SrsManager
                         };
                         lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
                         {
-                            OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
+                            OrmService.Db.Delete<OnlineClient>()
+                                .Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower()))
+                                .ExecuteAffrows();
                         }
+
                         return true;
                     }
 
@@ -581,8 +601,11 @@ namespace SrsApis.SrsManager
                         };
                         lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
                         {
-                            OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
+                            OrmService.Db.Delete<OnlineClient>()
+                                .Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower()))
+                                .ExecuteAffrows();
                         }
+
                         return true;
                     }
 
@@ -606,8 +629,11 @@ namespace SrsApis.SrsManager
                 IsStopedByUser = true;
                 lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
                 {
-                    OrmService.Db.Delete<OnlineClient>().Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower())).ExecuteAffrows();
+                    OrmService.Db.Delete<OnlineClient>()
+                        .Where(x => x.Device_Id!.Trim().ToLower().Equals(SrsDeviceId.Trim().ToLower()))
+                        .ExecuteAffrows();
                 }
+
                 return true;
             }
         }

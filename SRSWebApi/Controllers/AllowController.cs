@@ -241,7 +241,7 @@ namespace SrsWebApi.Controllers
 
                 if (found)
                 {
-                    SRSApis.Common.RemoveNull(Common.SystemConfig.AllowKeys);
+                    SrsManageCommon.Common.RemoveNull(Common.SystemConfig.AllowKeys);
                     ResponseStruct rs = new ResponseStruct()
                     {
                         Code = ErrorNumber.None,
