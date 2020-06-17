@@ -80,7 +80,13 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
   }
 }
 ```
-+ 当接口调用正常时,HttpStatusCode为200，数据传可以根据输出参数进行接收
++ 当接口调用正常时,HttpStatusCode为200，返回数据可以根据输出参数要求进行进行接收，并返序列化json到相应的实体类类型
+
+## 接口调用约定
++ 时区:+8区
++ 时间格式: yyyy-MM-dd HH:mm:ss
++ 调用方式:HttpGet|HttpPost
++ 耗时操作:采用http callback的方式进行，当某个操作是耗时操作时（如/DvrPlan/CutOrMergeVideoFile）,接口要求在请求时传入callback地址，在操作完成后通过callback地址来通知接口调用应用相关结果 
 
 ### 全局接口-GlobalSrs
 #### GlobalSrs/IsRunning
