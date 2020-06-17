@@ -45,5 +45,10 @@
 - 对SRS原有HTTP API进行封装与转发，实现风格统一，鉴权统一的webapi接口。
 
 ## 现有接口
+### 全局接口-GlobalSrs/IsRunning
+- 检测Srs实例是否正在运行
+-- Input->deviceID:string
+-- OutPut<--true|false:bool
+
 
 

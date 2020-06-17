@@ -109,11 +109,12 @@ namespace SrsApis.SrsManager
         {
             task.TaskStatus = TaskStatus.Mergeing;
             string mergePath = SrsManageCommon.Common.WorkPath + "CutMergeDir/" + task.TaskId;
-            if (!Directory.Exists(SrsManageCommon.Common.WorkPath + "CutMergeFile/" + task.TaskId))
+            string outPutPath = SrsManageCommon.Common.WorkPath + "CutMergeFile/" +
+                                DateTime.Now.Date.ToString("yyyy-MM-dd");
+            if (!Directory.Exists(outPutPath))
             {
-                Directory.CreateDirectory(SrsManageCommon.Common.WorkPath + "CutMergeFile/" + task.TaskId);
+                Directory.CreateDirectory(outPutPath);
             }
-
             List<string> mergeStringList = new List<string>();
             for (int i = 0; i <= task.CutMergeFileList!.Count - 1; i++)
             {
@@ -121,8 +122,7 @@ namespace SrsApis.SrsManager
             }
 
             File.WriteAllLines(mergePath + "files.txt", mergeStringList);
-            string newFilePath = SrsManageCommon.Common.WorkPath + "CutMergeFile/" +
-                                 task.TaskId + "/" + task.TaskId + ".mp4";
+            string newFilePath = outPutPath+ "/" + task.TaskId + "_"+DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")+".mp4";
             string ffmpegCmd = SrsManageCommon.Common.FFmpegBinPath + " -threads 4 -f concat -safe 0 -i " + mergePath +
                                "files.txt" + " -c copy  -movflags faststart " + newFilePath;
             var retRun = LinuxShell.Run(ffmpegCmd, 1000 * 60 * 30, out string std, out string err);
