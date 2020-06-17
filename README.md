@@ -162,7 +162,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
   "22364bc4-5134-494d-8249-51d06777fb7f"
 ]
 ```
-### /System/CreateNewSrsInstance
+#### /System/CreateNewSrsInstance
 + 调用方式:HttpPost
 + 接口作用:创建一个新的Srs实例
 + 输入参数:
@@ -547,5 +547,113 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 }
 </code></pre>
 </details>
-
 + 输出参数:SrsManage|null|ExceptStruct
++ 注:如果正常新建，则返回SrsManager对象,基本与传入参数一致
+#### /System/GetSrsInstanceTemplate
++ 调用方式:HttpGet
++ 接口作用:获取一个SrsManager对象的模板，可以用于新建，在模板里已经做好了基本的设置
++ 输入参数:null
++ 输出参数:object:SrsMansger|ExceptStruct
+<details>
+<summary>展开查看</summary>
+<pre><code>
+{
+  "srs": {
+    "rtc_server": null,
+    "tcmalloc_release_rate": null,
+    "listen": 1935,
+    "pid": "/root/StreamNode/21629eba-3bcf-42b0-b37e-4502896dcbe1/srs.pid",
+    "chunk_size": 6000,
+    "ff_log_dir": "/root/StreamNode/21629eba-3bcf-42b0-b37e-4502896dcbe1/ffmpegLog/",
+    "ff_log_level": "warning",
+    "srs_log_tank": "file",
+    "srs_log_level": "verbose",
+    "srs_log_file": "/root/StreamNode/21629eba-3bcf-42b0-b37e-4502896dcbe1/srs.log",
+    "max_connections": 1000,
+    "daemon": true,
+    "utc_time": false,
+    "pithy_print_ms": null,
+    "work_dir": "/root/StreamNode/",
+    "asprocess": false,
+    "empty_ip_ok": null,
+    "grace_start_wait": 2300,
+    "grace_final_wait": 3200,
+    "force_grace_quit": false,
+    "disable_daemon_for_docker": null,
+    "inotify_auto_reload": false,
+    "auto_reload_for_docker": null,
+    "heartbeat": {
+      "enabled": true,
+      "interval": 5,
+      "url": "http://127.0.0.1:5000/api/v1/heartbeat",
+      "device_id": "\"21629eba-3bcf-42b0-b37e-4502896dcbe1\"", //系统自动生成device_id,所有关于这个srs实例的内容都与device_id有关系.
+      "summaries": true,                                       //一个StreamNode里不能存在两个相同的device_id
+      "instanceName": null
+    },
+    "stats": null,
+    "http_api": {
+      "enabled": true,
+      "listen": 8000,
+      "crossdomain": true,
+      "raw_Api": null,
+      "instanceName": ""
+    },
+    "http_server": {
+      "enabled": true,
+      "listen": 8001,
+      "dir": "/root/StreamNode/21629eba-3bcf-42b0-b37e-4502896dcbe1/wwwroot",
+      "crossdomain": true,
+      "instanceName": null
+    },
+    "stream_casters": null,
+    "srt_server": null,
+    "kafka": null,
+    "vhosts": [
+      {
+        "vnack": null,
+        "instanceName": "__defaultVhost__",
+        "vhostDomain": "__defaultVhost__",
+        "enabled": null,
+        "min_latency": null,
+        "tcp_nodelay": null,
+        "chunk_size": null,
+        "in_ack_size": null,
+        "out_ack_size": null,
+        "rtc": null,
+        "vcluster": null,
+        "vforward": null,
+        "vplay": null,
+        "vpublish": null,
+        "vrefer": null,
+        "vbandcheck": null,
+        "vsecurity": null,
+        "vhttp_static": null,
+        "vhttp_remux": null,
+        "vhttp_hooks": null,
+        "vexec": null,
+        "vdash": null,
+        "vhls": null,
+        "vhds": null,
+        "vdvr": null,
+        "vingests": null,
+        "vtranscodes": null
+      }
+    ],
+    "configLines": null,
+    "streamNodeIpAddr": null,
+    "streamNodPort": null,
+    "deviceId": null,
+    "configLinesTrim": null,
+    "confFilePath": null
+  },
+  "srsConfigPath": "",
+  "srsDeviceId": "21629eba-3bcf-42b0-b37e-4502896dcbe1",
+  "srsWorkPath": "/root/StreamNode/",
+  "srsPidValue": "",
+  "isInit": true,
+  "isStopedByUser": false,
+  "isRunning": false
+}
+</code></pre>
+</details>
+
