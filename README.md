@@ -896,9 +896,6 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 ]
 ```
 ### SRS配置文件操作API（不详细展开，类与配置文件是相互映射的，有需要可以直接看源码）
-
-
-
 + RtcServer 
 
 接口名|功能|备注
@@ -906,3 +903,27 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 /RtcServer/GetSrsRtcServer|获取Srs中Rtc服务的相关配置|输入为DeviceId
 /RtcServer/SetRtcServer|对Srs的Rtc服务进行配置|输入为DeviceId
 /RtcServer/DelRtcServer|删除Srs中的Rtc服务|输入为DeviceId
+
++ SrsHooks
++ SrtServer
++ Stats
++ StreamCaster
++ Vhost
++ VhostBandcheck
++ VhostCluster
++ VhostDash
++ VhostDvr
++ VhostExec
++ VhostForward
++ VhostHds
++ VhostHls
++ VhostHttpHooks
++ VhostHttpRemux
++ VhostHttpStatic
++ VhostIngest
++ VhostPlay
++ VhostPublish
++ VhostRefer
++ VhostRtc
++ VhostSecurity
++ VhostTranscode
