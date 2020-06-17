@@ -905,33 +905,9 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 
 
 
-+ RtcServer 
+RtcServer 
 接口名|功能|备注
 --|:--:|--:
 RtcServerGetSrsRtcServer|获取Srs中Rtc服务的相关配置|输入为DeviceId
 RtcServerSetRtcServer|对Srs的Rtc服务进行配置|输入为DeviceId
 RtcServerDelRtcServer|删除Srs中的Rtc服务|输入为DeviceId
-
-SrsHooks
-SrtServer
-Stats
-StreamCaster
-Vhost
-VhostBandcheck
-VhostCluster
-VhostDash
-VhostDvr
-VhostExec
-VhostForward
-VhostHds
-VhostHls
-VhostHttpHooks
-VhostHttpRemux
-VhostHttpStatic
-VhostIngest
-VhostPlay
-VhostPublish
-VhostRefer
-VhostRtc
-VhostSecurity
-VhostTranscode
