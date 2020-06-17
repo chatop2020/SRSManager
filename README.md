@@ -155,7 +155,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 #### /System/GetAllSrsManagerDeviceId
 + 调用方式:HttpGet
 + 接口作用:获取StreamNode管理下的所有Srs实例设备ID
-+ 输入参数:null
++ 输入参数:无
 + 输出参数:List<string>|ExceptStruct
 ```json
 [
@@ -549,10 +549,11 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 </details>
 + 输出参数:SrsManage|null|ExceptStruct
 + 注:如果正常新建，则返回SrsManager对象,基本与传入参数一致
+
 #### /System/GetSrsInstanceTemplate
 + 调用方式:HttpGet
 + 接口作用:获取一个SrsManager对象的模板，可以用于新建，在模板里已经做好了基本的设置
-+ 输入参数:null
++ 输入参数:无
 + 输出参数:object:SrsMansger|ExceptStruct
 <details>
 <summary>展开查看</summary>
