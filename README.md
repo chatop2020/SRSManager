@@ -48,16 +48,16 @@
 接口采用HttpWebApi方式提供，提供方式为http://serverip:apiport/接口类型/API方法
 接口调用方式：HttpGet、HttpPost
 当传输入参数为简单参数时采用HttpGet方式调用，复杂对象参数时采用HttpPost方式调用
-例如调用检测Srs实例是否正在运行时，可以通过PostMan发送以下http请求获得状态
+例如调用检测Srs实例是否正在运行时，可以通过CURL发送以下http请求获得状态
 ```
 curl -X GET "http://192.168.2.42:5800/GlobalSrs/IsRunning?deviceId=22364bc4-5134-494d-8249-51d06777fb7f" -H "accept: */*"
 ```
 ### 全局接口-GlobalSrs
 #### IsRunning
-- 调用方式:HttpGet
-- 接口作用:<font color=green>检测Srs实例是否正在运行</font>
-- 输入参数:deviceId:string
-- 输出参数:true|false:bool
++ 调用方式:HttpGet
++ 接口作用:<font color=#00ffff>检测Srs实例是否正在运行</font>
++ 输入参数:deviceId:string
++ 输出参数:true|false:bool
 
 
 
