@@ -52,13 +52,49 @@
 ```
 curl -X GET "http://192.168.2.42:5800/GlobalSrs/IsRunning?deviceId=22364bc4-5134-494d-8249-51d06777fb7f" -H "accept: */*"
 ```
+## 异常与正常
++ 当接口调用出现异常时，API返回HttpStatusCode为400，同时告知异常原因,返回结构如下：
+```
+ {
+ 	"Code": 0,  //错误代码
+ 	"Message": "无错误" //错误原因描述
+ }
+```
++ 当出现系统级异常时，由asp.net core自动捕获（比如传入参数有格式问题等情况）,
+asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构如下：
+```
+{
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "traceId": "|1e26aa01-4d02465285d0af0c.",
+  "errors": {
+    "": [
+      "A non-empty request body is required."
+    ],
+    "obj": [
+      "The obj field is required."
+    ]
+  }
+}
+```
+
++ 当接口调用正常时
 ### 全局接口-GlobalSrs
-#### IsRunning
+#### GlobalSrs/IsRunning
 + 调用方式:HttpGet
-+ 接口作用:<font color=#00ffff>检测Srs实例是否正在运行</font>
++ 接口作用:检测Srs实例是否正在运行.
 + 输入参数:deviceId:string
 + 输出参数:true|false:bool
-
-
+#### GlobalSrs/IsInit
++ 调用方式:HttpGet
++ 接口作用:检测Srs实例配置文件是否被加载并且初始化.
++ 输入参数:deviceId:string
++ 输出参数:true|false:bool
+#### GlobalSrs/StartSrs
++ 调用方式:HttpGet
++ 接口作用:用于启动一个Srs实例进程（启动srs程序   ./srs -c config.conf）.
++ 输入参数:deviceId:string
++ 输出参数:true|false:bool
 
 
