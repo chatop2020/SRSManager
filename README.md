@@ -904,9 +904,21 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 /RtcServer/SetRtcServer|对Srs的Rtc服务进行配置|输入为DeviceId
 /RtcServer/DelRtcServer|删除Srs中的Rtc服务|输入为DeviceId
 
-+ SrsHooks
 + SrtServer
+接口名|功能|备注
+--|:--:|--:
+/SrtServer/GetSrtServer|获取Srs中Srt服务的相关配置|输入为DeviceId
+/SrtServer/SetSrtServer|对Srs的Srt服务进行配置|输入为DeviceId
+/SrtServer/DelSrtServer|删除Srs中的Srt服务|输入为DeviceId
+
 + Stats
+接口名|功能|备注
+--|:--:|--:
+/Stats/GetSrsStats|获取Srs中Stats服务的相关配置|输入为DeviceId
+/Stats/SetSrsStats|对Srs的Stats服务进行配置|输入为DeviceId
+/Stats/DelStats|删除Srs中的Stats服务|输入为DeviceId
+
+
 + StreamCaster
 + Vhost
 + VhostBandcheck
