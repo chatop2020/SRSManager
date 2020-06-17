@@ -87,7 +87,8 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 时间格式: yyyy-MM-dd HH:mm:ss
 + 调用方式:HttpGet|HttpPost
 + 耗时操作:采用http callback的方式进行，当某个操作是耗时操作时（如/DvrPlan/CutOrMergeVideoFile）,接口要求在请求时传入callback地址，在操作完成后通过callback地址来通知接口调用应用相关结果 
-
++ 所有对Srs配置进行写操作（Set,Delete,Update,Insert|Create）的接口，均不会在操作完成后重写配置文件，需要应用调用/System/RefreshSrsObject接口才会将最新的配置信息写入对应的Srs进程配置文件中，并且自动Reload配置文件来刷新Srs运行参数
+## 接口说明
 ### 全局接口-GlobalSrs
 #### GlobalSrs/IsRunning
 + 调用方式:HttpGet
@@ -101,8 +102,22 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 输出参数:true|false:bool
 #### GlobalSrs/StartSrs
 + 调用方式:HttpGet
-+ 接口作用:用于启动一个Srs实例进程（启动srs程序   ./srs -c config.conf）.
++ 接口作用:用于启动一个Srs实例进程（启动srs程序   ./srs -c config.conf）
 + 输入参数:deviceId:string
 + 输出参数:true|false:bool
-
+#### GlobalSrs/StopSrs
++ 调用方式:HttpGet
++ 接口作用:停止srs进程，结束掉srs的服务
++ 输入参数:deviceId:string
++ 输出参数:true|false:bool
+#### GlobalSrs/RestartSrs
++ 调用方式:HttpGet
++ 接口作用:重新启动Srs实例进程，内部逻辑先SrsStop,再SrsStart
++ 输入参数:deviceId:string
++ 输出参数:true|false:bool
+#### GlobalSrs/ReloadSrs
++ 调用方式:HttpGet
++ 接口作用:重新加载Srs配置文件（热加载，不用停止Srs进程服务）向进程发送 SIGHUP信号 kill -s SIGHUP pid
++ 输入参数:deviceId:string
++ 输出参数:true|false:bool
 
