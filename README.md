@@ -156,7 +156,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 调用方式:HttpGet
 + 接口作用:获取StreamNode管理下的所有Srs实例设备ID
 + 输入参数:无
-+ 输出参数:List<string>|ExceptStruct
++ 输出参数:List<string?>|ExceptStruct
 ```json
 [
   "22364bc4-5134-494d-8249-51d06777fb7f"
@@ -660,3 +660,220 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 </code></pre>
 </details>
 
+#### /System/DelSrsByDevId
++ 调用方式:HttpGet
++ 接口作用:删除一个srs实例，如果srs进程正在运行，系统会停止srs进程，并且删除srs对应的配置文件
++ 输入参数:deviceId:string
++ 输出参数:true|false:bool|ExceptStruct
+#### /System/GetSrsInstanceByDeviceId
++ 调用方式:HttpGet
++ 接口作用:通过deviceId获取一个Srs实例的配置
++ 输入参数:deviceId:string
++ 输出参数:Object:SrsManager|ExceptStruct,SrsManager结构详见之前说明
+#### /System/LoadOnvifConfig
++ 调用方式:HttpGet
++ 接口作用:加载Onvif摄像头的配置文件，配置文件主要存放的是ip地址，用户名，密码，rtsp流地址
++ 输入参数:无
++ 输出参数:true|false:bool|ExceptStruct
+#### /System/WriteOnvifConfig
++ 调用方式:HttpGet
++ 接口作用:将内存中的Onvif设备详情写入到配置文件，配置文件主要存放的是ip地址，用户名，密码，rtsp流地址
++ 输入参数:无
++ 输出参数:true|false:bool|ExceptStruct
+#### /System/DelOnvifConfigByIpAddress
++ 调用方式:HttpGet
++ 接口作用:通过Onvif设备的ip地址来删除一个Onvif设备，删除后会自动重新加载onvif设备列表，把已经删除的对象剔除
++ 输入参数:ipAddress:string
++ 输出参数:true|false:bool|ExceptStruct
+#### /System/GetSystemInfo
++ 调用方式:HttpGet
++ 接口作用:获取系统信息
++ 输入参数:无
++ 输出参数:info:SystemInfoModule|ExceptStruct
+```json
+{
+  "srsList": [
+    {
+      "version": "4.0.26",
+      "pid": 12135,
+      "ppid": 1,
+      "argv": "/root/StreamNode/srs -c /root/StreamNode/22364bc4-5134-494d-8249-51d06777fb7f.conf",
+      "cwd": "/root/StreamNode",
+      "mem_kbyte": 81852,
+      "mem_percent": 0,
+      "cpu_percent": 0.09,
+      "srs_uptime": 3540,
+      "srs_DeviceId": "22364bc4-5134-494d-8249-51d06777fb7f"
+    }
+  ],
+  "system": {
+    "cpu_percent": 0.02,
+    "disk_read_KBps": 0,
+    "disk_write_KBps": 0,
+    "disk_busy_percent": 0,
+    "mem_ram_kbyte": 8008448,
+    "mem_ram_percent": 0.18,
+    "mem_swap_kbyte": 16781308,
+    "mem_swap_percent": 0,
+    "cpus": 8,
+    "cpus_online": 8,
+    "uptime": 1056007.4,
+    "ilde_time": 8292082.5,
+    "load_1m": 0.23,
+    "load_5m": 0.17,
+    "load_15m": 0.15,
+    "net_sample_time": 1592376245278,
+    "net_recv_bytes": 0,
+    "net_send_bytes": 0,
+    "net_recvi_bytes": 2600853815680,
+    "net_sendi_bytes": 1415715429273,
+    "srs_sample_time": 1592376245278,
+    "srs_recv_bytes": 8577771876,
+    "srs_send_bytes": 87975,
+    "conn_sys": 73,
+    "conn_sys_et": 26,
+    "conn_sys_tw": 17,
+    "conn_sys_udp": 9,
+    "conn_srs": 8
+  },
+  "networkInterfaceList": [
+    {
+      "index": 0,
+      "name": "ens160",
+      "mac": "01-0C-20-01-1B-60",
+      "type": "Ethernet",
+      "ipaddr": "192.168.2.42"
+    },
+    {
+      "index": 1,
+      "name": "docker0",
+      "mac": "0A-42-37-98-C4-0F",
+      "type": "Ethernet",
+      "ipaddr": "172.17.0.1"
+    },
+    {
+      "index": 2,
+      "name": "br-14a99bbbd2d9",
+      "mac": "02-40-9B-04-FC-3E",
+      "type": "Ethernet",
+      "ipaddr": "172.20.0.1"
+    }
+  ],
+  "disksInfo": [
+    {
+      "devicePath": null,
+      "path": "/",
+      "size": 325713,
+      "free": 260258,
+      "format": "xfs",
+      "volumeLabel": "/",
+      "rootDirectory": "/"
+    },
+    {
+      "devicePath": null,
+      "path": "/dev",
+      "size": 4088,
+      "free": 4088,
+      "format": "tmpfs",
+      "volumeLabel": "/dev",
+      "rootDirectory": "/dev"
+    },
+    {
+      "devicePath": null,
+      "path": "/dev/shm",
+      "size": 4100,
+      "free": 4100,
+      "format": "tmpfs",
+      "volumeLabel": "/dev/shm",
+      "rootDirectory": "/dev/shm"
+    },
+    {
+      "devicePath": null,
+      "path": "/run",
+      "size": 4100,
+      "free": 3715,
+      "format": "tmpfs",
+      "volumeLabel": "/run",
+      "rootDirectory": "/run"
+    },
+    {
+      "devicePath": null,
+      "path": "/sys/fs/cgroup",
+      "size": 4100,
+      "free": 4100,
+      "format": "tmpfs",
+      "volumeLabel": "/sys/fs/cgroup",
+      "rootDirectory": "/sys/fs/cgroup"
+    },
+    {
+      "devicePath": null,
+      "path": "/",
+      "size": 325713,
+      "free": 260258,
+      "format": "xfs",
+      "volumeLabel": "/",
+      "rootDirectory": "/"
+    },
+    {
+      "devicePath": null,
+      "path": "/boot",
+      "size": 533,
+      "free": 337,
+      "format": "xfs",
+      "volumeLabel": "/boot",
+      "rootDirectory": "/boot"
+    },
+    {
+      "devicePath": null,
+      "path": "/var/lib/docker/overlay2/ec79f5cb0c9cdc370d5fd5fe75e23905e9b761d2c6d8b691525eb42f8fd1cf73/merged",
+      "size": 325713,
+      "free": 260258,
+      "format": "overlay",
+      "volumeLabel": "/var/lib/docker/overlay2/ec79f5cb0c9cdc370d5fd5fe75e23905e9b761d2c6d8b691525eb42f8fd1cf73/merged",
+      "rootDirectory": "/var/lib/docker/overlay2/ec79f5cb0c9cdc370d5fd5fe75e23905e9b761d2c6d8b691525eb42f8fd1cf73/merged"
+    },
+    {
+      "devicePath": null,
+      "path": "/var/lib/docker/overlay2/c2b4cfeec86dcd9016b34fce83a08b98d8a905bec93f3d69a667a18ce9878fe7/merged",
+      "size": 325713,
+      "free": 260258,
+      "format": "overlay",
+      "volumeLabel": "/var/lib/docker/overlay2/c2b4cfeec86dcd9016b34fce83a08b98d8a905bec93f3d69a667a18ce9878fe7/merged",
+      "rootDirectory": "/var/lib/docker/overlay2/c2b4cfeec86dcd9016b34fce83a08b98d8a905bec93f3d69a667a18ce9878fe7/merged"
+    },
+    {
+      "devicePath": null,
+      "path": "/var/lib/docker/containers/99a5d03de3fbf073f5480ed71543328cdec3df2cb9cb464c86487b85354b00cb/mounts/shm",
+      "size": 67,
+      "free": 67,
+      "format": "tmpfs",
+      "volumeLabel": "/var/lib/docker/containers/99a5d03de3fbf073f5480ed71543328cdec3df2cb9cb464c86487b85354b00cb/mounts/shm",
+      "rootDirectory": "/var/lib/docker/containers/99a5d03de3fbf073f5480ed71543328cdec3df2cb9cb464c86487b85354b00cb/mounts/shm"
+    },
+    {
+      "devicePath": null,
+      "path": "/var/lib/docker/containers/cbd47bd483651421431dd16f8471bdc25ef4c4dbd5dbb8143923534187c923cf/mounts/shm",
+      "size": 67,
+      "free": 67,
+      "format": "tmpfs",
+      "volumeLabel": "/var/lib/docker/containers/cbd47bd483651421431dd16f8471bdc25ef4c4dbd5dbb8143923534187c923cf/mounts/shm",
+      "rootDirectory": "/var/lib/docker/containers/cbd47bd483651421431dd16f8471bdc25ef4c4dbd5dbb8143923534187c923cf/mounts/shm"
+    },
+    {
+      "devicePath": null,
+      "path": "/run/user/0",
+      "size": 820,
+      "free": 820,
+      "format": "tmpfs",
+      "volumeLabel": "/run/user/0",
+      "rootDirectory": "/run/user/0"
+    }
+  ],
+  "platform": "linux",
+  "architecture": "X64",
+  "x64": true,
+  "hostName": "localhost",
+  "cpuCoreSize": 8,
+  "version": "Linux 3.10.0-1127.10.1.el7.x86_64 #1 SMP Wed Jun 3 14:28:03 UTC 2020 Unix 3.10.0.1127"
+}
+```
