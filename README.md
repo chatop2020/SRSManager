@@ -900,6 +900,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 
 
 + RtcServer 
+
 接口名|功能|备注
 --|:--:|--:
 RtcServerGetSrsRtcServer|获取Srs中Rtc服务的相关配置|输入为DeviceId
