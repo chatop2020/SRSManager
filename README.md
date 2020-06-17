@@ -706,7 +706,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
       "srs_DeviceId": "22364bc4-5134-494d-8249-51d06777fb7f"
     }
   ],
-  "system": {
+  "system": { //注意，如果Srs实例没有运行，则system段为null,此段内容获取来自srs实例
     "cpu_percent": 0.02,
     "disk_read_KBps": 0,
     "disk_write_KBps": 0,
@@ -876,4 +876,22 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
   "cpuCoreSize": 8,
   "version": "Linux 3.10.0-1127.10.1.el7.x86_64 #1 SMP Wed Jun 3 14:28:03 UTC 2020 Unix 3.10.0.1127"
 }
+```
+#### /System​/GetSrsInstanceList
++ 调用方式:HttpGet
++ 接口作用:获取Srs实例列表（简项信息）
++ 输入参数:无
++ 输出参数:object:List<SrsInstanceModule?>|ExceptStruct
+```json
+[
+  {
+    "deviceId": "22364bc4-5134-494d-8249-51d06777fb7f",
+    "isInit": true,
+    "isRunning": true,
+    "configPath": "/root/StreamNode/22364bc4-5134-494d-8249-51d06777fb7f.conf",
+    "pidValue": "12135",
+    "srsProcessWorkPath": "/root/StreamNode/srs",
+    "srsInstanceWorkPath": "/root/StreamNode/"
+  }
+]
 ```
