@@ -168,399 +168,383 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 输入参数:
 <details>
 <summary>展开查看</summary>
-<pre><code lang="json">
-
-{//以下是SrsManage类结构
-  "srs": {
-    "rtc_server": {
-      "enabled": true,
-      "listen": 0,
-      "candidate": "string",
-      "ecdsa": true,
-      "sendmmsg": 0,
-      "encrypt": true,
-      "reuseport": 0,
-      "merge_nalus": true,
-      "gso": true,
-      "padding": 0,
-      "perf_stat": true,
-      "queue_length": 0,
-      "black_hole": {
-        "enabled": true,
-        "publisher": "string"
-      }
-    },
-    "tcmalloc_release_rate": 0,
-    "listen": 0,
-    "pid": "string",
-    "chunk_size": 0,
-    "ff_log_dir": "string",
-    "ff_log_level": "string",
-    "srs_log_tank": "string",
-    "srs_log_level": "string",
-    "srs_log_file": "string",
-    "max_connections": 0,
-    "daemon": true,
-    "utc_time": true,
-    "pithy_print_ms": 0,
-    "work_dir": "string",
-    "asprocess": true,
-    "empty_ip_ok": true,
-    "grace_start_wait": 0,
-    "grace_final_wait": 0,
-    "force_grace_quit": true,
-    "disable_daemon_for_docker": true,
-    "inotify_auto_reload": true,
-    "auto_reload_for_docker": true,
-    "heartbeat": {
-      "enabled": true,
-      "interval": 0,
-      "url": "string",
-      "device_id": "string",
-      "summaries": true,
-      "instanceName": "string"
-    },
-    "stats": {
-      "network": 0,
-      "disk": "string"
-    },
-    "http_api": {
-      "enabled": true,
-      "listen": 0,
-      "crossdomain": true,
-      "raw_Api": {
-        "enabled": true,
-        "allow_reload": true,
-        "allow_query": true,
-        "allow_update": true
-      },
-      "instanceName": "string"
-    },
-    "http_server": {
-      "enabled": true,
-      "listen": 0,
-      "dir": "string",
-      "crossdomain": true,
-      "instanceName": "string"
-    },
-    "stream_casters": [
-      {
-        "sip": {
-          "enabled": true,
-          "listen": 0,
-          "serial": "string",
-          "realm": "string",
-          "ack_timeout": 0,
-          "keepalive_timeout": 0,
-          "auto_play": true,
-          "invite_port_fixed": true,
-          "query_catalog_interval": 0
-        },
-        "auto_create_channel": true,
-        "enabled": true,
-        "caster": "mpegts_over_udp",
-        "output": "string",
-        "listen": 0,
-        "rtp_port_min": 0,
-        "rtp_port_max": 0,
-        "host": "string",
-        "audio_enable": true,
-        "wait_keyframe": true,
-        "rtp_idle_timeout": 0,
-        "instanceName": "string"
-      }
-    ],
-    "srt_server": {
-      "default_app": "string",
-      "enabled": true,
-      "listen": 0,
-      "maxbw": 0,
-      "connect_timeout": 0,
-      "peerlatency": 0,
-      "recvlatency": 0,
-      "instanceName": "string"
-    },
-    "kafka": {
-      "enabled": true,
-      "brokers": "string",
-      "topic": "string",
-      "instanceName": "string"
-    },
-    "vhosts": [
-      {
-        "vnack": {
-          "enabled": true
-        },
-        "instanceName": "string",
-        "vhostDomain": "string",
-        "enabled": true,
-        "min_latency": true,
-        "tcp_nodelay": true,
-        "chunk_size": 0,
-        "in_ack_size": 0,
-        "out_ack_size": 0,
-        "rtc": {
-          "enabled": true,
-          "bframe": "string",
-          "acc": "string",
-          "stun_timeout": 0,
-          "stun_strict_check": true
-        },
-        "vcluster": {
-          "mode": "string",
-          "origin": "string",
-          "token_traverse": true,
-          "vhost": "string",
-          "debug_srs_upnode": true,
-          "origin_cluster": true,
-          "coworkers": "string",
-          "instanceName": "string"
-        },
-        "vforward": {
-          "enabled": true,
-          "destination": "string"
-        },
-        "vplay": {
-          "mw_msgs": 0,
-          "gop_cache": true,
-          "queue_length": 0,
-          "time_jitter": "full",
-          "atc": true,
-          "mix_correct": true,
-          "atc_auto": true,
-          "mw_latency": 0,
-          "send_min_interval": 0,
-          "reduce_sequence_header": true
-        },
-        "vpublish": {
-          "mr": true,
-          "mr_latency": 0,
-          "firstpkt_timeout": 0,
-          "normal_timeout": 0,
-          "parse_sps": true,
-          "instanceName": "string"
-        },
-        "vrefer": {
-          "enabled": true,
-          "all": "string",
-          "publish": "string",
-          "play": "string",
-          "instanceName": "string"
-        },
-        "vbandcheck": {
-          "enabled": true,
-          "key": "string",
-          "interval": 0,
-          "limit_kbps": 0
-        },
-        "vsecurity": {
-          "enabled": true,
-          "seo": [
-            {
-              "sem": "allow",
-              "set": "publish",
-              "rule": "string"
-            }
-          ]
-        },
-        "vhttp_static": {
-          "enabled": true,
-          "mount": "string",
-          "dir": "string"
-        },
-        "vhttp_remux": {
-          "enabled": true,
-          "fast_cache": 0,
-          "mount": "string",
-          "hstrs": true
-        },
-        "vhttp_hooks": {
-          "enabled": true,
-          "on_connect": "string",
-          "on_close": "string",
-          "on_publish": "string",
-          "on_unpublish": "string",
-          "on_play": "string",
-          "on_stop": "string",
-          "on_dvr": "string",
-          "on_hls": "string",
-          "on_hls_notify": "string"
-        },
-        "vexec": {
-          "enabled": true,
-          "publish": "string"
-        },
-        "vdash": {
-          "enabled": true,
-          "dash_fragment": 0,
-          "dash_update_period": 0,
-          "dash_timeshift": 0,
-          "dash_path": "string",
-          "dash_mpd_file": "string"
-        },
-        "vhls": {
-          "enabled": true,
-          "hls_fragment": 0,
-          "hls_td_ratio": 0,
-          "hls_aof_ratio": 0,
-          "hls_window": 0,
-          "hls_on_error": "string",
-          "hls_path": "string",
-          "hls_m3u8_file": "string",
-          "hls_ts_file": "string",
-          "hls_ts_floor": true,
-          "hls_entry_prefix": "string",
-          "hls_acodec": "string",
-          "hls_vcodec": "string",
-          "hls_cleanup": true,
-          "hls_dispose": 0,
-          "hls_nb_notify": 0,
-          "hls_wait_keyframe": true,
-          "hls_keys": true,
-          "hls_fragments_per_key": 0,
-          "hls_key_file": "string",
-          "hls_key_file_path": "string",
-          "hls_key_url": "string",
-          "hls_dts_directly": true
-        },
-        "vhds": {
-          "enabled": true,
-          "hds_fragment": 0,
-          "hds_window": 0,
-          "hds_path": "string"
-        },
-        "vdvr": {
-          "enabled": true,
-          "dvr_apply": "string",
-          "dvr_plan": "string",
-          "dvr_path": "string",
-          "dvr_duration": 0,
-          "dvr_wait_keyframe": true,
-          "time_Jitter": "full"
-        },
-        "vingests": [
-          {
-            "ingestName": "string",
-            "enabled": true,
-            "input": {
-              "type": "file",
-              "url": "string"
-            },
-            "ffmpeg": "string",
-            "engines": [
-              {
-                "enabled": true,
-                "perfile": {
-                  "re": "string",
-                  "rtsp_transport": "string"
-                },
-                "iformat": "off",
-                "vfilter": {
-                  "i": "string",
-                  "vf": "string",
-                  "filter_Complex": "string"
-                },
-                "vcodec": "string",
-                "vbitrate": 0,
-                "vfps": 0,
-                "vwidth": 0,
-                "vheight": 0,
-                "vthreads": 0,
-                "vprofile": "high",
-                "vpreset": "medium",
-                "vparams": {
-                  "t": 0,
-                  "coder": 0,
-                  "b_strategy": 0,
-                  "bf": 0,
-                  "refs": 0
-                },
-                "acodec": "string",
-                "abitrate": 0,
-                "asample_rate": 0,
-                "achannels": 0,
-                "aparams": {
-                  "profile_a": "string",
-                  "bsf_a": "string"
-                },
-                "oformat": "off",
-                "output": "string",
-                "engineName": "string",
-                "instanceName": "string"
-              }
-            ],
-            "instanceName": "string"
-          }
-        ],
-        "vtranscodes": [
-          {
-            "enabled": true,
-            "ffmpeg": "string",
-            "engines": [
-              {
-                "enabled": true,
-                "perfile": {
-                  "re": "string",
-                  "rtsp_transport": "string"
-                },
-                "iformat": "off",
-                "vfilter": {
-                  "i": "string",
-                  "vf": "string",
-                  "filter_Complex": "string"
-                },
-                "vcodec": "string",
-                "vbitrate": 0,
-                "vfps": 0,
-                "vwidth": 0,
-                "vheight": 0,
-                "vthreads": 0,
-                "vprofile": "high",
-                "vpreset": "medium",
-                "vparams": {
-                  "t": 0,
-                  "coder": 0,
-                  "b_strategy": 0,
-                  "bf": 0,
-                  "refs": 0
-                },
-                "acodec": "string",
-                "abitrate": 0,
-                "asample_rate": 0,
-                "achannels": 0,
-                "aparams": {
-                  "profile_a": "string",
-                  "bsf_a": "string"
-                },
-                "oformat": "off",
-                "output": "string",
-                "engineName": "string",
-                "instanceName": "string"
-              }
-            ],
-            "instanceName": "string"
-          }
-        ]
-      }
-    ],
-    "configLines": [
-      "string"
-    ],
-    "streamNodeIpAddr": "string",
-    "streamNodPort": 0,
-    "deviceId": "string",
-    "configLinesTrim": [
-      "string"
-    ],
-    "confFilePath": "string"
-  },
-  "srsConfigPath": "string",
-  "srsDeviceId": "string",
-  "srsWorkPath": "string",
-  "srsPidValue": "string",
-  "isStopedByUser": true
+<pre><code>
+{
+	"srs": {
+		"rtc_server": {
+			"enabled": true,
+			"listen": 0,
+			"candidate": "string",
+			"ecdsa": true,
+			"sendmmsg": 0,
+			"encrypt": true,
+			"reuseport": 0,
+			"merge_nalus": true,
+			"gso": true,
+			"padding": 0,
+			"perf_stat": true,
+			"queue_length": 0,
+			"black_hole": {
+				"enabled": true,
+				"publisher": "string"
+			}
+		},
+		"tcmalloc_release_rate": 0,
+		"listen": 0,
+		"pid": "string",
+		"chunk_size": 0,
+		"ff_log_dir": "string",
+		"ff_log_level": "string",
+		"srs_log_tank": "string",
+		"srs_log_level": "string",
+		"srs_log_file": "string",
+		"max_connections": 0,
+		"daemon": true,
+		"utc_time": true,
+		"pithy_print_ms": 0,
+		"work_dir": "string",
+		"asprocess": true,
+		"empty_ip_ok": true,
+		"grace_start_wait": 0,
+		"grace_final_wait": 0,
+		"force_grace_quit": true,
+		"disable_daemon_for_docker": true,
+		"inotify_auto_reload": true,
+		"auto_reload_for_docker": true,
+		"heartbeat": {
+			"enabled": true,
+			"interval": 0,
+			"url": "string",
+			"device_id": "string",
+			"summaries": true,
+			"instanceName": "string"
+		},
+		"stats": {
+			"network": 0,
+			"disk": "string"
+		},
+		"http_api": {
+			"enabled": true,
+			"listen": 0,
+			"crossdomain": true,
+			"raw_Api": {
+				"enabled": true,
+				"allow_reload": true,
+				"allow_query": true,
+				"allow_update": true
+			},
+			"instanceName": "string"
+		},
+		"http_server": {
+			"enabled": true,
+			"listen": 0,
+			"dir": "string",
+			"crossdomain": true,
+			"instanceName": "string"
+		},
+		"stream_casters": [{
+			"sip": {
+				"enabled": true,
+				"listen": 0,
+				"serial": "string",
+				"realm": "string",
+				"ack_timeout": 0,
+				"keepalive_timeout": 0,
+				"auto_play": true,
+				"invite_port_fixed": true,
+				"query_catalog_interval": 0
+			},
+			"auto_create_channel": true,
+			"enabled": true,
+			"caster": "mpegts_over_udp",
+			"output": "string",
+			"listen": 0,
+			"rtp_port_min": 0,
+			"rtp_port_max": 0,
+			"host": "string",
+			"audio_enable": true,
+			"wait_keyframe": true,
+			"rtp_idle_timeout": 0,
+			"instanceName": "string"
+		}],
+		"srt_server": {
+			"default_app": "string",
+			"enabled": true,
+			"listen": 0,
+			"maxbw": 0,
+			"connect_timeout": 0,
+			"peerlatency": 0,
+			"recvlatency": 0,
+			"instanceName": "string"
+		},
+		"kafka": {
+			"enabled": true,
+			"brokers": "string",
+			"topic": "string",
+			"instanceName": "string"
+		},
+		"vhosts": [{
+			"vnack": {
+				"enabled": true
+			},
+			"instanceName": "string",
+			"vhostDomain": "string",
+			"enabled": true,
+			"min_latency": true,
+			"tcp_nodelay": true,
+			"chunk_size": 0,
+			"in_ack_size": 0,
+			"out_ack_size": 0,
+			"rtc": {
+				"enabled": true,
+				"bframe": "string",
+				"acc": "string",
+				"stun_timeout": 0,
+				"stun_strict_check": true
+			},
+			"vcluster": {
+				"mode": "string",
+				"origin": "string",
+				"token_traverse": true,
+				"vhost": "string",
+				"debug_srs_upnode": true,
+				"origin_cluster": true,
+				"coworkers": "string",
+				"instanceName": "string"
+			},
+			"vforward": {
+				"enabled": true,
+				"destination": "string"
+			},
+			"vplay": {
+				"mw_msgs": 0,
+				"gop_cache": true,
+				"queue_length": 0,
+				"time_jitter": "full",
+				"atc": true,
+				"mix_correct": true,
+				"atc_auto": true,
+				"mw_latency": 0,
+				"send_min_interval": 0,
+				"reduce_sequence_header": true
+			},
+			"vpublish": {
+				"mr": true,
+				"mr_latency": 0,
+				"firstpkt_timeout": 0,
+				"normal_timeout": 0,
+				"parse_sps": true,
+				"instanceName": "string"
+			},
+			"vrefer": {
+				"enabled": true,
+				"all": "string",
+				"publish": "string",
+				"play": "string",
+				"instanceName": "string"
+			},
+			"vbandcheck": {
+				"enabled": true,
+				"key": "string",
+				"interval": 0,
+				"limit_kbps": 0
+			},
+			"vsecurity": {
+				"enabled": true,
+				"seo": [{
+					"sem": "allow",
+					"set": "publish",
+					"rule": "string"
+				}]
+			},
+			"vhttp_static": {
+				"enabled": true,
+				"mount": "string",
+				"dir": "string"
+			},
+			"vhttp_remux": {
+				"enabled": true,
+				"fast_cache": 0,
+				"mount": "string",
+				"hstrs": true
+			},
+			"vhttp_hooks": {
+				"enabled": true,
+				"on_connect": "string",
+				"on_close": "string",
+				"on_publish": "string",
+				"on_unpublish": "string",
+				"on_play": "string",
+				"on_stop": "string",
+				"on_dvr": "string",
+				"on_hls": "string",
+				"on_hls_notify": "string"
+			},
+			"vexec": {
+				"enabled": true,
+				"publish": "string"
+			},
+			"vdash": {
+				"enabled": true,
+				"dash_fragment": 0,
+				"dash_update_period": 0,
+				"dash_timeshift": 0,
+				"dash_path": "string",
+				"dash_mpd_file": "string"
+			},
+			"vhls": {
+				"enabled": true,
+				"hls_fragment": 0,
+				"hls_td_ratio": 0,
+				"hls_aof_ratio": 0,
+				"hls_window": 0,
+				"hls_on_error": "string",
+				"hls_path": "string",
+				"hls_m3u8_file": "string",
+				"hls_ts_file": "string",
+				"hls_ts_floor": true,
+				"hls_entry_prefix": "string",
+				"hls_acodec": "string",
+				"hls_vcodec": "string",
+				"hls_cleanup": true,
+				"hls_dispose": 0,
+				"hls_nb_notify": 0,
+				"hls_wait_keyframe": true,
+				"hls_keys": true,
+				"hls_fragments_per_key": 0,
+				"hls_key_file": "string",
+				"hls_key_file_path": "string",
+				"hls_key_url": "string",
+				"hls_dts_directly": true
+			},
+			"vhds": {
+				"enabled": true,
+				"hds_fragment": 0,
+				"hds_window": 0,
+				"hds_path": "string"
+			},
+			"vdvr": {
+				"enabled": true,
+				"dvr_apply": "string",
+				"dvr_plan": "string",
+				"dvr_path": "string",
+				"dvr_duration": 0,
+				"dvr_wait_keyframe": true,
+				"time_Jitter": "full"
+			},
+			"vingests": [{
+				"ingestName": "string",
+				"enabled": true,
+				"input": {
+					"type": "file",
+					"url": "string"
+				},
+				"ffmpeg": "string",
+				"engines": [{
+					"enabled": true,
+					"perfile": {
+						"re": "string",
+						"rtsp_transport": "string"
+					},
+					"iformat": "off",
+					"vfilter": {
+						"i": "string",
+						"vf": "string",
+						"filter_Complex": "string"
+					},
+					"vcodec": "string",
+					"vbitrate": 0,
+					"vfps": 0,
+					"vwidth": 0,
+					"vheight": 0,
+					"vthreads": 0,
+					"vprofile": "high",
+					"vpreset": "medium",
+					"vparams": {
+						"t": 0,
+						"coder": 0,
+						"b_strategy": 0,
+						"bf": 0,
+						"refs": 0
+					},
+					"acodec": "string",
+					"abitrate": 0,
+					"asample_rate": 0,
+					"achannels": 0,
+					"aparams": {
+						"profile_a": "string",
+						"bsf_a": "string"
+					},
+					"oformat": "off",
+					"output": "string",
+					"engineName": "string",
+					"instanceName": "string"
+				}],
+				"instanceName": "string"
+			}],
+			"vtranscodes": [{
+				"enabled": true,
+				"ffmpeg": "string",
+				"engines": [{
+					"enabled": true,
+					"perfile": {
+						"re": "string",
+						"rtsp_transport": "string"
+					},
+					"iformat": "off",
+					"vfilter": {
+						"i": "string",
+						"vf": "string",
+						"filter_Complex": "string"
+					},
+					"vcodec": "string",
+					"vbitrate": 0,
+					"vfps": 0,
+					"vwidth": 0,
+					"vheight": 0,
+					"vthreads": 0,
+					"vprofile": "high",
+					"vpreset": "medium",
+					"vparams": {
+						"t": 0,
+						"coder": 0,
+						"b_strategy": 0,
+						"bf": 0,
+						"refs": 0
+					},
+					"acodec": "string",
+					"abitrate": 0,
+					"asample_rate": 0,
+					"achannels": 0,
+					"aparams": {
+						"profile_a": "string",
+						"bsf_a": "string"
+					},
+					"oformat": "off",
+					"output": "string",
+					"engineName": "string",
+					"instanceName": "string"
+				}],
+				"instanceName": "string"
+			}]
+		}],
+		"configLines": [
+			"string"
+		],
+		"streamNodeIpAddr": "string",
+		"streamNodPort": 0,
+		"deviceId": "string",
+		"configLinesTrim": [
+			"string"
+		],
+		"confFilePath": "string"
+	},
+	"srsConfigPath": "string",
+	"srsDeviceId": "string",
+	"srsWorkPath": "string",
+	"srsPidValue": "string",
+	"isStopedByUser": true
 }
-
 </code></pre>
 </details>
 
