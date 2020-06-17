@@ -908,9 +908,9 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + RtcServer 
 接口名|功能|备注
 --|:--:|--:
-/RtcServer/GetSrsRtcServer|获取Srs中Rtc服务的相关配置|输入为DeviceId
-/RtcServer/SetRtcServer|对Srs的Rtc服务进行配置|输入为DeviceId
-/RtcServer/DelRtcServer|删除Srs中的Rtc服务|输入为DeviceId
+RtcServerGetSrsRtcServer|获取Srs中Rtc服务的相关配置|输入为DeviceId
+RtcServerSetRtcServer|对Srs的Rtc服务进行配置|输入为DeviceId
+RtcServerDelRtcServer|删除Srs中的Rtc服务|输入为DeviceId
 
 SrsHooks
 SrtServer
