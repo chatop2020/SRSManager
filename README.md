@@ -55,9 +55,9 @@ curl -X GET "http://192.168.2.42:5800/GlobalSrs/IsRunning?deviceId=22364bc4-5134
 ### 全局接口-GlobalSrs
 #### IsRunning
 - 调用方式:HttpGet
-- 接口作用:检测Srs实例是否正在运行
-- 输入参数：device_id:string
-- 输出参数：true|false:bool
+- 接口作用:<font color=green>检测Srs实例是否正在运行</font>
+- 输入参数:deviceId:string
+- 输出参数:true|false:bool
 
 
 
