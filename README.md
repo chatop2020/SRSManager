@@ -45,10 +45,20 @@
 - 对SRS原有HTTP API进行封装与转发，实现风格统一，鉴权统一的webapi接口。
 
 ## 现有接口
-### 全局接口-GlobalSrs/IsRunning
-- 检测Srs实例是否正在运行
--- Input->deviceID:string
--- OutPut<--true|false:bool
+接口采用HttpWebApi方式提供，提供方式为http://serverip:apiport/接口类型/API方法
+接口调用方式：HttpGet、HttpPost
+当传输入参数为简单参数时采用HttpGet方式调用，复杂对象参数时采用HttpPost方式调用
+例如调用检测Srs实例是否正在运行时，可以通过PostMan发送以下http请求获得状态
+```
+curl -X GET "http://192.168.2.42:5800/GlobalSrs/IsRunning?deviceId=22364bc4-5134-494d-8249-51d06777fb7f" -H "accept: */*"
+```
+### 全局接口-GlobalSrs
+#### IsRunning
+- 调用方式:HttpGet
+- 接口作用:检测Srs实例是否正在运行
+- 输入参数：device_id:string
+- 输出参数：true|false:bool
+
 
 
 
