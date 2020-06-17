@@ -315,7 +315,7 @@ namespace SrsApis.SrsManager
             {
                 string stdout = "";
                 string errout = "";
-                var ret=LinuxShell.Run("cat " + pidPath, 300, out stdout, out errout);
+                var ret = LinuxShell.Run("cat " + pidPath, 300, out stdout, out errout);
                 if (!string.IsNullOrEmpty(stdout) && ret)
                 {
                     if (int.TryParse(stdout, out int a))
@@ -323,6 +323,7 @@ namespace SrsApis.SrsManager
                         pidValue = stdout.Trim();
                     }
                 }
+
                 if (!string.IsNullOrEmpty(errout) && ret)
                 {
                     if (int.TryParse(errout, out int a))
@@ -330,13 +331,16 @@ namespace SrsApis.SrsManager
                         pidValue = errout.Trim();
                     }
                 }
+
                 if (!string.IsNullOrEmpty(pidValue))
                 {
                     SrsPidValue = pidValue;
                     return true;
                 }
+
                 return false;
             }
+
             return false;
         }
 

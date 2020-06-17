@@ -8,6 +8,7 @@ using System.Threading;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
 using SRSManageCommon.ManageStructs;
+using SrsManageCommon.SrsManageCommon;
 using Common = SRSApis.Common;
 
 namespace SrsApis.SrsManager.Apis
@@ -591,7 +592,7 @@ namespace SrsApis.SrsManager.Apis
                         string reqUrl = "http://127.0.0.1:" + sm!.Srs.Http_api!.Listen + "/api/v1/summaries";
                         try
                         {
-                            string tmpStr = NetHelper.Get(reqUrl);
+                            string tmpStr = NetHelperNew.HttpGetRequest(reqUrl, null!);
                             var retReq = JsonHelper.FromJson<SrsSystemInfo>(tmpStr);
                             if (retReq != null && retReq.Data != null && retReq.Data.Self != null)
                             {

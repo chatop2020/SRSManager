@@ -8,6 +8,7 @@ using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
 using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
+using SrsManageCommon.SrsManageCommon;
 using Common = SRSApis.Common;
 using Publish = SrsConfFile.SRSConfClass.Publish;
 
@@ -394,7 +395,7 @@ namespace SrsApis.SrsManager.Apis
                             streams[1] + "&ptzcmd=" + cmd + "&speed=" + obj.Speed;
             try
             {
-                string tmpStr = NetHelper.Get(reqUrl);
+                string tmpStr = NetHelperNew.HttpGetRequest(reqUrl, null!);
                 var retReq = JsonHelper.FromJson<SrsGb28181PtzControlResponseModule>(tmpStr);
                 if (retReq != null && retReq.Code == 0)
                 {
@@ -503,7 +504,7 @@ namespace SrsApis.SrsManager.Apis
                             streams[1] + "&ptzcmd=" + cmd + "&speed=" + obj.Speed;
             try
             {
-                string tmpStr = NetHelper.Get(reqUrl);
+                string tmpStr = NetHelperNew.HttpGetRequest(reqUrl, null!);
                 var retReq = JsonHelper.FromJson<SrsGb28181PtzControlResponseModule>(tmpStr);
                 if (retReq != null && retReq.Code == 0)
                 {
@@ -575,7 +576,7 @@ namespace SrsApis.SrsManager.Apis
                         string reqUrl = "http://127.0.0.1:" + sm!.Srs.Http_api!.Listen + "/api/v1/summaries";
                         try
                         {
-                            string tmpStr = NetHelper.Get(reqUrl);
+                            string tmpStr = NetHelperNew.HttpGetRequest(reqUrl, null!);
                             var retReq = JsonHelper.FromJson<SrsSystemInfo>(tmpStr);
                             if (retReq != null && retReq.Data != null && retReq.Data.Self != null)
                             {
@@ -663,8 +664,6 @@ namespace SrsApis.SrsManager.Apis
                     if (ret)
                     {
                         ret = sm.Start(out rs);
-                        
-                     
                     }
 
                     SrsStartStatus sts = new SrsStartStatus();
@@ -704,12 +703,13 @@ namespace SrsApis.SrsManager.Apis
                     string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/clients/" + clientId;
                     try
                     {
-                        string tmpStr = NetHelper.Delete(reqUrl);
+                        string tmpStr = NetHelperNew.HttpDeleteRequest(reqUrl, null!);
                         var retReq = JsonHelper.FromJson<SrsSimpleResponseModule>(tmpStr);
                         if (retReq.Code == 0)
                         {
                             return true!;
                         }
+
 
                         return false;
                     }
@@ -761,7 +761,7 @@ namespace SrsApis.SrsManager.Apis
                     string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/streams/" + streamId;
                     try
                     {
-                        string tmpStr = NetHelper.Get(reqUrl);
+                        string tmpStr = NetHelperNew.HttpGetRequest(reqUrl, null!);
                         var retReq = JsonHelper.FromJson<SrsStreamSingleStatusModule>(tmpStr);
                         if (retReq.Code == 0 && retReq.Stream != null)
                         {
@@ -816,7 +816,7 @@ namespace SrsApis.SrsManager.Apis
                     string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/streams/";
                     try
                     {
-                        string tmpStr = NetHelper.Get(reqUrl);
+                        string tmpStr = NetHelperNew.HttpGetRequest(reqUrl, null!);
                         var retReq = JsonHelper.FromJson<SrsStreamsStatusModule>(tmpStr);
                         if (retReq.Code == 0 && retReq.Streams != null)
                         {
@@ -874,7 +874,7 @@ namespace SrsApis.SrsManager.Apis
                     string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/vhosts/" + vhostId;
                     try
                     {
-                        string tmpStr = NetHelper.Get(reqUrl);
+                        string tmpStr = NetHelperNew.HttpGetRequest(reqUrl, null!);
                         var retReq = JsonHelper.FromJson<SrsVhostSingleStatusModule>(tmpStr);
                         if (retReq.Code == 0 && retReq.Vhost != null)
                         {
@@ -930,7 +930,7 @@ namespace SrsApis.SrsManager.Apis
                     string reqUrl = "http://127.0.0.1:" + ret.Srs.Http_api!.Listen + "/api/v1/vhosts/";
                     try
                     {
-                        string tmpStr = NetHelper.Get(reqUrl);
+                        string tmpStr = NetHelperNew.HttpGetRequest(reqUrl, null!);
                         var retReq = JsonHelper.FromJson<SrsVhostsStatusModule>(tmpStr);
                         if (retReq.Code == 0 && retReq.Vhosts != null)
                         {
@@ -1033,13 +1033,13 @@ namespace SrsApis.SrsManager.Apis
                 return result;
             }
         }
-        
+
         /// <summary>
         /// 获取发布中的摄像头ByID,支持多个id用空格隔开
         /// </summary>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static List<OnlineClient> GetOnPublishMonitorById(string id,out ResponseStruct rs)
+        public static List<OnlineClient> GetOnPublishMonitorById(string id, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
@@ -1049,16 +1049,16 @@ namespace SrsApis.SrsManager.Apis
             string[] strArr = id.Split(" ", StringSplitOptions.RemoveEmptyEntries);
             if (strArr.Length > 0)
             {
-                long[] lIds = Array.ConvertAll(strArr , long.Parse);
+                long[] lIds = Array.ConvertAll(strArr, long.Parse);
                 lock (SrsManageCommon.Common.LockDbObjForOnlineClient)
                 {
-                    return OrmService.Db.Select<OnlineClient>().Where(x =>lIds.Contains(x.Id)).ToList();
-
+                    return OrmService.Db.Select<OnlineClient>().Where(x => lIds.Contains(x.Id)).ToList();
                 }
             }
+
             return null!;
         }
-        
+
 
         /// <summary>
         /// 获取所有发布中的摄像头

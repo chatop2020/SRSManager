@@ -33,7 +33,16 @@ namespace SrsApis.SrsManager.Apis
             DateTime _end = DateTime.Parse(rcmv.EndTime.ToString("yyyy-MM-dd HH:mm:ss")).AddSeconds(20); //向后延迟20秒
             var videoList = OrmService.Db.Select<DvrVideo>()
                 .Where(x => x.StartTime > _start.AddMinutes(-60) && x.EndTime <= _end.AddMinutes(60))
+                .WhereIf(!string.IsNullOrEmpty(rcmv.DeviceId),
+                    x => x.Device_Id!.Trim().ToLower().Equals(rcmv.DeviceId!.Trim().ToLower()))
+                .WhereIf(!string.IsNullOrEmpty(rcmv.VhostDomain),
+                    x => x.Vhost!.Trim().ToLower().Equals(rcmv.VhostDomain!.Trim().ToLower()))
+                .WhereIf(!string.IsNullOrEmpty(rcmv.App),
+                    x => x.App!.Trim().ToLower().Equals(rcmv.App!.Trim().ToLower()))
+                .WhereIf(!string.IsNullOrEmpty(rcmv.Stream),
+                    x => x.Stream!.Trim().ToLower().Equals(rcmv.Stream!.Trim().ToLower()))
                 .ToList(); //取条件范围的前60分钟及后60分钟内的所有数据
+
             List<DvrVideo> cutMegerList = null!;
             if (videoList != null && videoList.Count > 0)
             {
@@ -276,6 +285,7 @@ namespace SrsApis.SrsManager.Apis
             return null!;
         }
 
+
         public static CutMergeTaskResponse CutOrMergeVideoFile(ReqCutOrMergeVideoFile rcmv, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
@@ -293,7 +303,7 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
-            if (string.IsNullOrEmpty(rcmv.CallbackUrl))
+            if (string.IsNullOrEmpty(rcmv.CallbackUrl) || !Common.IsUrl(rcmv.CallbackUrl!))
             {
                 //同步返回
                 if ((rcmv.EndTime - rcmv.StartTime).Minutes > 10)
@@ -319,8 +329,11 @@ namespace SrsApis.SrsManager.Apis
                         TaskId = Common.CreateUuid()!,
                         TaskStatus = TaskStatus.Create,
                     };
-                    var taskReturn=Task.Factory.StartNew(() => CutMergeService.CutMerge(task));//抛线程处理
-                    Task.WaitAny(taskReturn);//等待所有任务结束
+                    var taskReturn = Task.Factory.StartNew(() => CutMergeService.CutMerge(task)); //抛线程处理
+                    taskReturn.Wait();
+                    taskReturn.Result.Request = rcmv;
+                    taskReturn.Result.Uri = "http://192.168.2.42:5800" +
+                                            taskReturn.Result.FilePath!.Replace(Common.WorkPath + "CutMergeFile", "");
                     return taskReturn.Result;
                 }
 
@@ -335,7 +348,7 @@ namespace SrsApis.SrsManager.Apis
                     CutMergeTask task = new CutMergeTask()
                     {
                         CutMergeFileList = mergeList,
-                        CallbakUrl =rcmv.CallbackUrl,
+                        CallbakUrl = rcmv.CallbackUrl,
                         CreateTime = DateTime.Now,
                         TaskId = Common.CreateUuid()!,
                         TaskStatus = TaskStatus.Create,
@@ -343,7 +356,7 @@ namespace SrsApis.SrsManager.Apis
                     try
                     {
                         CutMergeService.CutMergeTaskList.Add(task);
-                   
+
                         return new CutMergeTaskResponse()
                         {
                             Duration = -1,
@@ -351,6 +364,7 @@ namespace SrsApis.SrsManager.Apis
                             FileSize = -1,
                             Status = CutMergeRequestStatus.WaitForCallBack,
                             Task = task,
+                            Request = rcmv,
                         };
                     }
                     catch (Exception ex)
@@ -358,11 +372,13 @@ namespace SrsApis.SrsManager.Apis
                         rs = new ResponseStruct() //报错，队列大于最大值
                         {
                             Code = ErrorNumber.DvrCutProcessQueueLimit,
-                            Message = ErrorMessage.ErrorDic![ErrorNumber.DvrCutProcessQueueLimit]+"\r\n"+ex.Message+"\r\n"+ex.StackTrace,
+                            Message = ErrorMessage.ErrorDic![ErrorNumber.DvrCutProcessQueueLimit] + "\r\n" +
+                                      ex.Message + "\r\n" + ex.StackTrace,
                         };
                         return null!;
                     }
                 }
+
                 return null!;
             }
         }

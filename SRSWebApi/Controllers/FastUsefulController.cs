@@ -215,23 +215,26 @@ namespace SrsWebApi.Controllers
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 
+
         /// <summary>
         /// 从Client列表中踢掉一个摄像头或一个播放者
         /// </summary>
+        /// <param name="deviceId"></param>
+        /// <param name="clientId"></param>
         /// <returns></returns>
         [HttpGet]
         [AuthVerify]
         [Log]
         [Route("/FastUseful/KickoffClient")]
-        public JsonResult KickoffClient(string deviceId, string streamId)
+        public JsonResult KickoffClient(string deviceId, string clientId)
         {
-            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, streamId});
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {deviceId, clientId});
             if (rss.Code != ErrorNumber.None)
             {
                 return Program.CommonFunctions.DelApisResult(null!, rss);
             }
 
-            var rt = FastUsefulApis.KickoffClient(deviceId, streamId, out ResponseStruct rs);
+            var rt = FastUsefulApis.KickoffClient(deviceId, clientId, out ResponseStruct rs);
             return Program.CommonFunctions.DelApisResult(rt, rs);
         }
 

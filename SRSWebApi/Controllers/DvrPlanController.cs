@@ -17,7 +17,7 @@ namespace SrsWebApi.Controllers
     {
     
         /// <summary>
-        /// 裁剪合并视频文件
+        /// 裁剪合并视频文件,callbackurl为空且时间间隔不超过10分钟将同步返回，否则完成后异步回调callbackurl地址
         /// </summary>
         /// <returns></returns>
         [HttpPost]

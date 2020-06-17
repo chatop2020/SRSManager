@@ -16,9 +16,6 @@ namespace Test_FreeSql
     {
         static void Main(string[] args)
         {
-            
-
-
             DBManager.fsql.Delete<StreamDvrPlan>().Where("1=1").ExecuteAffrows();
             DBManager.fsql.Delete<DvrDayTimeRange>().Where("1=1").ExecuteAffrows();
             var a = new StreamDvrPlan();

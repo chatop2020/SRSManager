@@ -129,9 +129,12 @@ namespace SRSApis.SystemAutonomy
                             }
                         }
                     }
-                }catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     LogWriter.WriteLog("Ingest守护异常...", ex.Message + "\r\n" + ex.StackTrace);
                 }
+
                 Thread.Sleep(interval);
             }
         }

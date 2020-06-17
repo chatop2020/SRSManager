@@ -5,6 +5,7 @@ using SrsApis.SrsManager.Apis;
 using SrsManageCommon;
 using SRSManageCommon.DBMoudle;
 using SRSManageCommon.ManageStructs;
+using SrsManageCommon.SrsManageCommon;
 
 namespace SRSApis.SystemAutonomy
 {
@@ -20,8 +21,8 @@ namespace SRSApis.SystemAutonomy
                 {
                     foreach (var srs in Common.SrsManagers)
                     {
-                        if(srs==null || srs.Srs==null) continue;
-                        
+                        if (srs == null || srs.Srs == null) continue;
+
                         if (srs.IsInit && srs.Srs != null && srs.IsRunning)
                         {
                             var onPublishList =
@@ -56,7 +57,6 @@ namespace SRSApis.SystemAutonomy
                                                     .Set(x => x.MonitorType, MonitorType.GBT28181)
                                                     .Where(x => x.Client_Id == client.Client_Id)
                                                     .ExecuteAffrows();
-
                                             }
                                         }
                                     }
@@ -65,7 +65,6 @@ namespace SRSApis.SystemAutonomy
                                 #endregion
 
                                 #region 处理onvif设备
-
 
                                 if (ingestList != null && ingestList.Count > 0)
                                 {
@@ -81,7 +80,6 @@ namespace SRSApis.SystemAutonomy
                                                     .Set(x => x.MonitorType, MonitorType.Onvif)
                                                     .Where(x => x.Client_Id == client.Client_Id)
                                                     .ExecuteAffrows();
-
                                             }
                                         }
                                     }
@@ -97,7 +95,6 @@ namespace SRSApis.SystemAutonomy
                                                 x.ClientType == ClientType.Monitor)
                                     .ExecuteAffrows();
 
-
                                 #endregion
                             }
                         }
@@ -106,7 +103,7 @@ namespace SRSApis.SystemAutonomy
             }
             catch (Exception ex)
             {
-                LogWriter.WriteLog("rewriteMonitorType异常",ex.Message+"\r\n"+ex.StackTrace, ConsoleColor.Yellow);  
+                LogWriter.WriteLog("rewriteMonitorType异常", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
             }
         }
 
@@ -116,7 +113,7 @@ namespace SRSApis.SystemAutonomy
             string url = httpUri + act;
             try
             {
-                string tmpStr = NetHelper.Get(url);
+                string tmpStr = NetHelperNew.HttpGetRequest(url, null!);
                 var ret = JsonHelper.FromJson<SrsT28181QueryChannelModule>(tmpStr);
                 if (ret.Code == 0 && ret.Data != null)
                 {
@@ -140,7 +137,7 @@ namespace SRSApis.SystemAutonomy
                 {
                     foreach (var srs in Common.SrsManagers)
                     {
-                        if(srs==null || srs.Srs==null) continue;
+                        if (srs == null || srs.Srs == null) continue;
                         if (srs.IsInit && srs.Srs != null && srs.IsRunning)
                         {
                             var ret = VhostIngestApis.GetVhostIngestNameList(srs.SrsDeviceId, out ResponseStruct rs);
@@ -187,9 +184,9 @@ namespace SRSApis.SystemAutonomy
             }
             catch (Exception ex)
             {
-                LogWriter.WriteLog("completionOnvifIpAddress异常",ex.Message+"\r\n"+ex.StackTrace, ConsoleColor.Yellow);
+                LogWriter.WriteLog("completionOnvifIpAddress异常", ex.Message + "\r\n" + ex.StackTrace,
+                    ConsoleColor.Yellow);
             }
-
         }
 
         private void completionT28181IpAddress()
@@ -200,7 +197,7 @@ namespace SRSApis.SystemAutonomy
                 {
                     foreach (var srs in Common.SrsManagers)
                     {
-                        if(srs==null || srs.Srs==null) continue;
+                        if (srs == null || srs.Srs == null) continue;
                         if (srs.IsInit && srs.Srs != null && srs.IsRunning)
                         {
                             ushort? port = srs.Srs.Http_api!.Listen;
@@ -237,7 +234,8 @@ namespace SRSApis.SystemAutonomy
             }
             catch (Exception ex)
             {
-                LogWriter.WriteLog("completionT28181IpAddress异常", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
+                LogWriter.WriteLog("completionT28181IpAddress异常", ex.Message + "\r\n" + ex.StackTrace,
+                    ConsoleColor.Yellow);
             }
         }
 
@@ -263,7 +261,7 @@ namespace SRSApis.SystemAutonomy
             }
             catch (Exception ex)
             {
-                LogWriter.WriteLog("clearOfflinePlayerUser", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow); 
+                LogWriter.WriteLog("clearOfflinePlayerUser", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
             }
         }
 

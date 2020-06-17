@@ -22,6 +22,90 @@ namespace SrsManageCommon
             使用RestSharp https://github.com/restsharp/RestSharp   https://restsharp.dev/getting-started/
          */
 
+        #region  Delete
+
+        public static string HttpDeleteRequest(string url, Dictionary<string, string> headers, string encode = "utf-8",
+            int timeout = 60000)
+        {
+            return HttpDeleteRequestByProxy(url, headers, null, encode, timeout);
+        }
+        /// <summary>
+        /// http delete请求
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="headers">headers</param>
+        /// <param name="proxy">代理地址</param>
+        /// <param name="encode">字符编码</param>
+        /// <param name="timeout">超时时间（毫秒）</param>
+        /// <returns></returns>
+        public static string HttpDeleteRequestByProxy(string url, Dictionary<string, string> headers, IWebProxy porxy, string encode, int timeout = 60000)
+        {
+            //验证主机名和服务器验证方案的匹配是可接受的。   
+            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+
+            // 这里设置了协议类型。
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            ServicePointManager.CheckCertificateRevocationList = false;
+            ServicePointManager.DefaultConnectionLimit = 100;
+            ServicePointManager.Expect100Continue = false;
+
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.KeepAlive = false;
+            request.ProtocolVersion = HttpVersion.Version11;
+            request.Method = "DELETE";
+            request.Timeout = timeout;
+            request.Proxy = porxy;
+
+            if (headers != null && headers.Keys.Count > 0)
+            {
+                foreach (var key in headers.Keys)
+                {
+                    request.Headers.Add(key, headers[key]);
+                }
+            }
+
+            HttpWebResponse myResponse = null;
+            try
+            {
+                myResponse = (HttpWebResponse)request.GetResponse();
+                StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding(encode));
+                string content = reader.ReadToEnd();
+                return content;
+            }
+            //异常请求  
+            catch (WebException e)
+            {
+                myResponse = (HttpWebResponse)e.Response;
+                if (myResponse == null) return e.Message;
+                using (Stream errData = myResponse.GetResponseStream())
+                {
+                    using (StreamReader reader = new StreamReader(errData))
+                    {
+                        string text = reader.ReadToEnd();
+
+                        return text;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (myResponse != null)
+                {
+                }
+                if (request != null)
+                {
+                    request.Abort();
+                }
+            }
+        }
+        
+
+        #endregion
         #region Get
         /// <summary>
         /// http get请求

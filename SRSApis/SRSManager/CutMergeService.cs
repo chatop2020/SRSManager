@@ -23,13 +23,13 @@ namespace SrsApis.SrsManager
             {
                 foreach (var value in CutMergeTaskList.GetConsumingEnumerable())
                 {
-                    var taskReturn=Task.Factory.StartNew(() => CutMergeService.CutMerge(value));//抛线程处理
-                    Task.WaitAny(taskReturn);
-                   // Task.WaitAll(taskReturn);//等待所有任务结束
-                    if (taskReturn.Result != null)
+                    var taskReturn = CutMerge(value);
+                    if (taskReturn != null)
                     {
-                        var postDate = JsonHelper.ToJson(taskReturn.Result);
-                        var ret=NetHelperNew.HttpPostRequest(taskReturn.Result.Task.CallbakUrl!, null!, postDate);
+                        taskReturn.Uri = "http://192.168.2.42:5800" +
+                                         taskReturn.FilePath!.Replace(Common.WorkPath + "CutMergeFile", "");
+                        var postDate = JsonHelper.ToJson(taskReturn);
+                        var ret = NetHelperNew.HttpPostRequest(taskReturn.Task.CallbakUrl!, null!, postDate);
                     }
                 }
             });
@@ -57,7 +57,7 @@ namespace SrsApis.SrsManager
                 string ffmpegCmd = SrsManageCommon.Common.FFmpegBinPath + " -i " + task.CutMergeFileList[i]!.FilePath! +
                                    " -vcodec copy -acodec copy -vbsf h264_mp4toannexb " + videoTsFilePath + " -y";
                 var retRun = LinuxShell.Run(ffmpegCmd, 1000 * 60 * 30, out string std, out string err);
-                
+
                 if (retRun && (!string.IsNullOrEmpty(std) || !string.IsNullOrEmpty(err)) &&
                     File.Exists(videoTsFilePath))
                 {
@@ -90,9 +90,10 @@ namespace SrsApis.SrsManager
                     else
                     {
                         LogWriter.WriteLog("合并请求转换TS任务失败(packageToTsStreamFile)...",
-                            task.TaskId! + "->" + videoTsFilePath + " ***\r\n"+err,ConsoleColor.Yellow);
+                            task.TaskId! + "->" + videoTsFilePath + " ***\r\n" + err, ConsoleColor.Yellow);
                     }
                 }
+
                 Thread.Sleep(20);
             }
 
@@ -154,7 +155,7 @@ namespace SrsApis.SrsManager
                 }
             }
 
-            LogWriter.WriteLog("合并请求任务失败(mergeProcess失败)...", task.TaskId!+"\r\n"+err, ConsoleColor.Yellow);
+            LogWriter.WriteLog("合并请求任务失败(mergeProcess失败)...", task.TaskId! + "\r\n" + err, ConsoleColor.Yellow);
             return null!;
         }
 
@@ -203,7 +204,7 @@ namespace SrsApis.SrsManager
                 }
                 else
                 {
-                    LogWriter.WriteLog("合并请求任务裁剪失败(cutProcess)...", ffmpegCmd+"\r\n"+err,ConsoleColor.Yellow);
+                    LogWriter.WriteLog("合并请求任务裁剪失败(cutProcess)...", ffmpegCmd + "\r\n" + err, ConsoleColor.Yellow);
                 }
             }
 
@@ -274,7 +275,7 @@ namespace SrsApis.SrsManager
                 }
                 catch (Exception ex)
                 {
-                    LogWriter.WriteLog("裁剪合并视频文件时出现异常...", ex.Message + "\r\n" + ex.StackTrace,ConsoleColor.Yellow);
+                    LogWriter.WriteLog("裁剪合并视频文件时出现异常...", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                     return null!;
                 }
                 finally

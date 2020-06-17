@@ -522,7 +522,7 @@ namespace SrsApis.SrsManager.Apis
 
                 var retVhost = ret.Srs.Vhosts.FindLast(x =>
                     x.VhostDomain!.Trim().ToUpper().Equals(vhost.VhostDomain!.Trim().ToUpper()));
-                
+
 
                 if (retVhost == null)
                 {

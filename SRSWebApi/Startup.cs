@@ -6,8 +6,10 @@ using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SrsWebApi;
@@ -101,7 +103,18 @@ namespace SRSWebApi
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
+            
+            if (!Directory.Exists(SrsManageCommon.Common.WorkPath + "CutMergeFile"))
+            {
+                Directory.CreateDirectory(SrsManageCommon.Common.WorkPath + "CutMergeFile");
+            }
+            var staticfile = new StaticFileOptions();
+            staticfile.FileProvider = new PhysicalFileProvider(SrsManageCommon.Common.WorkPath+"CutMergeFile");//指定静态文件服务器
+            //手动设置MIME Type,或者设置一个默认值， 以解决某些文件MIME Type文件识别不到，出现404错误
+            staticfile.ServeUnknownFileTypes = true;
+            staticfile.DefaultContentType = "application/octet-stream";//设置默认MIME Type
+            app.UseStaticFiles(staticfile);
+            
             app.Use(next => context =>
             {
                 context.Request.EnableBuffering();

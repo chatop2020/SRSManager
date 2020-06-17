@@ -16,6 +16,7 @@ namespace SRSApis.SystemAutonomy
     public class DvrPlanExec
     {
         private int interval = SrsManageCommon.Common.SystemConfig.DvrPlanExecServiceinterval;
+
         private List<string> getDvrPlanFileDataList(StreamDvrPlan plan)
         {
             List<string?> ret = null!;
@@ -108,7 +109,7 @@ namespace SRSApis.SystemAutonomy
                                     if (File.Exists(ret.VideoPath))
                                     {
                                         File.Delete(ret.VideoPath);
-                                        LogWriter.WriteLog("删除被软删除的录制文件（24小时）",ret.VideoPath!);
+                                        LogWriter.WriteLog("删除被软删除的录制文件（24小时）", ret.VideoPath!);
                                         Thread.Sleep(20);
                                     }
 
@@ -135,12 +136,12 @@ namespace SRSApis.SystemAutonomy
 
             if (!dvrStreams.Contains((sdp.App + "/" + sdp.Stream).Trim()))
             {
-
                 return false;
             }
 
             return true;
         }
+
         private void setDvrOnorOff(StreamDvrPlan sdp, bool eanble)
         {
             var dvr = VhostDvrApis.GetVhostDvr(sdp.DeviceId, sdp.VhostDomain, out ResponseStruct rs);
@@ -153,7 +154,7 @@ namespace SRSApis.SystemAutonomy
                     dvrStreams = Regex.Split(dvrApply, @"[\s]+").ToList();
                 }
 
-             
+
                 if (dvrStreams.Count == 0)
                 {
                     dvrStreams.Add("");
@@ -196,7 +197,6 @@ namespace SRSApis.SystemAutonomy
                     dvr.Dvr_apply = dvr.Dvr_apply.TrimEnd('\t');
                     VhostDvrApis.SetVhostDvr(sdp.DeviceId, sdp.VhostDomain, dvr, out rs);
                     SystemApis.RefreshSrsObject(sdp.DeviceId, out rs);
-
                 }
             }
         }
@@ -241,7 +241,7 @@ namespace SRSApis.SystemAutonomy
                                     {
                                         File.Delete(ret.VideoPath);
                                         deleteSize += (long) ret.FileSize!;
-                                        LogWriter.WriteLog("删除录制文件",ret.VideoPath!);
+                                        LogWriter.WriteLog("删除录制文件", ret.VideoPath!);
                                         Thread.Sleep(20);
                                     }
 
@@ -267,7 +267,7 @@ namespace SRSApis.SystemAutonomy
                     OrmService.Db.Update<DvrVideo>().Set(x => x.UpdateTime, DateTime.Now)
                         .Set(x => x.Deleted, true)
                         .Where(x => x.RecordDate == day).ExecuteAffrows();
-                    LogWriter.WriteLog("要删除除一天的文件，数据库标记为删除",day!);
+                    LogWriter.WriteLog("要删除除一天的文件，数据库标记为删除", day!);
                 }
 
                 if (deleteList != null && deleteList.Count > 0)
@@ -279,7 +279,7 @@ namespace SRSApis.SystemAutonomy
                             if (File.Exists(del.VideoPath))
                             {
                                 File.Delete(del.VideoPath);
-                                LogWriter.WriteLog("删除录制文件",del.VideoPath!);
+                                LogWriter.WriteLog("删除录制文件", del.VideoPath!);
                                 Thread.Sleep(20);
                             }
                         }
@@ -299,7 +299,7 @@ namespace SRSApis.SystemAutonomy
                 if (sdp.LimitDays != null && sdp.LimitDays > 0)
                 {
                     //有日期限制
-                     dateList = getDvrPlanFileDataList(sdp)!;
+                    dateList = getDvrPlanFileDataList(sdp)!;
                     if (dateList != null && dateList.Count > sdp.LimitDays)
                     {
                         isEnable = false;
@@ -313,41 +313,46 @@ namespace SRSApis.SystemAutonomy
                 decimal videoSize = 0;
                 if (sdp.LimitSpace != null && sdp.LimitSpace > 0)
                 {
-                     videoSize = getDvrPlanFileSize(sdp);
+                    videoSize = getDvrPlanFileSize(sdp);
                     if (videoSize > sdp.LimitSpace)
                     {
                         isEnable = false;
                     }
                     else
                     {
-                        if(isEnable)isEnable = true;
+                        if (isEnable) isEnable = true;
                     }
                 }
 
                 isEnable = checkTimeRange(sdp) && isEnable && sdp.Enable;
                 if (isEnable != getDvrOnorOff(sdp))
                 {
-                    LogWriter.WriteLog("录制计划需要"+(isEnable==true?"启用":"停用")+sdp.App+"/"+sdp.Stream+"的录制计划,"+
-                                       " VideoSize:"+videoSize+"::LimitSpace:"+sdp.LimitSpace+" 天数："+dateList!.Count+
-                                       "::LimitDays:"+sdp.LimitDays);
+                    LogWriter.WriteLog("录制计划需要" + (isEnable == true ? "启用" : "停用") + sdp.App + "/" + sdp.Stream +
+                                       "的录制计划," +
+                                       " VideoSize:" + videoSize + "::LimitSpace:" + sdp.LimitSpace + " 天数：" +
+                                       dateList!.Count +
+                                       "::LimitDays:" + sdp.LimitDays);
                     setDvrOnorOff(sdp, isEnable); //启用或停用录制
                 }
             }
             else
             {
-                if (sdp.Enable && !getDvrOnorOff(sdp) && checkTimeRange(sdp)) //sdp的enable为真，并且没在运行，同时还需要在时间范围内（或者时间范围为空）
+                if (sdp.Enable && !getDvrOnorOff(sdp) && checkTimeRange(sdp)
+                ) //sdp的enable为真，并且没在运行，同时还需要在时间范围内（或者时间范围为空）
                 {
-                    LogWriter.WriteLog("录制计划需要" + (true ? "启用" : "停用") + sdp.App + "/" + sdp.Stream + "的录制计划状态为启用，同时因为录制计划超限是文件删除模式");
+                    LogWriter.WriteLog("录制计划需要" + (true ? "启用" : "停用") + sdp.App + "/" + sdp.Stream +
+                                       "的录制计划状态为启用，同时因为录制计划超限是文件删除模式");
                     setDvrOnorOff(sdp, true); //启用或停用录制
                 }
-                else if(!sdp.Enable && getDvrOnorOff(sdp))
+                else if (!sdp.Enable && getDvrOnorOff(sdp))
                 {
-                    LogWriter.WriteLog("录制计划需要" + (false ? "启用" : "停用") + sdp.App + "/" + sdp.Stream + "的录制计划,录制计划状态为停用");
+                    LogWriter.WriteLog(
+                        "录制计划需要" + (false ? "启用" : "停用") + sdp.App + "/" + sdp.Stream + "的录制计划,录制计划状态为停用");
                     setDvrOnorOff(sdp, false); //启用或停用录制  
                 }
                 //文件删除操作
                 //停止录制操作
-                
+
                 if (sdp.LimitDays != null && sdp.LimitDays > 0)
                 {
                     //有日期限制
@@ -384,13 +389,12 @@ namespace SRSApis.SystemAutonomy
             TimeSpan nowDt = DateTime.Now.TimeOfDay;
             TimeSpan workStartDT = DateTime.Parse(d.StartTime.ToString("HH:mm:ss")).AddMinutes(-1).TimeOfDay;
             TimeSpan workEndDT = DateTime.Parse(d.EndTime.ToString("HH:mm:ss")).AddMinutes(1).TimeOfDay;
-          
+
             if (nowDt >= workStartDT && nowDt < workEndDT)
             {
-               
                 return true;
             }
-          
+
             return false;
         }
 
@@ -400,7 +404,7 @@ namespace SRSApis.SystemAutonomy
             {
                 if (sdp.TimeRangeList != null && sdp.TimeRangeList.Count > 0)
                 {
-                    var t=sdp.TimeRangeList.FindLast(x => x.WeekDay == DateTime.Now.DayOfWeek);
+                    var t = sdp.TimeRangeList.FindLast(x => x.WeekDay == DateTime.Now.DayOfWeek);
                     if (t != null && isTimeRange(t))
                     {
                         return true;
@@ -409,7 +413,6 @@ namespace SRSApis.SystemAutonomy
                     {
                         return false;
                     }
-                    
                 }
 
                 return true; //如果是空的，就直接返回可运行
@@ -417,32 +420,34 @@ namespace SRSApis.SystemAutonomy
 
             return false;
         }
-        
+
         private void execDvrOnOrOffPlan(StreamDvrPlan sdp)
         {
             if (sdp.Enable)
             {
                 if (sdp.TimeRangeList != null && sdp.TimeRangeList.Count > 0)
                 {
-                    var t=sdp.TimeRangeList.FindLast(x => x.WeekDay == DateTime.Now.DayOfWeek);
+                    var t = sdp.TimeRangeList.FindLast(x => x.WeekDay == DateTime.Now.DayOfWeek);
                     if (t != null && isTimeRange(t))
                     {
                         if (sdp.LimitSpace != null && sdp.LimitSpace > 0 &&
                             sdp.LimitDays != null && sdp.LimitDays > 0 && !getDvrOnorOff(sdp))
                         {
-
                             var videoSize = getDvrPlanFileSize(sdp);
                             var dateList = getDvrPlanFileDataList(sdp);
                             if (videoSize < sdp.LimitSpace && dateList.Count < sdp.LimitDays)
                             {
-                                LogWriter.WriteLog("录制计划需要"+(true?"启用":"停用")+sdp.App+"/"+sdp.Stream+"的录制计划,"+
-                                                   " VideoSize:"+videoSize+"::LimitSpace:"+sdp.LimitSpace+" 天数："+dateList!.Count+
-                                                   "::LimitDays:"+sdp.LimitDays);
+                                LogWriter.WriteLog("录制计划需要" + (true ? "启用" : "停用") + sdp.App + "/" + sdp.Stream +
+                                                   "的录制计划," +
+                                                   " VideoSize:" + videoSize + "::LimitSpace:" + sdp.LimitSpace +
+                                                   " 天数：" + dateList!.Count +
+                                                   "::LimitDays:" + sdp.LimitDays);
                                 setDvrOnorOff(sdp, true); //录制时间在范围内，开始录制 
                             }
-                        }else if (!getDvrOnorOff(sdp))
+                        }
+                        else if (!getDvrOnorOff(sdp))
                         {
-                            LogWriter.WriteLog("录制计划需要启用"+sdp.App+"/"+sdp.Stream+"录制计划,因为已经到了录制时间范围");
+                            LogWriter.WriteLog("录制计划需要启用" + sdp.App + "/" + sdp.Stream + "录制计划,因为已经到了录制时间范围");
                             setDvrOnorOff(sdp, true); //录制时间在范围内，开始录制  
                         }
                     }
@@ -454,10 +459,8 @@ namespace SRSApis.SystemAutonomy
                             setDvrOnorOff(sdp, false); //不在录制时间范围内，停止录制
                         }
                     }
-                    
                 }
             }
-           
         }
 
         private void Run()
@@ -480,6 +483,7 @@ namespace SRSApis.SystemAutonomy
                         execDvrOnOrOffPlan(dvrPlan);
                     }
                 }
+
                 Thread.Sleep(interval);
             }
         }
@@ -496,7 +500,7 @@ namespace SRSApis.SystemAutonomy
                 }
                 catch (Exception ex)
                 {
-                    LogWriter.WriteLog("启动自动录制计划服务失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
+                    LogWriter.WriteLog("启动自动录制计划服务失败...", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                 }
             })).Start();
         }

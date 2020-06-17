@@ -1,4 +1,5 @@
 using System;
+using SRSManageCommon.ControllerStructs.RequestModules;
 
 namespace SRSManageCommon.ManageStructs
 {
@@ -13,10 +14,12 @@ namespace SRSManageCommon.ManageStructs
     {
         private CutMergeTask _task = null!;
         private string? _filePath;
+        private string? _uri;
         private long? _fileSize;
         private long? _duration;
         private CutMergeRequestStatus? _status;
         private double? _timeConsuming;
+        private ReqCutOrMergeVideoFile? _request;
 
         public CutMergeTask Task
         {
@@ -28,6 +31,12 @@ namespace SRSManageCommon.ManageStructs
         {
             get => _filePath;
             set => _filePath = value;
+        }
+
+        public string? Uri
+        {
+            get => _uri;
+            set => _uri = value;
         }
 
         public long? FileSize
@@ -52,6 +61,12 @@ namespace SRSManageCommon.ManageStructs
         {
             get => _timeConsuming;
             set => _timeConsuming = value;
+        }
+
+        public ReqCutOrMergeVideoFile? Request
+        {
+            get => _request;
+            set => _request = value;
         }
     }
 }

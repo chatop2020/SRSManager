@@ -46,7 +46,36 @@ namespace SrsManageCommon
 
         static Common()
         {
-            Directory.CreateDirectory(LogPath);
+            if (!Directory.Exists(LogPath))
+            {
+                Directory.CreateDirectory(LogPath);
+            }
+            if (!Directory.Exists(WorkPath + "CutMergeFile"))
+            {
+                Directory.CreateDirectory(WorkPath + "CutMergeFile");
+            }
+            if (!Directory.Exists(WorkPath + "CutMergeDir"))
+            {
+                Directory.CreateDirectory(WorkPath + "CutMergeDir");
+            }
+        }
+        
+        /// <summary>
+        /// 是否为Url
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsUrl(string str)
+        {
+            try
+            {
+                string Url = @"^http(s)?://([\w-]+\.)+[\w-]+(:\d*)?(/[\w- ./?%&=]*)?$";
+                return Regex.IsMatch(str, Url);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>

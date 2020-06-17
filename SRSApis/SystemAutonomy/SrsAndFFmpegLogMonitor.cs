@@ -7,7 +7,8 @@ namespace SRSApis.SystemAutonomy
 {
     public class SrsAndFFmpegLogMonitor
     {
-        private int interval =  SrsManageCommon.Common.SystemConfig.SrsAdnffmpegLogMonitorServiceinterval;
+        private int interval = SrsManageCommon.Common.SystemConfig.SrsAdnffmpegLogMonitorServiceinterval;
+
         private void processSrsFileMove(string srsFilePath)
         {
             string fileName = Path.GetFileName(srsFilePath);
@@ -20,7 +21,7 @@ namespace SRSApis.SystemAutonomy
             fileName = dirPath + "/logbak/srslogback_" + DateTime.Now.ToString("yyyy-MM-ddTHH-mm-ss") + fileName;
             File.Copy(srsFilePath, fileName);
             LinuxShell.Run("cat /dev/null >" + srsFilePath);
-            LogWriter.WriteLog("转存srs日志,并清空现有日志",srsFilePath+"->"+fileName);
+            LogWriter.WriteLog("转存srs日志,并清空现有日志", srsFilePath + "->" + fileName);
         }
 
         private void processFFmpegFileMove(string ffmpegFilePath)
@@ -36,46 +37,45 @@ namespace SRSApis.SystemAutonomy
 
             File.Copy(ffmpegFilePath, fileName);
             LinuxShell.Run("cat /dev/null >" + ffmpegFilePath);
-            LogWriter.WriteLog("转存ffmpeg日志,并清空现有日志",ffmpegFilePath+"->"+fileName);
+            LogWriter.WriteLog("转存ffmpeg日志,并清空现有日志", ffmpegFilePath + "->" + fileName);
         }
 
         private void Run()
         {
             while (true)
             {
-                
-                    foreach (var srs in Common.SrsManagers)
+                foreach (var srs in Common.SrsManagers)
+                {
+                    if (srs != null && srs.IsRunning)
                     {
-                        if (srs != null && srs.IsRunning)
+                        string srsLogFile = srs.Srs.Srs_log_file!;
+                        string ffmpegLogPath = srs.Srs.Ff_log_dir!;
+                        FileInfo srsLog = new FileInfo(srsLogFile);
+                        if (srsLog.Exists && srsLog.Length >= (1024 * 1000 * 10)) //10M
                         {
-                            string srsLogFile = srs.Srs.Srs_log_file!;
-                            string ffmpegLogPath = srs.Srs.Ff_log_dir!;
-                            FileInfo srsLog = new FileInfo(srsLogFile);
-                            if (srsLog.Exists && srsLog.Length >= (1024 * 1000 * 10)) //10M
-                            {
-                                processSrsFileMove(srsLogFile);
-                            }
-
-                            DirectoryInfo ffmpegDir = new DirectoryInfo(ffmpegLogPath);
-                            if (ffmpegDir.Exists)
-                            {
-                                foreach (var file in ffmpegDir.GetFiles())
-                                {
-                                    if (file.FullName.Contains("ffmpeglogback")) continue;
-
-                                    if (file.Exists && file.Length >= 1024 * 1000 * 10) //10M
-                                    {
-                                        processFFmpegFileMove(file.FullName);
-                                    }
-
-                                    Thread.Sleep(500);
-                                }
-                            }
+                            processSrsFileMove(srsLogFile);
                         }
 
-                        Thread.Sleep(1000);
+                        DirectoryInfo ffmpegDir = new DirectoryInfo(ffmpegLogPath);
+                        if (ffmpegDir.Exists)
+                        {
+                            foreach (var file in ffmpegDir.GetFiles())
+                            {
+                                if (file.FullName.Contains("ffmpeglogback")) continue;
+
+                                if (file.Exists && file.Length >= 1024 * 1000 * 10) //10M
+                                {
+                                    processFFmpegFileMove(file.FullName);
+                                }
+
+                                Thread.Sleep(500);
+                            }
+                        }
                     }
-                
+
+                    Thread.Sleep(1000);
+                }
+
 
                 Thread.Sleep(interval);
             }
@@ -93,7 +93,7 @@ namespace SRSApis.SystemAutonomy
                 }
                 catch (Exception ex)
                 {
-                    LogWriter.WriteLog("启动日志转存服务失败...",ex.Message+"\r\n"+ex.StackTrace,ConsoleColor.Yellow);
+                    LogWriter.WriteLog("启动日志转存服务失败...", ex.Message + "\r\n" + ex.StackTrace, ConsoleColor.Yellow);
                 }
             })).Start();
         }

@@ -80,7 +80,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     lock (Common.LockDbObjForOnlineClient)
                     {
-                        ClientLog  tmpClientLog = new ClientLog();
+                        ClientLog tmpClientLog = new ClientLog();
                         tmpClientLog.EventMethod = EventMethod.Close;
                         tmpClientLog.App = onlineClient.App;
                         tmpClientLog.Param = onlineClient.Param;
@@ -98,12 +98,11 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.PageUrl = onlineClient.PageUrl;
                         tmpClientLog.RtmpUrl = onlineClient.RtmpUrl;
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
-                        tmpClientLog.UpdateTime=DateTime.Now;
+                        tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
                         OrmService.Db.Delete<OnlineClient>()
                             .Where(x => x.Client_Id == onlineClient.Client_Id && x.ClientIp == onlineClient.ClientIp)
                             .ExecuteAffrows();
-                        
                     }
                 }
                 catch (Exception ex)
@@ -155,7 +154,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     lock (Common.LockDbObjForOnlineClient)
                     {
-                        ClientLog  tmpClientLog = new ClientLog();
+                        ClientLog tmpClientLog = new ClientLog();
                         string monitorIp = getMonitorIpAddressFromStream(onlineClient.Stream!);
                         tmpClientLog.EventMethod = EventMethod.Play;
                         tmpClientLog.App = onlineClient.App;
@@ -174,8 +173,8 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.PageUrl = onlineClient.PageUrl;
                         tmpClientLog.RtmpUrl = onlineClient.RtmpUrl;
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
-                        tmpClientLog.UpdateTime=DateTime.Now;
-                       
+                        tmpClientLog.UpdateTime = DateTime.Now;
+
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.User)
                             .Set(x => x.IsOnline, true).Set(x => x.IsPlay, true)
@@ -229,7 +228,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     lock (Common.LockDbObjForOnlineClient)
                     {
-                        ClientLog  tmpClientLog = new ClientLog();
+                        ClientLog tmpClientLog = new ClientLog();
                         tmpClientLog.EventMethod = EventMethod.Stop;
                         tmpClientLog.App = onlineClient.App;
                         tmpClientLog.Param = onlineClient.Param;
@@ -247,7 +246,7 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.PageUrl = onlineClient.PageUrl;
                         tmpClientLog.RtmpUrl = onlineClient.RtmpUrl;
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
-                        tmpClientLog.UpdateTime=DateTime.Now;
+                        tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.User)
                             .Set(x => x.IsOnline, true).Set(x => x.IsPlay, false)
@@ -298,7 +297,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     lock (Common.LockDbObjForOnlineClient)
                     {
-                        ClientLog  tmpClientLog = new ClientLog();
+                        ClientLog tmpClientLog = new ClientLog();
                         tmpClientLog.EventMethod = EventMethod.Publish;
                         tmpClientLog.App = onlineClient.App;
                         tmpClientLog.Param = onlineClient.Param;
@@ -316,7 +315,7 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.PageUrl = onlineClient.PageUrl;
                         tmpClientLog.RtmpUrl = onlineClient.RtmpUrl;
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
-                        tmpClientLog.UpdateTime=DateTime.Now;
+                        tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.Monitor)
                             .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, onlineClient.HttpUrl)
@@ -368,7 +367,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     lock (Common.LockDbObjForOnlineClient)
                     {
-                        ClientLog  tmpClientLog = new ClientLog();
+                        ClientLog tmpClientLog = new ClientLog();
                         tmpClientLog.EventMethod = EventMethod.UnPublish;
                         tmpClientLog.App = onlineClient.App;
                         tmpClientLog.Param = onlineClient.Param;
@@ -386,7 +385,7 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.PageUrl = onlineClient.PageUrl;
                         tmpClientLog.RtmpUrl = onlineClient.RtmpUrl;
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
-                        tmpClientLog.UpdateTime=DateTime.Now;
+                        tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
                         var ret = OrmService.Db.Update<OnlineClient>()
                             .Set(x => x.IsOnline, false).Set(x => x.UpdateTime, onlineClient.UpdateTime)
@@ -436,7 +435,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     lock (Common.LockDbObjForOnlineClient)
                     {
-                        ClientLog  tmpClientLog = new ClientLog();
+                        ClientLog tmpClientLog = new ClientLog();
                         tmpClientLog.EventMethod = EventMethod.Connect;
                         tmpClientLog.App = onlineClient.App;
                         tmpClientLog.Param = onlineClient.Param;
@@ -454,7 +453,7 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.PageUrl = onlineClient.PageUrl;
                         tmpClientLog.RtmpUrl = onlineClient.RtmpUrl;
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
-                        tmpClientLog.UpdateTime=DateTime.Now;
+                        tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.Monitor)
                             .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, onlineClient.HttpUrl)
