@@ -120,4 +120,28 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 接口作用:重新加载Srs配置文件（热加载，不用停止Srs进程服务）向进程发送 SIGHUP信号 kill -s SIGHUP pid
 + 输入参数:deviceId:string
 + 输出参数:true|false:bool
+#### /GlobalSrs/ChangeGlobalParams
++ 调用方式:Post
++ 接口作用:修改Srs的全局参数
++ 输入参数:
+```
+{
+  "deviceId": "string", //Srs实例id
+  "gm": {
+    "heartbeatEnable": true, //是否启用srs心跳
+    "heartbeatSummariesEnable": true, //是否在srs心跳时带上系统统计信息
+    "heartbeatUrl": "string", //srs心跳发送url地址（应用可以接管这个地址，默认由StreamNode接管）
+    "httpApiEnable": true, //是否启用srs的httpapi,这个必须要启用，StreamNode里需要用到它
+    "httpApiListen": 0,//srs的httpapi监听接口
+    "httpServerEnable": true,//是否启用srs的httpServer，建议启用
+    "httpServerListen": 0,//srs的httpserver监听端口
+    "httpServerPath": "string",//srs的httpserver发布目录相当于nginx的wwwroot
+    "listen": 0,//srs的rtmp监听端口，默认1935
+    "maxConnections": 0 //srs的最大连接数量,默认linux系统1000,macos系统 128
+  }
+}
+```
++ 输出参数:true|false:bool
++ 注意：别随便乱改这个参数
+
 
