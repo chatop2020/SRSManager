@@ -897,15 +897,9 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 ```
 ### SRS配置文件操作API（不详细展开，类与配置文件是相互映射的，有需要可以直接看源码）
 
-姓名|技能|排行
---|:--:|--:
-刘备|哭|大哥
-关羽|打|二哥
-张飞|骂|三弟
 
 
-
-RtcServer 
++ RtcServer 
 接口名|功能|备注
 --|:--:|--:
 RtcServerGetSrsRtcServer|获取Srs中Rtc服务的相关配置|输入为DeviceId
