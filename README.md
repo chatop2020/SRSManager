@@ -169,6 +169,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 <details>
 <summary>展开查看</summary>
 <pre><code>
+```json
 {//以下是SrsManage类结构
   "srs": {
     "rtc_server": {
@@ -559,7 +560,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
   "srsPidValue": "string",
   "isStopedByUser": true
 }
-
+```
 </code></pre>
 </details>
 
