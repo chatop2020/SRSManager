@@ -56,7 +56,7 @@ curl -X GET "http://192.168.2.42:5800/GlobalSrs/IsRunning?deviceId=22364bc4-5134
 ```
 ## 异常与正常
 + 当接口调用出现异常时，API返回HttpStatusCode为400，同时告知异常原因,返回结构如下：
-```
+```json
  {
  	"Code": 0,  //错误代码
  	"Message": "无错误" //错误原因描述
@@ -64,7 +64,7 @@ curl -X GET "http://192.168.2.42:5800/GlobalSrs/IsRunning?deviceId=22364bc4-5134
 ```
 + 当出现系统级异常时，由asp.net core自动捕获（比如传入参数有格式问题等情况）,
 asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构如下：
-```
+```json
 {
   "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
   "title": "One or more validation errors occurred.",
@@ -125,7 +125,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 调用方式:Post
 + 接口作用:修改Srs的全局参数
 + 输入参数:
-```
+```json
 {
   "deviceId": "string", //Srs实例id
   "gm": {
@@ -157,7 +157,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 接口作用:获取StreamNode管理下的所有Srs实例设备ID
 + 输入参数:null
 + 输出参数:List<string>|ExceptStruct
-```
+```json
 [
   "22364bc4-5134-494d-8249-51d06777fb7f"
 ]
@@ -166,10 +166,10 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 调用方式:HttpPost
 + 接口作用:创建一个新的Srs实例
 + 输入参数:
-+ <details>
-+ <summary>展开查看</summary>
-<pre><code>
-```json
+<details>
+<summary>展开查看</summary>
+<pre><code lang="json">
+
 {//以下是SrsManage类结构
   "srs": {
     "rtc_server": {
@@ -560,7 +560,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
   "srsPidValue": "string",
   "isStopedByUser": true
 }
-```
+
 </code></pre>
 </details>
 
