@@ -166,8 +166,8 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 调用方式:HttpPost
 + 接口作用:创建一个新的Srs实例
 + 输入参数:
-<details>
-<summary>展开查看</summary>
++ <details>
++ <summary>展开查看</summary>
 <pre><code>
 ```json
 {//以下是SrsManage类结构
