@@ -905,6 +905,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 /RtcServer/DelRtcServer|删除Srs中的Rtc服务|输入为DeviceId
 
 + SrtServer
+
 接口名|功能|备注
 --|:--:|--:
 /SrtServer/GetSrtServer|获取Srs中Srt服务的相关配置|输入为DeviceId
@@ -912,6 +913,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 /SrtServer/DelSrtServer|删除Srs中的Srt服务|输入为DeviceId
 
 + Stats
+
 接口名|功能|备注
 --|:--:|--:
 /Stats/GetSrsStats|获取Srs中Stats服务的相关配置|输入为DeviceId
