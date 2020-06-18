@@ -50,7 +50,7 @@
 + 系统配置文件为srswebapi.wconf
 + 运行系统前需要配置好这个配置文件，系统启动时会加载并检查各配置项
 ```
-#这是注释，#开始是注释
+#这是注释，#开始是注释,每行配置必须以分号（;）结束
 httpport::5800;
 #Webapi的监听端口
 password::password123!@#;
@@ -90,6 +90,14 @@ ps -A|grep SRSWebApi.dll
 ```
 kill -9 pid  
 ```
+
+### 注意事项
++ 因我本身项目需要，对srs服务的源码做了一些小修改，具体修改内容可见 https://github.com/ossrs/srs/issues/1789
+  如果你使用本项目进行测试，需要对srs的源码做相同的修改，再编译srs,当然如果srs官方接受了我的建议（貌似已经接受），
+  以后我将直接采用官方的功能而不再修改srs源码
++ 项目目录下需要有ffmpeg可执行文件，否则系统启动会报错
++ 项目止录下需要有srs可执行文件，否则系统启动会报错
+
 
 ## Api接口说明
 + 接口采用HttpWebApi方式提供，提供方式为http://serverip:apiport/接口类型/API方法
