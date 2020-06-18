@@ -1028,13 +1028,55 @@ curl -X GET "http://192.168.2.42:5800/StreamCaster/GetStreamCasterInstanceList?d
 
 ```
 
-### 以下接口类不一一展开（不详细展开，类与配置文件是相互映射的，有需要可以直接看源码）
+### 以下接口类不一一展开（不详细展开，类与配置文件是相互映射的，有需要可以直接看源码及Swagger接口）
+<table border="1">
+<tr>
+<td>Vhost</td>
+<td>Vhost相关功能</td>
+<td>VhostBandcheck</td>
+<td>VhostBandcheck相关功能</td>
+<td>VhostCluster</td>
+<td>VhostCluster相关功能</td>
+</tr>
+<tr>
+<td>VhostDash</td>
+<td>VhostDash相关功能</td>
+<td>VhostDvr</td>
+<td>VhostDvr相关功能</td>
+<td>VhostExec</td>
+<td>VhostExec相关功能</td>
+</tr>
+<tr>
+<td>VhostForward</td>
+<td>VhostForward相关功能</td>
+<td>VhostHds</td>
+<td>VhostHds相关功能</td>
+<td>VhostHls</td>
+<td>VhostHls相关功能</td>
+</tr>
+<tr>
+<td>VhostHttpHooks</td>
+<td>VhostHttpHooks相关功能</td>
+<td>VhostHttpRemux</td>
+<td>VhostHttpRemux相关功能</td>
+<td>VhostHttpStatic</td>
+<td>VhostHttpStatic相关功能</td>
+</tr>
+<tr>
+<td>VhostIngest</td>
+<td>VhostIngest相关功能</td>
+<td>VhostPlay</td>
+<td>VhostPlay相关功能</td>
+<td>VhostPublish</td>
+<td>VhostPublish相关功能</td>
+</tr>
+<tr>
+<td>VhostRtc</td>
+<td>VhostRtc相关功能</td>
+<td>VhostSecurity</td>
+<td>VhostSecurity相关功能</td>
+<td>VhostTranscode</td>
+<td>VhostTranscode相关功能</td>
+</tr>
+</table>
 
-接口名|功能|备注|接口名|功能|备注|接口名|功能|备注
---|:--:|----|:--:|----|:--:|--:
-Vhost|Vhost相关|无|VhostBandcheck|bandcheck相关|无|VhostCluster|VhostCluster相关|无
-VhostDash|VhostDash相关|无|VhostDvr|VhostDvr相关|无|VhostExec|VhostExec相关|无
-VhostForward|VhostForward相关|无|VhostHds|VhostHds相关|无|VhostHls|VhostHls相关|无
-VhostHttpHooks|VhostHttpHooks相关|无|VhostHttpRemux|VhostHttpRemux相关|无|VhostHttpStatic|VhostHttpStatic相关|无
-VhostIngest|VhostIngest相关|无|VhostPlay|VhostPlay相关|无|VhostPublish|VhostPublish相关|无VhostRefer|VhostRefer相关|无
-VhostRtc|VhostRtc相关|无|VhostSecurity|VhostSecurity相关|无|VhostTranscode|VhostTranscode相关|无
