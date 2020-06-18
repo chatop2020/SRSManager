@@ -933,6 +933,7 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 /StreamCaster/OnOrOff|启用名停用一个StreamCaster|输入为DeviceId&InstanceName&enable:bool
 /StreamCaster/SetStreamCaster|修改一个StreamCaster的参数|输入为DeviceId&StreamCasterConfCalss
 
+
 ```js
 curl -X GET "http://192.168.2.42:5800/StreamCaster/GetStreamCasterInstanceNameList?deviceId=22364bc4-5134-494d-8249-51d06777fb7f" -H "accept: */*"
 ```
