@@ -744,6 +744,146 @@ curl -X POST "http://192.168.2.42:5800/DvrPlan/GetDvrVideoList" -H "accept: */*"
 + 获取allowKey列表
 + password是配置文件中的password
 
+### Onvif相关接口-Onvif
++ 提供onvif设备的探测发现控制等功能
+
+#### /Onvif/InitAll
++ 初始化所有未初始化的onvif设备
+
+#### /Onvif/InitByIpAddress
++ 通过ip地址来对onvif设备进行初始化
+
+#### /Onvif/SetPtzZoom
++ 对onvif设备进行焦距调整（放大/缩小 就是zoomin|zoomout操作）
++ 请求结构:
+```json
+{
+  "ipAddr": "string",
+  "profileToken": "string",
+  "zoomDir": "MORE"
+}
+```
++ zoomDir为More是放大，Less是缩小
++ profileToken是onvif设备的token,以下有接口可以获取到
+
+#### /Onvif/GetPtzPosition
++ 获取onvif设备当前的x,y,z坐标位置 
+
+#### /Onvif/PtzKeepMoveStop
++ 停止onvif设备的持续移动
+
+#### /Onvif/PtzMove
++ 控制onvif设备的云台移动
++ 请求结构:
+```json
+{
+  "ipAddr": "string",
+  "profileToken": "string",
+  "moveDir": "UP",
+  "moveType": "RELATIVE"
+}
+```
++ moveDir是云台移动方向，有UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT，比gb28181的多4个方向
++ moveType是云台移动的方式，有 RELATIVE, KEEP  相对位置移动和持续移动
+#### /Onvif/InitMonitor
++ 探测并初始化onvif设备
++ 请求结构:
+```
+{
+  "ipAddrs": "string",
+  "username": "string",
+  "password": "string"
+}
+```
++ ip,用户名，密码来用探测onvif摄像头，ipaddrs可以有多个 用空格隔开
++ 返回结构（探测结果）
+```json
+[
+  {
+    "host": "192.168.2.164",
+    "username": "",
+    "password": "",
+    "mediaSourceInfoList": [
+      {
+        "sourceToken": "VideoSource_1",
+        "framerate": 25,
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "onvifProfileLimitList": [
+      {
+        "profileToken": "Profile_1",
+        "mediaUrl": "rtsp://192.168.2.164:554/LiveMedia/ch1/Media1",
+        "ptzMoveSupport": true,
+        "absoluteMove": true,
+        "relativeMove": true,
+        "continuousMove": true
+      },
+      {
+        "profileToken": "Profile_2",
+        "mediaUrl": "rtsp://192.168.2.164:554/LiveMedia/ch1/Media2",
+        "ptzMoveSupport": true,
+        "absoluteMove": true,
+        "relativeMove": true,
+        "continuousMove": true
+      }
+    ],
+    "isInited": true
+  },
+  {
+    "host": "192.168.2.163",
+    "username": "",
+    "password": "",
+    "mediaSourceInfoList": null,
+    "onvifProfileLimitList": null,
+    "isInited": false
+  }
+]
+```
+#### /Onvif​/GetMonitorList
++ 获取onvif设备的列表（包含信息）
+#### /Onvif/GetMonitor
++ 根据ip获取onvif设备实例
++ 看个例子
+```
+curl -X GET "http://192.168.2.42:5800/Onvif/GetMonitor?ipAddress=192.168.2.164" -H "accept: */*"
+```
+```json
+{
+  "host": "192.168.2.164",
+  "username": "",
+  "password": "",
+  "mediaSourceInfoList": [
+    {
+      "sourceToken": "VideoSource_1",
+      "framerate": 25,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "onvifProfileLimitList": [
+    {
+      "profileToken": "Profile_1",
+      "mediaUrl": "rtsp://192.168.2.164:554/LiveMedia/ch1/Media1",
+      "ptzMoveSupport": true,
+      "absoluteMove": true,
+      "relativeMove": true,
+      "continuousMove": true
+    },
+    {
+      "profileToken": "Profile_2",
+      "mediaUrl": "rtsp://192.168.2.164:554/LiveMedia/ch1/Media2",
+      "ptzMoveSupport": true,
+      "absoluteMove": true,
+      "relativeMove": true,
+      "continuousMove": true
+    }
+  ],
+  "isInited": true
+}
+```
+
 ### SRS全局接口-GlobalSrs
 + 提供对srs控制及全局参数修改方面的接口
 #### GlobalSrs/IsRunning
