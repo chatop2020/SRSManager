@@ -1031,7 +1031,7 @@ curl -X GET "http://192.168.2.42:5800/StreamCaster/GetStreamCasterInstanceList?d
 ### 以下接口类不一一展开（不详细展开，类与配置文件是相互映射的，有需要可以直接看源码）
 
 接口名|功能|备注|接口名|功能|备注|接口名|功能|备注
---|:--:|--:--|:--:|--:--|:--:|--:
+--|:--:|----|:--:|----|:--:|--:
 Vhost|Vhost相关|无|VhostBandcheck|bandcheck相关|无|VhostCluster|VhostCluster相关|无
 VhostDash|VhostDash相关|无|VhostDvr|VhostDvr相关|无|VhostExec|VhostExec相关|无
 VhostForward|VhostForward相关|无|VhostHds|VhostHds相关|无|VhostHls|VhostHls相关|无
