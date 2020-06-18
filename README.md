@@ -289,6 +289,211 @@ curl -X GET "http://192.168.2.42:5800/FastUseful/GetClientInfoByStreamValue?stre
 + isPlay 标记用户是否正在观看播放
 + 其他字段不做解释
 
+#### /FastUseful/GetRunningSrsInfoList
++ 获取正在运行的Srs实例列表，返回List<SrsManager?>
+
+#### /FastUseful/StopAllSrs
++ 停止所有正在运行的Srs实例
++ 正常停止返回true,否则返回异常原因
+
+#### /FastUseful/InitAndStartAllSrs
++ 初始化及开始运行所有Srs实例
+
+#### /FastUseful/KickoffClient
++ 踢掉一个客户端，这里需要client_id来指定到踢哪个客户端
+
+#### /FastUseful/GetStreamStatusById
++ 获取流状态
++ 看实例比较明白
+```
+curl -X GET "http://192.168.2.42:5800/FastUseful/GetStreamStatusById?deviceId=22364bc4-5134-494d-8249-51d06777fb7f&streamId=36408" -H "accept: */*"
+```
+```json
+{
+  "code": 0,
+  "server": 36405,
+  "stream": {
+    "id": 36408,
+    "name": "chid43590668",
+    "vhost": 36406,
+    "app": "live",
+    "live_ms": 1592460310443,
+    "clients": 1,
+    "frames": 2188496,
+    "send_bytes": 33635407400891344,
+    "recv_bytes": 33495078562309496,
+    "kbps": {
+      "recv_30s": 4064,
+      "send_30s": 0
+    },
+    "publish": {
+      "active": "true",
+      "cid": 429
+    },
+    "video": {
+      "codec": "H264",
+      "profile": "High",
+      "level": "4",
+      "width": 1920,
+      "height": 1088
+    },
+    "audio": null
+  }
+}
+```
++ streamid是来原于srs的一个id,可以通过获取
+​/FastUseful​/GetStreamListStatusByDeviceId接口获得
+
+#### /FastUseful​/GetStreamListStatusByDeviceId
++ 和上面的接口功能是一样的，上面那个接口是获取一个stream的状态信息，而这个是通过deviceId来获取某个srs里所有的stream状态
+
+#### /FastUseful/GetVhostStatusById
++ 得到vhost的状态信息
++ 和得到stream的状态信息接口一样，这个是来源于srs内部的信息，因此需要用到srs内部的vhostid
++ 看实例
+```
+curl -X GET "http://192.168.2.42:5800/FastUseful/GetVhostStatusById?deviceId=22364bc4-5134-494d-8249-51d06777fb7f&vhostId=36406" -H "accept: */*"
+```
+```json
+{
+  "code": 0,
+  "server": 36405,
+  "vhost": {
+    "id": 36406,
+    "name": "__defaultVhost__",
+    "enabled": "true",
+    "clients": 8,
+    "streams": 8,
+    "send_bytes": 272742742452577120,
+    "recv_bytes": 271760350059237470,
+    "kbps": {
+      "recv_30s": 25324,
+      "send_30s": 0
+    },
+    "hls": {
+      "enabled": "false"
+    }
+  }
+}
+```
+#### /FastUseful/GetVhostListStatusByDeviceId
++ 与GetStreamListStatusByDeviceId和/FastUseful/GetStreamStatusById的关系一样，这个接口获取的是全部Vhost的状态信息
+
+#### /FastUseful/GetOnOnlinePlayerByDeviceId
++ 获取正在在线播放（观看）的用户列表
++ 看实例
+```
+curl -X GET "http://192.168.2.42:5800/FastUseful/GetOnOnlinePlayerByDeviceId?deviceId=22364bc4-5134-494d-8249-51d06777fb7f" -H "accept: */*"
+```
+```json
+[
+  {
+    "id": 1706,
+    "device_Id": "22364bc4-5134-494d-8249-51d06777fb7f",
+    "monitorIp": "192.168.2.164",
+    "client_Id": 25211,
+    "clientIp": "192.168.2.129",
+    "clientType": "User",
+    "monitorType": null,
+    "rtmpUrl": null,
+    "httpUrl": "",
+    "rtspUrl": null,
+    "vhost": "__defaultVhost__",
+    "app": "live",
+    "stream": "192.168.2.164_Media1",
+    "param": null,
+    "isOnline": true,
+    "updateTime": "2020-06-18 14:10:52",
+    "isPlay": true,
+    "pageUrl": "http://localhost:9528/stream-node/controller/node/3/srs/22364bc4-5134-494d-8249-51d06777fb7f/stream"
+  },
+  {
+    "id": 1707,
+    "device_Id": "22364bc4-5134-494d-8249-51d06777fb7f",
+    "monitorIp": "192.168.2.164",
+    "client_Id": 25212,
+    "clientIp": "192.168.2.129",
+    "clientType": "User",
+    "monitorType": null,
+    "rtmpUrl": null,
+    "httpUrl": "",
+    "rtspUrl": null,
+    "vhost": "__defaultVhost__",
+    "app": "live",
+    "stream": "34020000002220000001@34020000001360000002",
+    "param": null,
+    "isOnline": true,
+    "updateTime": "2020-06-18 14:10:52",
+    "isPlay": true,
+    "pageUrl": "http://localhost:9528/stream-node/controller/node/3/srs/22364bc4-5134-494d-8249-51d06777fb7f/stream"
+  }
+]
+```
+
+#### /FastUseful/GetOnOnlinePlayer
++ 获取所有在线播放用户
+
+#### /FastUseful/GetOnPublishMonitorListById
++ 获取所有正在推流的设备列表，需要DeviceId
+
+#### /FastUseful/GetOnPublishMonitorList
++ 获取所有正在推流的设备列表，不需要DeviceId,取StreamNode管理的所有Srs实例中的内容
+
+#### /FastUseful/GetOnPublishMonitorById
++ 获取一个正在推流的设备，通过它的ID，支持多个id,用空格隔开
+
+#### /FastUseful/GetOnvifMonitorIngestTemplate
++ 获取一个Ingest的模板，用于添加onvif设备
++ 看个实例
+```
+curl -X GET "http://192.168.2.42:5800/FastUseful/GetOnvifMonitorIngestTemplate?username=user&password=%20password&rtspUrl=rtsp%3A%2F%2F192.168.2.164%3A554%2FLiveMedia%2Fch1%2FMedia1" -H "accept: */*"
+```
+```json
+{
+  "ingestName": "192.168.2.164_media1",
+  "enabled": true,
+  "input": {
+    "type": "stream",
+    "url": "rtsp://user: password@192.168.2.164:554/LiveMedia/ch1/Media1"
+  },
+  "ffmpeg": "./ffmpeg",
+  "engines": [
+    {
+      "enabled": true,
+      "perfile": {
+        "re": "re;",
+        "rtsp_transport": "tcp"
+      },
+      "iformat": null,
+      "vfilter": null,
+      "vcodec": "copy",
+      "vbitrate": null,
+      "vfps": null,
+      "vwidth": null,
+      "vheight": null,
+      "vthreads": null,
+      "vprofile": null,
+      "vpreset": null,
+      "vparams": null,
+      "acodec": "copy",
+      "abitrate": null,
+      "asample_rate": null,
+      "achannels": null,
+      "aparams": null,
+      "oformat": null,
+      "output": "rtmp://127.0.0.1/live/192.168.2.164_media1",
+      "engineName": null,
+      "instanceName": null
+    }
+  ],
+  "instanceName": "192.168.2.164_media1"
+}
+
+```
++ 系统自动生成一个ingest模板，将这个ingest模板用VhostIngest中的相关接口插入，即可得到一个拉流引擎
+
+
+
 ### SRS全局接口-GlobalSrs
 + 提供对srs控制及全局参数修改方面的接口
 #### GlobalSrs/IsRunning
