@@ -17,20 +17,7 @@ namespace SrsWebApi.Controllers
     [Route("")]
     public class SrsHooksController : ControllerBase
     {
-        /// <summary>
-        /// 处理心跳信息
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [AuthVerify]
-        [LogSrsCallBack]
-        [Route("/SrsHooks/Test")]
-        public int Test(Object obj)
-        {
-            //  Console.WriteLine("Test:"+SRSApis.JsonHelper.ToJson(obj));
-            return 0;
-        }
-
+       
         /// <summary>
         /// 处理心跳信息
         /// </summary>

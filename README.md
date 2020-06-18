@@ -920,8 +920,115 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 /Stats/SetSrsStats|对Srs的Stats服务进行配置|输入为DeviceId
 /Stats/DelStats|删除Srs中的Stats服务|输入为DeviceId
 
-
 + StreamCaster
+
+接口名|功能|备注
+--|:--:|--:
+/StreamCaster/GetStreamCasterInstanceNameList|获取所有StreamCaster的实例名称列表|输入为DeviceId
+/StreamCaster/GetStreamCasterInstanceList|获取所有StreamCaster实例|输入为DeviceId
+/StreamCaster/CreateStreamCaster|创建一个StreamCaster|输入为DeviceId&StreamCasterConfClass
+/StreamCaster/GetStreamCasterTemplate|获取一个StreamCaster的创建模板|输入为CasterType(mpegts_over_udp|rtsp|flv|gb28181)
+/StreamCaster/DeleteStreamCasterByInstanceName|通过实例名称删除一个StreamCaster|输入为DeivceId&StreamCasterInstanceName
+/StreamCaster/ChangeStreamCasterInstanceName|修改一个StreamCaster的实例名称|输入为DeviceId&InstanceName&NewInstanceName
+/StreamCaster/OnOrOff|启用名停用一个StreamCaster|输入为DeviceId&InstanceName&enable:bool
+/StreamCaster/SetStreamCaster|修改一个StreamCaster的参数|输入为DeviceId&StreamCasterConfCalss
+
+```js
+curl -X GET "http://192.168.2.42:5800/StreamCaster/GetStreamCasterInstanceNameList?deviceId=22364bc4-5134-494d-8249-51d06777fb7f" -H "accept: */*"
+```
+```json
+[
+  "gb28181",
+  "streamcaster-gb28181-template",
+  "streamcaster-gb28181-template2"
+]
+```
+```js
+curl -X GET "http://192.168.2.42:5800/StreamCaster/GetStreamCasterInstanceList?deviceId=22364bc4-5134-494d-8249-51d06777fb7f" -H "accept: */*"
+```
+```json
+[
+  {
+    "sip": {
+      "enabled": true,
+      "listen": 5060,
+      "serial": "34020000002000000001",
+      "realm": "3402000000",
+      "ack_timeout": 30,
+      "keepalive_timeout": 120,
+      "auto_play": true,
+      "invite_port_fixed": true,
+      "query_catalog_interval": 60
+    },
+    "auto_create_channel": true,
+    "enabled": true,
+    "caster": "gb28181",
+    "output": "rtmp://127.0.0.1/live/[stream]",
+    "listen": 9000,
+    "rtp_port_min": 58200,
+    "rtp_port_max": 58300,
+    "host": "*",
+    "audio_enable": false,
+    "wait_keyframe": false,
+    "rtp_idle_timeout": 30,
+    "instanceName": "gb28181"
+  },
+  {
+    "sip": {
+      "enabled": true,
+      "listen": 5060,
+      "serial": "34020000002000000001",
+      "realm": "3402000000",
+      "ack_timeout": 30,
+      "keepalive_timeout": 120,
+      "auto_play": true,
+      "invite_port_fixed": true,
+      "query_catalog_interval": 60
+    },
+    "auto_create_channel": false,
+    "enabled": true,
+    "caster": "gb28181",
+    "output": "rtmp://127.0.0.1/[vhost]/[app]/[stream]",
+    "listen": 9001,
+    "rtp_port_min": 58200,
+    "rtp_port_max": 58300,
+    "host": "*",
+    "audio_enable": true,
+    "wait_keyframe": false,
+    "rtp_idle_timeout": 30,
+    "instanceName": "streamcaster-gb28181-template"
+  },
+  {
+    "sip": {
+      "enabled": true,
+      "listen": 5060,
+      "serial": "34020000002000000001",
+      "realm": "3402000000",
+      "ack_timeout": 30,
+      "keepalive_timeout": 120,
+      "auto_play": true,
+      "invite_port_fixed": true,
+      "query_catalog_interval": 60
+    },
+    "auto_create_channel": false,
+    "enabled": true,
+    "caster": "gb28181",
+    "output": "rtmp://127.0.0.1/[vhost]/[app]/[stream]",
+    "listen": 9002,
+    "rtp_port_min": 58200,
+    "rtp_port_max": 58300,
+    "host": "*",
+    "audio_enable": true,
+    "wait_keyframe": false,
+    "rtp_idle_timeout": 30,
+    "instanceName": "streamcaster-gb28181-template2"
+  }
+]
+
+```
+
+
+
 + Vhost
 + VhostBandcheck
 + VhostCluster
