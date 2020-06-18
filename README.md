@@ -498,7 +498,7 @@ curl -X GET "http://192.168.2.42:5800/FastUseful/GetOnvifMonitorIngestTemplate?u
 #### /DvrPlan/CutOrMergeVideoFile
 + 对录像文件进行裁剪或合并操作
 + 可以对某个摄像头（流）已经存在的录像文件进行按时间的合并及裁剪
-+ 支持秒级的采集与合并，与srs录制的视频时长间隔无关
++ 支持秒级的裁剪与合并，与srs录制的视频时长间隔无关
 + 请求为HttpPost
 + 请求结构:
 ```json
@@ -519,7 +519,8 @@ curl -X GET "http://192.168.2.42:5800/FastUseful/GetOnvifMonitorIngestTemplate?u
 1. 这个接口可以同步返回结果也可以异步回调返回结果，不写callbackurl并且starttime与endtime的时间间隔小于10分钟，则同步返回结果
    否则接口会异步返回结果
 2. 在异步返回结果前，同步请求会生成taskId,及涉及合并或裁剪的视频列表信息返回给调用方，在任务完成时也将相应的信息通过callbackUrl返回给调用方
-
+3. 调用方通过taskId进行不同任务的区分
+4. 由于裁剪与合并操作是一个非常耗时的任务，因此大需求时间小于10分钟的情况下才给予同步处理返回，建议全部走异步回调方式来进行操作
 #### /DvrPlan/UndoSoftDelete
 + 恢复被软删除的视频文件
 + 视频文件删除有两种方式，硬删除和软删除
