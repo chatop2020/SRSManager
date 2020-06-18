@@ -97,6 +97,7 @@ kill -9 pid
   以后我将直接采用官方的功能而不再修改srs源码
 + 项目目录下需要有ffmpeg可执行文件，否则系统启动会报错
 + 项目止录下需要有srs可执行文件，否则系统启动会报错
++ 对于完全拿来主义的同志们要说声抱歉了，项目暂时不提供WEB管理模块，只有WebApi模块
 
 
 ## Api接口说明
@@ -144,6 +145,150 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 + 耗时操作:采用http callback的方式进行，当某个操作是耗时操作时（如/DvrPlan/CutOrMergeVideoFile）,接口要求在请求时传入callback地址，在操作完成后通过callback地址来通知接口调用应用相关结果 
 + 所有对Srs配置进行写操作（Set,Delete,Update,Insert|Create）的接口，均不会在操作完成后重写配置文件，需要应用调用/System/RefreshSrsObject接口才会将最新的配置信息写入对应的Srs进程配置文件中，并且自动Reload配置文件来刷新Srs运行参数
 ## 接口说明
+
+### 猜你需要的接口之-FastUseful
++ 你可能用得很频繁的接口都在这个接口类里面，因为我们自己开发Web管理的同学需要，所以我集成提供在这个模块下了
+  接口都相关简单，不再详细描述输入输出了，遇到特殊的会着重说明
+ 
+#### /FastUseful/GetOnvifMonitorInfoByIngest
++ 获取某个ingest下面的Onvif拉流设备信息
++ 因为是ingest下面的拉流设备，所以输入参数必须能详细指定到某个ingest
++ 所以，需要以deviceId&vhostDomian&ingestName三个输入条件才能定位准确一个ingest,从而准备获得这个Onvif设备的相关信息
++ 看个实例
+```
+curl -X GET "http://192.168.2.42:5800/FastUseful/GetOnvifMonitorInfoByIngest?deviceId=22364bc4-5134-494d-8249-51d06777fb7f&vhostDomain=__defaultvhost__&ingestName=192.168.2.164_Media1" -H "accept: */*"
+```
+```json
+{
+  "host": "192.168.2.164",
+  "username": "",
+  "password": "",
+  "mediaSourceInfoList": [
+    {
+      "sourceToken": "VideoSource_1",
+      "framerate": 25,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "onvifProfileLimitList": [
+    {
+      "profileToken": "Profile_1",
+      "mediaUrl": "rtsp://192.168.2.164:554/LiveMedia/ch1/Media1",
+      "ptzMoveSupport": true,
+      "absoluteMove": true,
+      "relativeMove": true,
+      "continuousMove": true
+    },
+    {
+      "profileToken": "Profile_2",
+      "mediaUrl": "rtsp://192.168.2.164:554/LiveMedia/ch1/Media2",
+      "ptzMoveSupport": true,
+      "absoluteMove": true,
+      "relativeMove": true,
+      "continuousMove": true
+    }
+  ],
+  "isInited": true
+}
+```           
+#### /FastUseful/GetStreamInfoByVhostIngestName
++ 通过IngestName来获取流信息
++ 看实例
+```
+curl -X GET "http://192.168.2.42:5800/FastUseful/GetStreamInfoByVhostIngestName?deviceId=22364bc4-5134-494d-8249-51d06777fb7f&vhostDomain=__defaultvhost__&ingestName=192.168.2.164_Media1" -H "accept: */*"
+```
+```json
+{
+  "deviceId": "22364bc4-5134-494d-8249-51d06777fb7f",
+  "vhostDomain": "__defaultvhost__",
+  "ingestName": "192.168.2.164_Media1",
+  "liveStream": "/live/192.168.2.164_Media1",
+  "app": "live",
+  "stream": "192.168.2.164_Media1",
+  "monitorType": "Onvif",
+  "ipAddress": "192.168.2.164",
+  "username": "",
+  "password": ""
+}
+```
+#### /FastUseful/GetAllIngestByDeviceId
++ 获取所有Ingest实例列表
++ 返回将是List<VhostIngestConfClass?>
+
+#### /FastUseful/OnOrOffVhostMinDelay
++ 设置某个Vhost为低延迟模式，或者关掉某个Vhost的低延迟模式
+
+#### /FastUseful/PtzZoomForGb28181
++ 控制GB28181设备的焦距大小（就是放大缩小控制）
++ 这个有点重要，说明一下
++ HttpPost调用方式输入一个类，如下
+```json
+{
+  "deviceId": "string",
+  "stream": "string",
+  "ptzZoomDir": "MORE",
+  "speed": 0,
+  "stop": true
+}
+```
++ deviceId指定的是哪个SRS实例
++ Stream指定的是对哪个GB28181设备进行控制，这边直接使用流id来做为设备id
++ ptzZoomDir说明的是要放大还是要缩小，More放大，Less缩小
++ speed表示操作过程中的速度
++ stop，停止信息，如果为true,则不再动作，如果为false将执行上述参数的动作
++ 后面有个ptzMove的操作，与Zoom操作类似
+
+#### /FastUseful/PtzMoveForGb28181
++ 控制GB28181设备云台移动
++ 和/FastUseful/PtzZoomForGb28181一样，也提供一个输入类
+```json
+{
+  "deviceId": "string",
+  "stream": "string",
+  "ptzMoveDir": "UP",
+  "speed": 0,
+  "stop": true
+}
+```
++ 其他参数与zoom控制一样，不同的是这里需要传入ptzmovedir，支持up,down,left,right
+
+#### /FastUseful/GetClientInfoByStreamValue
++ 获取客户端信息，StreamNode会维护一份当前在线的客户端列表，客户端指的是摄像头流、用户播放、推流设备等，这些都是srs的客户端
++ 通过stream标记来获取到流的相关信息
++ 看个实例
+```
+curl -X GET "http://192.168.2.42:5800/FastUseful/GetClientInfoByStreamValue?stream=192.168.2.164_Media1" -H "accept: */*"
+```
+```json
+{
+  "id": 1693,
+  "device_Id": "22364bc4-5134-494d-8249-51d06777fb7f",
+  "monitorIp": "192.168.2.164",
+  "client_Id": 20237,
+  "clientIp": "127.0.0.1",
+  "clientType": "Monitor",
+  "monitorType": "Onvif",
+  "rtmpUrl": "rtmp://127.0.0.1:1935/live",
+  "httpUrl": "",
+  "rtspUrl": "rtsp://192.168.2.164:554/LiveMedia/ch1/Media1",
+  "vhost": "__defaultVhost__",
+  "app": "live",
+  "stream": "192.168.2.164_Media1",
+  "param": "",
+  "isOnline": true,
+  "updateTime": "2020-06-18 09:20:46",
+  "isPlay": false,
+  "pageUrl": null
+}
+```
++ client_id是srs提供的client_id,可用于踢掉某个客户端
++ clientType标记了是摄像头，还是播放用户，还是推流用户
++ monitorType如果是摄像头，则会用此字段标记是onvif设备还是gb28181设备
++ isOnline标记设备是否正在线
++ isPlay 标记用户是否正在观看播放
++ 其他字段不做解释
+
 ### SRS全局接口-GlobalSrs
 + 提供对srs控制及全局参数修改方面的接口
 #### GlobalSrs/IsRunning
