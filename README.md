@@ -44,6 +44,53 @@
 - 打脸了，随着开发深入，发现不使用数据库组件使很多问题变得复杂，因此引入了FreeSql开源数据库组件，来支持相关数据的存储与查询。
 - 对SRS原有HTTP API进行封装与转发，实现风格统一，鉴权统一的webapi接口。
 
+## 如何运行
++ 项目采用微软.net core 3.1环境进行编码，第一点，请确保你拥有.net core 3.1的执行环境(支持linux、macos)
+### 配置文件
++ 系统配置文件为srswebapi.wconf
++ 运行系统前需要配置好这个配置文件，系统启动时会加载并检查各配置项
+```
+#这是注释，#开始是注释
+httpport::5800;
+#Webapi的监听端口
+password::password123!@#;
+#控制访问权限的密码，在Allow接口中需要用到这个password,具体见allow接口内容
+allowkey::0D906284-6801-4B84-AEC9-DCE07FAE81DA	*	192.168.2.*	;
+#允许访问的key与返问ip，如果*号表示所有ip均能访问，ip地址或ip地址加掩码*表示ip或ip段可访问
+db::Data Source=192.168.2.35;Port=3306;User ID=root;Password=thisispassword; Initial Catalog=srswebapi;Charset=utf8; SslMode=none;Min pool size=1;
+#数据库连接串，数据库需要手动创建，数据库中表系统会自动创建
+dbtype::mysql;
+#数据库类型，支持mysql,sqlite,oracle等常见数据库服务，具体支持哪些数据库请见开源项目FreeSql
+auto_cleintmanagerinterval::5000;
+#自动客户端管理的监控运行间隔时间（毫秒）
+auto_logmonitorinterval::300000;
+#自动日志转存的运行间隔时间（毫秒）
+auto_dvrplaninterval::60000;
+#自动录制计划的间隔运行时间（毫秒）
+auto_keepingeinterval::30000;
+#自动ingest保活的运行间隔时间（毫秒），这个可能有点问题，暂时弃用
+
+```
+### 启动命令
++ 调试启动建议直接 dotnet SRSWebApi.dll
++ 正式运行建议 nohup dotnet SRSWebapi.dll > ./logs/run.log &
++ 正式运行将会运行在后台模式
+
+### 停止运行
++ 调式模式下运行的，退出终端或者在终端上Ctrl+C,将结束进程，停止运行
++ 正式模式下运行，使用命令查出pid 再 kill pid
++ linux下查pid
+```
+ps -aux |grep SRSWebApi.dll
+```
++ macos下查pid
+```
+ps -A|grep SRSWebApi.dll
+```
+```
+kill -9 pid  
+```
+
 ## Api接口说明
 + 接口采用HttpWebApi方式提供，提供方式为http://serverip:apiport/接口类型/API方法
 + 接口调用方式：HttpGet、HttpPost
