@@ -1,6 +1,6 @@
 # SRSManager
 
-## 简介
+## 一、简介
 
 - SRSManager用于管理和控制SRS流媒体服务器的配置文件，将配置文件进行结构化处理，使配置文件更容易控制。
 - 对SRS进程进行管理，使之可以通过一系列API来实现启动，停止，重启，重新加载配置等操作。
@@ -14,13 +14,13 @@
   本项目基于SRS 4.0+ release版本进行编码。
 - 本项目支持linux和macos,需要.net core 3.1运行库支持。
   
-## 重要
+## 二、重要
 
 - 此项目还在开发中，不能用于生产环境。
 - 出于对项目的需要，对srs的源码进行了简单修改，使http_hook时带上device_id,device_id来源于心跳中的device_id
 - 对于srs源码的修改已在官方git中与官方提出，希望官方可以考虑进。
 
-## 组成部分
+## 三、组成部分
 - OnvifClient onvif的控制模块，用于发现，ptz探测等
 - SRSApis 封装对SRS进程的相关功能API
 - SRSConfFile 封装对SRS配置文件的结构化处理，可以读取与重写SRS配置文件 
@@ -29,7 +29,7 @@
 - SRSCallBackManager 用于处理SRS的各种回调数据(废弃，移到SRSManageCommon项目中)
 - Test_ 开头的项目是针对于以上部分的功能测试项
 
-## 设计考虑
+## 四、设计考虑
 - 由于SRS属于自定义配置文件格式，在其他语言或其他项目中对SRS的配置文件操作较为困难，出于对SRS的管理考虑需要对配置
   文件进行结构化配置，需要实现.conf文件的结构化读入，与结构化实例序列化成SRS的.conf文件。这样会使对SRS管理来得相
   对轻松。
@@ -44,7 +44,7 @@
 - 打脸了，随着开发深入，发现不使用数据库组件使很多问题变得复杂，因此引入了FreeSql开源数据库组件，来支持相关数据的存储与查询。
 - 对SRS原有HTTP API进行封装与转发，实现风格统一，鉴权统一的webapi接口。
 
-## 如何运行
+## 五、如何运行
 + 项目采用微软.net core 3.1环境进行编码，第一点，请确保你拥有.net core 3.1的执行环境(支持linux、macos)
 ### 配置文件
 + 系统配置文件为srswebapi.wconf
@@ -100,7 +100,7 @@ kill -9 pid
 + 对于完全拿来主义的同志们要说声抱歉了，项目暂时不提供WEB管理模块，只有WebApi模块
 
 
-## Api接口说明
+## 六、Api接口说明
 + 接口采用HttpWebApi方式提供，提供方式为http://serverip:apiport/接口类型/API方法
 + 接口调用方式：HttpGet、HttpPost
 + 当传输入参数为简单参数时采用HttpGet方式调用，复杂对象参数时采用HttpPost方式调用
@@ -110,7 +110,7 @@ kill -9 pid
 例如调用检测Srs实例是否正在运行时，可以通过CURL发送以下http请求获得状态
 curl -X GET "http://192.168.2.42:5800/GlobalSrs/IsRunning?deviceId=22364bc4-5134-494d-8249-51d06777fb7f" -H "accept: */*"
 ```
-## 异常与正常
+## 七、异常与正常
 + 当接口调用出现异常时，API返回HttpStatusCode为400，同时告知异常原因,返回结构如下：
 ```json
  {
@@ -138,13 +138,13 @@ asp.net core将返回HttpStatusCode为400，并给出异常原因，返回结构
 ```
 + 当接口调用正常时,HttpStatusCode为200，返回数据可以根据输出参数要求进行进行接收，并返序列化json到相应的实体类类型
 
-## 接口调用约定
+## 八、接口调用约定
 + 时区:+8区
 + 时间格式: yyyy-MM-dd HH:mm:ss
 + 调用方式:HttpGet|HttpPost
 + 耗时操作:采用http callback的方式进行，当某个操作是耗时操作时（如/DvrPlan/CutOrMergeVideoFile）,接口要求在请求时传入callback地址，在操作完成后通过callback地址来通知接口调用应用相关结果 
 + 所有对Srs配置进行写操作（Set,Delete,Update,Insert|Create）的接口，均不会在操作完成后重写配置文件，需要应用调用/System/RefreshSrsObject接口才会将最新的配置信息写入对应的Srs进程配置文件中，并且自动Reload配置文件来刷新Srs运行参数
-## 接口说明
+## 九、接口说明
 
 ### 猜你需要的接口之-FastUseful
 + 你可能用得很频繁的接口都在这个接口类里面，因为我们自己开发Web管理的同学需要，所以我集成提供在这个模块下了
