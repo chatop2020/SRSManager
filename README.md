@@ -492,7 +492,256 @@ curl -X GET "http://192.168.2.42:5800/FastUseful/GetOnvifMonitorIngestTemplate?u
 ```
 + 系统自动生成一个ingest模板，将这个ingest模板用VhostIngest中的相关接口插入，即可得到一个拉流引擎
 
+### 录制计划相关-DvrPlan
++ 提供与录制有关的相关接口
 
+#### /DvrPlan/CutOrMergeVideoFile
++ 对录像文件进行裁剪或合并操作
++ 可以对某个摄像头（流）已经存在的录像文件进行按时间的合并及裁剪
++ 支持秒级的采集与合并，与srs录制的视频时长间隔无关
++ 请求为HttpPost
++ 请求结构:
+```json
+{
+  "startTime": "2020-06-18T07:11:55",
+  "endTime": "2020-06-18T07:11:55",
+  "deviceId": "string",
+  "app": "string",
+  "vhostDomain": "string",
+  "stream": "string",
+  "callbackUrl": "string"
+}
+```
++ deviceId&app&vhostDomain&stream 唯一指定到一个流
++ startTime&endTime，合并或裁剪的开始和结束时间
++ callbackUrl 是回调地址，完成裁剪或合并服务后将结果通过callbackUrl回调给应用
++ 注意事项:
+1. 这个接口可以同步返回结果也可以异步回调返回结果，不写callbackurl并且starttime与endtime的时间间隔小于10分钟，则同步返回结果
+   否则接口会异步返回结果
+2. 在异步返回结果前，同步请求会生成taskId,及涉及合并或裁剪的视频列表信息返回给调用方，在任务完成时也将相应的信息通过callbackUrl返回给调用方
+
+#### /DvrPlan/UndoSoftDelete
++ 恢复被软删除的视频文件
++ 视频文件删除有两种方式，硬删除和软删除
++ 硬删除将直接删除视频文件，在数据库中标记该文件已经被删除
++ 软删除只在数据库中标记该文件被删除，在24小时后真正删除视频文件
++ 因此软删除的视频文件有机会在24小时内做接口调用恢复
++ 恢复删除是将数据库删除标记置回正常，这样删除线程将不对此文件进行处理
+
+#### /DvrPlan/HardDeleteDvrVideoById
++ 硬删除一个视频文件（立即删除）
+
+#### /DvrPlan/SoftDeleteDvrVideoById
++ 软删除一个社频文件 （24小时后删除）
+
+#### /DvrPlan/GetDvrVideoList
++ 获取录像文件列表
++ HttpPost请求
++ 请求结果如下
+```json
+{
+  "pageIndex": 0,
+  "pageSize": 0,
+  "includeDeleted": true,
+  "startTime": "2020-06-18T07:31:20.114Z",
+  "endTime": "2020-06-18T07:31:20.114Z",
+  "orderBy": [
+    {
+      "fieldName": "string",
+      "orderByDir": "ASC"
+    }
+  ],
+  "deviceId": "string",
+  "vhostDomain": "string",
+  "app": "string",
+  "stream": "string"
+}
+```
++ pageIndex,pageSize为分页参数，置null为不分页，pageIndex要从1开始
++ 接口最多一次返回10000条数据
++ includeDeleted 表示是否在返回数据中包含已删除的文件记录
++ startTime&endTime,表示要获取视频文件的时间范围
++ orderBy 要针对哪个字段进行排序，以及排序方式，orderBy是一个List<Orderby?>,可以有多个字段
++ deviceId,vhostDomain,app,Stream是唯一指定到一个流的录像文件的条件
++ 看一个实例
+```
+curl -X POST "http://192.168.2.42:5800/DvrPlan/GetDvrVideoList" -H "accept: */*" -H "Content-Type: application/json" -d "{\"pageIndex\":1,\"pageSize\":2,\"includeDeleted\":true,\"orderBy\":[{\"fieldName\":\"starttime\",\"orderByDir\":\"ASC\"}],\"deviceId\":\"\",\"vhostDomain\":\"\",\"app\":\"\",\"stream\":\"\"}"
+```
+```json
+{
+  "dvrVideoList": [
+    {
+      "id": 1,
+      "device_Id": "22364bc4-5134-494d-8249-51d06777fb7f",
+      "client_Id": 801,
+      "clientIp": "192.168.2.164",
+      "clientType": "Monitor",
+      "monitorType": "Onvif",
+      "videoPath": "/root/StreamNode/22364bc4-5134-494d-8249-51d06777fb7f/wwwroot/dvr/20200613/__defaultVhost__/live/192.168.2.164_Media1/19/20200613192745.mp4",
+      "fileSize": 22619964,
+      "vhost": "__defaultVhost__",
+      "dir": "/root/StreamNode/22364bc4-5134-494d-8249-51d06777fb7f/wwwroot/dvr/20200613/__defaultVhost__/live/192.168.2.164_Media1/19",
+      "stream": "192.168.2.164_Media1",
+      "app": "live",
+      "duration": 121200,
+      "startTime": "2020-06-13 19:27:55",
+      "endTime": "2020-06-13 19:29:56",
+      "param": "",
+      "deleted": false,
+      "updateTime": "2020-06-13 19:29:56",
+      "recordDate": "2020-06-13"
+    },
+    {
+      "id": 2,
+      "device_Id": "22364bc4-5134-494d-8249-51d06777fb7f",
+      "client_Id": 801,
+      "clientIp": "192.168.2.164",
+      "clientType": "Monitor",
+      "monitorType": "Onvif",
+      "videoPath": "/root/StreamNode/22364bc4-5134-494d-8249-51d06777fb7f/wwwroot/dvr/20200613/__defaultVhost__/live/192.168.2.164_Media1/19/20200613192956.mp4",
+      "fileSize": 21536369,
+      "vhost": "__defaultVhost__",
+      "dir": "/root/StreamNode/22364bc4-5134-494d-8249-51d06777fb7f/wwwroot/dvr/20200613/__defaultVhost__/live/192.168.2.164_Media1/19",
+      "stream": "192.168.2.164_Media1",
+      "app": "live",
+      "duration": 120330,
+      "startTime": "2020-06-13 19:29:56",
+      "endTime": "2020-06-13 19:31:56",
+      "param": "",
+      "deleted": false,
+      "updateTime": "2020-06-13 19:31:56",
+      "recordDate": "2020-06-13"
+    }
+  ],
+  "request": {
+    "pageIndex": 1,
+    "pageSize": 2,
+    "includeDeleted": true,
+    "startTime": null,
+    "endTime": null,
+    "orderBy": [
+      {
+        "fieldName": "starttime",
+        "orderByDir": "ASC"
+      }
+    ],
+    "deviceId": "",
+    "vhostDomain": "",
+    "app": "",
+    "stream": ""
+  },
+  "total": 3117
+}
+```
+
+#### /DvrPlan/DeleteDvrPlanById
++ 删除一个录制计划
+
+#### /DvrPlan/OnOrOffDvrPlanById
++ 启用或停用一个录制计划
+
+#### /DvrPlan/SetDvrPlanById
++ 设置一个录制计划
++ 注意，每次设置都是将老的录制计划删除（根据ID），再把新的录制计划写入，因此请注意：数据库的自增ID会变
+
+#### /DvrPlan/CreateDvrPlan
++ 创建一个录制计划
++ HttpPost，提交一个结构
++ 看个实例吧,以下是
+```json
+{
+  "enable": true,
+  "deviceId": "string",
+  "vhostDomain": "string",
+  "app": "string",
+  "stream": "string",
+  "limitSpace": 0,
+  "limitDays": 0,
+  "overStepPlan": "StopDvr",
+  "timeRangeList": [
+    {
+      "streamDvrPlanId": 0,
+      "weekDay": "Sunday",
+      "startTime": "2020-06-18T07:41:31.578Z",
+      "endTime": "2020-06-18T07:41:31.578Z"
+    }
+  ]
+}
+```
++ enable为此方案是否执行
++ deviceId&vhostDomain&app&stream 唯一指定一个流
++ limitSpace 此流录制后的空间限制（所有文件的大小）
++ limitDays 此流录制后的时间限制（天数）
++ overStepPlan 超过时间限制或超过空间限制怎么处理，（StopDvr:停止录制 DeleteFile:删除文件）
++ 当limitSapce超过限制时，将逐个文件删除，当limitDays超过限制时将一天一天删除视频文件（注意：这是硬删除）
++ timeRangeList 录制的启用时间段
++ timeRange的结构：
+```json
+{
+      "streamDvrPlanId": 0,
+      "weekDay": "Sunday",
+      "startTime": "2020-06-18T07:41:31",
+      "endTime": "2020-06-18T07:41:31"
+    }
+```
++ 在修改、添加、删除等操作时streamDvrPlanId留空即可
++ weekDay表示星期几
++ startTime&endTime表示从几点到几点，日期可以随便指定，接口最终只会取时间，可以精确到秒
+
+#### /DvrPlan/GetDvrPlan
++ 获取一个录制计划
+
+### 鉴权接口-Allow
++ 对webapi访问进行鉴权
+#### /Allow/RefreshSession
++ 刷新Session 
++ 所有接口调用，除了各别接口外，都需要Session
++ 以下是请求结构，需要有allowkey,有refreshCode,有当前的sessionCode
++ expires 可以忽略
+```json
+{
+  "allowKey": "string",
+  "refreshCode": "string",
+  "sessionCode": "string",
+  "expires": 0
+}
+```
+
+#### /Allow/GetSession
++ 获取一个Session
+```json
+{
+  "allowKey": "string"
+}
+``` 
++ 需要通过AllowKey来得到一个Session，在session有效其内可以用来访问各种api,session过期前需要通过RefreshSession接口收新session,并使用新的session进行通讯
+
+#### /Allow/SetAllowByKey
++ 设置一个allowKey的参数
+```json
+{
+  "password": "string",
+  "allowkey": {
+    "key": "string",
+    "ipArray": [
+      "string"
+    ]
+  }
+}
+```
++ password是配置文件中的password
+
+#### /Allow/DelAllowByKey
++ 删除一个AllowKey
++ password是配置文件中的password
+
+#### /Allow/AddAllow
++ 添加一个allowKey
++ password是配置文件中的password
+
+#### /Allow/GetAllows
++ 获取allowKey列表
++ password是配置文件中的password
 
 ### SRS全局接口-GlobalSrs
 + 提供对srs控制及全局参数修改方面的接口
