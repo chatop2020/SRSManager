@@ -12,16 +12,16 @@ namespace SRSManageCommon.ControllerStructs.RequestModules
     [Serializable]
     public class OrderByStruct
     {
-        private string _fieldName = null!;
-        private OrderByDir _orderByDir;
+        private string? _fieldName = null!;
+        private OrderByDir? _orderByDir;
 
-        public string FieldName
+        public string? FieldName
         {
             get => _fieldName;
             set => _fieldName = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public OrderByDir OrderByDir
+        public OrderByDir? OrderByDir
         {
             get => _orderByDir;
             set => _orderByDir = value;
