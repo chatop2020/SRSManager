@@ -101,6 +101,15 @@ kill -9 pid
 + 项目止录下需要有srs可执行文件，否则系统启动会报错
 + 对于完全拿来主义的同志们要说声抱歉了，项目暂时不提供WEB管理模块，只有WebApi模块
 
+### 其他
+#### 自动化服务介绍
++ DvrPlanExec 自动执行录制计划，使录制计划中计划得以实施
++ IngestMonitor Ingest拉流保活，发现ffmpeg日志大量疯狂写入时，执行ingest拉流器重启，保证拉流正常
++ KeepIngestStream 老的拉流保活方案，已经废弃
++ SrsAndFFmpegLogMonitor 用于Srs日志和FFmpeg日志的转存，保证日志不要爆表，日志文件大于10M时自动转移到其他目录，并清空当前日志文件
++ SrsClientManager 用于对Srs的连接信息（客户端）进行维护，如补摄像头ip 址，被rtsp地址，维护在线列表等
+
+
 
 ## 六、Api接口说明
 + 接口采用HttpWebApi方式提供，提供方式为http://serverip:apiport/接口类型/API方法
