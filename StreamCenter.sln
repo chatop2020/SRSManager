@@ -23,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_FreeSql", "Test_FreeSq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_SqlSugar", "Test_SqlSugar\Test_SqlSugar.csproj", "{9179C4B3-6BA6-46DF-9CE7-388F82C8E672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_MonitorFileSize", "Test_MonitorFileSize\Test_MonitorFileSize.csproj", "{C6617E54-68DA-4DDF-A163-4330A3BF5396}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,9 +73,5 @@ Global
 		{9179C4B3-6BA6-46DF-9CE7-388F82C8E672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9179C4B3-6BA6-46DF-9CE7-388F82C8E672}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9179C4B3-6BA6-46DF-9CE7-388F82C8E672}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6617E54-68DA-4DDF-A163-4330A3BF5396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6617E54-68DA-4DDF-A163-4330A3BF5396}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6617E54-68DA-4DDF-A163-4330A3BF5396}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6617E54-68DA-4DDF-A163-4330A3BF5396}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
