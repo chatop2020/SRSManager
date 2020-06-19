@@ -27,7 +27,7 @@ namespace SrsManageCommon
         public static string HttpDeleteRequest(string url, Dictionary<string, string> headers, string encode = "utf-8",
             int timeout = 60000)
         {
-            return HttpDeleteRequestByProxy(url, headers, null, encode, timeout);
+            return HttpDeleteRequestByProxy(url, headers, null!, encode, timeout);
         }
         /// <summary>
         /// http delete请求
@@ -65,7 +65,7 @@ namespace SrsManageCommon
                 }
             }
 
-            HttpWebResponse myResponse = null;
+            HttpWebResponse myResponse = null!;
             try
             {
                 myResponse = (HttpWebResponse)request.GetResponse();
@@ -117,7 +117,7 @@ namespace SrsManageCommon
         /// <returns></returns>
         public static string HttpGetRequest(string url, Dictionary<string, string> headers, string encode = "utf-8", int timeout = 60000)
         {
-            return HttpGetRequestByProxy(url, headers, null, encode, timeout);
+            return HttpGetRequestByProxy(url, headers, null!, encode, timeout);
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace SrsManageCommon
                 }
             }
 
-            HttpWebResponse myResponse = null;
+            HttpWebResponse myResponse = null!;
             try
             {
                 myResponse = (HttpWebResponse)request.GetResponse();
@@ -207,7 +207,7 @@ namespace SrsManageCommon
         /// <returns></returns>
         public static async Task<string> HttpGetRequestAsync(string url, Dictionary<string, string> headers, string encode = "utf-8", int timeout = 60000)
         {
-            return await HttpGetRequestByProxyAsync(url, headers, null, encode, timeout);
+            return await HttpGetRequestByProxyAsync(url, headers, null!, encode, timeout);
         }
 
         /// <summary>
@@ -246,10 +246,10 @@ namespace SrsManageCommon
                 }
             }
 
-            HttpWebResponse myResponse = null;
+            HttpWebResponse myResponse = null!;
             try
             {
-                myResponse = await request.GetResponseAsync() as HttpWebResponse;
+                myResponse = (await request.GetResponseAsync() as HttpWebResponse)!;
                 StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding(encode));
                 string content = reader.ReadToEnd();
                 return content;
@@ -299,7 +299,7 @@ namespace SrsManageCommon
         /// <returns></returns>
         public static string HttpPostRequest(string url, Dictionary<string, string> headers, string param, string encode = "utf-8", int timeout = 60000)
         {
-            return HttpPostRequestByProxy(url, headers, param, null, encode, timeout);
+            return HttpPostRequestByProxy(url, headers, param, null!, encode, timeout);
         }
 
         /// <summary>
@@ -326,8 +326,8 @@ namespace SrsManageCommon
             #endregion
 
             string result = string.Empty;
-            HttpWebRequest request = null;
-            HttpWebResponse response = null;
+            HttpWebRequest request = null!;
+            HttpWebResponse response = null!;
             try
             {
                 request = (HttpWebRequest)WebRequest.Create(url);
@@ -357,7 +357,7 @@ namespace SrsManageCommon
                 newStream.Dispose();
 
                 //获取响应结果
-                response = request.GetResponse() as HttpWebResponse;
+                response = (request.GetResponse() as HttpWebResponse)!;
                 Stream stream = response.GetResponseStream();
 
                 using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
@@ -413,7 +413,7 @@ namespace SrsManageCommon
         /// <returns></returns>
         public static async Task<string> HttpPostRequestAsync(string url, Dictionary<string, string> headers, string param, string encode = "utf-8", int timeout = 60000)
         {
-            return await HttpPostRequestByProxyAsync(url, headers, param, null, encode, timeout);
+            return await HttpPostRequestByProxyAsync(url, headers, param, null!, encode, timeout);
         }
 
         /// <summary>
@@ -440,8 +440,8 @@ namespace SrsManageCommon
             #endregion
 
             string result = string.Empty;
-            HttpWebRequest request = null;
-            HttpWebResponse response = null;
+            HttpWebRequest request = null!;
+            HttpWebResponse response = null!;
             try
             {
                 request = (HttpWebRequest)WebRequest.Create(url);
@@ -471,7 +471,7 @@ namespace SrsManageCommon
                 newStream.Dispose();
 
                 //获取响应结果
-                response = await request.GetResponseAsync() as HttpWebResponse;
+                response = (await request.GetResponseAsync() as HttpWebResponse)!;
                 Stream stream = response.GetResponseStream();
 
                 using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))

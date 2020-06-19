@@ -67,8 +67,10 @@ auto_logmonitorinterval::300000;
 #自动日志转存的运行间隔时间（毫秒）
 auto_dvrplaninterval::60000;
 #自动录制计划的间隔运行时间（毫秒）
-auto_keepingeinterval::30000;
+#auto_keepingeinterval::30000; #不用这个方案了
 #自动ingest保活的运行间隔时间（毫秒），这个可能有点问题，暂时弃用
+#增加参数enableingestkeeper,是否启用ingest拉流监控，启用后会针对每 srs进程进行监控
+enableingestkeeper::true
 
 ```
 ### 启动命令

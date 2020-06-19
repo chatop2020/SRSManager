@@ -19,9 +19,9 @@ namespace SrsManageCommon
         private string? _db = "data source=" + Common.WorkPath + "SRSWebApi.db";
         private DataType _dbType = DataType.Sqlite;
         private int _dvrPlanExecServiceinterval=1000 * 60;
-        private int _keepIngestStreamServiceinterval=1000 * 10;
         private int _srsAdnffmpegLogMonitorServiceinterval=1000 * 60 * 5;
         private int _srsClientManagerServiceinterval=1000 * 5;
+        private bool _enableIngestKeeper = true; 
 
         /// <summary>
         /// http端口
@@ -68,10 +68,10 @@ namespace SrsManageCommon
             set => _dvrPlanExecServiceinterval = value;
         }
 
-        public int KeepIngestStreamServiceinterval
+        public bool EnableIngestKeeper
         {
-            get => _keepIngestStreamServiceinterval;
-            set => _keepIngestStreamServiceinterval = value;
+            get => _enableIngestKeeper;
+            set => _enableIngestKeeper = value;
         }
 
         public int SrsAdnffmpegLogMonitorServiceinterval
@@ -123,12 +123,12 @@ namespace SrsManageCommon
                             }
                         }
                         break;
-                    case "auto_keepingeinterval":
+                    case "enableingestkeeper":
                         if (kv.Length == 2)
                         {
                             if (!string.IsNullOrEmpty(kv[1]))
                             {
-                                KeepIngestStreamServiceinterval = int.Parse(kv[1].Trim());
+                                EnableIngestKeeper = bool.Parse(kv[1].Trim());
                             }
                         }
                         break;
@@ -258,8 +258,9 @@ namespace SrsManageCommon
             writeFile.Add("dbtype::" + Enum.GetName(typeof(DataType), this.DbType)!.ToLower() + ";");
             writeFile.Add("auto_cleintmanagerinterval::" + SrsClientManagerServiceinterval + ";");
             writeFile.Add("auto_logmonitorinterval::" + SrsAdnffmpegLogMonitorServiceinterval + ";");
-            writeFile.Add("auto_keepingeinterval::" + KeepIngestStreamServiceinterval + ";");
+            writeFile.Add("enableingestkeeper::" + EnableIngestKeeper + ";");
             writeFile.Add("auto_dvrplaninterval::" + DvrPlanExecServiceinterval + ";");
+            
             foreach (var ak in _allowKeys)
             {
                 if (ak != null)

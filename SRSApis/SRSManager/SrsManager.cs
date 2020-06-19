@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
+using SRSApis.SystemAutonomy;
 using SrsConfFile;
 using SrsConfFile.SRSConfClass;
 using SrsManageCommon;
@@ -21,6 +22,7 @@ namespace SrsApis.SrsManager
         private string _srsPidValue = "";
         private string _srsWorkPath = Environment.CurrentDirectory + "/";
         private bool _isStopedByUser = false; //主动停止
+        private IngestMonitor? _ingestKeeper = null;
 
         public SrsSystemConfClass Srs
         {
@@ -383,6 +385,10 @@ namespace SrsApis.SrsManager
                         _srsDeviceId = SrsManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!)!;
                     }
 
+                    if (SrsManageCommon.Common.SystemConfig.EnableIngestKeeper)//启用ingest流监控
+                    {
+                        _ingestKeeper= new IngestMonitor(Srs.Ff_log_dir!,".log",Srs.DeviceId);
+                    }
                     return true;
                 }
                 catch (Exception ex)

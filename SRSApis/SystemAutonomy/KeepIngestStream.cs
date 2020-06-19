@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using SrsApis.SrsManager.Apis;
 using SrsConfFile.SRSConfClass;
@@ -8,9 +9,13 @@ using SRSManageCommon.ManageStructs;
 
 namespace SRSApis.SystemAutonomy
 {
+    /**
+     * 此类废弃，采用IngestMonitor替换
+     */
     public class KeepIngestStream
     {
-        private int interval = SrsManageCommon.Common.SystemConfig.KeepIngestStreamServiceinterval;
+        private int interval = 1000;
+
 
         private void doThing(string deviceId, string vhostDomain, Ingest ingest)
         {

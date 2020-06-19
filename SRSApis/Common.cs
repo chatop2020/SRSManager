@@ -48,9 +48,7 @@ namespace SRSApis
         /// SrsOnlineClient管理
         /// </summary>
         public static SrsClientManager SrsOnlineClient;
-
         public static SrsAndFFmpegLogMonitor SrsAndFFmpegLogMonitor;
-        public static KeepIngestStream KeepIngestStream;
         public static DvrPlanExec? DvrPlanExec = null!;
 
         // public static BlockingCollection<string>()
@@ -61,7 +59,6 @@ namespace SRSApis
             SrsOnlineClient = new SrsClientManager();
             SrsAndFFmpegLogMonitor = new SrsAndFFmpegLogMonitor();
             DvrPlanExec = new DvrPlanExec();
-            // KeepIngestStream = new KeepIngestStream();
         }
 
         /// <summary>

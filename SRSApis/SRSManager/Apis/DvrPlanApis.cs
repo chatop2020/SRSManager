@@ -545,7 +545,7 @@ namespace SrsApis.SrsManager.Apis
                 {
                     if (order != null)
                     {
-                        orderBy += order.FieldName + " " + Enum.GetName(typeof(OrderByDir), order.OrderByDir) + ",";
+                        orderBy += order.FieldName + " " + Enum.GetName(typeof(OrderByDir), order.OrderByDir!) + ",";
                     }
                 }
 
