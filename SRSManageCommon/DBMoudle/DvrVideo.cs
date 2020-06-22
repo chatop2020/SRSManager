@@ -32,6 +32,8 @@ namespace SRSManageCommon.DBMoudle
         private DateTime? _endTime;
         private DateTime? _updateTime;
         private string? _recordDate;
+        private string? _url;
+        private bool? _undo;
 
         [Column(IsIdentity = true)]
         public long Id
@@ -148,6 +150,19 @@ namespace SRSManageCommon.DBMoudle
         {
             get => _recordDate;
             set => _recordDate = value;
+        }
+
+      
+        public string? Url
+        {
+            get => _url;
+            set => _url = value;
+        }
+
+        public bool? Undo
+        {
+            get => _undo;
+            set => _undo = value;
         }
     }
 }

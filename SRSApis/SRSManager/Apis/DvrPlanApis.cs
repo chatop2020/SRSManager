@@ -332,7 +332,7 @@ namespace SrsApis.SrsManager.Apis
                     var taskReturn = Task.Factory.StartNew(() => CutMergeService.CutMerge(task)); //抛线程处理
                     taskReturn.Wait();
                     taskReturn.Result.Request = rcmv;
-                    taskReturn.Result.Uri = "http://192.168.2.42:5800" +
+                    taskReturn.Result.Uri = ":" + SrsManageCommon.Common.SystemConfig.HttpPort +
                                             taskReturn.Result.FilePath!.Replace(Common.WorkPath + "CutMergeFile", "");
                     return taskReturn.Result;
                 }
@@ -418,7 +418,8 @@ namespace SrsApis.SrsManager.Apis
             lock (Common.LockDbObjForDvrVideo)
             {
                 var retUpdate = OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, false)
-                    .Set(x => x.UpdateTime, DateTime.Now).Where(x => x.Id == (long) id).ExecuteAffrows();
+                    .Set(x => x.UpdateTime, DateTime.Now)
+                    .Set(x => x.Undo, false).Where(x => x.Id == (long) id).ExecuteAffrows();
                 if (retUpdate > 0)
                 {
                     return true;
@@ -447,6 +448,7 @@ namespace SrsApis.SrsManager.Apis
             {
                 retSelect = OrmService.Db.Select<DvrVideo>().Where(x => x.Id == id).ToList();
                 retUpdate = OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, true)
+                    .Set(x => x.Undo, false)
                     .Set(x => x.UpdateTime, DateTime.Now).Where(x => x.Id == (long) id).ExecuteAffrows();
             }
 
@@ -486,7 +488,8 @@ namespace SrsApis.SrsManager.Apis
             lock (Common.LockDbObjForDvrVideo)
             {
                 var retUpdate = OrmService.Db.Update<DvrVideo>().Set(x => x.Deleted, true)
-                    .Set(x => x.UpdateTime, DateTime.Now).Where(x => x.Id == (long) id).ExecuteAffrows();
+                    .Set(x => x.UpdateTime, DateTime.Now)
+                    .Set(x => x.Undo, true).Where(x => x.Id == (long) id).ExecuteAffrows();
                 if (retUpdate > 0)
                 {
                     return true;

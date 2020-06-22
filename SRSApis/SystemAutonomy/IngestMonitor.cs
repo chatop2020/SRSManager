@@ -216,6 +216,8 @@ namespace SRSApis.SystemAutonomy
 
                 if (find.TimeOutTimes >= find.HighFrequencyUpdateList.BoundedCapacity) //如果超时次数大于最大队列数了，就要重启ingest了
                 {
+                    Watcher.EnableRaisingEvents = false;
+                    Console.WriteLine("stop watcher");
                     string[] strArr = e.Name.Split('-', StringSplitOptions.RemoveEmptyEntries);
                     string app = "";
                     string vhost = "";
@@ -227,14 +229,42 @@ namespace SRSApis.SystemAutonomy
                         vhost = strArr[2].Trim();
                     }
 
-                    MonitorStructList[MonitorStructList.IndexOf(find)].HighFrequencyUpdateList.Dispose();
-                    MonitorStructList.Remove(find);
+                    Console.WriteLine("remove object");
+                    try
+                    {
+                        for (int i = 0; i <= MonitorStructList.Count - 1; i++)
+                        {
+                            Console.WriteLine(MonitorStructList[i].Filename+"->"+find.Filename);
+                            if (MonitorStructList[i].Filename!.Equals(find.Filename))
+                            {
+                                MonitorStructList[i].HighFrequencyUpdateList.Dispose();
+                                MonitorStructList[i] = null!;
+                                break;
+                            }
+                        }
+                        /*MonitorStructList[MonitorStructList.IndexOf(find)].HighFrequencyUpdateList.Dispose();
+                        MonitorStructList.Remove(find);*/
+                        SrsManageCommon.Common.RemoveNull(MonitorStructList);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
+                    }
+
                     Ingest ingest =
                         VhostIngestApis.GetVhostIngest(DeviceId!, vhost, stream, out ResponseStruct rs);
-                    restartIngest(DeviceId!, vhost, ingest);
+                    if (ingest == null || rs.Code != ErrorNumber.None)
+                    {
+                        Console.WriteLine("getIngest except:"+rs.Code.ToString()+" msg:"+rs.Message);
+                    }
+                    Console.WriteLine("get ingest");
+                    restartIngest(DeviceId!, vhost, ingest!);
+                    Console.WriteLine("restart ingest");
                     LogWriter.WriteLog("监控发现有Ingest异常，执行重启...",
                         string.Format("DeviceId:{0},Vhost:{1},App:{2},Stream:{3}", DeviceId, vhost, app, stream),
                         ConsoleColor.Yellow);
+                    Console.WriteLine("start watcher");
+                    Watcher.EnableRaisingEvents = true;
                 }
             }
         }

@@ -384,10 +384,10 @@ namespace SrsApis.SrsManager
                                          ".conf";
                         _srsDeviceId = SrsManageCommon.Common.RemoveDoubleQuotation(Srs.Heartbeat.Device_id!)!;
                     }
-
                     if (SrsManageCommon.Common.SystemConfig.EnableIngestKeeper)//启用ingest流监控
                     {
                         _ingestKeeper= new IngestMonitor(Srs.Ff_log_dir!,".log",Srs.DeviceId);
+                        LogWriter.WriteLog("启用Ingest监控:"+Srs.DeviceId+"->"+Srs.Ff_log_dir!);
                     }
                     return true;
                 }

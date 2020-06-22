@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_FreeSql", "Test_FreeSq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_SqlSugar", "Test_SqlSugar\Test_SqlSugar.csproj", "{9179C4B3-6BA6-46DF-9CE7-388F82C8E672}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_FileMonitor", "Test_FileMonitor\Test_FileMonitor.csproj", "{1AF2C78B-01C0-46B6-A699-BB8D318FAB4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,5 +75,9 @@ Global
 		{9179C4B3-6BA6-46DF-9CE7-388F82C8E672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9179C4B3-6BA6-46DF-9CE7-388F82C8E672}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9179C4B3-6BA6-46DF-9CE7-388F82C8E672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AF2C78B-01C0-46B6-A699-BB8D318FAB4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AF2C78B-01C0-46B6-A699-BB8D318FAB4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AF2C78B-01C0-46B6-A699-BB8D318FAB4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AF2C78B-01C0-46B6-A699-BB8D318FAB4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -21,6 +21,7 @@ namespace SrsApis.SrsManager.Apis
             try
             {
                 dvrVideo.Deleted = false;
+                dvrVideo.Undo = false;
                 dvrVideo.UpdateTime = DateTime.Now;
                 var onPublishList =
                     FastUsefulApis.GetOnPublishMonitorListByDeviceId(dvrVideo.Device_Id!, out ResponseStruct rs);
@@ -31,7 +32,8 @@ namespace SrsApis.SrsManager.Apis
                     dvrVideo.MonitorType = ret.MonitorType;
                     dvrVideo.RecordDate = DateTime.Now.ToString("yyyy-MM-dd");
                 }
-
+                SrsManager srs = SystemApis.GetSrsManagerInstanceByDeviceId(dvrVideo.Device_Id!);
+                dvrVideo.Url = ":"+srs.Srs.Http_server!.Listen+dvrVideo.VideoPath!.Replace(srs.Srs.Http_server.Dir!, "");
                 lock (Common.LockDbObjForDvrVideo)
                 {
                     OrmService.Db.Insert(dvrVideo).ExecuteAffrows();

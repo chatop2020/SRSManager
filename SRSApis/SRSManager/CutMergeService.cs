@@ -26,7 +26,7 @@ namespace SrsApis.SrsManager
                     var taskReturn = CutMerge(value);
                     if (taskReturn != null)
                     {
-                        taskReturn.Uri = "http://192.168.2.42:5800" +
+                        taskReturn.Uri = ":"+SrsManageCommon.Common.SystemConfig.HttpPort+
                                          taskReturn.FilePath!.Replace(Common.WorkPath + "CutMergeFile", "");
                         var postDate = JsonHelper.ToJson(taskReturn);
                         var ret = NetHelperNew.HttpPostRequest(taskReturn.Task.CallbakUrl!, null!, postDate);
