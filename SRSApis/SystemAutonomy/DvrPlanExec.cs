@@ -253,7 +253,7 @@ namespace SRSApis.SystemAutonomy
                                 {
                                     if (File.Exists(ret.VideoPath))
                                     {
-                                        File.Delete(ret.VideoPath);
+                                        File.Delete(ret.VideoPath); 
                                         deleteSize += (long) ret.FileSize!;
                                         LogWriter.WriteLog("删除录制文件", ret.VideoPath!);
                                         
