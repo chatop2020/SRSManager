@@ -21,7 +21,9 @@ namespace SrsManageCommon
         private int _dvrPlanExecServiceinterval=1000 * 60;
         private int _srsAdnffmpegLogMonitorServiceinterval=1000 * 60 * 5;
         private int _srsClientManagerServiceinterval=1000 * 5;
-        private bool _enableIngestKeeper = true; 
+        private bool _enableIngestKeeper = true;
+        private string? _ffmpegPath = "./ffmpeg";
+       
 
         /// <summary>
         /// http端口
@@ -86,6 +88,12 @@ namespace SrsManageCommon
             set => _srsClientManagerServiceinterval = value;
         }
 
+        public string? FfmpegPath
+        {
+            get => _ffmpegPath;
+            set => _ffmpegPath = value;
+        }
+
         private string[] getkv(string s, string splitchar)
         {
             return s.Split(splitchar, StringSplitOptions.RemoveEmptyEntries);
@@ -104,6 +112,16 @@ namespace SrsManageCommon
                 kv[0] = kv[0].Trim().ToLower();
                 switch (kv[0])
                 {
+                    case "ffmpegpath":
+                        if (kv.Length == 2)
+                        {
+                            if (!string.IsNullOrEmpty(kv[1]))
+                            {
+                                FfmpegPath = kv[1].Trim();
+                                Common.FFmpegBinPath = FfmpegPath;
+                            }
+                        }
+                        break;
                     case "auto_cleintmanagerinterval":
                         if (kv.Length == 2)
                         {
@@ -254,6 +272,7 @@ namespace SrsManageCommon
             List<string> writeFile = new List<string>();
             writeFile.Add("httpport::" + HttpPort + ";");
             writeFile.Add("password::" + Password + ";");
+            writeFile.Add("ffmpegpath::" + Common.FFmpegBinPath+ ";");
             writeFile.Add("db::" + Db + ";");
             writeFile.Add("dbtype::" + Enum.GetName(typeof(DataType), this.DbType)!.ToLower() + ";");
             writeFile.Add("auto_cleintmanagerinterval::" + SrsClientManagerServiceinterval + ";");

@@ -114,18 +114,16 @@ namespace SrsWebApi
         public void CommonInit()
         {
             Common.SystemConfig = new SystemConfig();
-            if (!checkFFmpegBin(Common.FFmpegBinPath))
-            {
-                LogWriter.WriteLog("FFmpeg可执行文件不存在，系统退出，请保证FFmpeg可执行文件存在", Common.FFmpegBinPath);
-                Common.KillSelf();
-            }
-
-            
             WorkPath = Environment.CurrentDirectory + "/";
             ConfPath = WorkPath + "srswebapi.wconf";
 
             if (Common.SystemConfig.LoadConfig(ConfPath))
             {
+                if (!checkFFmpegBin(Common.FFmpegBinPath))
+                {
+                    LogWriter.WriteLog("FFmpeg可执行文件不存在，系统退出，请保证FFmpeg可执行文件存在", Common.FFmpegBinPath);
+                    Common.KillSelf();
+                }
                 BaseUrl = "http://*:" + Common.SystemConfig.HttpPort;
                 ErrorMessage.Init();
                 SessionManager = new SessionManager();
