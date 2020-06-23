@@ -1135,7 +1135,7 @@ namespace SrsApis.SrsManager.Apis
             result.Input = new IngestInput();
             result.Input.Type = IngestInputType.stream;
             result.Input.Url = rtspUrl;
-            result.Ffmpeg = "./ffmpeg";
+            result.Ffmpeg = SrsManageCommon.Common.FFmpegBinPath;
             result.Engines = new List<IngestTranscodeEngine>();
             IngestTranscodeEngine eng = new IngestTranscodeEngine();
             eng.Enabled = true;
