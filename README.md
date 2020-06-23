@@ -71,6 +71,8 @@ auto_dvrplaninterval::60000;
 #自动ingest保活的运行间隔时间（毫秒），这个可能有点问题，暂时弃用
 #增加参数enableingestkeeper,是否启用ingest拉流监控，启用后会针对每 srs进程进行监控
 enableingestkeeper::true;
+#增加参数ffmpegpath,用于指定ffmpeg可执行文件的路径，不指定则默认为StreamNode目录下
+ffmpegpath::./ffmpeg;
 
 ```
 ### 启动命令
