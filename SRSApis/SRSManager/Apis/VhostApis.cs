@@ -205,7 +205,7 @@ namespace SrsApis.SrsManager.Apis
                     inginput.Url =
                         "rtsp://admin:12345678@192.168.2.21:554/Streaming/Channels/501?transportmode=unicast";
                     ing.Input = inginput;
-                    ing.Ffmpeg = "/bin/local/ffmpeg";
+                    ing.Ffmpeg = SrsManageCommon.Common.FFmpegBinPath;
                     ingeng.SectionsName = "engine";
                     ingeng.Enabled = true;
                     ingeng.Vcodec = "copy";
@@ -232,7 +232,7 @@ namespace SrsApis.SrsManager.Apis
                     inginput1.Url =
                         "./demo.mp4";
                     ing1.Input = inginput1;
-                    ing1.Ffmpeg = "/bin/local/ffmpeg";
+                    ing1.Ffmpeg = SrsManageCommon.Common.FFmpegBinPath;
                     ingeng1.SectionsName = "engine";
                     ingeng1.Enabled = true;
                     ingeng1.Output = "rtmp://127.0.0.1/[vhost]/[live]/[livestream]";

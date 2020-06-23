@@ -43,6 +43,8 @@ namespace SrsManageCommon
         /// </summary>
         public static string FFmpegBinPath = "./ffmpeg";
 
+        public static byte? FFmpegThreadCount = 2;
+
 
         static Common()
         {

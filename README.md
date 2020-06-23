@@ -73,6 +73,8 @@ auto_dvrplaninterval::60000;
 enableingestkeeper::true;
 #增加参数ffmpegpath,用于指定ffmpeg可执行文件的路径，不指定则默认为StreamNode目录下
 ffmpegpath::./ffmpeg;
+#增加参数ffmpegthreadcount，用于指定在使 ffmpeg进行视频合并时使用 ffmpeg线程数量,默认为2个线程，线程数量不宜过多，2-4个比较合适
+ffmpegthreadcount::2;
 
 ```
 ### 启动命令

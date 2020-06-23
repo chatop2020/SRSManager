@@ -23,6 +23,7 @@ namespace SrsManageCommon
         private int _srsClientManagerServiceinterval=1000 * 5;
         private bool _enableIngestKeeper = true;
         private string? _ffmpegPath = "./ffmpeg";
+        private byte? _ffmpegThreadCount = 2;
        
 
         /// <summary>
@@ -94,6 +95,12 @@ namespace SrsManageCommon
             set => _ffmpegPath = value;
         }
 
+        public byte? FfmpegThreadCount
+        {
+            get => _ffmpegThreadCount;
+            set => _ffmpegThreadCount = value;
+        }
+
         private string[] getkv(string s, string splitchar)
         {
             return s.Split(splitchar, StringSplitOptions.RemoveEmptyEntries);
@@ -112,6 +119,16 @@ namespace SrsManageCommon
                 kv[0] = kv[0].Trim().ToLower();
                 switch (kv[0])
                 {
+                    case "ffmpegthreadcount":
+                        if (kv.Length == 2)
+                        {
+                            if (!string.IsNullOrEmpty(kv[1]))
+                            {
+                                FfmpegThreadCount = byte.Parse(kv[1].Trim());
+                                Common.FFmpegThreadCount = byte.Parse(kv[1].Trim());
+                            }
+                        }
+                        break;
                     case "ffmpegpath":
                         if (kv.Length == 2)
                         {
@@ -273,6 +290,7 @@ namespace SrsManageCommon
             writeFile.Add("httpport::" + HttpPort + ";");
             writeFile.Add("password::" + Password + ";");
             writeFile.Add("ffmpegpath::" + Common.FFmpegBinPath+ ";");
+            writeFile.Add("ffmpegthreadcount::" + Common.FFmpegThreadCount+ ";");
             writeFile.Add("db::" + Db + ";");
             writeFile.Add("dbtype::" + Enum.GetName(typeof(DataType), this.DbType)!.ToLower() + ";");
             writeFile.Add("auto_cleintmanagerinterval::" + SrsClientManagerServiceinterval + ";");
