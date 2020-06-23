@@ -386,8 +386,8 @@ namespace SrsApis.SrsManager
                     }
                     if (SrsManageCommon.Common.SystemConfig.EnableIngestKeeper)//启用ingest流监控
                     {
-                        _ingestKeeper= new IngestMonitor(Srs.Ff_log_dir!,".log",Srs.DeviceId);
-                        LogWriter.WriteLog("启用Ingest监控:"+Srs.DeviceId+"->"+Srs.Ff_log_dir!);
+                        _ingestKeeper= new IngestMonitor(Srs.Ff_log_dir!,".log", _srsDeviceId);
+                        LogWriter.WriteLog("启用Ingest监控:"+_srsDeviceId+"->"+Srs.Ff_log_dir!);
                     }
                     return true;
                 }
