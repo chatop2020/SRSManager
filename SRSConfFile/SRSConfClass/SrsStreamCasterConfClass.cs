@@ -112,6 +112,12 @@ namespace SrsConfFile.SRSConfClass
         private ushort? rtp_idle_timeout;
         private ushort? rtp_port_max; //user for rtsp&gb28181 caster
         private ushort? rtp_port_min; //use for rtsp&gb28181 caster
+        /// <summary>
+        ///  jitterbuffer_enable
+        ///  # 是否开启rtp缓冲
+        ///  # 开启之后能有效解决rtp乱序等问题
+        /// </summary>
+        private bool? jitterbuffer_enable;
 
         private Sip? ssip;
         /*use for gb28181
@@ -126,6 +132,7 @@ namespace SrsConfFile.SRSConfClass
           # 像ffplay, vlc都可以，但是flash是没有声音，
           # 因为flash,只支持11025 22050 44100
          */
+        
 
 
         private bool? wait_keyframe;
@@ -133,6 +140,12 @@ namespace SrsConfFile.SRSConfClass
         public SrsStreamCasterConfClass()
         {
             SectionsName = "stream_caster";
+        }
+
+        public bool? Jitterbuffer_Enable
+        {
+            get => jitterbuffer_enable;
+            set => jitterbuffer_enable = value;
         }
 
         public Sip? sip

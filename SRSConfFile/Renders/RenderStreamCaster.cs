@@ -110,6 +110,10 @@ namespace SrsConfFile.Renders
                         case "auto_create_channel":
                             sccc.Auto_create_channel = Common.str2bool(tmpkv.Value);
                             break;
+                        case "jitterbuffer_enable":
+                            sccc.Jitterbuffer_Enable=Common.str2bool(tmpkv.Value);
+                            break;
+                            
                     }
                 }
 
