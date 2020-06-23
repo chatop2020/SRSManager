@@ -1088,7 +1088,7 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="rs"></param>
         /// <param name="username"></param>
         /// <returns></returns>
-        public static Ingest GetOnvifMonitorIngestTemplate(string username, string password, string rtspUrl,
+        public static Ingest GetOnvifMonitorIngestTemplate(string? username, string? password, string rtspUrl,
             out ResponseStruct rs)
         {
             rs = new ResponseStruct()
