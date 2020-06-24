@@ -86,7 +86,7 @@ namespace SrsWebApi.Controllers
                 UpdateTime = DateTime.Now,
                 Vhost = client.Vhost,
             };
-            var rt = SrsHooksApis.OnPublish(tmpOnlineClient);
+            var rt = SrsHooksApis.OnUnPublish(tmpOnlineClient);
             if (rt) return 0;
             return -1;
         }
