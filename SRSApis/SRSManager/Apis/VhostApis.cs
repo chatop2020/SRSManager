@@ -180,7 +180,7 @@ namespace SrsApis.SrsManager.Apis
             vhost.InstanceName = "your.domain.com"; //change it 
             vhost.VhostDomain = vhost.InstanceName;
             vhost.SectionsName = "vhost";
-            vhost.Enabled = true;
+            vhost.Enabled = false;
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
@@ -188,6 +188,34 @@ namespace SrsApis.SrsManager.Apis
             };
             switch (vtype)
             {
+                case VhostIngestInputType.WebCast://为直播而加
+                    Dvr dvr= new Dvr();
+                    dvr.Dvr_apply = "all";
+                    dvr.Enabled = true;
+                    dvr.Dvr_plan = "segment";
+                    dvr.Dvr_path = "请替换";
+                    dvr.Dvr_duration = 120;
+                    dvr.Dvr_wait_keyframe = true;
+                    dvr.Time_Jitter = PlayTimeJitter.full;
+                    HttpHooks httpHooks = new HttpHooks();
+                    httpHooks.Enabled = true;
+                    httpHooks.On_connect = "http://127.0.0.1:5800/SrsHooks/OnConnect";
+                    httpHooks.On_publish = "http://127.0.0.1:5800/SrsHooks/OnPublish";
+                    httpHooks.On_close = "http://127.0.0.1:5800/SrsHooks/OnClose";
+                    httpHooks.On_play = "http://127.0.0.1:5800/SrsHooks/OnPlay";
+                    httpHooks.On_unpublish = "http://127.0.0.1:5800/SrsHooks/OnUnPublish";
+                    httpHooks.On_stop = "http://127.0.0.1:5800/SrsHooks/OnStop";
+                    httpHooks.On_dvr = "http://127.0.0.1:5800/SrsHooks/OnDvr";
+                    httpHooks.On_hls = "http://127.0.0.1:5800/SrsHooks/Test";
+                    httpHooks.On_hls_notify = "http://127.0.0.1:5800/SrsHooks/Test";
+                    HttpRemux httpRemux= new HttpRemux();
+                    httpRemux.Enabled = true;
+                    httpRemux.Fast_cache = 30;
+                    httpRemux.Mount = "[vhost]/[app]/[stream].flv";
+                    vhost.Vdvr = dvr;
+                    vhost.Vhttp_hooks = httpHooks;
+                    vhost.Vhttp_remux = httpRemux;
+                    return vhost;
                 case VhostIngestInputType.Stream: //RTSP or other Stream
                     Ingest ing = new Ingest();
                     ing.Enabled = true;

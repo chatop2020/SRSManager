@@ -7,6 +7,7 @@ namespace SRSManageCommon.ManageStructs
     {
         Stream,
         File,
-        Device
+        Device,
+        WebCast,
     }
 }

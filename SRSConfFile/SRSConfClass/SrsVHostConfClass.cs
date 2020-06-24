@@ -1431,6 +1431,7 @@ namespace SrsConfFile.SRSConfClass
         private Publish? vpublish;
         private Refer? vrefer;
         private Security? vsecurity;
+      
 
         public SrsvHostConfClass()
         {
@@ -1606,5 +1607,7 @@ namespace SrsConfFile.SRSConfClass
             get => _vtranscodeses;
             set => _vtranscodeses = value;
         }
+
+       
     }
 }

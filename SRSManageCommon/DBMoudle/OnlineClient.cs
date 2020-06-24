@@ -12,6 +12,7 @@ namespace SRSManageCommon.DBMoudle
     [Index("uk_isonline", "IsOnline", false)]
     [Index("uk_updateTime", "UpdateTime", false)]
     [Index("uk_deviceId", "StartTime, EndTime", false)]
+    [Index("uk_groupFind", "DeviceId, Vhost, Stream, App", true)]
     [Serializable]
     public class OnlineClient
     {

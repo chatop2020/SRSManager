@@ -37,6 +37,7 @@ namespace SrsManageCommon
         public static Object LockDbObjForDvrVideo = new object();
         public static Object LockDbObjForStreamDvrPlan = new object();
         public static Object LockDbObjForHeartbeat = new object();
+        public static Object LockDbObjForLivePlan = new object();
         public static readonly string LogPath = WorkPath + "logs/";
         /// <summary>
         /// ffmpeg的可执行文件地址

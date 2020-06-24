@@ -32,8 +32,10 @@ namespace SrsApis.SrsManager.Apis
                     dvrVideo.MonitorType = ret.MonitorType;
                     dvrVideo.RecordDate = DateTime.Now.ToString("yyyy-MM-dd");
                 }
+
                 SrsManager srs = SystemApis.GetSrsManagerInstanceByDeviceId(dvrVideo.Device_Id!);
-                dvrVideo.Url = ":"+srs.Srs.Http_server!.Listen+dvrVideo.VideoPath!.Replace(srs.Srs.Http_server.Dir!, "");
+                dvrVideo.Url = ":" + srs.Srs.Http_server!.Listen +
+                               dvrVideo.VideoPath!.Replace(srs.Srs.Http_server.Dir!, "");
                 lock (Common.LockDbObjForDvrVideo)
                 {
                     OrmService.Db.Insert(dvrVideo).ExecuteAffrows();
@@ -102,6 +104,18 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
                         tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
+                        var retPlan = LiveBroadcastApis.CheckIsLiveCh(onlineClient, out ResponseStruct rs);
+
+                        if (retPlan != null)
+                        {
+                            lock (Common.LockDbObjForLivePlan)
+                            {
+                                OrmService.Db.Update<LiveBroadcastPlan>().Set(x => x.UpdateTime, DateTime.Now)
+                                    .Set(x => x.PlanStatus, LiveBroadcastPlanStatus.Finished)
+                                    .Where(x => x.Id == retPlan!.Id).ExecuteAffrows();
+                            }
+                        }
+                        
                         OrmService.Db.Delete<OnlineClient>()
                             .Where(x => x.Client_Id == onlineClient.Client_Id && x.ClientIp == onlineClient.ClientIp)
                             .ExecuteAffrows();
@@ -319,6 +333,19 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
                         tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
+                        var retPlan = LiveBroadcastApis.CheckIsLiveCh(onlineClient, out ResponseStruct rs);
+                        var retBool = LiveBroadcastApis.CheckLivePlan(retPlan, out rs); //如果不是直播计划内的就踢掉连接
+                        if (!retBool && retPlan != null)
+                        {
+                            return false;
+                        }
+
+                        lock (Common.LockDbObjForLivePlan)
+                        {
+                            OrmService.Db.Update<LiveBroadcastPlan>().Set(x => x.UpdateTime, DateTime.Now)
+                                .Set(x => x.PlanStatus, LiveBroadcastPlanStatus.Living)
+                                .Where(x => x.Id == retPlan!.Id).ExecuteAffrows();
+                        }
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.Monitor)
                             .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, onlineClient.HttpUrl)
                             .Set(x => x.Param, onlineClient.Param)
@@ -329,8 +356,17 @@ namespace SrsApis.SrsManager.Apis
                             .ExecuteAffrows();
                         if (ret <= 0)
                         {
-                            onlineClient.ClientType = ClientType.Monitor;
-                            onlineClient.MonitorType = MonitorType.Unknow;
+                            if (retPlan != null && retBool)
+                            {
+                                onlineClient.ClientType = ClientType.User;
+                                onlineClient.MonitorType = MonitorType.Webcast;
+                            }
+                            else
+                            {
+                                onlineClient.ClientType = ClientType.Monitor;
+                                onlineClient.MonitorType = MonitorType.Unknow;
+                            }
+                            
                             onlineClient.IsOnline = true;
                             var retInsert = OrmService.Db.Insert(onlineClient).ExecuteAffrows();
                             if (retInsert > 0)
@@ -389,6 +425,18 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
                         tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
+                        var retPlan = LiveBroadcastApis.CheckIsLiveCh(onlineClient, out ResponseStruct rs);
+
+                        if (retPlan != null)
+                        {
+                            lock (Common.LockDbObjForLivePlan)
+                            {
+                                OrmService.Db.Update<LiveBroadcastPlan>().Set(x => x.UpdateTime, DateTime.Now)
+                                    .Set(x => x.PlanStatus, LiveBroadcastPlanStatus.Finished)
+                                    .Where(x => x.Id == retPlan!.Id).ExecuteAffrows();
+                            }
+                        }
+
                         var ret = OrmService.Db.Update<OnlineClient>()
                             .Set(x => x.IsOnline, false).Set(x => x.UpdateTime, onlineClient.UpdateTime)
                             .Where(x => x.Client_Id == onlineClient.Client_Id &&
@@ -396,7 +444,15 @@ namespace SrsApis.SrsManager.Apis
                             .ExecuteAffrows();
                         if (ret <= 0)
                         {
-                            onlineClient.ClientType = ClientType.Monitor;
+                            if (retPlan == null)
+                            {
+                                onlineClient.ClientType = ClientType.Monitor; 
+                            }
+                            else
+                            {
+                                onlineClient.ClientType = ClientType.User;
+                                onlineClient.MonitorType = MonitorType.Webcast;
+                            }
                             onlineClient.IsOnline = false;
                             var retInsert = OrmService.Db.Insert(onlineClient).ExecuteAffrows();
                             if (retInsert > 0)
@@ -457,6 +513,15 @@ namespace SrsApis.SrsManager.Apis
                         tmpClientLog.RtspUrl = onlineClient.RtspUrl;
                         tmpClientLog.UpdateTime = DateTime.Now;
                         OrmService.Db.Insert<ClientLog>(tmpClientLog).ExecuteAffrows();
+
+                        var retPlan = LiveBroadcastApis.CheckIsLiveCh(onlineClient, out ResponseStruct rs);
+                        var retBool = LiveBroadcastApis.CheckLivePlan(retPlan, out rs); //如果不是直播计划内的就踢掉连接
+                        if (!retBool && retPlan != null)
+                        {
+                            return false;
+                        }
+
+
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.Monitor)
                             .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, onlineClient.HttpUrl)
                             .Set(x => x.Param, onlineClient.Param)
