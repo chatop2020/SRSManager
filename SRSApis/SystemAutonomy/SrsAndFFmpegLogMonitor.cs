@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Threading;
+using SrsApis.SrsManager.Apis;
 using SrsManageCommon;
 
 namespace SRSApis.SystemAutonomy
@@ -40,6 +41,7 @@ namespace SRSApis.SystemAutonomy
             LogWriter.WriteLog("转存ffmpeg日志,并清空现有日志", ffmpegFilePath + "->" + fileName);
         }
 
+       
         private void Run()
         {
             while (true)

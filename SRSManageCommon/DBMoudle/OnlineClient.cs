@@ -12,7 +12,7 @@ namespace SRSManageCommon.DBMoudle
     [Index("uk_isonline", "IsOnline", false)]
     [Index("uk_updateTime", "UpdateTime", false)]
     [Index("uk_deviceId", "StartTime, EndTime", false)]
-    [Index("uk_groupFind", "DeviceId, Vhost, Stream, App", true)]
+    [Index("uk_groupFind", "Device_Id, Vhost, Stream, App", false)]
     [Serializable]
     public class OnlineClient
     {
@@ -35,7 +35,7 @@ namespace SRSManageCommon.DBMoudle
         private string? _pageUrl;
         private DateTime? _updateTime;
 
-        [Column(IsIdentity = true)]
+        [Column(IsPrimary = true, IsIdentity = true )]
         [JsonIgnore]
         public long Id
         {

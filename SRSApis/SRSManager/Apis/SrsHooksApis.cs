@@ -123,7 +123,7 @@ namespace SrsApis.SrsManager.Apis
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
                     return false;
                 }
 
@@ -221,7 +221,7 @@ namespace SrsApis.SrsManager.Apis
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
                     return false;
                 }
             }
@@ -290,7 +290,7 @@ namespace SrsApis.SrsManager.Apis
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
                     return false;
                 }
             }
@@ -340,12 +340,17 @@ namespace SrsApis.SrsManager.Apis
                             return false;
                         }
 
-                        lock (Common.LockDbObjForLivePlan)
+                        if (retPlan != null)
                         {
-                            OrmService.Db.Update<LiveBroadcastPlan>().Set(x => x.UpdateTime, DateTime.Now)
-                                .Set(x => x.PlanStatus, LiveBroadcastPlanStatus.Living)
-                                .Where(x => x.Id == retPlan!.Id).ExecuteAffrows();
+                            lock (Common.LockDbObjForLivePlan)
+                            {
+
+                                OrmService.Db.Update<LiveBroadcastPlan>().Set(x => x.UpdateTime, DateTime.Now)
+                                    .Set(x => x.PlanStatus, LiveBroadcastPlanStatus.Living)
+                                    .Where(x => x.Id == retPlan!.Id).ExecuteAffrows();
+                            }
                         }
+
                         var ret = OrmService.Db.Update<OnlineClient>().Set(x => x.ClientType, ClientType.Monitor)
                             .Set(x => x.IsOnline, true).Set(x => x.HttpUrl, onlineClient.HttpUrl)
                             .Set(x => x.Param, onlineClient.Param)
@@ -382,7 +387,7 @@ namespace SrsApis.SrsManager.Apis
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
                     return false;
                 }
             }
@@ -469,7 +474,7 @@ namespace SrsApis.SrsManager.Apis
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
                     return false;
                 }
             }
@@ -551,7 +556,7 @@ namespace SrsApis.SrsManager.Apis
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.Message+"\r\n"+ex.StackTrace);
                     return false;
                 }
             }

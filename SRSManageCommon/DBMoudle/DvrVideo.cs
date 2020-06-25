@@ -35,7 +35,7 @@ namespace SRSManageCommon.DBMoudle
         private string? _url;
         private bool? _undo;
 
-        [Column(IsIdentity = true)]
+        [Column(IsPrimary = true, IsIdentity = true )]
         public long Id
         {
             get => _id;

@@ -60,7 +60,7 @@ namespace SrsApis.SrsManager.Apis
             };
             if (plan != null)
             {
-                if (plan.StartTime <= DateTime.Now && plan.EndTime >= DateTime.Now) //时间不在范围内也要踢掉
+                if (plan.StartTime <= DateTime.Now && plan.EndTime >= DateTime.Now && plan.Enable==true) //时间不在范围内也要踢掉
                 {
                     return true;
                 }

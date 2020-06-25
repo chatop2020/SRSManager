@@ -72,6 +72,7 @@ namespace SRSApis.SystemAutonomy
             }
         }
 
+        
         /// <summary>
         /// 清除24小时前软删除的文件
         /// </summary>
@@ -468,6 +469,8 @@ namespace SRSApis.SystemAutonomy
             return false;
           
         }
+        
+        
 
         private bool checkTimeRange(StreamDvrPlan sdp)
         {
@@ -492,7 +495,29 @@ namespace SRSApis.SystemAutonomy
         }
 
      
-
+        //删除所有空的目录，用于dvr目录
+        private void clearNofileDir(string deviceId)
+        {
+            var srs = SystemApis.GetSrsManagerInstanceByDeviceId(deviceId);
+            if (srs != null)
+            {
+                string dvrPath = srs.SrsWorkPath + srs.SrsDeviceId + "/wwwroot/dvr";
+                if (Directory.Exists(dvrPath))
+                {
+                    DirectoryInfo dir = new DirectoryInfo(dvrPath);
+                    DirectoryInfo[] subdirs = dir.GetDirectories("*.*", SearchOption.AllDirectories);
+                    foreach (DirectoryInfo subdir in subdirs)
+                    {
+                        FileSystemInfo[] subFiles = subdir.GetFileSystemInfos();
+                        if (subFiles.Length == 0)
+                        {
+                            LogWriter.WriteLog("监控发现有空目录需要删除...",subdir.FullName);
+                            subdir.Delete();
+                        }
+                    }
+                }   
+            }
+        }
         private void Run()
         {
             while (true)
@@ -506,6 +531,7 @@ namespace SRSApis.SystemAutonomy
 
                 foreach (var deviceId in srsDeviceIdList)
                 {
+                    clearNofileDir(deviceId);//清除空的目录
                     ReqGetDvrPlan rgdp = new ReqGetDvrPlan();
                     rgdp.DeviceId = deviceId;
 

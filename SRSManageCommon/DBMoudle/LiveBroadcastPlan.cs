@@ -29,7 +29,7 @@ namespace SRSManageCommon.DBMoudle
         private DateTime? _updateTime;
         private string? _publishIpAddr;
 
-        [Column(IsIdentity = true)]
+        [Column(IsPrimary = true, IsIdentity = true )]
         public long Id
         {
             get => _id;
