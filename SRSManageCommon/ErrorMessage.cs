@@ -68,6 +68,7 @@ namespace SrsManageCommon
         DvrCutMergeTimeLimit =-5052, //时间跨度超过10分钟，不允许同步返回，请使用异步回调方式进行
         DvrCutMergeFileNotFound =-5053,//时间周期内没有找到相关视频文件
         DvrCutProcessQueueLimit =-5054,//处理队列已满，请稍后再试
+        DvrCutMergeTaskNotExists=-5055,//合并裁剪任务已经完成或不存在
         SrsGb28181IsDisabled6000 = 6000, //GB28181服务没有启用
         SrsGb28181SessionOrMediaChannelExists6001 = 6001, //SIP会话或媒体通道已存在
         SrsGb28181SessionOrMediaChannelNotExists6002 = 6002, //SIP会话或媒体通道不存在
@@ -179,9 +180,8 @@ namespace SrsManageCommon
             ErrorDic[ErrorNumber.DvrCutMergeTimeLimit] = "时间跨度超过10分钟，不允许同步返回，请使用异步回调方式进行";
             ErrorDic[ErrorNumber.DvrCutMergeFileNotFound] = "时间周期内没有找到相关视频文件";
             ErrorDic[ErrorNumber.DvrCutProcessQueueLimit] = "合并请求处理队列已满，请稍后再试";
-
-
-
+            ErrorDic[ErrorNumber.DvrCutMergeTaskNotExists] = "合并请求任务已完成或不存在";
+            
         }
     }
 }

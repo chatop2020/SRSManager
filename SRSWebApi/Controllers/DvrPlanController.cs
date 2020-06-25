@@ -16,6 +16,28 @@ namespace SrsWebApi.Controllers
     public class DvrPlanController : ControllerBase
     {
     
+        
+        /// <summary>
+        /// 获取合并剪辑任务的进度信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [AuthVerify]
+        [Log]
+        [Route("/DvrPlan/GetMergeTaskStatus")]
+        public JsonResult GetMergeTaskStatus(string taskId)
+        {
+            ResponseStruct rss = CommonFunctions.CheckParams(new object[] {taskId});
+            if (rss.Code != ErrorNumber.None)
+            {
+                return Program.CommonFunctions.DelApisResult(null!, rss);
+            }
+
+            var rt = DvrPlanApis.GetMergeTaskStatus(taskId, out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+
+        
         /// <summary>
         /// 裁剪合并视频文件,callbackurl为空且时间间隔不超过10分钟将同步返回，否则完成后异步回调callbackurl地址
         /// </summary>

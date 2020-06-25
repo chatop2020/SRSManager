@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using SrsManageCommon;
@@ -25,7 +26,7 @@ namespace SrsApis.SrsManager
                     var taskReturn = CutMerge(value);
                     if (taskReturn != null)
                     {
-                        taskReturn.Uri = ":"+Common.SystemConfig.HttpPort+
+                        taskReturn.Uri = ":" + Common.SystemConfig.HttpPort +
                                          taskReturn.FilePath!.Replace(Common.WorkPath + "CutMergeFile", "");
                         var postDate = JsonHelper.ToJson(taskReturn);
                         var ret = NetHelperNew.HttpPostRequest(taskReturn.Task.CallbakUrl!, null!, postDate);
@@ -53,7 +54,7 @@ namespace SrsApis.SrsManager
                 string videoFileNameWithOutExt = Path.GetFileNameWithoutExtension(task.CutMergeFileList[i]!.FilePath!);
                 string videoTsFileName = videoFileNameWithOutExt + ".ts";
                 string videoTsFilePath = tsPath + "/" + videoTsFileName;
-                string ffmpegCmd =Common.FFmpegBinPath + " -i " + task.CutMergeFileList[i]!.FilePath! +
+                string ffmpegCmd = Common.FFmpegBinPath + " -i " + task.CutMergeFileList[i]!.FilePath! +
                                    " -vcodec copy -acodec copy -vbsf h264_mp4toannexb " + videoTsFilePath + " -y";
                 var retRun = LinuxShell.Run(ffmpegCmd, 1000 * 60 * 30, out string std, out string err);
 
@@ -63,7 +64,7 @@ namespace SrsApis.SrsManager
                     long find = -1;
                     if (!string.IsNullOrEmpty(std))
                     {
-                        var str =Common.GetValue(std, "video:", "audio:");
+                        var str = Common.GetValue(std, "video:", "audio:");
                         if (!string.IsNullOrEmpty(str))
                         {
                             str = str.ToLower();
@@ -92,7 +93,7 @@ namespace SrsApis.SrsManager
                             task.TaskId! + "->" + videoTsFilePath + " ***\r\n" + err, ConsoleColor.Yellow);
                     }
                 }
-
+                task.ProcessPercentage +=   ((double) 1 / (double) task.CutMergeFileList!.Count * 100f) * 0.4f;
                 Thread.Sleep(20);
             }
 
@@ -114,6 +115,7 @@ namespace SrsApis.SrsManager
             {
                 Directory.CreateDirectory(outPutPath);
             }
+
             List<string> mergeStringList = new List<string>();
             for (int i = 0; i <= task.CutMergeFileList!.Count - 1; i++)
             {
@@ -121,10 +123,13 @@ namespace SrsApis.SrsManager
             }
 
             File.WriteAllLines(mergePath + "files.txt", mergeStringList);
-            string newFilePath = outPutPath+ "/" + task.TaskId + "_"+DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")+".mp4";
-            string ffmpegCmd = Common.FFmpegBinPath + " -threads "+Common.FFmpegThreadCount.ToString()+" -f concat -safe 0 -i " + mergePath +
+            string newFilePath = outPutPath + "/" + task.TaskId + "_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") +
+                                 ".mp4";
+            string ffmpegCmd = Common.FFmpegBinPath + " -threads " + Common.FFmpegThreadCount.ToString() +
+                               " -f concat -safe 0 -i " + mergePath +
                                "files.txt" + " -c copy  -movflags faststart " + newFilePath;
             var retRun = LinuxShell.Run(ffmpegCmd, 1000 * 60 * 30, out string std, out string err);
+            task.ProcessPercentage += 40f;
             if (retRun && (!string.IsNullOrEmpty(std) || !string.IsNullOrEmpty(err)) &&
                 File.Exists(newFilePath))
             {
@@ -233,10 +238,15 @@ namespace SrsApis.SrsManager
                 {
                     task = packageToTsStreamFile(task); //转ts文件
                     task.TaskStatus = TaskStatus.Cutting;
+
+                    List<CutMergeStruct> cutFileList = task.CutMergeFileList!
+                        .FindAll(x => x.CutEndPos != null && x.CutStartPos != null).ToList();
                     for (int i = 0; i <= task.CutMergeFileList!.Count - 1; i++)
                     {
                         if (task.CutMergeFileList[i].CutStartPos != null && task.CutMergeFileList[i].CutEndPos != null)
                         {
+                            task.ProcessPercentage +=   ((double) 1 / (double)cutFileList.Count * 100f) * 0.15f;
+                          
                             //做剪切
                             task.CutMergeFileList[i] = cutProcess(task.CutMergeFileList[i]);
                             Thread.Sleep(20);
@@ -244,6 +254,7 @@ namespace SrsApis.SrsManager
                     }
 
                     string filePath = mergeProcess(task);
+                    task.ProcessPercentage = 100f;
                     task.TaskStatus = TaskStatus.Closed;
                     stopwatch.Stop(); //  停止监视
                     TimeSpan timespan = stopwatch.Elapsed;

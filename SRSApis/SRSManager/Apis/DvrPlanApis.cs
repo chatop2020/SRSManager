@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using SRSApis.SystemAutonomy;
 using SrsManageCommon;
@@ -286,6 +287,33 @@ namespace SrsApis.SrsManager.Apis
         }
 
 
+        /// <summary>
+        /// 获取合并裁剪任务的情况,不包含同步任务
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static CutMergeTask GetMergeTaskStatus(string taskId, out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            var ret = CutMergeService.CutMergeTaskList.Where(x => x.TaskId == taskId).First();
+            if (ret == null)
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.DvrCutMergeTaskNotExists,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.DvrCutMergeTaskNotExists],
+                };
+                return null!;
+            }
+
+            return ret;
+        }
+
         public static CutMergeTaskResponse CutOrMergeVideoFile(ReqCutOrMergeVideoFile rcmv, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
@@ -328,6 +356,7 @@ namespace SrsApis.SrsManager.Apis
                         CreateTime = DateTime.Now,
                         TaskId = Common.CreateUuid()!,
                         TaskStatus = TaskStatus.Create,
+                        ProcessPercentage = 0,
                     };
                     var taskReturn = Task.Factory.StartNew(() => CutMergeService.CutMerge(task)); //抛线程处理
                     taskReturn.Wait();
@@ -352,6 +381,7 @@ namespace SrsApis.SrsManager.Apis
                         CreateTime = DateTime.Now,
                         TaskId = Common.CreateUuid()!,
                         TaskStatus = TaskStatus.Create,
+                        ProcessPercentage = 0,
                     };
                     try
                     {
