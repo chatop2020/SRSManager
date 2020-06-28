@@ -6,7 +6,40 @@ namespace SrsManageCommon
 {
     public static class FFmpegGetDuration
     {
-     
+        private static bool ifNotMp4(string ffmpegBinPath, string videoFilePath,out string videoPath)
+        {
+            string ext = Path.GetExtension(videoFilePath);
+            string newFileName = videoFilePath.Replace(ext, ".mp4");
+            string ffmpegCmd = ffmpegBinPath + " -i " + videoFilePath + " -c copy -movflags faststart " +
+                               newFileName;
+            videoPath = newFileName;
+            if (!string.IsNullOrEmpty(ext) && !ext.Trim().ToLower().Equals(".mp4"))
+            {
+               
+
+                if (LinuxShell.Run(ffmpegCmd, 60 * 1000 * 5, out string std, out string err))
+                {
+                    if (!string.IsNullOrEmpty(std) || !string.IsNullOrEmpty(err))
+                    {
+                        if (File.Exists(newFileName))
+                        {
+                            FileInfo fi = new FileInfo(newFileName);
+                            if (fi.Length > 100)
+                            {
+                                File.Delete(videoFilePath);
+                                return true;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+
+                    return false;
+                }
+                
+            }
+            return true;
+        }
 
         /// <summary>
         /// 输出视频的时长（毫秒）
@@ -14,12 +47,20 @@ namespace SrsManageCommon
         /// <param name="ffmpegBinPath"></param>
         /// <param name="videoFilePath"></param>
         /// <param name="duartion"></param>
+        /// <param name="path"></param>
         /// <returns></returns>
-        public static bool GetDuration(string ffmpegBinPath, string videoFilePath, out long duartion)
+        public static bool GetDuration(string ffmpegBinPath, string videoFilePath, out long duartion,out string path)
         {
             duartion = -1;
             if (File.Exists(ffmpegBinPath) && File.Exists(videoFilePath))
             {
+                string newPath = "";
+                var ret = ifNotMp4(ffmpegBinPath, videoFilePath, out newPath);
+                if (ret)
+                {
+                    videoFilePath = newPath;
+                }
+                path = videoFilePath;
                 string cmd = ffmpegBinPath + " -i " + videoFilePath;
                 if (LinuxShell.Run(cmd, 1000, out string std, out string err))
                 {
@@ -33,7 +74,7 @@ namespace SrsManageCommon
 
                         if (string.IsNullOrEmpty(tmp))
                         {
-                            tmp =  Common.GetValue(err, "Duration:", ",");
+                            tmp = Common.GetValue(err, "Duration:", ",");
                         }
 
                         if (!string.IsNullOrEmpty(tmp))
@@ -60,7 +101,7 @@ namespace SrsManageCommon
                                 min = min * 60;
                                 sec = sec + hour + min; //合计秒数
                                 duartion = sec * 1000 + (msec * 10); //算成毫秒
-                                LogWriter.WriteLog("获取视频时长："+duartion.ToString()+"毫秒",videoFilePath);
+                                LogWriter.WriteLog("获取视频时长：" + duartion.ToString() + "毫秒", videoFilePath);
                                 return true;
                             }
                         }
@@ -68,6 +109,7 @@ namespace SrsManageCommon
                 }
             }
 
+            path = videoFilePath;
             return false;
         }
     }

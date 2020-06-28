@@ -261,10 +261,11 @@ namespace SrsApis.SrsManager
                     if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
                     {
                         long duration = -1;
-                        FFmpegGetDuration.GetDuration(Common.FFmpegBinPath, filePath, out duration);
+                        string newPath = "";
+                        FFmpegGetDuration.GetDuration(Common.FFmpegBinPath, filePath, out duration,out newPath);
                         return new CutMergeTaskResponse
                         {
-                            FilePath = filePath,
+                            FilePath = newPath,
                             FileSize = new FileInfo(filePath).Length,
                             Duration = duration,
                             Status = CutMergeRequestStatus.Succeed,

@@ -108,13 +108,19 @@ namespace SRSWebApi
             {
                 Directory.CreateDirectory(SrsManageCommon.Common.WorkPath + "CutMergeFile");
             }
+            
+         
+
             var staticfile = new StaticFileOptions();
             staticfile.FileProvider = new PhysicalFileProvider(SrsManageCommon.Common.WorkPath+"CutMergeFile");//指定静态文件服务器
             //手动设置MIME Type,或者设置一个默认值， 以解决某些文件MIME Type文件识别不到，出现404错误
             staticfile.ServeUnknownFileTypes = true;
             staticfile.DefaultContentType = "application/octet-stream";//设置默认MIME Type
+            staticfile.OnPrepareResponse = (c) =>
+            {
+                c.Context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            };
             app.UseStaticFiles(staticfile);
-            
             app.Use(next => context =>
             {
                 context.Request.EnableBuffering();

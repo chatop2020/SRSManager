@@ -322,8 +322,15 @@ namespace SRSApis.SystemAutonomy
               
                 if (sdp.LimitDays > 0) //处理有天数限制的情况
                 {
-                  
-                    dateCount = dateList.Count;
+                    if (dateList != null)
+                    {
+                        dateCount = dateList.Count;
+                    }
+                    else
+                    {
+                        dateCount = 0;
+                    }
+
                     if (dateList != null && sdp.LimitDays < dateList.Count)
                     {
                       

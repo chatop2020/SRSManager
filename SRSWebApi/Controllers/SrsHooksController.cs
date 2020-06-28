@@ -120,8 +120,9 @@ namespace SrsWebApi.Controllers
 
             FileInfo dvrFile = new FileInfo(dvr.File);
             tmpDvrVideo.FileSize = dvrFile.Length;
-            if (FFmpegGetDuration.GetDuration(Common.FFmpegBinPath, dvr.File!, out long duration))
+            if (FFmpegGetDuration.GetDuration(Common.FFmpegBinPath, dvr.File!, out long duration,out string newPath))
             {
+                tmpDvrVideo.VideoPath = newPath;
                 tmpDvrVideo.Duration = duration;
                 tmpDvrVideo.StartTime = currentTime.AddMilliseconds(duration * (-1));
                 tmpDvrVideo.EndTime = currentTime;
