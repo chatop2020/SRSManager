@@ -15,6 +15,47 @@ namespace SrsApis.SrsManager.Apis
 {
     public static class DvrPlanApis
     {
+
+        /// <summary>
+        /// 获取裁剪积压任务列表
+        /// </summary>
+        /// <param name="rs"></param>
+        /// <returns></returns>
+        public static List<CutMergeTaskStatusResponse> GetBacklogTaskList(out ResponseStruct rs)
+        {
+            rs = new ResponseStruct()
+            {
+                Code = ErrorNumber.None,
+                Message = ErrorMessage.ErrorDic![ErrorNumber.None],
+            };
+            if (CutMergeService.CutMergeTaskStatusList != null)
+            {
+                var retList= CutMergeService.CutMergeTaskStatusList.FindAll(x => x.TaskStatus == TaskStatus.Create).ToList();
+                if (retList != null && retList.Count > 0)
+                {
+                    List<CutMergeTaskStatusResponse> resultList= new List<CutMergeTaskStatusResponse>();
+                    foreach (var ret in retList!)
+                    {
+                        CutMergeTaskStatusResponse res = new CutMergeTaskStatusResponse()
+                        {
+                            CallbakUrl = ret.CallbakUrl,
+                            CreateTime = ret.CreateTime,
+                            ProcessPercentage = ret.ProcessPercentage,
+                            TaskId = ret.TaskId,
+                            TaskStatus = ret.TaskStatus,
+                        };
+                        resultList.Add(res);
+                    }
+
+                    return resultList;
+                }
+            }
+
+            return null!;
+        }
+
+
+        
         /// <summary>
         /// 获取需要裁剪合并的文件列表 
         /// </summary>
@@ -293,14 +334,15 @@ namespace SrsApis.SrsManager.Apis
         /// <param name="taskId"></param>
         /// <param name="rs"></param>
         /// <returns></returns>
-        public static CutMergeTask GetMergeTaskStatus(string taskId, out ResponseStruct rs)
+        public static CutMergeTaskStatusResponse GetMergeTaskStatus(string taskId, out ResponseStruct rs)
         {
             rs = new ResponseStruct()
             {
                 Code = ErrorNumber.None,
                 Message = ErrorMessage.ErrorDic![ErrorNumber.None],
             };
-            var ret = CutMergeService.CutMergeTaskList.Where(x => x.TaskId == taskId).First();
+            var ret = CutMergeService.CutMergeTaskStatusList.FindLast(x => x.TaskId == taskId);
+            
             if (ret == null)
             {
                 rs = new ResponseStruct()
@@ -311,7 +353,18 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
-            return ret;
+            
+            var result = new CutMergeTaskStatusResponse()
+            {
+                CallbakUrl = ret.CallbakUrl,
+                CreateTime = ret.CreateTime,
+                ProcessPercentage = ret.ProcessPercentage,
+                TaskId = ret.TaskId,
+                TaskStatus = ret.TaskStatus,
+                
+            };
+           
+            return result;
         }
 
         public static CutMergeTaskResponse CutOrMergeVideoFile(ReqCutOrMergeVideoFile rcmv, out ResponseStruct rs)
@@ -386,6 +439,7 @@ namespace SrsApis.SrsManager.Apis
                     try
                     {
                         CutMergeService.CutMergeTaskList.Add(task);
+                        CutMergeService.CutMergeTaskStatusList.Add(task);
 
                         return new CutMergeTaskResponse()
                         {

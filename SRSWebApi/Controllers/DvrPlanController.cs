@@ -16,6 +16,20 @@ namespace SrsWebApi.Controllers
     public class DvrPlanController : ControllerBase
     {
     
+        /// <summary>
+        /// 获取合并裁剪任务积压列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AuthVerify]
+        [Log]
+        [Route("/DvrPlan/GetBacklogTaskList")]
+        public JsonResult GetBacklogTaskList()
+        {
+            var rt = DvrPlanApis.GetBacklogTaskList( out ResponseStruct rs);
+            return Program.CommonFunctions.DelApisResult(rt, rs);
+        }
+        
         
         /// <summary>
         /// 获取合并剪辑任务的进度信息

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using SrsManageCommon;
+using SRSManageCommon.ControllerStructs.ResponseModules;
 using SRSManageCommon.ManageStructs;
 using SrsManageCommon.SrsManageCommon;
 using TaskStatus = SRSManageCommon.ManageStructs.TaskStatus;
@@ -16,13 +17,14 @@ namespace SrsApis.SrsManager
     public static class CutMergeService
     {
         public static BlockingCollection<CutMergeTask> CutMergeTaskList = new BlockingCollection<CutMergeTask>(10);
-
+        public static List<CutMergeTask> CutMergeTaskStatusList= new List<CutMergeTask>();
         static CutMergeService()
         {
             Task.Factory.StartNew(() =>
             {
                 foreach (var value in CutMergeTaskList.GetConsumingEnumerable())
                 {
+                  //  CutMergeTaskStatusList.Add(value);
                     var taskReturn = CutMerge(value);
                     if (taskReturn != null)
                     {
@@ -263,6 +265,11 @@ namespace SrsApis.SrsManager
                         long duration = -1;
                         string newPath = "";
                         FFmpegGetDuration.GetDuration(Common.FFmpegBinPath, filePath, out duration,out newPath);
+                        var ret = CutMergeTaskStatusList.FindLast(x => x.TaskId == task.TaskId);
+                        if (ret != null)
+                        {
+                            
+                        }
                         return new CutMergeTaskResponse
                         {
                             FilePath = newPath,
