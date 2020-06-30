@@ -133,3 +133,4 @@
 /Users/qiuzhouwei/Projects/SRSManager/Test_FileMonitor/obj/Release/netcoreapp3.1/Test_FileMonitor.dll
 /Users/qiuzhouwei/Projects/SRSManager/Test_FileMonitor/obj/Release/netcoreapp3.1/Test_FileMonitor.pdb
 /Users/qiuzhouwei/Projects/SRSManager/Test_FileMonitor/obj/Release/netcoreapp3.1/Test_FileMonitor.genruntimeconfig.cache
+/Users/qiuzhouwei/Projects/SRSManager/Test_FileMonitor/obj/Release/netcoreapp3.1/Test_FileMonitor.csprojAssemblyReference.cache

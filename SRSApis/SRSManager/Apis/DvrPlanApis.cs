@@ -384,6 +384,18 @@ namespace SrsApis.SrsManager.Apis
                 return null!;
             }
 
+            if ((rcmv.EndTime - rcmv.StartTime).Minutes > 120) //超过120分钟不允许执行任务
+            {
+                rs = new ResponseStruct()
+                {
+                    Code = ErrorNumber.DvrCutMergeTimeLimit,
+                    Message = ErrorMessage.ErrorDic![ErrorNumber.DvrCutMergeTimeLimit],
+                };
+
+                return null!;
+                
+            }
+
             if (string.IsNullOrEmpty(rcmv.CallbackUrl) || !Common.IsUrl(rcmv.CallbackUrl!))
             {
                 //同步返回

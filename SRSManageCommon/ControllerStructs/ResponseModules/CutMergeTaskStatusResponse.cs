@@ -12,10 +12,7 @@ namespace SRSManageCommon.ControllerStructs.ResponseModules
         private string? _callbakUrl;
         private DateTime _createTime;
         private TaskStatus? _taskStatus;
-        private string? _uri;
-        private long? _fileSize;
-        private long? _duration;
-        private double? _timeConsuming;
+      
         /// <summary>
         /// Create=0%
         /// Packageing=45%
@@ -54,28 +51,6 @@ namespace SRSManageCommon.ControllerStructs.ResponseModules
             set => _processPercentage = value;
         }
 
-        public string? Uri
-        {
-            get => _uri;
-            set => _uri = value;
-        }
-
-        public long? FileSize
-        {
-            get => _fileSize;
-            set => _fileSize = value;
-        }
-
-        public long? Duration
-        {
-            get => _duration;
-            set => _duration = value;
-        }
-
-        public double? TimeConsuming
-        {
-            get => _timeConsuming;
-            set => _timeConsuming = value;
-        }
+    
     }
 }
