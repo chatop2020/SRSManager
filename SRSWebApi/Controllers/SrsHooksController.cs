@@ -51,7 +51,7 @@ namespace SrsWebApi.Controllers
             OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
-                Client_Id = client.Client_Id,
+                Client_Id = ushort.Parse(client.Client_Id!),
                 ClientIp = client.Ip,
                 App = client.App,
                 Vhost = client.Vhost,
@@ -74,7 +74,7 @@ namespace SrsWebApi.Controllers
             OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
-                Client_Id = client.Client_Id,
+                Client_Id =ushort.Parse(client.Client_Id!),
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
                 App = client.App,
@@ -107,7 +107,7 @@ namespace SrsWebApi.Controllers
             DvrVideo tmpDvrVideo = new DvrVideo()
             {
                 Device_Id = dvr.Device_Id,
-                Client_Id = dvr.Client_Id,
+                Client_Id = ushort.Parse(dvr.Client_Id!),
                 ClientIp = dvr.Ip,
                 ClientType = ClientType.Monitor,
                 VideoPath = dvr.File,
@@ -152,7 +152,7 @@ namespace SrsWebApi.Controllers
             OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
-                Client_Id = client.Client_Id,
+                Client_Id = ushort.Parse(client.Client_Id!),
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
                 App = client.App,
@@ -182,7 +182,7 @@ namespace SrsWebApi.Controllers
             OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
-                Client_Id = client.Client_Id,
+                Client_Id =ushort.Parse(client.Client_Id!),
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
                 App = client.App,
@@ -213,7 +213,7 @@ namespace SrsWebApi.Controllers
             OnlineClient tmpOnlineClient = new OnlineClient()
             {
                 Device_Id = client.Device_Id,
-                Client_Id = client.Client_Id,
+                Client_Id =ushort.Parse(client.Client_Id!),
                 ClientIp = client.Ip,
                 ClientType = ClientType.Monitor,
                 MonitorType = MonitorType.Onvif,
@@ -245,7 +245,7 @@ namespace SrsWebApi.Controllers
             {
                 MonitorType = MonitorType.Unknow,
                 Device_Id = client.Device_Id,
-                Client_Id = client.Client_Id,
+                Client_Id = ushort.Parse(client.Client_Id!),
                 ClientIp = client.Ip,
                 ClientType = ClientType.User,
                 App = client.App,

@@ -10,7 +10,7 @@ namespace SRSManageCommon.ControllerStructs.RequestModules
     {
         private string? _action;
         private string? _device_id;
-        private ushort? _clientId;
+        private string? _clientId;
         private string? _ip;
         private string? _vhost;
         private string? _app;
@@ -36,7 +36,7 @@ namespace SRSManageCommon.ControllerStructs.RequestModules
         /// <summary>
         /// 客户端id
         /// </summary>
-        public ushort? Client_Id
+        public string? Client_Id
         {
             get => _clientId;
             set => _clientId = value;

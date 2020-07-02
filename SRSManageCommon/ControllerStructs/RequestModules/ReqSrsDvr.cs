@@ -8,7 +8,7 @@ namespace SRSManageCommon.ControllerStructs.RequestModules
     [Serializable]
     public class ReqSrsDvr
     {
-        private ushort? _clientId;
+        private string? _clientId;
         private string? _device_id;
         private string? _ip;
         private string? _vhost;
@@ -21,7 +21,7 @@ namespace SRSManageCommon.ControllerStructs.RequestModules
         /// <summary>
         /// clientid
         /// </summary>
-        public ushort? Client_Id
+        public string? Client_Id
         {
             get => _clientId;
             set => _clientId = value;
