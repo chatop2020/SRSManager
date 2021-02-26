@@ -1,5 +1,11 @@
 # SRSManager
 
+#  项目终止公告
+## 由于最终选择使用zlmediakit作为我的流媒体服务器，因此SRSManager项目现在终止
+## 欢迎使用基于zlmediakit开发的AKStream管理平台
+## AKStream是一套全功能的流媒体管理控制接口平台。集成GB28181,RTSP,RTMP,HTTP等设备推拉流控制、PTZ控制、音视频文件录制管理、音视频文件裁剪合并等功能与一体
+## 开源地址 https://github.com/chatop2020/AKStream
+## 感谢多给Start,多多fork.
 ## 一、简介
 
 - SRSManager用于管理和控制SRS流媒体服务器的配置文件，将配置文件进行结构化处理，使配置文件更容易控制。
